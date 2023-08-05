@@ -1,0 +1,86 @@
+<template>
+	<form action="#" @submit.prevent="submit" class="sign-in-htm">
+		<div class="group">
+			<label for="sign-in-user" class="label">Email</label>
+			<input id="sign-in-user" type="text" class="input" v-model="Email">
+			<span v-if="!validarEmail" class="error">O e-mail é inválido</span>
+		</div>
+		<div class="group">
+			<label for="sign-in-pass" class="label">Senha</label>
+			<input id="sign-in-pass" type="password" class="input" data-type="password" v-model="Senha">
+			<span v-if="!validarSenha" class="error">A senha é obrigatória</span>
+		</div>
+		<div class="group">
+			<input id="check" type="checkbox" class="check" v-model="keepSignIn">
+			<label for="check"><span class="icon"></span> Mantenha-me conectado</label>
+		</div>
+		<div class="group">
+			<input type="submit" class="button" value="Entrar">
+			<!-- onclick={handleLogin} -->
+		</div>
+		<div class="hr"></div>
+		<div class="foot-lnk">
+			<a href="#forgot">Esqueceu sua senha?</a>
+		</div>
+	</form>
+</template>
+
+<script>
+import api from './../services/backend-service';
+
+export default {
+	data() {
+		return {
+			Email: '',
+			Senha: '',
+			keepSignIn: true,
+			validarEmail: true,
+			validarSenha: true,
+		}
+	},
+	methods: {
+		validarCampos() {
+			this.validarEmail = this.validarFormatoEmail(this.Email);
+			this.validarSenha = this.Senha !== '';
+			return this.validarEmail && this.validarSenha;
+		},
+		validarFormatoEmail(email) {
+			const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+			return re.test(email);
+		},
+		async submit() {
+			if (this.validarCampos()) {
+				console.log('PASSOU NESSE IF INSANO')
+				this.$emit('do-sign-in', { ...this.$data });
+			}
+
+			const email = document.getElementById('sign-in-user');
+			const senha = document.getElementById('sign-in-pass');
+
+			console.log('submit');
+
+			console.log({value: email.value});
+			console.log({value: senha.value});
+
+			const loginInfo = {
+				email: email.value,
+				senha: senha.value
+			}
+
+			const login = await api.post("/login", loginInfo);
+
+			console.log({login});
+
+			console.log({retorno: login.data.msg});
+			
+		},
+	},
+}
+</script>
+
+<style>
+.error {
+	color: red;
+	font-size: 12px;
+}
+</style>
