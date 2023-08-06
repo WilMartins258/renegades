@@ -1,6 +1,6 @@
 <template>
     <footer id="footer" >
-        <p>DPNADOS Copyright © 2023</p>
+        <p>The Renegades - Copyright © 2023</p>
 
     </footer>
 </template>

@@ -8,7 +8,7 @@
             alt="Novo Anúncio"
             class="card-image"
           />
-          <div class="description">Criar um anúncio</div>
+          <div class="description">Criar um Estabelecimento</div>
         </router-link>
   
         <router-link to="/link2" class="card">
@@ -17,7 +17,7 @@
             alt="Consultar"
             class="card-image"
           />
-          <div class="description">Consultar meus anuncios</div>
+          <div class="description">Consultar meu Estabelecimento</div>
         </router-link>
       </div>
     </div>
@@ -36,6 +36,7 @@
   
   .title {
     margin-top: 20px;
+    color: #fff;
   }
   
   .card-container {
@@ -50,13 +51,13 @@
     flex-direction: column;
     align-items: center;
     width: 300px;
-    border: 1px solid #6e55b9;;
+    border: 1px solid #ff9800;
     border-radius: 26px;
     padding: 10px;
     text-decoration: none;
-    color: #333;
+    color: #fff;
     margin-right: 10px;
-    box-shadow: 4px 4px 4px #858585, 4px 4px 4px #858585;
+    box-shadow: 4px 4px 4px #e91e2f, 4px 4px 4px ;
     margin-right: 25px;
   }
   
@@ -64,7 +65,8 @@
     box-shadow: 0 0 5px #aaa;
     transform: scale(1.1);
     transition-duration: .9s;
-    background-color: #6e55b9;;
+    /*background-color: #6e55b9;*/
+    background: linear-gradient(to right, #e91e2f, #ff9800); /*degradê. utlizado cores na posição inversa*/
   }
   
   .card-image {

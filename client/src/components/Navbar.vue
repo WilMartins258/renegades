@@ -50,7 +50,7 @@
           <a><router-link to="/Usuario">Área do Usuário</router-link></a>
         </li>
         <li>
-          <a><router-link to="/Anuncio">Meus Anúncio</router-link></a>
+          <a><router-link to="/Anuncio">Meus Estabelecimento</router-link></a>
         </li>
         <li>
           <a><router-link to="/notificacao">Notificação</router-link></a>
@@ -220,7 +220,7 @@ a :hover {
   left: 15px;
   top: 50%;
   left: 15px;
-  color: #7e61d4;
+  color: #e91e2f;
   transform: translateY(-50%);
 }
 
@@ -242,7 +242,7 @@ a :hover {
 /*Submenu*/
 .submenu {
   position: absolute;
-  top: 60px; /* Ajuste a posição vertical conforme necessário */
+  top: 52px; /* Ajuste a posição vertical conforme necessário */
   right: 0;
   background: linear-gradient(to right, #ff9800, #e91e2f); /*degradê. */
   border-radius: 4px;
