@@ -1,41 +1,76 @@
 <template>
   <nav class="nav">
     <i class="uil uil-bars navOpenBtn"></i>
-    <a><router-link to="/" id="logo_posicao">
-        <img :src="logo" id="logo">
-      </router-link></a>
+    <a
+      ><router-link to="/" id="logo_posicao">
+        <img :src="logo" id="logo" /> </router-link
+    ></a>
 
     <ul class="nav-links">
       <i class="uil uil-times navCloseBtn"></i>
-      <li><a><router-link to="/">Home</router-link></a></li>
-      <li><a><router-link to="/Categoria" v-if="notIsLoginPage">Categoria</router-link></a></li>
-      <li><a> <router-link to="/Login" v-if="notIsLoginPage">Entrar/Cadastrar</router-link></a></li>
-      <li><a><router-link to="/sobre">Sobre</router-link></a></li>
-      
+      <li>
+        <a><router-link to="/">Home</router-link></a>
+      </li>
+      <li>
+        <a
+          ><router-link to="/Categoria" v-if="notIsLoginPage"
+            >Categoria</router-link
+          ></a
+        >
+      </li>
+      <li>
+        <a>
+          <router-link to="/Login" v-if="notIsLoginPage"
+            >Entrar/Cadastrar</router-link
+          ></a
+        >
+      </li>
+      <li>
+        <a><router-link to="/sobre">Sobre</router-link></a>
+      </li>
     </ul>
 
-    <i class="uil uil-search search-icon" id="searchIcon" v-if="notIsLoginPage"></i>
+    <i
+      class="uil uil-search search-icon"
+      id="searchIcon"
+      v-if="notIsLoginPage"
+    ></i>
     <div class="search-box">
       <i class="uil uil-search search-icon"></i>
       <input type="text" placeholder="Pesquise aqui..." />
     </div>
     <div>
-  <img src="https://adaptabiz.com/wp-content/uploads/2022/01/img_avatar.png" alt="Avatar" class="avatar">
-  <ul class="submenu">
-    <li><a><router-link to="/Usuario">Área do Usuário</router-link></a></li>
-    <li><a><router-link to="/Anuncio">Meus Anúncio</router-link></a></li>
-    <li><a><router-link to="/notificacao">Notificação</router-link></a></li>
-    <li><a><router-link to="/">Sair</router-link></a></li>
-  </ul>
-</div>
+      <img
+        src="https://adaptabiz.com/wp-content/uploads/2022/01/img_avatar.png"
+        alt="Avatar"
+        class="avatar"
+      />
+      <ul class="submenu">
+        <li>
+          <a><router-link to="/Usuario">Área do Usuário</router-link></a>
+        </li>
+        <li>
+          <a><router-link to="/Anuncio">Meus Anúncio</router-link></a>
+        </li>
+        <li>
+          <a><router-link to="/notificacao">Notificação</router-link></a>
+        </li>
+        <li>
+          <a><router-link to="/">Sair</router-link></a>
+        </li>
+      </ul>
+    </div>
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"
+    />
   </nav>
-  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
 </template>
   
 <script>
 export default {
   name: "Navbar",
-  name: 'NavigationBar',
+  name: "NavigationBar",
   props: ["logo"],
   data() {
     return {
@@ -66,9 +101,8 @@ export default {
 
     navCloseBtn.addEventListener("click", () => {
       nav.classList.remove("openNav");
-    })
+    });
   },
-
 
   computed: {
     /*Ocultar na NavBar quando Page de login*/
@@ -97,7 +131,6 @@ export default {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  
 }
 
 body {
@@ -110,14 +143,14 @@ body {
   left: 0;
   width: 100%;
   padding: 15px 70px;
-  background: #8d72e1;
+  background: linear-gradient(to right, #ff9800, #e91e2f); /*degradê. */
+  height: 60px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 #logo {
   width: 100px;
   height: 40px;
-  
 }
 
 .nav,
@@ -133,7 +166,7 @@ body {
 a {
   color: #fff;
   text-decoration: none;
-  font-weight: bold
+  font-weight: bold;
 }
 
 a :hover {
@@ -211,13 +244,13 @@ a :hover {
   position: absolute;
   top: 60px; /* Ajuste a posição vertical conforme necessário */
   right: 0;
-  background-color: #7e61d4;;
+  background: linear-gradient(to right, #ff9800, #e91e2f); /*degradê. */
   border-radius: 4px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   padding: 15px;
   display: none;
   line-height: 1.5;
-  list-style:none;
+  list-style: none;
 }
 
 .avatar:hover + .submenu,
@@ -248,7 +281,6 @@ a :hover {
 }
 
 @media screen and (max-width: 768px) {
-
   .nav .navOpenBtn,
   .nav .navCloseBtn {
     display: block;
@@ -268,7 +300,7 @@ a :hover {
     padding-top: 100px;
     row-gap: 30px;
     flex-direction: column;
-    background-color: #6e55b9;
+    background: linear-gradient(to right, #ff9800, #e91e2f); /*degradê. */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     transition: all 0.4s ease;
     z-index: 100;
@@ -300,4 +332,5 @@ a :hover {
     transform: translateX(50%);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   }
-}</style>
+}
+</style>

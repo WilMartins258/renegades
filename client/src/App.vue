@@ -33,7 +33,7 @@
   }
 
   body{
-    background: url(https://img.elo7.com.br/product/zoom/2BAFCB7/papel-de-parede-infantil-meninos-papel-de-parede-personalizado-para-quarto.jpg) no-repeat center;
+    background: url(https://images3.alphacoders.com/836/836644.jpg) no-repeat center;
   background-size: cover;
   }
 

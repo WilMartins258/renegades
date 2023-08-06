@@ -14,7 +14,7 @@
 <style scoped>
     #footer{
         height: 80px;
-        background-color: #8D72E1;
+        background: linear-gradient(to right, #ff9800, #e91e2f); /*degradê. */
         color: #fff;
         display: flex;
         align-items: center;
