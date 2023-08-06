@@ -1,6 +1,7 @@
 {
   "name": "prj_imommy",
   "version": "0.1.0",
+  "description": "front-end do projeto Renegades",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
