@@ -2,12 +2,17 @@
   <Navbar :logo="logo_src"/>
   <router-view />
   <Footer />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap" rel="stylesheet">
 </div>
+
 </template>
 
 <script>
   import Navbar from './components/Navbar.vue';
   import Footer from './components/Footer.vue';
+  
 
   export default{
     components:{
@@ -25,7 +30,7 @@
 
 <style>
   *{
-    font-family: Helvetica;
+    font-family: 'Lora', serif;
     padding: 0;
     margin: 0;
     box-sizing: border-box;
