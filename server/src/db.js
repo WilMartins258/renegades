@@ -1,5 +1,5 @@
 /**
- * Esse arquivo tem o único intuito de estabelexer uma coneção com o banco de dados e disponibilizá-la para todo o projeto
+ * Esse arquivo tem o único intuito de estabelecer uma coneção com o banco de dados e disponibilizá-la para todo o projeto
  * @returns connection -> Retornar uma instância de conexão com o banco de dados
  */
 async function connect(){
