@@ -13,7 +13,8 @@ CREATE TABLE usuario (
     senha VARCHAR(50) not null,
 	sexo ENUM('F', 'M'),
 	foto_de_perfil BLOB,
-    data_nascimento DATE
+    data_nascimento DATE,
+	favoritos VARCHAR(300) -- A ideia é ter um array guardando todos os IDs dos estabelecimentos favoritos
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE celular (
@@ -52,4 +53,5 @@ CREATE TABLE estabelecimento (
 	nota FLOAT, -- Avaliações (0 a 5 estrelas)
 	agendamento BOOLEAN,
 	idContato INT,
+	estacionamento BOOLEAN,
 ) AUTO_INCREMENT = 1;
