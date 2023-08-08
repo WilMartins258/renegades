@@ -11,6 +11,11 @@ router.get('/', (req, res) => {
     res.send('Dados da página inicial.');
 });
 
+// router.use(
+//     "/home", 
+//     require("./home")
+// );
+
 
 // Rotas do backend
 // router.use(
@@ -28,9 +33,5 @@ router.get('/', (req, res) => {
 //     require("./home-logged")
 // );
 
-// router.use(
-//     "/home", 
-//     require("./home")
-// );
 
 module.exports = router;
