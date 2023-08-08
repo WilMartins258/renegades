@@ -25,19 +25,19 @@ const routes = [
   {
     path: '/Anuncio',
     name: 'Anuncio',
-    component: () => import(/* webpackChunkName: "Anuncio" */ '../views/ViewAnuncios/Anuncio'),
+    component: () => import(/* webpackChunkName: "Anuncio" */ '../views/ViewAreaEstabelecimento/Estabelecimento'),
   },
 
   {
     path: '/CadAnuncio',
     name: 'CadAnuncio',
-    component: () => import(/* webpackChunkName: "CadAnuncio" */ '../views/ViewAnuncios/CadAnuncio'),
+    component: () => import(/* webpackChunkName: "CadEstabelecimento" */ '../views/ViewAreaEstabelecimento/CadEstabelecimento'),
   },
 
   {
     path: '/Categoria',
     name: 'Categoria',
-    component: () => import(/* webpackChunkName: "Categoria" */ '../views/ViewAnuncios/Categoria'),
+    component: () => import(/* webpackChunkName: "Categoria" */ '../views/ViewAreaEstabelecimento/Categoria'),
   }
 
 ]

@@ -1,17 +1,17 @@
 <template>
     <div class="main-container">
-      <AddAnuncio/>
+      <DashCategoria/>
     </div>
   
   </template>
   
   <script>
-  import AddAnuncio from "../../components/Anuncios/AddAnuncio.vue"
+  import DashCategoria from "../../components/Estabelecimento/DashCategoria.vue"
   
       export default{
-          name: "CadAnuncio",
+          name: "Categoria",
           components:{
-              AddAnuncio,
+            DashCategoria,
           }
       };
   

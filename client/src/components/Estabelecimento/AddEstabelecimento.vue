@@ -97,7 +97,7 @@
 
 <script>
 export default {
-  name: "AddAnuncio",
+  name: "AddEstabelecimento",
   data() {
     return {
       imagensSelecionadas: [], // Lista de imagens selecionadas

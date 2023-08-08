@@ -25,7 +25,7 @@
   
   <script>
   export default {
-    name: "AreaAnuncio",
+    name: "AreaDoEstabelecimento",
   };
   </script>
   
