@@ -36,14 +36,14 @@ CREATE TABLE usuario (
     idEstabelecimento INT,
 	idCelular INT not null,
     nome VARCHAR(100) not null,
-    sobrenome VARCHAR(100) not null,					
-    cpf VARCHAR(11),
+    sobrenome VARCHAR(100) not null,
+	nomeUsuario VARCHAR(50) not null, 
+    cpf VARCHAR(11) UNIQUE,
     email VARCHAR(100) not null UNIQUE,
     senha VARCHAR(50) not null,
-	-- sexo ENUM('F', 'M'), -- Precisamos do sexo do usuário???
 	foto_de_perfil BLOB,
     data_nascimento DATE,
-	favoritos VARCHAR(300) -- A ideia é ter um array guardando todos os IDs dos estabelecimentos favoritos
+	favoritos VARCHAR(300)
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE celular (
@@ -64,29 +64,60 @@ CREATE TABLE endereco (
 
 CREATE TABLE contato (
 	id INT PRIMARY KEY AUTO_INCREMENT,
-	codigoArea01 VARCHAR(5),
-	numero01 VARCHAR(20),
+	codigoArea01 VARCHAR(5) not null,
+	numero01 VARCHAR(20) not null,
 	codigoArea02 VARCHAR(5),
 	numero02 VARCHAR(20),
 	site VARCHAR(200),
-	cardapioOnline VARCHAR(200) -- ???
+	cardapioOnline VARCHAR(200)
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE estabelecimento (
 	id INT PRIMARY KEY AUTO_INCREMENT,
 	nome VARCHAR(100) not null,
 	categoria VARCHAR(50) not null, -- (bar, lanchonete, pizzaria)
-	estilo VARCHAR(100), -- Público-alvo (Estilo do lugar...)
-	cardapio VARCHAR(100), -- Cardápio/Produtos (somente listar, somente principais)
+	descricao VARCHAR(400) not null,
+	ambiente VARCHAR(100), -- Público-alvo (Estilo do ambiente...)
+	estiloMusica VARCHAR(50),
+	musicaAoVivo BOOLEAN,
+	cardapio VARCHAR(100),
 	fotoPrincipal BLOB,
-	icone BLOB, -- Uma miniatura que aparece na hora de pesquisar?
 	rodizio BOOLEAN not null,
-	idEndereco INT,
+	idEndereco INT not null,
 	nota FLOAT, -- Avaliações (0 a 5 estrelas)
 	agendamento BOOLEAN,
 	idContato INT,
 	estacionamento BOOLEAN
 	-- promocao/anuncio ????? -- Precisamos conversar sobre como isso vai funcionar
+) AUTO_INCREMENT = 1;
+
+CREATE TABLE categoria (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	nome VARCHAR(50) not null
+) AUTO_INCREMENT = 1;
+
+CREATE TABLE avaliacao (
+	id estabelecimento,
+	id usuario
+) AUTO_INCREMENT = 1;
+
+
+CREATE TABLE ambiente (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	nome VARCHAR(50) not null -- Exemplo: Voltado para jovens, ambiente familiar
+) AUTO_INCREMENT = 1;
+
+CREATE TABLE cardapio (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	fotoItem01 BLOB,
+	nomeItem01 VARCHAR(50) not null,
+	descricaoItem01 VARCHAR(50) not null,
+	fotoItem02 BLOB,
+	nomeItem02 VARCHAR(50) not null,
+	descricaoItem02 VARCHAR(50) not null,
+	fotoItem03 BLOB,
+	nomeItem03 VARCHAR(50) not null,
+	descricaoItem03 VARCHAR(50) not null,
 ) AUTO_INCREMENT = 1;
 
 
