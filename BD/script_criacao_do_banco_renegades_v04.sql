@@ -128,7 +128,7 @@ CREATE TABLE cardapio (
 	descricaoItem02 VARCHAR(50),
 	fotoItem03 BLOB,
 	nomeItem03 VARCHAR(50),
-	descricaoItem03 VARCHAR(50),
+	descricaoItem03 VARCHAR(50)
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE ambiente (
@@ -162,7 +162,7 @@ CREATE TABLE avaliacao (
 	idEstabelecimento INT PRIMARY KEY,
 	resumo VARCHAR(50),
 	avaliacao VARCHAR(200),
-	nota
+	nota INT -- Quero futuramente fazer o check para que o usuário só possa gravar dados entre 1 e 5 estrelas
 );
 
 

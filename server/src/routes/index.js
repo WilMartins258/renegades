@@ -12,25 +12,24 @@ router.get('/', (req, res) => {
 });
 
 router.use(
-    "/home", 
+    "/home",
     require("./home.js")
 );
 
-
 // Rotas do backend
 // router.use(
-//     "/login", 
-//     require("./login")
+//     "/login",
+//     require("./login.js")
 // );
 
 // router.use(
-//     "/register", 
-//     require("./register")
+//     "/register",
+//     require("./register.js")
 // );
 
 // router.use(
-//     "/home-logged", 
-//     require("./home-logged")
+//     "/home-logged",
+//     require("./home-logged.js")
 // );
 
 
