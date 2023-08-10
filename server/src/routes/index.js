@@ -8,13 +8,13 @@ router.use(cors());
 
 router.get('/', (req, res) => {
     console.log('passou pelo /')
-    res.send('Dados da página inicial.');
+    res.send('Dados da página inicial Renagades.');
 });
 
-// router.use(
-//     "/home", 
-//     require("./home")
-// );
+router.use(
+    "/home", 
+    require("./home.js")
+);
 
 
 // Rotas do backend

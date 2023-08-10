@@ -152,7 +152,8 @@ CREATE TABLE estabelecimento (
 	rodizio BOOLEAN not null,
 	nota FLOAT, -- Avaliações (0 a 5 estrelas)
 	agendamento BOOLEAN,
-	estacionamento BOOLEAN
+	estacionamento BOOLEAN,
+	ativo BOOLEAN
 	-- promocao/anuncio ????? -- Precisamos conversar sobre como isso vai funcionar
 ) AUTO_INCREMENT = 1;
 
