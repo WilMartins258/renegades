@@ -1,20 +1,24 @@
 <template>
-  <div id="anuncio" class="form">
-    <br /><h2>Crie um Anúncio</h2>
-    <div class="posicaoAnuncio">
+  <div id="form-wrap" class="form">
+    <br />
+    <h2>Crie seu Estabelecimento</h2>
+    <div class="posicaoform-wrap">
       <div class="group">
-        <label for="nome" class="label">Nome do Anúncio:</label><br />
-        <input
-          type="text"
-          id="nome"
-          class="input"
-          name="nome"
-          required
-        /><br /><br />
+        <label for="nome" class="label">Nome do Estabelecimento:</label><br />
+        <input type="text" id="nome" class="input" name="nome" required /><br />
       </div>
 
       <div class="group">
-        <label for="descricao" class="label">Descrição do Anúncio:</label><br />
+        <label for="cnpj" class="label">CNPJ:</label><br />
+        <input type="text" id="cnpj" class="input" name="cnpj" required /><br />
+      </div>
+      <!--Componente que faz a pesquisa do CEP -->
+      <PesquisaCEP />
+
+      <div class="group">
+        <label for="descricao" class="label"
+          >Descrição do Estabelecimento:</label
+        ><br />
         <textarea
           id="descricao"
           class="input"
@@ -24,8 +28,10 @@
           required
         ></textarea>
         <br />
-        <span id="contador">0</span>/<span>200</span><br /><br />
+        <span id="contador">0</span><span>/</span><span>200</span><br /><br />
       </div>
+
+
 
       <div class="group">
         <label for="tipo" class="label">Tipo do Anúncio:</label><br />
@@ -37,9 +43,9 @@
           required
           checked
         />
-        <label for="doacao">Doação</label><br />
+        <label for="doacao" class="label2">Doação</label><br />
         <input type="radio" id="troca" name="tipo" value="troca" required />
-        <label for="troca">Troca</label><br /><br />
+        <label for="troca" class="label2">Troca</label><br /><br />
       </div>
 
       <div class="group">
@@ -48,8 +54,8 @@
           <option value="brinquedo">Brinquedo</option>
           <option value="roupa">Roupa</option>
           <option value="alimento">Alimento</option>
-          <option value="carrinho">Carrinho de Bebê</option>
-        </select><br /><br />
+          <option value="carrinho">Carrinho de Bebê</option></select
+        ><br /><br />
       </div>
 
       <div class="group">
@@ -78,25 +84,29 @@
       </div>
 
       <div class="group">
-
         <div>
-    <input type="button" class="button" value="Salvar" />
-    <input type="button" class="button" value="Cancelar" @click="cancelar"  />
-  </div>
-        
-
-        <div>
+          <input type="button" class="button" value="Salvar" />
+          <input
+            type="button"
+            class="button"
+            value="Cancelar"
+            @click="cancelar"
           />
-       </div>
+        </div>
+
       </div>
     </div>
   </div>
-
-
 </template>
 
 <script>
+import IMask from "imask";
+import PesquisaCEP from '../PesquisaCEP/pesquisacep.vue';
+
 export default {
+  components: {
+    PesquisaCEP
+  },
   name: "AddEstabelecimento",
   data() {
     return {
@@ -108,10 +118,15 @@ export default {
       this.imagensSelecionadas.splice(index, 1);
     },
     cancelar() {
-      this.$router.push('/Anuncio');
+      this.$router.push("/form-wrap");
     },
   },
   mounted() {
+    const cnpjInput = document.getElementById("cnpj");
+    const cnpjMask = IMask(cnpjInput, {
+      mask: "00.000.000/0000-00",
+    });
+
     const imagensInput = document.getElementById("imagens");
 
     imagensInput.addEventListener("change", () => {
@@ -137,84 +152,23 @@ export default {
 </script>
 
 <style scoped>
-#anuncio {
-  width: 100%;
-  margin: auto;
-  max-width: 525px;
-  min-height: 1010px;
-  position: relative;
-  
-  background: url(https://centroevolvere.com.br/wp-content/uploads/2020/08/22.png)
-    no-repeat center;
-  background-color: #c9beebe1;
-  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
-    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+#form-wrap {
+  /*Imagem de fundo do forms*/
+    min-height: 1500px;
+    background-image: url('https://img.freepik.com/vetores-gratis/papel-de-parede-mural-do-restaurante_23-2148695092.jpg?w=900&t=st=1691866632~exp=1691867232~hmac=21d65c3cc870912f929637ba1f0b0e7e37fc93f5ad62c92f9803f5cf52f03be5');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Aqui está o ponto chave */
+    width: 100%;
+    height: 100vh;
 }
 
-.posicaoAnuncio {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  padding: 50px 70px 50px 70px;
-  flex-wrap: wrap;
+span{
+  color: #fff;
 }
 
-h2 {
-  text-align: center;
-}
-
-.form {
-  min-height: 345px;
-  position: relative;
-  perspective: 1000px;
-  transform-style: preserve-3d;
-}
-
-.form .group {
-  margin-bottom: 15px;
-}
-
-.form .group .label,
-.form .group .input {
-  width: 100%;
-  color: #000;
-  display: block;
-}
-
-.group .button,
-.group .input {
-  border: none;
-  padding: 15px 100px;
-  border-radius: 25px;
-  background: rgba(211, 201, 201, 0.774);
-}
-
-.group .button,
-.group .label {
-  text-transform: uppercase;
-}
-
-.group .button-spacing {
-  margin-right: 10px;
-}
-
-.form .group .button {
-  padding: 15px 50px;
-}
-
-#anuncio .group .label {
-  color: #000000;
-  font-size: 16px;
-}
-
-#anuncio .group .button {
-  background: #8d72e1;
-  cursor: pointer;
-  transition: 0.5s;
-}
-
-#anuncio .group .button:hover {
-  background: #51389d;
+.form .group .label2{
+  color: #fff;
 }
 
 .miniatura {
@@ -227,7 +181,7 @@ h2 {
   width: 100px;
   height: 100px;
   object-fit: cover;
-  border: 3px solid #000000;
+  border: 3px solid #fff;
 }
 
 .miniatura .excluir {
@@ -241,20 +195,23 @@ h2 {
   cursor: pointer;
 }
 
-.button {
-  margin-right: 10px;
+h2{
+  color: #fff;
 }
 
+.label {
+  color: #fff;
+}
 /* Responsividade */
 
 @media (max-width: 1160px) {
-  #anuncio {
+  #form-wrap {
     max-width: 950px;
   }
 }
 
 @media (max-width: 950px) {
-  #anuncio {
+  #form-wrap {
     max-width: 768px;
   }
 }
