@@ -28,10 +28,8 @@
           required
         ></textarea>
         <br />
-        <span id="contador">0</span><span>/</span><span>200</span><br /><br />
+        <span id="contador">0</span>/<span>200</span><br /><br />
       </div>
-
-
 
       <div class="group">
         <label for="tipo" class="label">Tipo do Anúncio:</label><br />
@@ -41,20 +39,21 @@
           name="tipo"
           value="doacao"
           required
-          checked
-        />
+          checked/>
         <label for="doacao" class="label2">Doação</label><br />
         <input type="radio" id="troca" name="tipo" value="troca" required />
         <label for="troca" class="label2">Troca</label><br /><br />
       </div>
 
+
+
       <div class="group">
-        <label for="categoria" class="label">Categoria do Anúncio:</label><br />
+        <label for="categoria" class="label">Categoria do Estabelecimento:</label><br />
         <select id="categoria" class="input" name="categoria" required>
-          <option value="brinquedo">Brinquedo</option>
-          <option value="roupa">Roupa</option>
-          <option value="alimento">Alimento</option>
-          <option value="carrinho">Carrinho de Bebê</option></select
+          <option value="brinquedo">Bar</option>
+          <option value="roupa">Lanchonete</option>
+          <option value="alimento">Pizzaria</option>
+          <option value="carrinho">Hamburgueria</option></select
         ><br /><br />
       </div>
 
