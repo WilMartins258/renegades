@@ -17,7 +17,6 @@ DROP TABLE CELULAR;
 DROP TABLE ENDERECO;
 DROP TABLE CONTATO;
 DROP TABLE CATEGORIA;
-DROP TABLE AMBIENTE;
 DROP TABLE CARDAPIO;
 DROP TABLE HORARIO;
 DROP TABLE AVALIACAO;
@@ -43,19 +42,18 @@ CREATE TABLE celular (
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE usuario (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	idCelular INT not null,
+	id                INT PRIMARY KEY AUTO_INCREMENT,
+	idCelular         INT not null,
 	idEstabelecimento INT,
-	ativo BOOLEAN,
-    nome VARCHAR(100) not null,
-    sobrenome VARCHAR(100) not null,
-	nomeUsuario VARCHAR(50) not null, 
-    cpf VARCHAR(11), -- UNIQUE,
-    email VARCHAR(100) not null UNIQUE,
-    senha VARCHAR(50) not null,
-	fotoPerfil BLOB,
-    dataNascimento DATE,
-	favoritos VARCHAR(300)
+	idEndereco        INT, -- FAZER CONSTRAINT DISSO DEPOIS
+    nome              VARCHAR(100) not null,
+    sobrenome         VARCHAR(100) not null,
+	nomeUsuario       VARCHAR(50) not null, 
+    cpf               VARCHAR(11), -- UNIQUE,
+    email             VARCHAR(100) not null UNIQUE,
+    senha             VARCHAR(50) not null,
+	fotoPerfil        BLOB,
+    dataNascimento    DATE
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE categoria (
@@ -115,7 +113,7 @@ CREATE TABLE horario (
 	sextaInicio TIME,
 	sextaFim TIME,
 	sabadoInicio TIME,
-	sabadoFim TIME	
+	sabadoFim TIME
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE cardapio (
@@ -131,9 +129,14 @@ CREATE TABLE cardapio (
 	descricaoItem03 VARCHAR(50)
 ) AUTO_INCREMENT = 1;
 
-CREATE TABLE ambiente (
+------------------------------------- NEW
+CREATE TABLE cumpom (
 	id INT PRIMARY KEY AUTO_INCREMENT,
-	nome VARCHAR(50) not null -- Exemplo: Voltado para jovens, ambiente familiar
+	nome VARCHAR(100) not null,
+	descricao VARCHAR(400) not null,
+	codigo VARCHAR(20) not null,
+	dataInicio DATE not null,
+	dataFim DATA not null,
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE estabelecimento (
@@ -143,23 +146,29 @@ CREATE TABLE estabelecimento (
 	idEndereco INT not null,
 	idHorario INT not null,
 	idCardapio INT,
-	idAmbiente INT,
+	idAvaliacao INT, -- CRIAR CONSTRAINT PARA ISSO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	idcumpom INT, -- CRIAR CONSTRAINT PARA ISSO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	nome VARCHAR(100) not null,
+	cnpj VARCHAR(14) not null,
+	fotoPrincipal BLOB,
 	descricao VARCHAR(400) not null,
 	estiloMusica VARCHAR(50),
 	musicaAoVivo BOOLEAN,
-	fotoPrincipal BLOB,
 	rodizio BOOLEAN not null,
 	nota FLOAT, -- Avaliações (0 a 5 estrelas)
 	agendamento BOOLEAN,
 	estacionamento BOOLEAN,
-	ativo BOOLEAN
+	ativo BOOLEAN,
+	visivel BOOLEAN,
+	validado ENUM('Pendente', 'Validado', 'Não validado'),
+	dataUltimoAcesso DATE
 	-- promocao/anuncio ????? -- Precisamos conversar sobre como isso vai funcionar
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE avaliacao (
-	idUsuario INT PRIMARY KEY,
-	idEstabelecimento INT PRIMARY KEY,
+	id INT PRIMARY KEY,
+	idUsuario INT not null,
+	idEstabelecimento INT null,
 	resumo VARCHAR(50),
 	avaliacao VARCHAR(200),
 	nota INT -- Quero futuramente fazer o check para que o usuário só possa gravar dados entre 1 e 5 estrelas
@@ -183,8 +192,6 @@ ALTER TABLE estabelecimento add (constraint estabelecimento_id_endereco_fk forei
 ALTER TABLE estabelecimento add (constraint estabelecimento_id_horario_fk foreign key (idHorario) references horario (id));
 
 ALTER TABLE estabelecimento add (constraint estabelecimento_id_cardapio_fk foreign key (idCardapio) references cardapio (id));
-
-ALTER TABLE estabelecimento add (constraint estabelecimento_id_ambiente_fk foreign key (idAmbiente) references ambiente (id));
 
 ------ AVALIACAO
 ALTER TABLE avaliacao add (constraint avaliacao_id_usuario_fk foreign key (idUsuario) references usuario (id));
