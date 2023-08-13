@@ -12,8 +12,72 @@
         <label for="cnpj" class="label">CNPJ:</label><br />
         <input type="text" id="cnpj" class="input" name="cnpj" required /><br />
       </div>
-      <!--Componente que faz a pesquisa do CEP -->
-      <PesquisaCEP />
+
+      <!--Pesquisa por cep e completa os campos-->
+
+      <div class="group">
+        <label for="cep" class="label">CEP:</label><br />
+        <input
+          v-model="cep"
+          type="text"
+          id="cep"
+          class="input"
+          name="cep"
+          @blur="pesquisarCep"
+          required
+        /><br />
+      </div>
+      <div class="group">
+        <label for="rua" class="label">Rua:</label><br />
+        <input
+          v-model="endereco.rua"
+          type="text"
+          id="rua"
+          class="input"
+          name="rua"
+        /><br />
+      </div>
+      <div class="group">
+        <label for="numero" class="label">Número:</label><br />
+        <input
+          ref="numeroInput"
+          type="text"
+          id="numero"
+          class="input"
+          name="numero"
+          required
+        /><br />
+      </div>
+      <div class="group">
+        <label for="bairro" class="label">Bairro:</label><br />
+        <input
+          v-model="endereco.bairro"
+          type="text"
+          id="bairro"
+          class="input"
+          name="bairro"
+        /><br />
+      </div>
+      <div class="group">
+        <label for="cidade" class="label">Cidade:</label><br />
+        <input
+          v-model="endereco.cidade"
+          type="text"
+          id="cidade"
+          class="input"
+          name="cidade"
+        /><br />
+      </div>
+      <div class="group">
+        <label for="uf" class="label">Estado:</label><br />
+        <input
+          v-model="endereco.uf"
+          type="text"
+          id="uf"
+          class="input"
+          name="uf"
+        /><br />
+      </div>
 
       <div class="group">
         <label for="descricao" class="label"
@@ -39,16 +103,17 @@
           name="tipo"
           value="doacao"
           required
-          checked/>
+          checked
+        />
         <label for="doacao" class="label2">Doação</label><br />
         <input type="radio" id="troca" name="tipo" value="troca" required />
         <label for="troca" class="label2">Troca</label><br /><br />
       </div>
 
-
-
       <div class="group">
-        <label for="categoria" class="label">Categoria do Estabelecimento:</label><br />
+        <label for="categoria" class="label"
+          >Categoria do Estabelecimento:</label
+        ><br />
         <select id="categoria" class="input" name="categoria" required>
           <option value="brinquedo">Bar</option>
           <option value="roupa">Lanchonete</option>
@@ -92,7 +157,6 @@
             @click="cancelar"
           />
         </div>
-
       </div>
     </div>
   </div>
@@ -100,16 +164,21 @@
 
 <script>
 import IMask from "imask";
-import PesquisaCEP from '../PesquisaCEP/pesquisacep.vue';
-
+import axios from "axios";
 export default {
-  components: {
-    PesquisaCEP
-  },
+  components: {},
   name: "AddEstabelecimento",
   data() {
     return {
-      imagensSelecionadas: [], // Lista de imagens selecionadas
+      imagensSelecionadas: [],
+      cnpj: "",
+      cep: "",
+      endereco: {
+        rua: "",
+        bairro: "",
+        cidade: "",
+        uf: "",
+      },
     };
   },
   methods: {
@@ -118,6 +187,46 @@ export default {
     },
     cancelar() {
       this.$router.push("/form-wrap");
+    },
+    limpa_formulário_cep() {
+      document.getElementById("rua").value = "";
+      document.getElementById("bairro").value = "";
+      document.getElementById("cidade").value = "";
+      document.getElementById("uf").value = "";
+    },
+    meu_callback(conteudo) {
+      if (!("erro" in conteudo)) {
+        document.getElementById("rua").value = conteudo.logradouro;
+        document.getElementById("bairro").value = conteudo.bairro;
+        document.getElementById("cidade").value = conteudo.localidade;
+        document.getElementById("uf").value = conteudo.uf;
+      } else {
+        this.limpa_formulário_cep();
+        alert("CEP não encontrado.");
+      }
+    },
+    pesquisarCep() {
+      var cep = this.cep.replace(/\D/g, "");
+      if (cep !== "") {
+        var validacep = /^[0-9]{8}$/;
+        if (validacep.test(cep)) {
+          axios
+            .get(`https://viacep.com.br/ws/${cep}/json/`)
+            .then((response) => {
+              this.meu_callback(response.data);
+              this.$refs.numeroInput.focus();
+            })
+            .catch((error) => {
+              this.limpa_formulário_cep();
+              alert("CEP não encontrado.");
+            });
+        } else {
+          this.limpa_formulário_cep();
+          alert("Formato de CEP inválido.");
+        }
+      } else {
+        this.limpa_formulário_cep();
+      }
     },
   },
   mounted() {
@@ -150,23 +259,24 @@ export default {
 };
 </script>
 
+
 <style scoped>
 #form-wrap {
   /*Imagem de fundo do forms*/
-    min-height: 1500px;
-    background-image: url('https://img.freepik.com/vetores-gratis/papel-de-parede-mural-do-restaurante_23-2148695092.jpg?w=900&t=st=1691866632~exp=1691867232~hmac=21d65c3cc870912f929637ba1f0b0e7e37fc93f5ad62c92f9803f5cf52f03be5');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed; /* Aqui está o ponto chave */
-    width: 100%;
-    height: 100vh;
+  min-height: 1500px;
+  background-image: url("https://img.freepik.com/vetores-gratis/papel-de-parede-mural-do-restaurante_23-2148695092.jpg?w=900&t=st=1691866632~exp=1691867232~hmac=21d65c3cc870912f929637ba1f0b0e7e37fc93f5ad62c92f9803f5cf52f03be5");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  width: 100%;
+  height: 100vh;
 }
 
-span{
+span {
   color: #fff;
 }
 
-.form .group .label2{
+.form .group .label2 {
   color: #fff;
 }
 
@@ -194,7 +304,7 @@ span{
   cursor: pointer;
 }
 
-h2{
+h2 {
   color: #fff;
 }
 
