@@ -29,6 +29,8 @@ DROP TABLE CARDAPIO;
 DROP TABLE HORARIO;
 DROP TABLE CUPOM;
 DROP TABLE AVALIACAO;
+DROP TABLE ESTILOMUSICA;
+DROP TABLE TEST;
 
 
 -- DROP DATABASE
@@ -44,6 +46,11 @@ USE renegades_stage;
 
 
 -- Criação de tabelas
+CREATE TABLE test (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+	test BLOB
+) AUTO_INCREMENT = 1;
+
 CREATE TABLE celular (
 	id INT PRIMARY KEY AUTO_INCREMENT,
     codigoArea VARCHAR(5) not null,
@@ -72,6 +79,7 @@ CREATE TABLE usuario (
     email             VARCHAR(100) not null UNIQUE,
     senha             VARCHAR(50) not null,
 	fotoPerfil        BLOB,
+	-- adm            BOOLEAN,
     dataNascimento    DATE
 ) AUTO_INCREMENT = 1;
 
@@ -80,12 +88,19 @@ CREATE TABLE categoria (
 	nome              VARCHAR(50) not null
 ) AUTO_INCREMENT = 1;
 
+CREATE TABLE estiloMusica ( -- Fazer altertable
+	id                INT PRIMARY KEY AUTO_INCREMENT,
+	nome              VARCHAR(50) not null
+) AUTO_INCREMENT = 1;
+
 CREATE TABLE contato (
 	id                INT PRIMARY KEY AUTO_INCREMENT,
 	codigoArea01      VARCHAR(5) not null,
 	numero01          VARCHAR(20) not null,
+	temWhasapp01      BOOLEAN,
 	codigoArea02      VARCHAR(5),
 	numero02          VARCHAR(20),
+	temWhasapp02      BOOLEAN,
 	site              VARCHAR(200),
 	cardapioOnline    VARCHAR(200)
 ) AUTO_INCREMENT = 1;
@@ -108,7 +123,7 @@ CREATE TABLE contato (
 */
 CREATE TABLE horario (
 	id                INT PRIMARY KEY AUTO_INCREMENT,
-	diasFuncionamento VARCHAR(20) not null, -- Ver OBS acima
+	diasFuncionamento VARCHAR(25) not null, -- Ver OBS acima
 	domingoInicio     TIME,
 	domingoFim        TIME,
 	segundaInicio     TIME,
@@ -150,6 +165,7 @@ CREATE TABLE cupom (
 CREATE TABLE estabelecimento (
 	id               INT PRIMARY KEY AUTO_INCREMENT,
 	idCategoria      INT not null, -- (bar, lanchonete, pizzaria)
+	idEstiloMusica   INT,
 	idContato        INT not null,
 	idEndereco       INT not null,
 	idHorario        INT not null,
@@ -157,30 +173,27 @@ CREATE TABLE estabelecimento (
 	idAvaliacao      INT,
 	idcupom          INT,
 	nome             VARCHAR(100) not null,
-	cnpj             VARCHAR(14) not null,
+	cnpj             VARCHAR(14) not null UNIQUE,
 	fotoPrincipal    BLOB,
 	descricao        VARCHAR(400) not null,
-	-- musica BOOLEAN, -- Se o local tem fundo musical ou não
 	musicaAoVivo     BOOLEAN,
-	estiloMusica     VARCHAR(50),
 	rodizio          BOOLEAN not null,
-	nota             FLOAT, -- Avaliações (0 a 5 estrelas)
 	agendamento      BOOLEAN,
 	estacionamento   BOOLEAN,
 	ativo            BOOLEAN,
 	visivel          BOOLEAN,
 	validado         ENUM('Pendente', 'Validado', 'Não validado'),
+	nota             FLOAT, -- Avaliações (0 a 5 estrelas)
 	dataUltimoAcesso DATE
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE avaliacao (
 	id                INT PRIMARY KEY,
 	idUsuario         INT not null,
-	idEstabelecimento INT null,
+	idEstabelecimento INT not null,
 	resumo            VARCHAR(50),
 	avaliacao         VARCHAR(200),
-	nota              INT  
-	-- Quero futuramente fazer o check para que o usuário só possa gravar dados entre 1 e 5 estrelas
+	nota              INT -- Somente de 1 a 5
 ) AUTO_INCREMENT = 1;
 
 
@@ -206,10 +219,10 @@ ALTER TABLE estabelecimento add (constraint estabelecimento_id_avaliacao_fk fore
 
 ALTER TABLE estabelecimento add (constraint estabelecimento_id_cupom_fk foreign key (idcupom) references cupom (id));
 
+ALTER TABLE estabelecimento add (constraint estabelecimento_id_estilomusica_fk foreign key (idEstiloMusica) references estilomusica (id));
+
 
 ------ AVALIACAO
 ALTER TABLE avaliacao add (constraint avaliacao_id_usuario_fk foreign key (idUsuario) references usuario (id));
 
 ALTER TABLE avaliacao add (constraint avaliacao_id_estabelecimento_fk foreign key (idEstabelecimento) references estabelecimento (id));
-
-

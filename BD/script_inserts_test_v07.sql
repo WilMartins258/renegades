@@ -10,11 +10,115 @@ DELETE FROM CATEGORIA;
 DELETE FROM CARDAPIO;
 DELETE FROM HORARIO;
 DELETE FROM CUPOM;
+DELETE FROM ESTILOMUSICA;
+DELETE FROM TEST;
 
 
 -- INSERTS
 
+-- --------------------------------------------------------- CATEGORIA
+
+insert into test values(
+	null,
+    null
+);
+
+insert into categoria values(
+	null,
+	'Lanchonete'
+);
+
+insert into categoria values(
+	null,
+	'Pizzaria'
+);
+
+insert into categoria values(
+	null,
+	'Hamburgueria'
+);
+
+insert into categoria values(
+	null,
+	'Restaurante'
+);
+
+insert into categoria values(
+	null,
+	'Pastelaria'
+);
+
+insert into categoria values(
+	null,
+	'Barzinho'
+);
+
+insert into categoria values(
+	null,
+	'Sorveteria'
+);
+
+insert into categoria values(
+	null,
+	'Açaiteria'
+);
+
+insert into categoria values(
+	null,
+	'Padaria'
+);
+
+insert into categoria values(
+	null,
+	'Churrascaria'
+);
+
+insert into categoria values(
+	null,
+	'Cafeteria'
+);
+
+insert into categoria values(
+	null,
+	'Sushi bar'
+);
+
+insert into categoria values(
+	null,
+	'Food truck'
+);
+
+insert into categoria values(
+	null,
+	'Creperia'
+);
+
+insert into categoria values(
+	null,
+	'Doceria'
+);
+
+insert into categoria values(
+	null,
+	'Comida de rua'
+);
+
+insert into categoria values(
+	null,
+	'Sucaria'
+);
+
+insert into categoria values(
+	null,
+	'Sucaria'
+);
+
+-- ---------------------------------------------------------> CATEGORIA
+
+
 -- CELULAR
+
+-- ---------------------------------------------------------> CELULAR
 
 insert into celular values(
 	1,          -- id
@@ -70,36 +174,28 @@ insert into celular values(
 	'123456789' -- numero
 );
 
+-- ---------------------------------------------------------> CELULAR
+
 -- ENDERECO
 
 insert into endereco values( -- Endereço do usuário 1 (Willian)
-	2,          -- id
-	'18117-121',         -- cep
+	1,          -- id
+	'18117121',         -- cep
 	'SP',        -- estado
 	'Votorantim',         -- cidade
 	'Rua Pedro Nunes',         -- lodradouro
 	'Conjunto Habitacional Jardim Serrano',         -- bairro
-	97,         -- numero
+	97         -- numero
 );
 
 insert into endereco values( -- Endereço do usuário 2 (Lucas)
-	2,          -- id
-	'11122-33',         -- cep
-	'SP',        -- estado
-	'Sorocaba',         -- cidade
-	'Rua do Lucas',         -- lodradouro
-	'Bairro do Lucas',         -- bairro
-	1,         -- numero
-);
-
-insert into endereco values( -- Endereço do Mc Donalds
-	3,                  -- id
-	'18110-375',         -- cep
-	'SP',               -- estado
-	'Votorantim',         -- cidade
-	'Rua do Lucas',     -- lodradouro
-	'Bairro do Lucas',  -- bairro
-	1,                  -- numero
+	2,                 -- id
+	'1112233',         -- cep
+	'SP',              -- estado
+	'Sorocaba',        -- cidade
+	'Rua do Lucas',    -- lodradouro
+	'Bairro do Lucas', -- bairro
+	1                  -- numero
 );
 
 -- USUARIO
@@ -147,21 +243,6 @@ insert into usuario values(
 	'senha123',          -- senha
 	null,                -- fotoPerfil
 	'1989-09-24'         -- dataNascimento
-);
-
-insert into usuario values(
-	4,                   -- id
-	4,                   -- idCelular
-	null,                -- idEstabelecimento
-	null,                -- idEndereco
-	'usuario04',           -- nome
-	'usuario04',           -- sobrenome
-	'usuario04',       -- nomeUsuario
-	null,       -- cpf
-	'usuario04@gmail.com', -- email
-	'senha123',          -- senha
-	null,                -- fotoPerfil
-	'2000-01-01'         -- dataNascimento
 );
 
 insert into usuario values(
@@ -239,29 +320,102 @@ insert into usuario values(
 	'2000-01-01'         -- dataNascimento
 );
 
+-- -----------------------------------------------> Mc Donalds - Votorantim
+
+insert into endereco values( -- Endereço do Mc Donalds
+	3,                  -- id
+	'18110375',         -- cep
+	'SP',               -- estado
+	'Votorantim',                   -- cidade
+	'Avenida Moacir Oséias Guitti', -- lodradouro
+	'Jardim Paraíso',  -- bairro
+	's/n'                  -- numero
+);
+
+insert into horario values(
+	1, -- id                
+	'[0, 1, 2, 3, 4, 5, 6]', -- diasFuncionamento 
+	100000,            -- domingoInicio     TIME,
+	000000,            -- domingoFim        TIME,
+	100000,            -- segundaInicio     TIME,
+	020000,            -- segundaFim        TIME,
+	100000,            -- tercaInicio       TIME,
+	020000,            -- tercaFim          TIME,
+	100000,            -- quartaInicio      TIME,
+	020000,            -- quartaFim         TIME,
+	100000,            -- quintaInicio      TIME,
+	020000,            -- quintaFim         TIME,
+	100000,            -- sextaInicio       TIME,
+	040000,            -- sextaFim          TIME,
+	100000,            -- sabadoInicio      TIME,
+	040000             -- sabadoFim         TIME
+);
+
+insert into contato values(
+	1,                                      -- id
+	15,                                     -- codigoArea01
+	999999999,                              -- numero01 
+	true,                                   -- temWhasapp01 
+	15,                                     -- codigoArea02 
+	32431749,                               -- numero02 
+	false,                                  -- temWhasapp02 
+	'https://www.mcdonalds.com.br/',        -- site  
+	'https://www.mcdonalds.com.br/cardapio' -- cardapioOnline 
+);
+
+insert into cardapio values(
+	1, -- id              INT PRIMARY KEY AUTO_INCREMENT,
+	'test',              -- fotoItem01      BLOB not null,
+	'Big Mac',           -- nomeItem01      VARCHAR(50) not null,
+	'Big Mac descrição', -- descricaoItem01 VARCHAR(50) not null,
+	null,                -- fotoItem02      BLOB,
+	null,                -- nomeItem02      VARCHAR(50),
+	null,                -- descricaoItem02 VARCHAR(50),
+	null,                -- fotoItem03      BLOB,
+	null,                -- nomeItem03      VARCHAR(50),
+	null                -- descricaoItem03 VARCHAR(50)
+);
+
 -- ESTABELECIMENTO
 
-insert into estabelecimento values (
+insert into estabelecimento values ( -- Mc Donalds - Votorantim
 	1, -- id
-	null, -- idCategoria
-	null, -- idContato
+	1, -- idCategoria
+	null, -- idEstiloMusica
+	1, -- idContato
 	3, -- idEndereco
-	null, -- idHorario
-	null, -- idCardapio
+	1, -- idHorario
+	1, -- idCardapio
 	null, -- idAvaliacao
 	null, -- idcupom
 	'Mc Donalds - Votorantim', -- nome
-	'21587059000106' -- cnpj
+	'21587059000106', -- cnpj
 	null, -- fotoPrincipal
-	'Melhor lanchonete de votoramtim!!!', -- descricao
-	null, -- estiloMusica
+	'Este é o Mc Donalds de Votorantim', -- descricao
 	null, -- musicaAoVivo
 	false, -- rodizio
-	null, -- nota
 	false, -- agendamento
 	true, -- estacionamento
 	true, -- ativo
 	true, -- visivel
-	'Validado', -- validado ENUM('Pendente', 'Validado', 'Não validado'),
-	'2023-08-14' -- dataUltimoAcesso
+	'Validado',
+	null, -- nota
+	'2023-08-15' -- dataUltimoAcesso
 );
+
+insert into usuario values( -- Mc Donalds - Votorantim
+	4,                     -- id
+	4,                     -- idCelular
+	1,                     -- idEstabelecimento
+	null,                  -- idEndereco
+	'usuario04',           -- nome
+	'usuario04',           -- sobrenome
+	'usuario04',           -- nomeUsuario
+	null,                  -- cpf
+	'usuario04@gmail.com', -- email
+	'senha123',            -- senha
+	null,                  -- fotoPerfil
+	'2000-01-01'           -- dataNascimento
+);
+
+-- <----------------------------------------------> Mc Donalds - Votorantim
