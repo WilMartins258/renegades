@@ -23,14 +23,14 @@ const routes = [
   },
 
   {
-    path: '/Anuncio',
-    name: 'Anuncio',
-    component: () => import(/* webpackChunkName: "Anuncio" */ '../views/ViewAreaEstabelecimento/Estabelecimento'),
+    path: '/AreaDoEstabelecimento',
+    name: 'AreaDoEstabelecimento',
+    component: () => import(/* webpackChunkName: "Estabelecimento" */ '../views/ViewAreaEstabelecimento/Estabelecimento'),
   },
 
   {
-    path: '/CadAnuncio',
-    name: 'CadAnuncio',
+    path: '/CadEstabelecimento',
+    name: 'CadEstabelecimento',
     component: () => import(/* webpackChunkName: "CadEstabelecimento" */ '../views/ViewAreaEstabelecimento/CadEstabelecimento'),
   },
 

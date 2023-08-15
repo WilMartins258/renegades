@@ -50,7 +50,7 @@
           <a><router-link to="/Usuario">Área do Usuário</router-link></a>
         </li>
         <li>
-          <a><router-link to="/Anuncio">Meus Estabelecimento</router-link></a>
+          <a><router-link to="/AreaDoEstabelecimento">Meus Estabelecimento</router-link></a>
         </li>
         <li>
           <a><router-link to="/notificacao">Notificação</router-link></a>

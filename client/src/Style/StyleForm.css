@@ -20,6 +20,11 @@
   h2 {
     text-align: center;
   }
+
+  h3 {
+    text-align: center;
+    color: #fff;
+  }
   
   .form {
     min-height: 345px;
@@ -71,11 +76,24 @@
     transition: 0.5s;
   }
   
+  
   #form-wrap .group .button:hover {
     background:#ff9800;
   }
 
-  
 .button {
     margin-right: 10px;
   }
+
+  .custom-button {
+    background-color: #e91e2f; 
+    color: #000; 
+    font-size: 16px; 
+    padding: 10px 15px; 
+    border: none; 
+    border-radius: 25px; 
+    cursor: pointer;
+    margin: 5px; 
+  }
+
+  
