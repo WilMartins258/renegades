@@ -3,7 +3,7 @@ const express = require('express');
 const router = require('express').Router();
 
 router.get('/', (req, res) => {
-    res.send('Dados da home Renagades.');
+    res.send('Dados da home Renagades. GET');
 });
 
 router.post('/', (req, res) => {
