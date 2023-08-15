@@ -11,16 +11,17 @@ router.get('/', (req, res) => {
     res.send('Dados da página inicial Renagades.');
 });
 
+// Rotas do backend
+
 router.use(
     "/home",
     require("./home.js")
 );
 
-// Rotas do backend
-// router.use(
-//     "/login",
-//     require("./login.js")
-// );
+router.use(
+    "/login",
+    require("./login.js")
+);
 
 // router.use(
 //     "/register",
