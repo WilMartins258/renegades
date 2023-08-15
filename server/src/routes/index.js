@@ -18,15 +18,4 @@ router.use(
     require("./login.js")
 );
 
-// router.use(
-//     "/register",
-//     require("./register.js")
-// );
-
-// router.use(
-//     "/home-logged",
-//     require("./home-logged.js")
-// );
-
-
 module.exports = router;
