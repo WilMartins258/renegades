@@ -1,8 +1,8 @@
 <template>
     <div class="container">
-      <h1 class="title">Área do Anunciante</h1><br><br><br>
+      <h1 class="title">Área do Estabelecimento</h1><br><br><br>
       <div class="card-container">
-        <router-link to="/CadAnuncio" class="card">
+        <router-link to="/cadEstabelecimento" class="card">
           <img
             src="https://plenarinho.leg.br/wp-content/uploads/2020/11/destaque-publicidade-infantil.jpeg"
             alt="Novo Anúncio"
