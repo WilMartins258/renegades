@@ -1,7 +1,7 @@
 <template>
   <div id="form-wrap" class="form">
     <div class="posicaoform-wrap">
-      <!--Pesquisa por cep e completa os campos-->
+         <!--Pesquisa por cep e completa os campos-->
       <!--1-Endereço-->
       <div class="group">
         <label for="cep" class="label">CEP:</label><br />
@@ -71,33 +71,21 @@
 
       <div class="group">
         <label for="nome" class="label">Telefone:</label><br />
-        <input
-          type="text"
-          id="telefone"
-          class="input"
-          name="telefone"
-          required
-        /><br />
+        <input type="text" id="telefone" class="input" name="telefone" required /><br />
       </div>
-
+      
       <div class="group">
-        <label for="whatsapp" class="label">É WhatsApp?</label><br />
+       <label for="whatsapp" class="label">É WhatsApp?</label><br />
         <input type="checkbox" id="whatsapp" name="whatsapp" />
       </div>
 
       <div class="group">
         <label for="nome" class="label">Celular:</label><br />
-        <input
-          type="text"
-          id="celular"
-          class="input"
-          name="celular"
-          required
-        /><br />
+        <input type="text" id="celular" class="input" name="celular" required /><br />
       </div>
 
       <div class="group">
-        <label for="whatsapp" class="label">É WhatsApp?</label><br />
+       <label for="whatsapp" class="label">É WhatsApp?</label><br />
         <input type="checkbox" id="whatsapp" name="whatsapp" />
       </div>
 
@@ -122,151 +110,66 @@
         <label for="cnpj" class="label">CNPJ:</label><br />
         <input type="text" id="cnpj" class="input" name="cnpj" required /><br />
       </div>
-
+   
       <div class="group">
-        <label for="descricao" class="label"
-          >Descrição do Estabelecimento:</label
+        <label for="descricao" class="label">Descrição do Estabelecimento:</label
         ><br />
-        <textarea
-          id="descricao"
-          class="input"
-          name="descricao"
-          rows="4"
-          maxlength="200"
-          required
-        ></textarea>
+        <textarea id="descricao" class="input" name="descricao" rows="4" maxlength="200" required ></textarea>
         <br />
         <span id="contador">0</span>/<span>200</span><br /><br />
       </div>
 
       <div class="group">
         <label for="tipo" class="label">Oferece Rodízio?</label><br />
-        <input
-          type="radio"
-          id="rodizioSim"
-          name="tipo"
-          value="rodizioSim"
-          required
-          checked
-        />
+        <input type="radio" id="rodizioSim" name="tipo" value="rodizioSim" required checked/>
         <label for="rodizioSim" class="label2">Sim</label><br />
-        <input
-          type="radio"
-          id="rodizioNao"
-          name="tipo"
-          value="rodizioNao"
-          required
-        />
+        <input type="radio" id="rodizioNao" name="tipo" value="rodizioNao" required />
         <label for="rodizioNao" class="label2">Não</label><br /><br />
       </div>
 
       <div class="group">
         <label for="tipo" class="label">Precisa Agendar?</label><br />
-        <input
-          type="radio"
-          id="agendarSim"
-          name="tipo"
-          value="agendarSim"
-          required
-          checked
-        />
+        <input type="radio" id="agendarSim" name="tipo" value="agendarSim" required checked/>
         <label for="agendarSim" class="label2">Sim</label><br />
-        <input
-          type="radio"
-          id="agendarNao"
-          name="tipo"
-          value="agendarNao"
-          required
-        />
+        <input type="radio" id="agendarNao" name="tipo" value="agendarNao" required />
         <label for="agendarNao" class="label2">Não</label><br /><br />
       </div>
 
       <div class="group">
         <label for="tipo" class="label">Tem Estacionamento?</label><br />
-        <input
-          type="radio"
-          id="EstacionamentoSim"
-          name="tipo"
-          value="EstacionamentoSim"
-          required
-          checked
-        />
+        <input type="radio" id="EstacionamentoSim" name="tipo" value="EstacionamentoSim" required checked/>
         <label for="EstacionamentoSim" class="label2">Sim</label><br />
-        <input
-          type="radio"
-          id="EstacionamentoNao"
-          name="tipo"
-          value="EstacionamentoNao"
-          required
-        />
+        <input type="radio" id="EstacionamentoNao" name="tipo" value="EstacionamentoNao" required />
         <label for="EstacionamentoNao" class="label2">Não</label><br /><br />
       </div>
 
       <div class="group">
         <label for="tipo" class="label">Tem Estacionamento?</label><br />
-        <input
-          type="radio"
-          id="EstacionamentoSim"
-          name="tipo"
-          value="EstacionamentoSim"
-          required
-          checked
-        />
+        <input type="radio" id="EstacionamentoSim" name="tipo" value="EstacionamentoSim" required checked/>
         <label for="EstacionamentoSim" class="label2">Sim</label><br />
-        <input
-          type="radio"
-          id="EstacionamentoNao"
-          name="tipo"
-          value="EstacionamentoNao"
-          required
-        />
+        <input type="radio" id="EstacionamentoNao" name="tipo" value="EstacionamentoNao" required />
         <label for="EstacionamentoNao" class="label2">Não</label><br /><br />
       </div>
 
       <div class="group">
         <label for="tipo" class="label">Toca Musica?</label><br />
-        <input
-          type="radio"
-          id="musicaSim"
-          name="tipo"
-          value="musicaSim"
-          required
-          checked
-        />
+        <input type="radio" id="musicaSim" name="tipo" value="musicaSim" required checked/>
         <label for="musicaSim" class="label2">Sim</label><br />
-        <input
-          type="radio"
-          id="musicaNao"
-          name="tipo"
-          value="musicaNao"
-          required
-        />
+        <input type="radio" id="musicaNao" name="tipo" value="musicaNao" required />
         <label for="musicaNao" class="label2">Não</label><br /><br />
       </div>
 
       <div class="group">
         <label for="tipo" class="label">é ao Musica?</label><br />
-        <input
-          type="radio"
-          id="aoVivoSim"
-          name="tipo"
-          value="aoVivoSim"
-          required
-          checked
-        />
+        <input type="radio" id="aoVivoSim" name="tipo" value="aoVivoSim" required checked/>
         <label for="musicaSim" class="label2">Sim</label><br />
-        <input
-          type="radio"
-          id="aoVivoNao"
-          name="tipo"
-          value="aoVivoNao"
-          required
-        />
+        <input type="radio" id="aoVivoNao" name="tipo" value="aoVivoNao" required />
         <label for="aoVivoNao" class="label2">Não</label><br /><br />
       </div>
 
       <div class="group">
-        <label for="generoMusica" class="label">Gênero de Música:</label><br />
+        <label for="generoMusica" class="label" >Gênero  de Música:</label
+        ><br />
         <select id="generoMusica" class="input" name="generoMusica" required>
           <option value="rock">Rock</option>
           <option value="sertanejo">Sertanejo</option>
@@ -276,15 +179,9 @@
       </div>
 
       <div class="group">
-        <label for="categoriaEstabelecimento" class="label"
-          >Categoria do Estabelecimento:</label
+        <label for="categoriaEstabelecimento" class="label" >Categoria do Estabelecimento:</label
         ><br />
-        <select
-          id="categoriaEstabelecimento"
-          class="input"
-          name="categoriaEstabelecimento"
-          required
-        >
+        <select id="categoriaEstabelecimento" class="input" name="categoriaEstabelecimento" required>
           <option value="bar">Bar</option>
           <option value="lanchonete">Lanchonete</option>
           <option value="pizzaria">Pizzaria</option>
@@ -298,75 +195,39 @@
 
       <div class="group">
         <label for="nomePrato1" class="label">Item 1:</label><br />
-        <input
-          type="text"
-          id="nomePrato1"
-          class="input"
-          name="nomePrato1"
-        /><br />
+        <input type="text" id="nomePrato1" class="input" name="nomePrato1" /><br />
       </div>
-
+   
       <div class="group">
         <label for="descricaoItem1" class="label">Descrição do item 1:</label
         ><br />
-        <textarea
-          id="descricaoItem1"
-          class="input"
-          name="descricaoItem1"
-          rows="4"
-          maxlength="200"
-          required
-        ></textarea>
+        <textarea id="descricaoItem1" class="input" name="descricaoItem1" rows="4" maxlength="200" required ></textarea>
         <br />
         <span id="contador">0</span>/<span>200</span><br /><br />
       </div>
 
       <div class="group">
         <label for="nomePrato2" class="label">Item 2:</label><br />
-        <input
-          type="text"
-          id="nomePrato2"
-          class="input"
-          name="nomePrato2"
-        /><br />
+        <input type="text" id="nomePrato2" class="input" name="nomePrato2" /><br />
       </div>
-
+   
       <div class="group">
         <label for="descricaoItem2" class="label">Descrição do item 1:</label
         ><br />
-        <textarea
-          id="descricaoItem2"
-          class="input"
-          name="descricaoItem2"
-          rows="4"
-          maxlength="200"
-          required
-        ></textarea>
+        <textarea id="descricaoItem2" class="input" name="descricaoItem2" rows="4" maxlength="200" required ></textarea>
         <br />
         <span id="contador">0</span>/<span>200</span><br /><br />
       </div>
 
       <div class="group">
         <label for="nomePrato3" class="label">Item 3:</label><br />
-        <input
-          type="text"
-          id="nomePrato3"
-          class="input"
-          name="nomePrato3"
-        /><br />
+        <input type="text" id="nomePrato3" class="input" name="nomePrato3" /><br />
       </div>
-
+   
       <div class="group">
         <label for="descricaoItem3" class="label">Descrição do item 3:</label
         ><br />
-        <textarea
-          id="descricaoItem3"
-          class="input"
-          name="descricaoItem3"
-          rows="4"
-          maxlength="200"
-          required
-        ></textarea>
+        <textarea id="descricaoItem3" class="input" name="descricaoItem3" rows="4" maxlength="200" required ></textarea>
         <br />
         <span id="contador">0</span>/<span>200</span><br /><br />
       </div>
@@ -374,57 +235,52 @@
       <!--foto prato principal-->
 
       <div class="group">
-        <label for="imagens" class="label">Imagens (Max. 3):</label><br />
-        <input
-          type="file"
-          id="imagens"
-          name="imagens[]"
-          accept="image/jpeg, image/gif, image/png, image/tiff, image/bmp"
-          multiple
-        /><br /><br />
+  <label for="imagens" class="label">Imagens (Max. 3):</label><br />
+  <input
+    type="file"
+    id="imagens"
+    name="imagens[]"
+    accept="image/jpeg, image/gif, image/png, image/tiff, image/bmp"
+    multiple
+  /><br /><br />
 
-        <div id="miniatura-container">
-          <div
-            v-for="(imagem, index) in imagensSelecionadas"
-            :key="index"
-            class="miniatura"
-          >
-            <img :src="imagem.src" alt="Imagem" />
-            <button class="excluir" @click="excluirMiniatura(index)">
-              <i class="uil uil-times"></i>
-            </button>
-          </div>
-        </div>
-        <br /><br />
-      </div>
+  <div id="miniatura-container">
+    <div
+      v-for="(imagem, index) in imagensSelecionadas"
+      :key="index"
+      class="miniatura"
+    >
+      <img :src="imagem.src" alt="Imagem" />
+      <button class="excluir" @click="excluirMiniatura(index)">
+        <i class="uil uil-times"></i>
+      </button>
+    </div>
+  </div>
+  <br /><br />
+</div>
 
       <!--foto Estabelecimento-->
 
-      <div class="group">
-        <label for="imagemEstabelecimento" class="label"
-          >Imagem do Estabelecimento:</label
-        ><br />
-        <input
-          type="file"
-          id="imagemEstabelecimento"
-          name="imagemEstabelecimento"
-          accept="image/jpeg, image/gif, image/png, image/tiff, image/bmp"
-          @change="adicionarImagemEstabelecimento"
-        /><br /><br />
+          <div class="group">
+      <label for="imagemEstabelecimento" class="label">Imagem do Estabelecimento:</label><br />
+      <input
+        type="file"
+        id="imagemEstabelecimento"
+        name="imagemEstabelecimento"
+        accept="image/jpeg, image/gif, image/png, image/tiff, image/bmp"
+        @change="adicionarImagemEstabelecimento"
+      /><br /><br />
 
-        <div id="miniatura-imagem-estabelecimento">
-          <div class="miniatura">
-            <img
-              :src="imagemEstabelecimentoSrc"
-              alt="Imagem do Estabelecimento"
-            />
-            <button class="excluir" @click="excluirImagemEstabelecimento">
-              <i class="uil uil-times"></i>
-            </button>
-          </div>
+      <div id="miniatura-imagem-estabelecimento">
+        <div class="miniatura">
+          <img :src="imagemEstabelecimentoSrc" alt="Imagem do Estabelecimento" />
+          <button class="excluir" @click="excluirImagemEstabelecimento">
+            <i class="uil uil-times"></i>
+          </button>
         </div>
-        <br /><br />
       </div>
+      <br /><br />
+    </div>
 
       <div class="group">
         <div>
@@ -450,7 +306,6 @@ export default {
   data() {
     return {
       imagensSelecionadas: [],
-      imagemEstabelecimentoSrc: "",
       cnpj: "",
       cep: "",
       endereco: {
@@ -508,21 +363,6 @@ export default {
         this.limpa_formulário_cep();
       }
     },
-    adicionarImagemEstabelecimento(event) {
-      const file = event.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = () => {
-          this.imagemEstabelecimentoSrc = reader.result;
-        };
-        reader.readAsDataURL(file);
-      }
-    },
-    excluirImagemEstabelecimento() {
-      this.imagemEstabelecimentoSrc = "";
-    },
-
-
   },
   mounted() {
     const cnpjInput = document.getElementById("cnpj");
@@ -531,14 +371,15 @@ export default {
     });
 
     const telefoneInput = document.getElementById("telefone");
-    const telefoneMask = IMask(telefoneInput, {
-      mask: "(00) 0000-0000",
-    });
+  const telefoneMask = IMask(telefoneInput, {
+    mask: "(00) 0000-0000",
+  });
 
-    const celularInput = document.getElementById("celular");
-    const celularMask = IMask(celularInput, {
-      mask: "(00) 00000-0000",
-    });
+  const celularInput = document.getElementById("celular");
+  const celularMask = IMask(celularInput, {
+    mask: "(00) 00000-0000",
+  });
+
 
     /*Img Cardápio*/
     const imagensInput = document.getElementById("imagens");
@@ -563,8 +404,9 @@ export default {
     });
 
     /*Img Logo Estabelecimento*/
-
     
+
+
   },
 };
 </script>

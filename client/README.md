@@ -25,7 +25,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ```
 npm install axios
 ```
-## Instalaçaõ da biblioteca Imask para utilizar formação CPF/CNPJ
+## Instalação da biblioteca Imask para utilizar formação CPF/CNPJ
 ```
 npm install imask --save
 ```
