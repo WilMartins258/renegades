@@ -13,14 +13,14 @@
       </li>
       <li>
         <a
-          ><router-link to="/Categoria" v-if="notIsLoginPage"
+          ><router-link to="/categoria" v-if="notIsLoginPage"
             >Categoria</router-link
           ></a
         >
       </li>
       <li>
         <a>
-          <router-link to="/Login" v-if="notIsLoginPage"
+          <router-link to="/login" v-if="notIsLoginPage"
             >Entrar/Cadastrar</router-link
           ></a
         >
@@ -47,10 +47,10 @@
       />
       <ul class="submenu">
         <li>
-          <a><router-link to="/Usuario">Área do Usuário</router-link></a>
+          <a><router-link to="/usuario">Área do Usuário</router-link></a>
         </li>
         <li>
-          <a><router-link to="/Anuncio">Meus Estabelecimento</router-link></a>
+          <a><router-link to="/anuncio">Meus Estabelecimento</router-link></a>
         </li>
         <li>
           <a><router-link to="/notificacao">Notificação</router-link></a>
