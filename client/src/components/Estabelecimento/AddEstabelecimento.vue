@@ -81,23 +81,27 @@
       <br><br>
   <div class="group">
     <label for="telefone" class="label">Telefone:</label><br />
-    <input type="text" v-model="telefone" id="telefone" class="input" name="telefone" required /><br />
-  </div>
-  
-  <div class="group">
-    <input type="checkbox" v-model="isTelefoneWhatsApp" id="whatsapp" name="whatsapp" />
-    <label for="whatsapp">É WhatsApp?</label>
+    <input type="text" v-model="telefone" id="telefone" class="input" name="telefone" required />
   </div>
 
   <div class="group">
+  <input type="checkbox" v-model="isTelefoneWhatsApp" id="whatsapp" name="whatsapp" />
+  <label for="whatsapp">
+    <img src="../../../public/img/whatsappLogo.png" alt="É WhatsApp?" class="whatsapp-image" />
+  </label>
+</div><br />
+
+  <div class="group">
     <label for="celular" class="label">Celular:</label><br />
-    <input type="text" v-model="celular" id="celular" class="input" name="celular" required /><br />
+    <input type="text" v-model="celular" id="celular" class="input" name="celular" required />
   </div>
 
   <div class="group">
   <input type="checkbox" v-model="isCelularWhatsApp" id="whatsappCelular" name="whatsapp" />
-  <label for="whatsappCelular">É WhatsApp?</label>
-  </div>
+  <label for="whatsappCelular">
+    <img src="../../../public/img/whatsappLogo.png" alt="É WhatsApp?" class="whatsapp-image" />
+  </label>
+</div><br />
 
   <div class="group">
     <label for="site" class="label">Informe seu site:</label><br />
@@ -130,22 +134,43 @@
     <textarea v-model="descricaoEstabelecimento" id="descricao" class="input" name="descricao" rows="4" maxlength="200" required></textarea>
   </div>
 
-  <div class="group">
-    <label class="label">Oferece Rodízio?</label><br />
-    <input type="radio" v-model="ofereceRodizio" value="Sim" required checked/> Sim
-    <input type="radio" v-model="ofereceRodizio" value="Não" /> Não<br /><br />
+  <div class="group ex1">
+    <label class="label">Oferece Rodízio?</label>
+    <br>
+    <label class="radio sim">
+      <input type="radio" name="ofereceRodizio" value="1" v-model="ofereceRodizio" style="display: none;" checked> 
+      <span>Sim</span>
+    </label>
+    <label class="radio nao">
+      <input class="Teste" type="radio" name="ofereceRodizio" value="2" v-model="ofereceRodizio" style="display: none;">
+      <span>Não</span>
+    </label>
   </div>
 
-  <div class="group">
-    <label class="label">Toca Música?</label><br />
-    <input type="radio" v-model="tocaMusica" value="Sim" required checked/> Sim
-    <input type="radio" v-model="tocaMusica" value="Não"  /> Não<br /><br />
+  <div class="group ex1">
+    <label class="label">Toca Música?</label>
+    <br>
+    <label class="radio sim">
+      <input type="radio" name="tocaMusica" value="1" v-model="tocaMusica" style="display: none;" checked> 
+      <span>Sim</span>
+    </label>
+    <label class="radio nao">
+      <input type="radio" name="tocaMusica" value="2" v-model="tocaMusica" style="display: none;">
+      <span>Não</span>
+    </label>
   </div>
 
-  <div class="group">
-    <label class="label">É ao Vivo?</label><br />
-    <input class="radio" type="radio" v-model="musicaAoVivo" value="Sim" required checked/> Sim
-    <input type="radio" v-model="musicaAoVivo" value="Não"  /> Não<br /><br />
+  <div class="group ex1">
+    <label class="label">É ao Vivo?</label>
+    <br>
+    <label class="radio sim">
+      <input type="radio" name="musicaAoVivo" value="1" v-model="musicaAoVivo" style="display: none;" checked> 
+      <span>Sim</span>
+    </label>
+    <label class="radio nao">
+      <input type="radio" name="musicaAoVivo" value="2" v-model="musicaAoVivo" style="display: none;">
+      <span>Não</span>
+    </label>
   </div>
 
   <div class="group">
@@ -169,17 +194,31 @@
       <option value="pizzaria">Pizzaria</option>
       <option value="hamburgueria">Hamburgueria</option>
     </select><br /><br />
-  </div>
-      <div class="group">
-    <label class="label">Precisa Agendar?</label><br />
-    <input type="radio" v-model="precisaAgendar" value="Sim" required checked/> Sim
-    <input type="radio" v-model="precisaAgendar" value="Não"  /> Não<br /><br />
+    </div>
+    <div class="group ex1">
+    <label class="label">Precisa Agendar?</label>
+    <br>
+    <label class="radio sim">
+      <input type="radio" name="precisaAgendar" value="1" v-model="precisaAgendar" style="display: none;" checked> 
+      <span>Sim</span>
+    </label>
+    <label class="radio nao">
+      <input type="radio" name="precisaAgendar" value="2" v-model="precisaAgendar" style="display: none;">
+      <span>Não</span>
+    </label>
   </div>
 
-  <div class="group">
-    <label class="label">Tem Estacionamento?</label><br />
-    <input type="radio" v-model="temEstacionamento" value="Sim" required checked/> Sim
-    <input type="radio" v-model="temEstacionamento" value="Não" /> Não<br /><br />
+  <div class="group ex1">
+    <label class="label">Tem Estacionamento?</label>
+    <br>
+    <label class="radio sim">
+      <input type="radio" name="temEstacionamento" value="1" v-model="temEstacionamento" style="display: none;" checked> 
+      <span>Sim</span>
+    </label>
+    <label class="radio nao">
+      <input type="radio" name="temEstacionamento" value="2" v-model="temEstacionamento" style="display: none;">
+      <span>Não</span>
+    </label>
   </div>
     </section><!-- Fecha seção 4-->
 
@@ -250,7 +289,7 @@
      <!-- Foto Estabelecimento -->
   <h3>Adicione aqui a foto do seu estabelecimento</h3>
   <div class="group">
-    <label for="estabelecimentoImagens" class="label">Imagens do Estabelecimento (Max. 3):</label><br />
+    <label for="estabelecimentoImagens" class="label">Limitado a 1 imagem :</label><br />
     <input
       type="file"
       id="estabelecimentoImagens"
@@ -331,9 +370,6 @@ export default {
         this.currentSection--;
       }
     },
-    cancelar() {
-      this.$router.push("/");
-    },
     excluirMiniatura(index) {
       this.imagensSelecionadas.splice(index, 1);
     },
@@ -380,9 +416,7 @@ export default {
         this.limpa_formulário_cep();
       }
     },
-    excluirMiniatura(index) {
-      this.imagensSelecionadas.splice(index, 1);
-    },
+
     excluirEstabelecimentoMiniatura(index) {
     this.imagensEstabelecimentoSelecionadas.splice(index, 1);
      },
@@ -455,16 +489,13 @@ estabelecimentoImagensInput.value = "";
 #form-wrap {
   /*Imagem de fundo do forms*/
   color: white;
-  background-image: url("https://img.freepik.com/vetores-gratis/papel-de-parede-mural-do-restaurante_23-2148695092.jpg?w=900&t=st=1691866632~exp=1691867232~hmac=21d65c3cc870912f929637ba1f0b0e7e37fc93f5ad62c92f9803f5cf52f03be5");
+  background-image: url("../../../public/img/FormEstabelecimento.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
   width: 100%;
   height: 100vh;
 }
-
-
-
 
 .miniatura {
   display: inline-block;
