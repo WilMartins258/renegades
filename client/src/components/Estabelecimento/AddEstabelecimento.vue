@@ -145,7 +145,7 @@
       <input class="Teste" type="radio" name="ofereceRodizio" value="2" v-model="ofereceRodizio" style="display: none;">
       <span>Não</span>
     </label>
-  </div>
+  </div><br>
 
   <div class="group ex1">
     <label class="label">Toca Música?</label>
@@ -158,7 +158,7 @@
       <input type="radio" name="tocaMusica" value="2" v-model="tocaMusica" style="display: none;">
       <span>Não</span>
     </label>
-  </div>
+  </div><br>
 
   <div class="group ex1">
     <label class="label">É ao Vivo?</label>
@@ -171,7 +171,7 @@
       <input type="radio" name="musicaAoVivo" value="2" v-model="musicaAoVivo" style="display: none;">
       <span>Não</span>
     </label>
-  </div>
+  </div><br>
 
   <div class="group">
     <label for="generoMusica" class="label">Gênero de Música:</label><br />
@@ -180,11 +180,24 @@
       <option value="sertanejo">Sertanejo</option>
       <option value="jazz">Jazz</option>
       <option value="pop">Pop</option>
-    </select><br /><br />
+    </select><br />
   </div>
     </section><!-- Fecha seção 3-->
 
     <section v-show="currentSection === 4">
+
+    <div class="group ex1">
+      <label class="label">Tem Área Kids?</label>
+      <br>
+      <label class="radio sim">
+        <input type="radio" name="areaKids" value="1" v-model="areaKids" style="display: none;" checked> 
+        <span>Sim</span>
+      </label>
+      <label class="radio nao">
+        <input type="radio" name="areaKids" value="2" v-model="areaKids" style="display: none;">
+        <span>Não</span>
+      </label>
+    </div><br>
 
       <div class="group">
     <label for="categoriaEstabelecimento" class="label">Categoria do Estabelecimento:</label><br />
@@ -193,7 +206,7 @@
       <option value="lanchonete">Lanchonete</option>
       <option value="pizzaria">Pizzaria</option>
       <option value="hamburgueria">Hamburgueria</option>
-    </select><br /><br />
+    </select><br />
     </div>
     <div class="group ex1">
     <label class="label">Precisa Agendar?</label>
@@ -206,7 +219,7 @@
       <input type="radio" name="precisaAgendar" value="2" v-model="precisaAgendar" style="display: none;">
       <span>Não</span>
     </label>
-  </div>
+  </div><br>
 
   <div class="group ex1">
     <label class="label">Tem Estacionamento?</label>
@@ -555,7 +568,5 @@ h2 {
     margin-bottom: 10px;
   }
 }
-
-
 </style>
 
