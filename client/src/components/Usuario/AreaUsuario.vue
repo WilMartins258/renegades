@@ -3,7 +3,7 @@
       <h1 class="title">Área do Usuário</h1><br><br><br>
       <div class="card-container">
         <div class="card-row">
-          <router-link to="/CadAnuncio" class="card">
+          <router-link to="/CadUsuario" class="card">
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/b/bc/Usu%C3%A1rio-HM.png"
               alt="Meus Dados"

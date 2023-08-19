@@ -274,16 +274,19 @@
       <h2>Inclua Suas Imagens</h2><br><br>
       
       <!-- foto prato principal -->
-      <h3>Adicione aqui as fotos das suas indicações</h3>
+      <h3>Adicione aqui as fotos das suas indicações</h3><br>
   <div class="group">
-    <label for="imagens" class="label">Imagens (Max. 3):</label><br />
     <input
       type="file"
       id="imagens"
       name="imagens[]"
       accept="image/jpeg, image/gif, image/png, image/tiff, image/bmp"
       multiple
-    /><br /><br />
+      class="custom-file-input"
+      ref="fileInput"
+      @change="handleFileChange"
+    />
+    <label for="imagens" class="custom-file-button">Selecionar Imagem (s)</label><br /><br />
 
     <div id="miniatura-container">
       <div
@@ -300,16 +303,19 @@
     <br /><br />
   </div>
      <!-- Foto Estabelecimento -->
-  <h3>Adicione aqui a foto do seu estabelecimento</h3>
+  <h3>Adicione aqui a foto do seu estabelecimento</h3><br>
   <div class="group">
-    <label for="estabelecimentoImagens" class="label">Limitado a 1 imagem :</label><br />
     <input
       type="file"
       id="estabelecimentoImagens"
       name="estabelecimentoImagens[]"
       accept="image/jpeg, image/gif, image/png, image/tiff, image/bmp"
       multiple
-    /><br /><br />
+      class="custom-file-input"
+      ref="estabelecimentoFileInput"
+      @change="handleEstabelecimentoFileChange"/>
+    <label for="estabelecimentoImagens" class="custom-file-button">Selecionar Imagem</label><br /><br />
+    <br /><br />
 
     <div id="miniatura-estabelecimento-container">
       <div
@@ -348,7 +354,7 @@
 
     </div> <!-- Fechar "posicaoform-wrap" -->
   </div> <!-- Fechar "form-wrap" -->
-  </div>
+  </div> <!-- Fechar "posicaoform-wrap" -->
 </template>
 
 <script>
@@ -508,6 +514,7 @@ estabelecimentoImagensInput.value = "";
   background-attachment: fixed;
   width: 100%;
   height: 100vh;
+  background-size: 60%;
 }
 
 .miniatura {
@@ -534,13 +541,14 @@ estabelecimentoImagensInput.value = "";
   cursor: pointer;
 }
 
-h2 {
-  color: #fff;
-}
+
 
 .label {
   color: #fff;
 }
+
+
+
 /* Responsividade */
 
 @media (max-width: 1160px) {
@@ -568,5 +576,11 @@ h2 {
     margin-bottom: 10px;
   }
 }
+
+.custom-file-input {
+  display: none;
+}
+
+
 </style>
 

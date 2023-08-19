@@ -35,9 +35,9 @@ const routes = [
   },
 
   {
-    path: '/Categoria',
-    name: 'Categoria',
-    component: () => import(/* webpackChunkName: "Categoria" */ '../views/ViewAreaEstabelecimento/Categoria'),
+    path: '/CadUsuario',
+    name: 'CadUsuario',
+    component: () => import(/* webpackChunkName: "CadUsuario" */ '../views/ViewUsuarios/CadUsuario'),
   }
 
 ]

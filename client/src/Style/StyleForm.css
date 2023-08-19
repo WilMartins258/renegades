@@ -19,6 +19,7 @@
   
   h2 {
     text-align: center;
+    color: #fff;
   }
 
   h3 {
@@ -74,6 +75,7 @@
     background:#e91e2f;
     cursor: pointer;
     transition: 0.5s;
+    color: #fff;
   }
   
   
@@ -154,3 +156,16 @@
     background-color: #f5365c;
   }
 
+  .custom-file-button {
+    background-color: #e91e2f;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .custom-file-button:hover {
+    background-color: #ff9800;
+  }
