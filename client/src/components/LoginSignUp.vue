@@ -56,11 +56,25 @@ export default {
 
 
 	methods: {
-		submit() {
+		async submit() {
 			if (this.validarCampos()) {
 				this.$emit('do-sign-up', { ...this.$data });
 				this.ocultarMensagemErro();
 			}
+
+			const nomeInput = document.getElementById('sign-up-name');
+			const emailInput = document.getElementById('sign-up-user');
+			const senhaInput = document.getElementById('sign-up-pass');
+
+			const cadastroInfo = {
+				nome: nomeInput.value,
+				email: emailInput.value,
+				senha: senhaInput.value,
+			};
+
+			const register = await api.post("/register", cadastroInfo);
+
+			console.log('Mensagem do back:: ', cadastro.data);
 		},
 		validarCampos() {
 			this.isNomeValido = this.validarNome();
