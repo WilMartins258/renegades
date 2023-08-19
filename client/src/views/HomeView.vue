@@ -1,18 +1,21 @@
 <template>
   <div class="main-container">
-    <h1>Home</h1>
-
+    <TelaHome/>
   </div>
 
 </template>
 
 <script>
+    import TelaHome from "../components/Home/TelaHome.vue";
   
+  export default{
+      components:{
+        TelaHome,
+      }
+  };
 </script>
 
 <style scoped>
-h1{
-  color: #fff;
-}
+
 
 </style>
