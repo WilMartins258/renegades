@@ -72,7 +72,7 @@ export default {
 				senha: senhaInput.value,
 			};
 
-			const register = await api.post("/register", cadastroInfo);
+			const cadastro = await api.post("/register", cadastroInfo);
 
 			console.log('Mensagem do back:: ', cadastro.data);
 		},
