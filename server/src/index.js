@@ -3,9 +3,6 @@ const express = require('express');
 const router = require('./routes/index.js');
 const cors = require('cors');
 
-// Importando conexão com banco
-const db = require('./db.js');
-
 // Criando uma instância do express
 const app = express();
 
