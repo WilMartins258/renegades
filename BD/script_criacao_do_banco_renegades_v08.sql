@@ -12,7 +12,7 @@ ALTER TABLE ESTABELECIMENTO DROP constraint estabelecimento_id_endereco_fk;
 ALTER TABLE ESTABELECIMENTO DROP constraint estabelecimento_id_horario_fk;
 ALTER TABLE ESTABELECIMENTO DROP constraint estabelecimento_id_cardapio_fk;
 ALTER TABLE ESTABELECIMENTO DROP constraint estabelecimento_id_avaliacao_fk;
-ALTER TABLE ESTABELECIMENTO DROP constraint estabelecimento_id_cupom_fk;
+ALTER TABLE ESTABELECIMENTO DROP constraint estabelecimento_id_promocao_fk;
 
 ALTER TABLE AVALIACAO DROP constraint avaliacao_id_usuario_fk;
 ALTER TABLE AVALIACAO DROP constraint avaliacao_id_estabelecimento_fk;
@@ -27,7 +27,7 @@ DROP TABLE CONTATO;
 DROP TABLE CATEGORIA;
 DROP TABLE CARDAPIO;
 DROP TABLE HORARIO;
-DROP TABLE CUPOM;
+DROP TABLE PROMOCAO;
 DROP TABLE AVALIACAO;
 DROP TABLE ESTILOMUSICA;
 DROP TABLE TEST;
@@ -81,6 +81,7 @@ CREATE TABLE usuario (
 	fotoPerfil        BLOB,
 	-- adm            BOOLEAN,
     dataNascimento    DATE
+	-- favoritos      VARCHAR(200), (array contendo os Ids dos estabelecimentos favoritados)
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE categoria (
@@ -153,7 +154,7 @@ CREATE TABLE cardapio (
 	descricaoItem03 VARCHAR(50)
 ) AUTO_INCREMENT = 1;
 
-CREATE TABLE cupom (
+CREATE TABLE promocao (
 	id         INT PRIMARY KEY AUTO_INCREMENT,
 	nome       VARCHAR(100) not null,
 	descricao  VARCHAR(400) not null,
@@ -171,7 +172,7 @@ CREATE TABLE estabelecimento (
 	idHorario        INT not null,
 	idCardapio       INT,
 	idAvaliacao      INT,
-	idcupom          INT,
+	idpromocao       INT,
 	nome             VARCHAR(100) not null,
 	cnpj             VARCHAR(14) not null UNIQUE,
 	fotoPrincipal    BLOB,
@@ -180,11 +181,22 @@ CREATE TABLE estabelecimento (
 	rodizio          BOOLEAN not null,
 	agendamento      BOOLEAN,
 	estacionamento   BOOLEAN,
+	areaKids         BOOLEAN, -- ------------------------------------------------NEW!!!
 	ativo            BOOLEAN,
 	visivel          BOOLEAN,
 	validado         ENUM('Pendente', 'Validado', 'Não validado'),
 	nota             FLOAT, -- Avaliações (0 a 5 estrelas)
 	dataUltimoAcesso DATE
+) AUTO_INCREMENT = 1;
+
+--------------------------------------------------
+CREATE TABLE favoritos (
+	id                INT PRIMARY KEY,
+	idUsuario         INT not null,
+	idEstabelecimento INT not null,
+	resumo            VARCHAR(50),
+	avaliacao         VARCHAR(200),
+	nota              INT -- Somente de 1 a 5
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE avaliacao (
@@ -217,7 +229,7 @@ ALTER TABLE estabelecimento add (constraint estabelecimento_id_cardapio_fk forei
 
 ALTER TABLE estabelecimento add (constraint estabelecimento_id_avaliacao_fk foreign key (idAvaliacao) references avaliacao (id));
 
-ALTER TABLE estabelecimento add (constraint estabelecimento_id_cupom_fk foreign key (idcupom) references cupom (id));
+ALTER TABLE estabelecimento add (constraint estabelecimento_id_promocao_fk foreign key (idpromocao) references promocao (id));
 
 ALTER TABLE estabelecimento add (constraint estabelecimento_id_estilomusica_fk foreign key (idEstiloMusica) references estilomusica (id));
 
