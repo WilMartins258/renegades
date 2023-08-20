@@ -1,6 +1,6 @@
 // Importando módulos
 const express = require('express');
-const router = require('./routes/index.js');
+const router = require('./routes/router.js');
 const cors = require('cors');
 
 // Criando uma instância do express
