@@ -5,20 +5,23 @@ USE renegades_stage;
 -- DROP CONSTRAINTS
 ALTER TABLE USUARIO DROP constraint usuario_id_estabelecimento_fk;
 ALTER TABLE USUARIO DROP constraint usuario_id_celular_fk;
+ALTER TABLE USUARIO DROP constraint usuario_id_endereco_fk;
 
 ALTER TABLE ESTABELECIMENTO DROP constraint estabelecimento_id_categoria_fk;
 ALTER TABLE ESTABELECIMENTO DROP constraint estabelecimento_id_contato_fk;
 ALTER TABLE ESTABELECIMENTO DROP constraint estabelecimento_id_endereco_fk;
 ALTER TABLE ESTABELECIMENTO DROP constraint estabelecimento_id_horario_fk;
 ALTER TABLE ESTABELECIMENTO DROP constraint estabelecimento_id_cardapio_fk;
-ALTER TABLE ESTABELECIMENTO DROP constraint estabelecimento_id_avaliacao_fk;
-ALTER TABLE ESTABELECIMENTO DROP constraint estabelecimento_id_promocao_fk;
+-- ALTER TABLE ESTABELECIMENTO DROP constraint estabelecimento_id_avaliacao_fk;
+-- ALTER TABLE ESTABELECIMENTO DROP constraint estabelecimento_id_promocao_fk;
+ALTER TABLE ESTABELECIMENTO DROP constraint estabelecimento_id_estilomusica_fk;
 
 ALTER TABLE AVALIACAO DROP constraint avaliacao_id_usuario_fk;
 ALTER TABLE AVALIACAO DROP constraint avaliacao_id_estabelecimento_fk;
 
 
 -- DROP TABLES
+DROP TABLE AVALIACAO;
 DROP TABLE USUARIO;
 DROP TABLE ESTABELECIMENTO;
 DROP TABLE CELULAR;
@@ -28,7 +31,6 @@ DROP TABLE CATEGORIA;
 DROP TABLE CARDAPIO;
 DROP TABLE HORARIO;
 DROP TABLE PROMOCAO;
-DROP TABLE AVALIACAO;
 DROP TABLE ESTILOMUSICA;
 DROP TABLE TEST;
 
@@ -71,7 +73,7 @@ CREATE TABLE usuario (
 	id                INT PRIMARY KEY AUTO_INCREMENT,
 	idCelular         INT not null,
 	idEstabelecimento INT,
-	idEndereco        INT, -- FAZER CONSTRAINT DISSO DEPOIS
+	idEndereco        INT,
     nome              VARCHAR(100) not null,
     sobrenome         VARCHAR(100) not null,
 	nomeUsuario       VARCHAR(50) not null, 
@@ -80,8 +82,8 @@ CREATE TABLE usuario (
     senha             VARCHAR(50) not null,
 	fotoPerfil        BLOB,
 	-- adm            BOOLEAN,
-    dataNascimento    DATE
-	-- favoritos      VARCHAR(200), (array contendo os Ids dos estabelecimentos favoritados)
+    dataNascimento    DATE,
+	favoritos      VARCHAR(200) -- (array contendo os Ids dos estabelecimentos favoritados)
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE categoria (
@@ -89,7 +91,7 @@ CREATE TABLE categoria (
 	nome              VARCHAR(50) not null
 ) AUTO_INCREMENT = 1;
 
-CREATE TABLE estiloMusica ( -- Fazer altertable
+CREATE TABLE estiloMusica (
 	id                INT PRIMARY KEY AUTO_INCREMENT,
 	nome              VARCHAR(50) not null
 ) AUTO_INCREMENT = 1;
@@ -171,20 +173,22 @@ CREATE TABLE estabelecimento (
 	idEndereco       INT not null,
 	idHorario        INT not null,
 	idCardapio       INT,
-	idAvaliacao      INT,
-	idpromocao       INT,
+	-- idAvaliacao      INT,
+	-- idpromocao       INT,
 	nome             VARCHAR(100) not null,
 	cnpj             VARCHAR(14) not null UNIQUE,
 	fotoPrincipal    BLOB,
 	descricao        VARCHAR(400) not null,
-	musicaAoVivo     BOOLEAN,
+	-- entrega		     BOOLEAN not null,
+	-- entregaGratis    BOOLEAN not null,
+	musicaAoVivo     BOOLEAN not null,
 	rodizio          BOOLEAN not null,
-	agendamento      BOOLEAN,
-	estacionamento   BOOLEAN,
-	areaKids         BOOLEAN, -- ------------------------------------------------NEW!!!
-	ativo            BOOLEAN,
-	visivel          BOOLEAN,
-	validado         ENUM('Pendente', 'Validado', 'Não validado'),
+	agendamento      BOOLEAN not null,
+	estacionamento   BOOLEAN not null,
+	areaKids         BOOLEAN not null,
+	ativo            BOOLEAN not null,
+	visivel          BOOLEAN not null,
+	validacao        ENUM('Pendente', 'Validado', 'Não validado') not null,
 	nota             FLOAT, -- Avaliações (0 a 5 estrelas)
 	dataUltimoAcesso DATE
 ) AUTO_INCREMENT = 1;
@@ -216,6 +220,8 @@ ALTER TABLE usuario add (constraint usuario_id_estabelecimento_fk foreign key (i
 
 ALTER TABLE usuario add (constraint usuario_id_celular_fk foreign key (idCelular) references celular (id));
 
+ALTER TABLE usuario add (constraint usuario_id_endereco_fk foreign key (idEndereco) references endereco (id));
+
 ------ ESTABELECIMENTO
 ALTER TABLE estabelecimento add (constraint estabelecimento_id_categoria_fk foreign key (idCategoria) references categoria (id));
 
@@ -227,9 +233,9 @@ ALTER TABLE estabelecimento add (constraint estabelecimento_id_horario_fk foreig
 
 ALTER TABLE estabelecimento add (constraint estabelecimento_id_cardapio_fk foreign key (idCardapio) references cardapio (id));
 
-ALTER TABLE estabelecimento add (constraint estabelecimento_id_avaliacao_fk foreign key (idAvaliacao) references avaliacao (id));
+-- ALTER TABLE estabelecimento add (constraint estabelecimento_id_avaliacao_fk foreign key (idAvaliacao) references avaliacao (id));
 
-ALTER TABLE estabelecimento add (constraint estabelecimento_id_promocao_fk foreign key (idpromocao) references promocao (id));
+-- ALTER TABLE estabelecimento add (constraint estabelecimento_id_promocao_fk foreign key (idpromocao) references promocao (id));
 
 ALTER TABLE estabelecimento add (constraint estabelecimento_id_estilomusica_fk foreign key (idEstiloMusica) references estilomusica (id));
 
