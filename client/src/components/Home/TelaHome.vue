@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import api from './../../services/backend-service';
 import Title from "../Home/Componentes/Titulo.vue";
 import Filters from "../Home/Componentes/Filtro";
 import Carousel from "../Home/Componentes/Carosel.vue";
@@ -33,9 +34,18 @@ export default {
 		this.metodoInicial();
 	},
   methods: {
-    metodoInicial() {
+    async metodoInicial() {
 			// Coloque aqui qualquer lógica de inicialização que você desejar
 			console.log('Método iniciado assim que o componente é carregado.');
+      const homeData = await api.get("/");
+
+
+      if (homeData){
+        console.log({homeData});
+      } else {
+        console.log('Não voltou');
+      }
+
 		}
   },
   computed: {

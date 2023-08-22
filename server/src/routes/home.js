@@ -22,11 +22,13 @@ const getAllEstabelecimentos = async () => {
 }
 
 router.get('/', async (req, res) => {
-    const resultadoEstabelecimentos = await getAllEstabelecimentos(loginInfo.email);
+    const resultadoEstabelecimentos = await getAllEstabelecimentos();
 
     console.log({resultadoEstabelecimentos});
     
-    res.send('Dados da home Renagades. GET');
+    res.status(200).send({
+        resultadoEstabelecimentos
+    });
 });
 
 module.exports = router;
