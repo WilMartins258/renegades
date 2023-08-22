@@ -15,12 +15,12 @@ const userLogin = async (userEmail) => {
     return loginData;
 }
 
-router.get('/', (req, res) => {
-    res.send('Dados da PÁGINA DE LOGIN Renagades /GET.');
-});
+// router.get('/', (req, res) => {
+//     res.send('Dados da PÁGINA DE LOGIN Renagades /GET.');
+// });
 
-router.post('/', async (req, res) => {
-    console.log('/login POST \n\n');
+router.get('/', async (req, res) => {
+    console.log('/login GET \n\n');
 
     // É o objeto que contém tudo o que foi enviado lá do front, neste caso vai conter apenas uma email e uma senha
     const loginInfo = req?.body;
