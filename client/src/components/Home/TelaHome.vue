@@ -29,6 +29,15 @@ export default {
       selectedFilter: null,
     };
   },
+  created() {
+		this.metodoInicial();
+	},
+  methods: {
+    metodoInicial() {
+			// Coloque aqui qualquer lógica de inicialização que você desejar
+			console.log('Método iniciado assim que o componente é carregado.');
+		}
+  },
   computed: {
     filteredEstablishments() {
       if (!this.selectedFilter) {
