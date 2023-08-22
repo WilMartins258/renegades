@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import api from './../services/backend-service';
 export default {
 	data() {
 		return {
