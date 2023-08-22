@@ -50,7 +50,7 @@ USE renegades_stage;
 -- Criação de tabelas
 CREATE TABLE test (
     id INT PRIMARY KEY AUTO_INCREMENT,
-	test BLOB
+	test LONGBLOB
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE celular (
@@ -80,7 +80,7 @@ CREATE TABLE usuario (
     cpf               VARCHAR(11), -- UNIQUE,
     email             VARCHAR(100) not null UNIQUE,
     senha             VARCHAR(50) not null,
-	fotoPerfil        BLOB,
+	fotoPerfil        LONGBLOB,
 	-- adm            BOOLEAN,
     dataNascimento    DATE,
 	favoritos      VARCHAR(200) -- (array contendo os Ids dos estabelecimentos favoritados)
@@ -145,13 +145,13 @@ CREATE TABLE horario (
 
 CREATE TABLE cardapio (
 	id              INT PRIMARY KEY AUTO_INCREMENT,
-	fotoItem01      BLOB not null,
+	fotoItem01      LONGBLOB not null,
 	nomeItem01      VARCHAR(50) not null,
 	descricaoItem01 VARCHAR(50) not null,
-	fotoItem02      BLOB,
+	fotoItem02      LONGBLOB,
 	nomeItem02      VARCHAR(50),
 	descricaoItem02 VARCHAR(50),
-	fotoItem03      BLOB,
+	fotoItem03      LONGBLOB,
 	nomeItem03      VARCHAR(50),
 	descricaoItem03 VARCHAR(50)
 ) AUTO_INCREMENT = 1;
@@ -177,7 +177,7 @@ CREATE TABLE estabelecimento (
 	-- idpromocao       INT,
 	nome             VARCHAR(100) not null,
 	cnpj             VARCHAR(14) not null UNIQUE,
-	fotoPrincipal    BLOB,
+	fotoPrincipal    LONGBLOB,
 	descricao        VARCHAR(400) not null,
 	-- entrega		     BOOLEAN not null,
 	-- entregaGratis    BOOLEAN not null,
