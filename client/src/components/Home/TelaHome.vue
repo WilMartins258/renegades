@@ -1,78 +1,33 @@
 <template>
-  <div class="home">
-    <Title />
-    <Filters />
-    <Carousel />
-    <div class="establishment-list">
-      <EstablishmentCard v-for="establishment in filteredEstablishments" :key="establishment.id" :establishment="establishment" />
-    </div>
+  <div class="title">
+    <h1>The Better Choice!</h1>
+    <Filtro />
   </div>
 </template>
 
 <script>
-import api from './../../services/backend-service';
-import Title from "../Home/Componentes/Titulo.vue";
-import Filters from "../Home/Componentes/Filtro";
-import Carousel from "../Home/Componentes/Carosel.vue";
-import EstablishmentCard from "../Home/Componentes/Card";
+
+import Filtro from "../Home/Componentes/Filtro.vue";
+import CombinedCarousel from "./Componentes/Carousel.vue";
 export default {
-    components: {
-    Title,
-    Filters,
-    Carousel,
-    EstablishmentCard,
-  },
      name: "TelaHome",
-
-     data() {
-    return {
-      establishments: [], // Your establishment data
-      selectedFilter: null,
-    };
-  },
-  created() {
-		this.metodoInicial();
-	},
-  methods: {
-    async metodoInicial() {
-			// Coloque aqui qualquer lógica de inicialização que você desejar
-			console.log('Método iniciado assim que o componente é carregado.');
-      const homeData = await api.get("/");
-
-
-      if (homeData){
-        console.log({homeData});
-      } else {
-        console.log('Não voltou');
-      }
-
-		}
-  },
-  computed: {
-    filteredEstablishments() {
-      if (!this.selectedFilter) {
-        return this.establishments;
-      } else {
-        return this.establishments.filter(
-          (establishment) => establishment.type === this.selectedFilter
-        );
-      }
+     components:{
+      Filtro,
+      CombinedCarousel,
     },
-  },
-};
+}
 </script>
 
-<style>
+<style scoped>
 
-.home {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+.title {
+  text-align: center;
+  margin: 20px 0;
 }
-.establishment-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+
+h1{
+  color: #fff;
 }
+
 
 </style>
