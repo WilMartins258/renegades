@@ -31,3 +31,8 @@ npm install imask --save
 ```
 npm install imask --save
 ```
+
+## Instalação da biblioteca vue3-carousel 
+```
+vue3-carousel
+```
