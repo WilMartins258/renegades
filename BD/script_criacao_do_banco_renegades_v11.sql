@@ -53,20 +53,14 @@ CREATE TABLE test (
 	test LONGBLOB
 ) AUTO_INCREMENT = 1;
 
-CREATE TABLE celular (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-    codigoArea VARCHAR(5) not null,
-	numero VARCHAR(20) not null
-) AUTO_INCREMENT = 1;
-
 CREATE TABLE endereco (
-	id         INT PRIMARY KEY AUTO_INCREMENT,
-	cep        VARCHAR(8) not null,
-	estado     VARCHAR(50) not null,
-	cidade     VARCHAR(80) not null,
-    lodradouro VARCHAR(200) not null,
-    bairro     VARCHAR(100) not null,
-    numero     VARCHAR(6) not null
+	id                INT PRIMARY KEY AUTO_INCREMENT,
+	cep               VARCHAR(8) not null,
+	estado            VARCHAR(50) not null,
+	cidade            VARCHAR(80) not null,
+    lodradouro        VARCHAR(200) not null,
+    bairro            VARCHAR(100) not null,
+    numero            VARCHAR(6) not null
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE usuario (
@@ -76,14 +70,15 @@ CREATE TABLE usuario (
 	idEndereco        INT,
     nome              VARCHAR(100) not null,
     sobrenome         VARCHAR(100) not null,
-	nomeUsuario       VARCHAR(50) not null, 
+	codigoArea        VARCHAR(5) not null,
+	numero            VARCHAR(20) not null,
     cpf               VARCHAR(11), -- UNIQUE,
     email             VARCHAR(100) not null UNIQUE,
     senha             VARCHAR(50) not null,
 	fotoPerfil        LONGBLOB,
 	-- adm            BOOLEAN,
     dataNascimento    DATE,
-	favoritos      VARCHAR(200) -- (array contendo os Ids dos estabelecimentos favoritados)
+	favoritos         VARCHAR(200) -- (array contendo os Ids dos estabelecimentos favoritados)
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE categoria (
@@ -98,62 +93,23 @@ CREATE TABLE estiloMusica (
 
 CREATE TABLE contato (
 	id                INT PRIMARY KEY AUTO_INCREMENT,
-	codigoArea01      VARCHAR(5) not null,
-	numero01          VARCHAR(20) not null,
-	temWhasapp01      BOOLEAN,
-	codigoArea02      VARCHAR(5),
-	numero02          VARCHAR(20),
-	temWhasapp02      BOOLEAN,
-	site              VARCHAR(200),
-	cardapioOnline    VARCHAR(200)
+	idTipoContato     INT not null,
+	contato           VARCHAR(200) not null,
+	responsavel       VARCHAR(100)
 ) AUTO_INCREMENT = 1;
 
-/* diasFuncionamento
-	A ideia é esse varchar ser preenchido com um array contendo os dias da semana
-	em que o estabelecimento funciona.
-	
-	Domingo = 0
-	Segunda = 1
-	Terça   = 2
-	Quarta  = 3
-	Quinta  = 4
-	Sexta   = 5
-	Sábado  = 6
-	
-	Exemplo
-	Estabelecimento que funciona sexta, sábado e domingo:
-	[0, 5, 6]
-*/
-CREATE TABLE horario (
+CREATE TABLE tipoContato (
 	id                INT PRIMARY KEY AUTO_INCREMENT,
-	diasFuncionamento VARCHAR(25) not null, -- Ver OBS acima
-	domingoInicio     TIME,
-	domingoFim        TIME,
-	segundaInicio     TIME,
-	segundaFim        TIME,
-	tercaInicio       TIME,
-	tercaFim          TIME,
-	quartaInicio      TIME,
-	quartaFim         TIME,
-	quintaInicio      TIME,
-	quintaFim         TIME,
-	sextaInicio       TIME,
-	sextaFim          TIME,
-	sabadoInicio      TIME,
-	sabadoFim         TIME
+	tipoContato       VARCHAR(50)
 ) AUTO_INCREMENT = 1;
+
+
 
 CREATE TABLE cardapio (
 	id              INT PRIMARY KEY AUTO_INCREMENT,
 	fotoItem01      LONGBLOB not null,
 	nomeItem01      VARCHAR(50) not null,
-	descricaoItem01 VARCHAR(50) not null,
-	fotoItem02      LONGBLOB,
-	nomeItem02      VARCHAR(50),
-	descricaoItem02 VARCHAR(50),
-	fotoItem03      LONGBLOB,
-	nomeItem03      VARCHAR(50),
-	descricaoItem03 VARCHAR(50)
+	descricaoItem01 VARCHAR(50) not null
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE promocao (
