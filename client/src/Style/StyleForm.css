@@ -1,5 +1,5 @@
 #form-wrap {
-    width: 100%;
+   
     margin: auto;
     max-width: 525px;
     min-height: 1010px;
@@ -17,12 +17,8 @@
     flex-wrap: wrap;
   }
   
-  h2 {
-    text-align: center;
-    color: #fff;
-  }
 
-  h3 {
+  h2, h3 {
     text-align: center;
     color: #fff;
   }
@@ -169,3 +165,6 @@
   .custom-file-button:hover {
     background-color: #ff9800;
   }
+
+
+
