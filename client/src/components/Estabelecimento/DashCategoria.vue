@@ -10,8 +10,10 @@
           type="text"
           id="novaCategoria"
           placeholder="Digite aqui"
+          :class="{ 'error': campoVazio }"
         />
         <button type="submit">Salvar</button>
+        <p v-if="campoVazio" class="error-message">Informe um valor valido.</p>
       </form>
     </div>
     <table>
@@ -25,10 +27,10 @@
         <tr v-for="(categoria, index) in listaCategorias" :key="index">
           <td>{{ categoria }}</td>
           <td>
-            <button @click="editarCategoria(index)">
+            <button class="respButton" @click="editarCategoria(index)">
               <i class="uil uil-edit"></i>
             </button>
-            <button @click="excluirCategoria(index)">
+            <button class="respButton" @click="excluirCategoria(index)">
               <i class="uil uil-file-times-alt"></i>
             </button>
           </td>
@@ -43,15 +45,21 @@ export default {
   name: "DashCategoria",
   data() {
     return {
-      novaCategoria: "",
-      listaCategorias: [],
-    };
-  },
-  methods: {
-    salvarCategoria() {
-      this.listaCategorias.push(this.novaCategoria);
-      this.novaCategoria = "";
+        novaCategoria: "",
+        listaCategorias: [],
+        campoVazio: false, // Variável de estado para verificar se o campo está vazio
+      };
     },
+    methods: {
+      salvarCategoria() {
+        if (this.novaCategoria.trim() !== "") {
+          this.listaCategorias.push(this.novaCategoria);
+          this.novaCategoria = "";
+          this.campoVazio = false; // Reiniciar o estado de campo vazio
+        } else {
+          this.campoVazio = true; // Definir o estado de campo vazio como verdadeiro
+        }
+      },
     editarCategoria(index) {
       const novaCategoria = prompt(
         "Editar categoria:",
@@ -74,20 +82,11 @@ ste
 
 <style scoped>
 
-.background-container {
-  background: url(https://img.elo7.com.br/product/zoom/2BAFCB7/papel-de-parede-infantil-meninos-papel-de-parede-personalizado-para-quarto.jpg) no-repeat center;
-  background-size: cover;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .container {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
-  background-color: rgba(255, 255, 255, 0.8); /* Optional: Adding a semi-transparent white background to the container */
+  background-color: rgba(255, 255, 255, 0.8); 
 }
 
 h1 {
@@ -123,12 +122,16 @@ th {
 }
 
 button {
-  background: #8d72e1;
+  background: #e91e2f;
   cursor: pointer;
   transition: 0.5s;
   border: none;
   padding: 8px 50px;
   border-radius: 25px;
+}
+
+button:hover {
+  background: #ff9800;
 }
 
 input {
@@ -138,8 +141,14 @@ input {
   background: rgba(211, 201, 201, 0.774);
 }
 
-.button:hover {
-  background: #51389d;
+.error input {
+  border-color: red; /* Estilizar o campo de entrada quando estiver vazio */
+}
+
+.error-message {
+  color: red;
+  margin-top: 5px;
+  font-size: 14px;
 }
 
 /* Responsive*/
@@ -163,6 +172,9 @@ input {
 }
 
 @media (max-width: 600px) {
+.respButton{
+  padding: 8px 25px;
+}
   .container {
     max-width: 350px;
   }
@@ -172,8 +184,31 @@ input {
   }
   
   button {
-    margin-top: 10px;
+    margin-top: 8px;
   }
+}
+
+@media (max-width: 414px) {
+  table {
+    font-size: 10px; 
+  }
+  th,
+  td {
+    padding: 6px; 
+  }
+}
+
+@media (max-width: 360px) {
+  h1 {
+    font-size: 16px; 
+  }
+  button {
+    padding: 8px 25px;
+  }
+  input {
+    padding: 8px 35px;
+}
+  
 }
 
 @media (max-width: 350px) {
@@ -187,8 +222,13 @@ input {
     padding: 8px 20px;
   }
   input {
-    padding: 8px 14px;
+    padding: 8px 10px;
 }
+
+.respButton{
+  padding: 8px 15px;
+}
+
 }
 </style>
 
