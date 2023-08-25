@@ -28,4 +28,9 @@ router.use(
     require("./estilomusica.js")
 );
 
+router.use(
+    "/tipocontato",
+    require("./tipoContato.js")
+);
+
 module.exports = router;
