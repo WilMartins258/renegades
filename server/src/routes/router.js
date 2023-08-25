@@ -18,4 +18,9 @@ router.use(
     require("./pages/login.js")
 );
 
+router.use(
+    "/categorias",
+    require("./categorias.js")
+);
+
 module.exports = router;
