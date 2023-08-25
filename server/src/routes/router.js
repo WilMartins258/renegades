@@ -10,12 +10,12 @@ router.use(cors());
 
 router.use(
     "/",
-    require("./home.js")
+    require("./pages/home.js")
 );
 
 router.use(
     "/login",
-    require("./login.js")
+    require("./pages/login.js")
 );
 
 module.exports = router;
