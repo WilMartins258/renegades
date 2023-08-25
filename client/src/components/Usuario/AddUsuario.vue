@@ -1,5 +1,5 @@
 <template>
-  <div class="main-container">
+
     <div id="form-wrap" class="form">
       <div class="posicaoform-wrap">
 
@@ -106,7 +106,6 @@
             </button>
 
           </div>
-        </div>
       </div> <!-- Fechar "posicaoform-wrap" -->
     </div> <!-- Fechar "form-wrap" -->
   </div> <!-- Fechar "posicaoform-wrap" -->
@@ -223,7 +222,7 @@ export default {
 
 <style scoped>
 #form-wrap {
-  max-width: 525px;
+  max-width: 700px;
   min-height: 1200px;
   background-image: url("../../../public/img/FormUsuario.jpg");
   background-size: cover;
@@ -298,15 +297,12 @@ export default {
   }
 }
 
-
 @media (max-width: 950px) {
   #form-wrap {
     max-width: 90%; 
    
   }
- 
 }
-
 
 @media (max-width: 768px) {
   #form-wrap {
@@ -319,4 +315,7 @@ export default {
     height: 100px;
   }
 }
+
+
+
 </style>

@@ -1,5 +1,4 @@
 <template>
-  <div class="main-container">
     <div id="form-wrap" class="form">
       <div class="posicaoform-wrap">
 
@@ -125,8 +124,12 @@
 
   <div class="group">
     <label for="cnpj" class="label">CNPJ:</label><br />
-    <input v-model="cnpj" type="text" id="cnpj" class="input" name="cnpj" required ref="cnpjInput"
-/>
+    <input v-model="cnpj" type="text" id="cnpj" class="input" name="cnpj" required ref="cnpjInput"/>
+  </div>
+
+  <div class="group">
+    <label for="cpf" class="label">CPF:</label><br />
+    <input v-model="cpf" type="text" id="cpf" class="input" name="cpf" required ref="cpfInput"/>
   </div>
 
   <div class="group">
@@ -354,7 +357,6 @@
 
     </div> <!-- Fechar "posicaoform-wrap" -->
   </div> <!-- Fechar "form-wrap" -->
-  </div> <!-- Fechar "posicaoform-wrap" -->
 </template>
 
 <script>
@@ -514,7 +516,6 @@ estabelecimentoImagensInput.value = "";
   background-attachment: fixed;
   width: 100%;
   height: 100vh;
-  background-size: 60%;
 }
 
 .miniatura {
@@ -541,7 +542,9 @@ estabelecimentoImagensInput.value = "";
   cursor: pointer;
 }
 
-
+h2 {
+  color: #fff;
+}
 
 .label {
   color: #fff;

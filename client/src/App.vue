@@ -38,8 +38,11 @@
   }
 
   body{
-    background: url(https://images3.alphacoders.com/836/836644.jpg) no-repeat center;
+    background: url(../public/img/Fundo.jpg) no-repeat center;
   background-size: cover;
+  /*background-image: radial-gradient(circle at center, #f3ef096b, #61120475);*/
+      /*background: url(https://images3.alphacoders.com/836/836644.jpg) no-repeat center;
+  background-size: cover;*/
   }
 
   .main-container{
