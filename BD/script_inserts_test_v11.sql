@@ -11,12 +11,14 @@ DELETE FROM CARDAPIO;
 DELETE FROM HORARIO;
 DELETE FROM PROMOCAO;
 DELETE FROM ESTILOMUSICA;
-DELETE FROM TEST;
+DELETE FROM testTable;
+DELETE FROM tipoContato;
+DELETE FROM categoriaHorario;
 
 
 -- INSERTS
 
--- --------------------------------------------------------- CATEGORIA
+-- --------------------------------------------------------- CATEGORIA -- INÍCIO
 
 insert into test values(
 	null,
@@ -109,14 +111,9 @@ insert into categoria values(
 );
 
 
--- ---------------------------------------------------------> CATEGORIA
+-- ---------------------------------------------------------> CATEGORIA -- FIM
 
--- ---------------------------------------------------------> CATEGORIA
-
-
--- CELULAR
-
--- ---------------------------------------------------------> ESTILO DE MÚSICA
+-- ---------------------------------------------------------> ESTILO DE MÚSICA -- INÍCIO
 
 insert into estilomusica values(
 	1,
@@ -133,63 +130,53 @@ insert into estilomusica values(
 	'Funk'
 );
 
--- ---------------------------------------------------------> ESTILO DE MÚSICA
+-- ---------------------------------------------------------> ESTILO DE MÚSICA -- FIM
 
-insert into celular values(
-	1,          -- id
-	15,         -- codigoArea
-	'999999999' -- numero
+
+-- --------------------------------------------------------- tipoContato -- INÍCIO
+
+insert into tipoContato values(
+	1,
+	'Whatsapp'
 );
 
-insert into celular values(
-	2,          -- id
-	15,            -- codigoArea
-	'8888888888'    -- numero
+insert into tipoContato values(
+	2,
+	'Celular (sem Whatsapp)'
 );
 
-insert into celular values(
-	3,          -- id
-	15,         -- codigoArea
-	'777777777' -- numero
+insert into tipoContato values(
+	3,
+	'Telefone'
 );
 
-insert into celular values(
-	4,          -- id
-	15,         -- codigoArea
-	'111111111' -- numero
+insert into tipoContato values(
+	4,
+	'Instagram'
 );
 
-insert into celular values(
-	5,          -- id
-	15,         -- codigoArea
-	'222222222' -- numero
+insert into tipoContato values(
+	5,
+	'Site do estabelecimento'
 );
 
-insert into celular values(
-	6,          -- id
-	15,         -- codigoArea
-	'3333333333' -- numero
+insert into tipoContato values(
+	6,
+	'Cardápio Online'
 );
 
-insert into celular values(
-	7,          -- id
-	15,         -- codigoArea
-	'444444444' -- numero
+insert into tipoContato values(
+	7,
+	'Facebook'
 );
 
-insert into celular values(
-	8,          -- id
-	15,         -- codigoArea
-	'555555555' -- numero
-);
+-- --------------------------------------------------------- tipoContato -- FIM
 
-insert into celular values(
-	9,          -- id
-	15,         -- codigoArea
-	'123456789' -- numero
-);
+-- --------------------------------------------------------- XXXXX -- INÍCIO
+-- --------------------------------------------------------- XXXXX -- FIM
 
--- ---------------------------------------------------------> CELULAR
+-- --------------------------------------------------------- XXXXX -- INÍCIO
+-- --------------------------------------------------------- XXXXX -- FIM
 
 -- ENDERECO
 
