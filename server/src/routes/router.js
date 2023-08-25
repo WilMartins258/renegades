@@ -23,4 +23,9 @@ router.use(
     require("./categorias.js")
 );
 
+router.use(
+    "/estilomusica",
+    require("./estilomusica.js")
+);
+
 module.exports = router;
