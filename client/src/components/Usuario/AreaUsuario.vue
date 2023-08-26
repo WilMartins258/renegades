@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1 class="title">Área do Usuário</h1><br><br><br>
+    <h1 class="title">Meu Perfil</h1><br><br><br>
     <div class="card-container">
       <div class="card-row">
         <router-link to="/CadUsuario" class="card">
@@ -18,7 +18,7 @@
             alt="Meus Anuncios"
             class="card-image"
           />
-          <div class="description">Meu Estabeleciemnto</div>
+          <div class="description">Minhas Avaliações</div>
         </router-link>
 
         <router-link to="/" class="card">
@@ -32,23 +32,8 @@
       </div>
 
       <div class="card-row">
-        <router-link to="/" class="card">
-          <img
-            src="https://img.freepik.com/fotos-premium/icone-de-notificacao-de-alerta-de-sino-3d-isolado-no-fundo-branco-ilustracao-de-renderizacao-3d_670693-35.jpg?w=826"
-            alt="Notificação"
-            class="card-image"
-          />
-          <div class="description">Notificação</div>
-        </router-link>
+        
 
-        <router-link to="/" class="card">
-          <img
-            src="https://www.morumbi.net/guia/wp-content/uploads/2016/03/conversa.gif"
-            alt="Conversas"
-            class="card-image"
-          />
-          <div class="description">Minhas Conversas</div>
-        </router-link>
 
         <router-link to="/" class="card">
           <img
@@ -56,7 +41,7 @@
             alt="Denuncias"
             class="card-image"
           />
-          <div class="description">Minhas Denuncias</div>
+          <div class="description">CADASTRAR UM ESTABELECIMENTO</div>
         </router-link>
       </div>
     </div>

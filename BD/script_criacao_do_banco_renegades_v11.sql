@@ -136,7 +136,7 @@ CREATE TABLE estabelecimento (
 	visivel          BOOLEAN not null,
 	statusValidacao  ENUM('Pendente', 'Validado', 'Não validado') not null,
 	nota             FLOAT, -- Avaliações (0 a 5 estrelas)
-	dataUltimoAcesso DATE
+	dataUltimoAcesso DATE not null
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE avaliacao (
@@ -145,6 +145,7 @@ CREATE TABLE avaliacao (
 	idEstabelecimento INT not null,
 	resumo            VARCHAR(50) not null,
 	avaliacao         VARCHAR(200) not null,
+	data              DATE not null,
 	nota              INT not null -- Somente de 1 a 5
 ) AUTO_INCREMENT = 1;
 

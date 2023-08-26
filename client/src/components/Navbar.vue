@@ -47,7 +47,7 @@
       />
       <ul class="submenu">
         <li>
-          <a><router-link to="/usuario">Área do Usuário</router-link></a>
+          <a><router-link to="/usuario">Meu Perfil</router-link></a>
         </li>
         <li>
           <a><router-link to="/AreaDoEstabelecimento">Meus Estabelecimento</router-link></a>
