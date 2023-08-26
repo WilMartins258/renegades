@@ -53,7 +53,7 @@
           <a><router-link to="/AreaDoEstabelecimento">Meus Estabelecimento</router-link></a>
         </li>
         <li>
-          <a><router-link to="/notificacao">Notificação</router-link></a>
+          <a><router-link to="/areadoadm">Área do Adm</router-link></a>
         </li>
         <li>
           <a><router-link to="/">Sair</router-link></a>
