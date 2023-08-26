@@ -29,22 +29,28 @@ const routes = [
   },
 
   {
-    path: '/CadEstabelecimento',
-    name: 'CadEstabelecimento',
+    path: '/cadestabelecimento',
+    name: 'cadestabelecimento',
     component: () => import(/* webpackChunkName: "CadEstabelecimento" */ '../views/ViewAreaEstabelecimento/CadEstabelecimento'),
   },
 
   {
-    path: '/Categoria',
-    name: 'Categoria',
-    component: () => import(/* webpackChunkName: "Categoria" */ '../views/ViewAreaEstabelecimento/Categoria'),
+    path: '/gerenciacategoria',
+    name: 'gerenciacategoria',
+    component: () => import(/* webpackChunkName: "gerenciacategoria" */ '../views/ViewAdm/GerenciaCategoria'),
   },
 
   {
     path: '/CadUsuario',
     name: 'CadUsuario',
     component: () => import(/* webpackChunkName: "CadUsuario" */ '../views/ViewUsuarios/CadUsuario'),
-  }
+  },
+
+  {
+    path: '/AreaDoAdm',
+    name: 'AreaDoAdm',
+    component: () => import(/* webpackChunkName: "AreaDoAdm" */ '../views/ViewAdm/Adm'),
+  },
 
 ]
 
