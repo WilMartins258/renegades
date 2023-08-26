@@ -216,6 +216,25 @@ export default{
         alterarButton.removeAttribute("disabled");
         excluirButton.removeAttribute("disabled");
       });
+
+      salvarButton.addEventListener("click", () => {
+        nomeInput.setAttribute("disabled", true);
+        dataNascimentoInput.setAttribute("disabled", true);
+        emailInput.setAttribute("disabled", true);
+        celularInput.setAttribute("disabled", true);
+        senhaInput.setAttribute("disabled", true);
+        senha2Input.setAttribute("disabled", true);
+        cepInput.setAttribute("disabled", true);
+        ruaInput.setAttribute("disabled", true);
+        numeroInput.setAttribute("disabled", true);
+        bairroInput.setAttribute("disabled", true);
+        cidadeInput.setAttribute("disabled", true);
+        ufInput.setAttribute("disabled", true);
+        salvarButton.setAttribute("disabled", true);
+        cancelarButton.setAttribute("disabled", true);
+        alterarButton.removeAttribute("disabled");
+        excluirButton.removeAttribute("disabled");
+      });
     },
   },
   mounted(){
