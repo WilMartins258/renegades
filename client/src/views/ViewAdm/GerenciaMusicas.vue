@@ -1,6 +1,6 @@
 <template>
     <div class="main-container">
-      <DashCategoria/>
+      <DashEstiloMusica/>
     </div>
 
 
@@ -8,12 +8,12 @@
   </template>
   
   <script>
-  import DashCategoria from "../../components/Adm/DashCategoria.vue"
+  import DashEstiloMusica from "../../components/Adm/DashEstiloMusica.vue"
   
       export default{
-          name: "GerenciaCategoria",
+          name: "GerenciaEstiloMusica",
           components:{
-            DashCategoria,
+            DashEstiloMusica,
           }
 
           

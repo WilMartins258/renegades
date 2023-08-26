@@ -35,21 +35,33 @@ const routes = [
   },
 
   {
-    path: '/gerenciacategoria',
-    name: 'gerenciacategoria',
-    component: () => import(/* webpackChunkName: "gerenciacategoria" */ '../views/ViewAdm/GerenciaCategoria'),
-  },
-
-  {
     path: '/CadUsuario',
     name: 'CadUsuario',
     component: () => import(/* webpackChunkName: "CadUsuario" */ '../views/ViewUsuarios/CadUsuario'),
   },
 
   {
+    path: '/alterausuario',
+    name: 'alterausuario',
+    component: () => import(/* webpackChunkName: "AtulUsuario" */ '../views/ViewUsuarios/AtulUsuario'),
+  },
+
+  {
     path: '/AreaDoAdm',
     name: 'AreaDoAdm',
     component: () => import(/* webpackChunkName: "AreaDoAdm" */ '../views/ViewAdm/Adm'),
+  },
+
+  {
+    path: '/gerenciacategoria',
+    name: 'gerenciacategoria',
+    component: () => import(/* webpackChunkName: "gerenciacategoria" */ '../views/ViewAdm/GerenciaCategoria'),
+  },
+
+  {
+    path: '/gerenciamusicas',
+    name: 'gerenciamusicas',
+    component: () => import(/* webpackChunkName: "gerenciamusicas" */ '../views/ViewAdm/GerenciaMusicas'),
   },
 
 ]

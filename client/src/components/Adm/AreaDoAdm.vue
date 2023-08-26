@@ -1,9 +1,9 @@
 <template>
     <div class="container">
-      <h1 class="title">Meu Perfil</h1><br><br><br>
+      <h1 class="title">Area do ADM</h1><br><br><br>
       <div class="card-container">
         <div class="card-row">
-          <router-link to="/CadUsuario" class="card">
+          <router-link to="alterausuario" class="card">
             <img
               src="../../../public/img/MeusDados.png"
               alt="Meus Dados"
@@ -21,7 +21,7 @@
             <div class="description">Gerenciar Categoria</div>
           </router-link>
   
-          <router-link to="/" class="card">
+          <router-link to="/gerenciamusicas" class="card">
             <img
               src="../../../public/img/GerenciarMusicas.jpg"
               alt="Favoritos"

@@ -3,9 +3,7 @@
     <div id="form-wrap" class="form">
       <div class="posicaoform-wrap">
 
-        <div>
-          <section v-show="currentSection === 1">
-            <h2>Meu cadastro</h2><br/>
+
             <div class="personal-image">
               <label class="label">
                 <input type="file" @change="AtualizarImagem" />
@@ -18,10 +16,12 @@
               </label>
             </div><br><br>
 
+            <div class="input-group">
             <div class="group">
-              <label for="nome" class="label">Nome Completo:</label><br />
-              <input type="text" v-model="nome" id="nome" class="input" name="nome" />
-            </div>
+  <label for="nome" class="label">Nome Completo:</label><br />
+  <input ref="nomeInput" type="text" v-model="nome" id="nome" class="input" name="nome" :disabled="!editMode"/>
+</div>
+
 
             <div class="group">
               <label for="dataNasc" class="label">Data de Nascimento:</label><br />
@@ -32,12 +32,14 @@
               <label for="celular" class="label">Celular:</label><br />
               <input type="text" v-model="celular" id="celular" class="input" name="celular" required />
            </div>
+           </div>
 
+           <div class="input-group">
           <div class="group">
             <label for="email" class="label">E-mail:</label><br />
             <input type="email" v-model="email" id="email" class="input" name="email" />
           </div>  
-
+          
           <div class="group">
             <label for="senha" class="label">Senha:</label><br />
               <input type="password" v-model="senha" id="senha" class="input" name="senha" />
@@ -47,69 +49,57 @@
             <label for="senha2" class="label">Confirme sua senha:</label><br />
               <input type="password" v-model="senha" id="senha2" class="input" name="senha2" />
           </div> 
+          </div>
 
-          </section> <!-- Fecha seção 1-->
-
-          <section v-show="currentSection === 2">
-            
-          
+          <div class="input-group">         
           <div class="group">
             <label for="cep" class="label">CEP:</label><br />
             <input v-model="cep" type="text" id="cep" class="input" name="cep" @blur="pesquisarCep" required
             /><br />
         </div>
-      <div class="group">
-        <label for="rua" class="label">Rua:</label><br />
-        <input v-model="endereco.rua" type="text" id="rua" class="input" name="rua"
-        /><br />
-      </div>
-      <div class="group">
-        <label for="numero" class="label">Número:</label><br />
-        <input ref="numeroInput" type="text" id="numero" class="input" name="numero" required
-        /><br />
-      </div>
-      <div class="group">
-        <label for="bairro" class="label">Bairro:</label><br />
-        <input v-model="endereco.bairro" type="text" id="bairro" class="input" name="bairro"
-        /><br />
-      </div>
-      <div class="group">
-        <label for="cidade" class="label">Cidade:</label><br />
-        <input v-model="endereco.cidade" type="text" id="cidade" class="input" name="cidade"
-        /><br />
-      </div>
-      <div class="group">
-        <label for="uf" class="label">Estado:</label><br />
-        <input v-model="endereco.uf" type="text" id="uf" class="input" name="uf"
-        /><br />
-      </div>   
+        <div class="group">
+            <label for="rua" class="label">Rua:</label><br />
+            <input v-model="endereco.rua" type="text" id="rua" class="input" name="rua"
+            /><br />
+        </div>
+        <div class="group">
+            <label for="numero" class="label">Número:</label><br />
+            <input ref="numeroInput" type="text" id="numero" class="input" name="numero" required
+            /><br />
+        </div>
+        </div>
+
+        <div class="input-group">
+        <div class="group">
+            <label for="bairro" class="label">Bairro:</label><br />
+            <input v-model="endereco.bairro" type="text" id="bairro" class="input" name="bairro"
+            /><br />
+        </div>
+        <div class="group">
+            <label for="cidade" class="label">Cidade:</label><br />
+            <input v-model="endereco.cidade" type="text" id="cidade" class="input" name="cidade"
+            /><br />
+        </div>
+        <div class="group">
+            <label for="uf" class="label">Estado:</label><br />
+            <input v-model="endereco.uf" type="text" id="uf" class="input" name="uf"
+            /><br />
+        </div>   
+        </div>
 
       <div class="group">
         <div>
-          <input type="button" class="button" value="Salvar" />
-          <input
-            type="button"
-            class="button"
-            value="Cancelar"
-            @click="cancelar"
-          /> <br><br>
+            <input type="button" class="button" value="Alterar" @click="alterar" :disabled="editMode" ref="alterarButton"/>
+            <input type="button" class="button" value="Salvar" :disabled="!editMode" />
+            <input type="button" class="button" value="Excluir" :disabled="editMode" />
+            <input type="button" class="button" value="Cancelar" @click="cancelar" :disabled="!editMode" />
         </div>
       </div>
 
-          </section> <!-- Fecha seção 2-->
 
-          <div class="buttons">
-            <button class="custom-button" @click="previousSection" :disabled="currentSection === 1">
-              <i class="uil uil-arrow-circle-left"></i>
-            </button>
-            <button class="custom-button" @click="nextSection" :disabled="currentSection === 2">
-              <i class="uil uil-arrow-circle-right"></i>
-            </button>
-
-          </div>
       </div> <!-- Fechar "posicaoform-wrap" -->
     </div> <!-- Fechar "form-wrap" -->
-  </div> <!-- Fechar "posicaoform-wrap" -->
+
 </template>
 
 <script>
@@ -118,9 +108,10 @@ import axios from "axios";
 
 export default {
   components: {},
-  name: "AddUsuario",
+  name: "UpdUsuario",
   data() {
     return {
+      editMode: false,
       currentSection: 1,
       imagensEstabelecimentoSelecionadas: [],
       dataNasc: "",
@@ -200,19 +191,51 @@ export default {
             reader.readAsDataURL(file);
       }
     },
+    alterar() {
+        this.editMode = true;
+    this.enableInputs();
+    this.$refs.alterarButton.classList.add("disabled-button");
+    this.$nextTick(() => {
+      this.$refs.nomeInput.focus(); // Focus on the "Nome" input
+    });
+  },
+
+  cancelarAlteracao() {
+     this.disableInputs();
+    this.$refs.alterarButton.classList.remove("disabled-button");
+  },
+
+  cancelar() {
+      this.cancelarAlteracao();
+      this.disableInputs();
+  },
+  disableInputs() {
+    const inputs = document.querySelectorAll(".input");
+    inputs.forEach((input) => {
+      input.disabled = true;
+    });
+  },
+
+  enableInputs() {
+    const inputs = document.querySelectorAll(".input");
+    inputs.forEach((input) => {
+      input.disabled = false;
+    });
+  },
+
   },
   mounted(){
     dataNasc
-    const dataNascInput = document.getElementById("dataNasc"); // Corrected variable name
+    const dataNascInput = document.getElementById("dataNasc");
     const dataNascMask = IMask(dataNascInput, {
-      mask: "00/00/0000",
+        mask: "00/00/0000",
     });
 
     const celularInput = document.getElementById("celular");
     const celularMask = IMask(celularInput, {
-    mask: "(00) 00000-0000",
+        mask: "(00) 00000-0000",
     });
-    
+    this.disableInputs();
   }
   
 };
@@ -220,9 +243,8 @@ export default {
 
 <style scoped>
 #form-wrap {
-  max-width: 700px;
+  max-width: 2000px;
   min-height: 1000px;
-  background-image: url("../../../public/img/FormUsuario.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -230,6 +252,7 @@ export default {
   height: 100vh;
   background-size: 40%;
 }
+
 
 .personal-image {
     text-align: center;
@@ -282,6 +305,25 @@ export default {
     height: 50px;
   }
 
+   /* Layout Form Update */
+   .input-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+  
+  .group {
+    flex: 1;
+    margin-right: 20px; 
+  }
+
+  .disabled-button {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+
   /* Responsividade */
 
 
@@ -295,22 +337,47 @@ export default {
 @media (max-width: 950px) {
   #form-wrap {
     max-width: 90%; 
-   
   }
 }
 
 @media (max-width: 768px) {
+    .input-group {
+    flex-direction: column;
+  }
+
+    .input,
+    textarea {
+        width: 100%; /* Adjust this as needed */
+    }
+
   #form-wrap {
     max-width: 100%; 
     background-size: 70%;
   } 
+
+
+  
   .personal-figure {
     position: relative;
     width: 100px;
     height: 100px;
   }
+
+  #form-wrap {
+
+        min-height: 1800px;
+    }
 }
 
+@media (max-width: 414px) {
+    
+    #form-wrap {
+        min-height: 2000px;
+    }
 
+    .group {
+    margin-right: -20px; 
+  }
+}
 
 </style>

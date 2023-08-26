@@ -1,36 +1,36 @@
 <template>
   
   <div class="container">
-    <h1>Categorias</h1>
+    <h1>Estilos Musicais</h1>
     <div>
-      <form @submit.prevent="salvarCategoria">
-        <label for="novaCategoria">Nova Categoria:</label>
+      <form @submit.prevent="salvarMusica">
+        <label for="novaMusica">Nova musica:</label>
         <input
-          v-model="novaCategoria"
+          v-model="novaMusica"
           type="text"
-          id="novaCategoria"
+          id="novaMusica"
           placeholder="Digite aqui"
           :class="{ 'error': campoVazio }"
         />
         <button type="submit">Salvar</button>
-        <p v-if="campoVazio" class="error-message">Informe uma Categoria Valida.</p>
+        <p v-if="campoVazio" class="error-message">Informe uma estilo de música valido.</p>
       </form>
     </div>
     <table>
       <thead>
         <tr>
-          <th>Categoria de Estabelecimento</th>
+          <th>Estilos Musicais</th>
           <th>Editar/Excluir</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(categoria, index) in listaCategorias" :key="index">
-          <td>{{ categoria }}</td>
+        <tr v-for="(musica, index) in listaMusicas" :key="index">
+          <td>{{ musica }}</td>
           <td>
-            <button class="respButton" @click="editarCategoria(index)">
+            <button class="respButton" @click="editarMusica(index)">
               <i class="uil uil-edit"></i>
             </button>
-            <button class="respButton" @click="excluirCategoria(index)">
+            <button class="respButton" @click="excluirMusica(index)">
               <i class="uil uil-file-times-alt"></i>
             </button>
           </td>
@@ -42,36 +42,36 @@
 
 <script>
 export default {
-  name: "DashCategoria",
+  name: "DashEstiloMusica",
   data() {
     return {
-        novaCategoria: "",
-        listaCategorias: [],
+        novaMusica: "",
+        listaMusicas: [],
         campoVazio: false, // Variável de estado para verificar se o campo está vazio
       };
     },
     methods: {
-      salvarCategoria() {
-        if (this.novaCategoria.trim() !== "") {
-          this.listaCategorias.push(this.novaCategoria);
-          this.novaCategoria = "";
+      salvarMusica() {
+        if (this.novaMusica.trim() !== "") {
+          this.listaMusicas.push(this.novaMusica);
+          this.novaMusica = "";
           this.campoVazio = false; // Reiniciar o estado de campo vazio
         } else {
           this.campoVazio = true; // Definir o estado de campo vazio como verdadeiro
         }
       },
-    editarCategoria(index) {
-      const novaCategoria = prompt(
-        "Editar categoria:",
-        this.listaCategorias[index]
+    editarMusica(index) {
+      const novaMusica = prompt(
+        "Editar seu Estilo Musical:",
+        this.listaMusicas[index]
       );
-      if (novaCategoria && novaCategoria.trim() !== "") {
-        this.listaCategorias[index] = novaCategoria;
+      if (novaMusica && novaMusica.trim() !== "") {
+        this.listaMusicas[index] = novaMusica;
       }
     },
-    excluirCategoria(index) {
-      if (confirm("Tem certeza que deseja excluir está categoria?")) {
-        this.listaCategorias.splice(index, 1);
+    excluirMusica(index) {
+      if (confirm("Tem certeza que deseja excluir esse estilo?")) {
+        this.listaMusicas.splice(index, 1);
       }
     },
   },
