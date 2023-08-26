@@ -16,6 +16,3 @@
   
   </script>
 
-<style src="../../Style/StyleForm.css">
-
-</style>

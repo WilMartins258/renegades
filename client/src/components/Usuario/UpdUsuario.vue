@@ -1,10 +1,8 @@
 <template>
+  <div id="form-wrap" class="form">
+    <div class="posicaoform-wrap">
 
-    <div id="form-wrap" class="form">
-      <div class="posicaoform-wrap">
-
-
-            <div class="personal-image">
+      <div class="personal-image">
               <label class="label">
                 <input type="file" @change="AtualizarImagem" />
                 <figure class="personal-figure">
@@ -16,129 +14,101 @@
               </label>
             </div><br><br>
 
-            <div class="input-group">
-            <div class="group">
-  <label for="nome" class="label">Nome Completo:</label><br />
-  <input ref="nomeInput" type="text" v-model="nome" id="nome" class="input" name="nome" :disabled="!editMode"/>
-</div>
+          <div class="column">
+              <div class="group">
+                <label for="nome" class="label">Nome Completo:</label><br />
+                <input type="text" v-model="nome" id="nome" class="input" name="nome" disabled/>
+              </div>
 
+              <div class="group">
+                <label for="dataNasc" class="label">Data de Nascimento:</label><br />
+                <input v-model="dataNasc" type="text" id="dataNasc" class="input" name="dataNasc" required ref="dataNascInput" disabled/>
+              </div>
+
+              <div class="group">
+                <label for="celular" class="label">Celular:</label><br />
+                <input type="text" v-model="celular" id="celular" class="input" name="celular" required disabled/>
+            </div>
+          </div>
+
+           <div class="column">
+            <div class="group">
+              <label for="email" class="label">E-mail:</label><br />
+              <input type="email" v-model="email" id="email" class="input" name="email" disabled/>
+            </div>  
 
             <div class="group">
-              <label for="dataNasc" class="label">Data de Nascimento:</label><br />
-              <input v-model="dataNasc" type="text" id="dataNasc" class="input" name="dataNasc" required ref="dataNascInput" />
+              <label for="senha" class="label">Senha:</label><br />
+                <input type="password" v-model="senha" id="senha" class="input" name="senha" disabled/>
+            </div>  
+
+            <div class="group">
+              <label for="senha2" class="label">Confirme sua senha:</label><br />
+                <input type="password" v-model="senha" id="senha2" class="input" name="senha2" disabled/>
+            </div> 
+          </div>
+
+          <div class="column">
+            <div class="group">
+              <label for="cep" class="label">CEP:</label><br />
+              <input v-model="cep" type="text" id="cep" class="input" name="cep" @blur="pesquisarCep" required disabled/><br />
             </div>
 
             <div class="group">
-              <label for="celular" class="label">Celular:</label><br />
-              <input type="text" v-model="celular" id="celular" class="input" name="celular" required />
-           </div>
-           </div>
-
-           <div class="input-group">
-          <div class="group">
-            <label for="email" class="label">E-mail:</label><br />
-            <input type="email" v-model="email" id="email" class="input" name="email" />
-          </div>  
+            <label for="rua" class="label">Rua:</label><br />
+            <input v-model="endereco.rua" type="text" id="rua" class="input" name="rua" disabled/><br />
+          </div>
           
           <div class="group">
-            <label for="senha" class="label">Senha:</label><br />
-              <input type="password" v-model="senha" id="senha" class="input" name="senha" />
-          </div>  
+            <label for="numero" class="label">Número:</label><br />
+            <input ref="numeroInput" type="text" id="numero" class="input" name="numero" required disabled/><br />
+          </div>
+        </div>
 
+        <div class="column">
           <div class="group">
-            <label for="senha2" class="label">Confirme sua senha:</label><br />
-              <input type="password" v-model="senha" id="senha2" class="input" name="senha2" />
-          </div> 
+            <label for="bairro" class="label">Bairro:</label><br />
+            <input v-model="endereco.bairro" type="text" id="bairro" class="input" name="bairro" disabled/><br />
           </div>
 
-          <div class="input-group">         
           <div class="group">
-            <label for="cep" class="label">CEP:</label><br />
-            <input v-model="cep" type="text" id="cep" class="input" name="cep" @blur="pesquisarCep" required
-            /><br />
-        </div>
-        <div class="group">
-            <label for="rua" class="label">Rua:</label><br />
-            <input v-model="endereco.rua" type="text" id="rua" class="input" name="rua"
-            /><br />
-        </div>
-        <div class="group">
-            <label for="numero" class="label">Número:</label><br />
-            <input ref="numeroInput" type="text" id="numero" class="input" name="numero" required
-            /><br />
-        </div>
-        </div>
-
-        <div class="input-group">
-        <div class="group">
-            <label for="bairro" class="label">Bairro:</label><br />
-            <input v-model="endereco.bairro" type="text" id="bairro" class="input" name="bairro"
-            /><br />
-        </div>
-        <div class="group">
             <label for="cidade" class="label">Cidade:</label><br />
-            <input v-model="endereco.cidade" type="text" id="cidade" class="input" name="cidade"
-            /><br />
-        </div>
-        <div class="group">
+            <input v-model="endereco.cidade" type="text" id="cidade" class="input" name="cidade" disabled/><br />
+          </div>
+
+          <div class="group">
             <label for="uf" class="label">Estado:</label><br />
-            <input v-model="endereco.uf" type="text" id="uf" class="input" name="uf"
-            /><br />
-        </div>   
+            <input v-model="endereco.uf" type="text" id="uf" class="input" name="uf" disabled/><br />
+          </div> 
         </div>
-
-      <div class="group">
-        <div>
-            <input type="button" class="button" value="Alterar" @click="alterar" :disabled="editMode" ref="alterarButton"/>
-            <input type="button" class="button" value="Salvar" :disabled="!editMode" />
-            <input type="button" class="button" value="Excluir" :disabled="editMode" />
-            <input type="button" class="button" value="Cancelar" @click="cancelar" :disabled="!editMode" />
+          
+        <div class="group">
+            <button type="button" class="button" id="alterarButton">Alterar</button>
+            <button type="button" class="button" id="salvarButton" disabled>Salvar</button>
+            <button type="button" class="button" id="excluirButton">Excluir</button>
+            <button type="button" class="button" id="cancelarButton" disabled>Cancelar</button>
         </div>
-      </div>
-
-
-      </div> <!-- Fechar "posicaoform-wrap" -->
-    </div> <!-- Fechar "form-wrap" -->
-
+    </div>
+  </div>
 </template>
 
 <script>
 import IMask from "imask";
 import axios from "axios";
-
-export default {
-  components: {},
+export default{
   name: "UpdUsuario",
-  data() {
-    return {
-      editMode: false,
-      currentSection: 1,
-      imagensEstabelecimentoSelecionadas: [],
-      dataNasc: "",
-      cep: "",
-      avatarSrc: "https://play-lh.googleusercontent.com/jkkC8gyT_HY4dnKsKysYmdH2T4A4R_K0z7xiaH4wjwgUlpJ_Uz-iXRzM3CCh8Sc1DZk=w240-h480-rw",
-      endereco: {
+  data(){
+   return{
+    avatarSrc: "https://play-lh.googleusercontent.com/jkkC8gyT_HY4dnKsKysYmdH2T4A4R_K0z7xiaH4wjwgUlpJ_Uz-iXRzM3CCh8Sc1DZk=w240-h480-rw",
+    endereco: {
         rua: "",
         bairro: "",
         cidade: "",
         uf: "",
         }
-    };
+  };
   },
   methods: {
-    nextSection() {
-      if (this.currentSection < 2) {
-        this.currentSection++;
-      }
-    },
-    previousSection() {
-      if (this.currentSection > 1) {
-        this.currentSection--;
-      }
-    },
-    cancelar() {
-      this.$router.push("/");
-    },
     limpa_formulário_cep() {
       document.getElementById("rua").value = "";
       document.getElementById("bairro").value = "";
@@ -191,68 +161,83 @@ export default {
             reader.readAsDataURL(file);
       }
     },
-    alterar() {
-        this.editMode = true;
-    this.enableInputs();
-    this.$refs.alterarButton.classList.add("disabled-button");
-    this.$nextTick(() => {
-      this.$refs.nomeInput.focus(); // Focus on the "Nome" input
-    });
-  },
+    setupFormListeners() {
+      const nomeInput = document.getElementById("nome");
+      const dataNascimentoInput = document.getElementById("dataNasc");
+      const emailInput = document.getElementById("email");
+      const celularInput = document.getElementById("celular");
+      const senhaInput = document.getElementById("senha");
+      const senha2Input = document.getElementById("senha2");
+      const cepInput = document.getElementById("cep");
+      const ruaInput = document.getElementById("rua");
+      const numeroInput = document.getElementById("numero");
+      const bairroInput = document.getElementById("bairro");
+      const cidadeInput = document.getElementById("cidade");
+      const ufInput = document.getElementById("uf");
+      const alterarButton = document.getElementById("alterarButton");
+      const salvarButton = document.getElementById("salvarButton");
+      const excluirButton = document.getElementById("excluirButton");
+      const cancelarButton = document.getElementById("cancelarButton");
 
-  cancelarAlteracao() {
-     this.disableInputs();
-    this.$refs.alterarButton.classList.remove("disabled-button");
-  },
+      alterarButton.addEventListener("click", () => {
+        nomeInput.removeAttribute("disabled");
+        dataNascimentoInput.removeAttribute("disabled");
+        emailInput.removeAttribute("disabled");
+        celularInput.removeAttribute("disabled");
+        senhaInput.removeAttribute("disabled");
+        senha2Input.removeAttribute("disabled");
+        cepInput.removeAttribute("disabled");
+        ruaInput.removeAttribute("disabled");
+        numeroInput.removeAttribute("disabled");
+        bairroInput.removeAttribute("disabled");
+        cidadeInput.removeAttribute("disabled");
+        ufInput.removeAttribute("disabled");
+        salvarButton.removeAttribute("disabled");
+        cancelarButton.removeAttribute("disabled");
+        alterarButton.setAttribute("disabled", true);
+        excluirButton.setAttribute("disabled", true);
+      });
 
-  cancelar() {
-      this.cancelarAlteracao();
-      this.disableInputs();
-  },
-  disableInputs() {
-    const inputs = document.querySelectorAll(".input");
-    inputs.forEach((input) => {
-      input.disabled = true;
-    });
-  },
-
-  enableInputs() {
-    const inputs = document.querySelectorAll(".input");
-    inputs.forEach((input) => {
-      input.disabled = false;
-    });
-  },
-
+      cancelarButton.addEventListener("click", () => {
+        nomeInput.setAttribute("disabled", true);
+        dataNascimentoInput.setAttribute("disabled", true);
+        emailInput.setAttribute("disabled", true);
+        celularInput.setAttribute("disabled", true);
+        senhaInput.setAttribute("disabled", true);
+        senha2Input.setAttribute("disabled", true);
+        cepInput.setAttribute("disabled", true);
+        ruaInput.setAttribute("disabled", true);
+        numeroInput.setAttribute("disabled", true);
+        bairroInput.setAttribute("disabled", true);
+        cidadeInput.setAttribute("disabled", true);
+        ufInput.setAttribute("disabled", true);
+        salvarButton.setAttribute("disabled", true);
+        cancelarButton.setAttribute("disabled", true);
+        alterarButton.removeAttribute("disabled");
+        excluirButton.removeAttribute("disabled");
+      });
+    },
   },
   mounted(){
     dataNasc
-    const dataNascInput = document.getElementById("dataNasc");
+    const dataNascInput = document.getElementById("dataNasc"); // Corrected variable name
     const dataNascMask = IMask(dataNascInput, {
-        mask: "00/00/0000",
+      mask: "00/00/0000",
     });
 
     const celularInput = document.getElementById("celular");
     const celularMask = IMask(celularInput, {
-        mask: "(00) 00000-0000",
+    mask: "(00) 00000-0000",
     });
-    this.disableInputs();
+
+    this.setupFormListeners();
+    
   }
-  
-};
+}
+
 </script>
 
 <style scoped>
-#form-wrap {
-  max-width: 2000px;
-  min-height: 1000px;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  width: 100%;
-  height: 100vh;
-  background-size: 40%;
-}
-
 
 .personal-image {
     text-align: center;
@@ -305,79 +290,140 @@ export default {
     height: 50px;
   }
 
-   /* Layout Form Update */
-   .input-group {
+  #form-wrap {
+   margin: auto;
+   max-width: 2000px;
+   min-height: 1010px;
+   position: relative;
+   background-color: #c9beebe1;
+   box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
+     0 17px 50px 0 rgba(0, 0, 0, 0.19);
+ }
+ 
+ .posicaoform-wrap {
+   width: 100%;
+   height: 100%;
+   position: absolute;
+   padding: 50px 70px 50px 70px;
+   flex-wrap: wrap;
+   
+ }
+
+ .form {
+    min-height: 345px;
+    position: relative;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+  }
+  
+  .form .group {
+    margin-bottom: 15px;
+  }
+  
+  .form .column {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 20px;
   }
-  
+
   .group {
     flex: 1;
     margin-right: 20px; 
   }
-
-  .disabled-button {
-  background-color: gray;
-  cursor: not-allowed;
+  
+  .form .group .label,
+  .form .group .input {
+    width: 100%;
+    color: #000;
+    display: block;
+  }
+  
+  .group .button,
+  .group .input {
+    border: none;
+    padding: 15px 20px;
+    border-radius: 25px;
+    background: rgba(211, 201, 201, 0.774);
+  }
+  #form-wrap .group .button[disabled] {
+  background-color: #7a7a7a6c;
+  pointer-events: none;
 }
 
+#form-wrap .group .input[disabled] {
+  background-color: #7a7a7a6c;
 
-  /* Responsividade */
-
-
-@media (max-width: 1160px) {
-  #form-wrap {
-    max-width: 80%;
-    background-size: 55%;
-  }
 }
-
-@media (max-width: 950px) {
-  #form-wrap {
-    max-width: 90%; 
+  .group .button,
+  .group .label {
+    text-transform: uppercase;
   }
-}
-
-@media (max-width: 768px) {
-    .input-group {
-    flex-direction: column;
+  
+  .group .button-spacing {
+    margin-right: 10px;
   }
-
-    .input,
-    textarea {
-        width: 100%; /* Adjust this as needed */
-    }
-
-  #form-wrap {
-    max-width: 100%; 
-    background-size: 70%;
-  } 
-
+  
+  .form .group .button {
+    padding: 15px 50px;
+  }
+  
+  #form-wrap .group .label {
+    color: #fff;
+    font-size: 16px;
+  }
 
   
-  .personal-figure {
-    position: relative;
-    width: 100px;
-    height: 100px;
+  
+  #form-wrap .group .button {
+    background:#e91e2f;
+    cursor: pointer;
+    transition: 0.5s;
+    color: #fff;
+  }
+  
+  #form-wrap .group .button:hover {
+    background:#ff9800;
   }
 
-  #form-wrap {
+.button {
+    margin-right: 10px;
+  }
 
-        min-height: 1800px;
-    }
+  /*Responsivo*/
+  
+  @media (max-width: 1060px) {
+  .posicaoform-wrap {
+    padding: 50px 40px; 
+  }
 }
 
-@media (max-width: 414px) {
-    
+  @media (max-width: 768px) {
     #form-wrap {
-        min-height: 2000px;
-    }
-
-    .group {
-    margin-right: -20px; 
+    min-height: 1800px; 
   }
+  .column {
+    flex-direction: column;
+  }
+  .form .group .input {
+    width: 300%;
+  }
+  .group:nth-child(n+4) .button {
+    margin-top: 15px; 
+  }
+
 }
 
+  @media (max-width: 414px) {
+  #form-wrap {
+    min-height: 200px; 
+  }
+  .group .button {
+    padding: 15px 20px; 
+  }
+
+  .form .group .input {
+    width: 120%;
+  }
+}
 </style>
