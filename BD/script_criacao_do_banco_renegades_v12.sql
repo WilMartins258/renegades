@@ -42,7 +42,7 @@ CREATE TABLE tipoContato (
 	
 	[0, 1, ... 6]
 */
-CREATE TABLE categoriaHorario (
+CREATE TABLE diaSemana (
 	id               INT PRIMARY KEY AUTO_INCREMENT,
 	categoriaHorario VARCHAR(50) not null
 ) AUTO_INCREMENT = 1;
@@ -86,10 +86,20 @@ CREATE TABLE contato (
 	responsavel       VARCHAR(100)
 ) AUTO_INCREMENT = 1;
 
+/*
+
+0 - DOMINGO
+1 - SEGUNDA
+...
+6 - SÁBADO
+7 - SEGUNDA A SEXTA
+8 - SÁBADO E DOMINGO
+
+*/
 CREATE TABLE horario (
 	id                 INT PRIMARY KEY AUTO_INCREMENT,
 	idEstabelecimento  INT not null,
-	idCategoriaHorario INT not null,
+	diaSemana          INT not null, -- DEVE TER OS 7 DIAS + "SEGUNDA A SEXTA" E "SABADO E DOMINGO"
 	horarioInicio	   TIME not null,
 	horarioFim         TIME not null
 ) AUTO_INCREMENT = 1;

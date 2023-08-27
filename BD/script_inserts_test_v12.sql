@@ -175,8 +175,13 @@ insert into tipoContato values(
 -- --------------------------------------------------------- categoriaHorario -- INÍCIO
 
 insert into categoriaHorario values(
-	7,
-	'Facebook'
+	1,
+	'Domingo'
+);
+
+insert into categoriaHorario values(
+	1,
+	'Segunda-'
 );
 
 
