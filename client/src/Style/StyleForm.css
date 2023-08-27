@@ -74,14 +74,16 @@
     color: #fff;
   }
   
-  
   #form-wrap .group .button:hover {
     background:#ff9800;
   }
 
+
 .button {
     margin-right: 10px;
   }
+
+  
 
   .custom-button {
     background-color: #e91e2f; 
@@ -166,5 +168,16 @@
     background-color: #ff9800;
   }
 
-
+  /* Layout Form Update */
+  .input-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+  
+  .group {
+    flex: 1;
+    margin-right: 20px; /* Add some spacing between the input groups */
+  }
 

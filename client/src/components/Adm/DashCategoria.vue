@@ -13,14 +13,14 @@
           :class="{ 'error': campoVazio }"
         />
         <button type="submit">Salvar</button>
-        <p v-if="campoVazio" class="error-message">Informe um valor valido.</p>
+        <p v-if="campoVazio" class="error-message">Informe uma Categoria Valida.</p>
       </form>
     </div>
     <table>
       <thead>
         <tr>
-          <th>Categoria</th>
-          <th>Opções</th>
+          <th>Categoria de Estabelecimento</th>
+          <th>Editar/Excluir</th>
         </tr>
       </thead>
       <tbody>
@@ -70,7 +70,7 @@ export default {
       }
     },
     excluirCategoria(index) {
-      if (confirm("Tem certeza que deseja excluir esta categoria?")) {
+      if (confirm("Tem certeza que deseja excluir está categoria?")) {
         this.listaCategorias.splice(index, 1);
       }
     },
@@ -83,7 +83,7 @@ ste
 <style scoped>
 
 .container {
-  max-width: 600px;
+  max-width: 700px;
   margin: 0 auto;
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.8); 

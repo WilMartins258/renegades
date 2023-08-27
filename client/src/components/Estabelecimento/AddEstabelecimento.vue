@@ -141,11 +141,11 @@
     <label class="label">Oferece Rodízio?</label>
     <br>
     <label class="radio sim">
-      <input type="radio" name="ofereceRodizio" value="1" v-model="ofereceRodizio" style="display: none;" checked> 
+      <input type="radio" name="ofereceRodizio" value="1" v-model="ofereceRodizio" style="display: none;"> 
       <span>Sim</span>
     </label>
     <label class="radio nao">
-      <input class="Teste" type="radio" name="ofereceRodizio" value="2" v-model="ofereceRodizio" style="display: none;">
+      <input class="Teste" type="radio" name="ofereceRodizio" value="2" v-model="ofereceRodizio" style="display: none;" checked>
       <span>Não</span>
     </label>
   </div><br>
@@ -154,11 +154,11 @@
     <label class="label">Toca Música?</label>
     <br>
     <label class="radio sim">
-      <input type="radio" name="tocaMusica" value="1" v-model="tocaMusica" style="display: none;" checked> 
+      <input type="radio" name="tocaMusica" value="1" v-model="tocaMusica" style="display: none;"> 
       <span>Sim</span>
     </label>
     <label class="radio nao">
-      <input type="radio" name="tocaMusica" value="2" v-model="tocaMusica" style="display: none;">
+      <input type="radio" name="tocaMusica" value="2" v-model="tocaMusica" style="display: none;" checked>
       <span>Não</span>
     </label>
   </div><br>
@@ -167,11 +167,11 @@
     <label class="label">É ao Vivo?</label>
     <br>
     <label class="radio sim">
-      <input type="radio" name="musicaAoVivo" value="1" v-model="musicaAoVivo" style="display: none;" checked> 
+      <input type="radio" name="musicaAoVivo" value="1" v-model="musicaAoVivo" style="display: none;"> 
       <span>Sim</span>
     </label>
     <label class="radio nao">
-      <input type="radio" name="musicaAoVivo" value="2" v-model="musicaAoVivo" style="display: none;">
+      <input type="radio" name="musicaAoVivo" value="2" v-model="musicaAoVivo" style="display: none;" checked>
       <span>Não</span>
     </label>
   </div><br>
@@ -193,11 +193,11 @@
       <label class="label">Tem Área Kids?</label>
       <br>
       <label class="radio sim">
-        <input type="radio" name="areaKids" value="1" v-model="areaKids" style="display: none;" checked> 
+        <input type="radio" name="areaKids" value="1" v-model="areaKids" style="display: none;"> 
         <span>Sim</span>
       </label>
       <label class="radio nao">
-        <input type="radio" name="areaKids" value="2" v-model="areaKids" style="display: none;">
+        <input type="radio" name="areaKids" value="2" v-model="areaKids" style="display: none;" checked>
         <span>Não</span>
       </label>
     </div><br>
@@ -215,11 +215,11 @@
     <label class="label">Precisa Agendar?</label>
     <br>
     <label class="radio sim">
-      <input type="radio" name="precisaAgendar" value="1" v-model="precisaAgendar" style="display: none;" checked> 
+      <input type="radio" name="precisaAgendar" value="1" v-model="precisaAgendar" style="display: none;"> 
       <span>Sim</span>
     </label>
     <label class="radio nao">
-      <input type="radio" name="precisaAgendar" value="2" v-model="precisaAgendar" style="display: none;">
+      <input type="radio" name="precisaAgendar" value="2" v-model="precisaAgendar" style="display: none;" checked>
       <span>Não</span>
     </label>
   </div><br>
@@ -228,11 +228,11 @@
     <label class="label">Tem Estacionamento?</label>
     <br>
     <label class="radio sim">
-      <input type="radio" name="temEstacionamento" value="1" v-model="temEstacionamento" style="display: none;" checked> 
+      <input type="radio" name="temEstacionamento" value="1" v-model="temEstacionamento" style="display: none;"> 
       <span>Sim</span>
     </label>
     <label class="radio nao">
-      <input type="radio" name="temEstacionamento" value="2" v-model="temEstacionamento" style="display: none;">
+      <input type="radio" name="temEstacionamento" value="2" v-model="temEstacionamento" style="display: none;" checked>
       <span>Não</span>
     </label>
   </div>
@@ -274,10 +274,9 @@
     </section><!-- Fecha seção 5-->
 
     <section v-show="currentSection === 6">
-      <h2>Inclua Suas Imagens</h2><br><br>
-      
+           
       <!-- foto prato principal -->
-      <h3>Adicione aqui as fotos das suas indicações</h3><br>
+      
   <div class="group">
     <input
       type="file"

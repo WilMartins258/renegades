@@ -1,6 +1,6 @@
 <template>
     <div class="main-container">
-      <!--<DashCategoria/>-->
+      <DashCategoria/>
     </div>
 
 
@@ -8,13 +8,13 @@
   </template>
   
   <script>
-  //import DashCategoria from "../../components/Adm/DashCategoria.vue"
+  import DashCategoria from "../../components/Adm/DashCategoria.vue"
   
       export default{
-          name: "Categoria",
-       /*   components:{
+          name: "GerenciaCategoria",
+          components:{
             DashCategoria,
-          }*/
+          }
 
           
       };

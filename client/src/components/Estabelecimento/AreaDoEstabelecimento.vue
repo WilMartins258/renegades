@@ -2,23 +2,40 @@
     <div class="container">
       <h1 class="title">Área do Estabelecimento</h1><br><br><br>
       <div class="card-container">
-        <router-link to="/cadEstabelecimento" class="card">
+        <router-link to="/alterausuario" class="card">
           <img
-            src="https://plenarinho.leg.br/wp-content/uploads/2020/11/destaque-publicidade-infantil.jpeg"
-            alt="Novo Anúncio"
+            src="../../../public/img/MeusDados.png"
+            alt="Meus Dados"
             class="card-image"
           />
-          <div class="description">Criar um Estabelecimento</div>
+          <div class="description">Meus Dados</div>
         </router-link>
   
         <router-link to="/link2" class="card">
           <img
-            src="https://ms-publico.s3-sa-east-1.amazonaws.com/cms/post/2017/03/lupa_org_20170315094946.png"
+            src="../../../public/img/MeuEstabelecimento.png"
             alt="Consultar"
             class="card-image"
           />
-          <div class="description">Consultar meu Estabelecimento</div>
+          <div class="description">Meu Estabelecimento</div>
         </router-link>
+        <router-link to="/Anuncio" class="card">
+          <img
+            src="../../../public/img/Promocao.png"
+            alt="Meus Anuncios"
+            class="card-image"
+          />
+          <div class="description">Minhas Promoções</div>
+        </router-link>
+        <router-link to="/Anuncio" class="card">
+          <img
+            src="../../../public/img/Avaliacao.png"
+            alt="Meus Anuncios"
+            class="card-image"
+          />
+          <div class="description">Minhas Avaliações</div>
+        </router-link>
+
       </div>
     </div>
   </template>

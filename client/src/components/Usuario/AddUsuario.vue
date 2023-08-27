@@ -24,26 +24,30 @@
             </div>
 
             <div class="group">
-              <label for="cpf" class="label">CPF:</label><br />
-              <input v-model="cpf" type="text" id="cpf" class="input" name="cpf" required ref="cpfInput"/>
-            </div>
-
-            <div class="group">
               <label for="dataNasc" class="label">Data de Nascimento:</label><br />
               <input v-model="dataNasc" type="text" id="dataNasc" class="input" name="dataNasc" required ref="dataNascInput" />
             </div>
 
             <div class="group">
-            <label for="celular" class="label">Celular:</label><br />
-            <input type="text" v-model="celular" id="celular" class="input" name="celular" required />
-          </div>
+              <label for="celular" class="label">Celular:</label><br />
+              <input type="text" v-model="celular" id="celular" class="input" name="celular" required />
+           </div>
 
           <div class="group">
-            <input type="checkbox" v-model="isCelularWhatsApp" id="whatsappCelular" name="whatsapp" />
-            <label for="whatsappCelular">
-             <img src="../../../public/img/whatsappLogo.png" alt="É WhatsApp?" class="whatsapp-image" />
-           </label>
-        </div>
+            <label for="email" class="label">E-mail:</label><br />
+            <input type="email" v-model="email" id="email" class="input" name="email" />
+          </div>  
+
+          <div class="group">
+            <label for="senha" class="label">Senha:</label><br />
+              <input type="password" v-model="senha" id="senha" class="input" name="senha" />
+          </div>  
+
+          <div class="group">
+            <label for="senha2" class="label">Confirme sua senha:</label><br />
+              <input type="password" v-model="senha" id="senha2" class="input" name="senha2" />
+          </div> 
+
           </section> <!-- Fecha seção 1-->
 
           <section v-show="currentSection === 2">
@@ -78,22 +82,19 @@
         <label for="uf" class="label">Estado:</label><br />
         <input v-model="endereco.uf" type="text" id="uf" class="input" name="uf"
         /><br />
+      </div>   
+
+      <div class="group">
+        <div>
+          <input type="button" class="button" value="Salvar" />
+          <input
+            type="button"
+            class="button"
+            value="Cancelar"
+            @click="cancelar"
+          /> <br><br>
+        </div>
       </div>
-
-      <div class="group">
-         <label for="apelido" class="label">Apelido:</label><br />
-          <input type="text" v-model="apelido" id="apelido" class="input" name="apelido" />
-      </div>     
-      
-      <div class="group">
-         <label for="email" class="label">E-mail:</label><br />
-          <input type="email" v-model="email" id="email" class="input" name="email" />
-      </div>  
-
-      <div class="group">
-         <label for="senha" class="label">Senha:</label><br />
-          <input type="password" v-model="senha" id="senha" class="input" name="senha" />
-      </div>  
 
           </section> <!-- Fecha seção 2-->
 
@@ -122,7 +123,6 @@ export default {
     return {
       currentSection: 1,
       imagensEstabelecimentoSelecionadas: [],
-      cpf: "",
       dataNasc: "",
       cep: "",
       avatarSrc: "https://play-lh.googleusercontent.com/jkkC8gyT_HY4dnKsKysYmdH2T4A4R_K0z7xiaH4wjwgUlpJ_Uz-iXRzM3CCh8Sc1DZk=w240-h480-rw",
@@ -144,6 +144,9 @@ export default {
       if (this.currentSection > 1) {
         this.currentSection--;
       }
+    },
+    cancelar() {
+      this.$router.push("/");
     },
     limpa_formulário_cep() {
       document.getElementById("rua").value = "";
@@ -199,12 +202,7 @@ export default {
     },
   },
   mounted(){
-    const cpfInput = document.getElementById("cpf");
-    const cpfMask = IMask(cpfInput, {
-      mask: "000.000.000-00",
-    });
     dataNasc
-
     const dataNascInput = document.getElementById("dataNasc"); // Corrected variable name
     const dataNascMask = IMask(dataNascInput, {
       mask: "00/00/0000",
@@ -223,24 +221,21 @@ export default {
 <style scoped>
 #form-wrap {
   max-width: 700px;
-  min-height: 1200px;
+  min-height: 1000px;
   background-image: url("../../../public/img/FormUsuario.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
   width: 100%;
   height: 100vh;
-  background-size: 30%;
+  background-size: 40%;
 }
-
-
 
 .personal-image {
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
-
   }
   .personal-image input[type="file"] {
     display: none;

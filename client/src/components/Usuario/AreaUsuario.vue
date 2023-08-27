@@ -3,9 +3,9 @@
     <h1 class="title">Meu Perfil</h1><br><br><br>
     <div class="card-container">
       <div class="card-row">
-        <router-link to="/CadUsuario" class="card">
+        <router-link to="/alterausuario" class="card">
           <img
-            src="https://upload.wikimedia.org/wikipedia/commons/b/bc/Usu%C3%A1rio-HM.png"
+            src="../../../public/img/MeusDados.png"
             alt="Meus Dados"
             class="card-image"
           />
@@ -14,7 +14,7 @@
 
         <router-link to="/Anuncio" class="card">
           <img
-            src="https://www.portalinsights.com.br/wp-content/uploads/2021/11/boas-praticas-para-criativos-de-anuncios.jpg.webp"
+            src="../../../public/img/Avaliacao.png"
             alt="Meus Anuncios"
             class="card-image"
           />
@@ -23,7 +23,7 @@
 
         <router-link to="/" class="card">
           <img
-            src="https://tm.ibxk.com.br/materias/11441/47296.jpg?ims=1120x420"
+            src="../../../public/img/Favoritos.jpg"
             alt="Favoritos"
             class="card-image"
           />
@@ -35,13 +35,13 @@
         
 
 
-        <router-link to="/" class="card">
+        <router-link to="/cadestabelecimento" class="card">
           <img
-            src="https://ouvidordigital.com.br/blog/wp-content/uploads/2021/06/hands-holding-megaphones-cartoon-style_23-2147505680-1.jpg"
+            src="../../../public/img/AddEstabelecimento.jpeg"
             alt="Denuncias"
             class="card-image"
           />
-          <div class="description">CADASTRAR UM ESTABELECIMENTO</div>
+          <div class="description">Cadastrar um Estabelecimento</div>
         </router-link>
       </div>
     </div>
