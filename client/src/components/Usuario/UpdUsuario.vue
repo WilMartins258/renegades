@@ -95,6 +95,7 @@
 <script>
 import IMask from "imask";
 import axios from "axios";
+import api from './../../services/backend-service';
 export default{
   name: "UpdUsuario",
   data(){
@@ -108,7 +109,13 @@ export default{
         }
   };
   },
+  created() {
+	  this.metodoInicial();
+  },
   methods: {
+    async metodoInicial() {
+      const dadosUsuario = await api.get("/dadosUsuario");
+    },
     limpa_formulário_cep() {
       document.getElementById("rua").value = "";
       document.getElementById("bairro").value = "";
