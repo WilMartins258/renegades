@@ -115,6 +115,7 @@ export default{
   methods: {
     async metodoInicial() {
       const dadosUsuario = await api.get("/dadosUsuario");
+      console.log(dadosUsuario);
     },
     limpa_formulário_cep() {
       document.getElementById("rua").value = "";

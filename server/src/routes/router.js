@@ -33,4 +33,9 @@ router.use(
     require("./tipoContato.js")
 );
 
+router.use(
+    "/dadosUsuario",
+    require("./dadosUsuario.js")
+);
+
 module.exports = router;
