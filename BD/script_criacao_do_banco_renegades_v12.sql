@@ -33,18 +33,20 @@ CREATE TABLE tipoContato (
 
 /*
 	Exemplos de tipos de categoria:
-	Os dias da semana individualmente
-	Feriado
-	Segunda a sexta
-	Segunda a quinta
-	Sexta, sábado e domingo
-	Somente final de semana
-	
-	[0, 1, ... 6]
+	0 - DOMINGO          [0]
+	1 - SEGUNDA          [1]
+	2 - TERÇA            [2]
+	3 - QUARTA           [3]
+	4 - QUINTA           [4]
+	5 - SEXTA            [5]
+	6 - SÁBADO           [6]
+	7 - SEGUNDA A SEXTA  [1, 2, 3, 4, 5]
+	8 - SÁBADO E DOMINGO [0, 6]
 */
 CREATE TABLE diaSemana (
 	id               INT PRIMARY KEY AUTO_INCREMENT,
-	categoriaHorario VARCHAR(50) not null
+	diaSemana        VARCHAR(50) not null,
+	numeroDia        VARCHAR(50) not null
 ) AUTO_INCREMENT = 1;
 
 /*
@@ -67,8 +69,8 @@ CREATE TABLE usuario (
 	idEndereco        INT,
     nome              VARCHAR(100) not null,
     sobrenome         VARCHAR(100) not null,
-	codigoArea        VARCHAR(5) not null,
-	celular           VARCHAR(20) not null,
+	codigoArea        INT not null,
+	celular           INT not null,
     cpf               VARCHAR(11), -- UNIQUE,
     email             VARCHAR(100) not null UNIQUE,
     senha             VARCHAR(50) not null,
@@ -86,20 +88,10 @@ CREATE TABLE contato (
 	responsavel       VARCHAR(100)
 ) AUTO_INCREMENT = 1;
 
-/*
-
-0 - DOMINGO
-1 - SEGUNDA
-...
-6 - SÁBADO
-7 - SEGUNDA A SEXTA
-8 - SÁBADO E DOMINGO
-
-*/
 CREATE TABLE horario (
 	id                 INT PRIMARY KEY AUTO_INCREMENT,
 	idEstabelecimento  INT not null,
-	diaSemana          INT not null, -- DEVE TER OS 7 DIAS + "SEGUNDA A SEXTA" E "SABADO E DOMINGO"
+	idDiaSemana        INT not null,
 	horarioInicio	   TIME not null,
 	horarioFim         TIME not null
 ) AUTO_INCREMENT = 1;
@@ -188,7 +180,7 @@ ALTER TABLE contato add (constraint contato_tipoContato_fk foreign key (idTipoCo
 ------ HORARIO
 ALTER TABLE horario add (constraint horario_estabelecimento_fk foreign key (idEstabelecimento) references estabelecimento (id));
 
-ALTER TABLE horario add (constraint horario_categoriaHorario_fk foreign key (idCategoriaHorario) references categoriaHorario (id));
+ALTER TABLE horario add (constraint horario_diaSemana_fk foreign key (idDiaSemana) references diaSemana (id));
 
 
 
