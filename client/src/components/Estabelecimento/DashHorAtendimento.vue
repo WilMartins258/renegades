@@ -17,9 +17,14 @@
           <option value="Sábado a Domingo">Sábado a Domingo </option>
         </select>
         <label for="horaInicio">Início:</label>
-        <input v-model="horaInicio" type="time" id="horaInicio" name="horaInicio" />
-        <label for="horaTermino">Término:</label>
-        <input v-model="horaTermino" type="time" id="horaTermino" name="horaTermino" />
+<select v-model="horaInicio" id="horaInicio" name="horaInicio">
+  <option v-for="intervalo in intervalosDeTempo" :key="intervalo" :value="intervalo">{{ intervalo }}</option>
+</select>
+
+<label for="horaTermino">Término:</label>
+<select v-model="horaTermino" id="horaTermino" name="horaTermino">
+  <option v-for="intervalo in intervalosDeTempo" :key="intervalo" :value="intervalo">{{ intervalo }}</option>
+</select>
         <button type="submit" :disabled="isEditing" :class="{ 'disabled-button': isEditing }">
           {{ isEditing ? 'Salvando...' : 'Salvar' }}
         </button>
@@ -77,6 +82,7 @@ export default {
       editingIndex: -1,
       isEditing: false,
       timeFieldsError: false,
+      intervalosDeTempo: [],
     };
   },
   methods: {
@@ -137,6 +143,15 @@ export default {
       }
     },
   },
+  mounted(){
+    for (let hora = 0; hora < 24; hora++) {
+    for (let minuto = 0; minuto < 60; minuto += 30) {
+      const horaFormatada = hora.toString().padStart(2, '0');
+      const minutoFormatado = minuto.toString().padStart(2, '0');
+      this.intervalosDeTempo.push(`${horaFormatada}:${minutoFormatado}`);
+    }
+  }
+  }
 };
 </script>
 
