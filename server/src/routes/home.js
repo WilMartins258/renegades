@@ -1,6 +1,6 @@
 // Importando módulos
 const router = require('express').Router();
-const db = require('../../db');
+const db = require('../db');
 
 
 // router.post('/', (req, res) => {
