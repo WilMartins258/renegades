@@ -1,0 +1,33 @@
+// Importando módulos
+const router = require('express').Router();
+const db = require('../db');
+
+
+// router.post('/', (req, res) => {
+//     console.log('passou pelo /home POST')
+//     res.send('Dados da página de home.');
+// });
+
+/**
+ * Query que busca os dados so usuário com base no email enviado
+ * @returns login_data
+ */
+const getAllEstabelecimentos = async () => {
+    const connection = await db;
+    const estabelecimentoQuery = "SELECT * FROM estabelecimento";
+    const [estabelecimentos] = await connection.query(estabelecimentoQuery);
+
+    return estabelecimentos;
+}
+
+router.get('/', async (req, res) => {
+    const resultadoEstabelecimentos = await getAllEstabelecimentos();
+    console.log({resultadoEstabelecimentos});
+
+    res.status(200).send({
+        resultadoEstabelecimentos
+    });   
+    
+});
+
+module.exports = router;

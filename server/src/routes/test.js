@@ -1,6 +1,6 @@
 // Importando módulos
 const router = require('express').Router();
-const db = require('../../db');
+const db = require('../db');
 
 
 // router.post('/', (req, res) => {
@@ -22,7 +22,7 @@ const getAllEstabelecimentos = async () => {
 
 const getTest = async () => {
     const connection = await db;
-    const testQuery = "SELECT test FROM test WHERE id = 2";
+    const testQuery = "SELECT blobTest FROM testtable WHERE id = 1";
     const [test] = await connection.query(testQuery);
 
     return test;

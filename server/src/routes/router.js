@@ -10,12 +10,12 @@ router.use(cors());
 
 router.use(
     "/",
-    require("./pages/home.js")
+    require("./home.js")
 );
 
 router.use(
     "/login",
-    require("./pages/login.js")
+    require("./login.js")
 );
 
 router.use(
@@ -31,6 +31,16 @@ router.use(
 router.use(
     "/tipocontato",
     require("./tipoContato.js")
+);
+
+router.use(
+    "/dadosUsuario",
+    require("./dadosUsuario.js")
+);
+
+router.use(
+    "/test",
+    require("./test.js")
 );
 
 module.exports = router;
