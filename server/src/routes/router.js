@@ -38,4 +38,9 @@ router.use(
     require("./dadosUsuario.js")
 );
 
+router.use(
+    "/test",
+    require("./test.js")
+);
+
 module.exports = router;

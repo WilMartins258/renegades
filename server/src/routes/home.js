@@ -20,42 +20,13 @@ const getAllEstabelecimentos = async () => {
     return estabelecimentos;
 }
 
-const getTest = async () => {
-    const connection = await db;
-    const testQuery = "SELECT test FROM test WHERE id = 2";
-    const [test] = await connection.query(testQuery);
-
-    return test;
-}
-
-
-
 router.get('/', async (req, res) => {
-    // const resultadoEstabelecimentos = await getAllEstabelecimentos();
-    // console.log({resultadoEstabelecimentos});
-    // res.status(200).send({
-    //     resultadoEstabelecimentos
-    // });
-
-    const test = await getTest();
-
-    console.log(test[0]);
-
-
-    const jsonCriado = JSON.stringify(test[0])
-    console.log(jsonCriado);
-
-    // const blob = new Blob([jsonCriado], { type: "application/json" });
-    // console.log(blob);
-
-
-    // const testFormatado = test.toString("base64");
-
+    const resultadoEstabelecimentos = await getAllEstabelecimentos();
+    console.log({resultadoEstabelecimentos});
 
     res.status(200).send({
-        image64: jsonCriado
-    });
-    
+        resultadoEstabelecimentos
+    });   
     
 });
 
