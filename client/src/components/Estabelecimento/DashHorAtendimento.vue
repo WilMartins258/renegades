@@ -5,23 +5,26 @@
       <form @submit.prevent="salvarHorario">
         <label for="diaSemana">Dias de Funcionamento:</label>
         <select v-model="diaSelecionado" id="diaSemana">
-          <option value="segunda">Segunda-feira</option>
-          <option value="terca">Terça-feira</option>
-          <option value="quarta">Quarta-feira</option>
-          <option value="quinta">Quinta-feira</option>
-          <option value="sexta">Sexta-feira</option>
-          <option value="sabado">Sábado</option>
-          <option value="domingo">Domingo</option>
-          <option value="Semana">Segunda a Sexta</option>
-          <option value="Semana2">terça a Sexta</option>
-          <option value="FimSemana">Sábado a Domingo </option>
+          <option value="Segunda">Segunda-feira</option>
+          <option value="Terca">Terça-feira</option>
+          <option value="Quarta">Quarta-feira</option>
+          <option value="Quinta">Quinta-feira</option>
+          <option value="Sexta">Sexta-feira</option>
+          <option value="Sabado">Sábado</option>
+          <option value="Domingo">Domingo</option>
+          <option value="Segunda a Sexta">Segunda a Sexta</option>
+          <option value="terça a Sexta">terça a Sexta</option>
+          <option value="Sábado a Domingo">Sábado a Domingo </option>
         </select>
         <label for="horaInicio">Início:</label>
         <input v-model="horaInicio" type="time" id="horaInicio" name="horaInicio" />
         <label for="horaTermino">Término:</label>
         <input v-model="horaTermino" type="time" id="horaTermino" name="horaTermino" />
-        <button type="submit">Salvar</button>
+        <button type="submit" :disabled="isEditing" :class="{ 'disabled-button': isEditing }">
+          {{ isEditing ? 'Salvando...' : 'Salvar' }}
+        </button>
       </form>
+      <p v-if="timeFieldsError" class="error-message">{{ timeFieldsError }}</p>
     </div>
     <table>
       <thead>
@@ -66,35 +69,54 @@ export default {
   name: "DashHorAtendimento",
   data() {
     return {
-      diaSelecionado: "segunda",
+      diaSelecionado: "Segunda",
+      horariosPorDia: {},// contagem de horários por dia
       horaInicio: "",
       horaTermino: "",
       listahorarios: [], // Array para armazenar os horários de atendimento
       editingIndex: -1,
+      isEditing: false,
+      timeFieldsError: false,
     };
   },
   methods: {
     salvarHorario() {
-      if (this.horaInicio && this.horaTermino) {
+      if (!this.horaInicio || !this.horaTermino) {
+        this.timeFieldsError = "Preencha ambos os horários.";
+      } else {
+        const diaSelecionado = this.diaSelecionado;
+
+        // Verifica se o limite de dois horários para o mesmo dia foi atingido
+        if (!this.horariosPorDia[diaSelecionado]) {
+          this.horariosPorDia[diaSelecionado] = 1;
+        } else if (this.horariosPorDia[diaSelecionado] < 2) {
+          this.horariosPorDia[diaSelecionado]++;
+        } else {
+          this.timeFieldsError = "Limite de dois horários para este dia atingido.";
+          return;
+        }
+
         const novoHorario = {
-          dia: this.diaSelecionado,
+          dia: diaSelecionado,
           abre: this.horaInicio,
           fecha: this.horaTermino,
         };
         this.listahorarios.push(novoHorario);
         this.limparCampos();
+        this.timeFieldsError = ""; // Limpar o erro, caso tenha sido exibido anteriormente
       }
     },
     limparCampos() {
-      this.diaSelecionado = "segunda";
+      this.diaSelecionado = "Segunda";
       this.horaInicio = "";
       this.horaTermino = "";
     },
     editarhorario(index) {
-    this.editingIndex = index;
-    this.diaSelecionado = this.listahorarios[index].dia;
-    this.horaInicio = this.listahorarios[index].abre;
-    this.horaTermino = this.listahorarios[index].fecha;
+      this.editingIndex = index;
+      this.diaSelecionado = this.listahorarios[index].dia;
+      this.horaInicio = this.listahorarios[index].abre;
+      this.horaTermino = this.listahorarios[index].fecha;
+      this.isEditing = true; 
     },
     salvarEdicao(index) {
       this.listahorarios[index].dia = this.diaSelecionado;
@@ -105,9 +127,14 @@ export default {
     cancelarEdicao() {
       this.editingIndex = -1;
       this.limparCampos();
+      this.isEditing = false; 
     },
     excluirhorario(index) {
+      const diaExcluido = this.listahorarios[index].dia;
       this.listahorarios.splice(index, 1);
+      if (this.horariosPorDia[diaExcluido]) {
+        this.horariosPorDia[diaExcluido]--;
+      }
     },
   },
 };
@@ -181,6 +208,16 @@ button {
 
 button:hover {
   background: #ff9800;
+}
+
+.disabled-button {
+  background: gray;
+  cursor: not-allowed;
+}
+
+button:disabled:hover {
+  background: gray;
+
 }
 
 input {
