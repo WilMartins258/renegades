@@ -34,8 +34,8 @@ router.use(
 );
 
 router.use(
-    "/dadosUsuario",
-    require("./dadosUsuario.js")
+    "/usuario",
+    require("./usuario.js")
 );
 
 router.use(

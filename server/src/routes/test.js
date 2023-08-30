@@ -22,41 +22,36 @@ const getAllEstabelecimentos = async () => {
 
 const getTest = async () => {
     const connection = await db;
-    const testQuery = "SELECT blobTest FROM testtable WHERE id = 1";
+    const testQuery = "SELECT blobTest FROM testtable WHERE id = 3";
     const [test] = await connection.query(testQuery);
 
     return test;
 }
 
 
-
+/*
+    o código abaixo pega a imagem em base64, tranforma em buffer e depois transforma novamente na no código base64 que facilmente se torna imagem.
+*/
 router.get('/', async (req, res) => {
-    // const resultadoEstabelecimentos = await getAllEstabelecimentos();
-    // console.log({resultadoEstabelecimentos});
-    // res.status(200).send({
-    //     resultadoEstabelecimentos
-    // });
-
+    const fs = require('fs');
     const test = await getTest();
 
-    console.log(test[0]);
+    const retiradoDoBack = test[0];
+
+    // const base64Code = "";
+
+    // const buffer = Buffer.from(base64Code, "base64");
+
+    // console.log(buffer);
+
+    // const base64Text = buffer.toString('base64');
+
+    // console.log(base64Text);
 
 
-    const jsonCriado = JSON.stringify(test[0])
-    console.log(jsonCriado);
 
-    // const blob = new Blob([jsonCriado], { type: "application/json" });
-    // console.log(blob);
-
-
-    // const testFormatado = test.toString("base64");
-
-
-    res.status(200).send({
-        image64: jsonCriado
-    });
-    
-    
+    res.status(200).send(retiradoDoBack);
+    // res.status(200).send({testbuffer: base64Text});
 });
 
 module.exports = router;
