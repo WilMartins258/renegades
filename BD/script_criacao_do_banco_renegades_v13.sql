@@ -13,6 +13,7 @@ USE renegades_stage;
 -- Criação de tabelas
 CREATE TABLE testTable (
     id INT PRIMARY KEY AUTO_INCREMENT,
+    nomeImg VARCHAR(50),
 	blobTest LONGBLOB
 ) AUTO_INCREMENT = 1;
 
