@@ -1,24 +1,16 @@
-// Importando módulos
 const router = require('express').Router();
-const db = require('../db');
-
-    /*
-        Fixando no usuário de ID 1 momentaneamente
-    */
-    const getUserData = async () => {
-        const dadosUsuarioQuery = "SELECT * FROM usuario WHERE id = 1";
-        const connection = await db;
-
-        const [dadosUsuario] = await connection.query(dadosUsuarioQuery);
-    
-        return dadosUsuario;
-    }
+// 
+const userController = require('./../controllers/usuario.controller')
 
 router.get('/', async (req, res) => {
 
-    const dadosUsuario = await getUserData();
+    // Posteriormente este dado deverá vir do front talvez sendo passado pela URL
+    const userId = 2;
 
-    // console.log(dadosUsuario);
+    const dadosUsuario = await userController.getUserData(userId)
+    console.log(dadosUsuario[0]);
+
+    // const dadosUsuarioJson = JSON.parse(dadosUsuario[0]);
     
     // Devolvendo ao front somente os dados do usuário em um objeto
     res.status(200).send(
