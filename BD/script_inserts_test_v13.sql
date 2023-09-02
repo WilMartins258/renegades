@@ -15,6 +15,8 @@ DELETE FROM tipoContato;
 DELETE FROM diaSemana;
 DELETE FROM CATEGORIA;
 DELETE FROM AVALIACAO;
+DELETE FROM musicaTocada;
+DELETE FROM opcinais;
 
 SET FOREIGN_KEY_CHECKS = 1;
 
@@ -128,6 +130,138 @@ insert into estilomusica values(
 	'Funk'
 );
 
+-- Rock
+insert into estilomusica values (
+    4,
+    'Rock'
+);
+
+-- Pop
+insert into estilomusica values (
+    5,
+    'Pop'
+);
+
+-- Hip-Hop
+insert into estilomusica values (
+    6,
+    'Hip-Hop'
+);
+
+-- Reggae
+insert into estilomusica values (
+    7,
+    'Reggae'
+);
+
+-- Eletrônica
+insert into estilomusica values (
+    8,
+    'Eletrônica'
+);
+
+-- Country
+insert into estilomusica values (
+    9,
+    'Country'
+);
+
+-- Jazz
+insert into estilomusica values (
+    10,
+    'Jazz'
+);
+
+-- Blues
+insert into estilomusica values (
+    11,
+    'Blues'
+);
+
+-- R&B (Rhythm and Blues)
+insert into estilomusica values (
+    12,
+    'R&B'
+);
+
+-- Clássica
+insert into estilomusica values (
+    13,
+    'Clássica'
+);
+
+-- Reggaeton
+insert into estilomusica values (
+    14,
+    'Reggaeton'
+);
+
+-- Metal
+insert into estilomusica values (
+    15,
+    'Metal'
+);
+
+-- Indie
+insert into estilomusica values (
+    16,
+    'Indie'
+);
+
+-- Rap
+insert into estilomusica values (
+    17,
+    'Rap'
+);
+
+-- Punk
+insert into estilomusica values (
+    18,
+    'Punk'
+);
+
+-- Blues Rock
+insert into estilomusica values (
+    19,
+    'Blues Rock'
+);
+
+-- Alternativa
+insert into estilomusica values (
+    20,
+    'Alternativa'
+);
+
+-- Dance
+insert into estilomusica values (
+    21,
+    'Dance'
+);
+
+-- Folk
+insert into estilomusica values (
+    22,
+    'Folk'
+);
+
+-- Sertanejo
+insert into estilomusica values (
+    23,
+    'Sertanejo'
+);
+
+-- K-pop
+insert into estilomusica values (
+    24,
+    'K-pop'
+);
+
+-- Gospel
+insert into estilomusica values (
+    25,
+    'Gospel'
+);
+
 -- ---------------------------- ESTILO DE MÚSICA -- FIM
 
 
@@ -145,7 +279,7 @@ insert into tipoContato values(
 
 insert into tipoContato values(
 	3,
-	'Telefone'
+	'Telefone (sem Whatsapp)'
 );
 
 insert into tipoContato values(
@@ -346,24 +480,35 @@ insert into endereco values( -- Endereço do Mc Donalds 	VOTORANTIM
 insert into estabelecimento values(
 	1, -- id 
 	1, -- idCategoria
-	null, -- idEstiloMusica
 	3, -- idEndereco
 	'Mc Donalds - Votorantim', -- nome
 	'21587059000106', -- cnpj
 	null, -- fotoPrincipal   
 	'Este é o Mc Donalds de Votorantim', -- descricao
-	true, -- entrega
-	false, -- entregaGratis
-	false, -- musicaAoVivo
-	false, -- rodizio
-	false, -- agendamento
-	true, -- estacionamento
-	false, -- areaKids
 	true, -- ativo
 	true, -- visivel
 	'Validado', -- statusValidacao
 	null, -- nota
 	'2023-08-27' -- dataUltimoAcesso
+);
+
+insert into opcinais values(
+	1, -- id
+	1, -- idEstabelecimento INT not null,
+	true, -- entrega		      BOOLEAN not null,
+	false, -- entregaGratis     BOOLEAN not null,
+	false, -- soDelivery        BOOLEAN not null,
+	false, -- tocaMusica        BOOLEAN not null
+	false, -- musicaAoVivo      BOOLEAN not null,
+	false, -- rodizio           BOOLEAN not null,
+	false, -- agendamento       BOOLEAN not null,
+	true, -- estacionamento    BOOLEAN not null,
+	false, -- areaKids          BOOLEAN not null,
+	false, -- wifi              BOOLEAN not null,
+	false, -- permiteAnimais    BOOLEAN not null,
+	false, -- couvert           BOOLEAN not null,
+	false, -- taxa10            BOOLEAN not null
+	true -- areaFumantes            BOOLEAN not null
 );
 
 insert into usuario values( -- Mc Donalds - Votorantim
@@ -495,24 +640,21 @@ insert into contato values(
 	null,       -- id INT
 	3,          -- idTipoContato INT not null, -- TELEFONE
 	1,          -- idEstabelecimento INT not null,
-	'32431749', -- contato VARCHAR(200) not null,
-	'Atendente' -- responsavel VARCHAR(100)
+	'32431749' -- contato VARCHAR(200) not null
 );
 
 insert into contato values(
 	null,       -- id INT
 	5,          -- idTipoContato INT not null, -- SITE
 	1,          -- idEstabelecimento INT not null,
-	'https://www.mcdonalds.com.br/', -- contato VARCHAR(200) not null,
-	null -- responsavel VARCHAR(100)
+	'https://www.mcdonalds.com.br/' -- contato VARCHAR(200) not null
 );
 
 insert into contato values(
 	null,       -- id INT
 	6,          -- idTipoContato INT not null, -- CARDÁPIO ONLINE
 	1,          -- idEstabelecimento INT not null,
-	'https://www.mcdonalds.com.br/cardapio', -- contato VARCHAR(200) not null,
-	null -- responsavel VARCHAR(100)
+	'https://www.mcdonalds.com.br/cardapio'
 );
 
 insert into cardapio values(
@@ -562,24 +704,35 @@ insert into endereco values( -- Endereço do Mc Donalds 	SOROCABA
 insert into estabelecimento values(
 	2, -- id 
 	1, -- idCategoria
-	null, -- idEstiloMusica
 	4, -- idEndereco
 	'Mc Donalds - SOROCABA', -- nome
 	'76842463000162', -- cnpj
 	null, -- fotoPrincipal   
 	'Este é o Mc Donalds de Sorocaba Campolim', -- descricao
-	true, -- entrega
-	false, -- entregaGratis
-	false, -- musicaAoVivo
-	false, -- rodizio
-	false, -- agendamento
-	true, -- estacionamento
-	false, -- areaKids
 	true, -- ativo
 	true, -- visivel
 	'Validado', -- statusValidacao
 	null, -- nota
 	'2023-08-27' -- dataUltimoAcesso
+);
+
+insert into opcinais values(
+	2, -- id
+	2, -- idEstabelecimento INT not null,
+	true, -- entrega		      BOOLEAN not null,
+	false, -- entregaGratis     BOOLEAN not null,
+	false, -- soDelivery        BOOLEAN not null,
+	false, -- tocaMusica        BOOLEAN not null,
+	false, -- musicaAoVivo      BOOLEAN not null,
+	false, -- rodizio           BOOLEAN not null,
+	false, -- agendamento       BOOLEAN not null,
+	true, -- estacionamento    BOOLEAN not null,
+	false, -- areaKids          BOOLEAN not null,
+	false, -- wifi              BOOLEAN not null,
+	false, -- permiteAnimais    BOOLEAN not null,
+	false, -- couvert           BOOLEAN not null,
+	false, -- taxa10            BOOLEAN not null
+	true -- areaFumantes            BOOLEAN not null
 );
 
 insert into usuario values( -- Mc Donalds - Votorantim
@@ -719,24 +872,21 @@ insert into contato values(
 	null,       -- id INT
 	3,          -- idTipoContato INT not null, -- TELEFONE
 	2,          -- idEstabelecimento INT not null,
-	'34115830', -- contato VARCHAR(200) not null,
-	'Atendente' -- responsavel VARCHAR(100)
+	'34115830' -- contato VARCHAR(200) not null
 );
 
 insert into contato values(
 	null,       -- id INT
 	5,          -- idTipoContato INT not null, -- SITE
 	2,          -- idEstabelecimento INT not null,
-	'https://www.mcdonalds.com.br/', -- contato VARCHAR(200) not null,
-	null -- responsavel VARCHAR(100)
+	'https://www.mcdonalds.com.br/'
 );
 
 insert into contato values(
 	null,       -- id INT
 	6,          -- idTipoContato INT not null, -- CARDÁPIO ONLINE
 	2,          -- idEstabelecimento INT not null,
-	'https://www.mcdonalds.com.br/cardapio', -- contato VARCHAR(200) not null,
-	null -- responsavel VARCHAR(100)
+	'https://www.mcdonalds.com.br/cardapio'
 );
 
 insert into cardapio values(
@@ -783,24 +933,35 @@ insert into endereco values(
 insert into estabelecimento values(
 	3, -- id 
 	1, -- idCategoria
-	null, -- idEstiloMusica
 	5, -- idEndereco
 	'Kikos Hot-Dog', -- nome
 	'11892673000110',  -- cnpj
 	null, -- fotoPrincipal   
 	'Kikos Hot-Dog DESCRICAO', -- descricao
-	true, -- entrega
-	false, -- entregaGratis
-	false, -- musicaAoVivo
-	false, -- rodizio
-	false, -- agendamento
-	false, -- estacionamento
-	false, -- areaKids
 	true, -- ativo
 	true, -- visivel
 	'Validado', -- statusValidacao
 	null, -- nota
 	'2023-08-27' -- dataUltimoAcesso
+);
+
+insert into opcinais values(
+	3,     -- id
+	3,     -- idEstabelecimento INT not null,
+	true,  -- entrega		    BOOLEAN not null,
+	false, -- entregaGratis     BOOLEAN not null,
+	false, -- soDelivery        BOOLEAN not null,
+	false, -- tocaMusica        BOOLEAN not null,
+	false, -- musicaAoVivo      BOOLEAN not null,
+	false, -- rodizio           BOOLEAN not null,
+	false, -- agendamento       BOOLEAN not null,
+	false, -- estacionamento    BOOLEAN not null,
+	false, -- areaKids          BOOLEAN not null,
+	false, -- wifi              BOOLEAN not null,
+	false, -- permiteAnimais    BOOLEAN not null,
+	false, -- couvert           BOOLEAN not null,
+	false,  -- taxa10            BOOLEAN not null
+	false -- areaFumantes            BOOLEAN not null
 );
 
 insert into usuario values(
@@ -885,8 +1046,7 @@ insert into contato values(
 	null,       -- id INT
 	3,          -- idTipoContato INT not null, -- TELEFONE
 	3,          -- idEstabelecimento INT not null,
-	'32432019', -- contato VARCHAR(200) not null,
-	'Atendente' -- responsavel VARCHAR(100)
+	'32432019' -- contato VARCHAR(200) not null
 );
 
 insert into cardapio values(
@@ -936,24 +1096,35 @@ insert into endereco values(
 insert into estabelecimento values(
 	4, -- id 
 	2, -- idCategoria
-	null, -- idEstiloMusica
 	6, -- idEndereco
 	'Pizzaria Booa', -- nome
 	'59363162000137',  -- cnpj
 	null, -- fotoPrincipal   
 	'Pizzaria Booa - DESCRIÇÃO', -- descricao
-	true, -- entrega
-	false, -- entregaGratis
-	true, -- musicaAoVivo
-	true, -- rodizio
-	false, -- agendamento
-	false, -- estacionamento
-	false, -- areaKids
 	true, -- ativo
 	true, -- visivel
 	'Validado', -- statusValidacao
 	null, -- nota
 	'2023-08-27' -- dataUltimoAcesso
+);
+
+insert into opcinais values(
+	4,     -- id
+	4,     -- idEstabelecimento INT not null,
+	true,  -- entrega		      BOOLEAN not null,
+	false, -- entregaGratis     BOOLEAN not null,
+	false, -- soDelivery        BOOLEAN not null,
+	false, -- tocaMusica        BOOLEAN not null,
+	false, -- musicaAoVivo      BOOLEAN not null,
+	true,  -- rodizio           BOOLEAN not null,
+	false, -- agendamento       BOOLEAN not null,
+	false, -- estacionamento    BOOLEAN not null,
+	false, -- areaKids          BOOLEAN not null,
+	false, -- wifi              BOOLEAN not null,
+	false, -- permiteAnimais    BOOLEAN not null,
+	false, -- couvert           BOOLEAN not null,
+	false,  -- taxa10            BOOLEAN not null
+	false -- areaFumantes            BOOLEAN not null
 );
 
 insert into usuario values(
@@ -1038,8 +1209,7 @@ insert into contato values(
 	null,       -- id INT
 	3,          -- idTipoContato INT not null, -- TELEFONE
 	4,          -- idEstabelecimento INT not null,
-	'32432020', -- contato VARCHAR(200) not null,
-	null -- responsavel VARCHAR(100)
+	'32432020' -- contato VARCHAR(200) not null
 );
 
 insert into cardapio values(
@@ -1076,24 +1246,53 @@ insert into endereco values(
 insert into estabelecimento values(
 	5, -- id 
 	6, -- idCategoria
-	1, -- idEstiloMusica
 	7, -- idEndereco
 	'Mada Bar', -- nome
 	'73936746000185',  -- cnpj
 	null, -- fotoPrincipal   
 	'Mada Bar - DESCRIÇÃO', -- descricao
-	false, -- entrega
-	false, -- entregaGratis
-	false, -- musicaAoVivo
-	false, -- rodizio
-	false, -- agendamento
-	false, -- estacionamento
-	false, -- areaKids
 	true, -- ativo
 	true, -- visivel
 	'Validado', -- statusValidacao
 	null, -- nota
 	'2023-08-27' -- dataUltimoAcesso
+);
+
+insert into opcinais values(
+	5,     -- id
+	5,     -- idEstabelecimento INT not null,
+	false, -- entrega		      BOOLEAN not null,
+	false, -- entregaGratis     BOOLEAN not null,
+	false, -- soDelivery        BOOLEAN not null,
+	true,  -- tocaMusica        BOOLEAN not null,
+	false, -- musicaAoVivo      BOOLEAN not null,
+	false, -- rodizio           BOOLEAN not null,
+	false, -- agendamento       BOOLEAN not null,
+	false, -- estacionamento    BOOLEAN not null,
+	false, -- areaKids          BOOLEAN not null,
+	false, -- wifi              BOOLEAN not null,
+	false, -- permiteAnimais    BOOLEAN not null,
+	false, -- couvert           BOOLEAN not null,
+	false,  -- taxa10            BOOLEAN not null
+	false -- areaFumantes            BOOLEAN not null
+);
+
+insert into musicaTocada values(
+	1, -- id                INT PRIMARY KEY,
+	5, -- idEstabelecimento INT not null,
+	1 -- idEstiloMusica    INT not null ---------> PAGODE
+);
+
+insert into musicaTocada values(
+	2, -- id                INT PRIMARY KEY,
+	5, -- idEstabelecimento INT not null,
+	2 -- idEstiloMusica    INT not null ---------> SAMBA
+);
+
+insert into musicaTocada values(
+	3, -- id                INT PRIMARY KEY,
+	5, -- idEstabelecimento INT not null,
+	3 -- idEstiloMusica    INT not null ---------> FUNK
 );
 
 insert into usuario values(
@@ -1135,8 +1334,7 @@ insert into contato values(
 	null,       -- id INT
 	1,          -- idTipoContato INT not null, -- TELEFONE
 	5,          -- idEstabelecimento INT not null,
-	'999999999', -- contato VARCHAR(200) not null,
-	null -- responsavel VARCHAR(100)
+	'999999999' -- contato VARCHAR(200) not null
 );
 
 insert into cardapio values(

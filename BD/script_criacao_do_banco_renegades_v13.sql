@@ -29,7 +29,7 @@ CREATE TABLE estiloMusica (
 
 CREATE TABLE tipoContato (
 	id                INT PRIMARY KEY AUTO_INCREMENT,
-	tipoContato       VARCHAR(50)
+	nome       VARCHAR(50)
 ) AUTO_INCREMENT = 1;
 
 /*
@@ -85,8 +85,7 @@ CREATE TABLE contato (
 	id                INT PRIMARY KEY AUTO_INCREMENT,
 	idTipoContato     INT not null,
 	idEstabelecimento INT not null,
-	contato           VARCHAR(200) not null,
-	responsavel       VARCHAR(100)
+	contato           VARCHAR(200) not null
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE horario (
@@ -118,28 +117,44 @@ CREATE TABLE promocao (
 	dataFim           DATE not null
 ) AUTO_INCREMENT = 1;
 
+CREATE TABLE opcinais (
+	id                INT PRIMARY KEY AUTO_INCREMENT,
+	idEstabelecimento INT not null,
+	entrega		      BOOLEAN not null,
+	entregaGratis     BOOLEAN not null,
+	soDelivery        BOOLEAN not null,
+	tocaMusica        BOOLEAN not null,
+	musicaAoVivo      BOOLEAN not null,
+	rodizio           BOOLEAN not null,
+	agendamento       BOOLEAN not null,
+	estacionamento    BOOLEAN not null,
+	areaKids          BOOLEAN not null,
+	wifi              BOOLEAN not null,
+	permiteAnimais    BOOLEAN not null,
+	couvert           BOOLEAN not null,
+	taxa10            BOOLEAN not null,
+	areaFumantes      BOOLEAN not null
+) AUTO_INCREMENT = 1;
+
 CREATE TABLE estabelecimento (
 	id               INT PRIMARY KEY AUTO_INCREMENT,
 	idCategoria      INT not null,
-	idEstiloMusica   INT,
 	idEndereco       INT not null,
 	nome             VARCHAR(100) not null,
 	cnpj             VARCHAR(14) not null UNIQUE,
 	fotoPrincipal    LONGBLOB, -- not null
 	descricao        VARCHAR(400) not null,
-	entrega		     BOOLEAN not null,
-	entregaGratis    BOOLEAN not null,
-	-- faixa de preço
-	musicaAoVivo     BOOLEAN not null,
-	rodizio          BOOLEAN not null,
-	agendamento      BOOLEAN not null,
-	estacionamento   BOOLEAN not null,
-	areaKids         BOOLEAN not null,
 	ativo            BOOLEAN not null,
 	visivel          BOOLEAN not null,
 	statusValidacao  ENUM('Pendente', 'Validado', 'Não validado') not null,
 	nota             FLOAT, -- Avaliações (0 a 5 estrelas)
 	dataUltimoAcesso DATE not null
+) AUTO_INCREMENT = 1;
+
+CREATE TABLE musicaTocada (
+	id                INT PRIMARY KEY,
+	idEstabelecimento INT not null,
+	idEstiloMusica    INT not null
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE avaliacao (
@@ -167,7 +182,17 @@ ALTER TABLE estabelecimento add (constraint estabelecimento_categoria_fk foreign
 
 ALTER TABLE estabelecimento add (constraint estabelecimento_endereco_fk foreign key (idEndereco) references endereco (id));
 
-ALTER TABLE estabelecimento add (constraint estabelecimento_estilomusica_fk foreign key (idEstiloMusica) references estilomusica (id));
+
+
+------ musicaTocada
+ALTER TABLE musicaTocada add (constraint musicaTocada_estabelecimento_fk foreign key (idEstabelecimento) references estabelecimento (id));
+
+ALTER TABLE musicaTocada add (constraint musicaTocada_estiloMusica_fk foreign key (idEstiloMusica) references estiloMusica (id));
+
+
+
+------ OPCIONAIS
+ALTER TABLE opcinais add (constraint opcinais_estabelecimento_fk foreign key (idEstabelecimento) references estabelecimento (id));
 
 
 
