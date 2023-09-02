@@ -4,8 +4,13 @@ const userController = require('./../controllers/usuario.controller')
 
 router.get('/', async (req, res) => {
 
-    const dadosUsuario = userController.getUserData()
-    console.log(dadosUsuario);
+    // Posteriormente este dado deverá vir do front talvez sendo passado pela URL
+    const userId = 2;
+
+    const dadosUsuario = await userController.getUserData(userId)
+    console.log(dadosUsuario[0]);
+
+    // const dadosUsuarioJson = JSON.parse(dadosUsuario[0]);
     
     // Devolvendo ao front somente os dados do usuário em um objeto
     res.status(200).send(
