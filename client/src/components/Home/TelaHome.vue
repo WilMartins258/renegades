@@ -8,6 +8,8 @@
       <DashRdSociais/>
       <br><br>
       <DashContato/>
+      <br><br>
+      <Opcionais/>
   
   </template>
   
@@ -17,6 +19,7 @@
   import DashHorAtendimento from "../Estabelecimento/ComponentsChild/DashHorAtendimento.vue"
   import DashRdSociais from "../Estabelecimento/ComponentsChild/DashRdSociais.vue"
   import DashContato from "../Estabelecimento/ComponentsChild/DashContato.vue"
+  import Opcionais from "../Estabelecimento/ComponentsChild/Opcionais.vue"
       export default{
           name: "TelaHome",
           components:{
@@ -24,7 +27,8 @@
             Filtro,
             DashHorAtendimento,
             DashRdSociais,
-            DashContato
+            DashContato,
+            Opcionais
           }
       };
   
