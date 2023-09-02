@@ -1,5 +1,4 @@
 <template>
-  
   <div class="container">
     <h1>Categorias</h1>
     <div>
@@ -12,8 +11,11 @@
           placeholder="Digite aqui"
           :class="{ 'error': campoVazio }"
         />
-        <button type="submit">Salvar</button>
-        <p v-if="campoVazio" class="error-message">Informe uma Categoria Valida.</p>
+        <br><br>
+        <button type="submit" :disabled="isEditing" :class="{ 'disabled-button': isEditing }">
+          {{ isEditing ? 'Salvando...' : 'Salvar' }}
+        </button>
+        <p v-if="campoVazio" class="error-message">Informe uma Categoria Válida.</p>
       </form>
     </div>
     <table>
@@ -27,12 +29,22 @@
         <tr v-for="(categoria, index) in listaCategorias" :key="index">
           <td>{{ categoria }}</td>
           <td>
-            <button class="respButton" @click="editarCategoria(index)">
-              <i class="uil uil-edit"></i>
-            </button>
-            <button class="respButton" @click="excluirCategoria(index)">
-              <i class="uil uil-file-times-alt"></i>
-            </button>
+            <template v-if="editingIndex !== index">
+              <button class="respButton" @click="editarCategoria(index)">
+                <i class="uil uil-edit"></i>
+              </button>
+              <button class="respButton" @click="excluirCategoria(index)">
+                <i class="uil uil-file-times-alt"></i>
+              </button>
+            </template>
+            <template v-else>
+              <button class="respButton" @click="salvarEdicao(index)">
+                <i class="uil uil-check"></i>
+              </button>
+              <button class="respButton" @click="cancelarEdicao">
+                <i class="uil uil-times"></i>
+              </button>
+            </template>
           </td>
         </tr>
       </tbody>
@@ -45,40 +57,58 @@ export default {
   name: "DashCategoria",
   data() {
     return {
-        novaCategoria: "",
-        listaCategorias: [],
-        campoVazio: false, // Variável de estado para verificar se o campo está vazio
-      };
-    },
-    methods: {
-      salvarCategoria() {
-        if (this.novaCategoria.trim() !== "") {
-          this.listaCategorias.push(this.novaCategoria);
-          this.novaCategoria = "";
-          this.campoVazio = false; // Reiniciar o estado de campo vazio
+      novaCategoria: "",
+      listaCategorias: [],
+      campoVazio: false, // Variável de estado para verificar se o campo está vazio
+      isEditing: false, // Adicionamos um estado para controle de edição
+      editingIndex: -1, // Índice da categoria em edição
+    };
+  },
+  methods: {
+    salvarCategoria() {
+      if (this.novaCategoria.trim() !== "") {
+        if (this.isEditing) {
+          // Editar categoria existente
+          this.listaCategorias[this.editingIndex] = this.novaCategoria;
+          this.isEditing = false;
         } else {
-          this.campoVazio = true; // Definir o estado de campo vazio como verdadeiro
+          // Adicionar nova categoria
+          this.listaCategorias.push(this.novaCategoria);
         }
-      },
-    editarCategoria(index) {
-      const novaCategoria = prompt(
-        "Editar categoria:",
-        this.listaCategorias[index]
-      );
-      if (novaCategoria && novaCategoria.trim() !== "") {
-        this.listaCategorias[index] = novaCategoria;
+        this.novaCategoria = "";
+        this.campoVazio = false; // Reiniciar o estado de campo vazio
+      } else {
+        this.campoVazio = true; // Definir o estado de campo vazio como verdadeiro
       }
     },
+    limparCampos() {
+      this.novaCategoria = "";
+    },
+    editarCategoria(index) {
+      this.editingIndex = index;
+      this.novaCategoria = this.listaCategorias[index];
+      this.isEditing = true; // Ativar o modo de edição
+    },
+    cancelarEdicao() {
+      this.editingIndex = -1;
+      this.isEditing = false;
+      this.limparCampos();
+    },
+    salvarEdicao(index) {
+      this.listaCategorias[index] = this.novaCategoria;
+      this.editingIndex = -1;
+      this.isEditing = false; // Definir isEditing de volta para false
+      this.limparCampos();
+    },
+
     excluirCategoria(index) {
-      if (confirm("Tem certeza que deseja excluir está categoria?")) {
+      if (confirm("Tem certeza que deseja excluir esta categoria?")) {
         this.listaCategorias.splice(index, 1);
       }
     },
   },
 };
 </script>
-
-ste
 
 <style scoped>
 
@@ -132,6 +162,15 @@ button {
 
 button:hover {
   background: #ff9800;
+}
+
+.disabled-button {
+  background: gray;
+  cursor: not-allowed;
+}
+
+button:disabled:hover {
+  background: gray;
 }
 
 input {

@@ -1,52 +1,52 @@
 <template>
   <div class="container">
-    <h1>Estilos Musicais</h1>
+    <h1>Redes Sociais</h1>
     <div>
-      <form @submit.prevent="isEditing ? salvarEdicao() : salvarMusica()">
-        <label for="novaMusica">Nova música:</label>
+      <form @submit.prevent="salvarRedeSocial">
+        <label for="redeSocial">Rede Social:</label>
+        <select v-model="redeSocial" id="redeSocial">
+          <option value="Facebook">Facebook</option>
+          <option value="Instagram">Instagram</option>
+          <option value="Twitter">Twitter</option>
+        </select>
+        <label for="perfil">Perfil:</label>
         <input
-          v-model="novaMusica"
+          v-model="perfil"
           type="text"
-          id="novaMusica"
+          id="perfil"
+          name="perfil"
           placeholder="Digite aqui"
           :class="{ 'error': campoVazio }"
         />
-        <br /><br />
+        <p v-if="campoVazio" class="error-message">Informe um valor válido.</p>
         <button type="submit" :disabled="isEditing" :class="{ 'disabled-button': isEditing }">
-          {{ isEditing ? 'Salvar Edição' : 'Salvar' }}
+          {{ isEditing ? 'Salvando...' : 'Salvar' }}
         </button>
-        <p v-if="campoVazio" class="error-message">Informe um estilo de música válido.</p>
       </form>
     </div>
     <table>
       <thead>
         <tr>
-          <th>Estilos Musicais</th>
+          <th>Rede Social</th>
+          <th>Perfil</th>
           <th>Editar/Excluir</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(musica, index) in listaMusicas" :key="index">
+        <tr v-for="(rede, index) in listaRedesSociais" :key="index">
+          <td>{{ rede.redeSocial }}</td>
+          <td>{{ rede.perfil }}</td>
           <td>
-            <span v-if="!isEditing || index !== editingIndex">{{ musica }}</span>
-            <input
-              v-else
-              v-model="novaMusica"
-              type="text"
-              :class="{ 'error': campoVazio }"
-            />
-          </td>
-          <td>
-            <template v-if="!isEditing || index !== editingIndex">
-              <button class="respButton" @click="editarMusica(index)">
+            <template v-if="editingIndex !== index">
+              <button class="respButton" @click="editarRedeSocial(index)">
                 <i class="uil uil-edit"></i>
               </button>
-              <button class="respButton" @click="excluirMusica(index)">
+              <button class="respButton" @click="excluirRedeSocial(index)">
                 <i class="uil uil-file-times-alt"></i>
               </button>
             </template>
             <template v-else>
-              <button class="respButton" @click="salvarEdicao">
+              <button class="respButton" @click="salvarEdicao(index)">
                 <i class="uil uil-check"></i>
               </button>
               <button class="respButton" @click="cancelarEdicao">
@@ -62,57 +62,85 @@
 
 <script>
 export default {
-  name: "DashEstiloMusica",
+  name: "DashRdSociais",
   data() {
     return {
-      novaMusica: "",
-      listaMusicas: [],
-      campoVazio: false, // Variável de estado para verificar se o campo está vazio
-      isEditing: false, // Adicionamos um estado para controle de edição
-      editingIndex: -1, // Índice da música em edição
+      redeSocial: "Facebook",
+      perfil: "",
+      campoVazio: false,
+      isEditing: false,
+      listaRedesSociais: [],
+      editingIndex: -1,
     };
   },
   methods: {
-    salvarMusica() {
-      if (this.novaMusica.trim() !== "") {
-        this.listaMusicas.push(this.novaMusica);
-        this.novaMusica = "";
-        this.campoVazio = false; // Reiniciar o estado de campo vazio
-      } else {
-        this.campoVazio = true; // Definir o estado de campo vazio como verdadeiro
+    salvarRedeSocial() {
+      if (!this.perfil) {
+        this.campoVazio = true;
+        return;
       }
+
+      const novaRedeSocial = {
+        redeSocial: this.redeSocial,
+        perfil: this.perfil,
+      };
+      if (this.isEditing) {
+        this.listaRedesSociais[this.editingIndex] = novaRedeSocial;
+        this.isEditing = false;
+      } else {
+        this.listaRedesSociais.push(novaRedeSocial);
+      }
+      this.limparCampos();
     },
-    editarMusica(index) {
+    limparCampos() {
+      this.redeSocial = "Facebook";
+      this.perfil = "";
+      this.campoVazio = false;
+    },
+    editarRedeSocial(index) {
       this.editingIndex = index;
-      this.novaMusica = this.listaMusicas[index];
-      this.isEditing = true; // Ativar o modo de edição
+      this.redeSocial = this.listaRedesSociais[index].redeSocial;
+      this.perfil = this.listaRedesSociais[index].perfil;
+      this.isEditing = true;
+    },
+    salvarEdicao(index) {
+      this.listaRedesSociais[index].redeSocial = this.redeSocial;
+      this.listaRedesSociais[index].perfil = this.perfil;
+      this.editingIndex = -1;
+      this.limparCampos();
+    },
+    excluirRedeSocial(index) {
+      if (confirm("Tem certeza que deseja excluir?")) {
+        this.listaRedesSociais.splice(index, 1);
+      }
     },
     cancelarEdicao() {
       this.editingIndex = -1;
       this.isEditing = false;
-      this.novaMusica = "";
-    },
-    salvarEdicao() {
-      if (this.novaMusica.trim() !== "") {
-        this.listaMusicas[this.editingIndex] = this.novaMusica;
-        this.editingIndex = -1;
-        this.isEditing = false;
-        this.novaMusica = "";
-        this.campoVazio = false;
-      } else {
-        this.campoVazio = true;
-      }
-    },
-    excluirMusica(index) {
-      if (confirm("Tem certeza que deseja excluir essa música?")) {
-        this.listaMusicas.splice(index, 1);
-      }
+      this.limparCampos();
     },
   },
 };
 </script>
 
+
 <style scoped>
+
+select,
+input[type="time"] {
+  border: none;
+  padding: 8px 10px;
+  border-radius: 25px;
+  background: rgba(211, 201, 201, 0.774);
+  width: 100%;
+}
+
+/* Ajuste a margem para o select e os campos de entrada */
+select,
+input[type="time"],
+label {
+  margin: 0.4rem 0;
+}
 
 .container {
   max-width: 700px;
@@ -212,7 +240,15 @@ input {
   }
 }
 
+
+
 @media (max-width: 600px) {
+
+  form {
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start; 
+  }
 .respButton{
   padding: 8px 25px;
 }
@@ -272,5 +308,3 @@ input {
 
 }
 </style>
-
-
