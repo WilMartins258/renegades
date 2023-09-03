@@ -64,6 +64,12 @@ const routes = [
     component: () => import(/* webpackChunkName: "gerenciamusicas" */ '../views/ViewAdm/GerenciaMusicas'),
   },
 
+  {
+    path: '/gerenciopcionais',
+    name: 'gerenciopcionais',
+    component: () => import(/* webpackChunkName: "gerenciopcionais" */ '../views/ViewAdm/GerenciaOpcionais'),
+  },
+
 ]
 
 const router = createRouter({

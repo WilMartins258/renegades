@@ -33,13 +33,13 @@
         </div>
   
         <div class="card-row">
-        <router-link to="/CadUsuario" class="card">
+        <router-link to="/gerenciopcionais" class="card">
             <img
-              src="../../../public/img/AddNewUser.png"
+              src="../../../public/img/Opcionais.png"
               alt="Favoritos"
               class="card-image"
             />
-            <div class="description">Cadastar um novo Usuário</div>
+            <div class="description">Gerenciar Opcionais</div>
           </router-link>            
           <router-link to="/" class="card">
             <img
