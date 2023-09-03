@@ -117,25 +117,6 @@ CREATE TABLE promocao (
 	dataFim           DATE not null
 ) AUTO_INCREMENT = 1;
 
-CREATE TABLE opcinais (
-	id                INT PRIMARY KEY AUTO_INCREMENT,
-	idEstabelecimento INT not null,
-	entrega		      BOOLEAN not null,
-	entregaGratis     BOOLEAN not null,
-	soDelivery        BOOLEAN not null,
-	tocaMusica        BOOLEAN not null,
-	musicaAoVivo      BOOLEAN not null,
-	rodizio           BOOLEAN not null,
-	agendamento       BOOLEAN not null,
-	estacionamento    BOOLEAN not null,
-	areaKids          BOOLEAN not null,
-	wifi              BOOLEAN not null,
-	permiteAnimais    BOOLEAN not null,
-	couvert           BOOLEAN not null,
-	taxa10            BOOLEAN not null,
-	areaFumantes      BOOLEAN not null
-) AUTO_INCREMENT = 1;
-
 CREATE TABLE estabelecimento (
 	id               INT PRIMARY KEY AUTO_INCREMENT,
 	idCategoria      INT not null,
@@ -149,6 +130,17 @@ CREATE TABLE estabelecimento (
 	statusValidacao  ENUM('Pendente', 'Validado', 'Não validado') not null,
 	nota             FLOAT, -- Avaliações (0 a 5 estrelas)
 	dataUltimoAcesso DATE not null
+) AUTO_INCREMENT = 1;
+
+CREATE TABLE opcional (
+	id                INT PRIMARY KEY AUTO_INCREMENT,
+	nome	          VARCHAR(100) not null
+) AUTO_INCREMENT = 1;
+
+CREATE TABLE opcionalEstabelecimento (
+	id                INT PRIMARY KEY,
+	idEstabelecimento INT not null,
+	idOpcional        INT not null
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE musicaTocada (
@@ -191,8 +183,10 @@ ALTER TABLE musicaTocada add (constraint musicaTocada_estiloMusica_fk foreign ke
 
 
 
------- OPCIONAIS
-ALTER TABLE opcinais add (constraint opcinais_estabelecimento_fk foreign key (idEstabelecimento) references estabelecimento (id));
+------ opcionalEstabelecimento
+ALTER TABLE opcionalEstabelecimento add (constraint opcionalEstabelecimento_estabelecimento_fk foreign key (idEstabelecimento) references estabelecimento (id));
+
+ALTER TABLE opcionalEstabelecimento add (constraint opcionalEstabelecimento_opicional_fk foreign key (idOpcional) references opcional (id));
 
 
 

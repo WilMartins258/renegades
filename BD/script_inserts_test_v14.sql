@@ -16,12 +16,81 @@ DELETE FROM diaSemana;
 DELETE FROM CATEGORIA;
 DELETE FROM AVALIACAO;
 DELETE FROM musicaTocada;
-DELETE FROM opcinais;
+DELETE FROM OPCIONAL;
 
 SET FOREIGN_KEY_CHECKS = 1;
 
 
 -- INSERTS
+
+-- ---------------------------- OPCIONAL -- INÍCIO
+
+insert into OPCIONAL values (
+	1,
+	'Faz entrega'
+);
+
+insert into OPCIONAL values (
+	2,
+	'Entrega Grátis'
+);
+
+insert into OPCIONAL values (
+    3,
+    'Toca Música'
+);
+
+insert into OPCIONAL values (
+    4,
+    'Toca Música ao Vivo'
+);
+
+insert into OPCIONAL values (
+    5,
+    'Oferece Rodízio'
+);
+
+insert into OPCIONAL values (
+    6,
+    'Precisa de Agendamento'
+);
+
+insert into OPCIONAL values (
+    7,
+    'Possui Estacionamento'
+);
+
+insert into OPCIONAL values (
+    8,
+    'Possui Área Kids'
+);
+
+insert into OPCIONAL values (
+    9,
+    'Tem Wi-fi livre'
+);
+
+insert into OPCIONAL values (
+    10,
+    'Permite Animais'
+);
+
+insert into OPCIONAL values (
+    11,
+    'Couvert Grátis'
+);
+
+insert into OPCIONAL values (
+    12,
+    'Tem taxa de 10%'
+);
+
+insert into OPCIONAL values (
+    13,
+    'Possui Área de Fumantes'
+);
+
+-- ---------------------------- OPCIONAL -- FIM
 
 -- ---------------------------- CATEGORIA -- INÍCIO
 
@@ -492,25 +561,6 @@ insert into estabelecimento values(
 	'2023-08-27' -- dataUltimoAcesso
 );
 
-insert into opcinais values(
-	1, -- id
-	1, -- idEstabelecimento INT not null,
-	true, -- entrega		      BOOLEAN not null,
-	false, -- entregaGratis     BOOLEAN not null,
-	false, -- soDelivery        BOOLEAN not null,
-	false, -- tocaMusica        BOOLEAN not null
-	false, -- musicaAoVivo      BOOLEAN not null,
-	false, -- rodizio           BOOLEAN not null,
-	false, -- agendamento       BOOLEAN not null,
-	true, -- estacionamento    BOOLEAN not null,
-	false, -- areaKids          BOOLEAN not null,
-	false, -- wifi              BOOLEAN not null,
-	false, -- permiteAnimais    BOOLEAN not null,
-	false, -- couvert           BOOLEAN not null,
-	false, -- taxa10            BOOLEAN not null
-	true -- areaFumantes            BOOLEAN not null
-);
-
 insert into usuario values( -- Mc Donalds - Votorantim
 	4,                   -- id
 	1,                -- idEstabelecimento
@@ -714,25 +764,6 @@ insert into estabelecimento values(
 	'Validado', -- statusValidacao
 	null, -- nota
 	'2023-08-27' -- dataUltimoAcesso
-);
-
-insert into opcinais values(
-	2, -- id
-	2, -- idEstabelecimento INT not null,
-	true, -- entrega		      BOOLEAN not null,
-	false, -- entregaGratis     BOOLEAN not null,
-	false, -- soDelivery        BOOLEAN not null,
-	false, -- tocaMusica        BOOLEAN not null,
-	false, -- musicaAoVivo      BOOLEAN not null,
-	false, -- rodizio           BOOLEAN not null,
-	false, -- agendamento       BOOLEAN not null,
-	true, -- estacionamento    BOOLEAN not null,
-	false, -- areaKids          BOOLEAN not null,
-	false, -- wifi              BOOLEAN not null,
-	false, -- permiteAnimais    BOOLEAN not null,
-	false, -- couvert           BOOLEAN not null,
-	false, -- taxa10            BOOLEAN not null
-	true -- areaFumantes            BOOLEAN not null
 );
 
 insert into usuario values( -- Mc Donalds - Votorantim
@@ -945,25 +976,6 @@ insert into estabelecimento values(
 	'2023-08-27' -- dataUltimoAcesso
 );
 
-insert into opcinais values(
-	3,     -- id
-	3,     -- idEstabelecimento INT not null,
-	true,  -- entrega		    BOOLEAN not null,
-	false, -- entregaGratis     BOOLEAN not null,
-	false, -- soDelivery        BOOLEAN not null,
-	false, -- tocaMusica        BOOLEAN not null,
-	false, -- musicaAoVivo      BOOLEAN not null,
-	false, -- rodizio           BOOLEAN not null,
-	false, -- agendamento       BOOLEAN not null,
-	false, -- estacionamento    BOOLEAN not null,
-	false, -- areaKids          BOOLEAN not null,
-	false, -- wifi              BOOLEAN not null,
-	false, -- permiteAnimais    BOOLEAN not null,
-	false, -- couvert           BOOLEAN not null,
-	false,  -- taxa10            BOOLEAN not null
-	false -- areaFumantes            BOOLEAN not null
-);
-
 insert into usuario values(
 	6,                   -- id
 	3,                -- idEstabelecimento
@@ -1108,25 +1120,6 @@ insert into estabelecimento values(
 	'2023-08-27' -- dataUltimoAcesso
 );
 
-insert into opcinais values(
-	4,     -- id
-	4,     -- idEstabelecimento INT not null,
-	true,  -- entrega		      BOOLEAN not null,
-	false, -- entregaGratis     BOOLEAN not null,
-	false, -- soDelivery        BOOLEAN not null,
-	false, -- tocaMusica        BOOLEAN not null,
-	false, -- musicaAoVivo      BOOLEAN not null,
-	true,  -- rodizio           BOOLEAN not null,
-	false, -- agendamento       BOOLEAN not null,
-	false, -- estacionamento    BOOLEAN not null,
-	false, -- areaKids          BOOLEAN not null,
-	false, -- wifi              BOOLEAN not null,
-	false, -- permiteAnimais    BOOLEAN not null,
-	false, -- couvert           BOOLEAN not null,
-	false,  -- taxa10            BOOLEAN not null
-	false -- areaFumantes            BOOLEAN not null
-);
-
 insert into usuario values(
 	7,                   -- id
 	4,                -- idEstabelecimento
@@ -1256,25 +1249,6 @@ insert into estabelecimento values(
 	'Validado', -- statusValidacao
 	null, -- nota
 	'2023-08-27' -- dataUltimoAcesso
-);
-
-insert into opcinais values(
-	5,     -- id
-	5,     -- idEstabelecimento INT not null,
-	false, -- entrega		      BOOLEAN not null,
-	false, -- entregaGratis     BOOLEAN not null,
-	false, -- soDelivery        BOOLEAN not null,
-	true,  -- tocaMusica        BOOLEAN not null,
-	false, -- musicaAoVivo      BOOLEAN not null,
-	false, -- rodizio           BOOLEAN not null,
-	false, -- agendamento       BOOLEAN not null,
-	false, -- estacionamento    BOOLEAN not null,
-	false, -- areaKids          BOOLEAN not null,
-	false, -- wifi              BOOLEAN not null,
-	false, -- permiteAnimais    BOOLEAN not null,
-	false, -- couvert           BOOLEAN not null,
-	false,  -- taxa10            BOOLEAN not null
-	false -- areaFumantes            BOOLEAN not null
 );
 
 insert into musicaTocada values(
