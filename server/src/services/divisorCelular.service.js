@@ -16,4 +16,4 @@ const extrairCodigoAreaENumero = (numeroCompleto) => {
 
 module.exports = {
     extrairCodigoAreaENumero
-}  
+}
