@@ -1,5 +1,6 @@
-const router = require('express').Router();
-const userController = require('./../controllers/usuario.controller')
+const express = require('express');
+const router = express.Router();
+const userController = require('./../controllers/usuario.controller.js');
 
 router.get('/', async (req, res) => {
     const reqBody = req.body;
@@ -11,10 +12,10 @@ router.get('/', async (req, res) => {
 });
 
 router.put('/', async (req, res) => {
-    console.log('Início da rota usuario PUT');
+    // console.log('Início da rota usuario PUT');
     const reqBody = req.body;
 
-    console.log('reqBody:: \n', reqBody)
+    // console.log('reqBody:: \n', reqBody);
     res.status(200).send(
         'put'
     );
@@ -23,15 +24,15 @@ router.put('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     // Acesse o valor do parâmetro "id" usando req.params.id
     const userId = req.params.id;
-    console.log('Início da rota usuario :id');
+    // console.log('Início da rota usuario :id');
 
     // Recebe os dados de um usuário passando como parâmetro seu ID
-    const dadosUsuario = await userController.getUserDataById(userId);
+    const dadosUsuario = await userController.getUserById(userId);
 
-    console.log('Fim da rota usuario :id');
-    if (dadosUsuario[0]) {
+    // console.log('Fim da rota usuario :id');
+    if (dadosUsuario) {
         res.status(200).send(
-            dadosUsuario[0]
+            dadosUsuario
         );
     } else {
         res.status(404).send(
@@ -41,6 +42,11 @@ router.get('/:id', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
+
+    // console.log('Início da rota usuario POST');
+    const reqBody = req.body;
+
+    // console.log('reqBody:: \n', reqBody);
 
     const dadosUsuario = {
 

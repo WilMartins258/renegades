@@ -121,13 +121,17 @@ export default{
       const userData = await api.get(`/usuario/${userId}`);
 
       const dadosUsuario = userData.data;
+      
+      const enderecoData = await api.get(`/endereco/${dadosUsuario.idEndereco}`);
+
+      const dadosEndereco = enderecoData.data;
 
       const nomeInput = document.getElementById("nome");
       const dataNascimentoInput = document.getElementById("dataNasc");
       const emailInput = document.getElementById("email");
       const celularInput = document.getElementById("celular");
       const senhaInput = document.getElementById("senha");
-      const senha2Input = document.getElementById("senha2");
+      const senha2Input = document.getElementById("senha2"); // Precisamos conversar sobre isso
       const cepInput = document.getElementById("cep");
       const ruaInput = document.getElementById("rua");
       const numeroInput = document.getElementById("numero");
@@ -142,7 +146,12 @@ export default{
       emailInput.value = dadosUsuario.email;
       celularInput.value = `(${dadosUsuario.codigoArea}) ${dadosUsuario.celular}`;
       senhaInput.value = dadosUsuario.senha;
-      senha2Input.value = dadosUsuario.senha;
+      cepInput.value = dadosEndereco.cep;
+      ruaInput.value = dadosEndereco.lodradouro;
+      numeroInput.value = dadosEndereco.numero;
+      bairroInput.value = dadosEndereco.bairro;
+      cidadeInput.value = dadosEndereco.cidade;
+      ufInput.value = dadosEndereco.estado;
 
       console.log(dadosUsuario);
     },

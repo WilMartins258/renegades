@@ -39,6 +39,11 @@ router.use(
 );
 
 router.use(
+    "/endereco",
+    require("./endereco.js")
+);
+
+router.use(
     "/test",
     require("./test.js")
 );
