@@ -17,7 +17,7 @@
           <div class="column">
               <div class="group">
                 <label for="nome" class="label">Nome Completo:</label><br />
-                <input type="text" v-model="nome" id="nome" class="input" name="nome" disabled/>
+                <input type="text" v-model="nomeCompleto" id="nome" class="input" name="nome" disabled/>
               </div>
 
               <div class="group">
@@ -44,14 +44,14 @@
 
             <div class="group">
               <label for="senha2" class="label">Confirme sua senha:</label><br />
-                <input type="password" v-model="senha" id="senha2" class="input" name="senha2" disabled/>
+                <input type="password" v-model="senhaConfirm" id="senha2" class="input" name="senha2" disabled/>
             </div> 
           </div>
 
           <div class="column">
             <div class="group">
               <label for="cep" class="label">CEP:</label><br />
-              <input v-model="cep" type="text" id="cep" class="input" name="cep" @blur="pesquisarCep" required disabled/><br />
+              <input v-model="endereco.cep" type="text" id="cep" class="input" name="cep" @blur="pesquisarCep" required disabled/><br />
             </div>
 
             <div class="group">
@@ -61,7 +61,7 @@
           
           <div class="group">
             <label for="numero" class="label">Número:</label><br />
-            <input ref="numeroInput" type="text" id="numero" class="input" name="numero" required disabled/><br />
+            <input v-model="endereco.numero" ref="numeroInput" type="text" id="numero" class="input" name="numero" required disabled/><br />
           </div>
         </div>
 
@@ -83,7 +83,7 @@
         </div>
           
         <div class="group">
-            <button type="button" class="button" id="alterarButton">Alterar</button>
+            <button type="button" class="button" id="alterarButton" @click="">Alterar</button>
             <button type="button" class="button" id="salvarButton" disabled>Salvar</button>
             <button type="button" class="button" id="excluirButton">Excluir</button>
             <button type="button" class="button" id="cancelarButton" disabled>Cancelar</button>
@@ -93,10 +93,28 @@
 </template>
 
 <script>
-import IMask from "imask";
-import axios from "axios";
-import api from './../../services/backend-service';
-import dataFormat from './../../services/dataFormat.service';
+  import IMask from "imask";
+  import axios from "axios";
+  import api from './../../services/backend-service';
+  import dataFormat from './../../services/dataFormat.service';
+
+  const nomeInput = document.getElementById("nome");
+  const dataNascimentoInput = document.getElementById("dataNasc");
+  const emailInput = document.getElementById("email");
+  const celularInput = document.getElementById("celular");
+  const senhaInput = document.getElementById("senha");
+  const senha2Input = document.getElementById("senha2");
+  const cepInput = document.getElementById("cep");
+  const ruaInput = document.getElementById("rua");
+  const numeroInput = document.getElementById("numero");
+  const bairroInput = document.getElementById("bairro");
+  const cidadeInput = document.getElementById("cidade");
+  const ufInput = document.getElementById("uf");
+  const alterarButton = document.getElementById("alterarButton");
+  const salvarButton = document.getElementById("salvarButton");
+  const excluirButton = document.getElementById("excluirButton");
+  const cancelarButton = document.getElementById("cancelarButton");
+
 
 export default{
   name: "UpdUsuario",
@@ -108,7 +126,15 @@ export default{
         bairro: "",
         cidade: "",
         uf: "",
-        }
+        cep: "",
+        numero: ""
+      },
+      nomeCompleto: "",
+      dataNasc: "",
+      celular: "",
+      email: "",
+      senha: "",
+      senhaConfirm: ""
   };
   },
   created() {
@@ -116,44 +142,49 @@ export default{
   },
   methods: {
     async metodoInicial() {
-      // userId deve conter o ID do usuário que está logado
+      /**
+       * O trecho abaixo utilizando sessionStorage não será dessa forma
+       * O ID do usuário já deve estar no sessionStorage desde o momento em que o usuário faz o login
+       */
       const userId = 2;
-      const userData = await api.get(`/usuario/${userId}`);
+      sessionStorage.setItem('userId', userId);
 
+      const userIdRecuperado = sessionStorage.getItem('userId');
+      console.log('userIdRecuperado:: ', userIdRecuperado);
+      
+      // userIdRecuperado deve conter o ID do usuário que está logado
+      const userData = await api.get(`/usuario/${userIdRecuperado}`);
+      
       const dadosUsuario = userData.data;
       
-      const enderecoData = await api.get(`/endereco/${dadosUsuario.idEndereco}`);
+      sessionStorage.setItem('enderecoId', dadosUsuario.idEndereco);
+      const enderecoIdRecuperado = sessionStorage.getItem('enderecoId');
+      const enderecoData = await api.get(`/endereco/${enderecoIdRecuperado}`);
 
       const dadosEndereco = enderecoData.data;
 
-      const nomeInput = document.getElementById("nome");
-      const dataNascimentoInput = document.getElementById("dataNasc");
-      const emailInput = document.getElementById("email");
-      const celularInput = document.getElementById("celular");
-      const senhaInput = document.getElementById("senha");
-      const senha2Input = document.getElementById("senha2"); // Precisamos conversar sobre isso
-      const cepInput = document.getElementById("cep");
-      const ruaInput = document.getElementById("rua");
-      const numeroInput = document.getElementById("numero");
-      const bairroInput = document.getElementById("bairro");
-      const cidadeInput = document.getElementById("cidade");
-      const ufInput = document.getElementById("uf");
-
       const dataFormatada = dataFormat(dadosUsuario.dataNascimento);
 
-      nomeInput.value = `${dadosUsuario.nome} ${dadosUsuario.sobrenome}`;
-      dataNascimentoInput.value = dataFormatada;
-      emailInput.value = dadosUsuario.email;
-      celularInput.value = `(${dadosUsuario.codigoArea}) ${dadosUsuario.celular}`;
-      senhaInput.value = dadosUsuario.senha;
-      cepInput.value = dadosEndereco.cep;
-      ruaInput.value = dadosEndereco.lodradouro;
-      numeroInput.value = dadosEndereco.numero;
-      bairroInput.value = dadosEndereco.bairro;
-      cidadeInput.value = dadosEndereco.cidade;
-      ufInput.value = dadosEndereco.estado;
+      console.log(dadosEndereco);
 
-      console.log(dadosUsuario);
+      //Dados Usuário
+      this.nomeCompleto = `${dadosUsuario.nome} ${dadosUsuario.sobrenome}`;
+      this.dataNasc = dataFormatada;
+      this.celular = `(${dadosUsuario.codigoArea}) ${dadosUsuario.celular}`
+      this.email = dadosUsuario.email;
+      this.senha = dadosUsuario.senha;
+      this.senhaConfirm = dadosUsuario.senha;
+
+      // Dados endereço
+
+      this.endereco.bairro = dadosEndereco.bairro;
+      this.endereco.cep = dadosEndereco.cep;
+      this.endereco.rua = dadosEndereco.lodradouro;
+      this.endereco.uf = dadosEndereco.estado;
+      this.endereco.cidade = dadosEndereco.cidade;
+      this.endereco.numero = dadosEndereco.numero;
+
+      // console.log(dadosUsuario);
     },
     limpa_formulário_cep() {
       document.getElementById("rua").value = "";
@@ -206,7 +237,7 @@ export default{
             };
             reader.readAsDataURL(file);
       }
-    },
+    }, 
     setupFormListeners() {
       const nomeInput = document.getElementById("nome");
       const dataNascimentoInput = document.getElementById("dataNasc");
@@ -224,7 +255,7 @@ export default{
       const salvarButton = document.getElementById("salvarButton");
       const excluirButton = document.getElementById("excluirButton");
       const cancelarButton = document.getElementById("cancelarButton");
-
+    
       alterarButton.addEventListener("click", () => {
         nomeInput.removeAttribute("disabled");
         dataNascimentoInput.removeAttribute("disabled");
@@ -242,7 +273,7 @@ export default{
         cancelarButton.removeAttribute("disabled");
         alterarButton.setAttribute("disabled", true);
         excluirButton.setAttribute("disabled", true);
-      });
+      });  
 
       cancelarButton.addEventListener("click", () => {
         nomeInput.setAttribute("disabled", true);
@@ -263,7 +294,7 @@ export default{
         excluirButton.removeAttribute("disabled");
       });
 
-      salvarButton.addEventListener("click", () => {
+      salvarButton.addEventListener("click", async () => {
         nomeInput.setAttribute("disabled", true);
         dataNascimentoInput.setAttribute("disabled", true);
         emailInput.setAttribute("disabled", true);
@@ -280,6 +311,30 @@ export default{
         cancelarButton.setAttribute("disabled", true);
         alterarButton.removeAttribute("disabled");
         excluirButton.removeAttribute("disabled");
+
+        const newUserData = {
+          nomeCompleto: nomeInput.value,
+          dataNascimento: dataNascimentoInput.value,
+          email: emailInput.value,
+          celularCompleto: celularInput.value,
+          senha: senhaInput.value,
+          enderecoId: sessionStorage.getItem('enderecoId'),
+          cep: cepInput.value,
+          rua: ruaInput.value,
+          numero: numeroInput.value,
+          bairro: bairroInput.value,
+          cidade: cidadeInput.value,
+          uf: ufInput.value
+        };
+
+        console.log('salvarButton');
+        console.log('newUserData:: \n\n\n', newUserData);
+        
+        const userPut = await api.put('/usuario', newUserData);
+        
+        console.log('userPut:: \n\n\n', userPut);
+        
+        
       });
     },
   },

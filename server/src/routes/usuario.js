@@ -11,16 +11,6 @@ router.get('/', async (req, res) => {
     );
 });
 
-router.put('/', async (req, res) => {
-    // console.log('Início da rota usuario PUT');
-    const reqBody = req.body;
-
-    // console.log('reqBody:: \n', reqBody);
-    res.status(200).send(
-        'put'
-    );
-});
-
 router.get('/:id', async (req, res) => {
     // Acesse o valor do parâmetro "id" usando req.params.id
     const userId = req.params.id;
@@ -39,6 +29,17 @@ router.get('/:id', async (req, res) => {
             'Id de usuário não encontrado!'
         );
     }
+});
+
+router.put('/', async (req, res) => {
+    console.log('Início da rota usuario PUT');
+    const reqBody = req.body;
+    console.log('reqBody:: ', reqBody);
+
+    // console.log('reqBody:: \n', reqBody);
+    res.status(200).send(
+        'put return'
+    );
 });
 
 router.post('/', async (req, res) => {
