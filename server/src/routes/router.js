@@ -43,4 +43,8 @@ router.use(
     require("./test.js")
 );
 
+router.use((req, res) => {
+    res.status(404).send('Página não encontrada');
+});
+
 module.exports = router;
