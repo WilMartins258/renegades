@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const userController = require('./../controllers/usuario.controller.js');
+const dividirNomeService = require('./../services/divisorNome.service.js');
+const dividirCelularService = require('./../services/divisorCelular.service.js');
+const dataToMySqlService = require('../services/dataToMySql.service.js');
 
 router.get('/', async (req, res) => {
     const reqBody = req.body;
@@ -36,9 +39,47 @@ router.put('/', async (req, res) => {
     const reqBody = req.body;
     console.log('reqBody:: ', reqBody);
 
+    /*
+        reqBody::  {
+            nomeCompleto: 'Lucas Maximiano dos Santos...',
+            dataNascimento: '01/05/2000',
+            email: 'lucas@gmail.com',
+            celularCompleto: '15999997777',
+            senha: 'senha123',
+            enderecoId: '2',
+            cep: '1112233',
+            rua: 'Rua do Lucas',
+            numero: '1',
+            bairro: 'Bairro do Lucas',
+            cidade: 'Sorocaba',
+            uf: 'SP'
+        }
+    */
+
+    const nomeDividido = dividirNomeService.dividirNome(reqBody?.nomeCompleto);
+    const numeroDividido = dividirCelularService.extrairCodigoAreaENumero(reqBody?.celularCompleto);
+    const dataMySql = dataToMySqlService.dataToMySqlFormat(reqBody?.dataNascimento)
+
+    const novosDadosUsuario = {
+        nome: nomeDividido.nome,
+        sobrenome: nomeDividido.sobrenome,
+        dataNascimento: dataMySql,
+        senha: reqBody.senha,
+        email: reqBody.email,
+        codigo: numeroDividido?.codigoArea,
+        celular: numeroDividido?.numero,
+    };
+
+    const novosDadosUsuarioArray = Object.values(novosDadosUsuario);
+    
+    console.log('novosDadosUsuario:: ', novosDadosUsuario);
+    console.log('novosDadosUsuarioArray:: ', novosDadosUsuarioArray);
+
+    // reqBody?.enderecoId
+
     // console.log('reqBody:: \n', reqBody);
     res.status(200).send(
-        'put return'
+        'nomeDividido'
     );
 });
 
