@@ -96,6 +96,8 @@
 import IMask from "imask";
 import axios from "axios";
 import api from './../../services/backend-service';
+import dataFormat from './../../services/dataFormat.service';
+
 export default{
   name: "UpdUsuario",
   data(){
@@ -114,7 +116,34 @@ export default{
   },
   methods: {
     async metodoInicial() {
-      const dadosUsuario = await api.get("/dadosUsuario");
+      // userId deve conter o ID do usuário que está logado
+      const userId = 2;
+      const userData = await api.get(`/usuario/${userId}`);
+
+      const dadosUsuario = userData.data;
+
+      const nomeInput = document.getElementById("nome");
+      const dataNascimentoInput = document.getElementById("dataNasc");
+      const emailInput = document.getElementById("email");
+      const celularInput = document.getElementById("celular");
+      const senhaInput = document.getElementById("senha");
+      const senha2Input = document.getElementById("senha2");
+      const cepInput = document.getElementById("cep");
+      const ruaInput = document.getElementById("rua");
+      const numeroInput = document.getElementById("numero");
+      const bairroInput = document.getElementById("bairro");
+      const cidadeInput = document.getElementById("cidade");
+      const ufInput = document.getElementById("uf");
+
+      const dataFormatada = dataFormat(dadosUsuario.dataNascimento);
+
+      nomeInput.value = `${dadosUsuario.nome} ${dadosUsuario.sobrenome}`;
+      dataNascimentoInput.value = dataFormatada;
+      emailInput.value = dadosUsuario.email;
+      celularInput.value = `(${dadosUsuario.codigoArea}) ${dadosUsuario.celular}`;
+      senhaInput.value = dadosUsuario.senha;
+      senha2Input.value = dadosUsuario.senha;
+
       console.log(dadosUsuario);
     },
     limpa_formulário_cep() {
