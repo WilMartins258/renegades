@@ -51,7 +51,7 @@
           <div class="column">
             <div class="group">
               <label for="cep" class="label">CEP:</label><br />
-              <input v-model="endereco.cep" type="text" id="cep" class="input" name="cep" @blur="pesquisarCep" required disabled/><br />
+              <input maxlength="8" v-model="endereco.cep" type="text" id="cep" class="input" name="cep" @blur="pesquisarCep" required disabled/><br />
             </div>
 
             <div class="group">
@@ -150,7 +150,6 @@ export default{
       sessionStorage.setItem('userId', userId);
 
       const userIdRecuperado = sessionStorage.getItem('userId');
-      console.log('userIdRecuperado:: ', userIdRecuperado);
       
       // userIdRecuperado deve conter o ID do usuário que está logado
       const userData = await api.get(`/usuario/${userIdRecuperado}`);
@@ -165,8 +164,6 @@ export default{
 
       const dataFormatada = dataToDiaMesAno(dadosUsuario.dataNascimento);
 
-      console.log(dadosEndereco);
-
       //Dados Usuário
       this.nomeCompleto = `${dadosUsuario.nome} ${dadosUsuario.sobrenome}`;
       this.dataNasc = dataFormatada;
@@ -176,7 +173,6 @@ export default{
       this.senhaConfirm = dadosUsuario.senha;
 
       // Dados endereço
-
       this.endereco.bairro = dadosEndereco.bairro;
       this.endereco.cep = dadosEndereco.cep;
       this.endereco.rua = dadosEndereco.lodradouro;
@@ -184,7 +180,6 @@ export default{
       this.endereco.cidade = dadosEndereco.cidade;
       this.endereco.numero = dadosEndereco.numero;
 
-      // console.log(dadosUsuario);
     },
     limpa_formulário_cep() {
       document.getElementById("rua").value = "";
@@ -204,6 +199,7 @@ export default{
       }
     },
     pesquisarCep() {
+      /*
       var cep = this.cep.replace(/\D/g, "");
       if (cep !== "") {
         var validacep = /^[0-9]{8}$/;
@@ -225,6 +221,7 @@ export default{
       } else {
         this.limpa_formulário_cep();
       }
+      */
     },
     AtualizarImagem(event) {
       const file = event.target.files[0];
@@ -319,6 +316,9 @@ export default{
           email: emailInput.value,
           celularCompleto: celularInput.value,
           senha: senhaInput.value,
+        };
+
+        const newEnderecoData = {
           enderecoId: sessionStorage.getItem('enderecoId'),
           cep: cepInput.value,
           rua: ruaInput.value,
@@ -328,14 +328,14 @@ export default{
           uf: ufInput.value
         };
 
-        console.log('salvarButton');
-        console.log('newUserData:: \n\n\n', newUserData);
-        
-        const userPut = await api.put('/usuario', newUserData);
-        
-        console.log('userPut:: \n\n\n', userPut);
-        
-        
+        try {
+          // const userPut = await api.put('/usuario', newUserData);
+          const enerecoPut = await api.put('/endereco', newEnderecoData);  
+        } catch (error) {
+          console.error('ERROR:: ', error);
+        } finally {
+          console.log('Atualização de dados concluída com sucesso!');
+        }
       });
     },
   },
