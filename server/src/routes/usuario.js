@@ -1,8 +1,11 @@
 const express = require('express');
 const router = express.Router();
+
+// Importando controllers e serviços que serão utilizados nas rotas
 const userController = require('./../controllers/usuario.controller.js');
-const dividirNomeService = require('./../services/divisorNome.service.js');
-const dividirCelularService = require('./../services/divisorCelular.service.js');
+const enderecoController = require('./../controllers/endereco.controller.js');
+const separarNomeService = require('../services/separarNome.service.js');
+const separarCelularService = require('../services/separarCelular.service.js');
 const dataToMySqlService = require('../services/dataToMySql.service.js');
 
 router.get('/', async (req, res) => {
@@ -65,6 +68,12 @@ router.put('/', async (req, res) => {
         enderecoId: reqBody.enderecoId
     };
 
+    console.log('novosDadosEndereco:: ', novosDadosEndereco);
+    
+    const novosDadosEnderecoArray = Object.values(novosDadosEndereco);
+    
+    console.log('novosDadosEnderecoArray:: ', novosDadosEnderecoArray);
+
     const nomeDividido = dividirNomeService.dividirNome(reqBody?.nomeCompleto);
     const numeroDividido = dividirCelularService.extrairCodigoAreaENumero(reqBody?.celularCompleto);
     const dataNascMySqlFormat = dataToMySqlService.dataToMySqlFormat(reqBody?.dataNascimento);
@@ -74,7 +83,7 @@ router.put('/', async (req, res) => {
         sobrenome: nomeDividido.sobrenome,
         codigo: numeroDividido?.codigoArea,
         celular: numeroDividido?.numero,
-        // cpf: null,
+        // cpf: null, // Posteriormente ou iremos remover o CPF do banco ou iremos adicionar ele ao front
         email: reqBody.email,
         senha: reqBody.senha,
         foto: 'test-blob',
@@ -94,15 +103,7 @@ router.put('/', async (req, res) => {
                 msg: 'Dados do usuário alterados com sucesso!'
             }
         );
-    }
-
-    
-    console.log('novosDadosUsuarioArray:: ', novosDadosUsuarioArray);
-
-    // reqBody?.enderecoId
-
-    // console.log('reqBody:: \n', reqBody);
-    
+    }    
 });
 
 router.post('/', async (req, res) => {
