@@ -9,6 +9,21 @@ const getEnderecoById = async (enderecoId) => {
     return dadosEndereco[0];
 };
 
+const updateEnderecoData = async (newEnderecoData) => {
+    const atualizarEnderecoQuery =   `
+        UPDATE endereco
+        SET cep = ?, estado = ?, cidade = ?, lodradouro = ?, 
+        bairro = ?, numero = ?
+        WHERE id = ?;
+    `;
+    const connection = await db;
+
+    const [atualizarEndereco] = await connection.query(atualizarEnderecoQuery, newEnderecoData);
+
+    return atualizarEndereco[0];
+};
+
 module.exports = {
-    getEnderecoById
+    getEnderecoById,
+    updateEnderecoData
 };

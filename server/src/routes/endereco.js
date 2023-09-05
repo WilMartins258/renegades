@@ -14,7 +14,6 @@ router.get('/:id', async (req, res) => {
 });
 
 router.put('/', async (req, res) => {
-        console.log('Início da rota endereco PUT');
     try {
         const reqBody = req.body;
 
@@ -30,7 +29,7 @@ router.put('/', async (req, res) => {
         
         const novosDadosEnderecoArray = Object.values(novosDadosEndereco);
         
-        const newenderecoData = await enderecoController.updateEnderecoData(novosDadosEnderecoArray);
+        const newEnderecoData = await enderecoController.updateEnderecoData(novosDadosEnderecoArray);
 
         res.status(200).send({
             msg: 'Dados de endereço do usuário alterados com sucesso!'
