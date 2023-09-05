@@ -27,7 +27,7 @@
 
               <div class="group">
                 <label for="celular" class="label">Celular:</label><br />
-                <input type="text" v-model="celular" id="celular" class="input" name="celular" required disabled/>
+                <input maxlength="15" type="text" v-model="celular" id="celular" class="input" name="celular" required disabled/>
             </div>
           </div>
 
@@ -96,7 +96,7 @@
   import IMask from "imask";
   import axios from "axios";
   import api from './../../services/backend-service';
-  import dataFormat from './../../services/dataFormat.service';
+  import dataToDiaMesAno from './../../services/dataToDiaMesAno.service.js';
 
   const nomeInput = document.getElementById("nome");
   const dataNascimentoInput = document.getElementById("dataNasc");
@@ -163,14 +163,14 @@ export default{
 
       const dadosEndereco = enderecoData.data;
 
-      const dataFormatada = dataFormat(dadosUsuario.dataNascimento);
+      const dataFormatada = dataToDiaMesAno(dadosUsuario.dataNascimento);
 
       console.log(dadosEndereco);
 
       //Dados Usuário
       this.nomeCompleto = `${dadosUsuario.nome} ${dadosUsuario.sobrenome}`;
       this.dataNasc = dataFormatada;
-      this.celular = `(${dadosUsuario.codigoArea}) ${dadosUsuario.celular}`
+      this.celular = `${dadosUsuario.codigoArea}${dadosUsuario.celular}`
       this.email = dadosUsuario.email;
       this.senha = dadosUsuario.senha;
       this.senhaConfirm = dadosUsuario.senha;
@@ -313,6 +313,7 @@ export default{
         excluirButton.removeAttribute("disabled");
 
         const newUserData = {
+          userId: sessionStorage.getItem('userId'),
           nomeCompleto: nomeInput.value,
           dataNascimento: dataNascimentoInput.value,
           email: emailInput.value,
