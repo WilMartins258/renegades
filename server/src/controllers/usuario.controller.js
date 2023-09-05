@@ -13,10 +13,12 @@ const getUserById = async (userId) => {
 };
 
 const updateUserData = async (newUserData) => {   
-    const atualizarUsuarioQuery =   `UPDATE usuario
-                                    SET nome = ?, sobrenome = ?, codigoArea = ?, celular = ?, 
-                                    email = ?, senha = ?, fotoPerfil = ?, dataNascimento = ?
-                                    WHERE id = ?;`;
+    const atualizarUsuarioQuery =   `
+        UPDATE usuario
+        SET nome = ?, sobrenome = ?, codigoArea = ?, celular = ?, 
+        email = ?, senha = ?, fotoPerfil = ?, dataNascimento = ?
+        WHERE id = ?;
+    `;
     const connection = await db;
     
     const [atualizarUsuario] = await connection.query(atualizarUsuarioQuery, newUserData);
