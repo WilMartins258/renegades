@@ -13,4 +13,35 @@ router.get('/:id', async (req, res) => {
     res.status(200).send(enderecoData);
 });
 
+router.put('/', async (req, res) => {
+        console.log('Início da rota endereco PUT');
+    try {
+        const reqBody = req.body;
+
+        const novosDadosEndereco = {
+            cep: reqBody.cep,
+            estado: reqBody.uf,
+            cidade: reqBody.cidade,
+            lodradouro: reqBody.rua,
+            bairro: reqBody.bairro,
+            numero: reqBody.numero,
+            enderecoId: reqBody.enderecoId
+        };
+        
+        const novosDadosEnderecoArray = Object.values(novosDadosEndereco);
+        
+        const newenderecoData = await enderecoController.updateEnderecoData(novosDadosEnderecoArray);
+
+        res.status(200).send({
+            msg: 'Dados de endereço do usuário alterados com sucesso!'
+        });
+    } catch (error) {
+        console.error('ERROR:: ', error);
+        res.status(500).send({
+            errorMsg: 'Ocorreu um erro ao processar a solicitação.',
+            error: error
+        });
+    }
+});
+
 module.exports = router;

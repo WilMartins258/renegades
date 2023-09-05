@@ -37,38 +37,40 @@ router.get('/:id', async (req, res) => {
 });
 
 router.put('/', async (req, res) => {
-    const reqBody = req.body;
-
-    const nomeDividido = separarNomeService.dividirNome(reqBody?.nomeCompleto);
-    const numeroDividido = separarCelularService.extrairCodigoAreaENumero(reqBody?.celularCompleto);
-    const dataNascMySqlFormat = dataToMySqlService.dataToMySqlFormat(reqBody?.dataNascimento);
-
-    const novosDadosUsuario = {
-        nome: nomeDividido.nome,
-        sobrenome: nomeDividido.sobrenome,
-        codigo: numeroDividido?.codigoArea,
-        celular: numeroDividido?.numero,
-        // cpf: null, // Posteriormente ou iremos remover o CPF do banco ou iremos adicionar ele ao front
-        email: reqBody.email,
-        senha: reqBody.senha,
-        foto: 'test-blob',
-        dataNascimento: dataNascMySqlFormat,
-        userId: reqBody.userId
-    };
-
-   const novosDadosUsuarioArray = Object.values(novosDadosUsuario);
-
     try {
+        const reqBody = req.body;
+
+        const nomeDividido = separarNomeService.dividirNome(reqBody?.nomeCompleto);
+        const numeroDividido = separarCelularService.extrairCodigoAreaENumero(reqBody?.celularCompleto);
+        const dataNascMySqlFormat = dataToMySqlService.dataToMySqlFormat(reqBody?.dataNascimento);
+
+        const novosDadosUsuario = {
+            nome: nomeDividido.nome,
+            sobrenome: nomeDividido.sobrenome,
+            codigo: numeroDividido?.codigoArea,
+            celular: numeroDividido?.numero,
+            // cpf: null, // Posteriormente ou iremos remover o CPF do banco ou iremos adicionar ele ao front
+            email: reqBody.email,
+            senha: reqBody.senha,
+            foto: 'test-blob',
+            dataNascimento: dataNascMySqlFormat,
+            userId: reqBody.userId
+        };
+
+        const novosDadosUsuarioArray = Object.values(novosDadosUsuario);
+    
         const newUserData = await userController.updateUserData(novosDadosUsuarioArray);
+
+        res.status(200).send({
+            msg: 'Dados do usuário alterados com sucesso!'
+        });
     } catch (error) {
         console.error('ERROR:: ', error);
-    } finally {
-        res.status(200).send(
-            {
-                msg: 'Dados do usuário alterados com sucesso!'
-            }
-        );
-    }    
+        res.status(500).send({
+            errorMsg: 'Ocorreu um erro ao processar a solicitação.',
+            error: error
+        });
+    }
 });
 
 router.post('/', async (req, res) => {
