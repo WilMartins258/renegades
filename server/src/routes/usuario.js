@@ -64,11 +64,14 @@ router.put('/', async (req, res) => {
     
         const newUserData = await userController.updateUserData(novosDadosUsuarioArray);
 
-        res.status(200).send({
+        // console.log('newUserData:: ', newUserData);
+
+        res.status(200).send(
+            {
             msg: 'Dados do usuário alterados com sucesso!'
         });
     } catch (error) {
-        console.error('Erro na rota PUT /', error);
+        console.error('Erro na rota PUT: ', error);
         res.status(500).send({
             errorMsg: 'Ocorreu um erro ao processar a solicitação.',
             error: error.message
