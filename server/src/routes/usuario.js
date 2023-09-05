@@ -3,7 +3,6 @@ const router = express.Router();
 
 // Importando controllers e serviços que serão utilizados nas rotas
 const userController = require('./../controllers/usuario.controller.js');
-const enderecoController = require('./../controllers/endereco.controller.js');
 const separarNomeService = require('../services/separarNome.service.js');
 const separarCelularService = require('../services/separarCelular.service.js');
 const dataToMySqlService = require('../services/dataToMySql.service.js');
@@ -38,44 +37,10 @@ router.get('/:id', async (req, res) => {
 });
 
 router.put('/', async (req, res) => {
-    console.log('Início da rota usuario PUT');
     const reqBody = req.body;
-    /*
-       reqBody::  {
-        userId: '2',
-        nomeCompleto: 'Lucas Maximiano da Silva',
-        dataNascimento: '01/05/2000',
-        email: 'lucas@gmail.com',
-        celularCompleto: '15999997777',
-        senha: 'senha123',
-        enderecoId: '2',
-        cep: '1112233',
-        rua: 'Rua do Lucas',
-        numero: '1',
-        bairro: 'Bairro do Lucas',
-        cidade: 'Sorocaba',
-        uf: 'SP'
-    }
-    */
 
-    const novosDadosEndereco = {
-        cep: reqBody.cep,
-        estado: reqBody.uf,
-        cidade: reqBody.cidade,
-        lodradouro: reqBody.rua,
-        bairro: reqBody.bairro,
-        numero: reqBody.numero,
-        enderecoId: reqBody.enderecoId
-    };
-
-    console.log('novosDadosEndereco:: ', novosDadosEndereco);
-    
-    const novosDadosEnderecoArray = Object.values(novosDadosEndereco);
-    
-    console.log('novosDadosEnderecoArray:: ', novosDadosEnderecoArray);
-
-    const nomeDividido = dividirNomeService.dividirNome(reqBody?.nomeCompleto);
-    const numeroDividido = dividirCelularService.extrairCodigoAreaENumero(reqBody?.celularCompleto);
+    const nomeDividido = separarNomeService.dividirNome(reqBody?.nomeCompleto);
+    const numeroDividido = separarCelularService.extrairCodigoAreaENumero(reqBody?.celularCompleto);
     const dataNascMySqlFormat = dataToMySqlService.dataToMySqlFormat(reqBody?.dataNascimento);
 
     const novosDadosUsuario = {
@@ -107,8 +72,7 @@ router.put('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-
-    // console.log('Início da rota usuario POST');
+    console.log('Início da rota usuario POST');
     const reqBody = req.body;
 
     // console.log('reqBody:: \n', reqBody);
