@@ -1,7 +1,7 @@
 <template>
-    <div class="quadro-Opcionais">
+    <div class="quadro-estilosMusicais">
       <button
-        v-for="opcao in opcoes"
+        v-for="opcao in estilos"
         :key="opcao.id"
         :class="{ botao: true, selecionado: opcaoSelecionada(opcao) }"
         @click="selecionarOpcao(opcao)"
@@ -10,65 +10,65 @@
       </button>
     </div>
   
-    <div id="opcoesSelecionadas">
-      <br><p>Opções selecionadas: {{ opcoesSelecionadasString }}</p>
+    <div id="estilosSelecionadas">
+      <br><p>Estilos selecionados: {{ estilosSelecionadasString }}</p>
     </div>
   </template>
   
   <script>
   export default {
-    name: "Opcionais",
+    name: "EstilosMusicas",
     props: {
     value: Array, // Adicione uma propriedade value para usar v-model
     },
     data() {
       return {
-        //opcoes: [] // usar com a API
-        opcoesSelecionadas: [],
-        opcoes: [ // remover ou comentar ao testar a API
+        //estilos: [] // usar com a API
+        estilosSelecionadas: [],
+        estilos: [ // remover ou comentar ao testar a API
           {
             id: 1,
-            nome: "Oferece Rodízio"
+            nome: "Rock"
           },
           {
             id: 2,
-            nome: "Wi-Fi"
+            nome: "Sertanejo"
           },
           {
             id: 3,
-            nome: "Estacionamento"
+            nome: "Hip-hop"
           },
           {
             id: 4,
-            nome: "Área Kids"
+            nome: "Funk"
           },
           {
             id: 5,
-            nome: "Rodízio"
+            nome: "Clássica"
           }
         ]
       };
     },
     computed: {
-      opcoesSelecionadasString() {
+      estilosSelecionadasString() {
         // Converte o array de opções selecionadas em uma string separada por vírgula
-        return this.opcoesSelecionadas.map(opcao => opcao.nome).join(", ");
+        return this.estilosSelecionadas.map(opcao => opcao.nome).join(", ");
       }
     },
     methods: {
       selecionarOpcao(opcao) {
-if (this.opcaoSelecionada(opcao)) {
+        if (this.opcaoSelecionada(opcao)) {
           // Se a opção já estiver selecionada, remova-a da lista
-          this.opcoesSelecionadas = this.opcoesSelecionadas.filter(item => item.id !== opcao.id);
+          this.estilosSelecionadas = this.estilosSelecionadas.filter(item => item.id !== opcao.id);
         } else {
           // Caso contrário, adicione-a à lista
-          this.opcoesSelecionadas.push(opcao);
+          this.estilosSelecionadas.push(opcao);
         }
       },
       opcaoSelecionada(opcao) {
-        return this.opcoesSelecionadas.some(item => item.id === opcao.id);
+        return this.estilosSelecionadas.some(item => item.id === opcao.id);
       },
-      getOpcoes() {
+      getestilos() {
         // Fazer chamada a API para obter as informações das opções.
       }
     }
@@ -76,7 +76,7 @@ if (this.opcaoSelecionada(opcao)) {
   </script>
   
   <style scoped>
-  .quadro-Opcionais {
+  .quadro-estilosMusicais {
     border: 2px solid white;
     padding: 20px;
     width: 300px;

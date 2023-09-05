@@ -83,7 +83,7 @@
         </div>
           
         <div class="group">
-            <button type="button" class="button" id="alterarButton" @click="">Alterar</button>
+            <button type="button" class="button" id="alterarButton">Alterar</button>
             <button type="button" class="button" id="salvarButton" disabled>Salvar</button>
             <button type="button" class="button" id="excluirButton">Excluir</button>
             <button type="button" class="button" id="cancelarButton" disabled>Cancelar</button>

@@ -73,170 +73,47 @@
 </div>
   </section><!-- Fecha seção 1-->
 
-           <!--2-Contato-->
+  <!--2-Contato-->
 
-  <section v-show="currentSection === 2">
+  <section v-show="currentSection === 2" class="Secao2">
     <h2>Como podemos contatá-lo?</h2>
     <br><br>
-<div class="group">
-  <label for="telefone" class="label">Telefone:</label><br />
-  <input type="text" v-model="telefone" id="telefone" class="input" name="telefone" required />
-</div>
 
-<div class="group">
-<input type="checkbox" v-model="isTelefoneWhatsApp" id="whatsapp" name="whatsapp" />
-<label for="whatsapp">
-  <img src="../../../public/img/whatsappLogo.png" alt="É WhatsApp?" class="whatsapp-image" />
-</label>
-</div><br />
+    <DashContato v-model="formData.listaContatos"/> <!-- Chamada para o Component --> 
+    <br>
+    <DashRdSociais v-model="formData.listaRedesSociais"/><!-- Chamada para o Component --> 
 
-<div class="group">
-  <label for="celular" class="label">Celular:</label><br />
-  <input type="text" v-model="celular" id="celular" class="input" name="celular" required />
-</div>
-
-<div class="group">
-<input type="checkbox" v-model="isCelularWhatsApp" id="whatsappCelular" name="whatsapp" />
-<label for="whatsappCelular">
-  <img src="../../../public/img/whatsappLogo.png" alt="É WhatsApp?" class="whatsapp-image" />
-</label>
-</div><br />
-
-<div class="group">
-  <label for="site" class="label">Informe seu site:</label><br />
-  <input type="text" v-model="site" id="site" class="input" name="site" /><br />
-</div>
-
-<div class="group">
-  <label for="cardapioOnline" class="label">Cardápio Online:</label><br />
-  <input type="text" v-model="cardapioOnline" id="cardapioOnline" class="input" name="nome" /><br />
-</div>
   </section><!-- Fecha seção 2-->
 
   <!--3-Dados do Estabelecimento-->
 
-  <section v-show="currentSection === 3">
-    <h2>Informações do estabelecimento:</h2><br><br>
+      <section v-show="currentSection === 3">
+        <h2>Informações do estabelecimento:</h2><br><br>
+        <div class="group">
+      <label for="nome" class="label">Nome do Estabelecimento:</label><br />
+      <input type="text" v-model="nomeEstabelecimento" id="nome" class="input" name="nome" />
+    </div>
+
     <div class="group">
-  <label for="nome" class="label">Nome do Estabelecimento:</label><br />
-  <input type="text" v-model="nomeEstabelecimento" id="nome" class="input" name="nome" />
-</div>
+      <label for="cnpj" class="label">CNPJ:</label><br />
+      <input v-model="cnpj" type="text" id="cnpj" class="input" name="cnpj" required ref="cnpjInput"/>
+    </div>
 
-<div class="group">
-  <label for="cnpj" class="label">CNPJ:</label><br />
-  <input v-model="cnpj" type="text" id="cnpj" class="input" name="cnpj" required ref="cnpjInput"/>
-</div>
-
-<div class="group">
-  <label for="cpf" class="label">CPF:</label><br />
-  <input v-model="cpf" type="text" id="cpf" class="input" name="cpf" required ref="cpfInput"/>
-</div>
-
-<div class="group">
-  <label for="descricao" class="label">Descrição do Estabelecimento:</label><br />
-  <textarea v-model="descricaoEstabelecimento" id="descricao" class="input" name="descricao" rows="4" maxlength="200" required></textarea>
-</div>
-
-<div class="group ex1">
-  <label class="label">Oferece Rodízio?</label>
-  <br>
-  <label class="radio sim">
-    <input type="radio" name="ofereceRodizio" value="1" v-model="ofereceRodizio" style="display: none;"> 
-    <span>Sim</span>
-  </label>
-  <label class="radio nao">
-    <input class="Teste" type="radio" name="ofereceRodizio" value="2" v-model="ofereceRodizio" style="display: none;" checked>
-    <span>Não</span>
-  </label>
-</div><br>
-
-<div class="group ex1">
-    <label class="label">Toca Música?</label>
+    <div class="group">
+      <label for="descricao" class="label">Descrição do Estabelecimento:</label><br />
+      <textarea v-model="descricaoEstabelecimento" id="descricao" class="input" name="descricao" rows="4" maxlength="200" required></textarea>
+    </div> <br>
+    <h2>A categoria do meu estebelecimento é:</h2>
     <br>
-    <label class="radio sim">
-      <input type="radio" name="tocaMusica" value="1" v-model="tocaMusica" style="display: none;"> 
-      <span>Sim</span>
-    </label>
-    <label class="radio nao">
-      <input type="radio" name="tocaMusica" value="2" v-model="tocaMusica" style="display: none;" checked>
-      <span>Não</span>
-    </label>
-  </div><br>
-
-  <div class="group ex1" v-show="tocaMusica === '1'">
-    <label class="label">É ao Vivo?</label>
-    <br>
-    <label class="radio sim">
-      <input type="radio" name="musicaAoVivo" value="1" v-model="musicaAoVivo" style="display: none;"> 
-      <span>Sim</span>
-    </label>
-    <label class="radio nao">
-      <input type="radio" name="musicaAoVivo" value="2" v-model="musicaAoVivo" style="display: none;" checked>
-      <span>Não</span>
-    </label>
-  </div><br>
-
-  <div class="group" v-show="tocaMusica === '1'">
-    <label for="generoMusica" class="label">Gênero de Música:</label><br />
-    <select v-model="generoMusica" id="generoMusica" class="input" name="generoMusica" required>
-      <option value="rock">Rock</option>
-      <option value="sertanejo">Sertanejo</option>
-      <option value="jazz">Jazz</option>
-      <option value="pop">Pop</option>
-    </select><br />
-
-</div>
+    <Categorias v-model="formData.categorias"/>
   </section><!-- Fecha seção 3-->
 
   <section v-show="currentSection === 4">
-
-  <div class="group ex1">
-    <label class="label">Tem Área Kids?</label>
-    <br>
-    <label class="radio sim">
-      <input type="radio" name="areaKids" value="1" v-model="areaKids" style="display: none;"> 
-      <span>Sim</span>
-    </label>
-    <label class="radio nao">
-      <input type="radio" name="areaKids" value="2" v-model="areaKids" style="display: none;" checked>
-      <span>Não</span>
-    </label>
-  </div><br>
-
-    <div class="group">
-  <label for="categoriaEstabelecimento" class="label">Categoria do Estabelecimento:</label><br />
-  <select v-model="categoriaEstabelecimento" id="categoriaEstabelecimento" class="input" name="categoriaEstabelecimento" required>
-    <option value="bar">Bar</option>
-    <option value="lanchonete">Lanchonete</option>
-    <option value="pizzaria">Pizzaria</option>
-    <option value="hamburgueria">Hamburgueria</option>
-  </select><br />
-  </div>
-  <div class="group ex1">
-  <label class="label">Precisa Agendar?</label>
+  <h2>Meu Estebelecimento Oferece:</h2>
   <br>
-  <label class="radio sim">
-    <input type="radio" name="precisaAgendar" value="1" v-model="precisaAgendar" style="display: none;"> 
-    <span>Sim</span>
-  </label>
-  <label class="radio nao">
-    <input type="radio" name="precisaAgendar" value="2" v-model="precisaAgendar" style="display: none;" checked>
-    <span>Não</span>
-  </label>
-</div><br>
-
-<div class="group ex1">
-  <label class="label">Tem Estacionamento?</label>
-  <br>
-  <label class="radio sim">
-    <input type="radio" name="temEstacionamento" value="1" v-model="temEstacionamento" style="display: none;"> 
-    <span>Sim</span>
-  </label>
-  <label class="radio nao">
-    <input type="radio" name="temEstacionamento" value="2" v-model="temEstacionamento" style="display: none;" checked>
-    <span>Não</span>
-  </label>
-</div>
+  <Opcionais v-model="formData.opcoesSelecionadas"/>
+  <br><br>
+  <EstilosMusicas v-model="formData.estilosMusicais"/>
   </section><!-- Fecha seção 4-->
 
   
@@ -306,11 +183,27 @@
       class="miniatura-imagem"
     />
   </div>
-
-  <DashHorAtendimento/>
-
+  <br>
+  <DashHorAtendimento />
+  <br>
+  <div class="group">
+        <div>
+          <input
+            type="button"
+            class="button"
+            value="Salvar"
+            @click="salvarDados"
+          />
+          <input
+            type="button"
+            class="button"
+            value="Cancelar"
+            @click="cancelar"
+          /> <br><br>
+        </div>
+      </div>
   </section><!-- Fecha seção 6-->
-
+  <br>
   <div class="buttons">
     <button class="custom-button" @click="previousSection" :disabled="currentSection === 1" ><i class="uil uil-arrow-circle-left"></i></button>
     <button class="custom-button" @click="nextSection" :disabled="currentSection === 6"><i class="uil uil-arrow-circle-right"></i></button>
@@ -327,15 +220,27 @@
 import IMask from "imask";
 import axios from "axios";
 import DashHorAtendimento from "./ComponentsChild/DashHorAtendimento.vue"
+import Opcionais from "./ComponentsChild/Opcionais.vue"
+import DashContato from "./ComponentsChild/DashContato.vue";
+import DashRdSociais from "./ComponentsChild/DashRdSociais.vue";
+import Categorias from "./ComponentsChild/Categorias.vue";
+import EstilosMusicas from "./ComponentsChild/EstilosMusicas.vue";
 export default {
 components: {
   DashHorAtendimento,
+  DashContato,
+  Opcionais,
+  DashRdSociais,
+  Categorias,
+  EstilosMusicas,
 },
 name: "AddEstabelecimento",
 data() {
   return {
     currentSection: 1,
+    nome: "",
     cnpj: "",
+    descricao: "",
     cep: "",
     endereco: {
       rua: "",
@@ -343,13 +248,54 @@ data() {
       cidade: "",
       uf: "",
       },
+      numero: "",
       recomendacao: [
       { name: '', description:  '', photo: null },],
-      tocaMusica: '2', // '1'  Sim, '2'  Não
       estabelecimentoPhoto: null,
-  };
+      // Adicione aqui os campos do seu formulário principal
+      formData: {
+        nomeEstabelecimento: "",
+        cnpj: "",
+        descricaoEstabelecimento: "",
+        cep: "",
+        endereco: {
+          rua: "",
+          bairro: "",
+          cidade: "",
+          uf: "",
+        },
+        numero: "",
+        recomendacao: [
+          { name: "", description: "", photo: null },
+        ],
+        estabelecimentoPhoto: null,
+        categorias: [],//Array para armazenar a lista de categorias
+        listaContatos: [], //Array para armazenar a lista de contatos
+        listaRedesSociais: [],//Array para armazenar a lista de Redes Socias
+        estilosMusicais: [],//Array para armazenar a lista de Estilos Musicais
+        listaHorarios: [],//Array para armazenar a lista de Horarios
+      },
+    };
 },
 methods: {
+  salvarDados() {
+      // Agora você pode acessar todos os dados do formulário e dos componentes filhos
+      console.log("nome:", this.nomeEstabelecimento);
+      console.log("cnpj:", this.cnpj);
+      console.log("descricaoEstabelecimento:", this.descricaoEstabelecimento);
+      console.log("cep:", this.formData.cep);
+      console.log("endereco:", this.endereco);
+      console.log("bairro:", this.bairro);
+      console.log("uf:", this.uf);
+      console.log("numero:", this.numero);
+      console.log("Dados do formulário e componentes filhos:", this.formData);
+      console.log("Categorias selecionadas:", this.formData.categorias);
+      console.log("Lista de Contatos:", this.formData.listaContatos);
+      console.log("Lista de Redes Sociais:", this.formData.listaRedesSociais);
+      console.log("Lista de estilos Musicais:", this.formData.estilosMusicais);
+      console.log("Lista de Horários:", this.formData.listaHorarios);
+      // Aqui você pode enviar os dados para o servidor ou realizar outras ações necessárias
+    },
   nextSection() {
     if (this.currentSection < 6) {
       this.currentSection++;
@@ -437,21 +383,12 @@ methods: {
       
 },
   mounted(){
-    const telefoneInput = document.getElementById("telefone");
-    const telefoneMask = IMask(telefoneInput, {
-      mask: "(00) 0000-0000",
-    });
-
-    const celularInput = document.getElementById("celular");
-    const celularMask = IMask(celularInput, {
-      mask: "(00) 00000-0000",
-    });
-
     const cnpjInput = document.getElementById("cnpj");
     const cnpjMask = IMask(cnpjInput, {
       mask: "00.000.000/0000-00",
   });
 }
+
 };
 </script>
 
@@ -468,6 +405,14 @@ width: 100%;
 height: 100vh;
 }
 
+.posicaoform-wrap {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    padding: 50px 30px 50px 30px;
+    flex-wrap: wrap;
+  }
+
 h2 {
 color: #fff;
 }
@@ -483,6 +428,9 @@ object-fit: cover;
 border: 2px solid red;
 margin-top: 10px;
 }
+
+
+
 
 /* Responsividade */
 

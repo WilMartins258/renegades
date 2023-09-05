@@ -62,6 +62,10 @@
 
 <script>
 export default {
+  props: {
+    value: Array, // Adicione uma propriedade value para usar v-model
+  },
+  name: "DashRdSociais",
   name: "DashRdSociais",
   data() {
     return {
@@ -232,15 +236,24 @@ input {
   .container {
     max-width: 768px;
   }
+
+  .respButton {
+    padding: 6px 15px;
+  }
 }
 
 @media (max-width: 768px) {
   .container {
     max-width: 600px;
   }
+  table {
+    font-size: 14px;
+  }
+  th,
+  td {
+    padding: 6px;
+  }
 }
-
-
 
 @media (max-width: 600px) {
 
@@ -249,9 +262,9 @@ input {
     flex-direction: column; 
     align-items: flex-start; 
   }
-.respButton{
-  padding: 8px 25px;
-}
+  .respButton {
+    padding: 4px 10px;
+  }
   .container {
     max-width: 350px;
   }
@@ -263,16 +276,22 @@ input {
   button {
     margin-top: 8px;
   }
+
+  input {
+    width: 100%; 
+    box-sizing: border-box; 
+  }
 }
 
 @media (max-width: 414px) {
   table {
-    font-size: 10px; 
+    font-size: 9px; 
   }
   th,
   td {
-    padding: 6px; 
+    padding: 4px; 
   }
+  
 }
 
 @media (max-width: 360px) {
@@ -292,19 +311,40 @@ input {
   h1 {
     font-size: 18px;
   }
-  table {
-    font-size: 12px;
-  }
+  
   button {
     padding: 8px 20px;
   }
   input {
     padding: 8px 10px;
+  }
+
+  .respButton {
+    padding: 8px 15px;
+  }
+
+  table {
+    font-size: 6.5px; 
+  }
+  th,
+  td {
+    padding: 3.5px; 
+  }
+
+  button {
+    padding: 3px 14px;
+  }
 }
 
-.respButton{
-  padding: 8px 15px;
+@media (max-width: 320px) {
+  .container {
+    max-width: 280px; 
+  }
 }
 
+@media (max-width: 280px) {
+  .container {
+    max-width: 240px; 
+  }
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>Horários de Atendimento</h1>
+    <!--<h1>Horários de Atendimento</h1>-->
     <div>
       <form @submit.prevent="salvarHorario">
         <label for="diaSemana">Dias de Funcionamento:</label>
@@ -61,12 +61,17 @@
         </tr>
       </tbody>
     </table>
-  </div>>
+  </div>
 </template>
 
 <script>
 export default {
   name: "DashHorAtendimento",
+  props: {
+    value: {
+      type: Array, 
+    }
+  },
   data() {
     return {
       diaSelecionado: "Segunda",
@@ -129,6 +134,8 @@ export default {
         this.listahorarios.push(novoHorario);
         this.limparCampos();
         this.timeFieldsError = ""; // Limpar o erro, caso tenha sido exibido anteriormente
+
+        this.$emit("input", this.listahorarios); // Emitir o evento para atualizar o valor no componente pai
       }
     },
     limparCampos() {
@@ -231,28 +238,11 @@ export default {
 </script>
 
 <style scoped>
-
-select,
-input[type="time"] {
-  border: none;
-  padding: 8px 10px;
-  border-radius: 25px;
-  background: rgba(211, 201, 201, 0.774);
-  width: 100%;
-}
-
-/* Ajuste a margem para o select e os campos de entrada */
-select,
-input[type="time"],
-label {
-  margin: 0.4rem 0;
-}
-
 .container {
   max-width: 700px;
   margin: 0 auto;
   padding: 20px;
-  background-color: rgba(255, 255, 255, 0.8); 
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 h1 {
@@ -261,14 +251,25 @@ h1 {
 
 form {
   display: flex;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
   margin-bottom: 10px;
 }
 
 label,
-input,
+input[type="time"],
+select,
 button {
-  margin-right: 10px;
+  margin: 0.4rem 0;
+}
+
+select,
+input[type="time"],
+input[type="text"] {
+  border: none;
+  padding: 8px 10px;
+  border-radius: 25px;
+  width: 100%;
+  background: rgba(211, 201, 201, 0.774);
 }
 
 table {
@@ -307,18 +308,10 @@ button:hover {
 
 button:disabled:hover {
   background: gray;
-
-}
-
-input {
-  border: none;
-  padding: 8px 60px;
-  border-radius: 25px;
-  background: rgba(211, 201, 201, 0.774);
 }
 
 .error input {
-  border-color: red; /* Estilizar o campo de entrada quando estiver vazio */
+  border-color: red;
 }
 
 .error-message {
@@ -327,8 +320,7 @@ input {
   font-size: 14px;
 }
 
-/* Responsive*/
-
+/* Responsive */
 @media (max-width: 1160px) {
   .container {
     max-width: 950px;
@@ -339,79 +331,99 @@ input {
   .container {
     max-width: 768px;
   }
+  /* Adjust button padding for smaller screens */
+  button {
+    padding: 8px 30px;
+  }
 }
 
 @media (max-width: 768px) {
   .container {
     max-width: 600px;
   }
+  /* Adjust table font size and padding */
+  table {
+    font-size: 14px;
+  }
+  th,
+  td {
+    padding: 6px;
+  }
 }
-
-
 
 @media (max-width: 600px) {
-
   form {
     display: flex;
-    flex-direction: column; 
-    align-items: flex-start; 
+    flex-direction: column;
+    align-items: flex-start;
   }
-.respButton{
-  padding: 8px 25px;
-}
+  /* Adjust button padding for smaller screens */
+  button {
+    padding: 8px 20px;
+  }
   .container {
     max-width: 350px;
   }
-  
   form {
     justify-content: flex-start;
   }
-  
-  button {
-    margin-top: 8px;
+  input {
+    width: 100%;
+    box-sizing: border-box;
   }
 }
 
 @media (max-width: 414px) {
+  /* Adjust table font size and padding */
   table {
-    font-size: 10px; 
+    font-size: 10px;
   }
   th,
   td {
-    padding: 6px; 
+    padding: 4px;
   }
 }
 
 @media (max-width: 360px) {
   h1 {
-    font-size: 16px; 
+    font-size: 16px;
   }
-  button {
-    padding: 8px 25px;
-  }
-  input {
-    padding: 8px 35px;
-}
-  
 }
 
 @media (max-width: 350px) {
   h1 {
     font-size: 18px;
   }
-  table {
-    font-size: 12px;
-  }
+  /* Adjust button and input padding for smaller screens */
   button {
-    padding: 8px 20px;
+    padding: 8px 15px;
   }
   input {
     padding: 8px 10px;
+  }
+  /* Adjust table font size and padding for very small screens */
+  table {
+    font-size: 10px;
+  }
+  th,
+  td {
+    padding: 3px;
+  }
+  /* Adjust button padding for very small screens */
+  button {
+    padding: 3px 10px;
+  }
 }
 
-.respButton{
-  padding: 8px 15px;
+@media (max-width: 320px) {
+  .container {
+    max-width: 280px;
+  }
 }
 
+@media (max-width: 280px) {
+  .container {
+    max-width: 240px;
+  }
 }
 </style>

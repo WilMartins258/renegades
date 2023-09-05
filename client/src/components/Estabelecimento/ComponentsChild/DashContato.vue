@@ -1,6 +1,7 @@
 <template>
+  
   <div class="container">
-    <h1>Contatos</h1>
+    <!--<h1>Contatos</h1>-->
     <div>
       <form @submit.prevent="salvarContato">
         <label for="tipoContato">Tipo de Contato:</label>
@@ -16,10 +17,10 @@
         <p v-if="campoVazio" class="error-message">Informe um número válido.</p>
         <button type="submit" :disabled="isEditing" :class="{ 'disabled-button': isEditing }">
           {{ isEditing ? 'Salvando...' : 'Salvar' }}
-        </button>
-        
+        </button> <br><br>
       </form>
     </div>
+    <br>
     <table>
       <thead>
         <tr>
@@ -61,6 +62,9 @@
 <script>
 export default {
   name: "DashContato",
+  props: {
+    value: Array, // O valor passado pelo componente pai
+  },
   data() {
     return {
       tipoContato: "Telefone",
@@ -143,12 +147,20 @@ input[type="time"] {
   width: 100%;
 }
 
+select,
+input[type="text"],
+input[type="checkbox"] {
+  width: 100%; /* Defina a largura para 100% */
+}
+
+
 /* Ajuste a margem para o select e os campos de entrada */
 select,
 input[type="time"],
 label {
   margin: 0.4rem 0;
 }
+
 
 .container {
   max-width: 700px;
@@ -165,18 +177,27 @@ form {
   display: flex;
   flex-wrap: wrap; 
   margin-bottom: 10px;
+  max-width: 600px; /* Ajuste a largura máxima conforme necessário */
+  margin: 0 auto; /* Centralize o formulário no container */
+  align-items: center; /* Alinhe verticalmente os elementos no centro */
+}
+label {
+  margin-right: 0; /* Remova a margem direita */
 }
 
-label,
+
 input,
 button {
   margin-right: 10px;
 }
 
 table {
-  width: 100%;
+  width: 90%;
   border-collapse: collapse;
+  max-width: 100%; /* Ajuste a largura máxima conforme necessário */
+  margin: 0 auto; /* Centralize a tabela no formulário */
 }
+
 
 th,
 td {
@@ -245,15 +266,24 @@ input {
   .container {
     max-width: 768px;
   }
+
+  .respButton {
+    padding: 6px 15px;
+  }
 }
 
 @media (max-width: 768px) {
   .container {
     max-width: 600px;
   }
+  table {
+    font-size: 14px; /* Ajuste o tamanho da fonte para dispositivos menores */
+  }
+  th,
+  td {
+    padding: 6px; /* Ajuste o espaçamento das células para dispositivos menores */
+  }
 }
-
-
 
 @media (max-width: 600px) {
 
@@ -262,9 +292,9 @@ input {
     flex-direction: column; 
     align-items: flex-start; 
   }
-.respButton{
-  padding: 8px 25px;
-}
+  .respButton {
+    padding: 4px 10px;
+  }
   .container {
     max-width: 350px;
   }
@@ -280,12 +310,13 @@ input {
 
 @media (max-width: 414px) {
   table {
-    font-size: 10px; 
+    font-size: 9px; 
   }
   th,
   td {
-    padding: 6px; 
+    padding: 4px; 
   }
+  
 }
 
 @media (max-width: 360px) {
@@ -305,9 +336,7 @@ input {
   h1 {
     font-size: 18px;
   }
-  table {
-    font-size: 12px;
-  }
+  
   button {
     padding: 8px 20px;
   }
@@ -318,6 +347,18 @@ input {
 .respButton{
   padding: 8px 15px;
 }
+
+table {
+    font-size: 6.5px; 
+  }
+  th,
+  td {
+    padding: 3.5px; 
+  }
+
+  button {
+    padding: 3px 14px;
+  }
 
 }
 </style>
