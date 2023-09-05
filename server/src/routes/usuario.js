@@ -37,50 +37,72 @@ router.get('/:id', async (req, res) => {
 router.put('/', async (req, res) => {
     console.log('Início da rota usuario PUT');
     const reqBody = req.body;
-    console.log('reqBody:: ', reqBody);
-
     /*
-        reqBody::  {
-            nomeCompleto: 'Lucas Maximiano dos Santos...',
-            dataNascimento: '01/05/2000',
-            email: 'lucas@gmail.com',
-            celularCompleto: '15999997777',
-            senha: 'senha123',
-            enderecoId: '2',
-            cep: '1112233',
-            rua: 'Rua do Lucas',
-            numero: '1',
-            bairro: 'Bairro do Lucas',
-            cidade: 'Sorocaba',
-            uf: 'SP'
-        }
+       reqBody::  {
+        userId: '2',
+        nomeCompleto: 'Lucas Maximiano da Silva',
+        dataNascimento: '01/05/2000',
+        email: 'lucas@gmail.com',
+        celularCompleto: '15999997777',
+        senha: 'senha123',
+        enderecoId: '2',
+        cep: '1112233',
+        rua: 'Rua do Lucas',
+        numero: '1',
+        bairro: 'Bairro do Lucas',
+        cidade: 'Sorocaba',
+        uf: 'SP'
+    }
     */
+
+    const novosDadosEndereco = {
+        cep: reqBody.cep,
+        estado: reqBody.uf,
+        cidade: reqBody.cidade,
+        lodradouro: reqBody.rua,
+        bairro: reqBody.bairro,
+        numero: reqBody.numero,
+        enderecoId: reqBody.enderecoId
+    };
 
     const nomeDividido = dividirNomeService.dividirNome(reqBody?.nomeCompleto);
     const numeroDividido = dividirCelularService.extrairCodigoAreaENumero(reqBody?.celularCompleto);
-    const dataMySql = dataToMySqlService.dataToMySqlFormat(reqBody?.dataNascimento)
+    const dataNascMySqlFormat = dataToMySqlService.dataToMySqlFormat(reqBody?.dataNascimento);
 
     const novosDadosUsuario = {
         nome: nomeDividido.nome,
         sobrenome: nomeDividido.sobrenome,
-        dataNascimento: dataMySql,
-        senha: reqBody.senha,
-        email: reqBody.email,
         codigo: numeroDividido?.codigoArea,
         celular: numeroDividido?.numero,
+        // cpf: null,
+        email: reqBody.email,
+        senha: reqBody.senha,
+        foto: 'test-blob',
+        dataNascimento: dataNascMySqlFormat,
+        userId: reqBody.userId
     };
 
-    const novosDadosUsuarioArray = Object.values(novosDadosUsuario);
+   const novosDadosUsuarioArray = Object.values(novosDadosUsuario);
+
+    try {
+        const newUserData = await userController.updateUserData(novosDadosUsuarioArray);
+    } catch (error) {
+        console.error('ERROR:: ', error);
+    } finally {
+        res.status(200).send(
+            {
+                msg: 'Dados do usuário alterados com sucesso!'
+            }
+        );
+    }
+
     
-    console.log('novosDadosUsuario:: ', novosDadosUsuario);
     console.log('novosDadosUsuarioArray:: ', novosDadosUsuarioArray);
 
     // reqBody?.enderecoId
 
     // console.log('reqBody:: \n', reqBody);
-    res.status(200).send(
-        'nomeDividido'
-    );
+    
 });
 
 router.post('/', async (req, res) => {
