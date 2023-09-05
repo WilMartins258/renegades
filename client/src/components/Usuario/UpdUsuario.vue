@@ -146,7 +146,7 @@ export default{
        * O trecho abaixo utilizando sessionStorage não será dessa forma
        * O ID do usuário já deve estar no sessionStorage desde o momento em que o usuário faz o login
        */
-      const userId = 2;
+      const userId = 1;
       sessionStorage.setItem('userId', userId);
 
       const userIdRecuperado = sessionStorage.getItem('userId');
@@ -329,8 +329,8 @@ export default{
         };
 
         try {
-          // const userPut = await api.put('/usuario', newUserData);
-          const enerecoPut = await api.put('/endereco', newEnderecoData);  
+          const userPut = await api.put('/usuario', newUserData);
+          const enerecoPut = await api.put('/endereco', newEnderecoData);
         } catch (error) {
           console.error('ERROR:: ', error);
         } finally {
