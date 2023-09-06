@@ -77,8 +77,9 @@ CREATE TABLE usuario (
     senha             VARCHAR(50) not null,
 	fotoPerfil        LONGBLOB,
     dataNascimento    DATE,
+	tipoUsuario       ENUM('normal', 'donoEstabelecimento', 'adm') not null,
 	adm               BOOLEAN not null,
-	favoritos         VARCHAR(200) -- (array contendo os Ids dos estabelecimentos favoritados - esse campo provavelmente vai mudar)
+	favoritos         VARCHAR(200) -- vai ter que virar uma tabela
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE contato (
@@ -157,6 +158,12 @@ CREATE TABLE avaliacao (
 	avaliacao         VARCHAR(200) not null,
 	data              DATE not null,
 	nota              INT not null -- Somente de 1 a 5
+) AUTO_INCREMENT = 1;
+
+-- CRIAR FAVORITOS E TIPO DE COMIDA
+
+CREATE TABLE favoritos (
+
 ) AUTO_INCREMENT = 1;
 
 
