@@ -50,29 +50,20 @@ export default {
 		},
 		async submit() {
 			if (this.validarCampos()) {
-				console.log('PASSOU NESSE IF INSANO')
 				this.$emit('do-sign-in', { ...this.$data });
 			}
 
 			const email = document.getElementById('sign-in-user');
 			const senha = document.getElementById('sign-in-pass');
 
-			console.log('submit');
-
-			console.log({value: email.value});
-			console.log({value: senha.value});
-
 			const loginInfo = {
 				email: email.value,
 				senha: senha.value
-			}
+			};
 
 			const login = await api.post("/login", loginInfo);
-
-			console.log({login});
-
-			console.log({retorno: login.data.msg});
 			
+			console.log('login:: ', login);
 		},
 	},
 }
