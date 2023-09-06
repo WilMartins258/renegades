@@ -91,17 +91,17 @@
         <h2>Informações do estabelecimento:</h2><br><br>
         <div class="group">
       <label for="nome" class="label">Nome do Estabelecimento:</label><br />
-      <input type="text" v-model="nomeEstabelecimento" id="nome" class="input" name="nome" />
+      <input type="text" v-model="formData.nomeEstabelecimento" id="nome" class="input" name="nome" />
     </div>
 
     <div class="group">
       <label for="cnpj" class="label">CNPJ:</label><br />
-      <input v-model="cnpj" type="text" id="cnpj" class="input" name="cnpj" required ref="cnpjInput"/>
+      <input v-model="formData.cnpj" type="text" id="cnpj" class="input" name="cnpj" required ref="cnpjInput"/>
     </div>
 
     <div class="group">
       <label for="descricao" class="label">Descrição do Estabelecimento:</label><br />
-      <textarea v-model="descricaoEstabelecimento" id="descricao" class="input" name="descricao" rows="4" maxlength="200" required></textarea>
+      <textarea v-model="formData.descricaoEstabelecimento" id="descricao" class="input" name="descricao" rows="4" maxlength="200" required></textarea>
     </div> <br>
     <h2>A categoria do meu estebelecimento é:</h2>
     <br>
@@ -238,7 +238,7 @@ name: "AddEstabelecimento",
 data() {
   return {
     currentSection: 1,
-    nome: "",
+    nomeEstabelecimento: "",
     cnpj: "",
     descricao: "",
     cep: "",
@@ -256,7 +256,7 @@ data() {
       formData: {
         nomeEstabelecimento: "",
         cnpj: "",
-        descricaoEstabelecimento: "",
+        descricao: "",
         cep: "",
         endereco: {
           rua: "",
@@ -280,14 +280,7 @@ data() {
 methods: {
   salvarDados() {
       // Agora você pode acessar todos os dados do formulário e dos componentes filhos
-      console.log("nome:", this.nomeEstabelecimento);
-      console.log("cnpj:", this.cnpj);
-      console.log("descricaoEstabelecimento:", this.descricaoEstabelecimento);
-      console.log("cep:", this.formData.cep);
-      console.log("endereco:", this.endereco);
-      console.log("bairro:", this.bairro);
-      console.log("uf:", this.uf);
-      console.log("numero:", this.numero);
+
       console.log("Dados do formulário e componentes filhos:", this.formData);
       console.log("Categorias selecionadas:", this.formData.categorias);
       console.log("Lista de Contatos:", this.formData.listaContatos);
