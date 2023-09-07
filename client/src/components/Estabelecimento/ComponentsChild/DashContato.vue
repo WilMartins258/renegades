@@ -1,24 +1,24 @@
 <template>
   <div class="container">
+    <h1>Contatos</h1>
     <div>
       <form @submit.prevent="salvarContato">
         <label for="tipoContato">Tipo de Contato:</label>
-        <select v-model="tipoContato" id="tipoContato" @change="limparCampos">
+        <select v-model="tipoContato" id="tipoContato" @change="aplicarMascara">
           <option value="Telefone">Telefone</option>
           <option value="Celular">Celular</option>
         </select>
         <label for="numero">Número:</label>
         <input v-model="numero" type="text" id="numero" name="numero" placeholder="Digite aqui"
-            :class="{ 'error': campoVazio }" @input="aplicarMascara" />
+          :class="{ 'error': campoVazio }" @input="limparCampoVazio" />
         <label for="isWhatsapp"><img src="../../../../public/img/whatsappLogo.png" alt="É WhatsApp?" class="whatsapp-image" /> É WhatsApp:</label>
         <input v-model="isWhatsapp" type="checkbox" id="isWhatsapp" name="isWhatsapp" />
         <p v-if="campoVazio" class="error-message">Informe um número válido.</p>
         <button type="submit" :disabled="isEditing" :class="{ 'disabled-button': isEditing }">
           {{ isEditing ? 'Salvando...' : 'Salvar' }}
-        </button> <br><br>
+        </button>
       </form>
     </div>
-    <br>
     <table>
       <thead>
         <tr>
@@ -61,9 +61,6 @@
 
 export default {
   name: "DashContato",
-  props: {
-    value: Array, // O valor passado pelo componente pai
-  },
   data() {
     return {
       tipoContato: "Telefone",
@@ -82,14 +79,23 @@ export default {
         return;
       }
 
-      const id = this.tipoContato === "Telefone" ? 1 : 2;
+      let tipoContatoId;
+
+      if (this.tipoContato === "Telefone") {
+        tipoContatoId = 1; // Defina 1 para Telefone
+      } else if (this.tipoContato === "Celular") {
+        tipoContatoId = 2; // Defina 2 para Celular
+      }
 
       const novoContato = {
-        id: id, // ID 1 para Telefone, ID 2 para Celular
         tipoContato: this.tipoContato,
         numero: this.numero,
         isWhatsapp: this.isWhatsapp,
       };
+      
+      // Adicione o tipoContatoId ao novoContato
+      novoContato.id = tipoContatoId;
+
       if (this.isEditing) {
         // Atualizar um contato existente
         this.listaContatos[this.editingIndex] = novoContato;
@@ -97,10 +103,9 @@ export default {
       } else {
         // Adicionar um novo contato
         this.listaContatos.push(novoContato);
-        
       }
+      
       this.limparCampos();
-      this.$emit('contato-salvo', novoContato);
     },
     limparCampos() {
       this.tipoContato = "Telefone";
@@ -139,28 +144,20 @@ export default {
       let numero = this.numero.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
 
       if (this.tipoContato === 'Telefone') {
-        this.numero = this.aplicarMascaraTelefone(numero, 'telefone');
+        // Aplicar a máscara de telefone
+        numero = numero.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
       } else if (this.tipoContato === 'Celular') {
-        this.numero = this.aplicarMascaraTelefone(numero, 'celular');
+        // Aplicar a máscara de celular
+        numero = numero.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
       }
+
+      this.numero = numero;
     },
 
-    aplicarMascaraTelefone(numero, tipo) {
-      let maxCaracteres = tipo === 'telefone' ? 10 : 11;
-
-      if (numero.length > maxCaracteres) {
-        numero = numero.slice(0, maxCaracteres); // Limita o número de caracteres
-      }
-
-      if (tipo === 'telefone') {
-        return numero.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
-      } else if (tipo === 'celular') {
-        return numero.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
-      }
-    },
     limparCampoNumero() {
-    this.numero = ''; // Limpa o número ao mudar o tipo de contato
-  },
+      this.numero = "";
+      console.log(this.tipoContato);
+    }
   },
 };
 </script>
@@ -196,7 +193,7 @@ label {
   max-width: 700px;
   margin: 0 auto;
   padding: 20px;
-  background-color: rgba(255, 255, 255, 0.8); 
+  background-color: rgba(255, 255, 255, 0.418); 
 }
 
 h1 {
@@ -232,6 +229,7 @@ td {
   padding: 8px;
   text-align: center;
   font-size: 14px;
+  color: #000;
 }
 
 th {
@@ -243,8 +241,9 @@ button {
   cursor: pointer;
   transition: 0.5s;
   border: none;
-  padding: 8px 50px;
+  padding: 8px 30px;
   border-radius: 25px;
+  color: #ccc;
 }
 
 button:hover {
@@ -287,9 +286,19 @@ input {
   }
 /* Responsive*/
 
+
+/* Responsive*/
+
 @media (max-width: 1160px) {
   .container {
-    max-width: 950px;
+    max-width: 200px;
+  }
+  table {
+    font-size: 25px;
+  }
+  th,
+  td {
+    padding: 6px;
   }
 }
 
@@ -307,9 +316,11 @@ input {
   .container {
     max-width: 600px;
   }
+
   table {
     font-size: 14px; /* Ajuste o tamanho da fonte para dispositivos menores */
   }
+
   th,
   td {
     padding: 6px; /* Ajuste o espaçamento das células para dispositivos menores */
@@ -317,23 +328,24 @@ input {
 }
 
 @media (max-width: 600px) {
-
   form {
     display: flex;
-    flex-direction: column; 
-    align-items: flex-start; 
+    flex-direction: column;
+    align-items: flex-start;
   }
+
   .respButton {
     padding: 4px 10px;
   }
+
   .container {
     max-width: 350px;
   }
-  
+
   form {
     justify-content: flex-start;
   }
-  
+
   button {
     margin-top: 8px;
   }
@@ -341,55 +353,69 @@ input {
 
 @media (max-width: 414px) {
   table {
-    font-size: 9px; 
+    font-size: 7px;
   }
+
   th,
   td {
-    padding: 4px; 
+    padding: px;
   }
-  
 }
 
 @media (max-width: 360px) {
   h1 {
-    font-size: 16px; 
+    font-size: 16px;
   }
+
   button {
     padding: 8px 25px;
   }
+
   input {
     padding: 8px 35px;
-}
-  
+  }
 }
 
 @media (max-width: 350px) {
   h1 {
     font-size: 18px;
   }
-  
+
   button {
     padding: 8px 20px;
   }
+
   input {
     padding: 8px 10px;
-}
-
-.respButton{
-  padding: 8px 15px;
-}
-
-table {
-    font-size: 6.5px; 
   }
+
+  .respButton {
+    padding: 8px 15px;
+  }
+
+  table {
+    font-size: 6.5px;
+  }
+
   th,
   td {
-    padding: 3.5px; 
+    padding: 3.5px;
   }
 
   button {
     padding: 3px 14px;
   }
+}
 
+@media (max-width: 320px) {
+  .container {
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 280px) {
+  .container {
+    max-width: 240px;
+  }
 }
 </style>

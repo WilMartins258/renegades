@@ -4,7 +4,7 @@
       <button
         v-for="opcao in categoria"
         :key="opcao.id"
-        :class="{ botao: true, selecionado: opcaoSelecionada(opcao) }"
+        :class="{ button: true, selecionado: opcaoSelecionada(opcao) }"
         @click="selecionarOpcao(opcao)"
       >
         {{ opcao.nome }}
@@ -82,26 +82,60 @@
     width: 300px;
     text-align: center;
     margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.418); 
   }
 
   p{ /*ajustar de acordo com o fundo*/
     color: white;
   }
   
-  .botao {
+  .button {
     background-color: red;
-    color: white;
     padding: 10px 20px;
     margin: 5px;
     cursor: pointer;
+    border-radius: 25px; 
+    color: #fff;
   }
   
-  .botao.selecionado {
+  .button.selecionado {
     background-color: orange;
   }
   
-  .botao:hover {
+  .button:hover {
     background-color: yellow;
   }
+
+  /*Responsivo*/
+
+  @media screen and (max-width: 1160px) {
+  .quadro-categorias {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .quadro-categorias {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .quadro-categorias {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .quadro-categorias {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .quadro-categorias {
+    width: 100%;
+  }
+}
   </style>
   

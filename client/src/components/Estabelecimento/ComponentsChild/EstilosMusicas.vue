@@ -83,6 +83,7 @@
     width: 300px;
     text-align: center;
     margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.418); 
   }
 
   p{ /*ajustar de acordo com o fundo*/
@@ -95,6 +96,7 @@
     padding: 10px 20px;
     margin: 5px;
     cursor: pointer;
+    border-radius: 25px; 
   }
   
   .botao.selecionado {
@@ -104,5 +106,36 @@
   .botao:hover {
     background-color: yellow;
   }
+
+  /*Responsivo */
+  @media screen and (max-width: 1160px) {
+  .quadro-estilosMusicais {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .quadro-estilosMusicais {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .quadro-estilosMusicais {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .quadro-estilosMusicais {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .quadro-estilosMusicais {
+    width: 100%;
+  }
+}
   </style>
   

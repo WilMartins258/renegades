@@ -219,6 +219,7 @@ button {
   border: none;
   padding: 8px 50px;
   border-radius: 25px;
+  color: #ccc;
 }
 
 button:hover {
