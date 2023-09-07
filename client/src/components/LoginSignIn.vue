@@ -81,7 +81,7 @@ export default {
 					console.log('Exibir mensagem para o usuário preencher os campos de e-mail e senha');
 				}
 			} catch (error) {
-				// console.log('ERROR:: ', error);
+				console.error('ERRO:: ', error);
 				console.log('error.response.data', error.response.data);
 			}
 		},
