@@ -12,13 +12,11 @@ DELETE FROM HORARIO;
 DELETE FROM PROMOCAO;
 DELETE FROM ESTILOMUSICA;
 DELETE FROM tipoContato;
-DELETE FROM tipoComida;
 DELETE FROM diaSemana;
 DELETE FROM CATEGORIA;
 DELETE FROM AVALIACAO;
-DELETE FROM musicaEstabelecimento;
+DELETE FROM musicaTocada;
 DELETE FROM OPCIONAL;
-DELETE FROM FAVORITOS;
 
 SET FOREIGN_KEY_CHECKS = 1;
 
@@ -446,16 +444,14 @@ insert into diaSemana values(
 
 ---------------------------- USUÁRIO WILLIAN -- INÍCIO
 
-  - , Votorantim - SP, 
-
 insert into ENDERECO values(
 	1, -- id
-	'18115650', -- cep not null,
+	'18117121', -- cep not null,
 	'SP', -- estado not null,
 	'Votorantim', -- cidade not null,
-    'Rua Levante Santucci,', -- lodradouro not null,
-    'Vila Santo Antonio', -- bairro not null,
-    590 -- numero not null
+    'Rua Pedro Nunes', -- lodradouro not null,
+    'Conjunto Habitacional Jardim Serrano', -- bairro not null,
+    97 -- numero not null
 );
 
 insert into usuario values(
@@ -471,7 +467,7 @@ insert into usuario values(
     'senha123',          -- senha
 	null,                -- fotoPerfil
     '2000-09-24',        -- dataNascimento
-	'normal' 			-- tipoUsuario ENUM('normal', 'donoEstabelecimento', 'adm') NOT NULL,
+	0                    -- tipoUsuario ENUM(0, 1, 2) NOT NULL
 );
 
 ---------------------------- USUÁRIO WILLIAN -- FIM
@@ -503,7 +499,7 @@ insert into usuario values(
     'senha123',          -- senha
 	null,                -- fotoPerfil
     '2000-05-01',        -- dataNascimento
-	'normal',               -- tipoUsuario ENUM('normal', 'donoEstabelecimento', 'adm') NOT NULL,
+	0 -- tipoUsuario ENUM(0, 1, 2) NOT NULL
 );
 
 ---------------------------- USUÁRIO LUCAS -- FIM
@@ -525,10 +521,14 @@ insert into usuario values(
     'senha123',              -- senha
 	null,                    -- fotoPerfil
     '1989-09-24',            -- dataNascimento
-	'adm' -- tipoUsuario ENUM('normal', 'donoEstabelecimento', 'adm') NOT NULL,
+	2 -- tipoUsuario ENUM(0, 1, 2) NOT NULL
 );
 
 ---------------------------- USUÁRIO ADM JULIO -- FIM
+
+
+
+
 
 
 -- -----------------------------------------------> Mc Donalds - Votorantim
@@ -555,7 +555,8 @@ insert into estabelecimento values(
 	true, -- visivel
 	'Validado', -- statusValidacao
 	null, -- nota
-	'2023-08-27' -- dataUltimoAcesso
+	'2023-09-07', -- dataUltimoAcesso
+	'2023-09-07' -- dataUltimoAcesso
 );
 
 insert into usuario values( -- Mc Donalds - Votorantim
@@ -571,7 +572,7 @@ insert into usuario values( -- Mc Donalds - Votorantim
     'senha123',          -- senha
 	null,                -- fotoPerfil
     '1989-09-24',        -- dataNascimento
-	'donoEstabelecimento' -- tipoUsuario
+	1 -- tipoUsuario ENUM(0, 1, 2) NOT NULL
 );
 
 ---------------------------------------------------------------- HORÁRIO INÍCIO
@@ -749,18 +750,21 @@ insert into endereco values( -- Endereço do Mc Donalds 	SOROCABA
 
 insert into estabelecimento values(
 	2, -- id 
-	1, -- idCategoria
-	4, -- idEndereco
-	'Mc Donalds - SOROCABA', -- nome
-	'76842463000162', -- cnpj
-	null, -- fotoPrincipal   
-	'Este é o Mc Donalds de Sorocaba Campolim', -- descricao
-	true, -- ativo
-	true, -- visivel
-	'Validado', -- statusValidacao
-	null, -- nota
-	'2023-08-27' -- dataUltimoAcesso
+    1, -- idCategoria
+    4, -- idEndereco
+    'Mc Donalds - SOROCABA', -- nome
+    '76842463000162', -- cnpj
+    null, -- fotoPrincipal   
+    'Este é o Mc Donalds de Sorocaba Campolim', -- descricao
+    true, -- ativo
+    true, -- visivel
+    'Validado', -- statusValidacao
+    null, -- nota
+	'2023-09-07', -- dataUltimoAcesso
+	'2023-09-07' -- dataUltimoAcesso
 );
+
+
 
 insert into usuario values( -- Mc Donalds - Votorantim
 	5,                   -- id
@@ -775,7 +779,7 @@ insert into usuario values( -- Mc Donalds - Votorantim
     'senha123',          -- senha
 	null,                -- fotoPerfil
     '1989-09-24',        -- dataNascimento
-	'donoEstabelecimento'-- tipoUsuario ENUM('normal', 'donoEstabelecimento', 'adm') NOT NULL,
+	1 -- tipoUsuario ENUM(0, 1, 2) NOT NULL
 );
 
 ---------------------------------------------------------------- HORÁRIO INÍCIO
@@ -968,7 +972,8 @@ insert into estabelecimento values(
 	true, -- visivel
 	'Validado', -- statusValidacao
 	null, -- nota
-	'2023-08-27' -- dataUltimoAcesso
+	'2023-09-07', -- dataUltimoAcesso
+	'2023-09-07' -- dataUltimoAcesso
 );
 
 insert into usuario values(
@@ -984,7 +989,7 @@ insert into usuario values(
     'senha123',          -- senha
 	null,                -- fotoPerfil
     '1989-09-24',        -- dataNascimento
-	'donoEstabelecimento'               -- tipoUsuario ENUM('normal', 'donoEstabelecimento', 'adm') NOT NULL,
+	1 -- tipoUsuario ENUM(0, 1, 2) NOT NULL
 );
 
 ---------------------------------------------------------------- HORÁRIO INÍCIO
@@ -1111,7 +1116,8 @@ insert into estabelecimento values(
 	true, -- visivel
 	'Validado', -- statusValidacao
 	null, -- nota
-	'2023-08-27' -- dataUltimoAcesso
+	'2023-09-07', -- dataUltimoAcesso
+	'2023-09-07' -- dataUltimoAcesso
 );
 
 insert into usuario values(
@@ -1124,10 +1130,10 @@ insert into usuario values(
 	999999999,           -- celular
     '11122233355',       -- cpf
     'usuario07@gmail.com', -- email
-    'senha123',            -- senha
-	null,                  -- fotoPerfil
-    '1989-09-24',          -- dataNascimento
-	'donoEstabelecimento'  -- tipoUsuario ENUM('normal', 'donoEstabelecimento', 'adm') NOT NULL,
+    'senha123',          -- senha
+	null,                -- fotoPerfil
+    '1989-09-24',        -- dataNascimento
+	1 -- tipoUsuario ENUM(0, 1, 2) NOT NULL
 );
 
 ---------------------------------------------------------------- HORÁRIO INÍCIO
@@ -1230,18 +1236,19 @@ insert into endereco values(
 );
 
 insert into estabelecimento values(
-	5, -- id 
-	6, -- idCategoria
-	7, -- idEndereco
-	'Mada Bar', -- nome
-	'73936746000185',  -- cnpj
-	null, -- fotoPrincipal   
+	5,                      -- id 
+	6,                      -- idCategoria
+	7,                      -- idEndereco
+	'Mada Bar',             -- nome
+	'73936746000185',       -- cnpj
+	null,                   -- fotoPrincipal   
 	'Mada Bar - DESCRIÇÃO', -- descricao
-	true, -- ativo
-	true, -- visivel
-	'Validado', -- statusValidacao
+	true,                   -- ativo
+	true,                   -- visivel
+	'Validado',             -- statusValidacao
 	null, -- nota
-	'2023-08-27' -- dataUltimoAcesso
+	'2023-09-07', -- dataUltimoAcesso
+	'2023-09-07' -- dataUltimoAcesso
 );
 
 insert into musicaTocada values(
@@ -1275,7 +1282,7 @@ insert into usuario values(
     'senha123',          -- senha
 	null,                -- fotoPerfil
     '1989-09-24',        -- dataNascimento
-	'donoEstabelecimento'    -- tipoUsuario ENUM('normal', 'donoEstabelecimento', 'adm') NOT NULL,s
+	1 -- tipoUsuario ENUM(0, 1, 2) NOT NULL
 );
 
 ---------------------------------------------------------------- HORÁRIO INÍCIO
