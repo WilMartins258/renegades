@@ -458,7 +458,7 @@ insert into usuario values(
 	1,                   -- id
 	null,                -- idEstabelecimento
 	1,                   -- idEndereco
-    'Willian',           -- nome
+    'Willian M. Ribeiro',           -- nome
 	15,                  -- codigoArea
 	999998888,           -- celular
     '44455566677',       -- cpf
@@ -489,7 +489,7 @@ insert into usuario values(
 	2,                   -- id
 	null,                -- idEstabelecimento
 	2,                   -- idEndereco
-    'Lucas Maximiano',   -- nome
+    'Lucas Maximiano dos Santos',   -- nome
 	15,                  -- codigoArea
 	999997777,           -- celular
     '11122244433',       -- cpf
@@ -510,7 +510,7 @@ insert into usuario values(
 	3,                       -- id
 	null,                    -- idEstabelecimento
 	null,                    -- idEndereco
-    'Julio Cesar',           -- nome
+    'Julio Cesar de Castro',           -- nome
 	15,                      -- codigoArea
 	999999999,               -- celular
     '11122233344',           -- cpf
@@ -549,7 +549,7 @@ insert into estabelecimento values(
 	null, -- fotoPrincipal   
 	'Este é o Mc Donalds de Votorantim', -- descricao
 	true, -- ativo
-	true, -- visivel
+	false, -- oculto
 	'Validado', -- statusValidacao
 	null, -- nota
 	'2023-09-07', -- dataUltimoAcesso
@@ -753,7 +753,7 @@ insert into estabelecimento values(
     null, -- fotoPrincipal   
     'Este é o Mc Donalds de Sorocaba Campolim', -- descricao
     true, -- ativo
-    true, -- visivel
+    false, -- oculto
     'Validado', -- statusValidacao
     null, -- nota
 	'2023-09-07', -- dataUltimoAcesso
@@ -964,7 +964,7 @@ insert into estabelecimento values(
 	null, -- fotoPrincipal   
 	'Kikos Hot-Dog DESCRICAO', -- descricao
 	true, -- ativo
-	true, -- visivel
+	false, -- oculto
 	'Validado', -- statusValidacao
 	null, -- nota
 	'2023-09-07', -- dataUltimoAcesso
@@ -1107,7 +1107,7 @@ insert into estabelecimento values(
 	null, -- fotoPrincipal   
 	'Pizzaria Booa - DESCRIÇÃO', -- descricao
 	true, -- ativo
-	true, -- visivel
+	false, -- oculto
 	'Validado', -- statusValidacao
 	null, -- nota
 	'2023-09-07', -- dataUltimoAcesso
@@ -1237,7 +1237,7 @@ insert into estabelecimento values(
 	null,                   -- fotoPrincipal   
 	'Mada Bar - DESCRIÇÃO', -- descricao
 	true,                   -- ativo
-	true,                   -- visivel
+	false,                   -- oculto
 	'Validado',             -- statusValidacao
 	null, -- nota
 	'2023-09-07', -- dataUltimoAcesso
