@@ -29,7 +29,7 @@ const updateUserData = async (newUserData) => {
   try {
     const atualizarUsuarioQuery = `
       UPDATE usuario
-      SET nome = ?, sobrenome = ?, codigoArea = ?, celular = ?,
+      SET nome = ?, codigoArea = ?, celular = ?,
       email = ?, senha = ?, fotoPerfil = ?, dataNascimento = ?
       WHERE id = ?;
     `;

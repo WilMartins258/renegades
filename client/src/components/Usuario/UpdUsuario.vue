@@ -17,7 +17,7 @@
           <div class="column">
               <div class="group">
                 <label for="nome" class="label">Nome Completo:</label><br />
-                <input type="text" v-model="nomeCompleto" id="nome" class="input" name="nome" disabled/>
+                <input type="text" v-model="nome" id="nome" class="input" name="nome" disabled/>
               </div>
 
               <div class="group">
@@ -129,7 +129,7 @@ export default{
         cep: "",
         numero: ""
       },
-      nomeCompleto: "",
+      nome: "",
       dataNasc: "",
       celular: "",
       email: "",
@@ -165,7 +165,7 @@ export default{
       const dataFormatada = dataToDiaMesAno(dadosUsuario.dataNascimento);
 
       //Dados Usuário
-      this.nomeCompleto = `${dadosUsuario.nome} ${dadosUsuario.sobrenome}`;
+      this.nome = dadosUsuario.nome;
       this.dataNasc = dataFormatada;
       this.celular = `${dadosUsuario.codigoArea}${dadosUsuario.celular}`
       this.email = dadosUsuario.email;
@@ -311,7 +311,7 @@ export default{
 
         const newUserData = {
           userId: sessionStorage.getItem('userId'),
-          nomeCompleto: nomeInput.value,
+          nome: nomeInput.value,
           dataNascimento: dataNascimentoInput.value,
           email: emailInput.value,
           celularCompleto: celularInput.value,
