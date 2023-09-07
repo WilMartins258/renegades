@@ -4,32 +4,41 @@ const loginController = require('./../controllers/login.controller');
 router.post('/', async (req, res) => {
     const loginInfo = req?.body;
 
-    console.log('loginInfo:: ', loginInfo);
-
     try {
+        if (!loginInfo || !loginInfo.email || !loginInfo.senha) {
+            return res.status(400).json({ 
+                msg: 'Credenciais inválidas!', 
+                login: false 
+            });
+        }
+
         const resultadoLogin = await loginController.getLoginData(loginInfo.email);
 
-        console.log('resultadoLogin:: ', resultadoLogin);
-
         if (!resultadoLogin) {
-            console.log('email não encontrado');
             res.status(404).send({
-                msg: 'Email não encontrado',
+                msg: 'Email não encontrado!',
                 login: false
             });
         } else {
-            console.log('email encontrado');
-
-            // if ()
-            res.send({
-                msg: 'Bem-vindo(a)',
-                login: true
-            });
+            if (loginInfo.senha === resultadoLogin.senha) {
+                res.status(200).send({
+                    login: true,
+                    id: resultadoLogin.id,
+                    nome: resultadoLogin.nome,
+                    tipoUsuario: resultadoLogin.tipoUsuario,
+                    fotoperfil: resultadoLogin.fotoperfil
+                });
+            } else {
+                res.status(401).send({
+                    msg: 'Senha incorreta!',
+                    login: false
+                });
+            }
         }
     } catch (error) {
-        console.error('Erro no login:', error);
+        console.error('ERRO:: ', error);
         res.status(500).send({
-            msg: 'Erro ao processar o login',
+            msg: 'Erro ao processar o login.',
             login: false
         });
     }

@@ -135,7 +135,7 @@ CREATE TABLE estabelecimento (
 	fotoPrincipal    LONGBLOB, -- not null
 	descricao        VARCHAR(400) not null,
 	ativo            BOOLEAN not null,
-	oculto          BOOLEAN not null,
+	oculto           BOOLEAN not null,
 	statusValidacao  ENUM('Pendente', 'Validado', 'Não validado') not null,
 	nota             FLOAT,
 	dataCadastro     DATE not null,

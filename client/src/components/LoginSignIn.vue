@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import api from './../services/backend-service';
+import api from './../services/backend-service.js';
 
 export default {
 	data() {
@@ -49,21 +49,41 @@ export default {
 			return re.test(email);
 		},
 		async submit() {
-			if (this.validarCampos()) {
-				this.$emit('do-sign-in', { ...this.$data });
+			try {
+				if (this.validarCampos()) {
+					this.$emit('do-sign-in', { ...this.$data });
+				}
+
+				const email = document.getElementById('sign-in-user');
+				const senha = document.getElementById('sign-in-pass');
+
+				const loginInfo = {
+					email: email.value,
+					senha: senha.value
+				};
+
+				console.log('loginInfo', loginInfo);
+
+				if (loginInfo.email && loginInfo.senha) {
+					const login = await api.post("/login", loginInfo);
+					console.log('login:: ', login);
+
+					if (login.data.login) {
+						sessionStorage.setItem('idUsuario', login.data.id);
+						sessionStorage.setItem('nomeUsuario', login.data.nome);
+						sessionStorage.setItem('tipoUsuario', login.data.tipoUsuario);
+						sessionStorage.setItem('fotoperfil', login.data.fotoperfil);
+
+
+						// A partir daqui precisamos verificar para onde vamos direcionar o usuário após login concluído
+					}
+				} else {
+					console.log('Exibir mensagem para o usuário preencher os campos de e-mail e senha');
+				}
+			} catch (error) {
+				// console.log('ERROR:: ', error);
+				console.log('error.response.data', error.response.data);
 			}
-
-			const email = document.getElementById('sign-in-user');
-			const senha = document.getElementById('sign-in-pass');
-
-			const loginInfo = {
-				email: email.value,
-				senha: senha.value
-			};
-
-			const login = await api.post("/login", loginInfo);
-			
-			console.log('login:: ', login);
 		},
 	},
 }
