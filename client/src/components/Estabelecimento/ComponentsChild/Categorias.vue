@@ -25,7 +25,7 @@
     data() {
       return {
         //categoria: [] // usar com a API
-        categoriaSelecionadas: this.value, // Inicialize com o valor passado
+       // categoriaSelecionadas: this.value, // Inicialize com o valor passado
         categoriaSelecionadas: [],
         categoria: [ // remover ou comentar ao testar a API
           {
@@ -57,14 +57,13 @@
       },
     },
     methods: {
-          selecionarOpcao(opcao) {
+      selecionarOpcao(opcao) {
           if (this.opcaoSelecionada(opcao)) {
             this.categoriaSelecionadas = this.categoriaSelecionadas.filter(item => item.id !== opcao.id);
           } else {
             this.categoriaSelecionadas.push(opcao);
           }
-          // Em vez de atualizar apenas localmente, emitimos o evento para notificar o componente pai
-          this.$emit("input", this.categoriaSelecionadas);
+          this.$emit("input", this.categoriaSelecionadas); // Emita o evento input aqui
         },
         opcaoSelecionada(opcao) {
           return this.categoriaSelecionadas.some(item => item.id === opcao.id);

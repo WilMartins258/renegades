@@ -1,17 +1,15 @@
 <template>
-  
   <div class="container">
-    <!--<h1>Contatos</h1>-->
     <div>
       <form @submit.prevent="salvarContato">
         <label for="tipoContato">Tipo de Contato:</label>
-        <select v-model="tipoContato" id="tipoContato">
+        <select v-model="tipoContato" id="tipoContato" @change="limparCampos">
           <option value="Telefone">Telefone</option>
           <option value="Celular">Celular</option>
         </select>
         <label for="numero">Número:</label>
         <input v-model="numero" type="text" id="numero" name="numero" placeholder="Digite aqui"
-          :class="{ 'error': campoVazio }" @input="limparCampoVazio" />
+            :class="{ 'error': campoVazio }" @input="aplicarMascara" />
         <label for="isWhatsapp"><img src="../../../../public/img/whatsappLogo.png" alt="É WhatsApp?" class="whatsapp-image" /> É WhatsApp:</label>
         <input v-model="isWhatsapp" type="checkbox" id="isWhatsapp" name="isWhatsapp" />
         <p v-if="campoVazio" class="error-message">Informe um número válido.</p>
@@ -32,9 +30,9 @@
       </thead>
       <tbody>
         <tr v-for="(contato, index) in listaContatos" :key="index">
-  <td>{{ contato.tipoContato }}</td>
-  <td>{{ contato.numero }}</td>
-  <td>{{ contato.isWhatsapp ? 'Sim' : 'Não' }}</td>
+          <td>{{ contato.tipoContato }}</td>
+          <td>{{ contato.numero }}</td>
+          <td>{{ contato.isWhatsapp ? 'Sim' : 'Não' }}</td>
           <td>
             <template v-if="editingIndex !== index">
               <button class="respButton" @click="editarContato(index)">
@@ -52,14 +50,15 @@
                 <i class="uil uil-times"></i>
               </button>
             </template>
-            </td>
-          </tr>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
 </template>
 
 <script>
+
 export default {
   name: "DashContato",
   props: {
@@ -83,7 +82,10 @@ export default {
         return;
       }
 
+      const id = this.tipoContato === "Telefone" ? 1 : 2;
+
       const novoContato = {
+        id: id, // ID 1 para Telefone, ID 2 para Celular
         tipoContato: this.tipoContato,
         numero: this.numero,
         isWhatsapp: this.isWhatsapp,
@@ -95,8 +97,10 @@ export default {
       } else {
         // Adicionar um novo contato
         this.listaContatos.push(novoContato);
+        
       }
       this.limparCampos();
+      this.$emit('contato-salvo', novoContato);
     },
     limparCampos() {
       this.tipoContato = "Telefone";
@@ -131,6 +135,32 @@ export default {
     limparCampoVazio() {
       this.campoVazio = false;
     },
+    aplicarMascara() {
+      let numero = this.numero.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+
+      if (this.tipoContato === 'Telefone') {
+        this.numero = this.aplicarMascaraTelefone(numero, 'telefone');
+      } else if (this.tipoContato === 'Celular') {
+        this.numero = this.aplicarMascaraTelefone(numero, 'celular');
+      }
+    },
+
+    aplicarMascaraTelefone(numero, tipo) {
+      let maxCaracteres = tipo === 'telefone' ? 10 : 11;
+
+      if (numero.length > maxCaracteres) {
+        numero = numero.slice(0, maxCaracteres); // Limita o número de caracteres
+      }
+
+      if (tipo === 'telefone') {
+        return numero.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
+      } else if (tipo === 'celular') {
+        return numero.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+      }
+    },
+    limparCampoNumero() {
+    this.numero = ''; // Limpa o número ao mudar o tipo de contato
+  },
   },
 };
 </script>
@@ -192,18 +222,16 @@ button {
 }
 
 table {
-  width: 90%;
+  width: 100%;
   border-collapse: collapse;
-  max-width: 100%; /* Ajuste a largura máxima conforme necessário */
-  margin: 0 auto; /* Centralize a tabela no formulário */
 }
-
 
 th,
 td {
   border: 1px solid #ccc;
   padding: 8px;
   text-align: center;
+  font-size: 14px;
 }
 
 th {
@@ -254,6 +282,9 @@ input {
   font-size: 14px;
 }
 
+.respButton {
+    padding: 6px 12px;
+  }
 /* Responsive*/
 
 @media (max-width: 1160px) {

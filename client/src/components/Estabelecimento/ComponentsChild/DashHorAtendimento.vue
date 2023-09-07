@@ -69,7 +69,7 @@ export default {
   name: "DashHorAtendimento",
   props: {
     value: {
-      type: Array, 
+      type: Array, // O valor passado pelo componente pai
     }
   },
   data() {

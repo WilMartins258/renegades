@@ -33,6 +33,7 @@
 <div class="group">
   <label for="numero" class="label">Número:</label><br />
   <input
+    v-model="numero"
     ref="numeroInput"
     type="text"
     id="numero"
@@ -79,9 +80,11 @@
     <h2>Como podemos contatá-lo?</h2>
     <br><br>
 
-    <DashContato v-model="formData.listaContatos"/> <!-- Chamada para o Component --> 
+    <!-- Chamada para o Component --> 
+    <DashContato :value="ContatosSelecionadas" @input="receberContato"/> 
     <br>
-    <DashRdSociais v-model="formData.listaRedesSociais"/><!-- Chamada para o Component --> 
+    <!-- Chamada para o Component --> 
+    <DashRdSociais :value="RdSocialSelecionadas" @input="receberRdSociais" />
 
   </section><!-- Fecha seção 2-->
 
@@ -91,29 +94,32 @@
         <h2>Informações do estabelecimento:</h2><br><br>
         <div class="group">
       <label for="nome" class="label">Nome do Estabelecimento:</label><br />
-      <input type="text" v-model="formData.nomeEstabelecimento" id="nome" class="input" name="nome" />
+      <input type="text" v-model="nomeEstabelecimento" id="nome" class="input" name="nome" />
     </div>
 
     <div class="group">
       <label for="cnpj" class="label">CNPJ:</label><br />
-      <input v-model="formData.cnpj" type="text" id="cnpj" class="input" name="cnpj" required ref="cnpjInput"/>
+      <input v-model="cnpj" type="text" id="cnpj" class="input" name="cnpj" required ref="cnpjInput"/>
     </div>
 
     <div class="group">
       <label for="descricao" class="label">Descrição do Estabelecimento:</label><br />
-      <textarea v-model="formData.descricaoEstabelecimento" id="descricao" class="input" name="descricao" rows="4" maxlength="200" required></textarea>
+      <textarea v-model="descricaoEstabelecimento" id="descricao" class="input" name="descricao" rows="4" maxlength="200" required></textarea>
     </div> <br>
     <h2>A categoria do meu estebelecimento é:</h2>
     <br>
-    <Categorias v-model="formData.categorias"/>
+    <!-- Chamada para o Component --> 
+    <Categorias :value="categoriasSelecionadas" @input="receberCategoriasSelecionadas" />
   </section><!-- Fecha seção 3-->
 
   <section v-show="currentSection === 4">
   <h2>Meu Estebelecimento Oferece:</h2>
   <br>
-  <Opcionais v-model="formData.opcoesSelecionadas"/>
+  <!-- Chamada para o Component --> 
+  <Opcionais :value="opcoesSelecionadas" @input="receberOpcoesSelecionadas"/>
   <br><br>
-  <EstilosMusicas v-model="formData.estilosMusicais"/>
+  <!-- Chamada para o Component --> 
+  <EstilosMusicas :value="estilosSelecionadas" @input="receberEstiloMusicais"/>
   </section><!-- Fecha seção 4-->
 
   
@@ -184,7 +190,10 @@
     />
   </div>
   <br>
-  <DashHorAtendimento />
+  <!-- Chamada para o Component --> 
+  <DashHorAtendimento :value="HorariosSelecionados" @input="receberHorario"/>
+
+  
   <br>
   <div class="group">
         <div>
@@ -239,8 +248,8 @@ data() {
   return {
     currentSection: 1,
     nomeEstabelecimento: "",
+    descricaoEstabelecimento: "",
     cnpj: "",
-    descricao: "",
     cep: "",
     endereco: {
       rua: "",
@@ -252,43 +261,65 @@ data() {
       recomendacao: [
       { name: '', description:  '', photo: null },],
       estabelecimentoPhoto: null,
-      // Adicione aqui os campos do seu formulário principal
-      formData: {
-        nomeEstabelecimento: "",
-        cnpj: "",
-        descricao: "",
-        cep: "",
-        endereco: {
-          rua: "",
-          bairro: "",
-          cidade: "",
-          uf: "",
-        },
-        numero: "",
-        recomendacao: [
-          { name: "", description: "", photo: null },
-        ],
-        estabelecimentoPhoto: null,
-        categorias: [],//Array para armazenar a lista de categorias
-        listaContatos: [], //Array para armazenar a lista de contatos
-        listaRedesSociais: [],//Array para armazenar a lista de Redes Socias
-        estilosMusicais: [],//Array para armazenar a lista de Estilos Musicais
-        listaHorarios: [],//Array para armazenar a lista de Horarios
-      },
+      categoriasSelecionadas: [],
+      opcoesSelecionadas: [],
+      RdSocialSelecionadas: [],
+      ContatosSelecionadas: [],
+      HorariosSelecionados: [],
     };
 },
 methods: {
-  salvarDados() {
-      // Agora você pode acessar todos os dados do formulário e dos componentes filhos
+  // Recebe os dados do componente "Categorias"
+  receberCategoriasSelecionadas(categorias) {
+    this.categoriasSelecionadas = categorias;
+  },
+  // Recebe os dados do componente "Opcionais"
+  receberOpcoesSelecionadas(opcionais) {
+    this.opcoesSelecionadas = opcionais;
+  },
+  // Recebe os dados do componente "Estilos Musicais"
+  receberEstiloMusicais(estiloMusicais) {
+    this.estilosSelecionadas = estiloMusicais;
+  },
+  // Recebe os dados do componente "DashRdSocias"
+  receberRdSociais(redeSocial) {
+    this.RdSocialSelecionadas = redeSocial;
+  },
+  // Recebe os dados do componente "DashContatos"
+  receberContato(contato) {
+    this.ContatosSelecionadas = contato;
+  },
+  receberHorario(horario) {
+    this.HorariosSelecionados = horario;
+  },
 
-      console.log("Dados do formulário e componentes filhos:", this.formData);
-      console.log("Categorias selecionadas:", this.formData.categorias);
-      console.log("Lista de Contatos:", this.formData.listaContatos);
-      console.log("Lista de Redes Sociais:", this.formData.listaRedesSociais);
-      console.log("Lista de estilos Musicais:", this.formData.estilosMusicais);
-      console.log("Lista de Horários:", this.formData.listaHorarios);
-      // Aqui você pode enviar os dados para o servidor ou realizar outras ações necessárias
-    },
+  salvarDados() {
+    const formData = {
+    nomeEstabelecimento: this.nomeEstabelecimento,
+    descricaoEstabelecimento: this.descricaoEstabelecimento,
+    cnpj: this.cnpj,
+    cep: this.cep,
+    endereco: this.endereco,
+    numero: this.numero,
+    recomendacao: this.recomendacao,
+    estabelecimentoPhoto: this.estabelecimentoPhoto,
+    categoriasSelecionadas: this.categoriasSelecionadas,
+    opcoesSelecionadas: this.opcoesSelecionadas,
+    estilosSelecionadas: this.estilosSelecionadas,
+    RdSocialSelecionadas: this.RdSocialSelecionadas,
+    ContatosSelecionadas: this.ContatosSelecionadas,
+    HorariosSelecionados: this.HorariosSelecionados,
+  };
+  console.log("Dados do formulário e componentes filhos:", formData);
+  // Envie os dados para o banco de dados usando Axios ou outra biblioteca de sua escolha
+ /* axios.post('/api/salvar-dados', formData)
+    .then(response => {
+      // Lide com a resposta do servidor, se necessário
+    })
+    .catch(error => {
+      // Lide com erros, se houver
+    });  */
+  },
   nextSection() {
     if (this.currentSection < 6) {
       this.currentSection++;
@@ -310,10 +341,10 @@ methods: {
   },
   meu_callback(conteudo) {
     if (!("erro" in conteudo)) {
-      document.getElementById("rua").value = conteudo.logradouro;
-      document.getElementById("bairro").value = conteudo.bairro;
-      document.getElementById("cidade").value = conteudo.localidade;
-      document.getElementById("uf").value = conteudo.uf;
+    this.endereco.rua = conteudo.logradouro; // Define a rua
+    this.endereco.bairro = conteudo.bairro;   // Define o bairro
+    this.endereco.cidade = conteudo.localidade; // Define a cidade
+    this.endereco.uf = conteudo.uf;  // Define o estado
     } else {
       this.limpa_formulário_cep();
       alert("CEP não encontrado.");
