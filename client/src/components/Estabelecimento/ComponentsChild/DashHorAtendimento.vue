@@ -242,7 +242,7 @@ export default {
   max-width: 700px;
   margin: 0 auto;
   padding: 20px;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.418); 
 }
 
 h1 {
@@ -282,6 +282,7 @@ td {
   border: 1px solid #ccc;
   padding: 8px;
   text-align: center;
+  color: #000;
 }
 
 th {
@@ -293,8 +294,9 @@ button {
   cursor: pointer;
   transition: 0.5s;
   border: none;
-  padding: 8px 50px;
+  padding: 8px 13px;
   border-radius: 25px;
+  color: #ccc;
 }
 
 button:hover {

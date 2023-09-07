@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>Redes Sociais</h1>
+    <!--<h1>Redes Sociais</h1>-->
     <div>
       <form @submit.prevent="salvarRedeSocial">
         <label for="redeSocial">Rede Social:</label>
@@ -150,7 +150,7 @@ label {
   max-width: 700px;
   margin: 0 auto;
   padding: 20px;
-  background-color: rgba(255, 255, 255, 0.8); 
+  background-color: rgba(255, 255, 255, 0.418); 
 }
 
 h1 {
@@ -179,6 +179,7 @@ td {
   border: 1px solid #ccc;
   padding: 8px;
   text-align: center;
+  color: #000;
 }
 
 th {
@@ -190,8 +191,9 @@ button {
   cursor: pointer;
   transition: 0.5s;
   border: none;
-  padding: 8px 50px;
+  padding: 8px 20px;
   border-radius: 25px;
+  color: #ccc;
 }
 
 button:hover {
@@ -214,9 +216,7 @@ input {
   background: rgba(211, 201, 201, 0.774);
 }
 
-.error input {
-  border-color: red; /* Estilizar o campo de entrada quando estiver vazio */
-}
+
 
 .error-message {
   color: red;

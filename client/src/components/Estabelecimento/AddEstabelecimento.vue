@@ -17,6 +17,7 @@
     class="input"
     name="cep"
     @blur="pesquisarCep"
+    maxlength="8"
     required
   /><br />
 </div>
@@ -214,8 +215,8 @@
   </section><!-- Fecha seção 6-->
   <br>
   <div class="buttons">
-    <button class="custom-button" @click="previousSection" :disabled="currentSection === 1" ><i class="uil uil-arrow-circle-left"></i></button>
-    <button class="custom-button" @click="nextSection" :disabled="currentSection === 6"><i class="uil uil-arrow-circle-right"></i></button>
+    <button class="custom-button" @click="previousSection" v-if="currentSection !== 1"><i class="uil uil-arrow-circle-left"></i></button>
+    <button class="custom-button" @click="nextSection" v-if="currentSection !== 6"><i class="uil uil-arrow-circle-right"></i></button>
   </div>
 </div>
 
@@ -420,13 +421,13 @@ methods: {
 <style scoped>
 #form-wrap {
 /*Imagem de fundo do forms*/
-color: white;
-background-image: url("../../../public/img/FormEstabelecimento.jpg");
-background-size: cover;
-background-position: center;
-background-attachment: fixed;
-width: 100%;
-height: 100vh;
+  color: white;
+  background-image: url("../../../public/img/FormEstabelecimento.jpg");
+  background-size: 40% 100%;
+  background-position: center;
+  background-attachment: fixed;
+  width: 100%;
+  height: 100vh;
 }
 
 .posicaoform-wrap {
@@ -453,7 +454,10 @@ border: 2px solid red;
 margin-top: 10px;
 }
 
-
+.secao2 {
+ 
+  min-height: 1500px; /* Por exemplo, ajuste para a altura desejada quando a seção 2 tiver mais itens */
+}
 
 
 /* Responsividade */
@@ -461,6 +465,7 @@ margin-top: 10px;
 @media (max-width: 1160px) {
 #form-wrap {
   max-width: 950px;
+  background-size: 100% 100%;
 }
 }
 
