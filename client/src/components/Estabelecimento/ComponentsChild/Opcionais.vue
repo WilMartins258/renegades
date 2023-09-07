@@ -21,6 +21,7 @@ export default {
   props: {
     value: Array, // Adicione uma propriedade value para usar v-model
   },
+  emits: ['input'],
   data() {
     return {
       opcoesSelecionadas: [],

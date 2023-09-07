@@ -69,6 +69,7 @@ export default {
       isEditing: false,
       listaContatos: [],
       editingIndex: -1,
+      isWhatsapp: false,
     };
   },
   methods: {

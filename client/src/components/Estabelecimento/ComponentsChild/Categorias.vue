@@ -22,6 +22,7 @@
     props: {
     value: Array, // O valor passado pelo componente pai
     },
+    emits: ['input'],
     data() {
       return {
         //categoria: [] // usar com a API
