@@ -77,7 +77,7 @@
 
   <!--2-Contato-->
 
-  <section v-show="currentSection === 2" class="Secao2">
+  <section v-show="currentSection === 2">
     <h2>Como podemos contatá-lo?</h2>
     <br><br>
 

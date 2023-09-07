@@ -21,6 +21,7 @@
     props: {
     value: Array, // Adicione uma propriedade value para usar v-model
     },
+    emits: ['input'],
     data() {
       return {
         //estilos: [] // usar com a API
