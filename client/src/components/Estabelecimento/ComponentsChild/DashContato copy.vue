@@ -1,47 +1,46 @@
 <template>
+  
   <div class="container">
-    <h1>Redes Sociais</h1>
+    <!--<h1>Contatos</h1>-->
     <div>
-      <form @submit.prevent="salvarRedeSocial">
-        <label for="redeSocial">Rede Social:</label>
-        <select v-model="redeSocial" id="redeSocial">
-          <option value="Facebook">Facebook</option>
-          <option value="Instagram">Instagram</option>
-          <option value="Twitter">Twitter</option>
+      <form @submit.prevent="salvarContato">
+        <label for="tipoContato">Tipo de Contato:</label>
+        <select v-model="tipoContato" id="tipoContato">
+          <option value="Telefone">Telefone</option>
+          <option value="Celular">Celular</option>
         </select>
-        <label for="perfil">Perfil:</label>
-        <input
-          v-model="perfil"
-          type="text"
-          id="perfil"
-          name="perfil"
-          placeholder="Digite aqui"
-          :class="{ 'error': campoVazio }"
-        />
-        <p v-if="campoVazio" class="error-message">Informe um valor válido.</p>
+        <label for="numero">Número:</label>
+        <input v-model="numero" type="text" id="numero" name="numero" placeholder="Digite aqui"
+          :class="{ 'error': campoVazio }" @input="limparCampoVazio" />
+        <label for="isWhatsapp"><img src="../../../../public/img/whatsappLogo.png" alt="É WhatsApp?" class="whatsapp-image" /> É WhatsApp:</label>
+        <input v-model="isWhatsapp" type="checkbox" id="isWhatsapp" name="isWhatsapp" />
+        <p v-if="campoVazio" class="error-message">Informe um número válido.</p>
         <button type="submit" :disabled="isEditing" :class="{ 'disabled-button': isEditing }">
           {{ isEditing ? 'Salvando...' : 'Salvar' }}
-        </button>
+        </button> <br><br>
       </form>
     </div>
+    <br>
     <table>
       <thead>
         <tr>
-          <th>Rede Social</th>
-          <th>Perfil</th>
+          <th>Tipo de Contato</th>
+          <th>Número</th>
+          <th>WhatsApp</th>
           <th>Editar/Excluir</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(rede, index) in listaRedesSociais" :key="index">
-          <td>{{ rede.redeSocial }}</td>
-          <td>{{ rede.perfil }}</td>
+        <tr v-for="(contato, index) in listaContatos" :key="index">
+  <td>{{ contato.tipoContato }}</td>
+  <td>{{ contato.numero }}</td>
+  <td>{{ contato.isWhatsapp ? 'Sim' : 'Não' }}</td>
           <td>
             <template v-if="editingIndex !== index">
-              <button class="respButton" @click="editarRedeSocial(index)">
+              <button class="respButton" @click="editarContato(index)">
                 <i class="uil uil-edit"></i>
               </button>
-              <button class="respButton" @click="excluirRedeSocial(index)">
+              <button class="respButton" @click="excluirContato(index)">
                 <i class="uil uil-file-times-alt"></i>
               </button>
             </template>
@@ -53,82 +52,93 @@
                 <i class="uil uil-times"></i>
               </button>
             </template>
-          </td>
-        </tr>
+            </td>
+          </tr>
       </tbody>
     </table>
   </div>
 </template>
 
 <script>
+import IMask from "imask";
+import axios from "axios";
 export default {
+  name: "DashContato",
   props: {
     value: Array, // O valor passado pelo componente pai
   },
-  name: "DashRdSociais",
   data() {
     return {
-      redeSocial: "Facebook",
-      perfil: "",
+      tipoContato: "Telefone",
+      numero: "",
       campoVazio: false,
       isEditing: false,
-      listaRedesSociais: [],
+      listaContatos: [],
       editingIndex: -1,
     };
   },
   methods: {
-    salvarRedeSocial() {
-      if (!this.perfil) {
+    salvarContato() {
+      // Verifique se o campo numero está vazio
+      if (!this.numero) {
         this.campoVazio = true;
         return;
       }
 
-      const novaRedeSocial = {
-        redeSocial: this.redeSocial,
-        perfil: this.perfil,
+      const novoContato = {
+        tipoContato: this.tipoContato,
+        numero: this.numero,
+        isWhatsapp: this.isWhatsapp,
       };
       if (this.isEditing) {
-        this.listaRedesSociais[this.editingIndex] = novaRedeSocial;
-        this.isEditing = false;
+        // Atualizar um contato existente
+        this.listaContatos[this.editingIndex] = novoContato;
+        this.isEditing = false; // Defina como false após a edição
       } else {
-        this.listaRedesSociais.push(novaRedeSocial);
+        // Adicionar um novo contato
+        this.listaContatos.push(novoContato);
       }
       this.limparCampos();
-      this.$emit('input', novaRedeSocial); //Enviar dados para o Componente pai
     },
     limparCampos() {
-      this.redeSocial = "Facebook";
-      this.perfil = "";
-      this.campoVazio = false;
+      this.tipoContato = "Telefone";
+      this.numero = "";
+      this.isWhatsapp = false;
     },
-    editarRedeSocial(index) {
+    editarContato(index) {
       this.editingIndex = index;
-      this.redeSocial = this.listaRedesSociais[index].redeSocial;
-      this.perfil = this.listaRedesSociais[index].perfil;
-      this.isEditing = true;
+      this.isEditing = true; // Defina como true ao editar um contato
+      this.tipoContato = this.listaContatos[index].tipoContato;
+      this.numero = this.listaContatos[index].numero;
+      this.isWhatsapp = this.listaContatos[index].isWhatsapp;
+    },
+    excluirContato(index) {
+      this.listaContatos.splice(index, 1);
     },
     salvarEdicao(index) {
-      this.listaRedesSociais[index].redeSocial = this.redeSocial;
-      this.listaRedesSociais[index].perfil = this.perfil;
-      this.editingIndex = -1;
-      this.limparCampos();
-    },
-    excluirRedeSocial(index) {
-      if (confirm("Tem certeza que deseja excluir?")) {
-        this.listaRedesSociais.splice(index, 1);
-      }
-    },
+        this.listaContatos[index] = {
+          tipoContato: this.tipoContato,
+          numero: this.numero,
+          isWhatsapp: this.isWhatsapp,
+        };
+        this.editingIndex = -1;
+        this.isEditing = false;
+        this.limparCampos();
+      },
     cancelarEdicao() {
       this.editingIndex = -1;
-      this.isEditing = false;
+      this.isEditing = false; // Defina como false ao cancelar a edição
       this.limparCampos();
+    },
+    limparCampoVazio() {
+      this.campoVazio = false;
     },
   },
 };
 </script>
 
-
 <style scoped>
+
 
 select,
 input[type="time"] {
@@ -139,12 +149,20 @@ input[type="time"] {
   width: 100%;
 }
 
+select,
+input[type="text"],
+input[type="checkbox"] {
+  width: 100%; /* Defina a largura para 100% */
+}
+
+
 /* Ajuste a margem para o select e os campos de entrada */
 select,
 input[type="time"],
 label {
   margin: 0.4rem 0;
 }
+
 
 .container {
   max-width: 700px;
@@ -161,18 +179,27 @@ form {
   display: flex;
   flex-wrap: wrap; 
   margin-bottom: 10px;
+  max-width: 600px; /* Ajuste a largura máxima conforme necessário */
+  margin: 0 auto; /* Centralize o formulário no container */
+  align-items: center; /* Alinhe verticalmente os elementos no centro */
+}
+label {
+  margin-right: 0; /* Remova a margem direita */
 }
 
-label,
+
 input,
 button {
   margin-right: 10px;
 }
 
 table {
-  width: 100%;
+  width: 90%;
   border-collapse: collapse;
+  max-width: 100%; /* Ajuste a largura máxima conforme necessário */
+  margin: 0 auto; /* Centralize a tabela no formulário */
 }
+
 
 th,
 td {
@@ -206,6 +233,11 @@ button:hover {
 button:disabled:hover {
   background: gray;
 }
+
+.whatsapp-image {
+    width: 30px; 
+    height: auto; 
+  }
 
 input {
   border: none;
@@ -247,11 +279,11 @@ input {
     max-width: 600px;
   }
   table {
-    font-size: 14px;
+    font-size: 14px; /* Ajuste o tamanho da fonte para dispositivos menores */
   }
   th,
   td {
-    padding: 6px;
+    padding: 6px; /* Ajuste o espaçamento das células para dispositivos menores */
   }
 }
 
@@ -275,11 +307,6 @@ input {
   
   button {
     margin-top: 8px;
-  }
-
-  input {
-    width: 100%; 
-    box-sizing: border-box; 
   }
 }
 
@@ -317,13 +344,13 @@ input {
   }
   input {
     padding: 8px 10px;
-  }
+}
 
-  .respButton {
-    padding: 8px 15px;
-  }
+.respButton{
+  padding: 8px 15px;
+}
 
-  table {
+table {
     font-size: 6.5px; 
   }
   th,
@@ -334,17 +361,6 @@ input {
   button {
     padding: 3px 14px;
   }
-}
 
-@media (max-width: 320px) {
-  .container {
-    max-width: 280px; 
-  }
-}
-
-@media (max-width: 280px) {
-  .container {
-    max-width: 240px; 
-  }
 }
 </style>

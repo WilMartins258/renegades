@@ -64,6 +64,7 @@
           // Caso contrário, adicione-a à lista
           this.estilosSelecionadas.push(opcao);
         }
+        this.$emit("input", this.estilosSelecionadas); // Emita o evento input aqui
       },
       opcaoSelecionada(opcao) {
         return this.estilosSelecionadas.some(item => item.id === opcao.id);

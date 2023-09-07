@@ -1,79 +1,73 @@
 <template>
-    <div class="quadro-Opcionais">
-      <button
-        v-for="opcao in opcoes"
-        :key="opcao.id"
-        :class="{ botao: true, selecionado: opcaoSelecionada(opcao) }"
-        @click="selecionarOpcao(opcao)"
-      >
-        {{ opcao.nome }}
-      </button>
-    </div>
-  
-    <div id="opcoesSelecionadas">
-      <br><p>Opções selecionadas: {{ opcoesSelecionadasString }}</p>
-    </div>
-  </template>
-  
-  <script>
-  export default {
-    name: "Opcionais",
-    props: {
+  <div class="quadro-Opcionais">
+    <button
+      v-for="opcao in opcoes"
+      :key="opcao.id"
+      :class="{ botao: true, selecionado: opcaoSelecionada(opcao) }"
+      @click="selecionarOpcao(opcao)"
+    >
+      {{ opcao.nome }}
+    </button>
+  </div>
+
+  <div id="opcoesSelecionadas">
+    <br /><p>Opções selecionadas: {{ opcoesSelecionadasString }}</p>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "Opcionais",
+  props: {
     value: Array, // Adicione uma propriedade value para usar v-model
-    },
-    data() {
-      return {
-        //opcoes: [] // usar com a API
-        opcoesSelecionadas: [],
-        opcoes: [ // remover ou comentar ao testar a API
-          {
-            id: 1,
-            nome: "Oferece Rodízio"
-          },
-          {
-            id: 2,
-            nome: "Wi-Fi"
-          },
-          {
-            id: 3,
-            nome: "Estacionamento"
-          },
-          {
-            id: 4,
-            nome: "Área Kids"
-          },
-          {
-            id: 5,
-            nome: "Rodízio"
-          }
-        ]
-      };
-    },
-    computed: {
-      opcoesSelecionadasString() {
-        // Converte o array de opções selecionadas em uma string separada por vírgula
-        return this.opcoesSelecionadas.map(opcao => opcao.nome).join(", ");
-      }
-    },
-    methods: {
-      selecionarOpcao(opcao) {
-if (this.opcaoSelecionada(opcao)) {
-          // Se a opção já estiver selecionada, remova-a da lista
-          this.opcoesSelecionadas = this.opcoesSelecionadas.filter(item => item.id !== opcao.id);
-        } else {
-          // Caso contrário, adicione-a à lista
-          this.opcoesSelecionadas.push(opcao);
+  },
+  data() {
+    return {
+      opcoesSelecionadas: [],
+      opcoes: [
+        {
+          id: 1,
+          nome: "Oferece Rodízio"
+        },
+        {
+          id: 2,
+          nome: "Wi-Fi"
+        },
+        {
+          id: 3,
+          nome: "Estacionamento"
+        },
+        {
+          id: 4,
+          nome: "Área Kids"
+        },
+        {
+          id: 5,
+          nome: "Rodízio"
         }
-      },
-      opcaoSelecionada(opcao) {
-        return this.opcoesSelecionadas.some(item => item.id === opcao.id);
-      },
-      getOpcoes() {
-        // Fazer chamada a API para obter as informações das opções.
-      }
+      ]
+    };
+  },
+  computed: {
+    opcoesSelecionadasString() {
+      return this.opcoesSelecionadas.map(opcao => opcao.nome).join(", ");
     }
-  };
-  </script>
+  },
+  methods: {
+    selecionarOpcao(opcao) {
+      if (this.opcaoSelecionada(opcao)) {
+        this.opcoesSelecionadas = this.opcoesSelecionadas.filter(item => item.id !== opcao.id);
+      } else {
+        this.opcoesSelecionadas.push(opcao);
+      }
+      this.$emit("input", this.opcoesSelecionadas); // Emita o evento input aqui
+    },
+    opcaoSelecionada(opcao) {
+      return this.opcoesSelecionadas.some(item => item.id === opcao.id);
+    }
+  }
+};
+</script>
   
   <style scoped>
   .quadro-Opcionais {
