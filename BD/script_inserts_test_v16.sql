@@ -459,7 +459,6 @@ insert into usuario values(
 	null,                -- idEstabelecimento
 	1,                   -- idEndereco
     'Willian',           -- nome
-    'Martins',           -- sobrenome
 	15,                  -- codigoArea
 	999998888,           -- celular
     '44455566677',       -- cpf
@@ -491,7 +490,6 @@ insert into usuario values(
 	null,                -- idEstabelecimento
 	2,                   -- idEndereco
     'Lucas Maximiano',   -- nome
-    'dos Santos',        -- sobrenome
 	15,                  -- codigoArea
 	999997777,           -- celular
     '11122244433',       -- cpf
@@ -513,7 +511,6 @@ insert into usuario values(
 	null,                    -- idEstabelecimento
 	null,                    -- idEndereco
     'Julio Cesar',           -- nome
-    'Castro',                -- sobrenome
 	15,                      -- codigoArea
 	999999999,               -- celular
     '11122233344',           -- cpf
@@ -564,7 +561,6 @@ insert into usuario values( -- Mc Donalds - Votorantim
 	1,                -- idEstabelecimento
 	null,                   -- idEndereco
     'usuario04 - MC Donalds',           -- nome
-    'usuario04 - MC Donalds',           -- sobrenome
 	15,                  -- codigoArea
 	999999999,           -- celular
     '11122233355',       -- cpf
@@ -771,7 +767,6 @@ insert into usuario values( -- Mc Donalds - Votorantim
 	2,                -- idEstabelecimento
 	null,                   -- idEndereco
     'Dono do MC CAMPOLIM SOROCABA',           -- nome
-    'usuario05 - MC Donalds SOROCABA',           -- sobrenome
 	15,                  -- codigoArea
 	999999999,           -- celular
     '11122233355',       -- cpf
@@ -981,7 +976,6 @@ insert into usuario values(
 	3,                -- idEstabelecimento
 	5,                -- idEndereco
     'Dono do Kiko',           -- nome
-    'usuario06',           -- sobrenome
 	15,                  -- codigoArea
 	999999999,           -- celular
     '11122233355',       -- cpf
@@ -1125,7 +1119,6 @@ insert into usuario values(
 	4,                -- idEstabelecimento
 	5,                -- idEndereco
     'Dono da Pizzaria Booa Pizza usuario07',           -- nome
-    'usuario07',           -- sobrenome
 	15,                  -- codigoArea
 	999999999,           -- celular
     '11122233355',       -- cpf
@@ -1274,7 +1267,6 @@ insert into usuario values(
 	5,                -- idEstabelecimento
 	7,                -- idEndereco
     'Mada Bar usuario08',           -- nome
-    'usuario08',           -- sobrenome
 	15,                  -- codigoArea
 	999999999,           -- celular
     '11122233355',       -- cpf

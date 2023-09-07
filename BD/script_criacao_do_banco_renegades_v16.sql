@@ -80,7 +80,6 @@ CREATE TABLE usuario (
 	idEstabelecimento INT,
 	idEndereco        INT,
     nome              VARCHAR(100) not null,
-    sobrenome         VARCHAR(100) not null,
 	codigoArea        VARCHAR(20) not null,
 	celular           VARCHAR(20) not null,
     cpf               VARCHAR(11), -- UNIQUE,
