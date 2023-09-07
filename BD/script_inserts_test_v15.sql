@@ -12,11 +12,13 @@ DELETE FROM HORARIO;
 DELETE FROM PROMOCAO;
 DELETE FROM ESTILOMUSICA;
 DELETE FROM tipoContato;
+DELETE FROM tipoComida;
 DELETE FROM diaSemana;
 DELETE FROM CATEGORIA;
 DELETE FROM AVALIACAO;
-DELETE FROM musicaTocada;
+DELETE FROM musicaEstabelecimento;
 DELETE FROM OPCIONAL;
+DELETE FROM FAVORITOS;
 
 SET FOREIGN_KEY_CHECKS = 1;
 
@@ -444,14 +446,16 @@ insert into diaSemana values(
 
 ---------------------------- USUÁRIO WILLIAN -- INÍCIO
 
+  - , Votorantim - SP, 
+
 insert into ENDERECO values(
 	1, -- id
-	'18117121', -- cep not null,
+	'18115650', -- cep not null,
 	'SP', -- estado not null,
 	'Votorantim', -- cidade not null,
-    'Rua Pedro Nunes', -- lodradouro not null,
-    'Conjunto Habitacional Jardim Serrano', -- bairro not null,
-    97 -- numero not null
+    'Rua Levante Santucci,', -- lodradouro not null,
+    'Vila Santo Antonio', -- bairro not null,
+    590 -- numero not null
 );
 
 insert into usuario values(
@@ -467,8 +471,7 @@ insert into usuario values(
     'senha123',          -- senha
 	null,                -- fotoPerfil
     '2000-09-24',        -- dataNascimento
-	false,               -- adm
-	null                 -- favoritos
+	'normal' 			-- tipoUsuario ENUM('normal', 'donoEstabelecimento', 'adm') NOT NULL,
 );
 
 ---------------------------- USUÁRIO WILLIAN -- FIM
@@ -500,8 +503,7 @@ insert into usuario values(
     'senha123',          -- senha
 	null,                -- fotoPerfil
     '2000-05-01',        -- dataNascimento
-	false,               -- adm
-	null                 -- favoritos
+	'normal',               -- tipoUsuario ENUM('normal', 'donoEstabelecimento', 'adm') NOT NULL,
 );
 
 ---------------------------- USUÁRIO LUCAS -- FIM
@@ -523,15 +525,10 @@ insert into usuario values(
     'senha123',              -- senha
 	null,                    -- fotoPerfil
     '1989-09-24',            -- dataNascimento
-	true,                    -- adm
-	null                     -- favoritos
+	'adm' -- tipoUsuario ENUM('normal', 'donoEstabelecimento', 'adm') NOT NULL,
 );
 
 ---------------------------- USUÁRIO ADM JULIO -- FIM
-
-
-
-
 
 
 -- -----------------------------------------------> Mc Donalds - Votorantim
@@ -574,8 +571,7 @@ insert into usuario values( -- Mc Donalds - Votorantim
     'senha123',          -- senha
 	null,                -- fotoPerfil
     '1989-09-24',        -- dataNascimento
-	false,                -- adm
-	null                 -- favoritos
+	'donoEstabelecimento' -- tipoUsuario
 );
 
 ---------------------------------------------------------------- HORÁRIO INÍCIO
@@ -779,8 +775,7 @@ insert into usuario values( -- Mc Donalds - Votorantim
     'senha123',          -- senha
 	null,                -- fotoPerfil
     '1989-09-24',        -- dataNascimento
-	false,                -- adm
-	null                 -- favoritos
+	'donoEstabelecimento'-- tipoUsuario ENUM('normal', 'donoEstabelecimento', 'adm') NOT NULL,
 );
 
 ---------------------------------------------------------------- HORÁRIO INÍCIO
@@ -989,8 +984,7 @@ insert into usuario values(
     'senha123',          -- senha
 	null,                -- fotoPerfil
     '1989-09-24',        -- dataNascimento
-	false,                -- adm
-	null                 -- favoritos
+	'donoEstabelecimento'               -- tipoUsuario ENUM('normal', 'donoEstabelecimento', 'adm') NOT NULL,
 );
 
 ---------------------------------------------------------------- HORÁRIO INÍCIO
@@ -1130,11 +1124,10 @@ insert into usuario values(
 	999999999,           -- celular
     '11122233355',       -- cpf
     'usuario07@gmail.com', -- email
-    'senha123',          -- senha
-	null,                -- fotoPerfil
-    '1989-09-24',        -- dataNascimento
-	false,                -- adm
-	null                 -- favoritos
+    'senha123',            -- senha
+	null,                  -- fotoPerfil
+    '1989-09-24',          -- dataNascimento
+	'donoEstabelecimento'  -- tipoUsuario ENUM('normal', 'donoEstabelecimento', 'adm') NOT NULL,
 );
 
 ---------------------------------------------------------------- HORÁRIO INÍCIO
@@ -1282,8 +1275,7 @@ insert into usuario values(
     'senha123',          -- senha
 	null,                -- fotoPerfil
     '1989-09-24',        -- dataNascimento
-	false,                -- adm
-	null                 -- favoritos
+	'donoEstabelecimento'    -- tipoUsuario ENUM('normal', 'donoEstabelecimento', 'adm') NOT NULL,s
 );
 
 ---------------------------------------------------------------- HORÁRIO INÍCIO
