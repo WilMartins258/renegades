@@ -61,7 +61,10 @@ router.put('/', async (req, res) => {
 
         res.status(200).send(
             {
-            msg: 'Dados do usuário alterados com sucesso!'
+            msg: 'Dados do usuário alterados com sucesso!',
+            id: idDoUsuario,
+            nome: reqBody.nome,
+            email: reqBody.email
         });
     } catch (error) {
         console.error('Erro na rota PUT: ', error);
