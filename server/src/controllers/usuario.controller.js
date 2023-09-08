@@ -1,5 +1,16 @@
 const db = require('../db');
 
+const checkEmail = async (email) => {
+  const checkEmailQuery = `SELECT email 
+                            FROM usuario 
+                            WHERE email = ?;`;
+  const connection = await db;
+
+  const [checkEmail] = await connection.query(checkEmailQuery, email);
+
+  return checkEmail[0];
+};
+
 const insertUserData = async (dadosUsuario) => {
   try {
     const dadosUsuarioQuery = `INSERT INTO usuario (nome, email, senha)
@@ -8,7 +19,7 @@ const insertUserData = async (dadosUsuario) => {
 
     const [insercaoUsuario] = await connection.query(dadosUsuarioQuery, dadosUsuario);
 
-    return insercaoUsuario.insertId;
+    return insercaoUsuario;
   } catch (error) {
     throw new Error(`Erro ao inserir dados do usuário: ${error.message}`);
   }
@@ -62,6 +73,7 @@ const deleteUserData = async () => {
 };
 
 module.exports = {
+  checkEmail,
   getUserById,
   updateUserData,
   insertUserData,

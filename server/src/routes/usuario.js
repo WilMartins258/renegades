@@ -78,6 +78,13 @@ router.put('/', async (req, res) => {
 router.post('/', async (req, res) => {
     try {
         const reqBody = req.body;
+        if (!reqBody.nome || !reqBody.email || !reqBody.senha) {
+            return res.status(400).json({ 
+                msg: 'Dados inválidas para criação de usuário.', 
+                login: false 
+            });
+        }
+
         const dadosUsuario = {
             nome: reqBody.nome,
             email: reqBody.email,
@@ -85,16 +92,25 @@ router.post('/', async (req, res) => {
         };
 
         const dadosUsuarioArray = Object.values(dadosUsuario);
-        const idDoUsuario = await userController.insertUserData(dadosUsuarioArray);
+        const checagemEmail = await userController.checkEmail(dadosUsuario.email);
+        if (checagemEmail) {
+            res.status(400).send({
+                login: false,
+                msg: 'O email fornecido já está associado a uma conta existente. Por favor, use outro email ou faça login se você já possui uma conta.'
+            });
+            
+        } else {
+            const usuarioInserido = await userController.insertUserData(dadosUsuarioArray);
 
-        res.status(200).send({
-            msg: 'Usuário adicionado ao sistema',
-            login: true,
-            id: idDoUsuario,
-            nome: reqBody.nome,
-            email: reqBody.email,
-            tipoUsuario: 0
-        });
+            res.status(200).send({
+                msg: 'Usuário adicionado ao sistema',
+                login: true,
+                id: usuarioInserido.idDoUsuario,
+                nome: reqBody.nome,
+                email: reqBody.email,
+                tipoUsuario: 0
+            });
+        }
     } catch (error) {
         console.error('Erro na rota POST /', error);
         res.status(500).send({
