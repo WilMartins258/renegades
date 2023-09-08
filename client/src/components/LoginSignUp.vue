@@ -36,6 +36,8 @@
 </template>
 
 <script>
+import api from './../services/backend-service.js';
+
 export default {
 	data() {
 		return {
@@ -56,10 +58,30 @@ export default {
 
 
 	methods: {
-		submit() {
+		async submit() {
+			console.log('submit');
 			if (this.validarCampos()) {
 				this.$emit('do-sign-up', { ...this.$data });
 				this.ocultarMensagemErro();
+
+				try {
+					const informacoesDoUsuario = {
+						nome: this.Nome,
+						email: this.Email,
+						senha: this.Senha1
+					};
+					const usuarioCriado = await api.post('/usuario', informacoesDoUsuario);
+					
+					console.log('usuarioCriado: ', usuarioCriado);
+
+					sessionStorage.setItem('idUsuario', usuarioCriado.data.id);
+					sessionStorage.setItem('nomeUsuario', usuarioCriado.data.nome);
+					sessionStorage.setItem('tipoUsuario', usuarioCriado.data.tipoUsuario);
+					// sessionStorage.setItem('fotoperfil', usuarioCriado.data.fotoperfil); // Por enquanto não estamos solicitando a foto no momento da criação incicial do usuário
+
+				} catch (error) {
+					console.log('ERRO:: ', error);
+				}
 			}
 		},
 		validarCampos() {

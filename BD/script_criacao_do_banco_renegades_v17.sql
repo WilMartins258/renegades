@@ -80,14 +80,14 @@ CREATE TABLE usuario (
 	idEstabelecimento INT,
 	idEndereco        INT,
     nome              VARCHAR(100) not null,
-	codigoArea        VARCHAR(20) not null,
-	celular           VARCHAR(20) not null,
+	codigoArea        VARCHAR(20), -- not null,
+	celular           VARCHAR(20), -- not null,
     cpf               VARCHAR(11), -- UNIQUE,
     email             VARCHAR(100) not null UNIQUE,
     senha             VARCHAR(50) not null,
 	fotoPerfil        LONGBLOB,
     dataNascimento    DATE,
-	tipoUsuario       INT
+	tipoUsuario       INT DEFAULT 0
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE contato (

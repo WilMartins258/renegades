@@ -42,7 +42,6 @@ router.get('/:id', async (req, res) => {
 router.put('/', async (req, res) => {
     try {
         const reqBody = req.body;
-
         const numeroDividido = separarCelularService.extrairCodigoAreaENumero(reqBody?.celularCompleto);
         const dataNascMySqlFormat = dataToMySqlService.dataToMySqlFormat(reqBody?.dataNascimento);
 
@@ -58,11 +57,7 @@ router.put('/', async (req, res) => {
         };
 
         const novosDadosUsuarioArray = Object.values(novosDadosUsuario);
-        console.log('novosDadosUsuarioArray:: ', novosDadosUsuarioArray)
-        
         const newUserData = await userController.updateUserData(novosDadosUsuarioArray);
-
-        // console.log('newUserData:: ', newUserData);
 
         res.status(200).send(
             {
@@ -79,17 +74,30 @@ router.put('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        console.log('Início da rota usuario POST');
         const reqBody = req.body;
+        const dadosUsuario = {
+            nome: reqBody.nome,
+            email: reqBody.email,
+            senha: reqBody.senha
+        };
 
-        // Lógica para adicionar um usuário aqui
+        const dadosUsuarioArray = Object.values(dadosUsuario);
+        const idDoUsuario = await userController.insertUserData(dadosUsuarioArray);
 
-        res.status(200).send(`Usuário adicionado ao sistema`);
+        res.status(200).send({
+            msg: 'Usuário adicionado ao sistema',
+            login: true,
+            id: idDoUsuario,
+            nome: reqBody.nome,
+            email: reqBody.email,
+            tipoUsuario: 0
+        });
     } catch (error) {
         console.error('Erro na rota POST /', error);
         res.status(500).send({
-            errorMsg: 'Ocorreu um erro ao processar a solicitação.',
-            error: error.message
+            errorMsg: 'Ocorreu um erro ao processar a criar usuário.',
+            error: error.message,
+            login: false
         });
     }
 });

@@ -1,8 +1,14 @@
 const db = require('../db');
 
-const insertUserData = async () => {
+const insertUserData = async (dadosUsuario) => {
   try {
-    // Sua lógica de inserção de dados aqui
+    const dadosUsuarioQuery = `INSERT INTO usuario (nome, email, senha)
+                               VALUES (?, ?, ?);`;
+    const connection = await db;
+
+    const [insercaoUsuario] = await connection.query(dadosUsuarioQuery, dadosUsuario);
+
+    return insercaoUsuario.insertId;
   } catch (error) {
     throw new Error(`Erro ao inserir dados do usuário: ${error.message}`);
   }
@@ -49,7 +55,7 @@ const updateUserData = async (newUserData) => {
 
 const deleteUserData = async () => {
   try {
-    // Sua lógica de exclusão de dados aqui
+    
   } catch (error) {
     throw new Error(`Erro ao excluir dados do usuário: ${error.message}`);
   }
@@ -59,5 +65,5 @@ module.exports = {
   getUserById,
   updateUserData,
   insertUserData,
-  deleteUserData,
+  deleteUserData
 };
