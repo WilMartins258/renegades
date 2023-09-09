@@ -1,5 +1,10 @@
 <template>
   <div id="form-wrap" class="form">
+        <div class="progress">
+          <div class="progress-bar" :style="{ width: progressBarWidth }">
+            <span class="progressTextSpan">{{ progressBarWidth }}</span>
+          </div>
+      </div>
     <div class="posicaoform-wrap">
 
       <!------------------------------------->
@@ -326,12 +331,16 @@ methods: {
     if (this.currentSection < 6) {
       this.currentSection++;
     }
+    this.scrollToTop()
   },
+
   previousSection() {
     if (this.currentSection > 1) {
       this.currentSection--;
     }
+    this.scrollToTop()
   },
+
   cancelar() {
     this.$router.push("/AreaDoEstabelecimento");
   },
@@ -406,15 +415,24 @@ methods: {
       }
     }
   },
-      
+  scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // Isso cria uma rolagem suave
+    })
+  }
 },
   mounted(){
     const cnpjInput = document.getElementById("cnpj");
     const cnpjMask = IMask(cnpjInput, {
       mask: "00.000.000/0000-00",
   });
-}
-
+},
+computed: {
+  progressBarWidth() {
+    return `${Math.round((this.currentSection - 1) / 5 * 100)}%`;
+  },
+},
 };
 </script>
 
@@ -438,6 +456,27 @@ methods: {
     padding: 50px 30px 50px 30px;
     flex-wrap: wrap;
   }
+
+  .progress {
+    width: 100%;
+    height: 20px; /* Altura da barra de progresso */
+    background-color: #f0f0f0; /* Cor de fundo da barra de progresso */
+  }
+
+  .progress-bar {
+  height: 100%;
+  background: linear-gradient(to right, #ff9800, #e91e2f);
+  transition: width 0.3s ease;
+
+}
+
+.progressTextSpan {
+  text-align: center;
+  font-weight: bold;
+  color: black;
+  display: block;
+}
+
 
 h2 {
 color: #fff;
