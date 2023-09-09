@@ -10,7 +10,7 @@
         </select>
         <label for="numero">Número:</label>
         <input v-model="numero" type="text" id="numero" name="numero" placeholder="Digite aqui"
-          :class="{ 'error': campoVazio }" @input="limparCampoVazio" />
+          :class="{ 'error': campoVazio }" @input="aplicarMascara" />
         <label for="isWhatsapp"><img src="../../../../public/img/whatsappLogo.png" alt="É WhatsApp?" class="whatsapp-image" /> É WhatsApp:</label>
         <input v-model="isWhatsapp" type="checkbox" id="isWhatsapp" name="isWhatsapp" />
         <p v-if="campoVazio" class="error-message">Informe um número válido.</p>
@@ -60,6 +60,9 @@
 <script>
 
 export default {
+  props:{
+    ContatosSelecionadas: Array, // O valor passado pelo componente pai
+  },
   name: "DashContato",
   data() {
     return {
@@ -105,8 +108,8 @@ export default {
         // Adicionar um novo contato
         this.listaContatos.push(novoContato);
       }
-      
       this.limparCampos();
+      this.$emit("dados-salvos", this.listaContatos);
     },
     limparCampos() {
       this.tipoContato = "Telefone";
@@ -175,20 +178,12 @@ input[type="time"] {
   width: 100%;
 }
 
-select,
-input[type="text"],
-input[type="checkbox"] {
-  width: 100%; /* Defina a largura para 100% */
-}
-
-
 /* Ajuste a margem para o select e os campos de entrada */
 select,
 input[type="time"],
 label {
   margin: 0.4rem 0;
 }
-
 
 .container {
   max-width: 700px;
@@ -205,15 +200,9 @@ form {
   display: flex;
   flex-wrap: wrap; 
   margin-bottom: 10px;
-  max-width: 600px; /* Ajuste a largura máxima conforme necessário */
-  margin: 0 auto; /* Centralize o formulário no container */
-  align-items: center; /* Alinhe verticalmente os elementos no centro */
-}
-label {
-  margin-right: 0; /* Remova a margem direita */
 }
 
-
+label,
 input,
 button {
   margin-right: 10px;
@@ -229,7 +218,6 @@ td {
   border: 1px solid #ccc;
   padding: 8px;
   text-align: center;
-  font-size: 14px;
   color: #000;
 }
 
@@ -265,9 +253,14 @@ button:disabled:hover {
     height: auto; 
   }
 
+  input#numero {
+  width: 50%; /* Preencher todo o espaço disponível no contêiner */
+  box-sizing: border-box; /* Incluir borda e preenchimento no tamanho total */
+}
+
 input {
   border: none;
-  padding: 8px 60px;
+  padding: 8px 15px;
   border-radius: 25px;
   background: rgba(211, 201, 201, 0.774);
 }
@@ -353,6 +346,10 @@ input {
 }
 
 @media (max-width: 414px) {
+  input#numero {
+  width: 70%; /* Preencher todo o espaço disponível no contêiner */
+  box-sizing: border-box; /* Incluir borda e preenchimento no tamanho total */
+}
   table {
     font-size: 7px;
   }

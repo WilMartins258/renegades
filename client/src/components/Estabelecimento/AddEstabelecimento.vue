@@ -82,10 +82,10 @@
     <br><br>
 
     <!-- Chamada para o Component --> 
-    <DashContato :value="ContatosSelecionadas" @input="receberContato"/> 
+    <DashContato :ContatosSelecionadas="ContatosSelecionadas" @dados-salvos="receberContato"/> 
     <br>
     <!-- Chamada para o Component --> 
-    <DashRdSociais :value="RdSocialSelecionadas" @input="receberRdSociais" />
+    <DashRdSociais :RdSocialSelecionadas="RdSocialSelecionadas" :redeSocialSelecionada="redeSocialSelecionada" @dados-salvos="receberRdSociais" />
 
   </section><!-- Fecha seção 2-->
 
@@ -267,6 +267,7 @@ data() {
       RdSocialSelecionadas: [],
       ContatosSelecionadas: [],
       HorariosSelecionados: [],
+      estilosSelecionadas: [],
     };
 },
 methods: {
@@ -283,13 +284,13 @@ methods: {
     this.estilosSelecionadas = estiloMusicais;
   },
   // Recebe os dados do componente "DashRdSocias"
-  receberRdSociais(redeSocial) {
-    this.RdSocialSelecionadas = redeSocial;
-  },
+  receberRdSociais(dados) {
+      this.RdSocialSelecionadas = dados;
+    },
   // Recebe os dados do componente "DashContatos"
   receberContato(contato) {
-    this.ContatosSelecionadas = contato;
-  },
+      this.ContatosSelecionadas = contato;
+    },
   receberHorario(horario) {
     this.HorariosSelecionados = horario;
   },

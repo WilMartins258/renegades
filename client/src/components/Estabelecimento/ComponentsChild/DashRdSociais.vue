@@ -63,12 +63,13 @@
 <script>
 export default {
   props: {
-    value: Array, // O valor passado pelo componente pai
+    RdSocialSelecionadas: Array, // O valor passado pelo componente pai
   },
   name: "DashRdSociais",
   data() {
     return {
       redeSocial: "Facebook",
+      value: this.redeSocial,
       perfil: "",
       campoVazio: false,
       isEditing: false,
@@ -94,7 +95,7 @@ export default {
         this.listaRedesSociais.push(novaRedeSocial);
       }
       this.limparCampos();
-      this.$emit('input', novaRedeSocial); //Enviar dados para o Componente pai
+       this.$emit('dados-salvos', this.listaRedesSociais); //Enviar dados para o Componente pai
     },
     limparCampos() {
       this.redeSocial = "Facebook";
