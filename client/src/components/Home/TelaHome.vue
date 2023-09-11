@@ -1,5 +1,5 @@
 <template>
-        <h1>The Better Choice!</h1>
+        <h1>Better Choice!</h1>
       <h3>Mais Recomendados!!</h3>
       <CombinedCarousel/><br><br>
       <Filtro/>

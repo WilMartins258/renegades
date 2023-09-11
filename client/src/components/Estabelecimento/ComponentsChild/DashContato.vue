@@ -1,9 +1,9 @@
 <template>
   <div class="container">
-    <h1>Contatos</h1>
+    <!--<h1>Contatos</h1>-->  
     <div>
       <form @submit.prevent="salvarContato">
-        <label for="tipoContato">Tipo de Contato:</label>
+       <label for="tipoContato">Tipo de Contato:</label>
         <select v-model="tipoContato" id="tipoContato" @change="aplicarMascara">
           <option value="Telefone">Telefone</option>
           <option value="Celular">Celular</option>
