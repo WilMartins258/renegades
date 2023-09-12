@@ -28,7 +28,13 @@ CREATE TABLE estiloMusica (
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE tipoContato (
-	id                INT PRIMARY KEY AUTO_INCREMENT,
+	id         INT PRIMARY KEY AUTO_INCREMENT,
+	nome       VARCHAR(50)
+) AUTO_INCREMENT = 1;
+
+-- FAZER CONSTRANINTS E FAZER TABELA QUE LIGARÁ AO ESTABELECIMENTO
+CREATE TABLE tipoRedeSocial (
+	id         INT PRIMARY KEY AUTO_INCREMENT,
 	nome       VARCHAR(50)
 ) AUTO_INCREMENT = 1;
 
@@ -88,6 +94,13 @@ CREATE TABLE usuario (
 	fotoPerfil        LONGBLOB,
     dataNascimento    DATE,
 	tipoUsuario       INT DEFAULT 0
+) AUTO_INCREMENT = 1;
+
+CREATE TABLE redeSocial (
+	id                  INT PRIMARY KEY AUTO_INCREMENT,
+	idTipoRedeSocial    INT not null,
+	idEstabelecimento   INT not null,
+	redeSocial          VARCHAR(200) not null
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE contato (
@@ -159,7 +172,7 @@ CREATE TABLE comidaEstabelecimento (
     idTipocomida INT NOT NULL
 ) AUTO_INCREMENT = 1;
 
-CREATE TABLE musicaTocada (
+CREATE TABLE musica (
 	id                INT PRIMARY KEY,
 	idEstabelecimento INT not null,
 	idEstiloMusica    INT not null
@@ -198,10 +211,10 @@ ALTER TABLE estabelecimento add (constraint estabelecimento_endereco_fk foreign 
 
 
 
------- musicaTocada
-ALTER TABLE musicaTocada add (constraint musicaTocada_estabelecimento_fk foreign key (idEstabelecimento) references estabelecimento (id));
+------ musica
+ALTER TABLE musica add (constraint musica_estabelecimento_fk foreign key (idEstabelecimento) references estabelecimento (id));
 
-ALTER TABLE musicaTocada add (constraint musicaTocada_estiloMusica_fk foreign key (idEstiloMusica) references estiloMusica (id));
+ALTER TABLE musica add (constraint musica_estiloMusica_fk foreign key (idEstiloMusica) references estiloMusica (id));
 
 
 
@@ -216,6 +229,13 @@ ALTER TABLE opcionalEstabelecimento add (constraint opcionalEstabelecimento_opic
 ALTER TABLE contato add (constraint contato_estabelecimento_fk foreign key (idEstabelecimento) references estabelecimento (id));
 
 ALTER TABLE contato add (constraint contato_tipoContato_fk foreign key (idTipoContato) references tipoContato (id));
+
+
+
+------ REDESOCIAL
+ALTER TABLE redeSocial add (constraint redeSocial_estabelecimento_fk foreign key (idEstabelecimento) references estabelecimento (id));
+
+ALTER TABLE redeSocial add (constraint redeSocial_estabelecimento_fk foreign key (idTipoRedeSocial) references tipoRedeSocial (id));
 
 
 

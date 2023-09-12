@@ -15,7 +15,7 @@ DELETE FROM tipoContato;
 DELETE FROM diaSemana;
 DELETE FROM CATEGORIA;
 DELETE FROM AVALIACAO;
-DELETE FROM musicaTocada;
+DELETE FROM musica;
 DELETE FROM OPCIONAL;
 
 SET FOREIGN_KEY_CHECKS = 1;
@@ -338,40 +338,46 @@ insert into estilomusica values (
 
 insert into tipoContato values(
 	1,
-	'Whatsapp'
+	'Celular'
 );
 
 insert into tipoContato values(
 	2,
-	'Celular (sem Whatsapp)'
-);
-
-insert into tipoContato values(
-	3,
-	'Telefone (sem Whatsapp)'
-);
-
-insert into tipoContato values(
-	4,
-	'Instagram'
-);
-
-insert into tipoContato values(
-	5,
-	'Site do estabelecimento'
-);
-
-insert into tipoContato values(
-	6,
-	'Cardápio Online'
-);
-
-insert into tipoContato values(
-	7,
-	'Facebook'
+	'Telefone'
 );
 
 -- ---------------------------- tipoContato -- FIM
+
+-- ---------------------------- tipoRedesocial -- INÍCIO
+
+insert into tipoRedesocial values(
+	1,
+	'Instagram'
+);
+
+insert into tipoRedesocial values(
+	2,
+	'Facebook'
+);
+
+insert into tipoRedesocial values(
+	3,
+	'Twitter/X'
+);
+
+insert into tipoRedesocial values(
+	4,
+	'Site do estabelecimento'
+);
+
+insert into tipoRedesocial values(
+	5,
+	'Cardápio Online'
+);
+
+-- ---------------------------- tipoRedesocial -- FIM
+
+
 
 -- ---------------------------- diaSemana -- INÍCIO
 
@@ -1244,19 +1250,19 @@ insert into estabelecimento values(
 	'2023-09-07' -- dataUltimoAcesso
 );
 
-insert into musicaTocada values(
+insert into musica values(
 	1, -- id                INT PRIMARY KEY,
 	5, -- idEstabelecimento INT not null,
 	1 -- idEstiloMusica    INT not null ---------> PAGODE
 );
 
-insert into musicaTocada values(
+insert into musica values(
 	2, -- id                INT PRIMARY KEY,
 	5, -- idEstabelecimento INT not null,
 	2 -- idEstiloMusica    INT not null ---------> SAMBA
 );
 
-insert into musicaTocada values(
+insert into musica values(
 	3, -- id                INT PRIMARY KEY,
 	5, -- idEstabelecimento INT not null,
 	3 -- idEstiloMusica    INT not null ---------> FUNK
