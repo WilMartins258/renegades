@@ -12,6 +12,7 @@ DELETE FROM HORARIO;
 DELETE FROM PROMOCAO;
 DELETE FROM ESTILOMUSICA;
 DELETE FROM tipoContato;
+DELETE FROM tipoRedesocial;
 DELETE FROM diaSemana;
 DELETE FROM CATEGORIA;
 DELETE FROM AVALIACAO;
@@ -687,23 +688,9 @@ insert into horario values( -- sábado	    00:00–04:00
 
 insert into contato values(
 	null,       -- id INT
-	3,          -- idTipoContato INT not null, -- TELEFONE
+	2,          -- idTipoContato INT not null, -- TELEFONE
 	1,          -- idEstabelecimento INT not null,
 	'32431749' -- contato VARCHAR(200) not null
-);
-
-insert into contato values(
-	null,       -- id INT
-	5,          -- idTipoContato INT not null, -- SITE
-	1,          -- idEstabelecimento INT not null,
-	'https://www.mcdonalds.com.br/' -- contato VARCHAR(200) not null
-);
-
-insert into contato values(
-	null,       -- id INT
-	6,          -- idTipoContato INT not null, -- CARDÁPIO ONLINE
-	1,          -- idEstabelecimento INT not null,
-	'https://www.mcdonalds.com.br/cardapio'
 );
 
 insert into cardapio values(
@@ -901,23 +888,9 @@ insert into horario values( -- sábado	    00:00–05:00
 
 insert into contato values(
 	null,       -- id INT
-	3,          -- idTipoContato INT not null, -- TELEFONE
+	1,          -- idTipoContato INT not null, -- TELEFONE
 	2,          -- idEstabelecimento INT not null,
 	'34115830' -- contato VARCHAR(200) not null
-);
-
-insert into contato values(
-	null,       -- id INT
-	5,          -- idTipoContato INT not null, -- SITE
-	2,          -- idEstabelecimento INT not null,
-	'https://www.mcdonalds.com.br/'
-);
-
-insert into contato values(
-	null,       -- id INT
-	6,          -- idTipoContato INT not null, -- CARDÁPIO ONLINE
-	2,          -- idEstabelecimento INT not null,
-	'https://www.mcdonalds.com.br/cardapio'
 );
 
 insert into cardapio values(
@@ -1055,7 +1028,7 @@ insert into horario values( -- sábado	    09:00–00:00
 
 insert into contato values(
 	null,       -- id INT
-	3,          -- idTipoContato INT not null, -- TELEFONE
+	1,          -- idTipoContato INT not null, -- TELEFONE
 	3,          -- idEstabelecimento INT not null,
 	'32432019' -- contato VARCHAR(200) not null
 );
@@ -1198,7 +1171,7 @@ insert into horario values( -- sábado	    09:00–00:00
 
 insert into contato values(
 	null,       -- id INT
-	3,          -- idTipoContato INT not null, -- TELEFONE
+	1,          -- idTipoContato INT not null, -- TELEFONE
 	4,          -- idEstabelecimento INT not null,
 	'32432020' -- contato VARCHAR(200) not null
 );

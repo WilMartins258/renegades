@@ -235,7 +235,7 @@ ALTER TABLE contato add (constraint contato_tipoContato_fk foreign key (idTipoCo
 ------ REDESOCIAL
 ALTER TABLE redeSocial add (constraint redeSocial_estabelecimento_fk foreign key (idEstabelecimento) references estabelecimento (id));
 
-ALTER TABLE redeSocial add (constraint redeSocial_estabelecimento_fk foreign key (idTipoRedeSocial) references tipoRedeSocial (id));
+ALTER TABLE redeSocial add (constraint redeSocial_tipoRedeSocial_fk foreign key (idTipoRedeSocial) references tipoRedeSocial (id));
 
 
 
