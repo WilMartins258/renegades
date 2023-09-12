@@ -114,7 +114,7 @@ router.post('/', async (req, res) => {
     } catch (error) {
         console.error('Erro na rota POST /', error);
         res.status(500).send({
-            errorMsg: 'Ocorreu um erro ao processar a criar usuário.',
+            errorMsg: 'Ocorreu um erro ao processar a criação de usuário.',
             error: error.message,
             login: false
         });

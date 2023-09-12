@@ -26,7 +26,7 @@ const updateEstabelecimento = async (dadosEstabelecimento) => {
     }
 };
 
-const readEstabelecimento = async (idEstabelecimento) => {
+const getEstabelecimentoById = async (idEstabelecimento) => {
     try {
       const estabelecimentoQuery = ``;
       const connection = await db;
@@ -42,5 +42,5 @@ const readEstabelecimento = async (idEstabelecimento) => {
 module.exports = {
     createEstabelecimento,
     updateEstabelecimento,
-    readEstabelecimento
+    getEstabelecimentoById
 };
