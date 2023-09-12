@@ -19,7 +19,7 @@
           />
           <div class="description">Meu Estabelecimento</div>
         </router-link>
-        <router-link to="/Anuncio" class="card">
+        <router-link to="/promocao" class="card">
           <img
             src="../../../public/img/Promocao.png"
             alt="Meus Anuncios"

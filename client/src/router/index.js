@@ -70,6 +70,12 @@ const routes = [
     component: () => import(/* webpackChunkName: "gerenciopcionais" */ '../views/ViewAdm/GerenciaOpcionais'),
   },
 
+  {
+    path: '/promocao',
+    name: 'promocao',
+    component: () => import(/* webpackChunkName: "promocao" */ '../views/ViewAreaEstabelecimento/Promocao'),
+  },
+
 ]
 
 const router = createRouter({

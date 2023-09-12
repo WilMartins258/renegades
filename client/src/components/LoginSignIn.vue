@@ -10,10 +10,10 @@
 			<input id="sign-in-pass" type="password" class="input" data-type="password" v-model="Senha">
 			<span v-if="!validarSenha" class="error">A senha é obrigatória</span>
 		</div>
-		<div class="group">
+		<!--<div class="group">
 			<input id="check" type="checkbox" class="check" v-model="keepSignIn">
 			<label for="check"><span class="icon"></span> Mantenha-me conectado</label>
-		</div>
+		</div>-->
 		<div class="group">
 			<input type="submit" class="button" value="Entrar">
 			<!-- onclick={handleLogin} -->
