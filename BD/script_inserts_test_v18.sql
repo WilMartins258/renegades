@@ -8,6 +8,7 @@ DELETE FROM CARDAPIO;
 DELETE FROM ESTABELECIMENTO;
 DELETE FROM ENDERECO;
 DELETE FROM CONTATO;
+DELETE FROM redesocial;
 DELETE FROM HORARIO;
 DELETE FROM PROMOCAO;
 DELETE FROM ESTILOMUSICA;
@@ -693,6 +694,13 @@ insert into contato values(
 	'32431749' -- contato VARCHAR(200) not null
 );
 
+insert into redeSocial values(
+	null,       -- id INT
+	4,          -- idTipoRedeSocial  INT not null, -- SITE
+	1,          -- idEstabelecimento INT not null,
+	'https://www.mcdonalds.com.br/' -- redeSocial VARCHAR(200) not null
+);
+
 insert into cardapio values(
 	null, -- id
 	1, -- idEstabelecimento INT not null,
@@ -755,7 +763,7 @@ insert into estabelecimento values(
 
 
 
-insert into usuario values( -- Mc Donalds - Votorantim
+insert into usuario values( -- Mc Donalds - Sorocaba
 	5,                   -- id
 	2,                -- idEstabelecimento
 	null,                   -- idEndereco
@@ -891,6 +899,13 @@ insert into contato values(
 	1,          -- idTipoContato INT not null, -- TELEFONE
 	2,          -- idEstabelecimento INT not null,
 	'34115830' -- contato VARCHAR(200) not null
+);
+
+insert into redeSocial values(
+	null,       -- id INT
+	4,          -- idTipoRedeSocial  INT not null, -- SITE
+	2,          -- idEstabelecimento INT not null,
+	'https://www.mcdonalds.com.br/' -- redeSocial VARCHAR(200) not null
 );
 
 insert into cardapio values(
