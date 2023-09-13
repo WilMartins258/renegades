@@ -106,7 +106,8 @@ CREATE TABLE contato (
 	id                INT PRIMARY KEY AUTO_INCREMENT,
 	idTipoContato     INT not null,
 	idEstabelecimento INT not null,
-	contato           VARCHAR(200) not null
+	contato           VARCHAR(200) not null,
+	isWhatsapp        BOOLEAN not null
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE horario (

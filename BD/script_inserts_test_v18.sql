@@ -691,7 +691,8 @@ insert into contato values(
 	null,       -- id INT
 	2,          -- idTipoContato INT not null, -- TELEFONE
 	1,          -- idEstabelecimento INT not null,
-	'32431749' -- contato VARCHAR(200) not null
+	'32431749', -- contato VARCHAR(200) not null
+	false -- isWhatsapp        BOOLEAN not null
 );
 
 insert into redeSocial values(
@@ -898,7 +899,8 @@ insert into contato values(
 	null,       -- id INT
 	1,          -- idTipoContato INT not null, -- TELEFONE
 	2,          -- idEstabelecimento INT not null,
-	'34115830' -- contato VARCHAR(200) not null
+	'34115830', -- contato VARCHAR(200) not null
+	false -- isWhatsapp        BOOLEAN not null
 );
 
 insert into redeSocial values(
@@ -1045,7 +1047,8 @@ insert into contato values(
 	null,       -- id INT
 	1,          -- idTipoContato INT not null, -- TELEFONE
 	3,          -- idEstabelecimento INT not null,
-	'32432019' -- contato VARCHAR(200) not null
+	'32432019', -- contato VARCHAR(200) not null
+	false -- isWhatsapp        BOOLEAN not null
 );
 
 insert into cardapio values(
@@ -1188,7 +1191,8 @@ insert into contato values(
 	null,       -- id INT
 	1,          -- idTipoContato INT not null, -- TELEFONE
 	4,          -- idEstabelecimento INT not null,
-	'32432020' -- contato VARCHAR(200) not null
+	'32432020', -- contato VARCHAR(200) not null
+	false -- isWhatsapp        BOOLEAN not null
 );
 
 insert into cardapio values(
@@ -1293,7 +1297,8 @@ insert into contato values(
 	null,       -- id INT
 	1,          -- idTipoContato INT not null, -- TELEFONE
 	5,          -- idEstabelecimento INT not null,
-	'999999999' -- contato VARCHAR(200) not null
+	'999999999', -- contato VARCHAR(200) not null
+	false -- isWhatsapp        BOOLEAN not null
 );
 
 insert into cardapio values(
