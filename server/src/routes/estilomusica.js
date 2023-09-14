@@ -1,25 +1,18 @@
-// Importando módulos
 const router = require('express').Router();
-const db = require('../db');
-
-    const getAllEstilosMusica = async () => {
-        const estiloMusicaQuery = "SELECT * FROM estiloMusica";
-        const connection = await db;
-
-        const [estilosMusica] = await connection.query(estiloMusicaQuery);
-    
-        return estilosMusica;
-    }
+const estiloMusicaController = require('../controllers/estiloMusica.controller.js');
 
 router.get('/', async (req, res) => {
+    try {
+        const todosEstilosMusica = await estiloMusicaController.getAllEstilosMusica();
 
-    // O resultado disso é um array com cada estilo de música em um elemento
-    const estilosMusica = await getAllEstilosMusica();
-    
-    res.status(200).send(
-        estilosMusica
-    );
+        res.status(200).send(todosEstilosMusica);
+    } catch (error) {
+        console.error('ERROR:: ', error);
+        res.status(500).send({
+            errorMsg: 'Ocorreu um erro ao processar a solicitação.',
+            error: error.message
+        });
+    }
 });
-
 
 module.exports = router;

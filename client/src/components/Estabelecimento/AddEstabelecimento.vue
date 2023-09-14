@@ -278,6 +278,9 @@ data() {
     };
 },
 methods: {
+  async metodoInicial() {
+    console.log('metodoInicial do AddEstabelecimento.vue\n\n\n\n\n\n');
+  },
   // Recebe os dados do componente "Categorias"
   receberCategoriasSelecionadas(categorias) {
     this.categoriasSelecionadas = categorias;
@@ -319,6 +322,7 @@ methods: {
       ContatosSelecionadas: this.ContatosSelecionadas,
       HorariosSelecionados: this.HorariosSelecionados,
     };
+
     const formDataFake = {
       nomeEstabelecimento: 'nome estabelecimento',
       descricaoEstabelecimento: 'descricaoEstabelecimento',
@@ -387,33 +391,32 @@ methods: {
     };
 
 
-    console.log("Dados do formulário e componentes filhos:", formDataFake);
+    // console.log("Dados do formulário e componentes filhos:", formDataFake);
     
-    const salvarEstabelecimento = await api.post('estabelecimento', formDataFake);
+    // const salvarEstabelecimento = await api.post('estabelecimento', formDataFake);
 
     if (salvarEstabelecimento) {
-      console.log("salvarEstabelecimento:: ", salvarEstabelecimento);
+      // console.log("salvarEstabelecimento:: ", salvarEstabelecimento);
     }
     
     
     
   },
   nextSection() {
-    console.log('nomeEstabelecimento:', this.nomeEstabelecimento);
-    console.log('descricaoEstabelecimento:', this.descricaoEstabelecimento);
-    console.log('cnpj:', this.cnpj);
-    console.log('cep:', this.cep);
-    console.log('endereco:', this.endereco);
-    console.log('numero:', this.numero);
-    console.log('recomendacao:', this.recomendacao);
-    console.log('estabelecimentoPhoto:', this.estabelecimentoPhoto);
-    console.log('categoriasSelecionadas:', this.categoriasSelecionadas);
-    console.log('opcoesSelecionadas:', this.opcoesSelecionadas);
-    console.log('estilosSelecionadas:', this.estilosSelecionadas);
-    console.log('RdSocialSelecionadas:', this.RdSocialSelecionadas);
-    console.log('ContatosSelecionadas:', this.ContatosSelecionadas);
-    console.log('HorariosSelecionados:', this.HorariosSelecionados);
-
+    // console.log('nomeEstabelecimento:', this.nomeEstabelecimento);
+    // console.log('descricaoEstabelecimento:', this.descricaoEstabelecimento);
+    // console.log('cnpj:', this.cnpj);
+    // console.log('cep:', this.cep);
+    // console.log('endereco:', this.endereco);
+    // console.log('numero:', this.numero);
+    // console.log('recomendacao:', this.recomendacao);
+    // console.log('estabelecimentoPhoto:', this.estabelecimentoPhoto);
+    // console.log('categoriasSelecionadas:', this.categoriasSelecionadas);
+    // console.log('opcoesSelecionadas:', this.opcoesSelecionadas);
+    // console.log('estilosSelecionadas:', this.estilosSelecionadas);
+    // console.log('RdSocialSelecionadas:', this.RdSocialSelecionadas);
+    // console.log('ContatosSelecionadas:', this.ContatosSelecionadas);
+    // console.log('HorariosSelecionados:', this.HorariosSelecionados);
 
     if (this.currentSection < 6) {
       this.currentSection++;

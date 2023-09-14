@@ -5,9 +5,11 @@
       <form @submit.prevent="salvarRedeSocial">
         <label for="redeSocial">Rede Social:</label>
         <select v-model="redeSocial" id="redeSocial">
-          <option value="Facebook">Facebook</option>
-          <option value="Instagram">Instagram</option>
-          <option value="Twitter">Twitter</option>
+          <option value="1">Facebook</option>
+          <option value="2">Instagram</option>
+          <option value="3">Twitter</option>
+          <option value="4">Site do Estabelecimento</option>
+          <option value="5">Cardápio Online</option>
         </select>
         <label for="perfil">Perfil:</label>
         <input
@@ -68,7 +70,7 @@ export default {
   name: "DashRdSociais",
   data() {
     return {
-      redeSocial: "Facebook",
+      redeSocial: "1",
       value: this.redeSocial,
       perfil: "",
       campoVazio: false,
@@ -83,10 +85,11 @@ export default {
         this.campoVazio = true;
         return;
       }
-
+      const arrayRedes = [null, 'Facebook', 'Instagram', 'Twitter', 'Site do Estabelecimento', 'Cardápio Online'];
       const novaRedeSocial = {
-        redeSocial: this.redeSocial,
+        redeSocial: arrayRedes[this.redeSocial],
         perfil: this.perfil,
+        idRede: this.redeSocial
       };
       if (this.isEditing) {
         this.listaRedesSociais[this.editingIndex] = novaRedeSocial;
@@ -98,7 +101,7 @@ export default {
        this.$emit('dados-salvos', this.listaRedesSociais); //Enviar dados para o Componente pai
     },
     limparCampos() {
-      this.redeSocial = "Facebook";
+      this.redeSocial = "1";
       this.perfil = "";
       this.campoVazio = false;
     },

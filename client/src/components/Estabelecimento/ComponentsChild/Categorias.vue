@@ -26,7 +26,6 @@
     emits: ['input'],
     data() {
       return {
-        // categoriaSelecionadas: this.value, // Inicialize com o valor passado
         categoriaSelecionadas: [],
         categoria: []
       };
