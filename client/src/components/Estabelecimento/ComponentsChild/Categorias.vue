@@ -42,7 +42,7 @@
     methods: {
       async metodoInicial() {
         try {
-          const categorias = await api.get('/categorias');
+          const categorias = await api.get('/categoria');
 
           this.categoria = categorias.data;
         } catch (error) {
