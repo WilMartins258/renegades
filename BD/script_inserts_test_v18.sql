@@ -340,12 +340,12 @@ insert into estilomusica values (
 
 insert into tipoContato values(
 	1,
-	'Celular'
+	'Telefone'
 );
 
 insert into tipoContato values(
 	2,
-	'Telefone'
+	'Celular'
 );
 
 -- ---------------------------- tipoContato -- FIM
