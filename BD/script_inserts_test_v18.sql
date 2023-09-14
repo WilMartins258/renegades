@@ -354,12 +354,12 @@ insert into tipoContato values(
 
 insert into tipoRedesocial values(
 	1,
-	'Instagram'
+	'Facebook'
 );
 
 insert into tipoRedesocial values(
 	2,
-	'Facebook'
+	'Instagram'
 );
 
 insert into tipoRedesocial values(
@@ -369,7 +369,7 @@ insert into tipoRedesocial values(
 
 insert into tipoRedesocial values(
 	4,
-	'Site do estabelecimento'
+	'Site do Estabelecimento'
 );
 
 insert into tipoRedesocial values(
