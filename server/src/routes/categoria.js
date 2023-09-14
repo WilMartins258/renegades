@@ -5,9 +5,7 @@ router.get('/', async (req, res) => {
     try {
         const categorias = await categoriaController.getAllCategorias();
 
-        res.status(200).send(
-            categorias
-        );  
+        res.status(200).send(categorias);  
     } catch (error) {
         console.error('ERROR:: ', error);
     }
