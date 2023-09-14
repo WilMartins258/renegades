@@ -17,6 +17,7 @@
   </template>
   
   <script>
+  import api from './../../../services/backend-service.js';
   export default {
     name: "Categorias",
     props: {
@@ -25,31 +26,9 @@
     emits: ['input'],
     data() {
       return {
-        //categoria: [] // usar com a API
-       // categoriaSelecionadas: this.value, // Inicialize com o valor passado
+        // categoriaSelecionadas: this.value, // Inicialize com o valor passado
         categoriaSelecionadas: [],
-        categoria: [ // remover ou comentar ao testar a API
-          {
-            id: 1,
-            nome: "Pizzaria"
-          },
-          {
-            id: 2,
-            nome: "Hamburgueria"
-          },
-          {
-            id: 3,
-            nome: "Lanchonete"
-          },
-          {
-            id: 4,
-            nome: "Restaurante"
-          },
-          {
-            id: 5,
-            nome: "Bar"
-          }
-        ]
+        categoria: []
       };
     },
     computed: {
@@ -57,7 +36,19 @@
       return this.categoriaSelecionadas.map(opcao => opcao.nome).join(", ");
       },
     },
+    created() {
+	    this.metodoInicial();
+    },
     methods: {
+      async metodoInicial() {
+        try {
+          const categorias = await api.get('/categorias');
+
+          this.categoria = categorias.data;
+        } catch (error) {
+          console.error('ERROR:: ', error);
+        }
+      },
       selecionarOpcao(opcao) {
           if (this.opcaoSelecionada(opcao)) {
             this.categoriaSelecionadas = this.categoriaSelecionadas.filter(item => item.id !== opcao.id);
