@@ -1,11 +1,11 @@
 const router = require('express').Router();
-const categoriaController = require('../controllers/opcionaol.controller.js');
+const opcionaolController = require('../controllers/opcionaol.controller.js');
 
 router.get('/', async (req, res) => {
-    const categorias = await categoriaController.getAllCategorias();
+    const opcionais = await opcionaolController.getAllOpcionais();
     
     res.status(200).send(
-        categorias
+        opcionais
     );
 });
 
