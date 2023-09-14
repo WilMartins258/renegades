@@ -34,11 +34,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "CadEstabelecimento" */ '../views/ViewAreaEstabelecimento/CadEstabelecimento'),
   },
 
-  {
-    path: '/CadUsuario',
-    name: 'CadUsuario',
-    component: () => import(/* webpackChunkName: "CadUsuario" */ '../views/ViewUsuarios/CadUsuario'),
-  },
+
 
   {
     path: '/alterausuario',
