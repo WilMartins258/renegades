@@ -19,8 +19,13 @@ router.use(
 );
 
 router.use(
-    "/categorias",
-    require("./categorias.js")
+    "/categoria",
+    require("./categoria.js")
+);
+
+router.use(
+    "/opcional",
+    require("./opcional.js")
 );
 
 router.use(
