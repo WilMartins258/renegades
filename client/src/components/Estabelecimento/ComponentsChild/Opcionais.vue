@@ -16,6 +16,7 @@
 </template>
 
 <script>
+  import api from './../../../services/backend-service.js';
 export default {
   name: "Opcionais",
   props: {
@@ -25,28 +26,7 @@ export default {
   data() {
     return {
       opcoesSelecionadas: [],
-      opcoes: [
-        {
-          id: 1,
-          nome: "Oferece Rodízio"
-        },
-        {
-          id: 2,
-          nome: "Wi-Fi"
-        },
-        {
-          id: 3,
-          nome: "Estacionamento"
-        },
-        {
-          id: 4,
-          nome: "Área Kids"
-        },
-        {
-          id: 5,
-          nome: "Rodízio"
-        }
-      ]
+      opcoes: []
     };
   },
   computed: {
@@ -54,7 +34,19 @@ export default {
       return this.opcoesSelecionadas.map(opcao => opcao.nome).join(", ");
     }
   },
+  created() {
+    this.metodoInicial();
+  },
   methods: {
+    async metodoInicial() {
+      try {
+        const opcionais = await api.get('/opcional');
+
+        this.opcoes = opcionais.data;
+      } catch (error) {
+        console.error('ERROR:: ', error);
+      }
+    },
     selecionarOpcao(opcao) {
       if (this.opcaoSelecionada(opcao)) {
         this.opcoesSelecionadas = this.opcoesSelecionadas.filter(item => item.id !== opcao.id);
