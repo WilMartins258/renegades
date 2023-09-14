@@ -11,7 +11,7 @@
           <div class="description">Meus Dados</div>
         </router-link>
   
-        <router-link to="/link2" class="card">
+        <router-link to="/atulestabelecimento" class="card">
           <img
             src="../../../public/img/MeuEstabelecimento.png"
             alt="Consultar"

@@ -34,8 +34,6 @@ const routes = [
     component: () => import(/* webpackChunkName: "CadEstabelecimento" */ '../views/ViewAreaEstabelecimento/CadEstabelecimento'),
   },
 
-
-
   {
     path: '/alterausuario',
     name: 'alterausuario',
@@ -70,6 +68,18 @@ const routes = [
     path: '/promocao',
     name: 'promocao',
     component: () => import(/* webpackChunkName: "promocao" */ '../views/ViewAreaEstabelecimento/Promocao'),
+  },
+
+  {
+    path: '/PaginaEstabelecimento',
+    name: 'PaginaEstabelecimento',
+    component: () => import(/* webpackChunkName: "PaginaEstabelecimento" */ '../views/ViewAreaEstabelecimento/PaginaEstabelecimento'),
+  },
+
+  {
+    path: '/atulestabelecimento',
+    name: 'atulestabelecimento',
+    component: () => import(/* webpackChunkName: "Atulestabelecimento" */ '../views/ViewAreaEstabelecimento/AtulEstabelecimento'),
   },
 
 ]
