@@ -19,6 +19,7 @@
         </button>
       </form>
     </div>
+    <div class="table-container">
     <table>
       <thead>
         <tr>
@@ -54,6 +55,7 @@
         </tr>
       </tbody>
     </table>
+  </div>
   </div>
 </template>
 
@@ -192,10 +194,16 @@ label {
 }
 
 .container {
+  white-space: nowrap;
   max-width: 700px;
   margin: 0 auto;
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.418); 
+}
+
+.table-container {
+  max-height: 300px; /* Adjust the height as needed */
+  overflow: auto;
 }
 
 h1 {
@@ -353,11 +361,11 @@ input {
 
 @media (max-width: 414px) {
   input#numero {
-  width: 70%; /* Preencher todo o espaço disponível no contêiner */
+  width: 100%; /* Preencher todo o espaço disponível no contêiner */
   box-sizing: border-box; /* Incluir borda e preenchimento no tamanho total */
 }
   table {
-    font-size: 7px;
+    font-size: 9px;
   }
 
   th,
@@ -372,7 +380,7 @@ input {
   }
 
   button {
-    padding: 8px 25px;
+    padding: 6px 25px;
   }
 
   input {

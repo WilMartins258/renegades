@@ -70,7 +70,7 @@ export default {
 .quadro-estilosMusicais {
   border: 2px solid white;
   padding: 20px;
-  width: 300px;
+  width: 450px;
   text-align: center;
   margin: 0 auto;
   background-color: rgba(255, 255, 255, 0.418);
@@ -106,27 +106,19 @@ p {
 }
 
 @media screen and (max-width: 950px) {
-  .quadro-estilosMusicais {
-    width: 80%;
-  }
+
 }
 
 @media screen and (max-width: 768px) {
-  .quadro-estilosMusicais {
-    width: 60%;
-  }
+
 }
 
 @media screen and (max-width: 414px) {
-  .quadro-estilosMusicais {
-    width: 100%;
-  }
+
 }
 
 @media screen and (max-width: 360px) {
-  .quadro-estilosMusicais {
-    width: 100%;
-  }
+
 }
 </style>
   

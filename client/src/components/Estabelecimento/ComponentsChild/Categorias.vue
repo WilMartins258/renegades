@@ -70,7 +70,7 @@
   .quadro-categorias {
     border: 2px solid white;
     padding: 20px;
-    width: 300px;
+    width: 450px;
     text-align: center;
     margin: 0 auto;
     background-color: rgba(255, 255, 255, 0.418); 
@@ -113,7 +113,7 @@
 
 @media screen and (max-width: 768px) {
   .quadro-categorias {
-    width: 60%;
+    width: 90%;
   }
 }
 

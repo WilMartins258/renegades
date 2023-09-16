@@ -535,8 +535,10 @@ computed: {
   background-size: 40% 100%;
   background-position: center;
   background-attachment: fixed;
-  width: 100%;
-  height: 100vh;
+  margin: auto;
+  max-width: 525px;
+  min-height: 1010px;
+  position: relative;
 }
 
 .posicaoform-wrap {
@@ -584,11 +586,6 @@ border: 2px solid red;
 margin-top: 10px;
 }
 
-.secao2 {
- 
-  min-height: 1500px; /* Por exemplo, ajuste para a altura desejada quando a seção 2 tiver mais itens */
-}
-
 
 /* Responsividade */
 
@@ -616,8 +613,8 @@ margin-top: 10px;
 
 }
 
-.custom-file-input {
-display: none;
-}
+
+
+
 </style>
 

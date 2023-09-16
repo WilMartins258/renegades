@@ -26,6 +26,7 @@
         </button>
       </form>
     </div>
+    <div class="table-container">
     <table>
       <thead>
         <tr>
@@ -59,6 +60,7 @@
         </tr>
       </tbody>
     </table>
+  </div>
   </div>
 </template>
 
@@ -155,6 +157,12 @@ label {
   margin: 0 auto;
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.418); 
+  white-space: nowrap;
+}
+
+.table-container {
+  max-height: 300px; /* Adjust the height as needed */
+  overflow: auto;
 }
 
 h1 {

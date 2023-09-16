@@ -66,7 +66,7 @@ export default {
   .quadro-Opcionais {
     border: 2px solid white;
     padding: 20px;
-    width: 300px;
+    width: 450px;
     text-align: center;
     margin: 0 auto;
     background-color: rgba(255, 255, 255, 0.418); 
@@ -101,27 +101,19 @@ export default {
 }
 
 @media screen and (max-width: 950px) {
-  .quadro-Opcionais {
-    width: 80%;
-  }
+
 }
 
 @media screen and (max-width: 768px) {
-  .quadro-Opcionais {
-    width: 60%;
-  }
+
 }
 
 @media screen and (max-width: 414px) {
-  .quadro-Opcionais {
-    width: 100%;
-  }
+
 }
 
 @media screen and (max-width: 360px) {
-  .quadro-Opcionais {
-    width: 100%;
-  }
+
 }
 
   </style>
