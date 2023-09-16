@@ -1,103 +1,64 @@
 <template>
     <div id="form-wrap" class="form">
-          <div class="progress">
-            <div class="progress-bar" :style="{ width: progressBarWidth }">
-              <span class="progressTextSpan">{{ progressBarWidth }}</span>
-            </div>
-        </div>
       <div class="posicaoform-wrap">
   
         <!------------------------------------->
                      <!--1-Endereço-->
+  <!-- Foto Estabelecimento -->
+  <h2>Foto do estabelecimento</h2><br>
+    <div class="group">
+      <label for="estabelecimentoPhoto" class="label">Foto do Estabelecimento:</label><br />
+      <input
+        type="file"
+        id="estabelecimentoPhoto"
+        accept="image/*"
+        @change="handleEstabelecimentoPhotoChange"
+      />
+      <img
+        v-if="estabelecimentoPhoto"
+        :src="estabelecimentoPhoto"
+        alt="Foto do Estabelecimento"
+        class="miniatura-imagem"
+      />
+    </div>
+    <br>
+
         <div>
-    <section v-show="currentSection === 1">
-      <h2>Onde Fica Localizado?</h2>
+
+      <h2>Localização do seu Estabelecimento</h2>
       <br><br>
+      <div class="column">
       <div class="group">
     <label for="cep" class="label">CEP:</label><br />
-    <input
-      v-model="cep"
-      type="text"
-      id="cep"
-      class="input"
-      name="cep"
-      @blur="pesquisarCep"
-      maxlength="8"
-      required
-    /><br />
+      <input v-model="cep" type="text" id="cep" class="input" name="cep" @blur="pesquisarCep" maxlength="8" required/>
   </div>
   <div class="group">
     <label for="rua" class="label">Rua:</label><br />
-    <input
-      v-model="endereco.rua"
-      type="text"
-      id="rua"
-      class="input"
-      name="rua"
-    /><br />
+    <input v-model="endereco.rua" type="text" id="rua" class="input" name="rua"/>
   </div>
   <div class="group">
     <label for="numero" class="label">Número:</label><br />
-    <input
-      v-model="numero"
-      ref="numeroInput"
-      type="text"
-      id="numero"
-      class="input"
-      name="numero"
-      required
-    /><br />
+    <input v-model="numero" ref="numeroInput" type="text" id="numero" class="input" name="numero" required/>
   </div>
+</div>
+<div class="column">
   <div class="group">
     <label for="bairro" class="label">Bairro:</label><br />
-    <input
-      v-model="endereco.bairro"
-      type="text"
-      id="bairro"
-      class="input"
-      name="bairro"
-    /><br />
-  </div>
+    <input v-model="endereco.bairro" type="text" id="bairro" class="input" name="bairro"/>
+</div>
   <div class="group">
     <label for="cidade" class="label">Cidade:</label><br />
-    <input
-      v-model="endereco.cidade"
-      type="text"
-      id="cidade"
-      class="input"
-      name="cidade"
-    /><br />
+    <input v-model="endereco.cidade" type="text" id="cidade" class="input" name="cidade"/>
   </div>
   <div class="group">
     <label for="uf" class="label">Estado:</label><br />
-    <input
-      v-model="endereco.uf"
-      type="text"
-      id="uf"
-      class="input"
-      name="uf"
-    /><br />
+    <input v-model="endereco.uf" type="text" id="uf" class="input" name="uf"/>
   </div>
-    </section><!-- Fecha seção 1-->
-  
-    <!--2-Contato-->
-  
-    <section v-show="currentSection === 2">
-      <h2>Como podemos contatá-lo?</h2>
-      <br><br>
-  
-      <!-- Chamada para o Component --> 
-      <DashContato :ContatosSelecionadas="ContatosSelecionadas" @dados-salvos="receberContato"/> 
-      <br>
-      <!-- Chamada para o Component --> 
-      <DashRdSociais :RdSocialSelecionadas="RdSocialSelecionadas" :redeSocialSelecionada="redeSocialSelecionada" @dados-salvos="receberRdSociais" />
-  
-    </section><!-- Fecha seção 2-->
-  
+</div>
+
     <!--3-Dados do Estabelecimento-->
-  
-        <section v-show="currentSection === 3">
-          <h2>Informações do estabelecimento:</h2><br><br>
+<h2>Informações do estabelecimento:</h2><br><br>
+<div class="column">
           <div class="group">
         <label for="nome" class="label">Nome do Estabelecimento:</label><br />
         <input type="text" v-model="nomeEstabelecimento" id="nome" class="input" name="nome" />
@@ -112,26 +73,13 @@
         <label for="descricao" class="label">Descrição do Estabelecimento:</label><br />
         <textarea v-model="descricaoEstabelecimento" id="descricao" class="input" name="descricao" rows="4" maxlength="200" required></textarea>
       </div> <br>
-      <h2>A categoria do meu estebelecimento é:</h2>
-      <br>
-      <!-- Chamada para o Component --> 
-      <Categorias :value="categoriasSelecionadas" @input="receberCategoriasSelecionadas" />
-    </section><!-- Fecha seção 3-->
-  
-    <section v-show="currentSection === 4">
-    <h2>Meu Estebelecimento Oferece:</h2>
-    <br>
-    <!-- Chamada para o Component --> 
-    <Opcionais :value="opcoesSelecionadas" @input="receberOpcoesSelecionadas"/>
-    <br><br>
-    <!-- Chamada para o Component --> 
-    <EstilosMusicas :value="estilosSelecionadas" @input="receberEstiloMusicais"/>
-    </section><!-- Fecha seção 4-->
-  
-    
-  
-    <section v-show="currentSection === 5">
-      <h2>Indicação do Chef</h2><br><br>
+    </div> 
+
+    <!--indicações do Chef-->
+    <h2>Indicação do Chef</h2><br><br>
+    <div class="recomendacoes-container">
+  <div v-for="(recomendacoes, index) in recomendacao" :key="index" class="recomendacao">
+    <div class="recomendacao-item">
       <div id="indication-container">
       <div v-for="(recomendacoes, index) in recomendacao" :key="index" class="group">
         <label :for="'indicacao' + (index + 1)" class="label">{{ index + 1 }}° Indicação:</label><br />
@@ -168,61 +116,59 @@
           class="miniatura-imagem"
         />
       </div>
-  
+    </div>
+  </div>  
       <div class="buttons">
         <button class="custom-button" v-if="recomendacao.length < 3" @click="addrecomendacoes">Adicionar Recomendação</button>
         <button class="custom-button" v-if="recomendacao.length > 1" @click="removerecomendacoes">Cancelar Recomendação</button>
       </div>
     </div>
-    </section><!-- Fecha seção 5-->
+  </div>
+
+
+    <!--2-Contato-->
   
-    <section v-show="currentSection === 6">
-           
-     <!-- Foto Estabelecimento -->
-       <h3>Adicione aqui a foto do seu estabelecimento</h3><br>
-    <div class="group">
-      <label for="estabelecimentoPhoto" class="label">Foto do Estabelecimento:</label><br />
-      <input
-        type="file"
-        id="estabelecimentoPhoto"
-        accept="image/*"
-        @change="handleEstabelecimentoPhotoChange"
-      />
-      <img
-        v-if="estabelecimentoPhoto"
-        :src="estabelecimentoPhoto"
-        alt="Foto do Estabelecimento"
-        class="miniatura-imagem"
-      />
-    </div>
+
+
+      <h2>Como podemos contatá-lo?</h2>
+      <br><br>
+  
+      <!-- Chamada para o Component --> 
+      <DashContato :ContatosSelecionadas="ContatosSelecionadas" @dados-salvos="receberContato"/> 
+      <br>
+      <!-- Chamada para o Component --> 
+      <DashRdSociais :RdSocialSelecionadas="RdSocialSelecionadas" :redeSocialSelecionada="redeSocialSelecionada" @dados-salvos="receberRdSociais" />
+  
+
+  
+
+  
+
+
+      <!-- Chamada para o Component --> 
+      <Categorias :value="categoriasSelecionadas" @input="receberCategoriasSelecionadas" />
+
+      <!--4-Dados do Estabelecimento-->
+
+    <h2>Meu Estebelecimento Oferece:</h2>
     <br>
+    <!-- Chamada para o Component --> 
+    <Opcionais :value="opcoesSelecionadas" @input="receberOpcoesSelecionadas"/>
+    <br><br>
+    <!-- Chamada para o Component --> 
+    <EstilosMusicas :value="estilosSelecionadas" @input="receberEstiloMusicais"/>
+   
     <!-- Chamada para o Component --> 
     <DashHorAtendimento :value="HorariosSelecionados" @input="receberHorario"/>
   
     
     <br>
     <div class="group">
-          <div>
-            <input
-              type="button"
-              class="button"
-              value="Salvar"
-              @click="salvarDados"
-            />
-            <input
-              type="button"
-              class="button"
-              value="Cancelar"
-              @click="cancelar"
-            /> <br><br>
-          </div>
+            <button type="button" class="button" id="alterarButton">Alterar</button>
+            <button type="button" class="button" id="salvarButton" disabled>Salvar</button>
+            <button type="button" class="button" id="excluirButton">Excluir</button>
+            <button type="button" class="button" id="cancelarButton" disabled>Cancelar</button>
         </div>
-    </section><!-- Fecha seção 6-->
-    <br>
-    <div class="buttons">
-      <button class="custom-button" @click="previousSection" v-if="currentSection !== 1"><i class="uil uil-arrow-circle-left"></i></button>
-      <button class="custom-button" @click="nextSection" v-if="currentSection !== 6"><i class="uil uil-arrow-circle-right"></i></button>
-    </div>
   </div>
   
         <!------------------------------------->
@@ -526,47 +472,106 @@
   
   <style scoped>
   #form-wrap {
-  /*Imagem de fundo do forms*/
-    color: white;
-    background-image: url("../../../public/img/FormEstabelecimento.jpg");
-    background-size: 40% 100%;
-    background-position: center;
-    background-attachment: fixed;
+   margin: auto;
+   max-width: 2000px;
+   min-height: 3000px;
+   position: relative;
+   background-color: #c9beebe1;
+   box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
+     0 17px 50px 0 rgba(0, 0, 0, 0.19);
+ }
+ 
+ .posicaoform-wrap {
+   width: 100%;
+   height: 100%;
+   position: absolute;
+   padding: 50px 70px 50px 70px;
+   flex-wrap: wrap;
+   
+ }
+  
+ .form {
+    min-height: 345px;
+    position: relative;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+  }
+  
+  .form .group {
+    margin-bottom: 15px;
+  }
+  
+  .form .column {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+
+  .group {
+    flex: 1;
+    margin-right: 20px; 
+  }
+  
+  .form .group .label,
+  .form .group .input {
     width: 100%;
-    height: 100vh;
-  }
-  
-  .posicaoform-wrap {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      padding: 50px 30px 50px 30px;
-      flex-wrap: wrap;
-    }
-  
-    .progress {
-      width: 100%;
-      height: 20px; /* Altura da barra de progresso */
-      background-color: #f0f0f0; /* Cor de fundo da barra de progresso */
-    }
-  
-    .progress-bar {
-    height: 100%;
-    background: linear-gradient(to right, #ff9800, #e91e2f);
-    transition: width 0.3s ease;
-  
-  }
-  
-  .progressTextSpan {
-    text-align: center;
-    font-weight: bold;
-    color: black;
+    color: #000;
     display: block;
   }
   
+  .group .button,
+  .group .input {
+    border: none;
+    padding: 15px 20px;
+    border-radius: 25px;
+    background: rgba(211, 201, 201, 0.774);
+  }
+  #form-wrap .group .button[disabled] {
+  background-color: #7a7a7a6c;
+  pointer-events: none;
+}
+
+#form-wrap .group .input[disabled] {
+  background-color: #7a7a7a6c;
+
+}
+  .group .button,
+  .group .label {
+    text-transform: uppercase;
+  }
   
+  .group .button-spacing {
+    margin-right: 10px;
+  }
+  
+  .form .group .button {
+    padding: 15px 50px;
+  }
+  
+  #form-wrap .group .label {
+    color: #fff;
+    font-size: 16px;
+  }
+
+  #form-wrap .group .button {
+    background:#e91e2f;
+    cursor: pointer;
+    transition: 0.5s;
+    color: #fff;
+  }
+  
+  #form-wrap .group .button:hover {
+    background:#ff9800;
+  }
+
+.button {
+    margin-right: 10px;
+  }
+ 
   h2 {
   color: #fff;
+  text-align: center;
   }
   
   .label {
@@ -580,11 +585,22 @@
   border: 2px solid red;
   margin-top: 10px;
   }
-  
-  .secao2 {
-   
-    min-height: 1500px; /* Por exemplo, ajuste para a altura desejada quando a seção 2 tiver mais itens */
-  }
+
+  .recomendacoes-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); /* Isso cria colunas com um tamanho mínimo de 300px e as ajusta automaticamente para caber no contêiner */
+  gap: 20px; /* Espaçamento entre as indicações */
+  justify-content: space-between;
+}
+
+.recomendacao {
+  flex: 0 0 calc(33.33% - 20px); /* Para exibir 3 indicações por linha */
+  margin-right: 20px;
+}
+
+.recomendacao-item {
+  margin-bottom: 20px;
+}
   
   
   /* Responsividade */
