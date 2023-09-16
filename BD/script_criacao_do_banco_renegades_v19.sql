@@ -141,7 +141,6 @@ CREATE TABLE promocao (
 
 CREATE TABLE estabelecimento (
 	id               INT PRIMARY KEY AUTO_INCREMENT,
-	idCategoria      INT not null,
 	idEndereco       INT not null,
 	nome             VARCHAR(100) not null,
 	cnpj             VARCHAR(14) not null UNIQUE,
@@ -151,6 +150,7 @@ CREATE TABLE estabelecimento (
 	oculto           BOOLEAN not null,
 	statusValidacao  ENUM('Pendente', 'Validado', 'Não validado') not null,
 	nota             FLOAT,
+	numeroAvaliacoes INT,
 	dataCadastro     DATE not null,
 	dataUltimoAcesso DATE not null
 ) AUTO_INCREMENT = 1;
@@ -170,6 +170,12 @@ CREATE TABLE comidaEstabelecimento (
     id INT PRIMARY KEY,
     idEstabelecimento INT NOT NULL,
     idTipocomida INT NOT NULL
+) AUTO_INCREMENT = 1;
+
+CREATE TABLE categoriaEstabelecimento (
+    id INT PRIMARY KEY,
+    idEstabelecimento INT NOT NULL,
+    idCategoria INT NOT NULL
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE musica (
@@ -205,8 +211,6 @@ ALTER TABLE usuario add (constraint usuario_id_endereco_fk foreign key (idEndere
 
 
 ------ ESTABELECIMENTO
-ALTER TABLE estabelecimento add (constraint estabelecimento_categoria_fk foreign key (idCategoria) references categoria (id));
-
 ALTER TABLE estabelecimento add (constraint estabelecimento_endereco_fk foreign key (idEndereco) references endereco (id));
 
 
@@ -222,6 +226,13 @@ ALTER TABLE musica add (constraint musica_estiloMusica_fk foreign key (idEstiloM
 ALTER TABLE opcionalEstabelecimento add (constraint opcionalEstabelecimento_estabelecimento_fk foreign key (idEstabelecimento) references estabelecimento (id));
 
 ALTER TABLE opcionalEstabelecimento add (constraint opcionalEstabelecimento_opicional_fk foreign key (idOpcional) references opcional (id));
+
+
+
+------ opcionalEstabelecimento
+ALTER TABLE categoriaEstabelecimento add (constraint categoriaEstabelecimento_estabelecimento_fk foreign key (idEstabelecimento) references estabelecimento (id));
+
+ALTER TABLE categoriaEstabelecimento add (constraint categoriaEstabelecimento_categoria_fk foreign key (idCategoria) references categoria (id));
 
 
 

@@ -550,7 +550,6 @@ insert into endereco values( -- Endereço do Mc Donalds 	VOTORANTIM
 
 insert into estabelecimento values(
 	1, -- id 
-	1, -- idCategoria
 	3, -- idEndereco
 	'Mc Donalds - Votorantim', -- nome
 	'21587059000106', -- cnpj
@@ -560,8 +559,15 @@ insert into estabelecimento values(
 	false, -- oculto
 	'Validado', -- statusValidacao
 	null, -- nota
+	null, -- numeroAvaliacoes INT,
 	'2023-09-07', -- dataUltimoAcesso
 	'2023-09-07' -- dataUltimoAcesso
+);
+
+insert into categoriaEstabelecimento values(
+	1, -- id INT PRIMARY KEY,
+    1, -- idEstabelecimento INT NOT NULL,
+    1 -- idCategoria INT NOT NULL
 );
 
 insert into usuario values( -- Mc Donalds - Votorantim
@@ -748,7 +754,6 @@ insert into endereco values( -- Endereço do Mc Donalds 	SOROCABA
 
 insert into estabelecimento values(
 	2, -- id 
-    1, -- idCategoria
     4, -- idEndereco
     'Mc Donalds - SOROCABA', -- nome
     '76842463000162', -- cnpj
@@ -758,10 +763,16 @@ insert into estabelecimento values(
     false, -- oculto
     'Validado', -- statusValidacao
     null, -- nota
+	null, -- numeroAvaliacoes INT,
 	'2023-09-07', -- dataUltimoAcesso
 	'2023-09-07' -- dataUltimoAcesso
 );
 
+insert into categoriaEstabelecimento values(
+	2, -- id INT PRIMARY KEY,
+	2, -- idEstabelecimento INT NOT NULL,
+	1 -- idCategoria INT NOT NULL
+);
 
 
 insert into usuario values( -- Mc Donalds - Sorocaba
@@ -953,7 +964,6 @@ insert into endereco values(
 
 insert into estabelecimento values(
 	3, -- id 
-	1, -- idCategoria
 	5, -- idEndereco
 	'Kikos Hot-Dog', -- nome
 	'11892673000110',  -- cnpj
@@ -963,8 +973,15 @@ insert into estabelecimento values(
 	false, -- oculto
 	'Validado', -- statusValidacao
 	null, -- nota
+	null, -- numeroAvaliacoes INT,
 	'2023-09-07', -- dataUltimoAcesso
 	'2023-09-07' -- dataUltimoAcesso
+);
+
+insert into categoriaEstabelecimento values(
+	3, -- id INT PRIMARY KEY,
+	3, -- idEstabelecimento INT NOT NULL,
+	1 -- idCategoria INT NOT NULL
 );
 
 insert into usuario values(
@@ -1097,7 +1114,6 @@ insert into endereco values(
 
 insert into estabelecimento values(
 	4, -- id 
-	2, -- idCategoria
 	6, -- idEndereco
 	'Pizzaria Booa', -- nome
 	'59363162000137',  -- cnpj
@@ -1107,8 +1123,15 @@ insert into estabelecimento values(
 	false, -- oculto
 	'Validado', -- statusValidacao
 	null, -- nota
+	null, -- numeroAvaliacoes INT,
 	'2023-09-07', -- dataUltimoAcesso
 	'2023-09-07' -- dataUltimoAcesso
+);
+
+insert into categoriaEstabelecimento values(
+	4, -- id INT PRIMARY KEY,
+	4, -- idEstabelecimento INT NOT NULL,
+	2 -- idCategoria INT NOT NULL
 );
 
 insert into usuario values(
@@ -1228,7 +1251,6 @@ insert into endereco values(
 
 insert into estabelecimento values(
 	5,                      -- id 
-	6,                      -- idCategoria
 	7,                      -- idEndereco
 	'Mada Bar',             -- nome
 	'73936746000185',       -- cnpj
@@ -1238,8 +1260,15 @@ insert into estabelecimento values(
 	false,                   -- oculto
 	'Validado',             -- statusValidacao
 	null, -- nota
+	null, -- numeroAvaliacoes INT,
 	'2023-09-07', -- dataUltimoAcesso
 	'2023-09-07' -- dataUltimoAcesso
+);
+
+insert into categoriaEstabelecimento values(
+	5, -- id INT PRIMARY KEY,
+	5, -- idEstabelecimento INT NOT NULL,
+	6 -- idCategoria INT NOT NULL
 );
 
 insert into musica values(
