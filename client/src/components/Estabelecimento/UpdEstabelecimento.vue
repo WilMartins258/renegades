@@ -127,28 +127,20 @@
 
 
     <!--2-Contato-->
-  
-
-
-      <h2>Como podemos contatá-lo?</h2>
-      <br><br>
-  
+    <h2>Como podemos contatá-lo?</h2>
+    <div class="column">
       <!-- Chamada para o Component --> 
       <DashContato :ContatosSelecionadas="ContatosSelecionadas" @dados-salvos="receberContato"/> 
       <br>
       <!-- Chamada para o Component --> 
       <DashRdSociais :RdSocialSelecionadas="RdSocialSelecionadas" :redeSocialSelecionada="redeSocialSelecionada" @dados-salvos="receberRdSociais" />
-  
+    </div>
 
-  
-
-  
-
+    <div class="column"></div>
 
       <!-- Chamada para o Component --> 
       <Categorias :value="categoriasSelecionadas" @input="receberCategoriasSelecionadas" />
 
-      <!--4-Dados do Estabelecimento-->
 
     <h2>Meu Estebelecimento Oferece:</h2>
     <br>
