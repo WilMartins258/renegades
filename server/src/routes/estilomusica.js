@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const estiloMusicaController = require('../controllers/estiloMusica.controller.js');
+const estiloMusicaService = require('../services/estiloMusica.service.js');
 
 router.get('/', async (req, res) => {
     try {
-        const todosEstilosMusica = await estiloMusicaController.getAllEstilosMusica();
+        const todosEstilosMusica = await estiloMusicaService.getAllEstilosMusica();
 
         res.status(200).send(todosEstilosMusica);
     } catch (error) {
