@@ -3,7 +3,7 @@ const router = express.Router();
 
 // Importando controllers e serviços que serão utilizados nas rotas
 const userService = require('../services/usuario.service.js');
-const separarCelularService = require('../services/separarCelular.service.js');
+const separarCelularService = require('../services/utils/separarCelular.service.js');
 const dataToMySqlService = require('../services/dataToMySql.service.js');
 
 router.get('/', async (req, res) => {
