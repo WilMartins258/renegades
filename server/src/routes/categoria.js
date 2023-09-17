@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const categoriaController = require('../controllers/categoria.controller.js');
+const categoriaService = require('../services/categoria.service');
 
 router.get('/', async (req, res) => {
     try {
-        const categorias = await categoriaController.getAllCategorias();
+        const categorias = await categoriaService.getAllCategorias();
 
         res.status(200).send(categorias);  
     } catch (error) {
