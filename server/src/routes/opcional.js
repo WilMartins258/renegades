@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const opcionaolController = require('../controllers/opcionaol.controller.js');
+const opcionaolService = require('../services/opcionaol.service.js');
 
 router.get('/', async (req, res) => {
     try {
-        const opcionais = await opcionaolController.getAllOpcionais();
+        const opcionais = await opcionaolService.getAllOpcionais();
 
         res.status(200).send(opcionais);
     } catch (error) {
