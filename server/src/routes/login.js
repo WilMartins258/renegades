@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const loginController = require('./../controllers/login.controller');
+const loginService = require('./../services/login.service.js');
 
 router.post('/', async (req, res) => {
     const loginInfo = req?.body;
@@ -12,7 +12,7 @@ router.post('/', async (req, res) => {
             });
         }
 
-        const resultadoLogin = await loginController.getLoginData(loginInfo.email);
+        const resultadoLogin = await loginService.getLoginData(loginInfo.email);
 
         if (!resultadoLogin) {
             res.status(404).send({
