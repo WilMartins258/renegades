@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 // Importando controllers e serviços que serão utilizados nas rotas
-const userController = require('../services/usuario.controller.js');
+const userService = require('../services/usuario.service.js');
 const separarCelularService = require('../services/separarCelular.service.js');
 const dataToMySqlService = require('../services/dataToMySql.service.js');
 
@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     try {
         const userId = req.params.id;
-        const dadosUsuario = await userController.getUserById(userId);
+        const dadosUsuario = await userService.getUserById(userId);
         if (dadosUsuario) {
             res.status(200).send(dadosUsuario);
         } else {
@@ -57,7 +57,7 @@ router.put('/', async (req, res) => {
         };
 
         const novosDadosUsuarioArray = Object.values(novosDadosUsuario);
-        const newUserData = await userController.updateUserData(novosDadosUsuarioArray);
+        const newUserData = await userService.updateUserData(novosDadosUsuarioArray);
 
         res.status(200).send(
             {
@@ -92,7 +92,7 @@ router.post('/', async (req, res) => {
         };
 
         const dadosUsuarioArray = Object.values(dadosUsuario);
-        const checagemEmail = await userController.checkEmail(dadosUsuario.email);
+        const checagemEmail = await userService.checkEmail(dadosUsuario.email);
         if (checagemEmail) {
             res.status(400).send({
                 login: false,
@@ -100,7 +100,7 @@ router.post('/', async (req, res) => {
             });
             
         } else {
-            const usuarioInserido = await userController.insertUserData(dadosUsuarioArray);
+            const usuarioInserido = await userService.insertUserData(dadosUsuarioArray);
 
             res.status(200).send({
                 msg: 'Usuário adicionado ao sistema',
