@@ -2,12 +2,12 @@ const express = require('express');
 const router = express.Router();
 
 // Importando controllers e serviços que serão utilizados nas rotas
-const estabelecimentoController = require('./../controllers/estabelecimento.controller.js');
+const estabelecimentoService = require('./../services/estabelecimento.service.js');
 
 router.get('/:id', async (req, res) => {
     try {
         const idEstabelecimento = req.params.id;
-        const dadosEstabelecimento = await estabelecimentoController.getEstabelecimentoById(idEstabelecimento);
+        const dadosEstabelecimento = await estabelecimentoService.getEstabelecimentoById(idEstabelecimento);
         if (dadosEstabelecimento) {
             res.status(200).send(dadosEstabelecimento);
         } else {
@@ -52,7 +52,7 @@ router.post('/', async (req, res) => {
         const dadosCategoria = {}
         const dadosOpcionais = {}
 
-        const criacaoEstabelecimento = estabelecimentoController.createEstabelecimento(dadosEstabelecimento);
+        const criacaoEstabelecimento = estabelecimentoService.createEstabelecimento(dadosEstabelecimento);
 
 
         res.status(200).send(
