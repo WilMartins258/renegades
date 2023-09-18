@@ -2,12 +2,12 @@ const db = require('../models/db.js');
 
 const createEstabelecimento = async (dadosEstabelecimento) => {
     try {
-      const estabelecimentoQuery = ``;
+      const estabelecimentoQuery = `INSERT INTO estabelecimento VALUES ( null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );`;
       const connection = await db;
   
       const [insercaoEstabelecimento] = await connection.query(estabelecimentoQuery, dadosEstabelecimento);
   
-      return insercaoEstabelecimento;
+      return insercaoEstabelecimento?.insertId;
     } catch (error) {
       throw new Error(`Erro ao inserir dados do estabelecimento: ${error.message}`);
     }

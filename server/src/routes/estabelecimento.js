@@ -27,8 +27,6 @@ router.post('/', async (req, res) => {
     try {
         const reqBody = req.body;
         // console.log('reqBody:: ', reqBody);
-        
-        const dataDeHoje = new Date().toISOString().substring(0, 10);
 
         const dadosEndereco = {
             cep: reqBody.cep,
@@ -41,31 +39,39 @@ router.post('/', async (req, res) => {
         const dadosEnderecoArray = Object.values(dadosEndereco);
         
         const enderecoId = await enderecoService.createEndereco(dadosEnderecoArray);
-        console.log('enderecoId:: ', enderecoId);
+
+        const removerCaracteresEspeciais = (str) => {
+            const resultado = str.replace(/[\/\.\-]/g, '');
+            return resultado;
+        };
+        const cnpjTratado = removerCaracteresEspeciais(reqBody.cnpj);
+
+        const dataDeHoje = new Date().toISOString().substring(0, 10);
 
         const dadosEstabelecimento = {
-            idEndereco: 'test',
+            idEndereco: enderecoId,
             nome: reqBody.nomeEstabelecimento,
-            cnpj: reqBody.cnpj,
+            cnpj: cnpjTratado,
             photo: 'test-blob-photo',
             descricao: reqBody.descricaoEstabelecimento,
-            // ativo: true,
-            // oculto: false,
-            // statusValidacao: 'Pendente',
-            // nota: null,
-            // numeroAvaliacoes: 0,
+            ativo: true,
+            oculto: false,
+            statusValidacao: 'Pendente',
+            nota: null,
+            numeroAvaliacoes: 0,
             dataCadastro: dataDeHoje,
             dataUltimoAcesso: dataDeHoje
         }
-        // console.log('dadosEstabelecimento:: ', dadosEstabelecimento);
-           
+        const dadosEstabelecimentoArray = Object.values(dadosEstabelecimento);
+
+        const estabelecimentoId = await estabelecimentoService.createEstabelecimento(dadosEstabelecimentoArray);
+
         const dadosCategoria = {}
         console.log('dadosCategoria:: ', dadosCategoria);
         
         const dadosOpcionais = {}
         console.log('dadosOpcionais:: ', dadosOpcionais);
 
-        // const criacaoEstabelecimento = estabelecimentoService.createEstabelecimento(dadosEstabelecimento);
 
 
         res.status(200).send(
