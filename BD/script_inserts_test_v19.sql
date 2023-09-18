@@ -13,7 +13,9 @@ DELETE FROM HORARIO;
 DELETE FROM PROMOCAO;
 DELETE FROM ESTILOMUSICA;
 DELETE FROM tipoContato;
-DELETE FROM tipoRedesocial;
+DELETE FROM REDESOCIAL_ESTABELECIMENTO;
+DELETE FROM categoria_estabelecimento;
+DELETE FROM opcional_estabelecimento;
 DELETE FROM diaSemana;
 DELETE FROM CATEGORIA;
 DELETE FROM AVALIACAO;
@@ -350,34 +352,34 @@ insert into tipoContato values(
 
 -- ---------------------------- tipoContato -- FIM
 
--- ---------------------------- tipoRedesocial -- INÍCIO
+-- ---------------------------- redeSocial -- INÍCIO
 
-insert into tipoRedesocial values(
+insert into redeSocial values(
 	1,
 	'Facebook'
 );
 
-insert into tipoRedesocial values(
+insert into redeSocial values(
 	2,
 	'Instagram'
 );
 
-insert into tipoRedesocial values(
+insert into redeSocial values(
 	3,
 	'Twitter/X'
 );
 
-insert into tipoRedesocial values(
+insert into redeSocial values(
 	4,
 	'Site do Estabelecimento'
 );
 
-insert into tipoRedesocial values(
+insert into redeSocial values(
 	5,
 	'Cardápio Online'
 );
 
--- ---------------------------- tipoRedesocial -- FIM
+-- ---------------------------- redeSocial -- FIM
 
 
 
@@ -564,7 +566,7 @@ insert into estabelecimento values(
 	'2023-09-07' -- dataUltimoAcesso
 );
 
-insert into categoriaEstabelecimento values(
+insert into categoria_estabelecimento values(
 	1, -- id INT PRIMARY KEY,
     1, -- idEstabelecimento INT NOT NULL,
     1 -- idCategoria INT NOT NULL
@@ -701,7 +703,7 @@ insert into contato values(
 	false -- isWhatsapp        BOOLEAN not null
 );
 
-insert into redeSocial values(
+insert into redeSocial_estabelecimento values(
 	null,       -- id INT
 	4,          -- idTipoRedeSocial  INT not null, -- SITE
 	1,          -- idEstabelecimento INT not null,
@@ -768,7 +770,7 @@ insert into estabelecimento values(
 	'2023-09-07' -- dataUltimoAcesso
 );
 
-insert into categoriaEstabelecimento values(
+insert into categoria_estabelecimento values(
 	2, -- id INT PRIMARY KEY,
 	2, -- idEstabelecimento INT NOT NULL,
 	1 -- idCategoria INT NOT NULL
@@ -914,7 +916,7 @@ insert into contato values(
 	false -- isWhatsapp        BOOLEAN not null
 );
 
-insert into redeSocial values(
+insert into redeSocial_estabelecimento values(
 	null,       -- id INT
 	4,          -- idTipoRedeSocial  INT not null, -- SITE
 	2,          -- idEstabelecimento INT not null,
@@ -978,7 +980,7 @@ insert into estabelecimento values(
 	'2023-09-07' -- dataUltimoAcesso
 );
 
-insert into categoriaEstabelecimento values(
+insert into categoria_estabelecimento values(
 	3, -- id INT PRIMARY KEY,
 	3, -- idEstabelecimento INT NOT NULL,
 	1 -- idCategoria INT NOT NULL
@@ -1128,7 +1130,7 @@ insert into estabelecimento values(
 	'2023-09-07' -- dataUltimoAcesso
 );
 
-insert into categoriaEstabelecimento values(
+insert into categoria_estabelecimento values(
 	4, -- id INT PRIMARY KEY,
 	4, -- idEstabelecimento INT NOT NULL,
 	2 -- idCategoria INT NOT NULL
@@ -1265,7 +1267,7 @@ insert into estabelecimento values(
 	'2023-09-07' -- dataUltimoAcesso
 );
 
-insert into categoriaEstabelecimento values(
+insert into categoria_estabelecimento values(
 	5, -- id INT PRIMARY KEY,
 	5, -- idEstabelecimento INT NOT NULL,
 	6 -- idCategoria INT NOT NULL

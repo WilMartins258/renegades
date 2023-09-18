@@ -32,7 +32,7 @@ CREATE TABLE tipoContato (
 	nome       VARCHAR(50)
 ) AUTO_INCREMENT = 1;
 
-CREATE TABLE tipoRedeSocial (
+CREATE TABLE redeSocial (
 	id         INT PRIMARY KEY AUTO_INCREMENT,
 	nome       VARCHAR(50)
 ) AUTO_INCREMENT = 1;
@@ -95,9 +95,9 @@ CREATE TABLE usuario (
 	tipoUsuario       INT DEFAULT 0
 ) AUTO_INCREMENT = 1;
 
-CREATE TABLE redeSocial (
+CREATE TABLE redeSocial_estabelecimento (
 	id                  INT PRIMARY KEY AUTO_INCREMENT,
-	idTipoRedeSocial    INT not null,
+	idRedeSocial    INT not null,
 	idEstabelecimento   INT not null,
 	redeSocial          VARCHAR(200) not null
 ) AUTO_INCREMENT = 1;
@@ -160,19 +160,19 @@ CREATE TABLE opcional (
 	nome	          VARCHAR(100) not null
 ) AUTO_INCREMENT = 1;
 
-CREATE TABLE opcionalEstabelecimento (
+CREATE TABLE opcional_estabelecimento (
 	id                INT PRIMARY KEY,
 	idEstabelecimento INT not null,
 	idOpcional        INT not null
 ) AUTO_INCREMENT = 1;
 
-CREATE TABLE comidaEstabelecimento (
+CREATE TABLE comida_estabelecimento (
     id INT PRIMARY KEY,
     idEstabelecimento INT NOT NULL,
     idTipocomida INT NOT NULL
 ) AUTO_INCREMENT = 1;
 
-CREATE TABLE categoriaEstabelecimento (
+CREATE TABLE categoria_estabelecimento (
     id INT PRIMARY KEY,
     idEstabelecimento INT NOT NULL,
     idCategoria INT NOT NULL
@@ -222,17 +222,17 @@ ALTER TABLE musica add (constraint musica_estiloMusica_fk foreign key (idEstiloM
 
 
 
------- opcionalEstabelecimento
-ALTER TABLE opcionalEstabelecimento add (constraint opcionalEstabelecimento_estabelecimento_fk foreign key (idEstabelecimento) references estabelecimento (id));
+------ opcional_estabelecimento
+ALTER TABLE opcional_estabelecimento add (constraint opcional_estabelecimento_estabelecimento_fk foreign key (idEstabelecimento) references estabelecimento (id));
 
-ALTER TABLE opcionalEstabelecimento add (constraint opcionalEstabelecimento_opicional_fk foreign key (idOpcional) references opcional (id));
+ALTER TABLE opcional_estabelecimento add (constraint opcional_estabelecimento_opicional_fk foreign key (idOpcional) references opcional (id));
 
 
 
------- opcionalEstabelecimento
-ALTER TABLE categoriaEstabelecimento add (constraint categoriaEstabelecimento_estabelecimento_fk foreign key (idEstabelecimento) references estabelecimento (id));
+------ categoria_estabelecimento
+ALTER TABLE categoria_estabelecimento add (constraint categoria_estabelecimento_estabelecimento_fk foreign key (idEstabelecimento) references estabelecimento (id));
 
-ALTER TABLE categoriaEstabelecimento add (constraint categoriaEstabelecimento_categoria_fk foreign key (idCategoria) references categoria (id));
+ALTER TABLE categoria_estabelecimento add (constraint categoria_estabelecimento_categoria_fk foreign key (idCategoria) references categoria (id));
 
 
 
@@ -243,10 +243,10 @@ ALTER TABLE contato add (constraint contato_tipoContato_fk foreign key (idTipoCo
 
 
 
------- REDESOCIAL
-ALTER TABLE redeSocial add (constraint redeSocial_estabelecimento_fk foreign key (idEstabelecimento) references estabelecimento (id));
+------ REDESOCIAL_ESTABELECIMENTO
+ALTER TABLE redeSocial_estabelecimento add (constraint redeSocial_estabelecimento_estabelecimento_fk foreign key (idEstabelecimento) references estabelecimento (id));
 
-ALTER TABLE redeSocial add (constraint redeSocial_tipoRedeSocial_fk foreign key (idTipoRedeSocial) references tipoRedeSocial (id));
+ALTER TABLE redeSocial_estabelecimento add (constraint redeSocial_estabelecimento_edeSocial_fk foreign key (idRedeSocial) references redeSocial (id));
 
 
 
@@ -277,9 +277,9 @@ ALTER TABLE FAVORITOS add (CONSTRAINT favoritos_usuario_fk FOREIGN KEY (idUsuari
 ALTER TABLE FAVORITOS add (CONSTRAINT favoritos_estabelecimento_fk FOREIGN KEY (idEstabelecimento) REFERENCES estabelecimento (id));
 
 
------- comidaEstabelecimento
-ALTER TABLE comidaEstabelecimento add (CONSTRAINT comidaEstabelecimento_estabelecimento_fk FOREIGN KEY (idEstabelecimento) REFERENCES estabelecimento (id));
-ALTER TABLE comidaEstabelecimento add (CONSTRAINT comidaEstabelecimento_tipoComida_fk FOREIGN KEY (idTipoComida) REFERENCES tipoComida (id));
+------ comida_estabelecimento
+ALTER TABLE comida_estabelecimento add (CONSTRAINT comidaEstabelecimento_estabelecimento_fk FOREIGN KEY (idEstabelecimento) REFERENCES estabelecimento (id));
+ALTER TABLE comida_estabelecimento add (CONSTRAINT comidaEstabelecimento_tipoComida_fk FOREIGN KEY (idTipoComida) REFERENCES tipoComida (id));
 
 
 -- ALTER TABLE FAVORITOS add ();
