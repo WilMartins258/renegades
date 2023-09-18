@@ -1,4 +1,4 @@
-const db = require('../db');
+const db = require('../models/db.js');
 
 const getEnderecoById = async (enderecoId) => {
     const dadosEnderecoQuery = "SELECT * FROM endereco WHERE id = ?";

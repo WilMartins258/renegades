@@ -1,4 +1,4 @@
-const db = require('../db');
+const db = require('../models/db.js');
 
 const checkEmail = async (email) => {
   const checkEmailQuery = `SELECT email 

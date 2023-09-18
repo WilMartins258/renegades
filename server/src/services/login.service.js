@@ -1,4 +1,4 @@
-const db = require('../db');
+const db = require('../models/db.js');
 
 /**
  * Query que busca os dados so usuário com base no email enviado

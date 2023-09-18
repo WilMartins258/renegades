@@ -1,4 +1,4 @@
-const db = require('../db');
+const db = require('../models/db.js');
 
 const getAllEstilosMusica = async () => {
     const estiloMusicaQuery = "SELECT * FROM estiloMusica;";
