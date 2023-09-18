@@ -143,7 +143,7 @@ CREATE TABLE estabelecimento (
 	id               INT PRIMARY KEY AUTO_INCREMENT,
 	idEndereco       INT not null,
 	nome             VARCHAR(100) not null,
-	cnpj             VARCHAR(20) not null UNIQUE,
+	cnpj             VARCHAR(20) not null, -- UNIQUE, posteriormente podemos fazer os tratamentos para manter UNIQUE
 	fotoPrincipal    LONGBLOB, -- not null
 	descricao        VARCHAR(400) not null,
 	ativo            BOOLEAN not null,
