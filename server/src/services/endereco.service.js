@@ -9,6 +9,7 @@ const getEnderecoById = async (enderecoId) => {
     return dadosEndereco[0];
 };
 
+// enderecoData = [cep, uf, cidade, rua, bairro, numero]
 const createEndereco = async (enderecoData) => {
     try {
         const inserirEnderecoQuery = `INSERT INTO endereco VALUES ( null, ?, ?, ?, ?, ?, ? );`;
