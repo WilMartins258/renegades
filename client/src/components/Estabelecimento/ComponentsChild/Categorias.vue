@@ -59,9 +59,6 @@
         opcaoSelecionada(opcao) {
           return this.categoriaSelecionadas.some(item => item.id === opcao.id);
         },
-        getcategoria() {
-          // Fazer chamada a API para obter as informações das opções.
-        },
       },
     };
   </script>
