@@ -3,6 +3,7 @@ const router = express.Router();
 
 // Importando controllers e serviços que serão utilizados nas rotas
 const estabelecimentoService = require('./../services/estabelecimento.service.js');
+const enderecoService = require('./../services/endereco.service.js');
 
 router.get('/:id', async (req, res) => {
     try {
@@ -25,34 +26,46 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     try {
         const reqBody = req.body;
-        console.log('reqBody:: ', reqBody);
+        // console.log('reqBody:: ', reqBody);
         
-        const dataDeHoje = new Date();
-
-        console.log('dataDeHoje:: ', dataDeHoje);
-        
-        const dadosEstabelecimento = {
-            nome: reqBody.nomeEstabelecimento,
-            idCategoria: 'test',
-            idEndereco: 'test',
-            descricao: reqBody.descricaoEstabelecimento,
-            cnpj: reqBody.cnpj,
-            photo: 'test-blob-photo'
-        }
+        const dataDeHoje = new Date().toISOString().substring(0, 10);
 
         const dadosEndereco = {
             cep: reqBody.cep,
+            uf: reqBody.endereco.uf,
+            cidade: reqBody.endereco.cidade,
             rua: reqBody.endereco.rua,
             bairro: reqBody.endereco.bairro,
-            cidade: reqBody.endereco.cidade,
-            uf: reqBody.endereco.uf,
             numero: reqBody.numero
         };
+        const dadosEnderecoArray = Object.values(dadosEndereco);
+        
+        const enderecoId = await enderecoService.createEndereco(dadosEnderecoArray);
+        console.log('enderecoId:: ', enderecoId);
 
+        const dadosEstabelecimento = {
+            idEndereco: 'test',
+            nome: reqBody.nomeEstabelecimento,
+            cnpj: reqBody.cnpj,
+            photo: 'test-blob-photo',
+            descricao: reqBody.descricaoEstabelecimento,
+            // ativo: true,
+            // oculto: false,
+            // statusValidacao: 'Pendente',
+            // nota: null,
+            // numeroAvaliacoes: 0,
+            dataCadastro: dataDeHoje,
+            dataUltimoAcesso: dataDeHoje
+        }
+        // console.log('dadosEstabelecimento:: ', dadosEstabelecimento);
+           
         const dadosCategoria = {}
+        console.log('dadosCategoria:: ', dadosCategoria);
+        
         const dadosOpcionais = {}
+        console.log('dadosOpcionais:: ', dadosOpcionais);
 
-        const criacaoEstabelecimento = estabelecimentoService.createEstabelecimento(dadosEstabelecimento);
+        // const criacaoEstabelecimento = estabelecimentoService.createEstabelecimento(dadosEstabelecimento);
 
 
         res.status(200).send(
