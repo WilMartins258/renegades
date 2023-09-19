@@ -146,13 +146,13 @@ export default{
        * O trecho abaixo utilizando sessionStorage não será dessa forma
        * O ID do usuário já deve estar no sessionStorage desde o momento em que o usuário faz o login
        */
-      const userId = 1;
-      sessionStorage.setItem('userId', userId);
+      const idUsuario = 1;
+      sessionStorage.setItem('idUsuario', idUsuario);
 
-      const userIdRecuperado = sessionStorage.getItem('userId');
+      const idUsuarioRecuperado = sessionStorage.getItem('idUsuario');
       
       // userIdRecuperado deve conter o ID do usuário que está logado
-      const userData = await api.get(`/usuario/${userIdRecuperado}`);
+      const userData = await api.get(`/usuario/${idUsuarioRecuperado}`);
       
       const dadosUsuario = userData.data;
       
