@@ -161,31 +161,31 @@ CREATE TABLE opcional (
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE opcional_estabelecimento (
-	id                INT PRIMARY KEY,
+	id                INT PRIMARY KEY AUTO_INCREMENT,
 	idEstabelecimento INT not null,
 	idOpcional        INT not null
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE comida_estabelecimento (
-    id INT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     idEstabelecimento INT NOT NULL,
     idTipocomida INT NOT NULL
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE categoria_estabelecimento (
-    id INT PRIMARY KEY,
+    id                INT PRIMARY KEY AUTO_INCREMENT,
     idEstabelecimento INT NOT NULL,
-    idCategoria INT NOT NULL
+    idCategoria       INT NOT NULL
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE musica (
-	id                INT PRIMARY KEY,
+	id                INT PRIMARY KEY AUTO_INCREMENT,
 	idEstabelecimento INT not null,
 	idEstiloMusica    INT not null
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE avaliacao (
-	id                INT PRIMARY KEY,
+	id                INT PRIMARY KEY AUTO_INCREMENT,
 	idUsuario         INT not null,
 	idEstabelecimento INT not null,
 	resumo            VARCHAR(50) not null,
