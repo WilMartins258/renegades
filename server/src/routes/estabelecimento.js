@@ -5,6 +5,7 @@ const router = express.Router();
 const estabelecimentoService = require('./../services/estabelecimento.service.js');
 const enderecoService = require('./../services/endereco.service.js');
 const categoria_estabelecimentoService = require('../services/categoria_estabelecimento.service.js');
+const opcional_estabelecimentoService = require('../services/opcional_estabelecimento.service.js');
 
 router.get('/:id', async (req, res) => {
     try {
@@ -70,7 +71,7 @@ router.post('/', async (req, res) => {
         const dadosCategoria = reqBody.categoriasSelecionadas;
         for (let i = 0; i < dadosCategoria.length; i++) {
             try {
-                const inserirCategoria = await categoria_estabelecimentoService.createCategoria_Estabelecimento([estabelecimentoId, dadosCategoria[i].id])
+                await categoria_estabelecimentoService.createCategoria_Estabelecimento([estabelecimentoId, dadosCategoria[i].id]);
             } catch (error) {
                 throw new Error(`Erro ao inserir categoria do estabelecimento: ${error.message}`);
             }  
@@ -78,15 +79,14 @@ router.post('/', async (req, res) => {
 
         const dadosOpcionais = reqBody.opcoesSelecionadas;
         console.log('dadosOpcionais:: ', dadosOpcionais);
-        for (let i = 0; i < dadosCategoria.dadosOpcionais; i++) {
+        for (let i = 0; i < dadosOpcionais.length; i++) {
             try {
-                const inserirOpcional = await categoria_estabelecimentoService.createCategoria_Estabelecimento([estabelecimentoId, dadosCategoria[i].id])
+                await opcional_estabelecimentoService.createOpcional_Estabelecimento([estabelecimentoId, dadosOpcionais[i].id]);
             } catch (error) {
                 throw new Error(`Erro ao inserir opcionais do estabelecimento: ${error.message}`);
             }  
         };
 
-    
         res.status(200).send(
             'estabelecimento POST ok'
         );
@@ -103,8 +103,7 @@ router.put('/', async (req, res) => {
     try {
         const reqBody = req.body;
 
-        res.status(200).send(
-            {
+        res.status(200).send({
             msg: 'Dados do estabelecimento alterados com sucesso!'
         });
     } catch (error) {
