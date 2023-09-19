@@ -1,9 +1,5 @@
 const db = require('../models/db.js');
 
-/*
-    idEstabelecimento
-    idCategoria
-*/
 const createCategoria_Estabelecimento = async (categoriaData) => {
     try {
         const inserirCategoriaEstabelecimentoQuery = `INSERT INTO categoria_estabelecimento  VALUES ( null, ?, ? );`;
