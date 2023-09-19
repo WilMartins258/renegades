@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const opcionaolService = require('../services/opcionaol.service.js');
+const opcionaolService = require('../services/opcional.service.js');
 
 router.get('/', async (req, res) => {
     try {
