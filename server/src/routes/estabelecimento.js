@@ -4,6 +4,7 @@ const router = express.Router();
 // Importando controllers e serviços que serão utilizados nas rotas
 const estabelecimentoService = require('./../services/estabelecimento.service.js');
 const enderecoService = require('./../services/endereco.service.js');
+const categoria_estabelecimentoService = require('../services/categoria_estabelecimento.service.js');
 
 router.get('/:id', async (req, res) => {
     try {
@@ -66,14 +67,26 @@ router.post('/', async (req, res) => {
 
         const estabelecimentoId = await estabelecimentoService.createEstabelecimento(dadosEstabelecimentoArray);
 
-        const dadosCategoria = {}
-        console.log('dadosCategoria:: ', dadosCategoria);
-        
-        const dadosOpcionais = {}
+        const dadosCategoria = reqBody.categoriasSelecionadas;
+        for (let i = 0; i < dadosCategoria.length; i++) {
+            try {
+                const inserirCategoria = await categoria_estabelecimentoService.createCategoria_Estabelecimento([estabelecimentoId, dadosCategoria[i].id])
+            } catch (error) {
+                throw new Error(`Erro ao inserir categoria do estabelecimento: ${error.message}`);
+            }  
+        };
+
+        const dadosOpcionais = reqBody.opcoesSelecionadas;
         console.log('dadosOpcionais:: ', dadosOpcionais);
+        for (let i = 0; i < dadosCategoria.dadosOpcionais; i++) {
+            try {
+                const inserirOpcional = await categoria_estabelecimentoService.createCategoria_Estabelecimento([estabelecimentoId, dadosCategoria[i].id])
+            } catch (error) {
+                throw new Error(`Erro ao inserir opcionais do estabelecimento: ${error.message}`);
+            }  
+        };
 
-
-
+    
         res.status(200).send(
             'estabelecimento POST ok'
         );
