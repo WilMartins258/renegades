@@ -29,6 +29,9 @@ router.post('/', async (req, res) => {
     try {
         const reqBody = req.body;
         // console.log('reqBody:: ', reqBody);
+        
+        const idUsuario = reqBody.idUsuario;
+        console.log('idUsuario:: ', idUsuario);
 
         const dadosEndereco = {
             cep: reqBody.cep,
@@ -78,6 +81,16 @@ router.post('/', async (req, res) => {
         };
 
         const dadosOpcionais = reqBody.opcoesSelecionadas;
+        console.log('dadosOpcionais:: ', dadosOpcionais);
+        for (let i = 0; i < dadosOpcionais.length; i++) {
+            try {
+                await opcional_estabelecimentoService.createOpcional_Estabelecimento([estabelecimentoId, dadosOpcionais[i].id]);
+            } catch (error) {
+                throw new Error(`Erro ao inserir opcionais do estabelecimento: ${error.message}`);
+            }  
+        };
+
+        const dadosHorario = reqBody.HorariosSelecionados;
         console.log('dadosOpcionais:: ', dadosOpcionais);
         for (let i = 0; i < dadosOpcionais.length; i++) {
             try {
