@@ -416,7 +416,7 @@ export default{
    max-width: 2000px;
    min-height: 1010px;
    position: relative;
-   background-color: #c9beebe1;
+   background-color: rgba(94, 92, 92, 0.541); 
    box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
      0 17px 50px 0 rgba(0, 0, 0, 0.19);
  }
@@ -465,7 +465,7 @@ export default{
     border: none;
     padding: 15px 20px;
     border-radius: 25px;
-    background: rgba(211, 201, 201, 0.774);
+    background: rgba(221, 214, 214, 0.911);
   }
   #form-wrap .group .button[disabled] {
   background-color: #7a7a7a6c;
@@ -473,7 +473,7 @@ export default{
 }
 
 #form-wrap .group .input[disabled] {
-  background-color: #7a7a7a6c;
+  background: rgba(211, 201, 201, 0.774);
 
 }
   .group .button,

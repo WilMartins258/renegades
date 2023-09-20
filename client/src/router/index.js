@@ -82,6 +82,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "Atulestabelecimento" */ '../views/ViewAreaEstabelecimento/AtulEstabelecimento'),
   },
 
+  {
+    path: '/sobre',
+    name: 'sobre',
+    component: () => import(/* webpackChunkName: "sobre" */ '../views/Sobre'),
+  },
 ]
 
 const router = createRouter({
