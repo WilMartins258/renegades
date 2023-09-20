@@ -2,25 +2,29 @@
 
 SET FOREIGN_KEY_CHECKS = 0;
 
-DELETE FROM USUARIO;
 DELETE FROM testTable;
-DELETE FROM CARDAPIO;
+
+DELETE FROM USUARIO;
 DELETE FROM ESTABELECIMENTO;
 DELETE FROM ENDERECO;
-DELETE FROM CONTATO;
-DELETE FROM redesocial;
-DELETE FROM HORARIO;
-DELETE FROM PROMOCAO;
-DELETE FROM ESTILOMUSICA;
-DELETE FROM tipoContato;
-DELETE FROM REDESOCIAL_ESTABELECIMENTO;
-DELETE FROM categoria_estabelecimento;
-DELETE FROM opcional_estabelecimento;
 DELETE FROM diaSemana;
-DELETE FROM CATEGORIA;
-DELETE FROM AVALIACAO;
-DELETE FROM musica;
+DELETE FROM HORARIO;
+DELETE FROM comida;
+DELETE FROM comida_estabelecimento;
+DELETE FROM redesocial;
+DELETE FROM REDESOCIAL_ESTABELECIMENTO;
+DELETE FROM ESTILOMUSICA;
+DELETE FROM musica_estabelecimento;
+DELETE FROM contato;
+DELETE FROM contato_estabelecimento;
 DELETE FROM OPCIONAL;
+DELETE FROM opcional_estabelecimento;
+DELETE FROM CATEGORIA;
+DELETE FROM categoria_estabelecimento;
+DELETE FROM AVALIACAO;
+DELETE FROM PROMOCAO;
+DELETE FROM CARDAPIO;
+
 
 SET FOREIGN_KEY_CHECKS = 1;
 
@@ -340,12 +344,12 @@ insert into estilomusica values (
 
 -- ---------------------------- tipoContato -- INÍCIO
 
-insert into tipoContato values(
+insert into contato values(
 	1,
 	'Telefone'
 );
 
-insert into tipoContato values(
+insert into contato values(
 	2,
 	'Celular'
 );
@@ -695,7 +699,7 @@ insert into horario values( -- sábado	    00:00–04:00
 
 ---------------------------------------------------------------- HORÁRIO FIM
 
-insert into contato values(
+insert into contato_estabelecimento values(
 	null,       -- id INT
 	2,          -- idTipoContato INT not null, -- TELEFONE
 	1,          -- idEstabelecimento INT not null,
@@ -908,7 +912,7 @@ insert into horario values( -- sábado	    00:00–05:00
 
 ---------------------------------------------------------------- HORÁRIO FIM
 
-insert into contato values(
+insert into contato_estabelecimento values(
 	null,       -- id INT
 	1,          -- idTipoContato INT not null, -- TELEFONE
 	2,          -- idEstabelecimento INT not null,
@@ -1062,7 +1066,7 @@ insert into horario values( -- sábado	    09:00–00:00
 
 ---------------------------------------------------------------- HORÁRIO FIM
 
-insert into contato values(
+insert into contato_estabelecimento values(
 	null,       -- id INT
 	1,          -- idTipoContato INT not null, -- TELEFONE
 	3,          -- idEstabelecimento INT not null,
@@ -1212,7 +1216,7 @@ insert into horario values( -- sábado	    09:00–00:00
 
 ---------------------------------------------------------------- HORÁRIO FIM
 
-insert into contato values(
+insert into contato_estabelecimento values(
 	null,       -- id INT
 	1,          -- idTipoContato INT not null, -- TELEFONE
 	4,          -- idEstabelecimento INT not null,
@@ -1273,19 +1277,19 @@ insert into categoria_estabelecimento values(
 	6 -- idCategoria INT NOT NULL
 );
 
-insert into musica values(
+insert into musica_estabelecimento values(
 	1, -- id                INT PRIMARY KEY,
 	5, -- idEstabelecimento INT not null,
 	1 -- idEstiloMusica    INT not null ---------> PAGODE
 );
 
-insert into musica values(
+insert into musica_estabelecimento values(
 	2, -- id                INT PRIMARY KEY,
 	5, -- idEstabelecimento INT not null,
 	2 -- idEstiloMusica    INT not null ---------> SAMBA
 );
 
-insert into musica values(
+insert into musica_estabelecimento values(
 	3, -- id                INT PRIMARY KEY,
 	5, -- idEstabelecimento INT not null,
 	3 -- idEstiloMusica    INT not null ---------> FUNK
@@ -1324,7 +1328,7 @@ insert into horario values(
 	060000  -- horarioFim TIME not null
 );
 
-insert into contato values(
+insert into contato_estabelecimento values(
 	null,       -- id INT
 	1,          -- idTipoContato INT not null, -- TELEFONE
 	5,          -- idEstabelecimento INT not null,
