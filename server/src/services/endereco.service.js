@@ -9,6 +9,18 @@ const pegarPorId = async (enderecoId) => {
     return dadosEndereco[0];
 };
 
+const pegarPorIdDoUsuario = async (idUsuario) => {
+    const dadosEnderecoQuery = `SELECT e.id, e.cep, e.estado, e.cidade, e.bairro, e.lodradouro, e.numero
+                                FROM usuario u join endereco e
+                                on e.idUsuario = u.id
+                                WHERE u.id = ?;`;
+    const connection = await db;
+
+    const [dadosEndereco] = await connection.query(dadosEnderecoQuery, idUsuario);
+
+    return dadosEndereco[0];
+};
+
 // enderecoData = [cep, uf, cidade, rua, bairro, numero]
 const inserir = async (enderecoData) => {
     try {
@@ -39,6 +51,7 @@ const atualizar = async (newEnderecoData) => {
 
 module.exports = {
     pegarPorId,
+    pegarPorIdDoUsuario,
     atualizar,
     inserir
 };
