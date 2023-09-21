@@ -74,7 +74,7 @@ router.post('/', async (req, res) => {
         const dadosCategoria = reqBody.categoriasSelecionadas;
         for (let i = 0; i < dadosCategoria.length; i++) {
             try {
-                await categoria_estabelecimento_Service.createCategoria_Estabelecimento([estabelecimentoId, dadosCategoria[i].id]);
+                await categoria_estabelecimento_Service.inserir([estabelecimentoId, dadosCategoria[i].id]);
             } catch (error) {
                 throw new Error(`Erro ao inserir categoria do estabelecimento: ${error.message}`);
             }  

@@ -1,6 +1,6 @@
 const db = require('../models/db.js');
 
-const createCategoria_Estabelecimento = async (categoriaData) => {
+const inserir = async (categoriaData) => {
     try {
         const inserirCategoriaEstabelecimentoQuery = `INSERT INTO categoria_estabelecimento  VALUES ( null, ?, ? );`;
         const connection = await db;
@@ -13,6 +13,15 @@ const createCategoria_Estabelecimento = async (categoriaData) => {
     }
 };
 
+const atualizar = async () => {};
+
+const pegarPorId = async () => {};
+
+const excluir = async () => {};
+
 module.exports = {
-    createCategoria_Estabelecimento
+    inserir,
+    atualizar,
+    pegarPorId,
+    excluir
 };
