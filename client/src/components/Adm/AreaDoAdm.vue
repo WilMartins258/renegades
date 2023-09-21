@@ -47,7 +47,7 @@
               alt="lista De Usuarios"
               class="card-image"
             />
-            <div class="description">Lista de Usuário</div>
+            <div class="description">Lista de Usuários</div>
           </router-link>
           <router-link to="/" class="card">
             <img
