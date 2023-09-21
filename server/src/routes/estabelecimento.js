@@ -84,7 +84,7 @@ router.post('/', async (req, res) => {
         console.log('dadosOpcionais:: ', dadosOpcionais);
         for (let i = 0; i < dadosOpcionais.length; i++) {
             try {
-                await opcional_estabelecimento_Service.createOpcional_Estabelecimento([estabelecimentoId, dadosOpcionais[i].id]);
+                await opcional_estabelecimento_Service.inserir([estabelecimentoId, dadosOpcionais[i].id]);
             } catch (error) {
                 throw new Error(`Erro ao inserir opcionais do estabelecimento: ${error.message}`);
             }  

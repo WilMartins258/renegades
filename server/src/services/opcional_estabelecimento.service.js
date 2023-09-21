@@ -1,6 +1,6 @@
 const db = require('../models/db.js');
 
-const createOpcional_Estabelecimento = async (opcionalData) => {
+const inserir = async (opcionalData) => {
     try {
         const inserirOpcionalEstabelecimentoQuery = `INSERT INTO opcional_estabelecimento  VALUES ( null, ?, ? );`;
         const connection = await db;
@@ -13,6 +13,15 @@ const createOpcional_Estabelecimento = async (opcionalData) => {
     }
 };
 
+const atualizar = async () => {};
+
+const pegarPorId = async () => {};
+
+const excluir = async () => {};
+
 module.exports = {
-    createOpcional_Estabelecimento
+    inserir,
+    atualizar,
+    pegarPorId,
+    excluir
 };
