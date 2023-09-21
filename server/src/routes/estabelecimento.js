@@ -2,15 +2,15 @@ const express = require('express');
 const router = express.Router();
 
 // Importando controllers e serviços que serão utilizados nas rotas
-const estabelecimentoService = require('./../services/estabelecimento.service.js');
-const enderecoService = require('./../services/endereco.service.js');
-const categoria_estabelecimentoService = require('../services/categoria_estabelecimento.service.js');
-const opcional_estabelecimentoService = require('../services/opcional_estabelecimento.service.js');
+const estabelecimento_Service = require('./../services/estabelecimento.service.js');
+const endereco_Service = require('./../services/endereco.service.js');
+const categoria_estabelecimento_Service = require('../services/categoria_estabelecimento.service.js');
+const opcional_estabelecimento_Service = require('../services/opcional_estabelecimento.service.js');
 
 router.get('/:id', async (req, res) => {
     try {
         const idEstabelecimento = req.params.id;
-        const dadosEstabelecimento = await estabelecimentoService.getEstabelecimentoById(idEstabelecimento);
+        const dadosEstabelecimento = await estabelecimento_Service.getEstabelecimentoById(idEstabelecimento);
         if (dadosEstabelecimento) {
             res.status(200).send(dadosEstabelecimento);
         } else {
@@ -43,7 +43,7 @@ router.post('/', async (req, res) => {
         };
         const dadosEnderecoArray = Object.values(dadosEndereco);
         
-        const enderecoId = await enderecoService.createEndereco(dadosEnderecoArray);
+        const enderecoId = await endereco_Service.createEndereco(dadosEnderecoArray);
 
         const removerCaracteresEspeciais = (str) => {
             const resultado = str.replace(/[\/\.\-]/g, '');
@@ -69,12 +69,12 @@ router.post('/', async (req, res) => {
         }
         const dadosEstabelecimentoArray = Object.values(dadosEstabelecimento);
 
-        const estabelecimentoId = await estabelecimentoService.createEstabelecimento(dadosEstabelecimentoArray);
+        const estabelecimentoId = await estabelecimento_Service.createEstabelecimento(dadosEstabelecimentoArray);
 
         const dadosCategoria = reqBody.categoriasSelecionadas;
         for (let i = 0; i < dadosCategoria.length; i++) {
             try {
-                await categoria_estabelecimentoService.createCategoria_Estabelecimento([estabelecimentoId, dadosCategoria[i].id]);
+                await categoria_estabelecimento_Service.createCategoria_Estabelecimento([estabelecimentoId, dadosCategoria[i].id]);
             } catch (error) {
                 throw new Error(`Erro ao inserir categoria do estabelecimento: ${error.message}`);
             }  
@@ -84,19 +84,19 @@ router.post('/', async (req, res) => {
         console.log('dadosOpcionais:: ', dadosOpcionais);
         for (let i = 0; i < dadosOpcionais.length; i++) {
             try {
-                await opcional_estabelecimentoService.createOpcional_Estabelecimento([estabelecimentoId, dadosOpcionais[i].id]);
+                await opcional_estabelecimento_Service.createOpcional_Estabelecimento([estabelecimentoId, dadosOpcionais[i].id]);
             } catch (error) {
                 throw new Error(`Erro ao inserir opcionais do estabelecimento: ${error.message}`);
             }  
         };
 
         const dadosHorario = reqBody.HorariosSelecionados;
-        console.log('dadosOpcionais:: ', dadosOpcionais);
-        for (let i = 0; i < dadosOpcionais.length; i++) {
+        console.log('dadosHorario:: ', dadosHorario);
+        for (let i = 0; i < dadosHorario.length; i++) {
             try {
-                await opcional_estabelecimentoService.createOpcional_Estabelecimento([estabelecimentoId, dadosOpcionais[i].id]);
+                
             } catch (error) {
-                throw new Error(`Erro ao inserir opcionais do estabelecimento: ${error.message}`);
+                throw new Error(`Erro ao inserir horários do estabelecimento: ${error.message}`);
             }  
         };
 
