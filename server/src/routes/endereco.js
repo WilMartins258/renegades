@@ -8,7 +8,7 @@ router.get('/:id', async (req, res) => {
     // console.log('Início da rota usuario :id');
 
     // Recebe os dados de um endereco passando como parâmetro seu ID
-    const enderecoData = await enderecoService.getEnderecoById(enderecoId);
+    const enderecoData = await enderecoService.pegarPorId(enderecoId);
 
     res.status(200).send(enderecoData);
 });
@@ -29,7 +29,7 @@ router.put('/', async (req, res) => {
         
         const novosDadosEnderecoArray = Object.values(novosDadosEndereco);
         
-        const newEnderecoData = await enderecoService.updateEnderecoData(novosDadosEnderecoArray);
+        const newEnderecoData = await enderecoService.atualizar(novosDadosEnderecoArray);
 
         res.status(200).send({
             msg: 'Dados de endereço do usuário alterados com sucesso!'

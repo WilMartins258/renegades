@@ -43,7 +43,7 @@ router.post('/', async (req, res) => {
         };
         const dadosEnderecoArray = Object.values(dadosEndereco);
         
-        const enderecoId = await endereco_Service.createEndereco(dadosEnderecoArray);
+        const enderecoId = await endereco_Service.inserir(dadosEnderecoArray);
 
         const removerCaracteresEspeciais = (str) => {
             const resultado = str.replace(/[\/\.\-]/g, '');

@@ -1,6 +1,6 @@
 const db = require('../models/db.js');
 
-const getEnderecoById = async (enderecoId) => {
+const pegarPorId = async (enderecoId) => {
     const dadosEnderecoQuery = "SELECT * FROM endereco WHERE id = ?";
     const connection = await db;
 
@@ -10,7 +10,7 @@ const getEnderecoById = async (enderecoId) => {
 };
 
 // enderecoData = [cep, uf, cidade, rua, bairro, numero]
-const createEndereco = async (enderecoData) => {
+const inserir = async (enderecoData) => {
     try {
         const inserirEnderecoQuery = `INSERT INTO endereco VALUES ( null, ?, ?, ?, ?, ?, ? );`;
         const connection = await db;
@@ -23,7 +23,7 @@ const createEndereco = async (enderecoData) => {
     }
 };
 
-const updateEnderecoData = async (newEnderecoData) => {
+const atualizar = async (newEnderecoData) => {
     const atualizarEnderecoQuery = `
         UPDATE endereco
         SET cep = ?, estado = ?, cidade = ?, lodradouro = ?, 
@@ -38,7 +38,7 @@ const updateEnderecoData = async (newEnderecoData) => {
 };
 
 module.exports = {
-    getEnderecoById,
-    updateEnderecoData,
-    createEndereco
+    pegarPorId,
+    atualizar,
+    inserir
 };
