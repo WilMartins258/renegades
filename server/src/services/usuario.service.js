@@ -1,6 +1,6 @@
 const db = require('../models/db.js');
 
-const checkEmail = async (email) => {
+const checarEmail = async (email) => {
   const checkEmailQuery = `SELECT email 
                             FROM usuario 
                             WHERE email = ?;`;
@@ -11,7 +11,7 @@ const checkEmail = async (email) => {
   return checkEmail[0];
 };
 
-const insertUserData = async (dadosUsuario) => {
+const inserir = async (dadosUsuario) => {
   try {
     const dadosUsuarioQuery = `INSERT INTO usuario (nome, email, senha)
                                VALUES (?, ?, ?);`;
@@ -25,7 +25,7 @@ const insertUserData = async (dadosUsuario) => {
   }
 };
 
-const getUserById = async (userId) => {
+const pegarPorId = async (userId) => {
   try {
     const dadosUsuarioQuery = "SELECT * FROM usuario WHERE id = ?";
     const connection = await db;
@@ -42,7 +42,7 @@ const getUserById = async (userId) => {
   }
 };
 
-const updateUserData = async (newUserData) => {
+const atualizar = async (newUserData) => {
   try {
     const atualizarUsuarioQuery = `
       UPDATE usuario
@@ -64,7 +64,7 @@ const updateUserData = async (newUserData) => {
   }
 };
 
-const deleteUserData = async () => {
+const excluir = async () => {
   try {
     
   } catch (error) {
@@ -73,9 +73,9 @@ const deleteUserData = async () => {
 };
 
 module.exports = {
-  checkEmail,
-  getUserById,
-  updateUserData,
-  insertUserData,
-  deleteUserData
+  checarEmail,
+  inserir,
+  atualizar,
+  pegarPorId,
+  excluir
 };

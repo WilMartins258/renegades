@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     try {
         const userId = req.params.id;
-        const dadosUsuario = await userService.getUserById(userId);
+        const dadosUsuario = await userService.pegarPorId(userId);
         if (dadosUsuario) {
             res.status(200).send(dadosUsuario);
         } else {
@@ -57,7 +57,7 @@ router.put('/', async (req, res) => {
         };
 
         const novosDadosUsuarioArray = Object.values(novosDadosUsuario);
-        const newUserData = await userService.updateUserData(novosDadosUsuarioArray);
+        const newUserData = await userService.atualizar(novosDadosUsuarioArray);
 
         res.status(200).send(
             {
@@ -92,7 +92,7 @@ router.post('/', async (req, res) => {
         };
 
         const dadosUsuarioArray = Object.values(dadosUsuario);
-        const checagemEmail = await userService.checkEmail(dadosUsuario.email);
+        const checagemEmail = await userService.checarEmail(dadosUsuario.email);
         if (checagemEmail) {
             res.status(400).send({
                 login: false,
@@ -100,7 +100,7 @@ router.post('/', async (req, res) => {
             });
             
         } else {
-            const usuarioInserido = await userService.insertUserData(dadosUsuarioArray);
+            const usuarioInserido = await userService.inserir(dadosUsuarioArray);
 
             res.status(200).send({
                 msg: 'Usuário adicionado ao sistema',
