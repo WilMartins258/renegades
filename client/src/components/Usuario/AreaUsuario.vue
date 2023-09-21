@@ -12,19 +12,19 @@
           <div class="description">Meus Dados</div>
         </router-link>
 
-        <router-link to="/Anuncio" class="card">
+        <router-link to="/avaliacao" class="card">
           <img
             src="../../../public/img/Avaliacao.png"
-            alt="Meus Anuncios"
+            alt="Minhas avaliações"
             class="card-image"
           />
           <div class="description">Minhas Avaliações</div>
         </router-link>
 
-        <router-link to="/" class="card">
+        <router-link to="/favoritos" class="card">
           <img
             src="../../../public/img/Favoritos.jpg"
-            alt="Favoritos"
+            alt="Meus Favoritos"
             class="card-image"
           />
           <div class="description">Favoritos</div>

@@ -14,7 +14,7 @@
         <router-link to="/atulestabelecimento" class="card">
           <img
             src="../../../public/img/MeuEstabelecimento.png"
-            alt="Consultar"
+            alt="Atualizar dados"
             class="card-image"
           />
           <div class="description">Meu Estabelecimento</div>
@@ -22,15 +22,15 @@
         <router-link to="/promocao" class="card">
           <img
             src="../../../public/img/Promocao.png"
-            alt="Meus Anuncios"
+            alt="Minhas promoções"
             class="card-image"
           />
           <div class="description">Minhas Promoções</div>
         </router-link>
-        <router-link to="/Anuncio" class="card">
+        <router-link to="/avaliacaoestabelecimento" class="card">
           <img
             src="../../../public/img/Avaliacao.png"
-            alt="Meus Anuncios"
+            alt="Como estou avaliado"
             class="card-image"
           />
           <div class="description">Minhas Avaliações</div>

@@ -87,6 +87,25 @@ const routes = [
     name: 'sobre',
     component: () => import(/* webpackChunkName: "sobre" */ '../views/Sobre'),
   },
+
+  {
+    path: '/avaliacao',
+    name: 'avaliacao',
+    component: () => import(/* webpackChunkName: "Avaliacao" */ '../views/ViewUsuarios/Avaliacao'),
+  },
+
+  {
+    path: '/favoritos',
+    name: 'favoritos',
+    component: () => import(/* webpackChunkName: "Favoritos" */ '../views/ViewUsuarios/Favoritos'),
+  },
+
+  {
+    path: '/avaliacaoestabelecimento',
+    name: 'avaliacaoestabelecimento',
+    component: () => import(/* webpackChunkName: "AvaliacaoEstabelecimento" */ '../views/ViewAreaEstabelecimento/AvaliacaoEstabelecimento'),
+  },
+
 ]
 
 const router = createRouter({
