@@ -12,6 +12,24 @@
           :class="{ 'error': campoVazio }"
         />
         <br><br>
+
+        <label>Ativo:</label>
+        <input
+          type="radio"
+          id="ativoSim"
+          value="sim"
+          v-model="ativo"
+        />
+        <label for="ativoSim">Sim</label>
+        <input
+          type="radio"
+          id="ativoNao"
+          value="Não"
+          v-model="ativo"
+        />
+        <label for="ativoNao">Não</label>
+        <br><br>
+
         <button type="submit" :disabled="isEditing" :class="{ 'disabled-button': isEditing }">
           {{ isEditing ? 'Salvando...' : 'Salvar' }}
         </button>
@@ -22,19 +40,18 @@
       <thead>
         <tr>
           <th>Categoria de Estabelecimento</th>
-          <th>Editar/Excluir</th>
+          <th>Ativo</th>
+          <th>Editar</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(categoria, index) in listaCategorias" :key="index">
-          <td>{{ categoria }}</td>
+          <td>{{ categoria.categoria }}</td>
+          <td>{{ categoria.ativo }}</td>
           <td>
             <template v-if="editingIndex !== index">
               <button class="respButton" @click="editarCategoria(index)">
                 <i class="uil uil-edit"></i>
-              </button>
-              <button class="respButton" @click="excluirCategoria(index)">
-                <i class="uil uil-file-times-alt"></i>
               </button>
             </template>
             <template v-else>
@@ -62,23 +79,28 @@ export default {
       campoVazio: false, // Variável de estado para verificar se o campo está vazio
       isEditing: false, // Adicionamos um estado para controle de edição
       editingIndex: -1, // Índice da categoria em edição
+      ativo: "sim",
     };
   },
   methods: {
     salvarCategoria() {
       if (this.novaCategoria.trim() !== "") {
         if (this.isEditing) {
-          // Editar categoria existente
-          this.listaCategorias[this.editingIndex] = this.novaCategoria;
+          this.listaCategorias[this.editingIndex] = {
+            categoria: this.novaCategoria,
+            ativo: this.ativo, // Adicionando o valor "ativo" à categoria existente
+          };
           this.isEditing = false;
         } else {
-          // Adicionar nova categoria
-          this.listaCategorias.push(this.novaCategoria);
+          this.listaCategorias.push({
+            categoria: this.novaCategoria,
+            ativo: this.ativo, // Adicionando o valor "ativo" à nova categoria
+          });
         }
         this.novaCategoria = "";
-        this.campoVazio = false; // Reiniciar o estado de campo vazio
+        this.campoVazio = false;
       } else {
-        this.campoVazio = true; // Definir o estado de campo vazio como verdadeiro
+        this.campoVazio = true;
       }
     },
     limparCampos() {
@@ -86,8 +108,9 @@ export default {
     },
     editarCategoria(index) {
       this.editingIndex = index;
-      this.novaCategoria = this.listaCategorias[index];
-      this.isEditing = true; // Ativar o modo de edição
+      this.novaCategoria = this.listaCategorias[index].categoria; // Preencher o campo de categoria
+      this.ativo = this.listaCategorias[index].ativo; // Preencher o campo "Ativo"
+      this.isEditing = true;
     },
     cancelarEdicao() {
       this.editingIndex = -1;
@@ -95,19 +118,16 @@ export default {
       this.limparCampos();
     },
     salvarEdicao(index) {
-      this.listaCategorias[index] = this.novaCategoria;
-      this.editingIndex = -1;
-      this.isEditing = false; // Definir isEditing de volta para false
-      this.limparCampos();
-    },
+      this.listaCategorias[index].categoria = this.novaCategoria;
+      this.listaCategorias[index].ativo = this.ativo;
 
-    excluirCategoria(index) {
-      if (confirm("Tem certeza que deseja excluir esta categoria?")) {
-        this.listaCategorias.splice(index, 1);
-      }
+      this.editingIndex = -1;
+      this.isEditing = false;
+      this.limparCampos();
     },
   },
 };
+
 </script>
 
 <style scoped>
@@ -156,7 +176,7 @@ button {
   cursor: pointer;
   transition: 0.5s;
   border: none;
-  padding: 8px 50px;
+  padding: 8px 30px;
   border-radius: 25px;
 }
 

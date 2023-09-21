@@ -5,10 +5,10 @@
           Minha nota é:<br>
           <span class="nota"> {{ MediaNt }} </span>
         </div>
-      </div>
+      </div><br>
       <div v-for="(review, index) in visibleAvaliacao" :key="index">
         <fieldset>
-          <legend>
+          <label class="titulo">
             <div class="stars">
               <span
                 v-for="star in 5"
@@ -17,10 +17,10 @@
               >
                 &#9733;
               </span>
-            </div>
+            </div><br>
             {{ review.username }} - Data: {{ review.date }}
-          </legend>
-          <br>
+          </label>
+          <br><br>
           <p class="descricao">{{ review.descricao }}</p>
           <br>
         </fieldset><br>
@@ -39,13 +39,13 @@
         avaliacao: [], // Array de avaliações
         MediaNt: 0, // Média que vem do banco
         visibleAvaliacao: [], // Array para armazenar as avaliações visíveis
-        numToShow: 4, // Número inicial de avaliações para mostrar
+        numToShow: 6, // Número inicial de avaliações para mostrar
       };
     },
     methods: {
       showMoreFields() {
         // exibe mais 4 campos
-        this.numToShow += 4;
+        this.numToShow += 6;
         this.visibleAvaliacao = this.avaliacao.slice(0, this.numToShow);
       },
     },
@@ -105,7 +105,7 @@
       margin: 0 auto;
   }
   
-  legend {
+  .titulo {
       font-weight: bold;
       color: #f50000;
       font-size: 20px;

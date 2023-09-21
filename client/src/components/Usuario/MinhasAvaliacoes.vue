@@ -3,7 +3,7 @@
   <section class="user-avaliacao">
     <div v-for="(avaliacao, index) in visibleAvaliacao" :key="index" class="avaliacao-box">
       <fieldset>
-        <legend>{{ avaliacao.NmEstabelecimento }} Avaliado em: {{ avaliacao.date }}</legend>
+        <label class="titulo">{{ avaliacao.NmEstabelecimento }} Avaliado em: {{ avaliacao.date }}</label><br><br>
         <label for="avaliacao">Nota:</label>
         <div class="rating">
           <span
@@ -62,14 +62,14 @@ export default {
     return {
       avaliacao: [], // Array de avaliações
       visibleAvaliacao: [], // Array para as avaliações visíveis
-      numToShow: 4, // Número inicial de avaliações para mostrar
+      numToShow: 6, // Número inicial de avaliações para mostrar
       editingIndex: -1, // Índice da avaliação em edição (-1 avaliação está sendo editada)
     };
   },
   methods: {
     showMoreFields() {
       // exibe mais 4 campos
-      this.numToShow += 4;
+      this.numToShow += 6;
       this.updateVisibleAvaliacao(); // Chama a função para atualizar a exibição
     },
     editReview(index) {
@@ -210,7 +210,7 @@ fieldset {
   margin: 0 auto;
 }
 
-legend {
+.titulo {
   font-weight: bold;
   color: #f50000;
   font-size: 20px;
