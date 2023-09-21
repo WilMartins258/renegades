@@ -4,27 +4,27 @@ SET FOREIGN_KEY_CHECKS = 0;
 
 DELETE FROM testTable;
 
-DELETE FROM USUARIO;
-DELETE FROM ESTABELECIMENTO;
-DELETE FROM ENDERECO;
-DELETE FROM diaSemana;
-DELETE FROM HORARIO;
-DELETE FROM comida;
-DELETE FROM comida_estabelecimento;
-DELETE FROM redesocial;
-DELETE FROM REDESOCIAL_ESTABELECIMENTO;
-DELETE FROM ESTILOMUSICA;
-DELETE FROM musica_estabelecimento;
+DELETE FROM categoria;
+DELETE FROM estiloMusica;
 DELETE FROM contato;
+DELETE FROM redeSocial;
+DELETE FROM comida;
+DELETE FROM diaSemana;
+DELETE FROM opcional;
+DELETE FROM usuario;
+DELETE FROM estabelecimento;
+DELETE FROM endereco;
+DELETE FROM horario;
+DELETE FROM cardapio;
+DELETE FROM promocao;
+DELETE FROM redeSocial_estabelecimento;
 DELETE FROM contato_estabelecimento;
-DELETE FROM OPCIONAL;
 DELETE FROM opcional_estabelecimento;
-DELETE FROM CATEGORIA;
+DELETE FROM comida_estabelecimento;
 DELETE FROM categoria_estabelecimento;
-DELETE FROM AVALIACAO;
-DELETE FROM PROMOCAO;
-DELETE FROM CARDAPIO;
-
+DELETE FROM musica_estabelecimento;
+DELETE FROM avaliacao;
+DELETE FROM favorito;
 
 SET FOREIGN_KEY_CHECKS = 1;
 
@@ -458,20 +458,10 @@ insert into diaSemana values(
 
 ---------------------------- USUÁRIO WILLIAN -- INÍCIO
 
-insert into ENDERECO values(
-	1, -- id
-	'18117121', -- cep not null,
-	'SP', -- estado not null,
-	'Votorantim', -- cidade not null,
-    'Rua Pedro Nunes', -- lodradouro not null,
-    'Conjunto Habitacional Jardim Serrano', -- bairro not null,
-    97 -- numero not null
-);
 
 insert into usuario values(
 	1,                   -- id
 	null,                -- idEstabelecimento
-	1,                   -- idEndereco
     'Willian M. Ribeiro',           -- nome
 	15,                  -- codigoArea
 	999998888,           -- celular
@@ -483,26 +473,27 @@ insert into usuario values(
 	0                    -- tipoUsuario ENUM(0, 1, 2) NOT NULL
 );
 
+insert into endereco values(
+	1, -- id
+	1,	-- idUsuario         INT,
+	null,  -- idEstabelecimento INT,
+	'18117121', -- cep not null,
+	'SP', -- estado not null,
+	'Votorantim', -- cidade not null,
+    'Rua Pedro Nunes', -- lodradouro not null,
+    'Conjunto Habitacional Jardim Serrano', -- bairro not null,
+    97 -- numero not null
+);
+
 ---------------------------- USUÁRIO WILLIAN -- FIM
 
 
 
 ---------------------------- USUÁRIO LUCAS -- INÍCIO
 
-insert into ENDERECO values(
-	2, -- id
-	'1112233', -- cep not null,
-	'SP', -- estado not null,
-	'Sorocaba', -- cidade not null,
-    'Rua do Lucas', -- lodradouro not null,
-    'Bairro do Lucas', -- bairro not null,
-    1 -- numero not null
-);
-
 insert into usuario values(
 	2,                   -- id
 	null,                -- idEstabelecimento
-	2,                   -- idEndereco
     'Lucas Maximiano dos Santos',   -- nome
 	15,                  -- codigoArea
 	999997777,           -- celular
@@ -514,6 +505,18 @@ insert into usuario values(
 	0 -- tipoUsuario ENUM(0, 1, 2) NOT NULL
 );
 
+insert into endereco values(
+	2, -- id
+	2,	-- idUsuario         INT,
+	null,  -- idEstabelecimento INT,
+	'1112233', -- cep not null,
+	'SP', -- estado not null,
+	'Sorocaba', -- cidade not null,
+    'Rua do Lucas', -- lodradouro not null,
+    'Bairro do Lucas', -- bairro not null,
+    1 -- numero not null
+);
+
 ---------------------------- USUÁRIO LUCAS -- FIM
 
 
@@ -523,7 +526,6 @@ insert into usuario values(
 insert into usuario values(
 	3,                       -- id
 	null,                    -- idEstabelecimento
-	null,                    -- idEndereco
     'Julio Cesar de Castro',           -- nome
 	15,                      -- codigoArea
 	999999999,               -- celular
@@ -544,19 +546,8 @@ insert into usuario values(
 
 -- -----------------------------------------------> Mc Donalds - Votorantim
 
-insert into endereco values( -- Endereço do Mc Donalds 	VOTORANTIM
-	3,                  -- id
-	'18110375',         -- cep
-	'SP',               -- estado
-	'Votorantim',                   -- cidade
-	'Avenida Moacir Oséias Guitti', -- lodradouro
-	'Jardim Paraíso',  -- bairro
-	's/n'                  -- numero
-);
-
 insert into estabelecimento values(
 	1, -- id 
-	3, -- idEndereco
 	'Mc Donalds - Votorantim', -- nome
 	'21587059000106', -- cnpj
 	null, -- fotoPrincipal   
@@ -570,6 +561,18 @@ insert into estabelecimento values(
 	'2023-09-07' -- dataUltimoAcesso
 );
 
+insert into endereco values( -- Endereço do Mc Donalds 	VOTORANTIM
+	3,                  -- id
+	null,	-- idUsuario         INT,
+	1,  -- idEstabelecimento INT,
+	'18110375',         -- cep
+	'SP',               -- estado
+	'Votorantim',                   -- cidade
+	'Avenida Moacir Oséias Guitti', -- lodradouro
+	'Jardim Paraíso',  -- bairro
+	's/n'                  -- numero
+);
+
 insert into categoria_estabelecimento values(
 	1, -- id INT PRIMARY KEY,
     1, -- idEstabelecimento INT NOT NULL,
@@ -579,7 +582,6 @@ insert into categoria_estabelecimento values(
 insert into usuario values( -- Mc Donalds - Votorantim
 	4,                   -- id
 	1,                -- idEstabelecimento
-	null,                   -- idEndereco
     'usuario04 - MC Donalds',           -- nome
 	15,                  -- codigoArea
 	999999999,           -- celular
@@ -748,19 +750,8 @@ insert into cardapio values(
 
 -- -----------------------------------------------> Mc Donalds - SOROCABA
 
-insert into endereco values( -- Endereço do Mc Donalds 	SOROCABA
-	4,                  -- id
-	'18047620',         -- cep
-	'SP',               -- estado
-	'Sorocaba',                   -- cidade
-	'Avenida Antônio Carlos Comitre', -- lodradouro
-	'Parque Campolim',  -- bairro
-	'1055'                    -- numero
-);
-
 insert into estabelecimento values(
 	2, -- id 
-    4, -- idEndereco
     'Mc Donalds - SOROCABA', -- nome
     '76842463000162', -- cnpj
     null, -- fotoPrincipal   
@@ -774,6 +765,18 @@ insert into estabelecimento values(
 	'2023-09-07' -- dataUltimoAcesso
 );
 
+insert into endereco values( -- Endereço do Mc Donalds 	SOROCABA
+	4,                  -- id
+	null,	-- idUsuario         INT,
+	2,  -- idEstabelecimento INT,
+	'18047620',         -- cep
+	'SP',               -- estado
+	'Sorocaba',                   -- cidade
+	'Avenida Antônio Carlos Comitre', -- lodradouro
+	'Parque Campolim',  -- bairro
+	'1055'                    -- numero
+);
+
 insert into categoria_estabelecimento values(
 	2, -- id INT PRIMARY KEY,
 	2, -- idEstabelecimento INT NOT NULL,
@@ -784,7 +787,6 @@ insert into categoria_estabelecimento values(
 insert into usuario values( -- Mc Donalds - Sorocaba
 	5,                   -- id
 	2,                -- idEstabelecimento
-	null,                   -- idEndereco
     'Dono do MC CAMPOLIM SOROCABA',           -- nome
 	15,                  -- codigoArea
 	999999999,           -- celular
@@ -958,19 +960,8 @@ insert into cardapio values(
 
 -- -----------------------------------------------> Kiko's Hot-Dog INÍCIO
 
-insert into endereco values(
-	5, -- id
-	'18110570', -- cep
-	'SP', -- estado
-	'Votorantim', -- cidade
-	'Avenida Matheus Conegero', -- lodradouro
-	'Parque Bela Vista', -- bairro
-	'35' -- numero
-);
-
 insert into estabelecimento values(
 	3, -- id 
-	5, -- idEndereco
 	'Kikos Hot-Dog', -- nome
 	'11892673000110',  -- cnpj
 	null, -- fotoPrincipal   
@@ -984,6 +975,18 @@ insert into estabelecimento values(
 	'2023-09-07' -- dataUltimoAcesso
 );
 
+insert into endereco values(
+	5, -- id
+	null,	-- idUsuario         INT,
+	3,      -- idEstabelecimento INT,
+	'18110570', -- cep
+	'SP', -- estado
+	'Votorantim', -- cidade
+	'Avenida Matheus Conegero', -- lodradouro
+	'Parque Bela Vista', -- bairro
+	'35' -- numero
+);
+
 insert into categoria_estabelecimento values(
 	3, -- id INT PRIMARY KEY,
 	3, -- idEstabelecimento INT NOT NULL,
@@ -993,7 +996,6 @@ insert into categoria_estabelecimento values(
 insert into usuario values(
 	6,                   -- id
 	3,                -- idEstabelecimento
-	5,                -- idEndereco
     'Dono do Kiko',           -- nome
 	15,                  -- codigoArea
 	999999999,           -- celular
@@ -1108,19 +1110,8 @@ insert into cardapio values(
 
 -- -----------------------------------------------> Pizzaria Booa INÍCIO
 
-insert into endereco values(
-	6, -- id
-	'18116440', -- cep
-	'SP', -- estado
-	'Votorantim', -- cidade
-	'Avenida Santos Dumont', -- lodradouro
-	'Vila Domingues', -- bairro
-	'526' -- numero
-);
-
 insert into estabelecimento values(
 	4, -- id 
-	6, -- idEndereco
 	'Pizzaria Booa', -- nome
 	'59363162000137',  -- cnpj
 	null, -- fotoPrincipal   
@@ -1134,6 +1125,18 @@ insert into estabelecimento values(
 	'2023-09-07' -- dataUltimoAcesso
 );
 
+insert into endereco values(
+	6, -- id
+	null,	-- idUsuario         INT,
+	4,      -- idEstabelecimento INT,
+	'18116440', -- cep
+	'SP', -- estado
+	'Votorantim', -- cidade
+	'Avenida Santos Dumont', -- lodradouro
+	'Vila Domingues', -- bairro
+	'526' -- numero
+);
+
 insert into categoria_estabelecimento values(
 	4, -- id INT PRIMARY KEY,
 	4, -- idEstabelecimento INT NOT NULL,
@@ -1143,7 +1146,6 @@ insert into categoria_estabelecimento values(
 insert into usuario values(
 	7,                   -- id
 	4,                -- idEstabelecimento
-	5,                -- idEndereco
     'Dono da Pizzaria Booa Pizza usuario07',           -- nome
 	15,                  -- codigoArea
 	999999999,           -- celular
@@ -1245,19 +1247,8 @@ insert into cardapio values(
 
 -- -----------------------------------------------> Mada Bar INÍCIO
 
-insert into endereco values( 
-	7, -- id
-	'18048110', -- cep
-	'SP', -- estado
-	'Sorocaba', -- cidade
-	'Avenida Gisele Constantino', -- lodradouro
-	'Parque Campolim', -- bairro
-	'1597' -- numero
-);
-
 insert into estabelecimento values(
 	5,                      -- id 
-	7,                      -- idEndereco
 	'Mada Bar',             -- nome
 	'73936746000185',       -- cnpj
 	null,                   -- fotoPrincipal   
@@ -1269,6 +1260,18 @@ insert into estabelecimento values(
 	null, -- numeroAvaliacoes INT,
 	'2023-09-07', -- dataUltimoAcesso
 	'2023-09-07' -- dataUltimoAcesso
+);
+
+insert into endereco values( 
+	7, -- id
+	null,	-- idUsuario         INT,
+	5,      -- idEstabelecimento INT,
+	'18048110', -- cep
+	'SP', -- estado
+	'Sorocaba', -- cidade
+	'Avenida Gisele Constantino', -- lodradouro
+	'Parque Campolim', -- bairro
+	'1597' -- numero
 );
 
 insert into categoria_estabelecimento values(
@@ -1298,7 +1301,6 @@ insert into musica_estabelecimento values(
 insert into usuario values(
 	8,                   -- id
 	5,                -- idEstabelecimento
-	7,                -- idEndereco
     'Mada Bar usuario08',           -- nome
 	15,                  -- codigoArea
 	999999999,           -- celular

@@ -60,18 +60,9 @@ CREATE TABLE diaSemana (
 	numeroDia        VARCHAR(50) not null
 ) AUTO_INCREMENT = 1;
 
-/*
-	Aqui podem surgir mais campos para auxiliar na geolocalização
-	Exemplos: latitude e longitude
-*/
-CREATE TABLE endereco (
+CREATE TABLE opcional (
 	id                INT PRIMARY KEY AUTO_INCREMENT,
-	cep               VARCHAR(8) not null,
-	estado            VARCHAR(50) not null,
-	cidade            VARCHAR(80) not null,
-    lodradouro        VARCHAR(200) not null,
-    bairro            VARCHAR(100) not null,
-    numero            VARCHAR(6) not null
+	nome	          VARCHAR(100) not null
 ) AUTO_INCREMENT = 1;
 
 /*
@@ -83,7 +74,6 @@ CREATE TABLE endereco (
 CREATE TABLE usuario (
 	id                INT PRIMARY KEY AUTO_INCREMENT,
 	idEstabelecimento INT,
-	idEndereco        INT,
     nome              VARCHAR(100) not null,
 	codigoArea        VARCHAR(20), -- not null,
 	celular           VARCHAR(20), -- not null,
@@ -95,19 +85,35 @@ CREATE TABLE usuario (
 	tipoUsuario       INT DEFAULT 0
 ) AUTO_INCREMENT = 1;
 
-CREATE TABLE redeSocial_estabelecimento (
-	id                  INT PRIMARY KEY AUTO_INCREMENT,
-	idRedeSocial    INT not null,
-	idEstabelecimento   INT not null,
-	redeSocial          VARCHAR(200) not null
+CREATE TABLE estabelecimento (
+	id               INT PRIMARY KEY AUTO_INCREMENT,
+	nome             VARCHAR(100) not null,
+	cnpj             VARCHAR(20) not null, -- UNIQUE, posteriormente podemos fazer os tratamentos para manter UNIQUE
+	fotoPrincipal    LONGBLOB, -- not null
+	descricao        VARCHAR(400) not null,
+	ativo            BOOLEAN not null,
+	oculto           BOOLEAN not null,
+	statusValidacao  ENUM('Pendente', 'Validado', 'Não validado') not null,
+	nota             FLOAT,
+	numeroAvaliacoes INT,
+	dataCadastro     DATE not null,
+	dataUltimoAcesso DATE not null
 ) AUTO_INCREMENT = 1;
 
-CREATE TABLE contato_estabelecimento (
+/*
+	Aqui podem surgir mais campos para auxiliar na geolocalização
+	Exemplos: latitude e longitude
+*/
+CREATE TABLE endereco (
 	id                INT PRIMARY KEY AUTO_INCREMENT,
-	idContato         INT not null,
-	idEstabelecimento INT not null,
-	contato           VARCHAR(200) not null,
-	isWhatsapp        BOOLEAN not null
+	idUsuario         INT,
+	idEstabelecimento INT,
+	cep               VARCHAR(8) not null,
+	estado            VARCHAR(50) not null,
+	cidade            VARCHAR(80) not null,
+    lodradouro        VARCHAR(200) not null,
+    bairro            VARCHAR(100) not null,
+    numero            VARCHAR(6) not null
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE horario (
@@ -139,25 +145,19 @@ CREATE TABLE promocao (
 	dataFim           DATE not null
 ) AUTO_INCREMENT = 1;
 
-CREATE TABLE estabelecimento (
-	id               INT PRIMARY KEY AUTO_INCREMENT,
-	idEndereco       INT not null,
-	nome             VARCHAR(100) not null,
-	cnpj             VARCHAR(20) not null, -- UNIQUE, posteriormente podemos fazer os tratamentos para manter UNIQUE
-	fotoPrincipal    LONGBLOB, -- not null
-	descricao        VARCHAR(400) not null,
-	ativo            BOOLEAN not null,
-	oculto           BOOLEAN not null,
-	statusValidacao  ENUM('Pendente', 'Validado', 'Não validado') not null,
-	nota             FLOAT,
-	numeroAvaliacoes INT,
-	dataCadastro     DATE not null,
-	dataUltimoAcesso DATE not null
+CREATE TABLE redeSocial_estabelecimento (
+	id                  INT PRIMARY KEY AUTO_INCREMENT,
+	idRedeSocial    INT not null,
+	idEstabelecimento   INT not null,
+	redeSocial          VARCHAR(200) not null
 ) AUTO_INCREMENT = 1;
 
-CREATE TABLE opcional (
+CREATE TABLE contato_estabelecimento (
 	id                INT PRIMARY KEY AUTO_INCREMENT,
-	nome	          VARCHAR(100) not null
+	idContato         INT not null,
+	idEstabelecimento INT not null,
+	contato           VARCHAR(200) not null,
+	isWhatsapp        BOOLEAN not null
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE opcional_estabelecimento (
@@ -204,15 +204,12 @@ CREATE TABLE favorito (
 -- CONSTRAINTS
 
 ------ USUÁRIO
-ALTER TABLE usuario add (constraint usuario_id_estabelecimento_fk foreign key (idEstabelecimento) references estabelecimento (id));
-
-ALTER TABLE usuario add (constraint usuario_id_endereco_fk foreign key (idEndereco) references endereco (id));
+ALTER TABLE usuario add (constraint usuario_idEstabelecimento_fk foreign key (idEstabelecimento) references estabelecimento (id));
 
 
-
------- ESTABELECIMENTO
-ALTER TABLE estabelecimento add (constraint estabelecimento_endereco_fk foreign key (idEndereco) references endereco (id));
-
+------ ENDERECO
+ALTER TABLE endereco add (constraint endereco_idUsuario_fk foreign key (idUsuario) references usuario (id));
+ALTER TABLE endereco add (constraint endereco_idEstabelecimento_fk foreign key (idEstabelecimento) references estabelecimento (id));
 
 
 ------ musica_estabelecimento
