@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 
 // Importando controllers e serviços que serão utilizados nas rotas
-const userService = require('../services/usuario.service.js');
-const separarCelularService = require('../services/utils/separarCelular.service.js');
-const dataToMySqlService = require('../services/utils/dataToMySql.service.js');
+const separarCelular_Service = require('../services/utils/separarCelular.service.js');
+const dataToMySql_Service = require('../services/utils/dataToMySql.service.js');
+const user_Service = require('../services/usuario.service.js');
+const endereco_Service = require('../services/endereco.service.js');
 
 router.get('/', async (req, res) => {
     try {
@@ -24,14 +25,24 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     try {
         const userId = req.params.id;
-        const dadosUsuario = await userService.pegarPorId(userId);
-        if (dadosUsuario) {
-            res.status(200).send(dadosUsuario);
-        } else {
+        const dadosUsuario = await user_Service.pegarPorId(userId);
+
+        const dadosEndereco = await endereco_Service.pegarPorIdDoUsuario(userId);
+
+        if (dadosUsuario && dadosEndereco) {
+            console.log('dadosUsuario && dadosEndereco')
+            res.status(200).send({
+                dadosUsuario,
+                dadosEndereco
+            });
+        } else if (dadosUsuario) {
+            console.log('dadosUsuario somente')
+            res.status(200).send({dadosUsuario});
+        }else {
             res.status(404).send('Id de usuário não encontrado!');
         }
     } catch (error) {
-        console.error('Erro na rota GET /:id', error);
+        console.error('Erro na rota /user:id GET', error);
         res.status(500).send({
             errorMsg: 'Ocorreu um erro ao processar a solicitação.',
             error: error.message
@@ -42,8 +53,8 @@ router.get('/:id', async (req, res) => {
 router.put('/', async (req, res) => {
     try {
         const reqBody = req.body;
-        const numeroDividido = separarCelularService.extrairCodigoAreaENumero(reqBody?.celularCompleto);
-        const dataNascMySqlFormat = dataToMySqlService.dataToMySqlFormat(reqBody?.dataNascimento);
+        const numeroDividido = separarCelular_Service.extrairCodigoAreaENumero(reqBody?.celularCompleto);
+        const dataNascMySqlFormat = dataToMySql_Service.dataToMySqlFormat(reqBody?.dataNascimento);
 
         const novosDadosUsuario = {
             nome: reqBody.nome,
@@ -57,7 +68,7 @@ router.put('/', async (req, res) => {
         };
 
         const novosDadosUsuarioArray = Object.values(novosDadosUsuario);
-        const newUserData = await userService.atualizar(novosDadosUsuarioArray);
+        await user_Service.atualizar(novosDadosUsuarioArray);
 
         res.status(200).send(
             {
@@ -67,7 +78,7 @@ router.put('/', async (req, res) => {
             email: reqBody.email
         });
     } catch (error) {
-        console.error('Erro na rota PUT: ', error);
+        console.error('Erro na rota /user PUT:: ', error);
         res.status(500).send({
             errorMsg: 'Ocorreu um erro ao processar a solicitação.',
             error: error.message
@@ -92,7 +103,7 @@ router.post('/', async (req, res) => {
         };
 
         const dadosUsuarioArray = Object.values(dadosUsuario);
-        const checagemEmail = await userService.checarEmail(dadosUsuario.email);
+        const checagemEmail = await user_Service.checarEmail(dadosUsuario.email);
         if (checagemEmail) {
             res.status(400).send({
                 login: false,
@@ -100,7 +111,7 @@ router.post('/', async (req, res) => {
             });
             
         } else {
-            const usuarioInserido = await userService.inserir(dadosUsuarioArray);
+            const usuarioInserido = await user_Service.inserir(dadosUsuarioArray);
 
             res.status(200).send({
                 msg: 'Usuário adicionado ao sistema',
