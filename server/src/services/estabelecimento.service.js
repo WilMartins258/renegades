@@ -1,6 +1,6 @@
 const db = require('../models/db.js');
 
-const createEstabelecimento = async (dadosEstabelecimento) => {
+const criarEstabelecimento = async (dadosEstabelecimento) => {
     try {
       const estabelecimentoQuery = `INSERT INTO estabelecimento VALUES ( null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );`;
       const connection = await db;
@@ -13,7 +13,7 @@ const createEstabelecimento = async (dadosEstabelecimento) => {
     }
 };
 
-const updateEstabelecimento = async (dadosEstabelecimento) => {
+const atualizarEstabelecimento = async (dadosEstabelecimento) => {
     try {
       const estabelecimentoQuery = ``;
       const connection = await db;
@@ -26,7 +26,7 @@ const updateEstabelecimento = async (dadosEstabelecimento) => {
     }
 };
 
-const getEstabelecimentoById = async (idEstabelecimento) => {
+const pegarEstabelecimentoPeloId = async (idEstabelecimento) => {
     try {
       const estabelecimentoQuery = ``;
       const connection = await db;
@@ -40,7 +40,7 @@ const getEstabelecimentoById = async (idEstabelecimento) => {
 };
 
 module.exports = {
-    createEstabelecimento,
-    updateEstabelecimento,
-    getEstabelecimentoById
+  criarEstabelecimento,
+  atualizarEstabelecimento,
+  pegarEstabelecimentoPeloId
 };

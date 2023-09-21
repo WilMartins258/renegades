@@ -10,7 +10,7 @@ const opcional_estabelecimento_Service = require('../services/opcional_estabelec
 router.get('/:id', async (req, res) => {
     try {
         const idEstabelecimento = req.params.id;
-        const dadosEstabelecimento = await estabelecimento_Service.getEstabelecimentoById(idEstabelecimento);
+        const dadosEstabelecimento = await estabelecimento_Service.pegarEstabelecimentoPeloId(idEstabelecimento);
         if (dadosEstabelecimento) {
             res.status(200).send(dadosEstabelecimento);
         } else {
@@ -69,7 +69,7 @@ router.post('/', async (req, res) => {
         }
         const dadosEstabelecimentoArray = Object.values(dadosEstabelecimento);
 
-        const estabelecimentoId = await estabelecimento_Service.createEstabelecimento(dadosEstabelecimentoArray);
+        const estabelecimentoId = await estabelecimento_Service.criarEstabelecimento(dadosEstabelecimentoArray);
 
         const dadosCategoria = reqBody.categoriasSelecionadas;
         for (let i = 0; i < dadosCategoria.length; i++) {
