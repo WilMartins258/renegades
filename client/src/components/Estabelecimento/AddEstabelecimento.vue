@@ -304,109 +304,118 @@ methods: {
   receberHorario(horario) {
     this.HorariosSelecionados = horario;
   },
-
   async salvarDados() {
-    const formData = {
-      nomeEstabelecimento: this.nomeEstabelecimento,
-      descricaoEstabelecimento: this.descricaoEstabelecimento,
-      cnpj: this.cnpj,
-      cep: this.cep,
-      endereco: this.endereco,
-      numero: this.numero,
-      recomendacao: this.recomendacao,
-      estabelecimentoPhoto: this.estabelecimentoPhoto,
-      categoriasSelecionadas: this.categoriasSelecionadas,
-      opcoesSelecionadas: this.opcoesSelecionadas,
-      estilosSelecionadas: this.estilosSelecionadas,
-      RdSocialSelecionadas: this.RdSocialSelecionadas,
-      ContatosSelecionadas: this.ContatosSelecionadas,
-      HorariosSelecionados: this.HorariosSelecionados,
-    };
+    try {
+      const formData = {
+        idUsuario: sessionStorage.getItem('idUsuario'),
+        nomeEstabelecimento: this.nomeEstabelecimento,
+        descricaoEstabelecimento: this.descricaoEstabelecimento,
+        cnpj: this.cnpj,
+        cep: this.cep,
+        endereco: this.endereco,
+        numero: this.numero,
+        recomendacao: this.recomendacao,
+        estabelecimentoPhoto: this.estabelecimentoPhoto,
+        categoriasSelecionadas: this.categoriasSelecionadas,
+        opcoesSelecionadas: this.opcoesSelecionadas,
+        estilosSelecionadas: this.estilosSelecionadas,
+        rdSocialSelecionadas: this.RdSocialSelecionadas,
+        contatosSelecionadas: this.ContatosSelecionadas,
+        horariosSelecionados: this.HorariosSelecionados,
+      };
 
-    const formDataFake = {
-      nomeEstabelecimento: 'nome estabelecimento',
-      descricaoEstabelecimento: 'descricaoEstabelecimento',
-      categoriasSelecionadas: [
-        {
-          id: 1,
-          nome: 'Pizzaria',
+      // console.log("formData:", formData);
+
+      const formDataFake = {
+        idUsuario: sessionStorage.getItem('idUsuario'),
+        nomeEstabelecimento: 'nome estabelecimento',
+        descricaoEstabelecimento: 'descricaoEstabelecimento',
+        cnpj: 'cnpj',
+        endereco: {
+          bairro: 'Conjunto Habitacional Jardim Serrano',
+          cidade: 'Votorantim',
+          uf: 'SP',
+          rua: 'Rua Francisco Alves da Rocha'
         },
-        {
-          id: 2,
-          nome: 'Hamburgueria',
-        },
-        {
-          id: 3,
-          nome: 'Lanchonete',
-        },
-      ],
-      cnpj: 'cnpj',
-      cep: '',
-      endereco: this.endereco,
-      numero: '1234',
-      recomendacao: this.recomendacao,
-      estabelecimentoPhoto: this.estabelecimentoPhoto,
-      opcoesSelecionadas: [
-        {
-          id: 2,
-          nome: 'Wi-Fi',
-        },
-        {
-          id: 3,
-          nome: 'Estacionamento',
-        },
-      ],
-      estilosSelecionadas: this.estilosSelecionadas,
-      RdSocialSelecionadas: [
-        {
-          redeSocial: 'Facebook',
-          perfil: 'link facebook',
-        },
-        {
-          redeSocial: 'Instagram',
-          perfil: 'link instagram',
-        },
-      ],
-      ContatosSelecionadas: [
-        {
-          tipoContato: 'Celular',
-          numero: '(15) 98163-5309',
-          isWhatsapp: true,
-          id: 2,
-        },
-        {
-          tipoContato: 'Telefone',
-          numero: '(15) 3242-2433',
-          isWhatsapp: false,
-          id: 1,
-        },
-        {
-          tipoContato: 'Telefone',
-          numero: '(15) 9811-1412',
-          isWhatsapp: true,
-          id: 1,
-        },
-      ],
-      HorariosSelecionados: this.HorariosSelecionados,
-    };
+        cep: '18117122',
+        numero: '123456',
+        categoriasSelecionadas: [
+          {
+            id: 1,
+            nome: 'Pizzaria',
+          },
+          {
+            id: 2,
+            nome: 'Hamburgueria',
+          },
+          {
+            id: 3,
+            nome: 'Lanchonete',
+          },
+        ],
+        recomendacao: this.recomendacao,
+        estabelecimentoPhoto: this.estabelecimentoPhoto,
+        opcoesSelecionadas: [
+          {
+            id: 2,
+            nome: 'Wi-Fi',
+          },
+          {
+            id: 3,
+            nome: 'Estacionamento',
+          },
+        ],
+        estilosSelecionadas: this.estilosSelecionadas,
+        rdSocialSelecionadas: [
+          {
+            redeSocial: 'Facebook',
+            perfil: 'link facebook',
+          },
+          {
+            redeSocial: 'Instagram',
+            perfil: 'link instagram',
+          },
+        ],
+        contatosSelecionadas: [
+          {
+            tipoContato: 'Celular',
+            numero: '(15) 98163-5309',
+            isWhatsapp: true,
+            id: 2,
+          },
+          {
+            tipoContato: 'Telefone',
+            numero: '(15) 3242-2433',
+            isWhatsapp: false,
+            id: 1,
+          },
+          {
+            tipoContato: 'Telefone',
+            numero: '(15) 9811-1412',
+            isWhatsapp: true,
+            id: 1,
+          },
+        ],
+        horariosSelecionados: this.HorariosSelecionados,
+      };
 
 
-    // console.log("Dados do formulário e componentes filhos:", formDataFake);
-    
-    // const salvarEstabelecimento = await api.post('estabelecimento', formDataFake);
+      // console.log("Dados do formulário e componentes filhos:", formDataFake);
+      
+      const salvarEstabelecimento = await api.post('estabelecimento', formDataFake);
 
-    if (salvarEstabelecimento) {
-      // console.log("salvarEstabelecimento:: ", salvarEstabelecimento);
+      if (salvarEstabelecimento) {
+        console.log("salvarEstabelecimento:: ", salvarEstabelecimento);
+      }
+    } catch (error) {
+      console.error('ERROR:: ', error);
     }
-    
-    
-    
   },
   nextSection() {
     // console.log('nomeEstabelecimento:', this.nomeEstabelecimento);
     // console.log('descricaoEstabelecimento:', this.descricaoEstabelecimento);
     // console.log('cnpj:', this.cnpj);
-    // console.log('cep:', this.cep);
+    // console.log('cep:', this.cep);;
     // console.log('endereco:', this.endereco);
     // console.log('numero:', this.numero);
     // console.log('recomendacao:', this.recomendacao);
