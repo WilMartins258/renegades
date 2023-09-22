@@ -405,7 +405,12 @@ methods: {
       const salvarEstabelecimento = await api.post('estabelecimento', formDataFake);
 
       if (salvarEstabelecimento) {
-        console.log("salvarEstabelecimento:: ", salvarEstabelecimento);
+        sessionStorage.setItem('idEstabelecimento', salvarEstabelecimento.data.idEstabelecimento);
+        sessionStorage.setItem('tipoUsuario', salvarEstabelecimento.data.tipoUsuario);
+
+
+        // console.log("salvarEstabelecimento:: ", salvarEstabelecimento);
+        // console.log("idEstabelecimento:: ", sessionStorage.getItem('idEstabelecimento'));
       }
     } catch (error) {
       console.error('ERROR:: ', error);
@@ -425,7 +430,7 @@ methods: {
     // console.log('estilosSelecionadas:', this.estilosSelecionadas);
     // console.log('RdSocialSelecionadas:', this.RdSocialSelecionadas);
     // console.log('ContatosSelecionadas:', this.ContatosSelecionadas);
-    // console.log('HorariosSelecionados:', this.HorariosSelecionados);
+    console.log('HorariosSelecionados:', this.HorariosSelecionados);
 
     if (this.currentSection < 6) {
       this.currentSection++;
