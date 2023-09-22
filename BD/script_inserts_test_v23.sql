@@ -32,426 +32,108 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 -- ---------------------------- OPCIONAL -- INÍCIO
 
-insert into OPCIONAL values (
-	1,
-	'Faz entrega'
-);
-
-insert into OPCIONAL values (
-	2,
-	'Entrega Grátis'
-);
-
-insert into OPCIONAL values (
-    3,
-    'Toca Música'
-);
-
-insert into OPCIONAL values (
-    4,
-    'Toca Música ao Vivo'
-);
-
-insert into OPCIONAL values (
-    5,
-    'Oferece Rodízio'
-);
-
-insert into OPCIONAL values (
-    6,
-    'Precisa de Agendamento'
-);
-
-insert into OPCIONAL values (
-    7,
-    'Possui Estacionamento'
-);
-
-insert into OPCIONAL values (
-    8,
-    'Possui Área Kids'
-);
-
-insert into OPCIONAL values (
-    9,
-    'Tem Wi-fi livre'
-);
-
-insert into OPCIONAL values (
-    10,
-    'Permite Animais'
-);
-
-insert into OPCIONAL values (
-    11,
-    'Couvert Grátis'
-);
-
-insert into OPCIONAL values (
-    12,
-    'Tem taxa de 10%'
-);
-
-insert into OPCIONAL values (
-    13,
-    'Possui Área de Fumantes'
-);
+insert into OPCIONAL (id, nome) values (1, 'Faz entrega');
+insert into OPCIONAL (id, nome) values (2, 'Entrega Grátis');
+insert into OPCIONAL (id, nome) values (3, 'Toca Música');
+insert into OPCIONAL (id, nome) values (4, 'Toca Música ao Vivo');
+insert into OPCIONAL (id, nome) values (5, 'Oferece Rodízio');
+insert into OPCIONAL (id, nome) values (6, 'Precisa de Agendamento');
+insert into OPCIONAL (id, nome) values (7, 'Possui Estacionamento');
+insert into OPCIONAL (id, nome) values (8, 'Possui Área Kids');
+insert into OPCIONAL (id, nome) values (9, 'Tem Wi-fi livre');
+insert into OPCIONAL (id, nome) values (10, 'Permite Animais');
+insert into OPCIONAL (id, nome) values (11, 'Couvert Grátis');
+insert into OPCIONAL (id, nome) values (12, 'Tem taxa de 10%');
+insert into OPCIONAL (id, nome) values (13, 'Possui Área de Fumantes');
 
 -- ---------------------------- OPCIONAL -- FIM
 
 -- ---------------------------- CATEGORIA -- INÍCIO
 
-insert into categoria values(
-	1,
-	'Lanchonete'
-);
-
-insert into categoria values(
-	2,
-	'Pizzaria'
-);
-
-insert into categoria values(
-	3,
-	'Hamburgueria'
-);
-
-insert into categoria values(
-	4,
-	'Restaurante'
-);
-
-insert into categoria values(
-	5,
-	'Pastelaria'
-);
-
-insert into categoria values(
-	6,
-	'Barzinho'
-);
-
-insert into categoria values(
-	7,
-	'Sorveteria'
-);
-
-insert into categoria values(
-	8,
-	'Açaiteria'
-);
-
-insert into categoria values(
-	9,
-	'Padaria'
-);
-
-insert into categoria values(
-	10,
-	'Churrascaria'
-);
-
-insert into categoria values(
-	11,
-	'Cafeteria'
-);
-
-insert into categoria values(
-	12,
-	'Sushi bar'
-);
-
-insert into categoria values(
-	13,
-	'Food truck'
-);
-
-insert into categoria values(
-	14,
-	'Creperia'
-);
-
-insert into categoria values(
-	15,
-	'Doceria'
-);
-
-insert into categoria values(
-	16,
-	'Comida de rua'
-);
-
-insert into categoria values(
-	17,
-	'Sucaria'
-);
-
+insert into categoria (id, nome) values (1, 'Lanchonete');
+insert into categoria (id, nome) values (2, 'Pizzaria');
+insert into categoria (id, nome) values (3, 'Hamburgueria');
+insert into categoria (id, nome) values (4, 'Restaurante');
+insert into categoria (id, nome) values (5, 'Pastelaria');
+insert into categoria (id, nome) values (6, 'Barzinho');
+insert into categoria (id, nome) values (7, 'Sorveteria');
+insert into categoria (id, nome) values (8, 'Açaiteria');
+insert into categoria (id, nome) values (9, 'Padaria');
+insert into categoria (id, nome) values (10, 'Churrascaria');
+insert into categoria (id, nome) values (11, 'Cafeteria');
+insert into categoria (id, nome) values (12, 'Sushi bar');
+insert into categoria (id, nome) values (13, 'Food truck');
+insert into categoria (id, nome) values (14, 'Creperia');
+insert into categoria (id, nome) values (15, 'Doceria');
+insert into categoria (id, nome) values (16, 'Comida de rua');
+insert into categoria (id, nome) values (17, 'Sucaria');
 
 -- ---------------------------- CATEGORIA -- FIM
 
 -- ---------------------------- ESTILO DE MÚSICA -- INÍCIO
 
-insert into estilomusica values(
-	1,
-	'Pagode'
-);
-
-insert into estilomusica values(
-	2,
-	'Samba'
-);
-
-insert into estilomusica values(
-	3,
-	'Funk'
-);
-
--- Rock
-insert into estilomusica values (
-    4,
-    'Rock'
-);
-
--- Pop
-insert into estilomusica values (
-    5,
-    'Pop'
-);
-
--- Hip-Hop
-insert into estilomusica values (
-    6,
-    'Hip-Hop'
-);
-
--- Reggae
-insert into estilomusica values (
-    7,
-    'Reggae'
-);
-
--- Eletrônica
-insert into estilomusica values (
-    8,
-    'Eletrônica'
-);
-
--- Country
-insert into estilomusica values (
-    9,
-    'Country'
-);
-
--- Jazz
-insert into estilomusica values (
-    10,
-    'Jazz'
-);
-
--- Blues
-insert into estilomusica values (
-    11,
-    'Blues'
-);
-
--- R&B (Rhythm and Blues)
-insert into estilomusica values (
-    12,
-    'R&B'
-);
-
--- Clássica
-insert into estilomusica values (
-    13,
-    'Clássica'
-);
-
--- Reggaeton
-insert into estilomusica values (
-    14,
-    'Reggaeton'
-);
-
--- Metal
-insert into estilomusica values (
-    15,
-    'Metal'
-);
-
--- Indie
-insert into estilomusica values (
-    16,
-    'Indie'
-);
-
--- Rap
-insert into estilomusica values (
-    17,
-    'Rap'
-);
-
--- Punk
-insert into estilomusica values (
-    18,
-    'Punk'
-);
-
--- Blues Rock
-insert into estilomusica values (
-    19,
-    'Blues Rock'
-);
-
--- Alternativa
-insert into estilomusica values (
-    20,
-    'Alternativa'
-);
-
--- Dance
-insert into estilomusica values (
-    21,
-    'Dance'
-);
-
--- Folk
-insert into estilomusica values (
-    22,
-    'Folk'
-);
-
--- Sertanejo
-insert into estilomusica values (
-    23,
-    'Sertanejo'
-);
-
--- K-pop
-insert into estilomusica values (
-    24,
-    'K-pop'
-);
-
--- Gospel
-insert into estilomusica values (
-    25,
-    'Gospel'
-);
+insert into estilomusica (id, nome) values (1, 'Pagode');
+insert into estilomusica (id, nome) values (2, 'Samba');
+insert into estilomusica (id, nome) values (3, 'Funk');
+insert into estilomusica (id, nome) values (4, 'Rock');
+insert into estilomusica (id, nome) values (5, 'Pop');
+insert into estilomusica (id, nome) values (6, 'Hip-Hop');
+insert into estilomusica (id, nome) values (7, 'Reggae');
+insert into estilomusica (id, nome) values (8, 'Eletrônica');
+insert into estilomusica (id, nome) values (9, 'Country');
+insert into estilomusica (id, nome) values (10, 'Jazz');
+insert into estilomusica (id, nome) values (11, 'Blues');
+insert into estilomusica (id, nome) values (12, 'R&B');
+insert into estilomusica (id, nome) values (13, 'Clássica');
+insert into estilomusica (id, nome) values (14, 'Reggaeton');
+insert into estilomusica (id, nome) values (15, 'Metal');
+insert into estilomusica (id, nome) values (16, 'Indie');
+insert into estilomusica (id, nome) values (17, 'Rap');
+insert into estilomusica (id, nome) values (18, 'Punk');
+insert into estilomusica (id, nome) values (19, 'Blues Rock');
+insert into estilomusica (id, nome) values (20, 'Alternativa');
+insert into estilomusica (id, nome) values (21, 'Dance');
+insert into estilomusica (id, nome) values (22, 'Folk');
+insert into estilomusica (id, nome) values (23, 'Sertanejo');
+insert into estilomusica (id, nome) values (24, 'K-pop');
+insert into estilomusica (id, nome) values (25, 'Gospel');
 
 -- ---------------------------- ESTILO DE MÚSICA -- FIM
 
 
 -- ---------------------------- tipoContato -- INÍCIO
 
-insert into contato values(
-	1,
-	'Telefone'
-);
-
-insert into contato values(
-	2,
-	'Celular'
-);
+insert into contato values(1, 'Telefone');
+insert into contato values(2, 'Celular');
 
 -- ---------------------------- tipoContato -- FIM
 
 -- ---------------------------- redeSocial -- INÍCIO
 
-insert into redeSocial values(
-	1,
-	'Facebook'
-);
+insert into redeSocial (id, nome) values (1, 'Facebook');
+insert into redeSocial (id, nome) values (2, 'Instagram');
+insert into redeSocial (id, nome) values (3, 'Twitter/X');
+insert into redeSocial (id, nome) values (4, 'Site do Estabelecimento');
+insert into redeSocial (id, nome) values (5, 'Cardápio Online');
 
-insert into redeSocial values(
-	2,
-	'Instagram'
-);
-
-insert into redeSocial values(
-	3,
-	'Twitter/X'
-);
-
-insert into redeSocial values(
-	4,
-	'Site do Estabelecimento'
-);
-
-insert into redeSocial values(
-	5,
-	'Cardápio Online'
-);
 
 -- ---------------------------- redeSocial -- FIM
 
 
-
 -- ---------------------------- diaSemana -- INÍCIO
 
-insert into diaSemana values(
-	1,
-	'Domingo',
-    '[0]'
-);
-
-insert into diaSemana values(
-	2,
-	'Segunda-feira',
-    '[1]'
-);
-
-insert into diaSemana values(
-	3,
-	'Terça-feira',
-    '[2]'
-);
-
-insert into diaSemana values(
-	4,
-	'Quarta-feira',
-    '[3]'
-);
-
-insert into diaSemana values(
-	5,
-	'Quinta-feira',
-    '[4]'
-);
-
-insert into diaSemana values(
-	6,
-	'Sexta-feira',
-    '[5]'
-);
-
-insert into diaSemana values(
-	7,
-	'Sábado',
-    '[6]'
-);
-
-insert into diaSemana values(
-	8,
-	'Segunda a sexta-feira',
-    '[1, 2, 3, 4, 5]'
-);
-
-insert into diaSemana values(
-	9,
-	'Terça a sexta-feira',
-    '[2, 3, 4, 5]'
-);
-
-
-insert into diaSemana values(
-	10,
-	'Final de semana',
-    '[0, 6]'
-);
-
+insert into diaSemana values (1, 'Domingo', '[0]');
+insert into diaSemana values (2, 'Segunda-feira', '[1]');
+insert into diaSemana values (3, 'Terça-feira', '[2]');
+insert into diaSemana values (4, 'Quarta-feira', '[3]');
+insert into diaSemana values (5, 'Quinta-feira', '[4]');
+insert into diaSemana values (6, 'Sexta-feira', '[5]');
+insert into diaSemana values (7, 'Sábado', '[6]');
+insert into diaSemana values (8, 'Segunda a sexta-feira', '[1, 2, 3, 4, 5]');
+insert into diaSemana values (9, 'Terça a sexta-feira', '[2, 3, 4, 5]');
+insert into diaSemana values (10, 'Final de semana', '[0, 6]');
 
 -- ---------------------------- diaSemana -- FIM
-
 
 
 
@@ -461,9 +143,8 @@ insert into diaSemana values(
 insert into usuario values(
 	1,                   -- id
 	null,                -- idEstabelecimento
-    'Willian M. Ribeiro',           -- nome
-	15,                  -- codigoArea
-	999998888,           -- celular
+    'Willian M. Ribeiro',-- nome
+	'15999998888',       -- celular
     '44455566677',       -- cpf
     'willian@gmail.com', -- email
     'senha123',          -- senha
@@ -488,8 +169,7 @@ insert into usuario values(
 	2,                   -- id
 	null,                -- idEstabelecimento
     'Lucas Maximiano dos Santos',   -- nome
-	15,                  -- codigoArea
-	999997777,           -- celular
+	'15999997777',           -- celular
     '11122244433',       -- cpf
     'lucas@gmail.com',   -- email
     'senha123',          -- senha
@@ -514,8 +194,7 @@ insert into usuario values(
 	3,                       -- id
 	null,                    -- idEstabelecimento
     'Julio Cesar de Castro',           -- nome
-	15,                      -- codigoArea
-	999999999,               -- celular
+	'15999999999',               -- celular
     '11122233344',           -- cpf
     'kaguebushin@gmail.com', -- email
     'senha123',              -- senha
@@ -549,7 +228,7 @@ insert into estabelecimento values(
 	false, -- oculto
 	'Validado', -- statusValidacao
 	null, -- nota
-	null, -- numeroAvaliacoes INT,
+	0, -- numeroAvaliacoes INT,
 	's/n', -- numeroEstabelecimento  VARCHAR(9) not null,
 	'Avenida Moacir Oséias Guitti', -- logradouro             VARCHAR(200) not null,
 	'Jardim Paraíso', -- bairro                 VARCHAR(200) not null,
@@ -570,8 +249,7 @@ insert into usuario values( -- Mc Donalds - Votorantim
 	4,                   -- id
 	1,                -- idEstabelecimento
     'usuario04 - MC Donalds',           -- nome
-	15,                  -- codigoArea
-	999999999,           -- celular
+	'15999999999',           -- celular
     '11122233355',       -- cpf
     'usuario04@gmail.com', -- email
     'senha123',          -- senha
@@ -753,7 +431,7 @@ insert into estabelecimento values(
     false, -- oculto
     'Validado', -- statusValidacao
     null, -- nota
-	null, -- numeroAvaliacoes INT,
+	0, -- numeroAvaliacoes INT,
 	'1055', -- numeroEstabelecimento  VARCHAR(9) not null,
 	'Avenida Antônio Carlos Comitre', -- logradouro             VARCHAR(200) not null,
 	'Parque Campolim', -- bairro                 VARCHAR(200) not null,
@@ -775,8 +453,7 @@ insert into usuario values( -- Mc Donalds - Sorocaba
 	5,                   -- id
 	2,                -- idEstabelecimento
     'Dono do MC CAMPOLIM SOROCABA',           -- nome
-	15,                  -- codigoArea
-	999999999,           -- celular
+	'15999999999',           -- celular
     '11122233355',       -- cpf
     'usuario05@gmail.com', -- email
     'senha123',          -- senha
@@ -963,7 +640,7 @@ insert into estabelecimento values(
 	false, -- oculto
 	'Validado', -- statusValidacao
 	null, -- nota
-	null, -- numeroAvaliacoes INT,
+	0, -- numeroAvaliacoes INT,
 	'35', -- numeroEstabelecimento  VARCHAR(9) not null,
 	'Avenida Matheus Conegero', -- logradouro             VARCHAR(200) not null,
 	'Parque Bela Vista', -- bairro                 VARCHAR(200) not null,
@@ -984,8 +661,7 @@ insert into usuario values(
 	6,                   -- id
 	3,                -- idEstabelecimento
     'Dono do Kiko',           -- nome
-	15,                  -- codigoArea
-	999999999,           -- celular
+	'15999999999',           -- celular
     '11122233355',       -- cpf
     'usuario06@gmail.com', -- email
     'senha123',          -- senha
@@ -1113,7 +789,7 @@ insert into estabelecimento values(
 	false, -- oculto
 	'Validado', -- statusValidacao
 	null, -- nota
-	null, -- numeroAvaliacoes INT,
+	0, -- numeroAvaliacoes INT,
 	'526', -- numeroEstabelecimento  VARCHAR(9) not null,
 	'Avenida Santos Dumont', -- logradouro             VARCHAR(200) not null,
 	'Vila Domingues', -- bairro                 VARCHAR(200) not null,
@@ -1134,8 +810,7 @@ insert into usuario values(
 	7,                   -- id
 	4,                -- idEstabelecimento
     'Dono da Pizzaria Booa Pizza usuario07',           -- nome
-	15,                  -- codigoArea
-	999999999,           -- celular
+	'15999999999',           -- celular
     '11122233355',       -- cpf
     'usuario07@gmail.com', -- email
     'senha123',          -- senha
@@ -1250,7 +925,7 @@ insert into estabelecimento values(
 	false,                   -- oculto
 	'Validado',             -- statusValidacao
 	null, -- nota
-	null, -- numeroAvaliacoes INT,
+	0, -- numeroAvaliacoes INT,
 	'1597', -- numeroEstabelecimento  VARCHAR(9) not null,
 	'Avenida Gisele Constantino', -- logradouro             VARCHAR(200) not null,
 	'Parque Campolim', -- bairro                 VARCHAR(200) not null,
@@ -1289,8 +964,7 @@ insert into usuario values(
 	8,                   -- id
 	5,                -- idEstabelecimento
     'Mada Bar usuario08',           -- nome
-	15,                  -- codigoArea
-	999999999,           -- celular
+	'15999999999',           -- celular
     '11122233355',       -- cpf
     'usuario08@gmail.com', -- email
     'senha123',          -- senha

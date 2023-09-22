@@ -19,12 +19,20 @@ CREATE TABLE testTable (
 
 CREATE TABLE categoria (
 	id                INT PRIMARY KEY AUTO_INCREMENT,
-	nome              VARCHAR(50) not null
+	nome              VARCHAR(50) not null,
+	ativo             BOOLEAN DEFAULT true
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE estiloMusica (
 	id                INT PRIMARY KEY AUTO_INCREMENT,
-	nome              VARCHAR(50) not null
+	nome              VARCHAR(50) not null,
+	ativo             BOOLEAN DEFAULT true
+) AUTO_INCREMENT = 1;
+
+CREATE TABLE opcional (
+	id                INT PRIMARY KEY AUTO_INCREMENT,
+	nome	          VARCHAR(100) not null,
+	ativo             BOOLEAN DEFAULT true
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE contato (
@@ -60,11 +68,6 @@ CREATE TABLE diaSemana (
 	numeroDia        VARCHAR(50) not null
 ) AUTO_INCREMENT = 1;
 
-CREATE TABLE opcional (
-	id                INT PRIMARY KEY AUTO_INCREMENT,
-	nome	          VARCHAR(100) not null
-) AUTO_INCREMENT = 1;
-
 /*
 	Campo tipoUsuario
 	0: normal (usuário logado)
@@ -96,19 +99,19 @@ CREATE TABLE estabelecimento (
 	cnpj                   VARCHAR(20) not null, -- UNIQUE, posteriormente podemos fazer os tratamentos para manter UNIQUE
 	fotoPrincipal          LONGBLOB, -- not null
 	descricao              VARCHAR(400) not null,
-	ativo                  BOOLEAN not null,
-	oculto                 BOOLEAN not null,
-	statusValidacao        ENUM('Pendente', 'Validado', 'Não validado') not null,
-	nota                   FLOAT,
-	numeroAvaliacoes       INT,
+	ativo                  BOOLEAN DEFAULT true not null,
+	oculto                 BOOLEAN DEFAULT false not null,
+	statusValidacao        ENUM('Pendente', 'Validado', 'Não validado') DEFAULT 'Pendente' not null,
+	nota                   FLOAT DEFAULT null,
+	numeroAvaliacoes       INT DEFAULT 0 not null,
 	numeroEstabelecimento  VARCHAR(9) not null,
 	logradouro             VARCHAR(200) not null,
 	bairro                 VARCHAR(200) not null,
 	cidade                 VARCHAR(200) not null,
 	estado                 VARCHAR(200) not null,
-	cep               VARCHAR(9) not null,
-	dataCadastro     DATE not null,
-	dataUltimoAcesso DATE not null
+	cep                    VARCHAR(9) not null,
+	dataCadastro           DATE not null,
+	dataUltimoAcesso       DATE not null
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE horario (
