@@ -21,10 +21,10 @@ const pegarPorIdDoUsuario = async (idUsuario) => {
     return dadosEndereco[0];
 };
 
-// enderecoData = [cep, uf, cidade, rua, bairro, numero]
+// enderecoData = [idUsuario, idEstabelecimento, cep, uf, cidade, rua, bairro, numero]
 const inserir = async (enderecoData) => {
     try {
-        const inserirEnderecoQuery = `INSERT INTO endereco VALUES ( null, ?, ?, ?, ?, ?, ? );`;
+        const inserirEnderecoQuery = `INSERT INTO endereco VALUES ( null, ?, ?, ?, ?, ?, ?, ?, ? );`;
         const connection = await db;
 
         const [idEnderecoInserido] = await connection.query(inserirEnderecoQuery, enderecoData);
