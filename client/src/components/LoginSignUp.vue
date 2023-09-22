@@ -55,15 +55,12 @@ export default {
 			senhasIguaisErro: ''
 		}
 	},
-
-
 	methods: {
 		async submit() {
 			console.log('submit');
 			if (this.validarCampos()) {
 				this.$emit('do-sign-up', { ...this.$data });
 				this.ocultarMensagemErro();
-
 				try {
 					const informacoesDoUsuario = {
 						nome: this.Nome,
@@ -71,14 +68,12 @@ export default {
 						senha: this.Senha1
 					};
 					const usuarioCriado = await api.post('/usuario', informacoesDoUsuario);
-					
+
 					console.log('usuarioCriado: ', usuarioCriado);
 
 					sessionStorage.setItem('idUsuario', usuarioCriado.data.id);
 					sessionStorage.setItem('nomeUsuario', usuarioCriado.data.nome);
 					sessionStorage.setItem('tipoUsuario', usuarioCriado.data.tipoUsuario);
-					// sessionStorage.setItem('fotoperfil', usuarioCriado.data.fotoperfil); // Por enquanto não estamos solicitando a foto no momento da criação incicial do usuário
-
 				} catch (error) {
 					console.log('ERRO:: ', error);
 				}
@@ -116,17 +111,17 @@ export default {
 			}
 
 			this.mostrarMensagemErro = !(
-			this.isNomeValido &&
-			this.isEmailValido &&
-			this.isSenhaValida &&
-			this.isSenhasIguais
-			);	
+				this.isNomeValido &&
+				this.isEmailValido &&
+				this.isSenhaValida &&
+				this.isSenhasIguais
+			);
 
 			return this.isNomeValido && this.isEmailValido && this.isSenhaValida && this.isSenhasIguais;
 
-			
+
 		},
-		
+
 		validarNome() {
 			return this.Nome.trim() !== '' && this.Nome.length >= 5;
 		},
@@ -141,20 +136,18 @@ export default {
 		validarSenhasIguais() {
 			return this.Senha1 === this.Senha2;
 		},
-		
-		
+		ocultarMensagemErro() {
+			setTimeout(() => {
+				this.mostrarMensagemErro = false;
+			}, 5000);
+		}
 	},
-	ocultarMensagemErro() {
-	setTimeout(() => {
-		this.mostrarMensagemErro = false;
-	}, 5000);
-}
 }
 </script>
 
 <style>
-	.error-message {
+.error-message {
 	color: red;
 	font-size: 12px;
-	}
+}
 </style>
