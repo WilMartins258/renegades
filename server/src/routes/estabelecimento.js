@@ -69,12 +69,12 @@ router.post('/', async (req, res) => {
         }
         const dadosEstabelecimentoArray = Object.values(dadosEstabelecimento);
                 
-        const estabelecimentoId = await estabelecimento_Service.inserir(dadosEstabelecimentoArray);       
-        await usuario_Service.inserirIdEstabelecimento([estabelecimentoId, idUsuario]);
+        const idEstabelecimento = await estabelecimento_Service.inserir(dadosEstabelecimentoArray);       
+        await usuario_Service.inserirIdEstabelecimento([idEstabelecimento, idUsuario]);
 
         for (let i = 0; i < categoriasSelecionadas.length; i++) {
             try {
-                await categoria_estabelecimento_Service.inserir([estabelecimentoId, categoriasSelecionadas[i].id]);
+                await categoria_estabelecimento_Service.inserir([idEstabelecimento, categoriasSelecionadas[i].id]);
             } catch (error) {
                 throw new Error(`Erro ao inserir categoria do estabelecimento: ${error.message}`);
             }  
@@ -82,7 +82,7 @@ router.post('/', async (req, res) => {
 
         for (let i = 0; i < opcoesSelecionadas.length; i++) {
             try {
-                await opcional_estabelecimento_Service.inserir([estabelecimentoId, opcoesSelecionadas[i].id]);
+                await opcional_estabelecimento_Service.inserir([idEstabelecimento, opcoesSelecionadas[i].id]);
             } catch (error) {
                 throw new Error(`Erro ao inserir opcionais do estabelecimento: ${error.message}`);
             }
@@ -96,9 +96,11 @@ router.post('/', async (req, res) => {
         //     }  
         // };
 
-        res.status(200).send(
-            'estabelecimento POST ok'
-        );
+        res.status(200).send({
+            msg: 'Estabelecimento adicionado com sucesso!',
+            tipoUsuario: 1,
+            idEstabelecimento: idEstabelecimento
+        });
     } catch (error) {
         console.error('Erro na rota POST /', error);
         res.status(500).send({
