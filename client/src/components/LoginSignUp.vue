@@ -67,13 +67,14 @@ export default {
 						email: this.Email,
 						senha: this.Senha1
 					};
-					api.post('/usuario', informacoesDoUsuario);
+					const usuarioCriado = api.post('/usuario', informacoesDoUsuario);
+					console.log('usuarioCriado:: ', usuarioCriado);
 
 					sessionStorage.setItem('idUsuario', usuarioCriado.data.id);
 					sessionStorage.setItem('nomeUsuario', usuarioCriado.data.nome);
 					sessionStorage.setItem('tipoUsuario', usuarioCriado.data.tipoUsuario);
 				} catch (error) {
-					console.log('ERRO:: ', error);
+					console.error('error:: ', error);
 				}
 			}
 		},
