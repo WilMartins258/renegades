@@ -469,19 +469,13 @@ insert into usuario values(
     'senha123',          -- senha
 	null,                -- fotoPerfil
     '2000-09-24',        -- dataNascimento
-	0                    -- tipoUsuario ENUM(0, 1, 2) NOT NULL
-);
-
-insert into endereco values(
-	1, -- id
-	1,	-- idUsuario         INT,
-	null,  -- idEstabelecimento INT,
-	'18117121', -- cep not null,
-	'SP', -- estado not null,
-	'Votorantim', -- cidade not null,
-    'Rua Pedro Nunes', -- lodradouro not null,
-    'Conjunto Habitacional Jardim Serrano', -- bairro not null,
-    97 -- numero not null
+	0,                    -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	97, -- numeroResidencia  VARCHAR(9),
+	'Rua Pedro Nunes', -- logradouro        VARCHAR(200),
+	'Conjunto Habitacional Jardim Serrano', -- bairro            VARCHAR(200),
+	'Votorantim', -- cidade            VARCHAR(200),
+	'SP', -- estado            VARCHAR(200),
+	'18117121'-- cep               VARCHAR(9)
 );
 
 ---------------------------- USUÁRIO WILLIAN -- FIM
@@ -501,19 +495,13 @@ insert into usuario values(
     'senha123',          -- senha
 	null,                -- fotoPerfil
     '2000-05-01',        -- dataNascimento
-	0 -- tipoUsuario ENUM(0, 1, 2) NOT NULL
-);
-
-insert into endereco values(
-	2, -- id
-	2,	-- idUsuario         INT,
-	null,  -- idEstabelecimento INT,
-	'1112233', -- cep not null,
-	'SP', -- estado not null,
+	0, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	1, -- numero not null
+	'Rua do Lucas', -- lodradouro not null,
+	'Bairro do Lucas', -- bairro not null,
 	'Sorocaba', -- cidade not null,
-    'Rua do Lucas', -- lodradouro not null,
-    'Bairro do Lucas', -- bairro not null,
-    1 -- numero not null
+	'SP', -- estado not null,
+	'1112233' -- cep not null,
 );
 
 ---------------------------- USUÁRIO LUCAS -- FIM
@@ -533,7 +521,13 @@ insert into usuario values(
     'senha123',              -- senha
 	null,                    -- fotoPerfil
     '1989-09-24',            -- dataNascimento
-	2 -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	2, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	null, -- numero not null
+	null, -- lodradouro not null,
+	null, -- bairro not null,
+	null, -- cidade not null,
+	null, -- estado not null,
+	null -- cep not null,
 );
 
 ---------------------------- USUÁRIO ADM JULIO -- FIM
@@ -556,20 +550,14 @@ insert into estabelecimento values(
 	'Validado', -- statusValidacao
 	null, -- nota
 	null, -- numeroAvaliacoes INT,
+	's/n', -- numeroEstabelecimento  VARCHAR(9) not null,
+	'Avenida Moacir Oséias Guitti', -- logradouro             VARCHAR(200) not null,
+	'Jardim Paraíso', -- bairro                 VARCHAR(200) not null,
+	'Votorantim', -- cidade                 VARCHAR(200) not null,
+	'SP', -- estado                 VARCHAR(200) not null,
+	'18110375', -- cep               VARCHAR(9) not null,
 	'2023-09-07', -- dataUltimoAcesso
 	'2023-09-07' -- dataUltimoAcesso
-);
-
-insert into endereco values( -- Endereço do Mc Donalds 	VOTORANTIM
-	3,                  -- id
-	null,	-- idUsuario         INT,
-	1,  -- idEstabelecimento INT,
-	'18110375',         -- cep
-	'SP',               -- estado
-	'Votorantim',                   -- cidade
-	'Avenida Moacir Oséias Guitti', -- lodradouro
-	'Jardim Paraíso',  -- bairro
-	's/n'                  -- numero
 );
 
 insert into categoria_estabelecimento values(
@@ -589,7 +577,13 @@ insert into usuario values( -- Mc Donalds - Votorantim
     'senha123',          -- senha
 	null,                -- fotoPerfil
     '1989-09-24',        -- dataNascimento
-	1 -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	null, -- numero not null
+	null, -- lodradouro not null,
+	null, -- bairro not null,
+	null, -- cidade not null,
+	null, -- estado not null,
+	null -- cep not null,
 );
 
 ---------------------------------------------------------------- HORÁRIO INÍCIO
@@ -760,20 +754,14 @@ insert into estabelecimento values(
     'Validado', -- statusValidacao
     null, -- nota
 	null, -- numeroAvaliacoes INT,
+	'1055', -- numeroEstabelecimento  VARCHAR(9) not null,
+	'Avenida Antônio Carlos Comitre', -- logradouro             VARCHAR(200) not null,
+	'Parque Campolim', -- bairro                 VARCHAR(200) not null,
+	'Sorocaba', -- cidade                 VARCHAR(200) not null,
+	'SP', -- estado                 VARCHAR(200) not null,
+	'18047620', -- cep               VARCHAR(9) not null,
 	'2023-09-07', -- dataUltimoAcesso
 	'2023-09-07' -- dataUltimoAcesso
-);
-
-insert into endereco values( -- Endereço do Mc Donalds 	SOROCABA
-	4,                  -- id
-	null,	-- idUsuario         INT,
-	2,  -- idEstabelecimento INT,
-	'18047620',         -- cep
-	'SP',               -- estado
-	'Sorocaba',                   -- cidade
-	'Avenida Antônio Carlos Comitre', -- lodradouro
-	'Parque Campolim',  -- bairro
-	'1055'                    -- numero
 );
 
 insert into categoria_estabelecimento values(
@@ -794,7 +782,13 @@ insert into usuario values( -- Mc Donalds - Sorocaba
     'senha123',          -- senha
 	null,                -- fotoPerfil
     '1989-09-24',        -- dataNascimento
-	1 -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	null, -- numero not null
+	null, -- lodradouro not null,
+	null, -- bairro not null,
+	null, -- cidade not null,
+	null, -- estado not null,
+	null -- cep not null,
 );
 
 ---------------------------------------------------------------- HORÁRIO INÍCIO
@@ -970,20 +964,14 @@ insert into estabelecimento values(
 	'Validado', -- statusValidacao
 	null, -- nota
 	null, -- numeroAvaliacoes INT,
+	'35', -- numeroEstabelecimento  VARCHAR(9) not null,
+	'Avenida Matheus Conegero', -- logradouro             VARCHAR(200) not null,
+	'Parque Bela Vista', -- bairro                 VARCHAR(200) not null,
+	'Votorantim', -- cidade                 VARCHAR(200) not null,
+	'SP', -- estado                 VARCHAR(200) not null,
+	'18110570', -- cep               VARCHAR(9) not null,
 	'2023-09-07', -- dataUltimoAcesso
 	'2023-09-07' -- dataUltimoAcesso
-);
-
-insert into endereco values(
-	5, -- id
-	null,	-- idUsuario         INT,
-	3,      -- idEstabelecimento INT,
-	'18110570', -- cep
-	'SP', -- estado
-	'Votorantim', -- cidade
-	'Avenida Matheus Conegero', -- lodradouro
-	'Parque Bela Vista', -- bairro
-	'35' -- numero
 );
 
 insert into categoria_estabelecimento values(
@@ -1003,7 +991,13 @@ insert into usuario values(
     'senha123',          -- senha
 	null,                -- fotoPerfil
     '1989-09-24',        -- dataNascimento
-	1 -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	null, -- numero not null
+	null, -- lodradouro not null,
+	null, -- bairro not null,
+	null, -- cidade not null,
+	null, -- estado not null,
+	null -- cep not null,
 );
 
 ---------------------------------------------------------------- HORÁRIO INÍCIO
@@ -1120,20 +1114,14 @@ insert into estabelecimento values(
 	'Validado', -- statusValidacao
 	null, -- nota
 	null, -- numeroAvaliacoes INT,
+	'526', -- numeroEstabelecimento  VARCHAR(9) not null,
+	'Avenida Santos Dumont', -- logradouro             VARCHAR(200) not null,
+	'Vila Domingues', -- bairro                 VARCHAR(200) not null,
+	'Votorantim', -- cidade                 VARCHAR(200) not null,
+	'SP', -- estado                 VARCHAR(200) not null,
+	'18116440', -- cep               VARCHAR(9) not null,
 	'2023-09-07', -- dataUltimoAcesso
 	'2023-09-07' -- dataUltimoAcesso
-);
-
-insert into endereco values(
-	6, -- id
-	null,	-- idUsuario         INT,
-	4,      -- idEstabelecimento INT,
-	'18116440', -- cep
-	'SP', -- estado
-	'Votorantim', -- cidade
-	'Avenida Santos Dumont', -- lodradouro
-	'Vila Domingues', -- bairro
-	'526' -- numero
 );
 
 insert into categoria_estabelecimento values(
@@ -1153,7 +1141,13 @@ insert into usuario values(
     'senha123',          -- senha
 	null,                -- fotoPerfil
     '1989-09-24',        -- dataNascimento
-	1 -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	null, -- numero not null
+	null, -- lodradouro not null,
+	null, -- bairro not null,
+	null, -- cidade not null,
+	null, -- estado not null,
+	null -- cep not null,
 );
 
 ---------------------------------------------------------------- HORÁRIO INÍCIO
@@ -1257,20 +1251,14 @@ insert into estabelecimento values(
 	'Validado',             -- statusValidacao
 	null, -- nota
 	null, -- numeroAvaliacoes INT,
+	'1597', -- numeroEstabelecimento  VARCHAR(9) not null,
+	'Avenida Gisele Constantino', -- logradouro             VARCHAR(200) not null,
+	'Parque Campolim', -- bairro                 VARCHAR(200) not null,
+	'Sorocaba', -- cidade                 VARCHAR(200) not null,
+	'SP', -- estado                 VARCHAR(200) not null,
+	'18048110', -- cep               VARCHAR(9) not null,
 	'2023-09-07', -- dataUltimoAcesso
 	'2023-09-07' -- dataUltimoAcesso
-);
-
-insert into endereco values( 
-	7, -- id
-	null,	-- idUsuario         INT,
-	5,      -- idEstabelecimento INT,
-	'18048110', -- cep
-	'SP', -- estado
-	'Sorocaba', -- cidade
-	'Avenida Gisele Constantino', -- lodradouro
-	'Parque Campolim', -- bairro
-	'1597' -- numero
 );
 
 insert into categoria_estabelecimento values(
@@ -1308,7 +1296,13 @@ insert into usuario values(
     'senha123',          -- senha
 	null,                -- fotoPerfil
     '1989-09-24',        -- dataNascimento
-	1 -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	null, -- numero not null
+	null, -- lodradouro not null,
+	null, -- bairro not null,
+	null, -- cidade not null,
+	null, -- estado not null,
+	null -- cep not null,
 );
 
 ---------------------------------------------------------------- HORÁRIO INÍCIO
