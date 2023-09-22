@@ -2,7 +2,10 @@ const db = require('../models/db.js');
 
 const inserir = async (dadosEstabelecimento) => {
     try {
-      const estabelecimentoQuery = `INSERT INTO estabelecimento VALUES ( null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );`;
+      const estabelecimentoQuery = `
+        INSERT INTO estabelecimento (nome, cnpj, fotoPrincipal, descricao, 
+        cep, estado, cidade, logradouro, bairro, numeroEstabelecimento, dataCadastro, dataUltimoAcesso) 
+        VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );`;
       const connection = await db;
   
       const [insercaoEstabelecimento] = await connection.query(estabelecimentoQuery, dadosEstabelecimento);
@@ -28,7 +31,7 @@ const atualizar = async (dadosEstabelecimento) => {
 
 const pegarPorId = async (idEstabelecimento) => {
     try {
-      const estabelecimentoQuery = ``;
+      const estabelecimentoQuery = '';
       const connection = await db;
   
       const [dadosEstabelecimento] = await connection.query(estabelecimentoQuery, idEstabelecimento);

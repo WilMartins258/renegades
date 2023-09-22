@@ -3,6 +3,7 @@ const router = express.Router();
 
 // Importando controllers e serviços que serão utilizados nas rotas
 const estabelecimento_Service = require('./../services/estabelecimento.service.js');
+const usuario_Service = require('./../services/usuario.service.js');
 const endereco_Service = require('./../services/endereco.service.js');
 const categoria_estabelecimento_Service = require('../services/categoria_estabelecimento.service.js');
 const opcional_estabelecimento_Service = require('../services/opcional_estabelecimento.service.js');
@@ -27,78 +28,73 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const reqBody = req.body;
-        // console.log('reqBody:: ', reqBody);
+        const {
+            idUsuario,
+            nomeEstabelecimento,
+            descricaoEstabelecimento,
+            cnpj,
+            estabelecimentoPhoto,
+            endereco,
+            cep,
+            numero,
+            categoriasSelecionadas,
+            recomendacao,
+            opcoesSelecionadas,
+            estilosSelecionadas,
+            rdSocialSelecionadas,
+            horariosSelecionados
+        } = req.body;
         
-        const idUsuario = reqBody.idUsuario;
-        console.log('idUsuario:: ', idUsuario);
-
-        const dadosEndereco = {
-            cep: reqBody.cep,
-            uf: reqBody.endereco.uf,
-            cidade: reqBody.endereco.cidade,
-            rua: reqBody.endereco.rua,
-            bairro: reqBody.endereco.bairro,
-            numero: reqBody.numero
-        };
-        const dadosEnderecoArray = Object.values(dadosEndereco);
-        
-        const enderecoId = await endereco_Service.inserir(dadosEnderecoArray);
-
         const removerCaracteresEspeciais = (str) => {
             const resultado = str.replace(/[\/\.\-]/g, '');
             return resultado;
         };
-        const cnpjTratado = removerCaracteresEspeciais(reqBody.cnpj);
+        const cnpjTratado = removerCaracteresEspeciais(cnpj);
 
         const dataDeHoje = new Date().toISOString().substring(0, 10);
 
         const dadosEstabelecimento = {
-            idEndereco: enderecoId,
-            nome: reqBody.nomeEstabelecimento,
+            nome: nomeEstabelecimento,
             cnpj: cnpjTratado,
-            photo: 'test-blob-photo',
-            descricao: reqBody.descricaoEstabelecimento,
-            ativo: true,
-            oculto: false,
-            statusValidacao: 'Pendente',
-            nota: null,
-            numeroAvaliacoes: 0,
+            fotoPrincipal: estabelecimentoPhoto,
+            descricao: descricaoEstabelecimento,
+            cep: cep,
+            estado: endereco.uf,
+            cidade: endereco.cidade,
+            logradouro: endereco.rua,
+            bairro: endereco.bairro,
+            numero: numero,
             dataCadastro: dataDeHoje,
             dataUltimoAcesso: dataDeHoje
         }
         const dadosEstabelecimentoArray = Object.values(dadosEstabelecimento);
+                
+        const estabelecimentoId = await estabelecimento_Service.inserir(dadosEstabelecimentoArray);       
+        await usuario_Service.inserirIdEstabelecimento([estabelecimentoId, idUsuario]);
 
-        const estabelecimentoId = await estabelecimento_Service.inserir(dadosEstabelecimentoArray);
-
-        const dadosCategoria = reqBody.categoriasSelecionadas;
-        for (let i = 0; i < dadosCategoria.length; i++) {
+        for (let i = 0; i < categoriasSelecionadas.length; i++) {
             try {
-                await categoria_estabelecimento_Service.inserir([estabelecimentoId, dadosCategoria[i].id]);
+                await categoria_estabelecimento_Service.inserir([estabelecimentoId, categoriasSelecionadas[i].id]);
             } catch (error) {
                 throw new Error(`Erro ao inserir categoria do estabelecimento: ${error.message}`);
             }  
         };
 
-        const dadosOpcionais = reqBody.opcoesSelecionadas;
-        console.log('dadosOpcionais:: ', dadosOpcionais);
-        for (let i = 0; i < dadosOpcionais.length; i++) {
+        for (let i = 0; i < opcoesSelecionadas.length; i++) {
             try {
-                await opcional_estabelecimento_Service.inserir([estabelecimentoId, dadosOpcionais[i].id]);
+                await opcional_estabelecimento_Service.inserir([estabelecimentoId, opcoesSelecionadas[i].id]);
             } catch (error) {
                 throw new Error(`Erro ao inserir opcionais do estabelecimento: ${error.message}`);
-            }  
+            }
         };
 
-        const dadosHorario = reqBody.HorariosSelecionados;
-        console.log('dadosHorario:: ', dadosHorario);
-        for (let i = 0; i < dadosHorario.length; i++) {
-            try {
+        // for (let i = 0; i < horariosSelecionados.length; i++) {
+        //     try {
                 
-            } catch (error) {
-                throw new Error(`Erro ao inserir horários do estabelecimento: ${error.message}`);
-            }  
-        };
+        //     } catch (error) {
+        //         throw new Error(`Erro ao inserir horários do estabelecimento: ${error.message}`);
+        //     }  
+        // };
 
         res.status(200).send(
             'estabelecimento POST ok'
