@@ -11,6 +11,19 @@ const checarEmail = async (email) => {
   return checkEmail[0];
 };
 
+const inserirIdEstabelecimento = async (ids) => {
+  try {
+    const idQuery = `UPDATE usuario set idEstabelecimento = ? WHERE id = ?;`;
+    const connection = await db;
+
+    const [insercaoId] = await connection.query(idQuery, ids);
+
+    return insercaoId;
+  } catch (error) {
+    throw new Error(`Erro ao inserir id do estabelecimento no usuário: ${error.message}`);
+  }
+};
+
 const inserir = async (dadosUsuario) => {
   try {
     const dadosUsuarioQuery = `INSERT INTO usuario (nome, email, senha)
@@ -75,6 +88,7 @@ const excluir = async () => {
 
 module.exports = {
   checarEmail,
+  inserirIdEstabelecimento,
   inserir,
   atualizar,
   pegarPorId,
