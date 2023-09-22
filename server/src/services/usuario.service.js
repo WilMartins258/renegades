@@ -13,7 +13,7 @@ const checarEmail = async (email) => {
 
 const inserirIdEstabelecimento = async (ids) => {
   try {
-    const idQuery = `UPDATE usuario set idEstabelecimento = ? WHERE id = ?;`;
+    const idQuery = `UPDATE usuario set idEstabelecimento = ?, tipoUsuario = 1 WHERE id = ?;`;
     const connection = await db;
 
     const [insercaoId] = await connection.query(idQuery, ids);
