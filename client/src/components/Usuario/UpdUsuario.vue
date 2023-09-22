@@ -98,24 +98,22 @@
   import api from './../../services/backend-service';
   import dataToDiaMesAno from './../../services/dataToDiaMesAno.service.js';
 
-  const nomeInput = document.getElementById("nome");
-  const dataNascimentoInput = document.getElementById("dataNasc");
-  const emailInput = document.getElementById("email");
-  const celularInput = document.getElementById("celular");
-  const senhaInput = document.getElementById("senha");
-  const senha2Input = document.getElementById("senha2");
-  const cepInput = document.getElementById("cep");
-  const ruaInput = document.getElementById("rua");
-  const numeroInput = document.getElementById("numero");
-  const bairroInput = document.getElementById("bairro");
-  const cidadeInput = document.getElementById("cidade");
-  const ufInput = document.getElementById("uf");
-  const alterarButton = document.getElementById("alterarButton");
-  const salvarButton = document.getElementById("salvarButton");
-  const excluirButton = document.getElementById("excluirButton");
-  const cancelarButton = document.getElementById("cancelarButton");
-
-
+  // const nomeInput = document.getElementById("nome");
+  // const dataNascimentoInput = document.getElementById("dataNasc");
+  // const emailInput = document.getElementById("email");
+  // const celularInput = document.getElementById("celular");
+  // const senhaInput = document.getElementById("senha");
+  // const senha2Input = document.getElementById("senha2");
+  // const cepInput = document.getElementById("cep");
+  // const ruaInput = document.getElementById("rua");
+  // const numeroInput = document.getElementById("numero");
+  // const bairroInput = document.getElementById("bairro");
+  // const cidadeInput = document.getElementById("cidade");
+  // const ufInput = document.getElementById("uf");
+  // const alterarButton = document.getElementById("alterarButton");
+  // const salvarButton = document.getElementById("salvarButton");
+  // const excluirButton = document.getElementById("excluirButton");
+  // const cancelarButton = document.getElementById("cancelarButton");
 export default{
   name: "UpdUsuario",
   data(){
@@ -142,44 +140,33 @@ export default{
   },
   methods: {
     async metodoInicial() {
-      /**
-       * O trecho abaixo utilizando sessionStorage não será dessa forma
-       * O ID do usuário já deve estar no sessionStorage desde o momento em que o usuário faz o login
-       */
-      const idUsuario = 1;
-      sessionStorage.setItem('idUsuario', idUsuario);
+      try {
+        if (sessionStorage.getItem('idUsuario')) {
+          console.log('ESTÁ LOGADO');
+          const requisicaoUsuario = await api.get(`/usuario/${sessionStorage.getItem('idUsuario')}`);          
+          const dadosUsuario = requisicaoUsuario.data;
+          const dataFormatada = dataToDiaMesAno(dadosUsuario.dataNascimento);
 
-      const idUsuarioRecuperado = sessionStorage.getItem('idUsuario');
-      
-      // userIdRecuperado deve conter o ID do usuário que está logado
-      const userData = await api.get(`/usuario/${idUsuarioRecuperado}`);
-      
-      const dadosUsuario = userData.data;
-      
-      sessionStorage.setItem('enderecoId', dadosUsuario.idEndereco);
-      const enderecoIdRecuperado = sessionStorage.getItem('enderecoId');
-      const enderecoData = await api.get(`/endereco/${enderecoIdRecuperado}`);
-
-      const dadosEndereco = enderecoData.data;
-
-      const dataFormatada = dataToDiaMesAno(dadosUsuario.dataNascimento);
-
-      //Dados Usuário
-      this.nome = dadosUsuario.nome;
-      this.dataNasc = dataFormatada;
-      this.celular = `${dadosUsuario.codigoArea}${dadosUsuario.celular}`
-      this.email = dadosUsuario.email;
-      this.senha = dadosUsuario.senha;
-      this.senhaConfirm = dadosUsuario.senha;
-
-      // Dados endereço
-      this.endereco.bairro = dadosEndereco.bairro;
-      this.endereco.cep = dadosEndereco.cep;
-      this.endereco.rua = dadosEndereco.lodradouro;
-      this.endereco.uf = dadosEndereco.estado;
-      this.endereco.cidade = dadosEndereco.cidade;
-      this.endereco.numero = dadosEndereco.numero;
-
+          // //Dados Usuário
+          this.nome = dadosUsuario.nome;
+          this.dataNasc = dataFormatada;
+          this.celular = dadosUsuario.celular;
+          this.email = dadosUsuario.email;
+          this.senha = dadosUsuario.senha;
+          this.senhaConfirm = dadosUsuario.senha;
+          this.endereco.bairro = dadosUsuario.bairro;
+          this.endereco.cep = dadosUsuario.cep;
+          this.endereco.rua = dadosUsuario.logradouro;
+          this.endereco.uf = dadosUsuario.estado;
+          this.endereco.cidade = dadosUsuario.cidade;
+          this.endereco.numero = dadosUsuario.numeroResidencia;
+        } else {
+          console.log('NÃO ESTÁ LOGADO');
+          alert('usuário não autenticado, autentique para visualizar dados.');
+        }
+      } catch (error) {
+        console.log('ERROR:: ', error);
+      }
     },
     limpa_formulário_cep() {
       document.getElementById("rua").value = "";
@@ -309,28 +296,23 @@ export default{
         alterarButton.removeAttribute("disabled");
         excluirButton.removeAttribute("disabled");
 
-        const newUserData = {
-          userId: sessionStorage.getItem('userId'),
-          nome: nomeInput.value,
-          dataNascimento: dataNascimentoInput.value,
-          email: emailInput.value,
-          celularCompleto: celularInput.value,
-          senha: senhaInput.value,
-        };
-
-        const newEnderecoData = {
-          enderecoId: sessionStorage.getItem('enderecoId'),
-          cep: cepInput.value,
-          rua: ruaInput.value,
-          numero: numeroInput.value,
-          bairro: bairroInput.value,
-          cidade: cidadeInput.value,
-          uf: ufInput.value
-        };
-
         try {
-          const userPut = await api.put('/usuario', newUserData);
-          const enerecoPut = await api.put('/endereco', newEnderecoData);
+          // Posteriormente temos que adicionar a foto
+          const novosDadosUsuario = {
+            idUsuario: sessionStorage.getItem('idUsuario'),
+            nome: nomeInput.value,
+            dataNascimento: dataNascimentoInput.value,
+            email: emailInput.value,
+            celular: celularInput.value,
+            senha: senhaInput.value,
+            cep: cepInput.value,
+            estado: ufInput.value,
+            cidade: cidadeInput.value,
+            bairro: bairroInput.value,
+            logradouro: ruaInput.value,
+            numero: numeroInput.value
+          };
+          await api.put('/usuario', novosDadosUsuario);
         } catch (error) {
           console.error('ERROR:: ', error);
         } finally {
