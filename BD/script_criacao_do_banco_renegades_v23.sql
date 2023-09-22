@@ -82,38 +82,34 @@ CREATE TABLE usuario (
     senha             VARCHAR(50) not null,
 	fotoPerfil        LONGBLOB,
     dataNascimento    DATE,
-	tipoUsuario       INT DEFAULT 0
+	tipoUsuario       INT DEFAULT 0,
+	numeroResidencia  VARCHAR(9),
+	logradouro        VARCHAR(200),
+	bairro            VARCHAR(200),
+	cidade            VARCHAR(200),
+	estado            VARCHAR(200),
+	cep               VARCHAR(9)
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE estabelecimento (
-	id               INT PRIMARY KEY AUTO_INCREMENT,
-	nome             VARCHAR(100) not null,
-	cnpj             VARCHAR(20) not null, -- UNIQUE, posteriormente podemos fazer os tratamentos para manter UNIQUE
-	fotoPrincipal    LONGBLOB, -- not null
-	descricao        VARCHAR(400) not null,
-	ativo            BOOLEAN not null,
-	oculto           BOOLEAN not null,
-	statusValidacao  ENUM('Pendente', 'Validado', 'Não validado') not null,
-	nota             FLOAT,
-	numeroAvaliacoes INT,
+	id                     INT PRIMARY KEY AUTO_INCREMENT,
+	nome                   VARCHAR(100) not null,
+	cnpj                   VARCHAR(20) not null, -- UNIQUE, posteriormente podemos fazer os tratamentos para manter UNIQUE
+	fotoPrincipal          LONGBLOB, -- not null
+	descricao              VARCHAR(400) not null,
+	ativo                  BOOLEAN not null,
+	oculto                 BOOLEAN not null,
+	statusValidacao        ENUM('Pendente', 'Validado', 'Não validado') not null,
+	nota                   FLOAT,
+	numeroAvaliacoes       INT,
+	numeroEstabelecimento  VARCHAR(9),
+	logradouro             VARCHAR(200),
+	bairro                 VARCHAR(200),
+	cidade                 VARCHAR(200),
+	estado                 VARCHAR(200),
+	cep               VARCHAR(9)
 	dataCadastro     DATE not null,
 	dataUltimoAcesso DATE not null
-) AUTO_INCREMENT = 1;
-
-/*
-	Aqui podem surgir mais campos para auxiliar na geolocalização
-	Exemplos: latitude e longitude
-*/
-CREATE TABLE endereco (
-	id                INT PRIMARY KEY AUTO_INCREMENT,
-	idUsuario         INT,
-	idEstabelecimento INT,
-	cep               VARCHAR(8) not null,
-	estado            VARCHAR(50) not null,
-	cidade            VARCHAR(80) not null,
-    lodradouro        VARCHAR(200) not null,
-    bairro            VARCHAR(100) not null,
-    numero            VARCHAR(6) not null
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE horario (

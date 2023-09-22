@@ -13,7 +13,6 @@ DELETE FROM diaSemana;
 DELETE FROM opcional;
 DELETE FROM usuario;
 DELETE FROM estabelecimento;
-DELETE FROM endereco;
 DELETE FROM horario;
 DELETE FROM cardapio;
 DELETE FROM promocao;
