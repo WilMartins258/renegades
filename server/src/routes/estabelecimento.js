@@ -4,7 +4,6 @@ const router = express.Router();
 // Importando controllers e serviços que serão utilizados nas rotas
 const estabelecimento_Service = require('./../services/estabelecimento.service.js');
 const usuario_Service = require('./../services/usuario.service.js');
-const endereco_Service = require('./../services/endereco.service.js');
 const categoria_estabelecimento_Service = require('../services/categoria_estabelecimento.service.js');
 const opcional_estabelecimento_Service = require('../services/opcional_estabelecimento.service.js');
 
