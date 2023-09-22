@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 // Importando controllers e serviços que serão utilizados nas rotas
-const separarCelular_Service = require('../services/utils/separarCelular.service.js');
+// const separarCelular_Service = require('../services/utils/separarCelular.service.js');
 const dataToMySql_Service = require('../services/utils/dataToMySql.service.js');
 const user_Service = require('../services/usuario.service.js');
 const endereco_Service = require('../services/endereco.service.js');
@@ -53,13 +53,13 @@ router.get('/:id', async (req, res) => {
 router.put('/', async (req, res) => {
     try {
         const reqBody = req.body;
-        const numeroDividido = separarCelular_Service.extrairCodigoAreaENumero(reqBody?.celularCompleto);
+        // const numeroDividido = separarCelular_Service.extrairCodigoAreaENumero(reqBody?.celularCompleto);
         const dataNascMySqlFormat = dataToMySql_Service.dataToMySqlFormat(reqBody?.dataNascimento);
 
         const novosDadosUsuario = {
             nome: reqBody.nome,
-            codigo: numeroDividido?.codigoArea,
-            celular: numeroDividido?.numero,
+            // codigo: numeroDividido?.codigoArea,
+            // celular: numeroDividido?.numero,
             email: reqBody.email,
             senha: reqBody.senha,
             foto: 'test-blob',

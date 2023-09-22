@@ -3,7 +3,6 @@ const loginService = require('./../services/login.service.js');
 
 router.post('/', async (req, res) => {
     const loginInfo = req?.body;
-
     try {
         if (!loginInfo || !loginInfo.email || !loginInfo.senha) {
             return res.status(400).json({ 

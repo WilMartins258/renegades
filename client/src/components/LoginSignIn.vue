@@ -62,27 +62,23 @@ export default {
 					senha: senha.value
 				};
 
-				console.log('loginInfo', loginInfo);
-
 				if (loginInfo.email && loginInfo.senha) {
 					const login = await api.post("/login", loginInfo);
-					console.log('login:: ', login);
 
 					if (login.data.login) {
 						sessionStorage.setItem('idUsuario', login.data.id);
 						sessionStorage.setItem('nomeUsuario', login.data.nome);
 						sessionStorage.setItem('tipoUsuario', login.data.tipoUsuario);
-						sessionStorage.setItem('fotoperfil', login.data.fotoperfil);
-
 
 						// A partir daqui precisamos verificar para onde vamos direcionar o usuário após login concluído
 					}
 				} else {
+					// Isso indica que não foi possível fazer o login 
 					console.log('Exibir mensagem para o usuário preencher os campos de e-mail e senha');
 				}
 			} catch (error) {
 				console.error('ERRO:: ', error);
-				console.log('error.response.data', error.response.data);
+				console.log('error.response.data:: ', error.response.data);
 			}
 		},
 	},
