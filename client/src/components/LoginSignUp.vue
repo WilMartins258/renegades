@@ -67,9 +67,7 @@ export default {
 						email: this.Email,
 						senha: this.Senha1
 					};
-					const usuarioCriado = await api.post('/usuario', informacoesDoUsuario);
-
-					console.log('usuarioCriado: ', usuarioCriado);
+					api.post('/usuario', informacoesDoUsuario);
 
 					sessionStorage.setItem('idUsuario', usuarioCriado.data.id);
 					sessionStorage.setItem('nomeUsuario', usuarioCriado.data.nome);
@@ -118,10 +116,7 @@ export default {
 			);
 
 			return this.isNomeValido && this.isEmailValido && this.isSenhaValida && this.isSenhasIguais;
-
-
 		},
-
 		validarNome() {
 			return this.Nome.trim() !== '' && this.Nome.length >= 5;
 		},
