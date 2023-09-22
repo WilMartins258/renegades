@@ -75,7 +75,6 @@ CREATE TABLE usuario (
 	id                INT PRIMARY KEY AUTO_INCREMENT,
 	idEstabelecimento INT,
     nome              VARCHAR(100) not null,
-	codigoArea        VARCHAR(20), -- not null,
 	celular           VARCHAR(20), -- not null,
     cpf               VARCHAR(11), -- UNIQUE,
     email             VARCHAR(100) not null UNIQUE,
