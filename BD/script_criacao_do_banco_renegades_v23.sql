@@ -145,15 +145,15 @@ CREATE TABLE promocao (
 
 CREATE TABLE redeSocial_estabelecimento (
 	id                  INT PRIMARY KEY AUTO_INCREMENT,
-	idRedeSocial    INT not null,
 	idEstabelecimento   INT not null,
-	redeSocial          VARCHAR(200) not null
+	idRedeSocial        INT not null,
+	redeSocial          VARCHAR(300) not null
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE contato_estabelecimento (
 	id                INT PRIMARY KEY AUTO_INCREMENT,
-	idContato         INT not null,
 	idEstabelecimento INT not null,
+	idContato         INT not null,
 	contato           VARCHAR(200) not null,
 	isWhatsapp        BOOLEAN not null
 ) AUTO_INCREMENT = 1;

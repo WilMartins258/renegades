@@ -374,16 +374,16 @@ insert into horario values( -- sábado	    00:00–04:00
 
 insert into contato_estabelecimento values(
 	null,       -- id INT
-	2,          -- idTipoContato INT not null, -- TELEFONE
 	1,          -- idEstabelecimento INT not null,
+	2,          -- idTipoContato INT not null, -- TELEFONE
 	'32431749', -- contato VARCHAR(200) not null
 	false -- isWhatsapp        BOOLEAN not null
 );
 
 insert into redeSocial_estabelecimento values(
 	null,       -- id INT
-	4,          -- idTipoRedeSocial  INT not null, -- SITE
 	1,          -- idEstabelecimento INT not null,
+	4,          -- idTipoRedeSocial  INT not null, -- SITE
 	'https://www.mcdonalds.com.br/' -- redeSocial VARCHAR(200) not null
 );
 
@@ -586,16 +586,16 @@ insert into horario values( -- sábado	    00:00–05:00
 
 insert into contato_estabelecimento values(
 	null,       -- id INT
-	1,          -- idTipoContato INT not null, -- TELEFONE
 	2,          -- idEstabelecimento INT not null,
+	1,          -- idTipoContato INT not null, -- TELEFONE
 	'34115830', -- contato VARCHAR(200) not null
 	false -- isWhatsapp        BOOLEAN not null
 );
 
 insert into redeSocial_estabelecimento values(
 	null,       -- id INT
-	4,          -- idTipoRedeSocial  INT not null, -- SITE
 	2,          -- idEstabelecimento INT not null,
+	4,          -- idTipoRedeSocial  INT not null, -- SITE
 	'https://www.mcdonalds.com.br/' -- redeSocial VARCHAR(200) not null
 );
 
@@ -739,8 +739,8 @@ insert into horario values( -- sábado	    09:00–00:00
 
 insert into contato_estabelecimento values(
 	null,       -- id INT
-	1,          -- idTipoContato INT not null, -- TELEFONE
 	3,          -- idEstabelecimento INT not null,
+	1,          -- idTipoContato INT not null, -- TELEFONE
 	'32432019', -- contato VARCHAR(200) not null
 	false -- isWhatsapp        BOOLEAN not null
 );
@@ -888,8 +888,8 @@ insert into horario values( -- sábado	    09:00–00:00
 
 insert into contato_estabelecimento values(
 	null,       -- id INT
-	1,          -- idTipoContato INT not null, -- TELEFONE
 	4,          -- idEstabelecimento INT not null,
+	1,          -- idTipoContato INT not null, -- TELEFONE
 	'32432020', -- contato VARCHAR(200) not null
 	false -- isWhatsapp        BOOLEAN not null
 );
@@ -999,8 +999,8 @@ insert into horario values(
 
 insert into contato_estabelecimento values(
 	null,       -- id INT
-	1,          -- idTipoContato INT not null, -- TELEFONE
 	5,          -- idEstabelecimento INT not null,
+	1,          -- idTipoContato INT not null, -- TELEFONE
 	'999999999', -- contato VARCHAR(200) not null
 	false -- isWhatsapp        BOOLEAN not null
 );
