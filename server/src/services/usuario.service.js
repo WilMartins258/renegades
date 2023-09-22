@@ -46,10 +46,11 @@ const atualizar = async (newUserData) => {
   try {
     const atualizarUsuarioQuery = `
       UPDATE usuario
-      SET nome = ?, codigoArea = ?, celular = ?,
-      email = ?, senha = ?, fotoPerfil = ?, dataNascimento = ?
-      WHERE id = ?;
-    `;
+        SET nome = ?, celular = ?, email = ?, 
+        senha = ?, fotoPerfil = ?, dataNascimento = ?,
+        cep = ?, estado = ?, cidade = ?, bairro = ?,
+        logradouro = ?, numeroResidencia = ?
+        WHERE id = ?;`;
     const connection = await db;
 
     const [atualizarUsuario] = await connection.query(atualizarUsuarioQuery, newUserData);

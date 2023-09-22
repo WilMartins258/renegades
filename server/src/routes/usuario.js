@@ -1,11 +1,7 @@
 const express = require('express');
 const router = express.Router();
-
-// Importando controllers e serviços que serão utilizados nas rotas
-// const separarCelular_Service = require('../services/utils/separarCelular.service.js');
 const dataToMySql_Service = require('../services/utils/dataToMySql.service.js');
-const user_Service = require('../services/usuario.service.js');
-const endereco_Service = require('../services/endereco.service.js');
+const usuario_Service = require('../services/usuario.service.js');
 
 router.get('/', async (req, res) => {
     try {
@@ -24,21 +20,14 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     try {
-        const userId = req.params.id;
-        const dadosUsuario = await user_Service.pegarPorId(userId);
+        const userId = req?.params?.id;
+        const dadosUsuario = await usuario_Service.pegarPorId(userId);
 
-        const dadosEndereco = await endereco_Service.pegarPorIdDoUsuario(userId);
-
-        if (dadosUsuario && dadosEndereco) {
-            console.log('dadosUsuario && dadosEndereco')
-            res.status(200).send({
-                dadosUsuario,
-                dadosEndereco
-            });
-        } else if (dadosUsuario) {
-            console.log('dadosUsuario somente')
-            res.status(200).send({dadosUsuario});
-        }else {
+        if (dadosUsuario) {
+            res.status(200).send(
+                dadosUsuario
+            );
+        } else  {
             res.status(404).send('Id de usuário não encontrado!');
         }
     } catch (error) {
@@ -52,30 +41,46 @@ router.get('/:id', async (req, res) => {
 
 router.put('/', async (req, res) => {
     try {
-        const reqBody = req.body;
-        // const numeroDividido = separarCelular_Service.extrairCodigoAreaENumero(reqBody?.celularCompleto);
-        const dataNascMySqlFormat = dataToMySql_Service.dataToMySqlFormat(reqBody?.dataNascimento);
+        const {
+            idUsuario,
+            nome,
+            dataNascimento,
+            celular,
+            email,
+            senha,
+            cep,
+            estado,
+            cidade,
+            bairro,
+            logradouro,
+            numero
+        } = req.body;
 
+        const dataNascMySqlFormat = dataToMySql_Service.dataToMySqlFormat(dataNascimento);
+          
         const novosDadosUsuario = {
-            nome: reqBody.nome,
-            // codigo: numeroDividido?.codigoArea,
-            // celular: numeroDividido?.numero,
-            email: reqBody.email,
-            senha: reqBody.senha,
+            nome,
+            celular,
+            email,
+            senha,
             foto: 'test-blob',
             dataNascimento: dataNascMySqlFormat,
-            userId: reqBody.userId
+            cep,
+            estado,
+            cidade,
+            bairro,
+            logradouro,
+            numero,
+            idUsuario
         };
-
         const novosDadosUsuarioArray = Object.values(novosDadosUsuario);
-        await user_Service.atualizar(novosDadosUsuarioArray);
+        await usuario_Service.atualizar(novosDadosUsuarioArray);
 
-        res.status(200).send(
-            {
+        res.status(200).send({
             msg: 'Dados do usuário alterados com sucesso!',
-            id: idDoUsuario,
-            nome: reqBody.nome,
-            email: reqBody.email
+            id: idUsuario,
+            nome: nome,
+            email: email
         });
     } catch (error) {
         console.error('Erro na rota /user PUT:: ', error);
@@ -103,7 +108,7 @@ router.post('/', async (req, res) => {
         };
 
         const dadosUsuarioArray = Object.values(dadosUsuario);
-        const checagemEmail = await user_Service.checarEmail(dadosUsuario.email);
+        const checagemEmail = await usuario_Service.checarEmail(dadosUsuario.email);
         if (checagemEmail) {
             res.status(400).send({
                 login: false,
@@ -111,7 +116,7 @@ router.post('/', async (req, res) => {
             });
             
         } else {
-            const usuarioInserido = await user_Service.inserir(dadosUsuarioArray);
+            const usuarioInserido = await usuario_Service.inserir(dadosUsuarioArray);
 
             res.status(200).send({
                 msg: 'Usuário adicionado ao sistema',
