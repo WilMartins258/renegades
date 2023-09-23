@@ -1,15 +1,17 @@
 const db = require('../models/db.js');
 
-const getAllCategorias = async () => {
-    const getAllCategoriasQuery = `SELECT * FROM categoria;`;
+const pegarTudo = async () => {
+    const categoriasQuery = `SELECT * FROM categoria;`;
     const connection = await db;
 
-    const [categorias] = await connection.query(getAllCategoriasQuery);
+    const [categorias] = await connection.query(categoriasQuery);
 
     return categorias;
 }
 
+const atualizar = async () => {};
 
 module.exports = {
-    getAllCategorias
+    pegarTudo,
+    atualizar
 };

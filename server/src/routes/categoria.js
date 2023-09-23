@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const categoriaService = require('../services/categoria.service');
+const categoria_Service = require('../services/categoria.service.js');
 
 router.get('/', async (req, res) => {
     try {
-        const categorias = await categoriaService.getAllCategorias();
+        const categorias = await categoria_Service.pegarTudo();
 
         res.status(200).send(categorias);  
     } catch (error) {
