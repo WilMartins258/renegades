@@ -3,7 +3,7 @@ const estiloMusicaService = require('../services/estiloMusica.service.js');
 
 router.get('/', async (req, res) => {
     try {
-        const todosEstilosMusica = await estiloMusicaService.getAllEstilosMusica();
+        const todosEstilosMusica = await estiloMusicaService.pegarTudo();
 
         res.status(200).send(todosEstilosMusica);
     } catch (error) {

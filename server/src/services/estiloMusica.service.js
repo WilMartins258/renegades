@@ -1,6 +1,6 @@
 const db = require('../models/db.js');
 
-const getAllEstilosMusica = async () => {
+const pegarTudo = async () => {
     const estiloMusicaQuery = "SELECT * FROM estiloMusica;";
     const connection = await db;
 
@@ -10,5 +10,5 @@ const getAllEstilosMusica = async () => {
 }
 
 module.exports = {
-    getAllEstilosMusica
+    pegarTudo
 };
