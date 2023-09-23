@@ -28,18 +28,19 @@
           v-model="ativo"
         />
         <label for="ativoNao">Não</label>
-        <br><br>
+        <br>
+        <p v-if="campoVazio" class="error-message">Informe uma Categoria Válida.</p>
+        <br>
 
         <button type="submit" :disabled="isEditing" :class="{ 'disabled-button': isEditing }">
           {{ isEditing ? 'Salvando...' : 'Salvar' }}
         </button>
-        <p v-if="campoVazio" class="error-message">Informe uma Categoria Válida.</p>
       </form>
     </div>
     <table>
       <thead>
         <tr>
-          <th>Categoria de Estabelecimento</th>
+          <th>Categoria do Estabelecimento</th>
           <th>Ativo</th>
           <th>Editar</th>
         </tr>
@@ -86,8 +87,7 @@ export default {
     salvarCategoria() {
       if (this.novaCategoria.trim() !== "") {
         if (this.isEditing) {
-          this.listaCategorias[this.editingIndex] = {
-            categoria: this.novaCategoria,
+          this.listaCategorias[this.editingIndex] = {categoria: this.novaCategoria,
             ativo: this.ativo, // Adicionando o valor "ativo" à categoria existente
           };
           this.isEditing = false;
@@ -144,8 +144,7 @@ h1 {
 }
 
 form {
-  display: flex;
-  flex-wrap: wrap; 
+  justify-content: flex-start;
   margin-bottom: 10px;
 }
 
@@ -237,11 +236,7 @@ input {
   .container {
     max-width: 350px;
   }
-  
-  form {
-    justify-content: flex-start;
-  }
-  
+    
   button {
     margin-top: 8px;
   }

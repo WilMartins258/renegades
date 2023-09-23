@@ -249,7 +249,7 @@ export default {
 }
 
 .table-container {
-  max-height: 300px; /* Adjust the height as needed */
+  max-height: 300px; 
   overflow: auto;
 }
 
@@ -384,7 +384,6 @@ button:disabled:hover {
 }
 
 @media (max-width: 414px) {
-  /* Adjust table font size and padding */
   table {
     font-size: 10px;
   }
@@ -408,14 +407,13 @@ button:disabled:hover {
   h1 {
     font-size: 18px;
   }
-  /* Adjust button and input padding for smaller screens */
   button {
     padding: 8px 15px;
   }
   input {
     padding: 8px 10px;
   }
-  /* Adjust table font size and padding for very small screens */
+  
   table {
     font-size: 10px;
   }
@@ -423,7 +421,7 @@ button:disabled:hover {
   td {
     padding: 3px;
   }
-  /* Adjust button padding for very small screens */
+  
   button {
     padding: 3px 10px;
   }

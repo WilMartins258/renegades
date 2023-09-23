@@ -3,7 +3,7 @@
     <h1>Opcionais</h1>
     <div>
       <form @submit.prevent="salvarOpcional">
-        <label for="novaOpcional">Novo Opcional:</label>
+        <label for="novaOpcional">Novo Opcional:</label><br>
         <input
           v-model="novaOpcional"
           type="text"
@@ -12,29 +12,46 @@
           :class="{ 'error': campoVazio }"
         />
         <br><br>
+        <label>Ativo:</label>
+        <input
+          type="radio"
+          id="ativoSim"
+          value="sim"
+          v-model="ativo"
+        />
+        <label for="ativoSim">Sim</label>
+        <input
+          type="radio"
+          id="ativoNao"
+          value="Não"
+          v-model="ativo"
+        />
+        <label for="ativoNao">Não</label>
+        <br>
+        <p v-if="campoVazio" class="error-message">Informe um Opcional Válido.</p>
+        <br>
         <button type="submit" :disabled="isEditing" :class="{ 'disabled-button': isEditing }">
           {{ isEditing ? 'Salvando...' : 'Salvar' }}
         </button>
-        <p v-if="campoVazio" class="error-message">Informe um Opcional Válido.</p>
       </form>
     </div>
+    <div  class="table-container">
     <table>
       <thead>
         <tr>
-          <th>Opcional de Estabelecimento</th>
-          <th>Editar/Excluir</th>
+          <th>Opcional do Estabelecimento</th>
+          <th>Ativo</th>
+          <th>Editar</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(Opcional, index) in listaOpcionals" :key="index">
-          <td>{{ Opcional }}</td>
+          <td>{{ Opcional.categoria  }}</td>
+          <td>{{ Opcional.ativo }}</td>
           <td>
             <template v-if="editingIndex !== index">
               <button class="respButton" @click="editarOpcional(index)">
                 <i class="uil uil-edit"></i>
-              </button>
-              <button class="respButton" @click="excluirOpcional(index)">
-                <i class="uil uil-file-times-alt"></i>
               </button>
             </template>
             <template v-else>
@@ -50,6 +67,7 @@
       </tbody>
     </table>
   </div>
+  </div>
 </template>
 
 <script>
@@ -62,32 +80,38 @@ export default {
       campoVazio: false, // Variável de estado para verificar se o campo está vazio
       isEditing: false, // Adicionamos um estado para controle de edição
       editingIndex: -1, // Índice da Opcional em edição
+      ativo: "sim",
     };
   },
   methods: {
     salvarOpcional() {
       if (this.novaOpcional.trim() !== "") {
         if (this.isEditing) {
-          // Editar Opcional existente
-          this.listaOpcionals[this.editingIndex] = this.novaOpcional;
+          this.listaOpcionals[this.editingIndex] = {opcional: this.novaOpcional,
+            ativo: this.ativo, // Adicionando o valor "ativo" à categoria existente
+          };
           this.isEditing = false;
         } else {
-          // Adicionar nova Opcional
-          this.listaOpcionals.push(this.novaOpcional);
+          this.listaOpcionals.push({
+            categoria: this.novaOpcional,
+            ativo: this.ativo, // Adicionando o valor "ativo" à nova categoria
+          });
         }
         this.novaOpcional = "";
-        this.campoVazio = false; // Reiniciar o estado de campo vazio
+        this.campoVazio = false;
       } else {
-        this.campoVazio = true; // Definir o estado de campo vazio como verdadeiro
+        this.campoVazio = true;
       }
     },
+
     limparCampos() {
       this.novaOpcional = "";
     },
     editarOpcional(index) {
       this.editingIndex = index;
-      this.novaOpcional = this.listaOpcionals[index];
-      this.isEditing = true; // Ativar o modo de edição
+      this.novaOpcional = this.listaOpcionals[index].categoria; // Acesse a propriedade 'categoria'
+      this.ativo = this.listaOpcionals[index].ativo; // Acesse a propriedade 'ativo'
+      this.isEditing = true;
     },
     cancelarEdicao() {
       this.editingIndex = -1;
@@ -95,10 +119,15 @@ export default {
       this.limparCampos();
     },
     salvarEdicao(index) {
-      this.listaOpcionals[index] = this.novaOpcional;
-      this.editingIndex = -1;
-      this.isEditing = false; // Definir isEditing de volta para false
-      this.limparCampos();
+      if (this.novaOpcional.trim() !== "") {
+        this.listaOpcionals[index].categoria = this.novaOpcional;
+        this.listaOpcionals[index].ativo = this.ativo;
+        this.editingIndex = -1;
+        this.isEditing = false;
+        this.limparCampos();
+      } else {
+        this.campoVazio = true;
+      }
     },
 
     excluirOpcional(index) {
@@ -117,6 +146,12 @@ export default {
   margin: 0 auto;
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.8); 
+  white-space: nowrap;
+}
+
+.table-container {
+  max-height: 300px; 
+  overflow: auto;
 }
 
 h1 {
@@ -124,9 +159,9 @@ h1 {
 }
 
 form {
-  display: flex;
-  flex-wrap: wrap; 
+
   margin-bottom: 10px;
+  justify-content: flex-start;
 }
 
 label,
@@ -156,8 +191,9 @@ button {
   cursor: pointer;
   transition: 0.5s;
   border: none;
-  padding: 8px 50px;
+  padding: 8px 13px;
   border-radius: 25px;
+  color: #ccc;
 }
 
 button:hover {
@@ -202,6 +238,10 @@ input {
   .container {
     max-width: 768px;
   }
+
+  button {
+    padding: 8px 20px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -217,11 +257,7 @@ input {
   .container {
     max-width: 350px;
   }
-  
-  form {
-    justify-content: flex-start;
-  }
-  
+   
   button {
     margin-top: 8px;
   }
@@ -235,6 +271,9 @@ input {
   td {
     padding: 6px; 
   }
+  .respButton{
+  padding: 8px 25px;
+}
 }
 
 @media (max-width: 360px) {
