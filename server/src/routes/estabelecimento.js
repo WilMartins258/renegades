@@ -7,6 +7,7 @@ const usuario_Service = require('./../services/usuario.service.js');
 const categoria_estabelecimento_Service = require('../services/categoria_estabelecimento.service.js');
 const opcional_estabelecimento_Service = require('../services/opcional_estabelecimento.service.js');
 const redeSocial_estabelecimento_Service = require('../services/redeSocial_estabelecimento.service.js');
+const musica_estabelecimento_Service = require('../services/musica_estabelecimento.service.js');
 
 router.get('/:id', async (req, res) => {
     try {
@@ -96,13 +97,13 @@ router.post('/', async (req, res) => {
             }
         };
 
-        // for (let i = 0; i < estilosSelecionadas.length; i++) {
-        //     try {
-        //         await opcional_estabelecimento_Service.inserir([idEstabelecimento, estilosSelecionadas[i].id]);
-        //     } catch (error) {
-        //         throw new Error(`Erro ao inserir opcionais do estabelecimento: ${error.message}`);
-        //     }
-        // };
+        for (let i = 0; i < estilosSelecionadas.length; i++) {
+            try {
+                await musica_estabelecimento_Service.inserir([idEstabelecimento, estilosSelecionadas[i].id]);
+            } catch (error) {
+                throw new Error(`Erro ao inserir estilos musicais ao estabelecimento: ${error.message}`);
+            }
+        };
 
         // for (let i = 0; i < horariosSelecionados.length; i++) {
         //     try {
