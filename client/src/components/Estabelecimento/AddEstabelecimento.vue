@@ -365,16 +365,44 @@ methods: {
             nome: 'Estacionamento',
           },
         ],
-        estilosSelecionadas: this.estilosSelecionadas,
+        estilosSelecionadas: [
+          {
+              "id": 1,
+              "nome": "Pagode",
+              "ativo": 1
+          },
+          {
+              "id": 3,
+              "nome": "Funk",
+              "ativo": 1
+          },
+          {
+              "id": 13,
+              "nome": "Clássica",
+              "ativo": 1
+          },
+          {
+              "id": 15,
+              "nome": "Metal",
+              "ativo": 1
+          }
+      ],
         rdSocialSelecionadas: [
           {
-            redeSocial: 'Facebook',
-            perfil: 'link facebook',
+              "redeSocial": "Instagram",
+              "perfil": "link instagram",
+              "idRede": "2"
           },
           {
-            redeSocial: 'Instagram',
-            perfil: 'link instagram',
+              "redeSocial": "Facebook",
+              "perfil": "link facebook",
+              "idRede": "1"
           },
+          {
+              "redeSocial": "Site do Estabelecimento",
+              "perfil": "site proprio link",
+              "idRede": "4"
+          }
         ],
         contatosSelecionadas: [
           {
@@ -409,8 +437,8 @@ methods: {
         sessionStorage.setItem('tipoUsuario', salvarEstabelecimento.data.tipoUsuario);
 
 
-        // console.log("salvarEstabelecimento:: ", salvarEstabelecimento);
-        // console.log("idEstabelecimento:: ", sessionStorage.getItem('idEstabelecimento'));
+        console.log("salvarEstabelecimento:: ", salvarEstabelecimento);
+        console.log("idEstabelecimento:: ", sessionStorage.getItem('idEstabelecimento'));
       }
     } catch (error) {
       console.error('ERROR:: ', error);
@@ -430,7 +458,7 @@ methods: {
     // console.log('estilosSelecionadas:', this.estilosSelecionadas);
     // console.log('RdSocialSelecionadas:', this.RdSocialSelecionadas);
     // console.log('ContatosSelecionadas:', this.ContatosSelecionadas);
-    console.log('HorariosSelecionados:', this.HorariosSelecionados);
+    // console.log('HorariosSelecionados:', this.HorariosSelecionados);
 
     if (this.currentSection < 6) {
       this.currentSection++;
