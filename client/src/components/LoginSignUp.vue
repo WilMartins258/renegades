@@ -136,6 +136,20 @@ export default {
 			setTimeout(() => {
 				this.mostrarMensagemErro = false;
 			}, 5000);
+		},
+		limparCampos() {
+			this.Nome = '';
+			this.Email = '';
+			this.Senha1 = '';
+			this.Senha2 = '';
+			this.isNomeValido = true;
+			this.isEmailValido = true;
+			this.isSenhaValida = true;
+			this.isSenhasIguais = true;
+			this.nomeErro = '';
+			this.emailErro = '';
+			this.senhaErro = '';
+			this.senhasIguaisErro = '';
 		}
 	},
 }

@@ -81,6 +81,12 @@ export default {
 				console.log('error.response.data:: ', error.response.data);
 			}
 		},
+		limparCampos() {
+			this.Email = '';
+			this.Senha = '';
+			this.validarEmail = true;
+			this.validarSenha = true;
+		}
 	},
 }
 </script>

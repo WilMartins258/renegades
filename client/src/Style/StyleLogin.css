@@ -2,17 +2,20 @@
 	width:100%;
 	margin:auto;
 	max-width:525px;
-	min-height:670px;
+	min-height:700px;
 	position:relative;
-	background:url(https://raw.githubusercontent.com/khadkamhn/day-01-login-form/master/img/bg.jpg) no-repeat center;
-	box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
+	background:url(../../public/img/FormEstabelecimento.jpg) no-repeat center;
+    background-size: 40% 100%;
+    background-position: center;
+    background-attachment: fixed;
+    box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
 }
 .login-html{
 	width:100%;
 	height:100%;
 	position:absolute;
 	padding:90px 70px 50px 70px;
-	background:rgba(40, 57, 101, 0.685);
+	/*background:#ffc5484b;*/
 }
 .login-html .sign-in-htm,
 .login-html .sign-up-htm{
@@ -45,11 +48,15 @@
     margin:0 15px 10px 0;
     display:inline-block;
     border-bottom:2px solid transparent;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
 }
 .login-html .sign-in:checked + .tab,
 .login-html .sign-up:checked + .tab{
     color:#e91e2f;
     border-color:#e91e2f;
+    font: bold;
 }
 .login-form{
     min-height:345px;
@@ -64,7 +71,7 @@
 .login-form .group .input,
 .login-form .group .button{
     width:100%;
-    color:#000;
+    color:#fff;
     display:block;
 }
 .login-form .group .input,
@@ -79,8 +86,8 @@
     -webkit-text-security:circle;
 }
 .login-form .group .label{
-    color:#000000;
-    font-size:12px;
+    color:#fff;
+    font-size:14px;
 }
 .login-form .group .button{
     background:#e91e2f;
@@ -146,8 +153,18 @@
 }
 .foot-lnk{
     text-align:center;
+    color: #fff;   
 }
 
 .foot-lnk a {
     color: red;
   }
+
+  .foot-lnk :hover{
+    color: #e91e2f;
+    cursor: pointer;
+  }
+
+  /*Responsivo*/
+
+  

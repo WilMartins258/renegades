@@ -88,13 +88,13 @@ export default {
       if (this.novaOpcional.trim() !== "") {
         if (this.isEditing) {
           this.listaOpcionals[this.editingIndex] = {opcional: this.novaOpcional,
-            ativo: this.ativo, // Adicionando o valor "ativo" à categoria existente
+            ativo: this.ativo, // Adicionando o valor "ativo" ao opcional existente
           };
           this.isEditing = false;
         } else {
           this.listaOpcionals.push({
             categoria: this.novaOpcional,
-            ativo: this.ativo, // Adicionando o valor "ativo" à nova categoria
+            ativo: this.ativo, // Adicionando o valor "ativo" ao novo opcional
           });
         }
         this.novaOpcional = "";
@@ -129,12 +129,6 @@ export default {
         this.campoVazio = true;
       }
     },
-
-    excluirOpcional(index) {
-      if (confirm("Tem certeza que deseja excluir esta Opcional?")) {
-        this.listaOpcionals.splice(index, 1);
-      }
-    },
   },
 };
 </script>
@@ -159,7 +153,6 @@ h1 {
 }
 
 form {
-
   margin-bottom: 10px;
   justify-content: flex-start;
 }
