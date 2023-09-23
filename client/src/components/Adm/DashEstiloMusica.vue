@@ -61,6 +61,8 @@
 </template>
 
 <script>
+import api from './../../services/backend-service.js';
+
 export default {
   name: "DashEstiloMusica",
   data() {
@@ -72,7 +74,25 @@ export default {
       editingIndex: -1, // Índice da música em edição
     };
   },
+  created() {
+	  this.metodoInicial();
+  },
   methods: {
+    async metodoInicial() {
+      console.log('Estilos músicais \n');
+      try {
+        const estilosMusica = await api.get('/estiloMusica');
+        const estilosMusicaArray = [];
+
+        for (let i = 0; i < estilosMusica.data.length; i++) {
+          estilosMusicaArray[i] = estilosMusica.data[i].nome;
+        };
+
+        this.listaMusicas = estilosMusicaArray;
+      } catch (error) {
+        console.error('Erro ao recuperar os estilos de música.');
+      }
+    },
     salvarMusica() {
       if (this.novaMusica.trim() !== "") {
         this.listaMusicas.push(this.novaMusica);
