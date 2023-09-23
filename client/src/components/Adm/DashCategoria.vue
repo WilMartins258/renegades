@@ -3,13 +3,14 @@
     <h1>Categorias</h1>
     <div>
       <form @submit.prevent="salvarCategoria">
-        <label for="novaCategoria">Nova Categoria:</label>
+        <label for="novaCategoria">Nova Categoria:</label> <br>
         <input
           v-model="novaCategoria"
           type="text"
           id="novaCategoria"
           placeholder="Digite aqui"
           :class="{ 'error': campoVazio }"
+          maxlength="50"
         />
         <br><br>
 
@@ -137,6 +138,11 @@ export default {
   margin: 0 auto;
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.8); 
+  white-space: nowrap;
+}
+.table-container {
+  max-height: 300px; 
+  overflow: auto;
 }
 
 h1 {
@@ -144,8 +150,8 @@ h1 {
 }
 
 form {
-  justify-content: flex-start;
   margin-bottom: 10px;
+  justify-content: flex-start;
 }
 
 label,
@@ -175,7 +181,7 @@ button {
   cursor: pointer;
   transition: 0.5s;
   border: none;
-  padding: 8px 30px;
+  padding: 8px 50px;
   border-radius: 25px;
 }
 

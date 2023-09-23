@@ -197,9 +197,9 @@
   </div>
   <br>
   <!-- Chamada para o Component --> 
-  <DashHorAtendimento :value="HorariosSelecionados" @input="receberHorario"/>
 
-  
+  <DashHorAtendimento :HorariosSelecionados="HorariosSelecionados" :horarioSelecionado="horarioSelecionado" @dados-salvos="receberHorario" />
+
   <br>
   <div class="group">
         <div>
@@ -301,8 +301,8 @@ methods: {
   receberContato(contato) {
       this.ContatosSelecionadas = contato;
     },
-  receberHorario(horario) {
-    this.HorariosSelecionados = horario;
+  receberHorario(dados) {
+    this.HorariosSelecionados = dados;
   },
   async salvarDados() {
     try {

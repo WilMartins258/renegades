@@ -10,6 +10,7 @@
           id="novaOpcional"
           placeholder="Digite aqui"
           :class="{ 'error': campoVazio }"
+          maxlength="50"
         />
         <br><br>
         <label>Ativo:</label>
@@ -142,7 +143,6 @@ export default {
   background-color: rgba(255, 255, 255, 0.8); 
   white-space: nowrap;
 }
-
 .table-container {
   max-height: 300px; 
   overflow: auto;
@@ -184,9 +184,8 @@ button {
   cursor: pointer;
   transition: 0.5s;
   border: none;
-  padding: 8px 13px;
+  padding: 8px 50px;
   border-radius: 25px;
-  color: #ccc;
 }
 
 button:hover {

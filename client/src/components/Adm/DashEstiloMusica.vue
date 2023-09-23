@@ -10,6 +10,7 @@
           id="novaMusica"
           placeholder="Digite aqui"
           :class="{ 'error': campoVazio }"
+          maxlength="50"
         />
         <br><br>
         <label>Ativo:</label>
