@@ -96,7 +96,7 @@ CREATE TABLE usuario (
 CREATE TABLE estabelecimento (
 	id                     INT PRIMARY KEY AUTO_INCREMENT,
 	nome                   VARCHAR(100) not null,
-	cnpj                   VARCHAR(20) not null, -- UNIQUE, posteriormente podemos fazer os tratamentos para manter UNIQUE
+	cnpj                   VARCHAR(20) not null, -- UNIQUEE
 	fotoPrincipal          LONGBLOB, -- not null
 	descricao              VARCHAR(400) not null,
 	ativo                  BOOLEAN DEFAULT true not null,
