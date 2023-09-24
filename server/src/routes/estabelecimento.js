@@ -8,6 +8,7 @@ const categoria_estabelecimento_Service = require('../services/categoria_estabel
 const opcional_estabelecimento_Service = require('../services/opcional_estabelecimento.service.js');
 const redeSocial_estabelecimento_Service = require('../services/redeSocial_estabelecimento.service.js');
 const musica_estabelecimento_Service = require('../services/musica_estabelecimento.service.js');
+const horario_Service = require('../services/horario.service.js');
 
 router.get('/:id', async (req, res) => {
     try {
@@ -105,13 +106,15 @@ router.post('/', async (req, res) => {
             }
         };
 
-        // for (let i = 0; i < horariosSelecionados.length; i++) {
-        //     try {
+        for (let i = 0; i < horariosSelecionados.length; i++) {
+            try {
+                const idHorario = await horario_Service.inserir([idEstabelecimento, horariosSelecionados[i].dia, horariosSelecionados[i].abre, horariosSelecionados[i].fecha]);
+                console.log('idHorario:: ', idHorario)
                 
-        //     } catch (error) {
-        //         throw new Error(`Erro ao inserir horários do estabelecimento: ${error.message}`);
-        //     }  
-        // };
+            } catch (error) {
+                throw new Error(`Erro ao inserir horários do estabelecimento: ${error.message}`);
+            }  
+        };
 
         res.status(200).send({
             msg: 'Estabelecimento adicionado com sucesso!',
