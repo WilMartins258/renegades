@@ -5,16 +5,16 @@
       <form @submit.prevent="salvarHorario">
         <label for="diaSemana">Dias de Funcionamento:</label>
         <select v-model="diaSelecionado" id="diaSemana">
-          <option value="0">Domingo</option>
-          <option value="1">Segunda-feira</option>
-          <option value="2">Terça-feira</option>
-          <option value="3">Quarta-feira</option>
-          <option value="4">Quinta-feira</option>
-          <option value="5">Sexta-feira</option>
-          <option value="6">Sábado</option>
-          <option value="7">Segunda a Sexta</option>
-          <option value="8">terça a Sexta</option>
-          <option value="9">Sábado a Domingo </option>
+          <option value="1">Domingo</option>
+          <option value="2">Segunda-feira</option>
+          <option value="3">Terça-feira</option>
+          <option value="4">Quarta-feira</option>
+          <option value="5">Quinta-feira</option>
+          <option value="6">Sexta-feira</option>
+          <option value="7">Sábado</option>
+          <option value="8">Segunda a Sexta</option>
+          <option value="9">terça a Sexta</option>
+          <option value="10">Sábado a Domingo </option>
         </select>
         <label for="horaInicio">Início:</label>
         <input v-model="horaInicio" type="time" id="horaInicio" name="horaInicio" />
@@ -77,7 +77,7 @@ export default {
   data() {
     return {
       diaSelecionado: "1",
-      diaSemana: ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Segunda a Sexta", "terça a Sexta", "Sábado a Domingo"],
+      diaSemana: [null, "Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Segunda a Sexta", "terça a Sexta", "Sábado a Domingo"],
       horariosPorDia: {},// contagem de horários por dia
       horaInicio: "",
       horaTermino: "",
