@@ -76,7 +76,7 @@ export default {
   },
   data() {
     return {
-      diaSelecionado: "1",
+      diaSelecionado: "2",
       diaSemana: [null, "Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Segunda a Sexta", "terça a Sexta", "Sábado a Domingo"],
       horariosPorDia: {},// contagem de horários por dia
       horaInicio: "",
