@@ -5,16 +5,16 @@
       <form @submit.prevent="salvarHorario">
         <label for="diaSemana">Dias de Funcionamento:</label>
         <select v-model="diaSelecionado" id="diaSemana">
-          <option value="Segunda">Segunda-feira</option>
-          <option value="Terca">Terça-feira</option>
-          <option value="Quarta">Quarta-feira</option>
-          <option value="Quinta">Quinta-feira</option>
-          <option value="Sexta">Sexta-feira</option>
-          <option value="Sabado">Sábado</option>
-          <option value="Domingo">Domingo</option>
-          <option value="Segunda a Sexta">Segunda a Sexta</option>
-          <option value="terça a Sexta">terça a Sexta</option>
-          <option value="Sábado a Domingo">Sábado a Domingo </option>
+          <option value="0">Domingo</option>
+          <option value="1">Segunda-feira</option>
+          <option value="2">Terça-feira</option>
+          <option value="3">Quarta-feira</option>
+          <option value="4">Quinta-feira</option>
+          <option value="5">Sexta-feira</option>
+          <option value="6">Sábado</option>
+          <option value="7">Segunda a Sexta</option>
+          <option value="8">terça a Sexta</option>
+          <option value="9">Sábado a Domingo </option>
         </select>
         <label for="horaInicio">Início:</label>
         <input v-model="horaInicio" type="time" id="horaInicio" name="horaInicio" />
@@ -38,7 +38,7 @@
       </thead>
       <tbody>
         <tr v-for="(horario, index) in listahorarios" :key="index">
-          <td>{{ horario.dia }}</td>
+          <td>{{ diaSemana[horario.dia] }}</td>
           <td>{{ horario.abre }}</td>
           <td>{{ horario.fecha }}</td>
           <td>
@@ -71,12 +71,13 @@ export default {
   name: "DashHorAtendimento",
   props: {
     value: {
-      type: Array, // O valor passado pelo componente pai
+      HorariosSelecionados: Array, // O valor passado pelo componente pai
     }
   },
   data() {
     return {
-      diaSelecionado: "Segunda",
+      diaSelecionado: "1",
+      diaSemana: ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Segunda a Sexta", "terça a Sexta", "Sábado a Domingo"],
       horariosPorDia: {},// contagem de horários por dia
       horaInicio: "",
       horaTermino: "",
@@ -92,42 +93,6 @@ export default {
         this.timeFieldsError = "Preencha ambos os horários.";
       } else {
         const diaSelecionado = this.diaSelecionado;
-
-        if (
-          diaSelecionado === "Segunda a Sexta" ||
-          diaSelecionado === "terça a Sexta" ||
-          diaSelecionado === "Sábado a Domingo"
-        ) {
-          const diasEspeciais = {
-            "Segunda a Sexta": ["Segunda", "Terca", "Quarta", "Quinta", "Sexta"],
-            "terça a Sexta": ["Terca", "Quarta", "Quinta", "Sexta"],
-            "Sábado a Domingo": ["Sabado", "Domingo"],
-          };
-
-          const diasSelecionados = diasEspeciais[diaSelecionado];
-          const diasJaSelecionados = diasSelecionados.filter(
-            (dia) => this.horariosPorDia[dia]
-          );
-
-          if (diasJaSelecionados.length + this.horariosPorDia[diaSelecionado] >= 2) {
-            this.timeFieldsError = "Limite de dois dias para este período atingido.";
-            return;
-          }
-
-          diasSelecionados.forEach((dia) => {
-            this.horariosPorDia[dia]++;
-          });
-        } else {
-          if (!this.horariosPorDia[diaSelecionado]) {
-            this.horariosPorDia[diaSelecionado] = 1;
-          } else if (this.horariosPorDia[diaSelecionado] < 2) {
-            this.horariosPorDia[diaSelecionado]++;
-          } else {
-            this.timeFieldsError = "Limite de dois horários para este dia atingido.";
-            return;
-          }
-        }
-
         const novoHorario = {
           dia: diaSelecionado,
           abre: this.horaInicio,
@@ -136,12 +101,11 @@ export default {
         this.listahorarios.push(novoHorario);
         this.limparCampos();
         this.timeFieldsError = ""; // Limpar o erro, caso tenha sido exibido anteriormente
-
-        this.$emit("input", this.listahorarios); // Emitir o evento para atualizar o valor no componente pai
+        this.$emit("dados-salvos", this.listahorarios); // Emitir o evento para atualizar o valor no componente pai
       }
     },
     limparCampos() {
-      this.diaSelecionado = "Segunda";
+      this.diaSelecionado = "1"; // Restaurar o valor padrão para Segunda-feira
       this.horaInicio = "";
       this.horaTermino = "";
     },
@@ -150,62 +114,18 @@ export default {
       this.diaSelecionado = this.listahorarios[index].dia;
       this.horaInicio = this.listahorarios[index].abre;
       this.horaTermino = this.listahorarios[index].fecha;
-      this.isEditing = true; 
+      this.isEditing = true;
     },
     salvarEdicao(index) {
       const diaSelecionado = this.diaSelecionado;
       const diaAnterior = this.listahorarios[index].dia;
 
-      if (
-        diaSelecionado === "Segunda a Sexta" ||
-        diaSelecionado === "terça a Sexta" ||
-        diaSelecionado === "Sábado a Domingo"
-      ) {
-        const diasEspeciais = {
-          "Segunda a Sexta": ["Segunda", "Terca", "Quarta", "Quinta", "Sexta"],
-          "terça a Sexta": ["Terca", "Quarta", "Quinta", "Sexta"],
-          "Sábado a Domingo": ["Sabado", "Domingo"],
-        };
-
-        const diasSelecionados = diasEspeciais[diaSelecionado];
-        const diasJaSelecionados = diasSelecionados.filter(
-          (dia) => dia !== diaAnterior && this.horariosPorDia[dia]
-        );
-
-        if (diasJaSelecionados.length + this.horariosPorDia[diaSelecionado] >= 2) {
-          this.timeFieldsError = "Limite de dois dias para este período atingido.";
-          return;
-        }
-
-        diasSelecionados.forEach((dia) => {
-          if (dia !== diaAnterior) {
-            this.horariosPorDia[dia]++;
-          }
-        });
-      } else {
-        if (
-          !this.horariosPorDia[diaSelecionado] ||
-          this.horariosPorDia[diaSelecionado] === 1
-        ) {
-          if (diaSelecionado !== diaAnterior) {
-            this.horariosPorDia[diaAnterior]--;
-            this.horariosPorDia[diaSelecionado]++;
-            this.listahorarios[index].dia = diaSelecionado;
-          }
-        } else {
-          this.timeFieldsError = "Limite de dois horários para este dia atingido.";
-          return;
-        }
-      }
-
-      this.listahorarios[index].abre = this.horaInicio;
-      this.listahorarios[index].fecha = this.horaTermino;
-      this.cancelarEdicao();
+      // ... (restante do código para salvar a edição)
     },
     cancelarEdicao() {
       this.editingIndex = -1;
       this.limparCampos();
-      this.isEditing = false; 
+      this.isEditing = false;
     },
     excluirhorario(index) {
       const diaExcluido = this.listahorarios[index].dia;

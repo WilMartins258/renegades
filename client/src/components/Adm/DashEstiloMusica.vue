@@ -2,61 +2,72 @@
   <div class="container">
     <h1>Estilos Musicais</h1>
     <div>
-      <form @submit.prevent="isEditing ? salvarEdicao() : salvarMusica()">
-        <label for="novaMusica">Nova música:</label>
+      <form @submit.prevent="salvarMusica">
+        <label for="novaMusica">Nova música:</label><br>
         <input
           v-model="novaMusica"
           type="text"
           id="novaMusica"
           placeholder="Digite aqui"
           :class="{ 'error': campoVazio }"
+          maxlength="50"
         />
-        <br /><br />
-        <button type="submit" :disabled="isEditing" :class="{ 'disabled-button': isEditing }">
-          {{ isEditing ? 'Salvar Edição' : 'Salvar' }}
-        </button>
+        <br><br>
+        <label>Ativo:</label>
+        <input
+          type="radio"
+          id="ativoSim"
+          value="sim"
+          v-model="ativo"
+        />
+        <label for="ativoSim">Sim</label>
+        <input
+          type="radio"
+          id="ativoNao"
+          value="não"
+          v-model="ativo"
+        />
+        <label for="ativoNao">Não</label>
+        <br>
         <p v-if="campoVazio" class="error-message">Informe um estilo de música válido.</p>
+        <br>
+        <button type="submit" :disabled="isEditing" :class="{ 'disabled-button': isEditing }">
+          {{ isEditing ? 'Salvando...' : 'Salvar' }}
+        </button>
       </form>
     </div>
-    <table>
-      <thead>
-        <tr>
-          <th>Estilos Musicais</th>
-          <th>Editar/Excluir</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(musica, index) in listaMusicas" :key="index">
-          <td>
-            <span v-if="!isEditing || index !== editingIndex">{{ musica }}</span>
-            <input
-              v-else
-              v-model="novaMusica"
-              type="text"
-              :class="{ 'error': campoVazio }"
-            />
-          </td>
-          <td>
-            <template v-if="!isEditing || index !== editingIndex">
-              <button class="respButton" @click="editarMusica(index)">
-                <i class="uil uil-edit"></i>
-              </button>
-              <button class="respButton" @click="excluirMusica(index)">
-                <i class="uil uil-file-times-alt"></i>
-              </button>
-            </template>
-            <template v-else>
-              <button class="respButton" @click="salvarEdicao">
-                <i class="uil uil-check"></i>
-              </button>
-              <button class="respButton" @click="cancelarEdicao">
-                <i class="uil uil-times"></i>
-              </button>
-            </template>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Estilos Musicais</th>
+            <th>Ativo</th>
+            <th>Editar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(musica, index) in listaMusicas" :key="index">
+            <td>{{ musica.musica }}</td>
+            <td>{{ musica.ativo }}</td>
+            <td>
+              <template v-if="!isEditing || index !== editingIndex">
+                <button class="respButton" @click="editarMusica(index)">
+                  <i class="uil uil-edit"></i>
+                </button>
+              </template>
+              <template v-else>
+                <button class="respButton" @click="salvarEdicao(index)">
+                  <i class="uil uil-check"></i>
+                </button>
+                <button class="respButton" @click="cancelarEdicao">
+                  <i class="uil uil-times"></i>
+                </button>
+              </template>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -69,9 +80,10 @@ export default {
     return {
       novaMusica: "",
       listaMusicas: [],
-      campoVazio: false, // Variável de estado para verificar se o campo está vazio
-      isEditing: false, // Adicionamos um estado para controle de edição
-      editingIndex: -1, // Índice da música em edição
+      campoVazio: false,
+      isEditing: false,
+      editingIndex: -1,
+      ativo: "sim",
     };
   },
   created() {
@@ -95,37 +107,48 @@ export default {
     },
     salvarMusica() {
       if (this.novaMusica.trim() !== "") {
-        this.listaMusicas.push(this.novaMusica);
-        this.novaMusica = "";
-        this.campoVazio = false; // Reiniciar o estado de campo vazio
-      } else {
-        this.campoVazio = true; // Definir o estado de campo vazio como verdadeiro
-      }
-    },
-    editarMusica(index) {
-      this.editingIndex = index;
-      this.novaMusica = this.listaMusicas[index];
-      this.isEditing = true; // Ativar o modo de edição
-    },
-    cancelarEdicao() {
-      this.editingIndex = -1;
-      this.isEditing = false;
-      this.novaMusica = "";
-    },
-    salvarEdicao() {
-      if (this.novaMusica.trim() !== "") {
-        this.listaMusicas[this.editingIndex] = this.novaMusica;
-        this.editingIndex = -1;
-        this.isEditing = false;
+        if (this.isEditing) {
+          this.listaMusicas[this.editingIndex] = {
+            musica: this.novaMusica,
+            ativo: this.ativo,
+          };
+          this.isEditing = false;
+        } else {
+          this.listaMusicas.push({
+            musica: this.novaMusica,
+            ativo: this.ativo,
+          });
+        }
         this.novaMusica = "";
         this.campoVazio = false;
       } else {
         this.campoVazio = true;
       }
     },
-    excluirMusica(index) {
-      if (confirm("Tem certeza que deseja excluir essa música?")) {
-        this.listaMusicas.splice(index, 1);
+
+    limparCampos() {
+      this.novaMusica = "";
+    },
+    editarMusica(index) {
+      this.editingIndex = index;
+      this.novaMusica = this.listaMusicas[index].musica;
+      this.ativo = this.listaMusicas[index].ativo;
+      this.isEditing = true;
+    },
+    cancelarEdicao() {
+      this.editingIndex = -1;
+      this.isEditing = false;
+      this.limparCampos();
+    },
+    salvarEdicao(index) {
+      if (this.novaMusica.trim() !== "") {
+        this.listaMusicas[index].musica = this.novaMusica;
+        this.listaMusicas[index].ativo = this.ativo;
+        this.editingIndex = -1;
+        this.isEditing = false;
+        this.limparCampos();
+      } else {
+        this.campoVazio = true;
       }
     },
   },
@@ -139,6 +162,11 @@ export default {
   margin: 0 auto;
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.8); 
+  white-space: nowrap;
+}
+.table-container {
+  max-height: 300px; 
+  overflow: auto;
 }
 
 h1 {
@@ -146,9 +174,8 @@ h1 {
 }
 
 form {
-  display: flex;
-  flex-wrap: wrap; 
   margin-bottom: 10px;
+  justify-content: flex-start;
 }
 
 label,
@@ -224,6 +251,10 @@ input {
   .container {
     max-width: 768px;
   }
+
+  button {
+    padding: 8px 20px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -257,7 +288,15 @@ input {
   td {
     padding: 6px; 
   }
-}
+  .respButton{
+    padding: 8px 25px;
+  }
+
+  h1{
+    font-size: 38px;
+  }
+} 
+  
 
 @media (max-width: 360px) {
   h1 {
@@ -292,5 +331,3 @@ input {
 
 }
 </style>
-
-

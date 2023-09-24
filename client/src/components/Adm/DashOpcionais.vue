@@ -10,6 +10,7 @@
           id="novaOpcional"
           placeholder="Digite aqui"
           :class="{ 'error': campoVazio }"
+          maxlength="50"
         />
         <br><br>
         <label>Ativo:</label>
@@ -88,13 +89,13 @@ export default {
       if (this.novaOpcional.trim() !== "") {
         if (this.isEditing) {
           this.listaOpcionals[this.editingIndex] = {opcional: this.novaOpcional,
-            ativo: this.ativo, // Adicionando o valor "ativo" à categoria existente
+            ativo: this.ativo, // Adicionando o valor "ativo" ao opcional existente
           };
           this.isEditing = false;
         } else {
           this.listaOpcionals.push({
             categoria: this.novaOpcional,
-            ativo: this.ativo, // Adicionando o valor "ativo" à nova categoria
+            ativo: this.ativo, // Adicionando o valor "ativo" ao novo opcional
           });
         }
         this.novaOpcional = "";
@@ -129,12 +130,6 @@ export default {
         this.campoVazio = true;
       }
     },
-
-    excluirOpcional(index) {
-      if (confirm("Tem certeza que deseja excluir esta Opcional?")) {
-        this.listaOpcionals.splice(index, 1);
-      }
-    },
   },
 };
 </script>
@@ -148,7 +143,6 @@ export default {
   background-color: rgba(255, 255, 255, 0.8); 
   white-space: nowrap;
 }
-
 .table-container {
   max-height: 300px; 
   overflow: auto;
@@ -159,7 +153,6 @@ h1 {
 }
 
 form {
-
   margin-bottom: 10px;
   justify-content: flex-start;
 }
@@ -191,9 +184,8 @@ button {
   cursor: pointer;
   transition: 0.5s;
   border: none;
-  padding: 8px 13px;
+  padding: 8px 50px;
   border-radius: 25px;
-  color: #ccc;
 }
 
 button:hover {
