@@ -424,7 +424,18 @@ methods: {
             id: 1,
           },
         ],
-        horariosSelecionados: this.HorariosSelecionados,
+        horariosSelecionados: [
+            {
+                "dia": "8",
+                "abre": "18:00",
+                "fecha": "22:00"
+            },
+            {
+                "dia": "10",
+                "abre": "18:00",
+                "fecha": "00:00"
+            }
+        ]
       };
 
 
