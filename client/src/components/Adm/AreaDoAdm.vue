@@ -41,7 +41,7 @@
             />
             <div class="description">Gerenciar Opcionais</div>
           </router-link>            
-          <router-link to="/" class="card">
+          <router-link to="/usuarioscadastrados" class="card">
             <img
               src="../../../public/img/listaDeUsuarios.png"
               alt="lista De Usuarios"
@@ -49,7 +49,7 @@
             />
             <div class="description">Lista de Usuários</div>
           </router-link>
-          <router-link to="/" class="card">
+          <router-link to="/estabelecimentoscadastrados" class="card">
             <img
               src="../../../public/img/listaDeEstabelecimento.png"
               alt="lista De Estabelecimento"

@@ -17,6 +17,12 @@ const routes = [
   },
   
   {
+    path: '/sobre',
+    name: 'sobre',
+    component: () => import(/* webpackChunkName: "sobre" */ '../views/Sobre'),
+  },
+  
+  {
   path: '/Usuario',
   name: 'Usuario',
   component: () => import(/* webpackChunkName: "Usuario" */ '../views/ViewUsuarios/Usuario'),
@@ -82,11 +88,6 @@ const routes = [
     component: () => import(/* webpackChunkName: "Atulestabelecimento" */ '../views/ViewAreaEstabelecimento/AtulEstabelecimento'),
   },
 
-  {
-    path: '/sobre',
-    name: 'sobre',
-    component: () => import(/* webpackChunkName: "sobre" */ '../views/Sobre'),
-  },
 
   {
     path: '/avaliacao',
@@ -104,6 +105,18 @@ const routes = [
     path: '/avaliacaoestabelecimento',
     name: 'avaliacaoestabelecimento',
     component: () => import(/* webpackChunkName: "AvaliacaoEstabelecimento" */ '../views/ViewAreaEstabelecimento/AvaliacaoEstabelecimento'),
+  },
+
+  {
+    path: '/estabelecimentoscadastrados',
+    name: 'estabelecimentoscadastrados',
+    component: () => import(/* webpackChunkName: "EstabelecimentosCadastrados" */ '../views/ViewAdm/EstabelecimentosCadastrados'),
+  },
+  
+  {
+    path: '/usuarioscadastrados',
+    name: 'usuarioscadastrados',
+    component: () => import(/* webpackChunkName: "UsuariosCadastrados" */ '../views/ViewAdm/UsuariosCadastrados'),
   },
 
 ]

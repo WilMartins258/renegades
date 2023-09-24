@@ -3,24 +3,34 @@
     <h1>Cadastrar Promoção</h1>
     <div>
       <form @submit.prevent="salvarPromocao">
-        <label for="codigo">Código:</label>
-        <input v-model="novaPromocao.codigo" type="text" id="codigo" placeholder="Digite o código" />
+    <div class="form-group">
+      <label for="codigo">Código:</label><br>
+      <input v-model="novaPromocao.codigo" type="text" id="codigo" placeholder="Digite o código" maxlength="20"/>
+    </div>
 
-        <label for="nome">Nome:</label>
-        <input v-model="novaPromocao.nome" type="text" id="nome" placeholder="Digite o nome" />
+    <div class="form-group">
+      <label for="nome">Nome:</label><br>
+      <input v-model="novaPromocao.nome" type="text" id="nome" placeholder="Digite o nome" maxlength="100"/>
+    </div>
 
-        <label for="descricao">Descrição:</label>
-        <input v-model="novaPromocao.descricao" type="text" id="descricao" placeholder="Digite a descrição" />
+    <div class="form-group">
+      <label for="descricao">Descrição:</label><br>
+      <input v-model="novaPromocao.descricao" type="text" id="descricao" placeholder="Digite a descrição" maxlength="140"/>
+    </div>
 
-        <label for="dataInicio">Data de Início:</label>
+    <div class="form-group">
+        <label for="dataInicio">Data de Início:</label><br>
         <input v-model="novaPromocao.dataInicio" type="date" id="dataInicio" />
-
-        <label for="dataFim">Data de Fim:</label>
+      </div>
+    <div class="form-group">
+        <label for="dataFim">Data de Fim:</label><br>
         <input v-model="novaPromocao.dataFim" type="date" id="dataFim" />
-
+      </div>
         <br><br>
-        <button type="submit">{{ isEditing ? 'Salvando...' : 'Salvar' }}</button>
+        <div class="form-group">
+        <br><button type="submit">{{ isEditing ? 'Salvando...' : 'Salvar' }}</button>
         <p v-if="campoVazio" class="error-message">Obrigatórios preencher todos os campos.</p>
+      </div>
       </form>
     </div>
     <div class="table-container">
@@ -68,9 +78,12 @@
   </div>
     <button @click="InativarPromocao" v-show="listaPromocoes.length > 0">Inativar</button>
   </div>
+  
     <!-- Fieldset para listar promoções Inativas -->
     <fieldset class="fieldset">
-      <legend>Inativos</legend>
+      <label>Inativos</label>
+      <div class="table-container">
+      <br>
       <table>
         <!-- Tabela para listar promoções Inativas -->
         <thead>
@@ -83,14 +96,23 @@
           </tr>
         </thead>
         <tbody>
-          <!-- Preencher com as promoções inativas -->
+          <tr v-for="(promocao, index) in listaPromocoesInativas" :key="index"> <!-- Preencher com as promoções inativas -->
+            <td>{{ promocao.codigo }}</td>
+            <td>{{ promocao.nome }}</td>
+            <td>{{ promocao.descricao }}</td>
+            <td>{{ promocao.dataInicio }}</td>
+            <td>{{ promocao.dataFim }}</td>
+          </tr>
         </tbody>
       </table>
+    </div>
     </fieldset>
 
     <!-- Fieldset para listar promoções Concluídas -->
     <fieldset class="fieldset">
-      <legend>Concluídos</legend>
+      <label>Concluídos</label>
+      <div class="table-container">
+      <br>
       <table>
         <!-- Tabela para listar promoções Concluídas -->
         <thead>
@@ -103,9 +125,16 @@
           </tr>
         </thead>
         <tbody>
-          <!-- Preencher com as promoções concluídas -->
+          <tr v-for="(promocao, index) in listaPromocoesConcluidas" :key="index"><!-- Preencher com as promoções concluídas -->
+            <td>{{ promocao.codigo }}</td>
+            <td>{{ promocao.nome }}</td>
+            <td>{{ promocao.descricao }}</td>
+            <td>{{ promocao.dataInicio }}</td>
+            <td>{{ promocao.dataFim }}</td>
+          </tr>
         </tbody>
       </table>
+    </div>
     </fieldset>
 
 </template>
@@ -124,6 +153,9 @@ export default {
         Inativar: false,
       },
       listaPromocoes: [],
+      listaPromocoesInativas: [],
+      listaPromocoesConcluidas: [], 
+      listaPromocoes: [],
       campoVazio: false,
       isEditing: false,
       editingIndex: -1,
@@ -131,6 +163,10 @@ export default {
   },
   methods: {
     salvarPromocao() {
+
+       // Formate as datas antes de adicioná-las à lista de promoções
+      this.novaPromocao.dataInicio = new Date(this.novaPromocao.dataInicio).toLocaleDateString('pt-BR');
+      this.novaPromocao.dataFim = new Date(this.novaPromocao.dataFim).toLocaleDateString('pt-BR');
       if (
         this.novaPromocao.codigo.trim() !== "" &&
         this.novaPromocao.nome.trim() !== "" &&
@@ -189,19 +225,79 @@ export default {
     },
     InativarPromocao() {
 
-    },
+    },  
+  },
+  mounted() {
+        // substitua pelos dados do BD
+        this.listaPromocoes = [
+      {
+        codigo: "001",
+        nome: "Promoção ativa 1",
+        descricao: "Descrição da Promoção ativa 1",
+        dataInicio: "24/09/2023",
+        dataFim: "02/10/2023",
+      },
+      {
+        codigo: "002",
+        nome: "Promoção ativa 2",
+        descricao: "Descrição da Promoção ativa 2",
+        dataInicio: "01/10/2023",
+        dataFim: "10/10/2023",
+      },
+    ]
+    // substitua pelos dados do BD
+    this.listaPromocoesInativas = [
+      {
+        codigo: "001",
+        nome: "Promoção Inativa 1",
+        descricao: "Descrição da Promoção Inativa 1",
+        dataInicio: "20/09/2023",
+        dataFim: "30/09/2023",
+      },
+      {
+        codigo: "002",
+        nome: "Promoção Inativa 2",
+        descricao: "Descrição da Promoção Inativa 2",
+        dataInicio: "01/10/2023",
+        dataFim: "10/10/2023",
+      },
+      
+    ];
+
+    // substitua pelos dados do BD
+    this.listaPromocoesConcluidas = [
+      {
+        codigo: "101",
+        nome: "Promoção Concluída 1",
+        descricao: "Descrição da Promoção Concluída 1",
+        dataInicio: "15/08/2023",
+        dataFim: "30/08/2023",
+      },
+      {
+        codigo: "102",
+        nome: "Promoção Concluída 2",
+        descricao: "Descrição da Promoção Concluída 2",
+        dataInicio: "01/07/2023",
+        dataFim: "15/07/2023",
+      },
+
+    ];
   },
 };
 </script>
 
 
   <style scoped>
-
+.form-group {
+  margin-bottom: 10px; /* Ajuste a margem conforme necessário */
+}
   .container {
     max-width: 700px;
     margin: 0 auto;
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.8); 
+    white-space: nowrap;
+    border-radius: 25px;
   }
 
   .table-container {
@@ -214,6 +310,8 @@ export default {
   margin: 20px auto;
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.8);
+  white-space: nowrap;
+  border-radius: 25px;
 }
   
   h1 {
