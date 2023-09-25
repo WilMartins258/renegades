@@ -47,7 +47,6 @@ router.post('/', async (req, res) => {
             rdSocialSelecionadas,
             horariosSelecionados
         } = req.body;
-        console.log('req.body \n\n', req.body)
 
         const removerCaracteresEspeciais = (str) => {
             const resultado = str.replace(/[\/\.\-]/g, '');
