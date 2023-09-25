@@ -279,9 +279,6 @@ data() {
     };
 },
 methods: {
-  async metodoInicial() {
-    console.log('metodoInicial do AddEstabelecimento.vue\n\n\n\n\n\n');
-  },
   // Recebe os dados do componente "Categorias"
   receberCategoriasSelecionadas(categorias) {
     this.categoriasSelecionadas = categorias;
@@ -324,137 +321,8 @@ methods: {
         contatosSelecionadas: this.ContatosSelecionadas,
         horariosSelecionados: this.HorariosSelecionados,
       };
-
-      // console.log("formData:", formData);
-
-      const formDataFake = {
-        idUsuario: sessionStorage.getItem('idUsuario'),
-        nomeEstabelecimento: 'nome estabelecimento',
-        descricaoEstabelecimento: 'descricaoEstabelecimento',
-        cnpj: 'cnpj',
-        endereco: {
-          bairro: 'Conjunto Habitacional Jardim Serrano',
-          cidade: 'Votorantim',
-          uf: 'SP',
-          rua: 'Rua Francisco Alves da Rocha'
-        },
-        cep: '18117122',
-        numero: '123456',
-        categoriasSelecionadas: [
-          {
-            id: 1,
-            nome: 'Pizzaria',
-          },
-          {
-            id: 2,
-            nome: 'Hamburgueria',
-          },
-          {
-            id: 3,
-            nome: 'Lanchonete',
-          },
-        ],
-        recomendacao: [{
-          "name": "teste título indicação 1",
-          "description": "teste descricao indicação 1",
-          "photo": {
-              "imagemBase64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAACcCAIAAACm8jPcAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAQNSURBVHhe7d2/UhpRFIBxcfljgAEGCYpEJw6xo8wb2KWztLPkDXwC3yKdnaVvYJcupW9Al3fIyewdsnPYXS573J1l9/vNKTJwA8V+s/cSox4BAAAAAAAAAAAAALC3Zatz3xs8DsbhyJ+/t0/cc0CK4fHxy+Tiz5dv2/N2djkNArcOiPX6ea66iY4869YB22SfUsVsz0Nv6FYDyqo/UrlsDzchJJLzssoldjgJIZ5nQOxiiHHVbP2efVWtxA67GDT/esJhF8N/+9Yjwy4GJ0M9Muxi+CdbPeGwi9WdTz2yVa3nC/VgOOxiteZTz31vICt/js/V4+Gwi9WXfz3irttXT22GXayO9qpHdBqNpF0sugy1sG89oaRd7HEwditQB9nqEUlf4iCgGslcjyCgurPUIwio1oz1CAKqL3s9goBq6kPqEQRURx9VjyCgKrtptqUDuZZqPqoeIa+m/m448rhbgUM0DYKk7+HaOf71CAKqIJ8dKmn2qkcQUNUUWY8goEopuB5BQNUh556C6xEEVB3FnJoVAqqIZaujLqHPrOcLSz2CgKpA6nkaTdQljI48K1d0e26abfcSWcmLqPcKRx53K1BmKT+zZzPGe0w6Ajpsr6k/s0dG7j1uaT4I6ID5/MyevC8kAZWR+jmESfN8OlOXbXtkmXvRfMjrq3cMJ+/3RTyfM81ek+sBSBBQuew80+w18ik97+/PIqAS8TnT+I/Uc9ftu5fODQGVyENvqC5DtpHb2Ko/KuZ7QwmoRG5PuuoyZJu8zz1RBFQinUYj81dDN1PAuSeKgMpFjkHvs2t1MfynmHNPFAGVjnySlxOMXIB9p7BzT5S8r0onHHncrQBSEBBMCAgmBAQTAoIJAcGEgGBCQDAhIJgQEEwICCYEBBMCggkBwYSAYEJAMCEgmBAQTAgIJgQEEwKCCQHBhIBgQkAwISCYEBBMCAgmBAQTAoIJAcGEgGBCQDAhIJgQEEwICCYEBBMCggkBwYSAYEJAMCEgmBAQTAgIJgQEEwKCCQHBhIBgQkAwISCYEBBMCAjZXTVbSb8lmICwQ0o9MgSENNMgSP8N5av+yC0Ftr1MLlQx0VnPF3J/cksBZdnqqGLUFPy763FgZHtSxUTnvjdw64BYSR/dZagHuyUF9DSauBVAiqSA+OgOLwQEEwKCCQHBhIBgQkAwISCYEBBMCAgmb2eXKp1wCAi7/fjUU91shi+EYbek24/MTbPtFgGxUm4/z6cztwhIknL7WbY6bhEQi9sPTLj9ILuU/wfN7Qe7PfSGqpvNcPvBbrcnXdVNONx+4KXTaPw6v1L1rOcL/u0HvmSrep9dR+uRz2XuOcDHNAhW/ZFsW4+DMfceAAAAAAAAAAAAAAAAAACAXBwd/QV3rl3hdXR06AAAAABJRU5ErkJggg=="
-            }
-          },
-          {"name": "teste título indicação 2",
-          "description": "teste descricao indicação 2",
-          "photo": {
-              "imagemBase64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACsAAAAhCAIAAADPpMXxAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADaSURBVFhHYxgFo2AUEAQeLgz3rzD8/4QPARX0dzBIiEO1UBkQtB4NAdUnREP1UgdUFKLbQRB9fwXVSz8Q4MNw/iiKIwYMjHgXNFQOnAvQcuzy+VBxOgEBfobntxHWb1/HwMEBlaIHyEhieP8YYT3Q9/SzHljsoBVWQN/TDyAnOiCifjmIB2BWE3QNeSAYyEQHAXDr6e11OIC7YMAA3AUQBEwTwAxJVwCsedEcAUTArEE/QEZzgYZ5FZgSgdkBzT6siIZtFqAj5k9Htw8TTZ8AVT8KRsEowAcYGAB9ATwczf95iQAAAABJRU5ErkJggg=="
-            }
-          } 
-        ],
-        estabelecimentoPhoto: this.estabelecimentoPhoto,
-        opcoesSelecionadas: [
-          {
-            id: 2,
-            nome: 'Wi-Fi',
-          },
-          {
-            id: 3,
-            nome: 'Estacionamento',
-          },
-        ],
-        estilosSelecionadas: [
-          {
-              "id": 1,
-              "nome": "Pagode",
-              "ativo": 1
-          },
-          {
-              "id": 3,
-              "nome": "Funk",
-              "ativo": 1
-          },
-          {
-              "id": 13,
-              "nome": "Clássica",
-              "ativo": 1
-          },
-          {
-              "id": 15,
-              "nome": "Metal",
-              "ativo": 1
-          }
-      ],
-        rdSocialSelecionadas: [
-          {
-              "redeSocial": "Instagram",
-              "perfil": "link instagram",
-              "idRede": "2"
-          },
-          {
-              "redeSocial": "Facebook",
-              "perfil": "link facebook",
-              "idRede": "1"
-          },
-          {
-              "redeSocial": "Site do Estabelecimento",
-              "perfil": "site proprio link",
-              "idRede": "4"
-          }
-        ],
-        contatosSelecionadas: [
-          {
-            tipoContato: 'Celular',
-            numero: '(15) 98163-5309',
-            isWhatsapp: true,
-            id: 2,
-          },
-          {
-            tipoContato: 'Telefone',
-            numero: '(15) 3242-2433',
-            isWhatsapp: false,
-            id: 1,
-          },
-          {
-            tipoContato: 'Telefone',
-            numero: '(15) 9811-1412',
-            isWhatsapp: true,
-            id: 1,
-          },
-        ],
-        horariosSelecionados: [
-            {
-                "dia": "8",
-                "abre": "18:00",
-                "fecha": "22:00"
-            },
-            {
-                "dia": "10",
-                "abre": "18:00",
-                "fecha": "00:00"
-            }
-        ]
-      };
-
-      // console.log("Dados do formulário e componentes filhos:", formDataFake);
       
-      const salvarEstabelecimento = await api.post('estabelecimento', formDataFake);
+      const salvarEstabelecimento = await api.post('estabelecimento', formData);
 
       if (salvarEstabelecimento) {
         sessionStorage.setItem('idEstabelecimento', salvarEstabelecimento.data.idEstabelecimento);
@@ -476,7 +344,7 @@ methods: {
     // console.log('endereco:', this.endereco);
     // console.log('numero:', this.numero);
     // console.log('recomendacao:', this.recomendacao);
-    // console.log('estabelecimentoPhoto:', this.estabelecimentoPhoto);
+    console.log('estabelecimentoPhoto:', this.estabelecimentoPhoto);
     // console.log('categoriasSelecionadas:', this.categoriasSelecionadas);
     // console.log('opcoesSelecionadas:', this.opcoesSelecionadas);
     // console.log('estilosSelecionadas:', this.estilosSelecionadas);
@@ -561,10 +429,11 @@ methods: {
   },
 
   /*Img estabelecimento*/
-  handleEstabelecimentoPhotoChange(event) {
-    const file = event.target.files[0];
-    if (file) {
-      this.estabelecimentoPhoto = URL.createObjectURL(file);
+  async handleEstabelecimentoPhotoChange(event) {
+    const inputImagem = document.getElementById('estabelecimentoPhoto');
+    const image = inputImagem?.files[0];
+    if (image) {
+      this.estabelecimentoPhoto = await retornaCodigoBase64(image);
     }
   },
 
