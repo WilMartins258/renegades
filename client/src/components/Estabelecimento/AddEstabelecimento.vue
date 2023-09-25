@@ -344,7 +344,7 @@ methods: {
     // console.log('endereco:', this.endereco);
     // console.log('numero:', this.numero);
     // console.log('recomendacao:', this.recomendacao);
-    console.log('estabelecimentoPhoto:', this.estabelecimentoPhoto);
+    // console.log('estabelecimentoPhoto:', this.estabelecimentoPhoto);
     // console.log('categoriasSelecionadas:', this.categoriasSelecionadas);
     // console.log('opcoesSelecionadas:', this.opcoesSelecionadas);
     // console.log('estilosSelecionadas:', this.estilosSelecionadas);
@@ -423,7 +423,7 @@ methods: {
       const file = event.target.files[0];
       if (file) {
         // const imageURL = URL.createObjectURL(file);
-        this.recomendacao[index].photo = { imagemBase64 };
+        this.recomendacao[index].photo = imagemBase64;
       }
     }
   },

@@ -47,6 +47,7 @@ router.post('/', async (req, res) => {
             rdSocialSelecionadas,
             horariosSelecionados
         } = req.body;
+        console.log('req.body \n\n', req.body)
 
         const removerCaracteresEspeciais = (str) => {
             const resultado = str.replace(/[\/\.\-]/g, '');
@@ -105,7 +106,7 @@ router.post('/', async (req, res) => {
             } catch (error) {
                 throw new Error(`Erro ao inserir estilos musicais ao estabelecimento: ${error.message}`);
             }
-        };
+        };  
 
         for (let i = 0; i < horariosSelecionados.length; i++) {
             try {
@@ -117,7 +118,7 @@ router.post('/', async (req, res) => {
 
         for (let i = 0; i < recomendacao.length; i++) {
             try {
-                await recomendacao_Service.inserir([idEstabelecimento, recomendacao[i].name, recomendacao[i].description, recomendacao[i].photo.imagemBase64]);
+                await recomendacao_Service.inserir([idEstabelecimento, recomendacao[i].name, recomendacao[i].description, recomendacao[i].photo]);
             } catch (error) {
                 throw new Error(`Erro ao inserir horários do estabelecimento: ${error.message}`);
             }
