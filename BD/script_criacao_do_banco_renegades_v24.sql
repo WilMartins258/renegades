@@ -125,7 +125,7 @@ CREATE TABLE horario (
 /*
 	Na aplicação nós limitaremos o tanto de itens do cardápio
 */
-CREATE TABLE cardapio (
+CREATE TABLE recomendacao (
 	id                INT PRIMARY KEY AUTO_INCREMENT,
 	idEstabelecimento INT not null,
 	foto              LONGBLOB not null,
@@ -248,8 +248,8 @@ ALTER TABLE horario add (constraint horario_diaSemana_fk foreign key (idDiaSeman
 
 
 
------- CARDAPIO
-ALTER TABLE cardapio add (constraint cardapio_estabelecimento_fk foreign key (idEstabelecimento) references estabelecimento (id));
+------ RECOMENDACAO
+ALTER TABLE recomendacao add (constraint recomendacao_estabelecimento_fk foreign key (idEstabelecimento) references estabelecimento (id));
 
 
 

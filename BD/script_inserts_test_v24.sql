@@ -14,7 +14,7 @@ DELETE FROM opcional;
 DELETE FROM usuario;
 DELETE FROM estabelecimento;
 DELETE FROM horario;
-DELETE FROM cardapio;
+DELETE FROM recomendacao;
 DELETE FROM promocao;
 DELETE FROM redeSocial_estabelecimento;
 DELETE FROM contato_estabelecimento;
@@ -387,7 +387,7 @@ insert into redeSocial_estabelecimento values(
 	'https://www.mcdonalds.com.br/' -- redeSocial VARCHAR(200) not null
 );
 
-insert into cardapio values(
+insert into recomendacao values(
 	null, -- id
 	1, -- idEstabelecimento INT not null,
 	'Big Mac BLOB', -- foto LONGBLOB not null,
@@ -395,7 +395,7 @@ insert into cardapio values(
 	'Big Mac - descrição'-- descricao VARCHAR(50) not null
 );
 
-insert into cardapio values(
+insert into recomendacao values(
 	null, -- id
 	1, -- idEstabelecimento INT not null,
 	'Quarteirão BLOB', -- foto LONGBLOB not null,
@@ -403,7 +403,7 @@ insert into cardapio values(
 	'Quarteirão - descrição'-- descricao VARCHAR(50) not null
 );
 
-insert into cardapio values(
+insert into recomendacao values(
 	null, -- id
 	1, -- idEstabelecimento INT not null,
 	'Big Tasty BLOB', -- foto LONGBLOB not null,
@@ -599,7 +599,7 @@ insert into redeSocial_estabelecimento values(
 	'https://www.mcdonalds.com.br/' -- redeSocial VARCHAR(200) not null
 );
 
-insert into cardapio values(
+insert into recomendacao values(
 	null, -- id
 	2, -- idEstabelecimento INT not null,
 	'Big Mac BLOB', -- foto LONGBLOB not null,
@@ -607,7 +607,7 @@ insert into cardapio values(
 	'Big Mac - descrição'-- descricao VARCHAR(50) not null
 );
 
-insert into cardapio values(
+insert into recomendacao values(
 	null, -- id
 	2, -- idEstabelecimento INT not null,
 	'Quarteirão BLOB', -- foto LONGBLOB not null,
@@ -615,7 +615,7 @@ insert into cardapio values(
 	'Quarteirão - descrição'-- descricao VARCHAR(50) not null
 );
 
-insert into cardapio values(
+insert into recomendacao values(
 	null, -- id
 	2, -- idEstabelecimento INT not null,
 	'Big Tasty BLOB', -- foto LONGBLOB not null,
@@ -745,7 +745,7 @@ insert into contato_estabelecimento values(
 	false -- isWhatsapp        BOOLEAN not null
 );
 
-insert into cardapio values(
+insert into recomendacao values(
 	null, -- id
 	3, -- idEstabelecimento INT not null,
 	'Hot Dog Super BLOB', -- foto LONGBLOB not null,
@@ -753,7 +753,7 @@ insert into cardapio values(
 	'Hot Dog Super - descrição'-- descricao VARCHAR(50) not null
 );
 
-insert into cardapio values(
+insert into recomendacao values(
 	null, -- id
 	3, -- idEstabelecimento INT not null,
 	'Hot Dog Mega BLOB', -- foto LONGBLOB not null,
@@ -761,7 +761,7 @@ insert into cardapio values(
 	'Hot Dog Mega - descrição'-- descricao VARCHAR(50) not null
 );
 
-insert into cardapio values(
+insert into recomendacao values(
 	null, -- id
 	3, -- idEstabelecimento INT not null,
 	'Porção de batata BLOB', -- foto LONGBLOB not null,
@@ -894,7 +894,7 @@ insert into contato_estabelecimento values(
 	false -- isWhatsapp        BOOLEAN not null
 );
 
-insert into cardapio values(
+insert into recomendacao values(
 	null, -- id
 	4, -- idEstabelecimento INT not null,
 	'Pizza de Calabresa BLOB', -- foto LONGBLOB not null,
@@ -902,7 +902,7 @@ insert into cardapio values(
 	'Pizza de Calabresa - descrição'-- descricao VARCHAR(50) not null
 );
 
-insert into cardapio values(
+insert into recomendacao values(
 	null, -- id
 	4, -- idEstabelecimento INT not null,
 	'Pizza de Frango com Catupiry BLOB', -- foto LONGBLOB not null,
@@ -1005,7 +1005,7 @@ insert into contato_estabelecimento values(
 	false -- isWhatsapp        BOOLEAN not null
 );
 
-insert into cardapio values(
+insert into recomendacao values(
 	null, -- id
 	5, -- idEstabelecimento INT not null,
 	'Drik Mada 01 BLOB', -- foto LONGBLOB not null,
@@ -1013,7 +1013,7 @@ insert into cardapio values(
 	'Drik Mada 01 - descrição'-- descricao VARCHAR(50) not null
 );
 
-insert into cardapio values(
+insert into recomendacao values(
 	null, -- id
 	5, -- idEstabelecimento INT not null,
 	'Drik Mada 02 BLOB', -- foto LONGBLOB not null,
@@ -1021,7 +1021,7 @@ insert into cardapio values(
 	'Drik Mada 02 - descrição'-- descricao VARCHAR(50) not null
 );
 
-insert into cardapio values(
+insert into recomendacao values(
 	null, -- id
 	5, -- idEstabelecimento INT not null,
 	'Drik Mada 03 BLOB', -- foto LONGBLOB not null,
