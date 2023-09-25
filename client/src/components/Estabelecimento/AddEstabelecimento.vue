@@ -241,6 +241,7 @@ import DashRdSociais from "./ComponentsChild/DashRdSociais.vue";
 import Categorias from "./ComponentsChild/Categorias.vue";
 import EstilosMusicas from "./ComponentsChild/EstilosMusicas.vue";
 import api from "./../../services/backend-service.js";
+import { retornaCodigoBase64 } from "./../../services/conversorDeImagem.service.js";
 
 export default {
 components: {
@@ -353,7 +354,20 @@ methods: {
             nome: 'Lanchonete',
           },
         ],
-        recomendacao: this.recomendacao,
+        recomendacao: [{
+          "name": "teste título indicação 1",
+          "description": "teste descricao indicação 1",
+          "photo": {
+              "imagemBase64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAACcCAIAAACm8jPcAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAQNSURBVHhe7d2/UhpRFIBxcfljgAEGCYpEJw6xo8wb2KWztLPkDXwC3yKdnaVvYJcupW9Al3fIyewdsnPYXS573J1l9/vNKTJwA8V+s/cSox4BAAAAAAAAAAAAALC3Zatz3xs8DsbhyJ+/t0/cc0CK4fHxy+Tiz5dv2/N2djkNArcOiPX6ea66iY4869YB22SfUsVsz0Nv6FYDyqo/UrlsDzchJJLzssoldjgJIZ5nQOxiiHHVbP2efVWtxA67GDT/esJhF8N/+9Yjwy4GJ0M9Muxi+CdbPeGwi9WdTz2yVa3nC/VgOOxiteZTz31vICt/js/V4+Gwi9WXfz3irttXT22GXayO9qpHdBqNpF0sugy1sG89oaRd7HEwditQB9nqEUlf4iCgGslcjyCgurPUIwio1oz1CAKqL3s9goBq6kPqEQRURx9VjyCgKrtptqUDuZZqPqoeIa+m/m448rhbgUM0DYKk7+HaOf71CAKqIJ8dKmn2qkcQUNUUWY8goEopuB5BQNUh556C6xEEVB3FnJoVAqqIZaujLqHPrOcLSz2CgKpA6nkaTdQljI48K1d0e26abfcSWcmLqPcKRx53K1BmKT+zZzPGe0w6Ajpsr6k/s0dG7j1uaT4I6ID5/MyevC8kAZWR+jmESfN8OlOXbXtkmXvRfMjrq3cMJ+/3RTyfM81ek+sBSBBQuew80+w18ik97+/PIqAS8TnT+I/Uc9ftu5fODQGVyENvqC5DtpHb2Ko/KuZ7QwmoRG5PuuoyZJu8zz1RBFQinUYj81dDN1PAuSeKgMpFjkHvs2t1MfynmHNPFAGVjnySlxOMXIB9p7BzT5S8r0onHHncrQBSEBBMCAgmBAQTAoIJAcGEgGBCQDAhIJgQEEwICCYEBBMCggkBwYSAYEJAMCEgmBAQTAgIJgQEEwKCCQHBhIBgQkAwISCYEBBMCAgmBAQTAoIJAcGEgGBCQDAhIJgQEEwICCYEBBMCggkBwYSAYEJAMCEgmBAQTAgIJgQEEwKCCQHBhIBgQkAwISCYEBBMCAjZXTVbSb8lmICwQ0o9MgSENNMgSP8N5av+yC0Ftr1MLlQx0VnPF3J/cksBZdnqqGLUFPy763FgZHtSxUTnvjdw64BYSR/dZagHuyUF9DSauBVAiqSA+OgOLwQEEwKCCQHBhIBgQkAwISCYEBBMCAgmb2eXKp1wCAi7/fjUU91shi+EYbek24/MTbPtFgGxUm4/z6cztwhIknL7WbY6bhEQi9sPTLj9ILuU/wfN7Qe7PfSGqpvNcPvBbrcnXdVNONx+4KXTaPw6v1L1rOcL/u0HvmSrep9dR+uRz2XuOcDHNAhW/ZFsW4+DMfceAAAAAAAAAAAAAAAAAACAXBwd/QV3rl3hdXR06AAAAABJRU5ErkJggg=="
+            }
+          },
+          {"name": "teste título indicação 2",
+          "description": "teste descricao indicação 2",
+          "photo": {
+              "imagemBase64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACsAAAAhCAIAAADPpMXxAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADaSURBVFhHYxgFo2AUEAQeLgz3rzD8/4QPARX0dzBIiEO1UBkQtB4NAdUnREP1UgdUFKLbQRB9fwXVSz8Q4MNw/iiKIwYMjHgXNFQOnAvQcuzy+VBxOgEBfobntxHWb1/HwMEBlaIHyEhieP8YYT3Q9/SzHljsoBVWQN/TDyAnOiCifjmIB2BWE3QNeSAYyEQHAXDr6e11OIC7YMAA3AUQBEwTwAxJVwCsedEcAUTArEE/QEZzgYZ5FZgSgdkBzT6siIZtFqAj5k9Htw8TTZ8AVT8KRsEowAcYGAB9ATwczf95iQAAAABJRU5ErkJggg=="
+            }
+          } 
+        ],
         estabelecimentoPhoto: this.estabelecimentoPhoto,
         opcoesSelecionadas: [
           {
@@ -437,7 +451,6 @@ methods: {
             }
         ]
       };
-
 
       // console.log("Dados do formulário e componentes filhos:", formDataFake);
       
@@ -527,18 +540,23 @@ methods: {
       this.limpa_formulário_cep();
     }
   },
-
-      /*Img Cardápio*/
+  /*Img Cardápio*/
   addrecomendacoes() {
     if (this.recomendacao.length < 3) {
       this.recomendacao.push({ name: '', description: '' });
     }
   },
-  AddFoto(event, index) {
-    const file = event.target.files[0];
-    if (file) {
-      const imageURL = URL.createObjectURL(file);
-      this.recomendacao[index].photo = { file, imageURL };
+  async AddFoto(event, index) {
+    const inputImagem = document.getElementById(`fotoIndic${index+1}`);
+    const image = inputImagem?.files[0];
+
+    if (image) {
+      const imagemBase64 = await retornaCodigoBase64(image);
+      const file = event.target.files[0];
+      if (file) {
+        // const imageURL = URL.createObjectURL(file);
+        this.recomendacao[index].photo = { imagemBase64 };
+      }
     }
   },
 
