@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const loginService = require('./../services/login.service.js');
+const login_Service = require('./../services/login.service.js');
 
 router.post('/', async (req, res) => {
     const loginInfo = req?.body;
@@ -11,7 +11,7 @@ router.post('/', async (req, res) => {
             });
         }
 
-        const resultadoLogin = await loginService.getLoginData(loginInfo.email);
+        const resultadoLogin = await login_Service.fazerLogin(loginInfo.email);
 
         if (!resultadoLogin) {
             res.status(404).send({

@@ -3,8 +3,7 @@ const db = require('../models/db.js');
 /**
  * Query que busca os dados so usuário com base no email enviado
  */
-const getLoginData = async (userEmail) => {
-    console.log('getLoginData')
+const fazerLogin = async (userEmail) => {
     const loginQuery = `SELECT id, nome, email, senha, fotoperfil, tipoUsuario 
                         FROM usuario 
                         WHERE email = ?;`;
@@ -16,5 +15,5 @@ const getLoginData = async (userEmail) => {
 }
 
 module.exports = {
-    getLoginData
+    fazerLogin
 }
