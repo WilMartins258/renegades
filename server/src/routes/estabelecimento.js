@@ -47,7 +47,7 @@ router.post('/', async (req, res) => {
             rdSocialSelecionadas,
             horariosSelecionados
         } = req.body;
-        
+
         const removerCaracteresEspeciais = (str) => {
             const resultado = str.replace(/[\/\.\-]/g, '');
             return resultado;
@@ -71,8 +71,8 @@ router.post('/', async (req, res) => {
             dataUltimoAcesso: dataDeHoje
         }
         const dadosEstabelecimentoArray = Object.values(dadosEstabelecimento);
-                
-        const idEstabelecimento = await estabelecimento_Service.inserir(dadosEstabelecimentoArray);       
+
+        const idEstabelecimento = await estabelecimento_Service.inserir(dadosEstabelecimentoArray);
         await usuario_Service.inserirIdEstabelecimento([idEstabelecimento, idUsuario]);
 
         for (let i = 0; i < categoriasSelecionadas.length; i++) {
@@ -80,7 +80,7 @@ router.post('/', async (req, res) => {
                 await categoria_estabelecimento_Service.inserir([idEstabelecimento, categoriasSelecionadas[i].id]);
             } catch (error) {
                 throw new Error(`Erro ao inserir categoria do estabelecimento: ${error.message}`);
-            }  
+            }
         };
 
         for (let i = 0; i < opcoesSelecionadas.length; i++) {
@@ -112,15 +112,15 @@ router.post('/', async (req, res) => {
                 await horario_Service.inserir([idEstabelecimento, horariosSelecionados[i].dia, horariosSelecionados[i].abre, horariosSelecionados[i].fecha]);
             } catch (error) {
                 throw new Error(`Erro ao inserir horários do estabelecimento: ${error.message}`);
-            }  
+            }
         };
 
         for (let i = 0; i < recomendacao.length; i++) {
             try {
-                await recomendacao_Service.inserir([idEstabelecimento, recomendacao[i].name,recomendacao[i].description, recomendacao[i].photo.imagemBase64 ]);
+                await recomendacao_Service.inserir([idEstabelecimento, recomendacao[i].name, recomendacao[i].description, recomendacao[i].photo.imagemBase64]);
             } catch (error) {
                 throw new Error(`Erro ao inserir horários do estabelecimento: ${error.message}`);
-            }  
+            }
         };
 
         res.status(200).send({
