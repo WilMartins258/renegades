@@ -390,7 +390,7 @@ insert into redeSocial_estabelecimento values(
 insert into recomendacao values(
 	null, -- id
 	1, -- idEstabelecimento INT not null,
-	'Big Mac BLOB', -- foto LONGBLOB not null,
+	'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACsAAAAhCAIAAADPpMXxAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADaSURBVFhHYxgFo2AUEAQeLgz3rzD8/4QPARX0dzBIiEO1UBkQtB4NAdUnREP1UgdUFKLbQRB9fwXVSz8Q4MNw/iiKIwYMjHgXNFQOnAvQcuzy+VBxOgEBfobntxHWb1/HwMEBlaIHyEhieP8YYT3Q9/SzHljsoBVWQN/TDyAnOiCifjmIB2BWE3QNeSAYyEQHAXDr6e11OIC7YMAA3AUQBEwTwAxJVwCsedEcAUTArEE/QEZzgYZ5FZgSgdkBzT6siIZtFqAj5k9Htw8TTZ8AVT8KRsEowAcYGAB9ATwczf95iQAAAABJRU5ErkJggg==', -- foto LONGBLOB not null,
 	'Big Mac', -- nome VARCHAR(50) not null,
 	'Big Mac - descrição'-- descricao VARCHAR(50) not null
 );
@@ -602,7 +602,7 @@ insert into redeSocial_estabelecimento values(
 insert into recomendacao values(
 	null, -- id
 	2, -- idEstabelecimento INT not null,
-	'Big Mac BLOB', -- foto LONGBLOB not null,
+	'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACsAAAAhCAIAAADPpMXxAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADaSURBVFhHYxgFo2AUEAQeLgz3rzD8/4QPARX0dzBIiEO1UBkQtB4NAdUnREP1UgdUFKLbQRB9fwXVSz8Q4MNw/iiKIwYMjHgXNFQOnAvQcuzy+VBxOgEBfobntxHWb1/HwMEBlaIHyEhieP8YYT3Q9/SzHljsoBVWQN/TDyAnOiCifjmIB2BWE3QNeSAYyEQHAXDr6e11OIC7YMAA3AUQBEwTwAxJVwCsedEcAUTArEE/QEZzgYZ5FZgSgdkBzT6siIZtFqAj5k9Htw8TTZ8AVT8KRsEowAcYGAB9ATwczf95iQAAAABJRU5ErkJggg==', -- foto LONGBLOB not null,
 	'Big Mac', -- nome VARCHAR(50) not null,
 	'Big Mac - descrição'-- descricao VARCHAR(50) not null
 );
@@ -748,7 +748,7 @@ insert into contato_estabelecimento values(
 insert into recomendacao values(
 	null, -- id
 	3, -- idEstabelecimento INT not null,
-	'Hot Dog Super BLOB', -- foto LONGBLOB not null,
+	'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACsAAAAhCAIAAADPpMXxAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADaSURBVFhHYxgFo2AUEAQeLgz3rzD8/4QPARX0dzBIiEO1UBkQtB4NAdUnREP1UgdUFKLbQRB9fwXVSz8Q4MNw/iiKIwYMjHgXNFQOnAvQcuzy+VBxOgEBfobntxHWb1/HwMEBlaIHyEhieP8YYT3Q9/SzHljsoBVWQN/TDyAnOiCifjmIB2BWE3QNeSAYyEQHAXDr6e11OIC7YMAA3AUQBEwTwAxJVwCsedEcAUTArEE/QEZzgYZ5FZgSgdkBzT6siIZtFqAj5k9Htw8TTZ8AVT8KRsEowAcYGAB9ATwczf95iQAAAABJRU5ErkJggg==', -- foto LONGBLOB not null,
 	'Hot Dog Super', -- nome VARCHAR(50) not null,
 	'Hot Dog Super - descrição'-- descricao VARCHAR(50) not null
 );
@@ -897,7 +897,7 @@ insert into contato_estabelecimento values(
 insert into recomendacao values(
 	null, -- id
 	4, -- idEstabelecimento INT not null,
-	'Pizza de Calabresa BLOB', -- foto LONGBLOB not null,
+	'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACsAAAAhCAIAAADPpMXxAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADaSURBVFhHYxgFo2AUEAQeLgz3rzD8/4QPARX0dzBIiEO1UBkQtB4NAdUnREP1UgdUFKLbQRB9fwXVSz8Q4MNw/iiKIwYMjHgXNFQOnAvQcuzy+VBxOgEBfobntxHWb1/HwMEBlaIHyEhieP8YYT3Q9/SzHljsoBVWQN/TDyAnOiCifjmIB2BWE3QNeSAYyEQHAXDr6e11OIC7YMAA3AUQBEwTwAxJVwCsedEcAUTArEE/QEZzgYZ5FZgSgdkBzT6siIZtFqAj5k9Htw8TTZ8AVT8KRsEowAcYGAB9ATwczf95iQAAAABJRU5ErkJggg==', -- foto LONGBLOB not null,
 	'Pizza de Calabresa', -- nome VARCHAR(50) not null,
 	'Pizza de Calabresa - descrição'-- descricao VARCHAR(50) not null
 );
@@ -1008,7 +1008,7 @@ insert into contato_estabelecimento values(
 insert into recomendacao values(
 	null, -- id
 	5, -- idEstabelecimento INT not null,
-	'Drik Mada 01 BLOB', -- foto LONGBLOB not null,
+	'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACsAAAAhCAIAAADPpMXxAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADaSURBVFhHYxgFo2AUEAQeLgz3rzD8/4QPARX0dzBIiEO1UBkQtB4NAdUnREP1UgdUFKLbQRB9fwXVSz8Q4MNw/iiKIwYMjHgXNFQOnAvQcuzy+VBxOgEBfobntxHWb1/HwMEBlaIHyEhieP8YYT3Q9/SzHljsoBVWQN/TDyAnOiCifjmIB2BWE3QNeSAYyEQHAXDr6e11OIC7YMAA3AUQBEwTwAxJVwCsedEcAUTArEE/QEZzgYZ5FZgSgdkBzT6siIZtFqAj5k9Htw8TTZ8AVT8KRsEowAcYGAB9ATwczf95iQAAAABJRU5ErkJggg==', -- foto LONGBLOB not null,
 	'Drik Mada 01', -- nome VARCHAR(50) not null,
 	'Drik Mada 01 - descrição'-- descricao VARCHAR(50) not null
 );
