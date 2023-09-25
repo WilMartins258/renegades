@@ -1,5 +1,4 @@
 const retornaCodigoBase64 = async (imagem) => {
-  console.log('retornaCodigoBase64 retornaCodigoBase64 retornaCodigoBase64');
   return new Promise((resolve, reject) => {
     const leitorDeImagem = new FileReader();
 
