@@ -67,7 +67,7 @@ export default {
 						email: this.Email,
 						senha: this.Senha1
 					};
-					const usuarioCriado = api.post('/usuario', informacoesDoUsuario);
+					const usuarioCriado = await api.post('/usuario', informacoesDoUsuario);
 					console.log('usuarioCriado:: ', usuarioCriado);
 
 					sessionStorage.setItem('idUsuario', usuarioCriado.data.id);
