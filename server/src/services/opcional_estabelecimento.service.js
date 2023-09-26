@@ -1,11 +1,11 @@
 const db = require('../models/db.js');
 
-const inserir = async (opcionalData) => {
+const inserir = async (dadosOpcional) => {
     try {
         const inserirOpcionalEstabelecimentoQuery = `INSERT INTO opcional_estabelecimento  VALUES ( null, ?, ? );`;
         const connection = await db;
 
-        const [idOpcionalEstabelecimentoInserido] = await connection.query(inserirOpcionalEstabelecimentoQuery, opcionalData);
+        const [idOpcionalEstabelecimentoInserido] = await connection.query(inserirOpcionalEstabelecimentoQuery, dadosOpcional);
 
         return idOpcionalEstabelecimentoInserido?.insertId;
     } catch (error) {
