@@ -32,7 +32,7 @@ const inserir = async (dadosUsuario) => {
 
     const [insercaoUsuario] = await connection.query(dadosUsuarioQuery, dadosUsuario);
 
-    return insercaoUsuario;
+    return insercaoUsuario.insertId;
   } catch (error) {
     throw new Error(`Erro ao inserir dados do usuário: ${error.message}`);
   }

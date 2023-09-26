@@ -116,12 +116,12 @@ router.post('/', async (req, res) => {
             });
             
         } else {
-            const usuarioInserido = await usuario_Service.inserir(dadosUsuarioArray);
+            const idUsuario = await usuario_Service.inserir(dadosUsuarioArray);
 
             res.status(200).send({
                 msg: 'Usuário adicionado ao sistema',
                 login: true,
-                id: usuarioInserido.idDoUsuario,
+                id: idUsuario,
                 nome: reqBody.nome,
                 email: reqBody.email,
                 tipoUsuario: 0
