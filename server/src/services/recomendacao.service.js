@@ -1,11 +1,8 @@
-const db = require('../models/db.js');
-
-const inserir = async (dadosRecomendacao) => {
+const inserir = async (dadosRecomendacao, conn) => {
     try {
         const recomendacaoQuery = `INSERT INTO recomendacao (idEstabelecimento, nome, descricao, foto) VALUES (?, ?, ?, ?);`;
-        const connection = await db;
 
-        const [idRecomendacaoInserido] = await connection.query(recomendacaoQuery, dadosRecomendacao);
+        const [idRecomendacaoInserido] = await conn.query(recomendacaoQuery, dadosRecomendacao);
 
         return idRecomendacaoInserido?.insertId;
     } catch (error) {
