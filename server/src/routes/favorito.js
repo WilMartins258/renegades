@@ -9,7 +9,7 @@ router.get('/:idUsuario', async (req, res) => {
         const favoritos = await favorito_Service.pegarPorId(idUsuario);
         console.error('favoritos:: ', favoritos);
 
-        res.status(200).send('testando 123');
+        res.status(200).send(favoritos);
     } catch (error) {
         console.error('ERROR:: ', error);
     }
