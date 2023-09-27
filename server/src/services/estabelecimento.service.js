@@ -1,14 +1,12 @@
-const db = require('../models/db.js');
-
-const inserir = async (dadosEstabelecimento) => {
+const inserir = async (dadosEstabelecimento, conn) => {
     try {
       const estabelecimentoQuery = `
         INSERT INTO estabelecimento (nome, cnpj, fotoPrincipal, descricao, 
         cep, estado, cidade, logradouro, bairro, numeroEstabelecimento, dataCadastro, dataUltimoAcesso) 
         VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );`;
-      const connection = await db;
+      // const connection = await db;
   
-      const [insercaoEstabelecimento] = await connection.query(estabelecimentoQuery, dadosEstabelecimento);
+      const [insercaoEstabelecimento] = await conn.query(estabelecimentoQuery, dadosEstabelecimento);
   
       return insercaoEstabelecimento?.insertId;
     } catch (error) {
@@ -16,12 +14,11 @@ const inserir = async (dadosEstabelecimento) => {
     }
 };
 
-const atualizar = async (dadosEstabelecimento) => {
+const atualizar = async (dadosEstabelecimento, conn) => {
     try {
       const estabelecimentoQuery = ``;
-      const connection = await db;
   
-      const [atualizacaoEstabelecimento] = await connection.query(estabelecimentoQuery, dadosEstabelecimento);
+      const [atualizacaoEstabelecimento] = await conn.query(estabelecimentoQuery, dadosEstabelecimento);
   
       return atualizacaoEstabelecimento;
     } catch (error) {
@@ -29,12 +26,11 @@ const atualizar = async (dadosEstabelecimento) => {
     }
 };
 
-const pegarPorId = async (idEstabelecimento) => {
+const pegarPorId = async (idEstabelecimento, conn) => {
     try {
       const estabelecimentoQuery = '';
-      const connection = await db;
   
-      const [dadosEstabelecimento] = await connection.query(estabelecimentoQuery, idEstabelecimento);
+      const [dadosEstabelecimento] = await conn.query(estabelecimentoQuery, idEstabelecimento);
   
       return dadosEstabelecimento;
     } catch (error) {
