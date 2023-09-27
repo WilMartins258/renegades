@@ -49,6 +49,11 @@ router.use(
 );
 
 router.use(
+    "/favorito",
+    require("./favorito.js")
+);
+
+router.use(
     "/test",
     require("./test.js")
 );
