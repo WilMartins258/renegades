@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
+// Importando services e transaction
 const transaction = require('./../models/transaction.js');
-
-// Importando controllers e serviços que serão utilizados nas rotas
 const estabelecimento_Service = require('./../services/estabelecimento.service.js');
 const usuario_Service = require('./../services/usuario.service.js');
 const categoria_estabelecimento_Service = require('../services/categoria_estabelecimento.service.js');
@@ -76,12 +75,12 @@ router.post('/', async (req, res) => {
         }
         const dadosEstabelecimentoArray = Object.values(dadosEstabelecimento);
 
-        const idEstabelecimento = await estabelecimento_Service.inserir(dadosEstabelecimentoArray);
-        await usuario_Service.inserirIdEstabelecimento([idEstabelecimento, idUsuario]);
+        const idEstabelecimento = await estabelecimento_Service.inserir(dadosEstabelecimentoArray, connection);
+        await usuario_Service.inserirIdEstabelecimento([idEstabelecimento, idUsuario], connection);
 
         for (let i = 0; i < categoriasSelecionadas.length; i++) {
             try {
-                await categoria_estabelecimento_Service.inserir([idEstabelecimento, categoriasSelecionadas[i].id]);
+                await categoria_estabelecimento_Service.inserir([idEstabelecimento, categoriasSelecionadas[i].id], connection);
             } catch (error) {
                 throw new Error(`Erro ao inserir categoria do estabelecimento: ${error.message}`);
             }
@@ -89,7 +88,7 @@ router.post('/', async (req, res) => {
 
         for (let i = 0; i < opcoesSelecionadas.length; i++) {
             try {
-                await opcional_estabelecimento_Service.inserir([idEstabelecimento, opcoesSelecionadas[i].id]);
+                await opcional_estabelecimento_Service.inserir([idEstabelecimento, opcoesSelecionadas[i].id], connection);
             } catch (error) {
                 throw new Error(`Erro ao inserir opcionais do estabelecimento: ${error.message}`);
             }
@@ -97,7 +96,7 @@ router.post('/', async (req, res) => {
 
         for (let i = 0; i < rdSocialSelecionadas.length; i++) {
             try {
-                await redeSocial_estabelecimento_Service.inserir([idEstabelecimento, rdSocialSelecionadas[i].idRede, rdSocialSelecionadas[i].perfil]);
+                await redeSocial_estabelecimento_Service.inserir([idEstabelecimento, rdSocialSelecionadas[i].idRede, rdSocialSelecionadas[i].perfil], connection);
             } catch (error) {
                 throw new Error(`Erro ao inserir redes sociais do estabelecimento: ${error.message}`);
             }
@@ -105,7 +104,7 @@ router.post('/', async (req, res) => {
 
         for (let i = 0; i < estilosSelecionadas.length; i++) {
             try {
-                await musica_estabelecimento_Service.inserir([idEstabelecimento, estilosSelecionadas[i].id]);
+                await musica_estabelecimento_Service.inserir([idEstabelecimento, estilosSelecionadas[i].id], connection);
             } catch (error) {
                 throw new Error(`Erro ao inserir estilos musicais ao estabelecimento: ${error.message}`);
             }
@@ -113,7 +112,7 @@ router.post('/', async (req, res) => {
 
         for (let i = 0; i < horariosSelecionados.length; i++) {
             try {
-                await horario_Service.inserir([idEstabelecimento, horariosSelecionados[i].dia, horariosSelecionados[i].abre, horariosSelecionados[i].fecha]);
+                await horario_Service.inserir([idEstabelecimento, horariosSelecionados[i].dia, horariosSelecionados[i].abre, horariosSelecionados[i].fecha], connection);
             } catch (error) {
                 throw new Error(`Erro ao inserir horários do estabelecimento: ${error.message}`);
             }
@@ -121,11 +120,13 @@ router.post('/', async (req, res) => {
 
         for (let i = 0; i < recomendacao.length; i++) {
             try {
-                await recomendacao_Service.inserir([idEstabelecimento, recomendacao[i].name, recomendacao[i].description, recomendacao[i].photo]);
+                await recomendacao_Service.inserir([idEstabelecimento, recomendacao[i].name, recomendacao[i].description, recomendacao[i].photo], connection);
             } catch (error) {
                 throw new Error(`Erro ao inserir horários do estabelecimento: ${error.message}`);
             }
         };
+
+        await connection.commit();
 
         res.status(200).send({
             msg: 'Estabelecimento adicionado com sucesso!',
@@ -133,11 +134,27 @@ router.post('/', async (req, res) => {
             idEstabelecimento: idEstabelecimento
         });
     } catch (error) {
-        console.error('Erro na rota POST /', error);
+        console.error('Erro na rota POST /estabelecimento', error);
+        if (connection) {
+            try {
+                await connection.rollback();
+                console.error('POST/estabelecimento: rollback()');
+            } catch (rollbackError) {
+                console.error('Erro ao fazer rollback da transação:', rollbackError);
+            }
+        }
         res.status(500).send({
             errorMsg: 'Ocorreu um erro ao processar a criação de estabelecimento.',
             error: error.message
         });
+    } finally {
+        if (connection) {
+            try {
+                connection.release();
+            } catch (releaseError) {
+                console.error('Erro ao liberar a conexão:', releaseError);
+            }
+        }
     }
 });
 
