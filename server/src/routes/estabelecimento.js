@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
+const transaction = require('./../models/transaction.js');
+
 // Importando controllers e serviços que serão utilizados nas rotas
 const estabelecimento_Service = require('./../services/estabelecimento.service.js');
 const usuario_Service = require('./../services/usuario.service.js');
@@ -30,7 +32,9 @@ router.get('/:id', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
+    let connection;
     try {
+        connection = await transaction;
         const {
             idUsuario,
             nomeEstabelecimento,
