@@ -2,7 +2,15 @@ const mysql = require("mysql2/promise");
 
 async function startTransaction() {
     try {
-        const connection = await mysql.createConnection("mysql://root:123456@localhost:3306/renegades_stage");
+        const pool = mysql.createPool({
+            host: "localhost",
+            user: "root",
+            password: "123456",
+            database: "renegades_stage" //,
+			// connectionLimit: 10 // Limite de conexões no pool
+        });
+
+        const connection = await pool.getConnection();
         await connection.beginTransaction();
         console.log("Iniciou a transação no MySQL!");
         return connection;
