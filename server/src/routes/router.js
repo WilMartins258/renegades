@@ -34,11 +34,6 @@ router.use(
 );
 
 router.use(
-    "/tipocontato",
-    require("./tipoContato.js")
-);
-
-router.use(
     "/usuario",
     require("./usuario.js")
 );
