@@ -34,6 +34,8 @@
   </template>
   
   <script>
+  import api from './../../services/backend-service.js'; 
+
   export default {
     name:"MeusFavoritos",
     data() {
@@ -41,17 +43,29 @@
         estabelecimentos: [],
       };
     },
+    created() {
+	    this.metodoInicial();
+    },
     methods: {
+      async metodoInicial() {
+        console.log('id do usuário:', sessionStorage.getItem('idUsuario'))
+
+        const favoritos = await api.get(`/favorito/${sessionStorage.getItem('idUsuario')}`);
+        console.log('favoritos: ', favoritos.data)
+
+        this.estabelecimentos = [favoritos.data];
+
+      },
       removerFavorito(estabelecimento) {
         // lógica para cancelar o favorito.
       },
     },
-    mounted() {
-      this.estabelecimentos = [
-        { id: 1, nome: "Estabelecimento 1", link: "/usuario", favorito: true },
-        { id: 2, nome: "Estabelecimento 2", link: "/usuario", favorito: true },
-      ];
-    },
+    // mounted() {
+    //   this.estabelecimentos = [
+    //     { id: 1, nome: "Estabelecimento 1", link: "/usuario", favorito: true },
+    //     { id: 2, nome: "Estabelecimento 2", link: "/usuario", favorito: true },
+    //   ];
+    // },
   };
   </script>
   
