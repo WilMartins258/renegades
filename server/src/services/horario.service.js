@@ -1,11 +1,8 @@
-const db = require('../models/db.js');
-
-const inserir = async (dadosHorario) => {
+const inserir = async (dadosHorario, conn) => {
     try {
-        const horarioQuery = `INSERT INTO horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) VALUES ( ?, ?, ?, ?);`;
-        const connection = await db;
+        const horarioQuery = `INSERT INTO horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) VALUES (?, ?, ?, ?);`;
 
-        const [idHorarioInserido] = await connection.query(horarioQuery, dadosHorario);
+        const [idHorarioInserido] = await conn.query(horarioQuery, dadosHorario);
 
         return idHorarioInserido?.insertId;
     } catch (error) {
