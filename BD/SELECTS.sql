@@ -1,3 +1,5 @@
+USE renegades_stage;
+
 SELECT * FROM categoria;
 SELECT * FROM estiloMusica;
 SELECT * FROM contato;
