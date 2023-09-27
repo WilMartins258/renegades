@@ -4,7 +4,6 @@ const inserir = async (dadosEstabelecimento, conn) => {
         INSERT INTO estabelecimento (nome, cnpj, fotoPrincipal, descricao, 
         cep, estado, cidade, logradouro, bairro, numeroEstabelecimento, dataCadastro, dataUltimoAcesso) 
         VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );`;
-      // const connection = await db;
   
       const [insercaoEstabelecimento] = await conn.query(estabelecimentoQuery, dadosEstabelecimento);
   
