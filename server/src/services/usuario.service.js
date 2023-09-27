@@ -11,12 +11,11 @@ const checarEmail = async (email) => {
   return checkEmail[0];
 };
 
-const inserirIdEstabelecimento = async (ids) => {
+const inserirIdEstabelecimento = async (ids, conn) => {
   try {
-    const idQuery = `UPDATE usuario set idEstabelecimento = ?, tipoUsuario = 1 WHERE id = ?;`;
-    const connection = await db;
+    const idQuery = `UPDATE usuario SET idEstabelecimento = ?, tipoUsuario = 1 WHERE id = ?;`;
 
-    const [insercaoId] = await connection.query(idQuery, ids);
+    const [insercaoId] = await conn.query(idQuery, ids);
 
     return insercaoId;
   } catch (error) {
