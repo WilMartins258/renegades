@@ -1030,3 +1030,16 @@ insert into recomendacao values(
 );
 
 -- -----------------------------------------------> Mada Bar FIM
+
+
+insert into favorito values(
+    null, -- id INT PRIMARY KEY AUTO_INCREMENT,
+    1, -- idUsuario INT NOT NULL,
+    1 -- idEstabelecimento INT NOT NULL
+);
+
+insert into favorito values(
+    null, -- id INT PRIMARY KEY AUTO_INCREMENT,
+    1, -- idUsuario INT NOT NULL,
+    5 -- idEstabelecimento INT NOT NULL
+);
