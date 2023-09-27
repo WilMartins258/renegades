@@ -1,16 +1,8 @@
-const db = require('../models/db.js');
-
-/*
-    idEstabelecimento   INT not null,
-	idRedeSocial    INT not null,
-	redeSocial          VARCHAR(300) not null
-*/
-const inserir = async (dadosRedeSocial) => {
+const inserir = async (dadosRedeSocial, conn) => {
     try {
         const inserirRedeSocailEstabelecimentoQuery = `INSERT INTO redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) VALUES ( ?, ?, ? );`;
-        const connection = await db;
 
-        const [idRedeSocialEstabelecimentoInserido] = await connection.query(inserirRedeSocailEstabelecimentoQuery, dadosRedeSocial);
+        const [idRedeSocialEstabelecimentoInserido] = await conn.query(inserirRedeSocailEstabelecimentoQuery, dadosRedeSocial);
 
         return idRedeSocialEstabelecimentoInserido?.insertId;
     } catch (error) {
