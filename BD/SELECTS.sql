@@ -20,3 +20,5 @@ SELECT * FROM categoria_estabelecimento;
 SELECT * FROM musica_estabelecimento;
 SELECT * FROM avaliacao;
 SELECT * FROM favorito;
+
+SELECT * FROM testTable;
