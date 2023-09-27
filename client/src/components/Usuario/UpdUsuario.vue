@@ -519,7 +519,7 @@ export default{
 
   @media (max-width: 414px) {
   #form-wrap {
-    min-height: 200px; 
+    min-height: 2000px; 
   }
   .group .button {
     padding: 15px 20px; 

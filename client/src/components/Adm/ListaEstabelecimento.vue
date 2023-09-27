@@ -19,6 +19,9 @@
           <label>
             <input type="radio" v-model="filtro" value="naoValidado"> Não Validado
           </label>
+          <label>
+            <input type="radio" v-model="filtro" value="todos"> Todos
+          </label>
         </fieldset>
       </div>
       <div class="table-container">
@@ -98,6 +101,9 @@ export default {
         }
         if (this.filtro === "naoValidado" && estabelecimento.status !== "Não Validado") {
           return false;
+        }
+        if (this.filtro === "todos" && !nome.includes(query)) {
+            return false;
         }
 
         return nome.includes(query);
