@@ -19,6 +19,7 @@
   <script>
   import { defineComponent } from 'vue'
   import { Carousel, Navigation, Slide } from 'vue3-carousel'
+  import api from "./../../../services/backend.service.js";
   
   import 'vue3-carousel/dist/carousel.css'
   
@@ -75,10 +76,42 @@
             imageSrc: 'https://img.freepik.com/fotos-gratis/vista-frontal-deliciosas-batatas-fritas-com-cheeseburgers-em-fundo-escuro-lanche-prato-fast-food-torrada-hamburguer-jantar_140725-158687.jpg?w=740&t=st=1692622686~exp=1692623286~hmac=10621949a66dec1c810347ee36096f0b72d67389a49664278c2c51bb11d313e1',
             link: 'https://example.com/slide3'
           },
-          // ... próximos slides
         ],
       }
     },
+    created() {
+	    this.metodoInicial();
+    },
+    methods: {
+      async metodoInicial() {
+        try {
+        // console.log('metodoInicial da Carousel');
+
+        // const carousel = await api.get('/test');
+        // console.log('carousel:: ', carousel);
+        // console.log('carousel.data[0]:: ', carousel.data[0]);
+        // console.log('carousel.data.length:: ', carousel.data.length);
+
+        // const reconstructedBuffer = Uint8Array.from(carousel.data[0].blobTest).buffer;
+
+
+        // for (let i = 0; i < carousel.data.length; i++) {
+        //     try {
+        //       console.log('carousel.data[i].blobTest:: ', carousel.data[i].blobTest);
+
+        //       carousel.data[i].blobTest.data = carousel.data[i].blobTest.data.toString();
+                
+        //     } catch (error) {
+        //         throw new Error(`Erro ao decodificar imagens: ${error.message}`);
+        //     }
+        // };
+
+        // console.log('carousel.data pós:: ', carousel.data);
+        } catch (error) {
+          console.error('ERROR:: ', error);
+        }
+      },
+    }
   })
   </script>
   
