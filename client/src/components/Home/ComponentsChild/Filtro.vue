@@ -22,6 +22,7 @@
   </template>
   
   <script>
+  import api from "./../../../services/backend-service.js";
   export default {
     name: "Filtro",
     data() {
@@ -78,7 +79,13 @@
         }
       },
     },
+    created() {
+	    this.metodoInicial();
+    },
     methods: {
+      async metodoInicial() {
+        console.log('metodoInicial da HOME');
+      },
       filterByCategory(category) {
         this.filtroCategoria = category;
       },
