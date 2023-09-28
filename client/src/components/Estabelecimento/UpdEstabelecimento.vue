@@ -178,7 +178,7 @@
   import DashRdSociais from "./ComponentsChild/DashRdSociais.vue";
   import Categorias from "./ComponentsChild/Categorias.vue";
   import EstilosMusicas from "./ComponentsChild/EstilosMusicas.vue";
-  import api from "./../../services/backend-service.js";
+  import api from "./../../services/backend.service.js";
   
   export default {
   components: {

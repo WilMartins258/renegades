@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import api from './../services/backend-service.js';
+import api from './../services/backend.service.js';
 
 export default {
 	data() {

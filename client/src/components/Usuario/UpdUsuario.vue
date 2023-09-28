@@ -95,7 +95,7 @@
 <script>
   import IMask from "imask";
   import axios from "axios";
-  import api from './../../services/backend-service';
+  import api from './../../services/backend.service';
   import dataToDiaMesAno from './../../services/dataToDiaMesAno.service.js';
 
   // const nomeInput = document.getElementById("nome");
