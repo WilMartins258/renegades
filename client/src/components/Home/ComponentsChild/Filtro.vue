@@ -28,51 +28,43 @@
     data() {
       return {
         estabelecimentos: [
-          {
+        {
             id: 1,
             nome: "Bar do João",
-            categoria: "Bar",
+            categoria: "bar",
             foto: "https://www.lojaskd.com.br/blog/wp-content/webp-express/webp-images/doc-root/blog/wp-content/uploads/2023/06/Nomes-para-bar-1024x576.png.webp"
           },
+          {
+            id: 2,
+            nome: "Lanchonete da Maria",
+            categoria: "lanchonete",
+            foto: "https://www.emporiotambo.com.br/pub/media/resized/1300x800/ves/blog/xcomo-decorar-uma-lanchonete-com-pouco-dinheiro.jpg.pagespeed.ic.o-02P9_HPT.webp"
+          },
+          {
+            id: 3,
+            nome: "Pizzaria do Carlos",
+            categoria: "pizzaria",
+            foto: "https://diariodorio.com/wp-content/uploads/2020/07/daleopizzaria_20200710_144435_0.jpg"
+          },
+          {
+            id: 4,
+            nome: "Burger King",
+            categoria: "hamburgueria",
+            foto: "https://agendasorocaba.com.br/wp-content/uploads/2019/07/Burger-King-03.jpg"
+          },
+          {
+            id: 5,
+            nome: "Teste 1",
+            categoria: "pizzaria",
+            foto: "https://diariodorio.com/wp-content/uploads/2020/07/daleopizzaria_20200710_144435_0.jpg"
+          },
+          {
+            id: 6,
+            nome: "Teste 2",
+            categoria: "hamburgueria",
+            foto: "https://agendasorocaba.com.br/wp-content/uploads/2019/07/Burger-King-03.jpg"
+          },
         ],
-        // estabelecimentos: [
-        // {
-        //     id: 1,
-        //     nome: "Bar do João",
-        //     categoria: "bar",
-        //     foto: "https://www.lojaskd.com.br/blog/wp-content/webp-express/webp-images/doc-root/blog/wp-content/uploads/2023/06/Nomes-para-bar-1024x576.png.webp"
-        //   },
-        //   {
-        //     id: 2,
-        //     nome: "Lanchonete da Maria",
-        //     categoria: "lanchonete",
-        //     foto: "https://www.emporiotambo.com.br/pub/media/resized/1300x800/ves/blog/xcomo-decorar-uma-lanchonete-com-pouco-dinheiro.jpg.pagespeed.ic.o-02P9_HPT.webp"
-        //   },
-        //   {
-        //     id: 3,
-        //     nome: "Pizzaria do Carlos",
-        //     categoria: "pizzaria",
-        //     foto: "https://diariodorio.com/wp-content/uploads/2020/07/daleopizzaria_20200710_144435_0.jpg"
-        //   },
-        //   {
-        //     id: 4,
-        //     nome: "Burger King",
-        //     categoria: "hamburgueria",
-        //     foto: "https://agendasorocaba.com.br/wp-content/uploads/2019/07/Burger-King-03.jpg"
-        //   },
-        //   {
-        //     id: 5,
-        //     nome: "Teste 1",
-        //     categoria: "pizzaria",
-        //     foto: "https://diariodorio.com/wp-content/uploads/2020/07/daleopizzaria_20200710_144435_0.jpg"
-        //   },
-        //   {
-        //     id: 6,
-        //     nome: "Teste 2",
-        //     categoria: "hamburgueria",
-        //     foto: "https://agendasorocaba.com.br/wp-content/uploads/2019/07/Burger-King-03.jpg"
-        //   },
-        // ],
         filtroCategoria: null,
       };
     },
@@ -92,7 +84,14 @@
     },
     methods: {
       async metodoInicial() {
-        console.log('metodoInicial da FILTRO');
+      // Esses são apenas testes que fiz com imagens no front
+      //   console.log('metodoInicial da FILTRO');
+
+      //   const estabelecimentos = await api.get('test');
+      //   console.log('estabelecimentos:: ', estabelecimentos);
+
+      //   this.estabelecimentos[0].nome = estabelecimentos.data[0].nomeImg;
+      //   this.estabelecimentos[0].foto = estabelecimentos.data[0].blobTest;
       },
       filterByCategory(category) {
         this.filtroCategoria = category;
