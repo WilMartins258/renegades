@@ -31,7 +31,7 @@ const insertImage = async (nomeImagem, codigoBase64Image) => {
 router.get('/', async (req, res) => {
     console.log('Inicio do TEST');
 
-    const insertImage = await insertImage();
+    // const insertImage = await insertImage();
     // console.log('insertImage::\n ', insertImage);
 
     /* O retorno é um objeto JSON conforme o exemplo abaixo
