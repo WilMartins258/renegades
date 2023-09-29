@@ -334,31 +334,4 @@ a :hover {
   }
 }
 
-
-@media screen and (max-width: 600px) {
-  .nav {
-    width: 100%;
-  }
-  .nav .search-box {
-    
-  }
-}
-
-@media screen and (max-width: 414px) {
-  .nav {
-    
-  }
-  .nav .search-box {
-    
-  }
-}
-
-@media screen and (max-width: 360px) {
-  .nav {
-    
-  }
-  .nav .search-box {
-    
-  }
-}
 </style>
