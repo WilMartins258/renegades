@@ -6,7 +6,11 @@ const atualizar = async () => {};
 
 const pegarPorIdUsuario = async (idUsuario) => {
     try {
-        const favoritoQuery = `SELECT idEstabelecimento from favorito WHERE idUsuario = ?;`;
+        const favoritoQuery = `
+                            SELECT e.id, e.nome 
+                                FROM  estabelecimento e JOIN favorito f
+                                on e.id = f.idEstabelecimento
+                                    WHERE idUsuario = 1;`;
         const connection = await db;
 
         const [favoritos] = await connection.query(favoritoQuery, idUsuario);
