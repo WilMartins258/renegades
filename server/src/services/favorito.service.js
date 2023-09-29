@@ -4,7 +4,7 @@ const inserir = async (dadosOpcional) => {};
 
 const atualizar = async () => {};
 
-const pegarPorId = async (idUsuario) => {
+const pegarPorIdUsuario = async (idUsuario) => {
     try {
         const favoritoQuery = `SELECT idEstabelecimento from favorito WHERE idUsuario = ?;`;
         const connection = await db;
@@ -22,6 +22,6 @@ const excluir = async () => {};
 module.exports = {
     inserir,
     atualizar,
-    pegarPorId,
+    pegarPorIdUsuario,
     excluir
 };

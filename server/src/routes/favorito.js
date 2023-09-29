@@ -6,7 +6,7 @@ router.get('/:idUsuario', async (req, res) => {
         const idUsuario = req?.params?.idUsuario;
         console.error('idUsuario:: ', idUsuario);
         
-        const favoritos = await favorito_Service.pegarPorId(idUsuario);
+        const favoritos = await favorito_Service.pegarPorIdUsuario(idUsuario);
         console.error('favoritos:: ', favoritos);
 
         res.status(200).send(favoritos);
