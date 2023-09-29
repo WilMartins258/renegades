@@ -49,6 +49,11 @@ router.use(
 );
 
 router.use(
+    "/avaliacao",
+    require("./avaliacao.js")
+);
+
+router.use(
     "/test",
     require("./test.js")
 );
