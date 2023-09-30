@@ -7,18 +7,18 @@
         <button @click="filterByCategory('pizzaria')">Pizzaria</button>
         <button @click="filterByCategory('hamburgueria')">Hamburgueria</button>
       </div>
-     <div class="Centraliza">
-      <div class="cards">
-        <div v-for="estabelecimento in filteredEstabelecimentos" :key="estabelecimento.id" class="card-container">
-          <div class="card">
-            <img :src="estabelecimento.foto" alt="Foto do estabelecimento" class="card-image" />
-            <h3>{{ estabelecimento.nome }}</h3>
-            <p class="description">{{ estabelecimento.categoria }}</p> 
-          </div>
-        </div> 
+      <div class="Centraliza">
+        <div class="cards">
+          <a v-for="estabelecimento in filteredEstabelecimentos" :key="estabelecimento.id" :href="getEstabelecimentoLink(estabelecimento)" class="card-container">
+            <div class="card">
+              <img :src="estabelecimento.foto" alt="Foto do estabelecimento" class="card-image" />
+              <h3>{{ estabelecimento.nome }}</h3>
+              <p class="description">{{ estabelecimento.categoria }}</p> 
+            </div>
+          </a> 
+        </div>
       </div>
     </div>
-    </div> 
   </template>
   
   <script>
@@ -30,39 +30,39 @@
         estabelecimentos: [
         {
             id: 1,
+            nome: "Jeff's Burger",
+            categoria: "Hamburgueria",
+            foto: "https://www.plakart.com.br/img/galerias/40/0004_19b5c1b5b20643f9fc9045e14cd8ef67.jpeg"
+        },
+        {
+            id: 2,
             nome: "Bar do João",
             categoria: "bar",
             foto: "https://www.lojaskd.com.br/blog/wp-content/webp-express/webp-images/doc-root/blog/wp-content/uploads/2023/06/Nomes-para-bar-1024x576.png.webp"
           },
           {
-            id: 2,
+            id: 3,
             nome: "Lanchonete da Maria",
             categoria: "lanchonete",
             foto: "https://www.emporiotambo.com.br/pub/media/resized/1300x800/ves/blog/xcomo-decorar-uma-lanchonete-com-pouco-dinheiro.jpg.pagespeed.ic.o-02P9_HPT.webp"
           },
           {
-            id: 3,
+            id: 4,
             nome: "Pizzaria do Carlos",
             categoria: "pizzaria",
             foto: "https://diariodorio.com/wp-content/uploads/2020/07/daleopizzaria_20200710_144435_0.jpg"
           },
           {
-            id: 4,
+            id: 5,
             nome: "Burger King",
             categoria: "hamburgueria",
             foto: "https://agendasorocaba.com.br/wp-content/uploads/2019/07/Burger-King-03.jpg"
           },
           {
-            id: 5,
+            id: 6,
             nome: "Teste 1",
             categoria: "pizzaria",
             foto: "https://diariodorio.com/wp-content/uploads/2020/07/daleopizzaria_20200710_144435_0.jpg"
-          },
-          {
-            id: 6,
-            nome: "Teste 2",
-            categoria: "hamburgueria",
-            foto: "https://agendasorocaba.com.br/wp-content/uploads/2019/07/Burger-King-03.jpg"
           },
         ],
         filtroCategoria: null,
@@ -93,6 +93,12 @@
       //   this.estabelecimentos[0].nome = estabelecimentos.data[0].nomeImg;
       //   this.estabelecimentos[0].foto = estabelecimentos.data[0].blobTest;
       },
+
+      getEstabelecimentoLink(estabelecimento) {
+        // Aqui você pode retornar o link com o ID
+        return `/paginaestabelecimento/${estabelecimento.id}`;
+      },
+
       filterByCategory(category) {
         this.filtroCategoria = category;
       },
@@ -179,6 +185,10 @@
     
     .card .description {
       margin-top: 15px;
+    }
+
+    a{
+      text-decoration: none;
     }
   
     /*Responsivo*/

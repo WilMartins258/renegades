@@ -3,7 +3,7 @@
     <header>
       <h1>{{ nomeDoEstabelecimento }}</h1>
       <p>{{ categoria }}</p>
-      <img :src="imagemEstabelecimento" alt="Imagem do Estabelecimento" />
+      <img :src="imagemEstabelecimento" alt="Imagem do Estabelecimento" class="imagem-estabelecimento"/>
       <div class="icons">
         <span class="star-icon" :class="{ selected: favorito }" @click="toggleFavorito">&#9733;</span>
         <span class="share-icon">Compartilhar</span>
@@ -15,12 +15,12 @@
       <p>{{ descricao }}</p>
     </section>
 
+    <br><h2>Recomendações do Chef</h2>
     <section class="chef-recomendacoes">
-      <h2>Recomendações do Chef</h2>
       <div class="recomendacao" v-for="prato in pratosChef" :key="prato.id">
         <h3>{{ prato.nome }}</h3>
         <p>{{ prato.descricao }}</p>
-        <img :src="prato.imagem" :alt="'Imagem de ' + prato.nome" />
+        <img :src="prato.imagem" :alt="'Imagem de ' + prato.nome" class="imagem-prato"/>
       </div>
     </section>
 
@@ -47,7 +47,7 @@
     <section class="endereco-info">
       <div class="endereco">
         <h2>Endereço</h2>
-        <p>{{ endereco }}</p>
+        <p>{{  endereco }}</p>
       </div>
       <div class="endereco">
         <!-- Replace with actual map integration -->
@@ -98,6 +98,7 @@ export default {
             nomeDoEstabeleciment: "",
             categoria: "",
             imagemEstabelecimento: "",
+            descricao: "",
             opcional: "",
             email: "",
             telefone: "",
@@ -108,6 +109,11 @@ export default {
             cardapio: "",
             Endereco: "",
         };
+    },
+    created() {
+      // Acesse o parâmetro 'id' da URL usando this.$route.params.id
+      this.id = this.$route.params.id;
+      console.log("Id para carregar dados do banco ->",this.id);
     },
     methods: {
         selecionarNota(notaSelecionada) {
@@ -134,10 +140,16 @@ export default {
     },
     mounted() {
              
-             this.nomeDoEstabeleciment = "Jeff's Burger"; 
+             this.nomeDoEstabelecimento = "Jeff's Burger"; 
              this.categoria = "Hamburgueria"; 
-             this.imagemEstabelecimento = ""; 
-             this.opcional = "Teste", 
+             this.imagemEstabelecimento = "https://www.plakart.com.br/img/galerias/40/0004_19b5c1b5b20643f9fc9045e14cd8ef67.jpeg"; 
+             this.descricao = "Big Jeff's Burger está em Sorocaba desde 2015 sempre com grandes conceitos em Hamburguer artesanal";
+             this.pratosChef = [
+                { id: 1, nome: "Big Jeff's", descricao: "Descrição do Prato 1", imagem: "https://media-cdn.tripadvisor.com/media/photo-s/15/35/5b/64/20180904-221944-largejpg.jpg" },
+                { id: 2, nome: "Picanha Jeff's", descricao: "Descrição do Prato 2", imagem: "https://www.guiaponto.com.br/fotos/fotos/c583037d236eaabd4bf1db9d64437594.png" },
+                { id: 2, nome: "Picanha Jeff's", descricao: "Descrição do Prato 2", imagem: "https://www.guiaponto.com.br/fotos/fotos/c583037d236eaabd4bf1db9d64437594.png" },
+            ];
+             this.opcional = ["Area Kids", "Estacionamento", "Wifi"].join(', ');
              this.email = "@teste"; 
              this.telefone = "1533325151"; 
              this.facebook = "@facebook"; 
@@ -163,6 +175,14 @@ header {
     background-color: #333;
     color: #fff;
     padding: 20px;
+    border-radius: 25px 25px 0px 0px;
+}
+
+.imagem-estabelecimento {
+  width: 600px;
+  height: 500px;
+  object-fit: cover; 
+  border-radius: 15px; 
 }
 
 header h1 {
@@ -183,7 +203,7 @@ header h1 {
 .description {
     padding: 20px;
     background-color: #f0f0f0;
-    
+    border-radius: 0px 0px 25px 25px;
 }
 
 /* Estilos das recomendações do chef */
@@ -193,6 +213,11 @@ header h1 {
     padding: 20px;
 }
 
+h2{
+  text-align: center;
+  color: #fff;
+}
+
 .recomendacao {
     flex: 1;
     padding: 10px;
@@ -200,6 +225,14 @@ header h1 {
     background-color: rgba(255, 255, 255, 0.788); 
     margin: 0 10px;
     text-align: center;
+    border-radius: 25px;
+}
+
+.imagem-prato {
+  width: 300px; 
+  height: 250px; 
+  object-fit: cover; 
+  border-radius: 15px; /* Adicione borda arredondada se desejado */
 }
 
 
@@ -216,6 +249,7 @@ header h1 {
     border: 1px solid #ccc;
     background-color: rgba(255, 255, 255, 0.788); 
     margin: 0 10px;
+    border-radius: 25px
 }
 
 .endereco-info{
@@ -229,6 +263,7 @@ header h1 {
     border: 1px solid #ccc;
     background-color: rgba(255, 255, 255, 0.788); 
     margin: 0 10px;
+    border-radius: 25px
 }
 
 /* Estilos da seção de avaliação do usuário */
@@ -238,6 +273,7 @@ header h1 {
     text-align: center;
     max-width: 700px; 
     margin: 0 auto; 
+    border-radius: 25px
 }
 
 /* Estilos para o input de avaliação */

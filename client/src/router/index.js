@@ -77,7 +77,7 @@ const routes = [
   },
 
   {
-    path: '/PaginaEstabelecimento',
+    path: '/PaginaEstabelecimento/:id', // :id será o parâmetro na URL
     name: 'PaginaEstabelecimento',
     component: () => import(/* webpackChunkName: "PaginaEstabelecimento" */ '../views/ViewAreaEstabelecimento/PaginaEstabelecimento'),
   },
@@ -87,7 +87,6 @@ const routes = [
     name: 'atulestabelecimento',
     component: () => import(/* webpackChunkName: "Atulestabelecimento" */ '../views/ViewAreaEstabelecimento/AtulEstabelecimento'),
   },
-
 
   {
     path: '/avaliacao',
