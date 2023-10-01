@@ -54,7 +54,7 @@
         <a><router-link v-show="userType === '2'" to="/AreaDoAdm">AreaDoAdm</router-link></a>
       </li>
       <li>
-        <a @click="logout">Sair</a>
+        <a @click="logout" class="logout-link" >Sair</a>
       </li>
     </ul>
 </div>
@@ -186,6 +186,14 @@ a {
 
 a :hover {
   color: #ffff00;
+}
+
+.logout-link {
+  cursor: pointer;
+  }
+  
+.logout-link:hover {
+   color: #ffff00;
 }
 
 .nav .logo {
