@@ -71,6 +71,10 @@ export default {
 						sessionStorage.setItem('tipoUsuario', login.data.tipoUsuario);
 
 						// A partir daqui precisamos verificar para onde vamos direcionar o usuário após login concluído
+						// Defina isLoggedIn como true na store
+
+
+						this.$router.push({ name: 'home' });
 					}
 				} else {
 					// Isso indica que não foi possível fazer o login 

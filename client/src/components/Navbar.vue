@@ -40,26 +40,25 @@
       <input type="text" placeholder="Pesquise aqui..." />
     </div>
     <div>
-      <img
-        src="https://adaptabiz.com/wp-content/uploads/2022/01/img_avatar.png"
-        alt="Avatar"
-        class="avatar"
-      />
-      <ul class="submenu">
-        <li>
-          <a><router-link to="/usuario">Meu Perfil</router-link></a>
-        </li>
-        <li>
-          <a><router-link to="/AreaDoEstabelecimento">Meu Estabelecimento</router-link></a>
-        </li>
-        <li>
-          <a><router-link to="/AreaDoAdm">Área do Adm</router-link></a>
-        </li>
-        <li>
-          <a><router-link to="/">Sair</router-link></a>
-        </li>
-      </ul>
-    </div>
+
+  <img
+    :src="avatarUrl"
+    alt="Avatar"
+    class="avatar"
+    v-if="userType"
+  />
+  <ul class="submenu" v-show="userType">
+      <li>
+        <a><router-link v-show="userType === '0'" to="/usuario">Meu Perfil</router-link></a>
+        <a><router-link v-show="userType === '1'" to="/AreaDoEstabelecimento">Meu Estabelecimento</router-link></a>
+        <a><router-link v-show="userType === '2'" to="/AreaDoAdm">AreaDoAdm</router-link></a>
+      </li>
+      <li>
+        <a @click="logout">Sair</a>
+      </li>
+    </ul>
+</div>
+
     <link
       rel="stylesheet"
       href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"
@@ -76,6 +75,7 @@ export default {
     return {
       nome: "",
       categoria: "",
+
     };
   },
   mounted() {
@@ -109,10 +109,25 @@ export default {
     notIsLoginPage() {
       return this.$route.name !== "Login";
     },
+    userType() {
+      return sessionStorage.getItem("tipoUsuario");
+    },
+    avatarUrl() {
+      // Você pode definir URLs de avatar diferentes com base no tipo de usuário, se necessário.
+      // Por exemplo, dependendo do valor de userType, você pode retornar URLs diferentes.
+      // Neste exemplo, usaremos uma URL fixa.
+      return "https://adaptabiz.com/wp-content/uploads/2022/01/img_avatar.png";
+    },
   },
   methods: {
     pesquisar() {
       // colocar a Lógica de pesquisa
+    },
+    logout() {
+      // Limpe a sessionStorage
+      sessionStorage.clear();
+      // Redirecione o usuário para a página inicial
+      this.$router.push({ name: 'home' });
     },
   },
 };
