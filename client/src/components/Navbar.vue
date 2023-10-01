@@ -45,9 +45,9 @@
     :src="avatarUrl"
     alt="Avatar"
     class="avatar"
-    v-if="userType"
+    v-if="isLoggedIn"
   />
-  <ul class="submenu" v-show="userType">
+  <ul class="submenu" v-show="isLoggedIn">
       <li>
         <a><router-link v-show="userType === '0'" to="/usuario">Meu Perfil</router-link></a>
         <a><router-link v-show="userType === '1'" to="/AreaDoEstabelecimento">Meu Estabelecimento</router-link></a>
@@ -75,7 +75,7 @@ export default {
     return {
       nome: "",
       categoria: "",
-
+      isLoggedIn: false,
     };
   },
   mounted() {
@@ -102,6 +102,13 @@ export default {
     navCloseBtn.addEventListener("click", () => {
       nav.classList.remove("openNav");
     });
+
+    // Verifica se o usuário está logado
+    const userType = sessionStorage.getItem("tipoUsuario");
+    if (userType) {
+      this.isLoggedIn = true;
+    }
+
   },
 
   computed: {
@@ -124,11 +131,13 @@ export default {
       // colocar a Lógica de pesquisa
     },
     logout() {
-      // Limpe a sessionStorage
-      sessionStorage.clear();
-      // Redirecione o usuário para a página inicial
-      this.$router.push({ name: 'home' });
-    },
+    // Limpe a sessionStorage
+    sessionStorage.clear();
+    // Defina isLoggedIn como falso
+    this.isLoggedIn = false;
+    // Redirecione o usuário para a página inicial
+    this.$router.push({ name: 'home' });
+  },
   },
 };
 </script>
