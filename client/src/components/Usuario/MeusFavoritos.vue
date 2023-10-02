@@ -9,14 +9,13 @@
                 <th><span class="star">★</span></th>
                 <th>Estabelecimento</th>
                 <th>Visitar a página</th>
-                <th>Cancelar inscrição</th>
+                <th>Remover favorito</th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="(estabelecimento, index) in estabelecimentos" :key="index">
                 <td>
                   <span class="star">★</span>
-                  <!--<span @click="removerFavorito(estabelecimento)" class="star">★</span> verificar se vai cancelar o favorito ao clicar na estrela-->
                 </td>
                 <td>{{ estabelecimento.nome }}</td>
                 <td>
@@ -48,24 +47,27 @@
     },
     methods: {
       async metodoInicial() {
-        console.log('id do usuário:', sessionStorage.getItem('idUsuario'))
+        try {
+          const favoritos = await api.get(`/favorito/${sessionStorage.getItem('idUsuario')}`);
 
-        const favoritos = await api.get(`/favorito/${sessionStorage.getItem('idUsuario')}`);
-        console.log('favoritos: ', favoritos.data)
-
-        this.estabelecimentos = [favoritos.data];
-
+          for (let i = 0; i < favoritos.data.length ; i++) {
+            console.log('favoritos.data[i].: ', favoritos.data[i]);
+            favoritos.data[i].link = `http://localhost:8080/PaginaEstabelecimento/${favoritos.data[i].idEstabelecimento}`;
+          } 
+          
+          this.estabelecimentos = favoritos.data;
+        } catch (error) {
+          console.error('Erro ao buscar favoritos do usuário:: ', error);
+        }
       },
       removerFavorito(estabelecimento) {
-        // lógica para cancelar o favorito.
+        try {
+          // lógica para cancelar o favorito.
+        } catch (error) {
+          console.error('Erro ao excluir favorito:: ', error);
+        }
       },
     },
-    // mounted() {
-    //   this.estabelecimentos = [
-    //     { id: 1, nome: "Estabelecimento 1", link: "/usuario", favorito: true },
-    //     { id: 2, nome: "Estabelecimento 2", link: "/usuario", favorito: true },
-    //   ];
-    // },
   };
   </script>
   
