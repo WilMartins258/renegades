@@ -5,7 +5,7 @@ const inserir = async (dadosOpcional) => {};
 const atualizar = async (novosDadosAvaliacao) => {
     try {
         const avaliacaoQuery = `UPDATE avaliacao
-                                    SET nota = ?, descricao = ?
+                                    SET nota = ?, descricao = ?, data = ?
                                     WHERE id = ?;`;
         const connection = await db;
 
@@ -18,7 +18,7 @@ const atualizar = async (novosDadosAvaliacao) => {
 const pegarPorIdUsuario = async (idUsuario) => {
     try {
         const avaliacaoQuery = `
-        SELECT a.id as 'idAvaliacao', e.id as 'idEstabelecimento', e.nome, a.descricao, a.nota
+        SELECT a.id as 'idAvaliacao', e.id as 'idEstabelecimento', e.nome, a.descricao, a.nota, a.data
             FROM  estabelecimento e JOIN avaliacao a
             on e.id = a.idEstabelecimento
                 WHERE idUsuario = ?;`;
