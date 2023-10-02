@@ -3,32 +3,19 @@
   <section class="user-avaliacao">
     <div v-for="(avaliacao, index) in visibleAvaliacao" :key="index" class="avaliacao-box">
       <fieldset>
-        <label class="titulo">{{ avaliacao.NmEstabelecimento }} Avaliado em: {{ avaliacao.date }}</label><br><br>
+        <label class="titulo">{{ avaliacao.NmEstabelecimento }} Avaliado em: {{ avaliacao.data }}</label><br><br>
         <label for="avaliacao">Nota:</label>
         <div class="rating">
-          <span
-            v-for="star in 5"
-            :key="star"
-            class="star"
-            :class="{ 'selected': avaliacao.nota >= star }"
-            :style="{ pointerEvents: editingIndex === index ? 'auto' : 'none' }"
-            @click="selecionarNota(avaliacao, star)" 
-          >
+          <span v-for="star in 5" :key="star" class="star" :class="{ 'selected': avaliacao.nota >= star }"
+            :style="{ pointerEvents: editingIndex === index ? 'auto' : 'none' }" @click="selecionarNota(avaliacao, star)">
             &#9733;
           </span>
         </div>
         <br />
         <label for="user-review">Sua avaliação:</label>
         <div class="group">
-          <textarea
-            id="user-review"
-            class="input"
-            name="user-review"
-            rows="4"
-            cols="50"
-            v-model="avaliacao.descricao" 
-            :disabled="editingIndex !== index"
-          ></textarea>
+          <textarea id="user-review" class="input" name="user-review" rows="4" cols="50" v-model="avaliacao.descricao"
+            :disabled="editingIndex !== index"></textarea>
           <br />
           <div class="Posittion-button">
             <button class="button" @click="editReview(index)" v-if="editingIndex !== index">
@@ -56,6 +43,8 @@
 </template>
 
 <script>
+import api from './../../services/backend.service.js';
+
 export default {
   name: "MinhasAvaliacoes",
   data() {
@@ -66,7 +55,22 @@ export default {
       editingIndex: -1, // Índice da avaliação em edição (-1 avaliação está sendo editada)
     };
   },
+  created() {
+    this.metodoInicial();
+  },
   methods: {
+    async metodoInicial() {
+      try {
+        const avaliacoes = await api.get(`/avaliacao/${sessionStorage.getItem('idUsuario')}`);
+
+        console.log('avaliacoes.data:: ', avaliacoes.data);
+
+        // this.avaliacao = avaliacoes.data;
+
+      } catch (error) {
+        console.error('Erro ao buscar avaliações do usuário:: ', error);
+      }
+    },
     showMoreFields() {
       // exibe mais 4 campos
       this.numToShow += 6;
@@ -99,31 +103,31 @@ export default {
       {
         nota: 4,
         NmEstabelecimento: "Pizzaria dois limões",
-        date: "20/09/2023",
+        data: "20/09/2023",
         descricao: "Excelente experiência no estabelecimento. Ótimo atendimento e comida deliciosa."
       },
       {
         nota: 3,
         NmEstabelecimento: "Mais que lanche",
-        date: "18/09/2023",
+        data: "18/09/2023",
         descricao: "Excelente estabelecimento. Ótimo atendimento"
       },
       {
         nota: 5,
         NmEstabelecimento: "Mcdonald's",
-        date: "15/08/2023",
+        data: "15/08/2023",
         descricao: "O melhor lugar que já fui!!!"
       },
       {
         nota: 1,
         NmEstabelecimento: "Restaurante Frango Atropelado",
-        date: "14/07/2023",
+        data: "14/07/2023",
         descricao: "Simplesmente péssimo!"
       },
       {
         nota: 2,
         NmEstabelecimento: "Ki-Lanche",
-        date: "14/07/2023",
+        data: "14/07/2023",
         descricao: "péssimo!"
       },
     ];
@@ -151,7 +155,8 @@ h1 {
 .star {
   cursor: pointer;
   color: gray;
-  transition: color 0.2s; /* Transição suave de cor ao passar o mouse */
+  transition: color 0.2s;
+  /* Transição suave de cor ao passar o mouse */
 }
 
 .star.selected {
@@ -191,12 +196,15 @@ h1 {
 
 .Posittion-button {
   display: flex;
-  justify-content: center; /* Centraliza horizontalmente */
-  align-items: center; /* Centraliza verticalmente */
+  justify-content: center;
+  /* Centraliza horizontalmente */
+  align-items: center;
+  /* Centraliza verticalmente */
 }
 
-.group .button + .button {
-  margin-left: 10px; /* Ajuste a margem esquerda conforme necessário */
+.group .button+.button {
+  margin-left: 10px;
+  /* Ajuste a margem esquerda conforme necessário */
 }
 
 fieldset {
@@ -219,36 +227,44 @@ fieldset {
 /* Estilos para telas com largura menor ou igual a 414px (exemplo: iPhone 5/SE) */
 @media (max-width: 414px) {
   .avaliacao-box {
-    padding: 10px; /* Reduza o padding para economizar espaço */
+    padding: 10px;
+    /* Reduza o padding para economizar espaço */
   }
 
   .group .button {
-    font-size: 14px; /* Reduza o tamanho do texto dos botões */
+    font-size: 14px;
+    /* Reduza o tamanho do texto dos botões */
   }
 
   .star {
-    font-size: 18px; /* Reduza o tamanho das estrelas */
+    font-size: 18px;
+    /* Reduza o tamanho das estrelas */
   }
 }
 
 /* Responsivo*/
 @media (max-width: 360px) {
   .avaliacao-box {
-    padding: 5px; /* Reduza ainda mais o padding para economizar espaço */
+    padding: 5px;
+    /* Reduza ainda mais o padding para economizar espaço */
   }
+
   legend {
-   font-size: 10px;
+    font-size: 10px;
   }
 
   .group .button {
-    font-size: 12px; /* Reduza ainda mais o tamanho do texto dos botões */
+    font-size: 12px;
+    /* Reduza ainda mais o tamanho do texto dos botões */
   }
 
   .star {
-    font-size: 16px; /* Reduza ainda mais o tamanho das estrelas */
+    font-size: 16px;
+    /* Reduza ainda mais o tamanho das estrelas */
   }
+
   legend {
-   font-size: 15px;
+    font-size: 15px;
   }
 }
 </style>
