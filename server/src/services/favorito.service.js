@@ -10,7 +10,7 @@ const pegarPorIdUsuario = async (idUsuario) => {
                             SELECT f.id, e.id as 'idEstabelecimento', e.nome
                                 FROM  estabelecimento e JOIN favorito f
                                 on e.id = f.idEstabelecimento
-                                    WHERE idUsuario = 1;`;
+                                    WHERE idUsuario = ?;`;
         const connection = await db;
 
         const [favoritos] = await connection.query(favoritoQuery, idUsuario);
