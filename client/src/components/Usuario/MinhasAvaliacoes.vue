@@ -3,7 +3,7 @@
   <section class="user-avaliacao">
     <div v-for="(avaliacao, index) in visibleAvaliacao" :key="index" class="avaliacao-box">
       <fieldset>
-        <label class="titulo">{{ avaliacao.NmEstabelecimento }} Avaliado em: {{ avaliacao.data }}</label><br><br>
+        <label class="titulo">{{ avaliacao.nome }} Avaliado em: {{ avaliacao.data }}</label><br><br>
         <label for="avaliacao">Nota:</label>
         <div class="rating">
           <span v-for="star in 5" :key="star" class="star" :class="{ 'selected': avaliacao.nota >= star }"
@@ -51,7 +51,7 @@ export default {
     return {
       avaliacao: [], // Array de avaliações
       visibleAvaliacao: [], // Array para as avaliações visíveis
-      numToShow: 6, // Número inicial de avaliações para mostrar
+      numToShow: 4, // Número inicial de avaliações para mostrar
       editingIndex: -1, // Índice da avaliação em edição (-1 avaliação está sendo editada)
     };
   },
@@ -63,17 +63,15 @@ export default {
       try {
         const avaliacoes = await api.get(`/avaliacao/${sessionStorage.getItem('idUsuario')}`);
 
-        console.log('avaliacoes.data:: ', avaliacoes.data);
-
-        // this.avaliacao = avaliacoes.data;
-
+        this.avaliacao = avaliacoes.data;
+        this.visibleAvaliacao = this.avaliacao.slice(0, this.numToShow); // exibe as 4 primeiras avaliações
       } catch (error) {
         console.error('Erro ao buscar avaliações do usuário:: ', error);
       }
     },
     showMoreFields() {
       // exibe mais 4 campos
-      this.numToShow += 6;
+      this.numToShow += 4;
       this.updateVisibleAvaliacao(); // Chama a função para atualizar a exibição
     },
     editReview(index) {
@@ -98,41 +96,6 @@ export default {
       this.visibleAvaliacao = this.avaliacao.slice(0, this.numToShow);
     },
   },
-  mounted() {
-    this.avaliacao = [ // valores que serão substituídos pelos do BD
-      {
-        nota: 4,
-        NmEstabelecimento: "Pizzaria dois limões",
-        data: "20/09/2023",
-        descricao: "Excelente experiência no estabelecimento. Ótimo atendimento e comida deliciosa."
-      },
-      {
-        nota: 3,
-        NmEstabelecimento: "Mais que lanche",
-        data: "18/09/2023",
-        descricao: "Excelente estabelecimento. Ótimo atendimento"
-      },
-      {
-        nota: 5,
-        NmEstabelecimento: "Mcdonald's",
-        data: "15/08/2023",
-        descricao: "O melhor lugar que já fui!!!"
-      },
-      {
-        nota: 1,
-        NmEstabelecimento: "Restaurante Frango Atropelado",
-        data: "14/07/2023",
-        descricao: "Simplesmente péssimo!"
-      },
-      {
-        nota: 2,
-        NmEstabelecimento: "Ki-Lanche",
-        data: "14/07/2023",
-        descricao: "péssimo!"
-      },
-    ];
-    this.visibleAvaliacao = this.avaliacao.slice(0, this.numToShow); // exibe as 4 primeiras avaliações
-  }
 };
 </script>
 
