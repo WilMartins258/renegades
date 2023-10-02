@@ -15,4 +15,21 @@ router.get('/:idUsuario', async (req, res) => {
     }
 });
 
+router.put('/', async (req, res) => {
+    try {
+        const { idAvaliacao, descricao, nota } = req.body;
+        
+        await avaliacao_Service.atualizar([nota, descricao, idAvaliacao]);
+
+        res.status(200).send({
+            atualizacao: true
+        });
+    } catch (error) {
+        console.error('ERROR:: ', error);
+        res.status(400).send({
+            msg: error
+        });
+    }
+});
+
 module.exports = router;
