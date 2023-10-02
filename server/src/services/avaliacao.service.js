@@ -21,11 +21,8 @@ const pegarPorIdUsuario = async (idUsuario) => {
     }
 };
 
-const excluir = async () => {};
-
 module.exports = {
     inserir,
     atualizar,
-    pegarPorIdUsuario,
-    excluir
+    pegarPorIdUsuario
 };
