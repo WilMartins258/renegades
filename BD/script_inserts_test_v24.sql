@@ -1071,7 +1071,7 @@ insert into avaliacao values(
     1, -- idUsuario         INT not null,
 	1, -- idEstabelecimento INT not null,
 	'Avaliação do estabelecimento 1 - AVALIACAO', -- avaliacao         VARCHAR(200) not null,
-	'2023-10-02', -- data              DATE not null,
+	'2023-10-01', -- data              DATE not null,
 	5 -- nota              INT not null -- Somente de 1 a 5
 );
 
@@ -1080,7 +1080,7 @@ insert into avaliacao values(
     1, -- idUsuario         INT not null,
 	2, -- idEstabelecimento INT not null,
 	'Avaliação do estabelecimento 2 - AVALIACAO', -- avaliacao         VARCHAR(200) not null,
-	'2023-10-02', -- data              DATE not null,
+	'2023-10-01', -- data              DATE not null,
 	4 -- nota              INT not null -- Somente de 1 a 5
 );
 
@@ -1089,7 +1089,7 @@ insert into avaliacao values(
     1, -- idUsuario         INT not null,
 	3, -- idEstabelecimento INT not null,
 	'Avaliação do estabelecimento 3 - AVALIACAO', -- avaliacao         VARCHAR(200) not null,
-	'2023-10-02', -- data              DATE not null,
+	'2023-10-01', -- data              DATE not null,
 	4 -- nota              INT not null -- Somente de 1 a 5
 );
 
@@ -1098,7 +1098,7 @@ insert into avaliacao values(
     1, -- idUsuario         INT not null,
 	4, -- idEstabelecimento INT not null,
 	'Avaliação do estabelecimento 4 - AVALIACAO', -- avaliacao         VARCHAR(200) not null,
-	'2023-10-02', -- data              DATE not null,
+	'2023-10-01', -- data              DATE not null,
 	3 -- nota              INT not null -- Somente de 1 a 5
 );
 
@@ -1107,7 +1107,7 @@ insert into avaliacao values(
     1, -- idUsuario         INT not null,
 	5, -- idEstabelecimento INT not null,
 	'Avaliação do estabelecimento 5 - AVALIACAO', -- avaliacao         VARCHAR(200) not null,
-	'2023-10-02', -- data              DATE not null,
+	'2023-10-01', -- data              DATE not null,
 	1 -- nota              INT not null -- Somente de 1 a 5
 );
 
