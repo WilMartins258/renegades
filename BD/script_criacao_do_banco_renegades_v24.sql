@@ -186,8 +186,7 @@ CREATE TABLE avaliacao (
 	id                INT PRIMARY KEY AUTO_INCREMENT,
 	idUsuario         INT not null,
 	idEstabelecimento INT not null,
-	resumo            VARCHAR(50) not null,
-	avaliacao         VARCHAR(200) not null,
+	descricao         VARCHAR(300) not null,
 	data              DATE not null,
 	nota              INT not null -- Somente de 1 a 5
 ) AUTO_INCREMENT = 1;
