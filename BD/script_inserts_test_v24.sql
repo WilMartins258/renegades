@@ -1047,3 +1047,21 @@ insert into favorito values(
     1, -- idUsuario INT NOT NULL,
     5 -- idEstabelecimento INT NOT NULL
 );
+
+insert into favorito values(
+    null, -- id INT PRIMARY KEY AUTO_INCREMENT,
+    1, -- idUsuario INT NOT NULL,
+    4 -- idEstabelecimento INT NOT NULL
+);
+
+insert into favorito values(
+    null, -- id INT PRIMARY KEY AUTO_INCREMENT,
+    1, -- idUsuario INT NOT NULL,
+    3 -- idEstabelecimento INT NOT NULL
+);
+
+insert into favorito values(
+    null, -- id INT PRIMARY KEY AUTO_INCREMENT,
+    1, -- idUsuario INT NOT NULL,
+    2 -- idEstabelecimento INT NOT NULL
+);

@@ -17,15 +17,17 @@ router.delete('/:idFavorito', async (req, res) => {
     try {
         const idFavorito = req?.params?.idFavorito;
 
-        console.error('idFavorito:: ', idFavorito);
-
-        const removerFavorito = await favorito_Service.excluirPorId(idFavorito);
-
-
-
-        res.status(200).send('favoritos');
+        await favorito_Service.excluirPorIdFavorito(idFavorito);
+        
+        res.status(200).send({
+            exclusao: true
+        });
     } catch (error) {
         console.error('ERROR:: ', error);
+        res.status(200).send({
+            exclusao: false,
+            msg: error
+        });
     }
 });
 

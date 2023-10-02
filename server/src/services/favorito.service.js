@@ -26,9 +26,7 @@ const excluirPorIdFavorito = async (idFavorito) => {
         const favoritoQuery = 'DELETE FROM favorito WHERE id = ?;';
         const connection = await db;
 
-        const [favoritoDeletado] = await connection.query(favoritoQuery, idFavorito);
-
-        return favoritoDeletado;
+        await connection.query(favoritoQuery, idFavorito);
     } catch (error) {
         throw new Error(`Erro ao excluir favorito do usuário: ${error.message}`);
     }
