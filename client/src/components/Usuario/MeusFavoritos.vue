@@ -61,14 +61,7 @@
       },
       async removerFavorito(favorito) {
         try {
-          console.log('favorito:: ', favorito);
-          console.log('id:: ', favorito.id);
-          const removerFavorito = await api.delete(`/favorito/${favorito.id}`);
-
-          if (removerFavorito){
-            console.log('removerFavorito:: ', removerFavorito);
-          }
-
+          await api.delete(`/favorito/${favorito.id}`);
         } catch (error) {
           console.log('Erro ao excluir favorito:: ', error);
         }
