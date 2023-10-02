@@ -51,7 +51,6 @@
           const favoritos = await api.get(`/favorito/${sessionStorage.getItem('idUsuario')}`);
 
           for (let i = 0; i < favoritos.data.length ; i++) {
-            console.log('favoritos.data[i].: ', favoritos.data[i]);
             favoritos.data[i].link = `http://localhost:8080/PaginaEstabelecimento/${favoritos.data[i].idEstabelecimento}`;
           } 
           
@@ -60,11 +59,18 @@
           console.error('Erro ao buscar favoritos do usuário:: ', error);
         }
       },
-      removerFavorito(estabelecimento) {
+      async removerFavorito(favorito) {
         try {
-          // lógica para cancelar o favorito.
+          console.log('favorito:: ', favorito);
+          console.log('id:: ', favorito.id);
+          const removerFavorito = await api.delete(`/favorito/${favorito.id}`);
+
+          if (removerFavorito){
+            console.log('removerFavorito:: ', removerFavorito);
+          }
+
         } catch (error) {
-          console.error('Erro ao excluir favorito:: ', error);
+          console.log('Erro ao excluir favorito:: ', error);
         }
       },
     },
