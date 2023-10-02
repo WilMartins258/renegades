@@ -10,6 +10,9 @@ router.get('/:idUsuario', async (req, res) => {
         res.status(200).send(favoritos);
     } catch (error) {
         console.error('ERROR:: ', error);
+        res.status(400).send({
+            msg: error
+        });
     }
 });
 
@@ -24,7 +27,7 @@ router.delete('/:idFavorito', async (req, res) => {
         });
     } catch (error) {
         console.error('ERROR:: ', error);
-        res.status(200).send({
+        res.status(400).send({
             exclusao: false,
             msg: error
         });
