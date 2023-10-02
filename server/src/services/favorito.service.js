@@ -7,7 +7,7 @@ const atualizar = async () => {};
 const pegarPorIdUsuario = async (idUsuario) => {
     try {
         const favoritoQuery = `
-                            SELECT e.id, e.nome 
+                            SELECT f.id, e.id as 'idEstabelecimento', e.nome
                                 FROM  estabelecimento e JOIN favorito f
                                 on e.id = f.idEstabelecimento
                                     WHERE idUsuario = 1;`;
@@ -21,11 +21,11 @@ const pegarPorIdUsuario = async (idUsuario) => {
     }
 };
 
-const excluir = async () => {};
+const excluirPorId = async () => {};
 
 module.exports = {
     inserir,
     atualizar,
     pegarPorIdUsuario,
-    excluir
+    excluirPorId
 };
