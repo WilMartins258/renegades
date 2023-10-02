@@ -17,11 +17,22 @@ const pegarPorIdUsuario = async (idUsuario) => {
 
         return favoritos;
     } catch (error) {
-        console.error('ERROR:: ', error);
+        throw new Error(`Erro ao buscar favoritos do usuário: ${error.message}`);
     }
 };
 
-const excluirPorId = async () => {};
+const excluirPorId = async (idFavorito) => {
+    try {
+        const favoritoQuery = 'DELETE FROM favorito WHERE id = ?;';
+        const connection = await db;
+
+        const [favoritoDeletado] = await connection.query(favoritoQuery, idFavorito);
+
+        return favoritoDeletado;
+    } catch (error) {
+        throw new Error(`Erro ao excluir favorito do usuário: ${error.message}`);
+    }
+};
 
 module.exports = {
     inserir,
