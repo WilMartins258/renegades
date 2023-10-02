@@ -21,7 +21,7 @@ const pegarPorIdUsuario = async (idUsuario) => {
     }
 };
 
-const excluirPorId = async (idFavorito) => {
+const excluirPorIdFavorito = async (idFavorito) => {
     try {
         const favoritoQuery = 'DELETE FROM favorito WHERE id = ?;';
         const connection = await db;
@@ -38,5 +38,5 @@ module.exports = {
     inserir,
     atualizar,
     pegarPorIdUsuario,
-    excluirPorId
+    excluirPorIdFavorito
 };
