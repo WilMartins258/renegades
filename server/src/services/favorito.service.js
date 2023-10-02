@@ -2,8 +2,6 @@ const db = require('../models/db.js');
 
 const inserir = async (dadosOpcional) => {};
 
-const atualizar = async () => {};
-
 const pegarPorIdUsuario = async (idUsuario) => {
     try {
         const favoritoQuery = `
@@ -34,7 +32,6 @@ const excluirPorIdFavorito = async (idFavorito) => {
 
 module.exports = {
     inserir,
-    atualizar,
     pegarPorIdUsuario,
     excluirPorIdFavorito
 };
