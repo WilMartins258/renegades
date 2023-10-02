@@ -78,10 +78,16 @@ export default {
       // Inicia a edição da avaliação
       this.editingIndex = index;
     },
-    saveReview(index) {
+    async saveReview(index) {
       // Salva as edições e encerra a edição
-      this.editingIndex = -1;
-      this.updateVisibleAvaliacao(); // Chama a função para atualizar a exibição após salvar
+      try {
+        this.editingIndex = -1;
+        this.updateVisibleAvaliacao(); // Chama a função para atualizar a exibição após salvar
+
+        await api.put('/avaliacao', this.avaliacao[index]); 
+      } catch (error) {
+        console.error('ERROR:: ', error);
+      }
     },
     cancelEdit(index) {
       // Cancela a edição
