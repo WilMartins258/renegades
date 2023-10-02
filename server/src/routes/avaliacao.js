@@ -4,10 +4,10 @@ const avaliacao_Service = require('../services/avaliacao.service.js');
 router.get('/:idUsuario', async (req, res) => {
     try {
         const idUsuario = req?.params?.idUsuario;
-        console.error('idUsuario:: ', idUsuario);
+        console.log('idUsuario:: ', idUsuario);
         
         const avaliacao = await avaliacao_Service.pegarPorIdUsuario(idUsuario);
-        console.error('avaliacao:: ', avaliacao);
+        console.log('avaliacao:: ', avaliacao);
 
         res.status(200).send(avaliacao);
     } catch (error) {
