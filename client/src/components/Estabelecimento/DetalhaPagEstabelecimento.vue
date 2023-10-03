@@ -62,7 +62,7 @@
       </div>
     </section>
 
-    <section class="user-avaliacao">
+    <section class="user-avaliacao" v-show="userType === '0'">
       <h2>Avalie</h2>
       <form>
         <label for="avaliacao">Dê uma Nota:</label>
@@ -89,6 +89,7 @@
 </template>
 
 <script>
+import { computed } from 'vue';
 export default {
     name: "DetalhaPagEstabelecimento",
     data() {
@@ -158,6 +159,11 @@ export default {
              this.site = "WWW"; 
              this.cardapio = ""; 
              this.endereco = "meu end.";
+    },
+    computed:{
+      userType() {
+      return sessionStorage.getItem("tipoUsuario");
+    },
     }
 }
 
