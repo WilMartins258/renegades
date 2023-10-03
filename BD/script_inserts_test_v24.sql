@@ -72,7 +72,19 @@ insert into categoria (id, nome) values (15, 'Doceria');
 insert into categoria (id, nome) values (16, 'Comida de rua');
 insert into categoria (id, nome) values (17, 'Sucaria');
 
--- ---------------------------- CATEGORIA -- FIM
+-- ---------------------------- CATEGORIA -- INÍCIO
+
+-- ---------------------------- COMIDA -- FIM
+
+insert into comida (id, nome) values (1, 'Comida Braseileira');
+insert into comida (id, nome) values (2, 'Comida Japonesa');
+insert into comida (id, nome) values (3, 'Comida Italiana');
+insert into comida (id, nome) values (4, 'Comida Mexicana');
+insert into comida (id, nome) values (5, 'Comida Indiana');
+insert into comida (id, nome) values (6, 'Comida Francesa');
+
+
+-- ---------------------------- COMIDA -- FIM
 
 -- ---------------------------- ESTILO DE MÚSICA -- INÍCIO
 
@@ -247,6 +259,41 @@ insert into categoria_estabelecimento values(
 	1, -- id INT PRIMARY KEY,
     1, -- idEstabelecimento INT NOT NULL,
     1 -- idCategoria INT NOT NULL
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    1, -- idEstabelecimento INT NOT NULL,
+    1 -- idOpcional INT NOT NULL
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    1, -- idEstabelecimento INT NOT NULL,
+    2 -- idOpcional INT NOT NULL
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    1, -- idEstabelecimento INT NOT NULL,
+    3 -- idOpcional INT NOT NULL
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    1, -- idEstabelecimento INT NOT NULL,
+    4 -- idOpcional INT NOT NULL
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    1, -- idEstabelecimento INT NOT NULL,
+    5 -- idOpcional INT NOT NULL
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    1, -- idEstabelecimento INT NOT NULL,
+    6 -- idOpcional INT NOT NULL
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    1, -- idEstabelecimento INT NOT NULL,
+    7 -- idOpcional INT NOT NULL
 );
 
 insert into usuario values( -- Mc Donalds - Votorantim
@@ -625,6 +672,21 @@ insert into recomendacao values(
 	'Big Tasty BLOB', -- foto LONGBLOB not null,
 	'Big Tasty', -- nome VARCHAR(50) not null,
 	'Big Tasty - descrição'-- descricao VARCHAR(50) not null
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    2, -- idEstabelecimento INT NOT NULL,
+    8 -- idOpcional INT NOT NULL
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    2, -- idEstabelecimento INT NOT NULL,
+    9 -- idOpcional INT NOT NULL
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    2, -- idEstabelecimento INT NOT NULL,
+    10 -- idOpcional INT NOT NULL
 );
 
 -- <----------------------------------------------> Mc Donalds - SOROCABA
