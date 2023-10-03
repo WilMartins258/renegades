@@ -13,11 +13,18 @@ const horario_Service = require('../services/horario.service.js');
 const recomendacao_Service = require('../services/recomendacao.service.js');
 
 router.get('/:id', async (req, res) => {
+    let connection;
     try {
-        const idEstabelecimento = req.params.id;
-        const dadosEstabelecimento = await estabelecimento_Service.pegarPorId(idEstabelecimento);
-        if (dadosEstabelecimento) {
-            res.status(200).send(dadosEstabelecimento);
+        connection = await transaction;
+        console.log('req.params.id::: ', req.params.id);
+
+        if (req.params.id) {
+            const dadosEstabelecimento = await estabelecimento_Service.pegarPorId(req.params.id, connection);
+            const dadosCategoria = await categoria_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id, connection);
+
+            console.log('dadosEstabelecimento::: ', dadosEstabelecimento);
+
+            res.status(200).send('dadosEstabelecimento');
         } else {
             res.status(404).send('Id de estabelecimento não encontrado!');
         }
@@ -27,6 +34,14 @@ router.get('/:id', async (req, res) => {
             errorMsg: 'Ocorreu um erro ao processar a solicitação.',
             error: error.message
         });
+    } finally {
+        if (connection) {
+            try {
+                connection.release();
+            } catch (releaseError) {
+                console.error('Erro ao liberar a conexão:', releaseError);
+            }
+        }
     }
 });
 

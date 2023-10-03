@@ -27,7 +27,10 @@ const atualizar = async (dadosEstabelecimento, conn) => {
 
 const pegarPorId = async (idEstabelecimento, conn) => {
     try {
-      const estabelecimentoQuery = '';
+      const estabelecimentoQuery = `
+      SELECT nome, fotoPrincipal, descricao, nota, numeroEstabelecimento, logradouro, bairro, cidade, estado, cep
+        FROM estabelecimento
+        WHERE id = ?;`;
   
       const [dadosEstabelecimento] = await conn.query(estabelecimentoQuery, idEstabelecimento);
   
