@@ -44,6 +44,7 @@
 
 <script>
 import api from './../../services/backend.service.js';
+import dataToDiaMesAno from './../../services/dataToDiaMesAno.service.js';
 
 export default {
   name: "MinhasAvaliacoes",
@@ -62,6 +63,10 @@ export default {
     async metodoInicial() {
       try {
         const avaliacoes = await api.get(`/avaliacao/${sessionStorage.getItem('idUsuario')}`);
+
+        for (let i = 0; i < avaliacoes.data.length; i++) {
+          avaliacoes.data[i].data = dataToDiaMesAno(avaliacoes.data[i].data); 
+        }
 
         this.avaliacao = avaliacoes.data;
         this.visibleAvaliacao = this.avaliacao.slice(0, this.numToShow); // exibe as 4 primeiras avaliações
