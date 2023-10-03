@@ -76,7 +76,7 @@
         <br />
         <label for="user-review">Digite sua avaliação:</label>
         <div class="group">
-          <textarea id="user-review" class="input" name="user-review" rows="4" cols="50" v-model="avaliacao"></textarea>
+          <textarea id="user-review" class="input" name="user-review" rows="4" cols="50" v-model="avaliacaoEstab"></textarea>
           <br />
 
           <div>
@@ -84,6 +84,39 @@
           </div>
         </div>
       </form>
+    </section>
+    <br>
+    <section class="avaliacao-estabelecimento">
+        <div>
+        <div class="avaliacao">
+          <div class="customer-info">
+                Esse Estabelecimento é nota:<br>
+            <span class="nota"> {{ MediaNt }} </span>
+          </div>
+        </div><br>
+        <div v-for="(review, index) in visibleAvaliacaoEstab" :key="index">
+          <fieldset>
+            <label class="titulo">
+              <div class="stars">
+                <span
+                  v-for="star in 5"
+                  :key="star"
+                  :class="{ 'filled-star': star <= review.stars, 'empty-star': star > review.stars }"
+                >
+                  &#9733;
+                </span>
+              </div><br>
+              {{ review.username }} - Data: {{ review.date }}
+            </label>
+            <br><br>
+            <p class="descricao">{{ review.descricao }}</p>
+            <br>
+          </fieldset><br>
+        </div>
+        <div class="Posittion-button">
+          <button v-if="visibleAvaliacaoEstab.length < avaliacao.length" @click="showMoreFields">Exibir Avaliações</button>
+      </div>
+      </div>
     </section>
   </div>
 </template>
@@ -96,7 +129,7 @@ export default {
         return {
             nota: 0, 
             favorito: false,
-            nomeDoEstabeleciment: "",
+            nomeDoEstabelecimento: "",
             categoria: "",
             imagemEstabelecimento: "",
             descricao: "",
@@ -109,6 +142,10 @@ export default {
             site: "",
             cardapio: "",
             Endereco: "",
+            avaliacao: [], // Array de avaliações
+            MediaNt: 0, // Média que vem do banco
+            visibleAvaliacaoEstab: [], // Array para armazenar as avaliações visíveis
+            numToShow: 0, // Número inicial de avaliações para mostrar
         };
     },
     created() {
@@ -117,6 +154,11 @@ export default {
       console.log("Id para carregar dados do banco ->",this.id);
     },
     methods: {
+          showMoreFields() {
+            // exibe mais 4 campos
+            this.numToShow += 6;
+            this.visibleAvaliacaoEstab = this.avaliacao.slice(0, this.numToShow);
+          },
         selecionarNota(notaSelecionada) {
             // Atualiza a valor de nota
             this.nota = notaSelecionada;
@@ -140,7 +182,7 @@ export default {
         },
     },
     mounted() {
-             
+         //Dados do estabelecimento    
              this.nomeDoEstabelecimento = "Jeff's Burger"; 
              this.categoria = "Hamburgueria"; 
              this.imagemEstabelecimento = "https://www.plakart.com.br/img/galerias/40/0004_19b5c1b5b20643f9fc9045e14cd8ef67.jpeg"; 
@@ -159,6 +201,27 @@ export default {
              this.site = "WWW"; 
              this.cardapio = ""; 
              this.endereco = "meu end.";
+
+        //Avalições do estabelecimento     
+             this.avaliacao = [ // valores que serão substituídos pelos do BD
+        {
+          stars: 5,
+          username: "João da Silva",
+          date: "20/09/2023",
+          descricao: "Excelente experiência no estabelecimento. Ótimo atendimento e comida deliciosa."
+        },
+        {
+          stars: 5,
+          username: "Roberto Alberto",
+          date: "18/09/2023",
+          descricao: "Excelente estabelecimento. Ótimo atendimento"
+        },
+      ];
+  
+        this.MediaNt = 5; // Irá passar aqui o valor da média
+        this.visibleAvaliacao = this.avaliacao.slice(0, this.numToShow); // exibe as 4 primeiras avaliações
+
+
     },
     computed:{
       userType() {
@@ -179,7 +242,7 @@ body {
 header {
     text-align: center;
     background-color: #333;
-    color: #fff;
+    color: #e91e2f;
     padding: 20px;
     border-radius: 25px 25px 0px 0px;
 }
@@ -193,6 +256,7 @@ header {
 
 header h1 {
     margin: 0;
+    color: #ff9800;
 }
 
 .icons {
@@ -208,7 +272,7 @@ header h1 {
 /* Estilos da seção de descrição */
 .description {
     padding: 20px;
-    background-color: #f0f0f0;
+    background-color: #f0f0f0a9;
     border-radius: 0px 0px 25px 25px;
 }
 
@@ -228,7 +292,7 @@ h2{
     flex: 1;
     padding: 10px;
     border: 1px solid #ccc;
-    background-color: rgba(255, 255, 255, 0.788); 
+    background-color: #f0f0f0a9;
     margin: 0 10px;
     text-align: center;
     border-radius: 25px;
@@ -253,7 +317,7 @@ h2{
     flex: 1;
     padding: 10px;
     border: 1px solid #ccc;
-    background-color: rgba(255, 255, 255, 0.788); 
+    background-color: #f0f0f0a9;
     margin: 0 10px;
     border-radius: 25px
 }
@@ -267,7 +331,7 @@ h2{
     flex: 1;
     padding: 10px;
     border: 1px solid #ccc;
-    background-color: rgba(255, 255, 255, 0.788); 
+    background-color: #f0f0f0a9;
     margin: 0 10px;
     border-radius: 25px
 }
@@ -275,7 +339,7 @@ h2{
 /* Estilos da seção de avaliação do usuário */
 .user-avaliacao {
     padding: 20px;
-    background-color: #f0f0f0;
+    background-color: #f0f0f0a9;
     text-align: center;
     max-width: 700px; 
     margin: 0 auto; 
@@ -295,7 +359,7 @@ h2{
 /* Estilos da seção de avaliação do usuário */
 .user-avaliacao {
     padding: 20px;
-    background-color: #f0f0f0;
+    background-color: #f0f0f0a9;
     text-align: center;
 }
 
@@ -325,7 +389,64 @@ h2{
     color: yellow;
 }
 
+/* Estilos seção de avaliação do estabelecimento*/
 
+.avaliacao-estabelecimento{
+    padding: 20px;
+    background-color: #f0f0f0a9;
+    text-align: center;
+    max-width: 700px; 
+    margin: 0 auto; 
+    border-radius: 25px
+}
+
+fieldset {
+      border: 2px solid #ff9800;
+      border-radius: 20px;
+      padding: 10px;
+      margin-bottom: 20px;
+      background-color: rgba(255, 255, 255, 0.678);
+      box-shadow: 4px 4px 4px #e91e2f, 4px 4px 4px;
+      max-width: 800px;
+      margin: 0 auto;
+  }
+  
+  .titulo {
+      font-weight: bold;
+      color: #f50000;
+      font-size: 20px;
+  }
+  
+  .avaliacao {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+
+  .stars {
+      display: flex;
+  }
+  
+  .filled-star,
+  .nota {
+      color: yellow;
+  }
+  
+  .empty-star {
+      color: grey;
+  }
+  
+  .customer-info {
+      margin-left: 10px;
+      font-weight: bold;
+      color: #fff;
+      font-size: 35px;
+      text-align: center;
+  }
+  
+  .descricao {
+      margin-top: 5px;
+  }
 
 
 /* Estilos para links */
@@ -382,5 +503,28 @@ a:hover {
 .group .button:hover {
     background:#ff9800;
   }
+
+button{
+    background-color: #e91e2f; 
+    color: #fff; 
+    font-size: 16px; 
+    padding: 10px 15px; 
+    border: none; 
+    border-radius: 25px; 
+    cursor: pointer;
+    margin: 0 auto; 
+  }
+ 
+button:hover {
+    background:#ff9800;
+  }
+  
+.Posittion-button {
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+
+} 
+
 
 </style>
