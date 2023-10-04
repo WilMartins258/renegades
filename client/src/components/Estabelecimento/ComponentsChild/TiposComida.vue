@@ -1,38 +1,40 @@
 <template>
-  <div class="quadro-Opcionais">
+  <div class="tipos-de-comida">
     <button
-      v-for="comida in comidas"
-      :key="comida.id"
-      :class="{ botao: true, selecionado: comidaSelecionada(comida) }"
-      @click="selecionarcomida(comida)"
+      v-for="tipo in tiposDeComida"
+      :key="tipo.id"
+      :class="{ botao: true, selecionado: isSelected(tipo) }"
+      @click="selecionarTipo(tipo)"
     >
-      {{ comida.nome }}
+      {{ tipo.nome }}
     </button>
   </div>
 
-  <div id="comidasSelecionadas">
-    <br /><p>Tipos de comidas selecionadas: {{ comidasSelecionadasString }}</p>
+  <div id="tiposDeComidaSelecionados">
+    <br />
+    <p>Tipos de Comida Selecionados: {{ tiposDeComidaSelecionadosString }}</p>
   </div>
 </template>
 
 <script>
-  import api from '../../../services/backend.service.js';
+import api from './../../../services/backend.service.js';
+
 export default {
-  name: "TiposComida",
+  name: "TiposDeComida",
   props: {
-    value: Array, // Adicione uma propriedade value para usar v-model
+    value: Array, // O valor passado pelo componente pai
   },
   emits: ['input'],
   data() {
     return {
-      comidasSelecionadas: [],
-      comidas: []
+      tiposDeComidaSelecionados: [],
+      tiposDeComida: [],
     };
   },
   computed: {
-    comidasSelecionadasString() {
-      return this.comidasSelecionadas.map(comida => comida.nome).join(", ");
-    }
+    tiposDeComidaSelecionadosString() {
+      return this.tiposDeComidaSelecionados.map(tipo => tipo.nome).join(", ");
+    },
   },
   created() {
     this.metodoInicial();
@@ -40,81 +42,87 @@ export default {
   methods: {
     async metodoInicial() {
       try {
-        const opcionais = await api.get('/opcional');
-
-        this.comidas = opcionais.data;
+        const tipos = await api.get('/tipos-de-comida');
+        this.tiposDeComida = tipos.data;
       } catch (error) {
-        console.error('ERROR:: ', error);
+        console.error('ERRO: ', error);
       }
     },
-    selecionarcomida(comida) {
-      if (this.comidaSelecionada(comida)) {
-        this.comidasSelecionadas = this.comidasSelecionadas.filter(item => item.id !== comida.id);
+    selecionarTipo(tipo) {
+      if (this.isSelected(tipo)) {
+        this.tiposDeComidaSelecionados = this.tiposDeComidaSelecionados.filter(item => item.id !== tipo.id);
       } else {
-        this.comidasSelecionadas.push(comida);
+        this.tiposDeComidaSelecionados.push(tipo);
       }
-      this.$emit("input", this.comidasSelecionadas); // Emita o evento input aqui
+      this.$emit("input", this.tiposDeComidaSelecionados); // Emitir o evento input aqui
     },
-    comidaSelecionada(comida) {
-      return this.comidasSelecionadas.some(item => item.id === comida.id);
-    }
-  }
+    isSelected(tipo) {
+      return this.tiposDeComidaSelecionados.some(item => item.id === tipo.id);
+    },
+  },
 };
 </script>
-  
-  <style scoped>
-  .quadro-Opcionais {
-    border: 2px solid white;
-    padding: 20px;
-    width: 450px;
-    text-align: center;
-    margin: 0 auto;
-    background-color: rgba(255, 255, 255, 0.418); 
-  }
 
-  p{ /*ajustar de acordo com o fundo*/
-    color: white;
-  }
-  
-  .botao {
-    background-color: red;
-    color: white;
-    padding: 10px 20px;
-    margin: 5px;
-    cursor: pointer;
-    border-radius: 25px; 
-  }
-  
-  .botao.selecionado {
-    background-color: orange;
-  }
-  
-  .botao:hover {
-    background-color: yellow;
-  }
+<style scoped>
+.tipos-de-comida {
+  border: 2px solid white;
+  padding: 20px;
+  width: 450px;
+  text-align: center;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.418);
+}
 
-  /*Responsivo */
-  @media screen and (max-width: 1160px) {
-  .quadro-Opcionais {
+p {
+  color: white;
+}
+
+.botao {
+  background-color: red;
+  padding: 10px 20px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 25px;
+  color: #fff;
+}
+
+.botao.selecionado {
+  background-color: orange;
+}
+
+.botao:hover {
+  background-color: yellow;
+}
+
+/* Responsividade */
+
+@media screen and (max-width: 1160px) {
+  .tipos-de-comida {
     width: 100%;
   }
 }
 
 @media screen and (max-width: 950px) {
-
+  .tipos-de-comida {
+    width: 80%;
+  }
 }
 
 @media screen and (max-width: 768px) {
-
+  .tipos-de-comida {
+    width: 90%;
+  }
 }
 
 @media screen and (max-width: 414px) {
-
+  .tipos-de-comida {
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 360px) {
-
+  .tipos-de-comida {
+    width: 100%;
+  }
 }
-
-  </style>
-  
+</style>

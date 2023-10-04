@@ -116,6 +116,9 @@
     <br>
     <!-- Chamada para o Component --> 
     <Categorias :value="categoriasSelecionadas" @input="receberCategoriasSelecionadas" />
+
+    <br>
+    <TiposComida :value="tiposDeComidaSelecionados" @input=" receberTiposDeComidaSelecionados"/>
   </section><!-- Fecha seção 3-->
 
   <section v-show="currentSection === 4">
@@ -240,6 +243,7 @@ import DashContato from "./ComponentsChild/DashContato.vue";
 import DashRdSociais from "./ComponentsChild/DashRdSociais.vue";
 import Categorias from "./ComponentsChild/Categorias.vue";
 import EstilosMusicas from "./ComponentsChild/EstilosMusicas.vue";
+import TiposComida from "./ComponentsChild/TiposComida.vue";
 import api from "./../../services/backend.service.js";
 import { retornaCodigoBase64 } from "./../../services/conversorDeImagem.service.js";
 
@@ -251,6 +255,7 @@ components: {
   DashRdSociais,
   Categorias,
   EstilosMusicas,
+  TiposComida
 },
 name: "AddEstabelecimento",
 data() {
@@ -276,12 +281,17 @@ data() {
       ContatosSelecionadas: [],
       HorariosSelecionados: [],
       estilosSelecionadas: [],
+      tiposDeComidaSelecionados: [],
     };
 },
 methods: {
   // Recebe os dados do componente "Categorias"
   receberCategoriasSelecionadas(categorias) {
     this.categoriasSelecionadas = categorias;
+  },
+  // Recebe os dados do componente "Tipos de Comida"
+  receberTiposDeComidaSelecionados(TiposComida){
+    this.tiposDeComidaSelecionados = TiposComida;
   },
   // Recebe os dados do componente "Opcionais"
   receberOpcoesSelecionadas(opcionais) {
