@@ -22,7 +22,7 @@
     
     data(){
       return{
-        logo_src: "/img/logo.png",
+        logo_src: "/img/logo.gif",
       }
     }
   }

@@ -173,8 +173,8 @@ body {
 }
 
 #logo {
-  width: 100px;
-  height: 40px;
+  width: 120px;
+  height: auto;
 }
 
 .nav,
