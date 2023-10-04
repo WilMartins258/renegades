@@ -52,7 +52,11 @@
           if (this.opcaoSelecionada(opcao)) {
             this.categoriaSelecionadas = this.categoriaSelecionadas.filter(item => item.id !== opcao.id);
           } else {
-            this.categoriaSelecionadas.push(opcao);
+            if (this.categoriaSelecionadas.length < 3) {
+          this.categoriaSelecionadas.push(opcao);
+        } else {
+          alert('Só é permitido a inclusão de 3 categorias.');
+        };
           }
           this.$emit("input", this.categoriaSelecionadas); // Emita o evento input aqui
         },
