@@ -435,12 +435,36 @@ insert into contato_estabelecimento values(
 	false -- isWhatsapp        BOOLEAN not null
 );
 
-insert into redeSocial_estabelecimento values(
-	null,       -- id INT
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	1,          -- idEstabelecimento INT not null,
+	1,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.LINK_FACEBOOK.com.br/' -- redeSocial VARCHAR(200) not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	1,          -- idEstabelecimento INT not null,
+	2,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.LINK_INSTAGRAM.com.br/' -- redeSocial VARCHAR(200) not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	1,          -- idEstabelecimento INT not null,
+	3,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.LINK_TWITTER.com.br/' -- redeSocial VARCHAR(200) not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
 	1,          -- idEstabelecimento INT not null,
 	4,          -- idTipoRedeSocial  INT not null, -- SITE
 	'https://www.mcdonalds.com.br/' -- redeSocial VARCHAR(200) not null
 );
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	1,          -- idEstabelecimento INT not null,
+	5,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.LINK_CARDAPIO.com.br/' -- redeSocial VARCHAR(200) not null
+);
+
 
 insert into recomendacao values(
 	null, -- id
@@ -646,13 +670,11 @@ insert into contato_estabelecimento values(
 	false -- isWhatsapp        BOOLEAN not null
 );
 
-insert into redeSocial_estabelecimento values(
-	null,       -- id INT
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
 	2,          -- idEstabelecimento INT not null,
 	4,          -- idTipoRedeSocial  INT not null, -- SITE
 	'https://www.mcdonalds.com.br/' -- redeSocial VARCHAR(200) not null
 );
-
 insert into recomendacao values(
 	null, -- id
 	2, -- idEstabelecimento INT not null,
