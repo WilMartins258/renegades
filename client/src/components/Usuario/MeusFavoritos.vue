@@ -60,10 +60,22 @@
         }
       },
       async removerFavorito(favorito) {
-        try {
-          await api.delete(`/favorito/${favorito.id}`);
-        } catch (error) {
-          console.log('Erro ao excluir favorito:: ', error);
+        const confirmacao = window.confirm('Tem certeza de que deseja remover este favorito?');
+
+        if (confirmacao) {
+          try {
+            await api.delete(`/favorito/${favorito.id}`);
+
+            // Encontra o índice do favorito no array
+            const index = this.estabelecimentos.findIndex((e) => e.id === favorito.id);
+            if (index !== -1) {
+              // Remova o favorito ddo array
+              this.estabelecimentos.splice(index, 1);
+            }
+            
+          } catch (error) {
+            console.log('Erro ao excluir favorito:: ', error);
+          }
         }
       },
     },

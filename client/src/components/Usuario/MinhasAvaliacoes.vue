@@ -54,6 +54,8 @@ export default {
       visibleAvaliacao: [], // Array para as avaliações visíveis
       numToShow: 4, // Número inicial de avaliações para mostrar
       editingIndex: -1, // Índice da avaliação em edição (-1 avaliação está sendo editada)
+      tempNota: null, // Cópia temporária da nota
+      tempDescricao: '', // Cópia temporária da descrição
     };
   },
   created() {
@@ -80,8 +82,11 @@ export default {
       this.updateVisibleAvaliacao(); // Chama a função para atualizar a exibição
     },
     editReview(index) {
-      // Inicia a edição da avaliação
-      this.editingIndex = index;
+        // Faz a cópia temporária dos valores atuais da avaliação
+        this.tempNota = this.avaliacao[index].nota;
+        this.tempDescricao = this.avaliacao[index].descricao;
+        // Inicia a edição da avaliação
+        this.editingIndex = index;
     },
     async saveReview(index) {
       // Salva as edições e encerra a edição
@@ -95,6 +100,9 @@ export default {
       }
     },
     cancelEdit(index) {
+      // Restaura a nota e a descrição a partir das cópias temporárias
+      this.avaliacao[index].nota = this.tempNota;
+      this.avaliacao[index].descricao = this.tempDescricao;
       // Cancela a edição
       this.editingIndex = -1;
     },
