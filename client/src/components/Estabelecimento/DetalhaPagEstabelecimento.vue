@@ -122,7 +122,6 @@
 </template>
 
 <script>
-import { computed } from 'vue';
 import api from './../../services/backend.service.js';
 
 export default {
@@ -155,7 +154,7 @@ export default {
       this.id = this.$route.params.id;
       console.log("Id para carregar dados do banco ->", this.id);
       const dadosEstabelecimento = await api.get(`/estabelecimento/${this.$route.params.id}`);
-      console.log("dadosEstabelecimento", dadosEstabelecimento);
+      console.log("dadosEstabelecimento", dadosEstabelecimento.data);
     },
     methods: {
           showMoreFields() {
