@@ -24,7 +24,7 @@ const pegarPorIdEstabelecimento = async (idEstabelecimento, conn) => {
 
         return categoriaEstabelecimento;
     } catch (error) {
-        throw new Error(`Erro ao inserir categoria do estabelecimento: ${error.message}`);
+        throw new Error(`Erro ao buscar categorias do estabelecimento: ${error.message}`);
     }
 };
 
