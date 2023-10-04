@@ -255,10 +255,14 @@ insert into estabelecimento values(
 	'2023-09-07' -- dataUltimoAcesso
 );
 
-insert into categoria_estabelecimento values(
-	1, -- id INT PRIMARY KEY,
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
     1, -- idEstabelecimento INT NOT NULL,
     1 -- idCategoria INT NOT NULL
+);
+
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
+    1, -- idEstabelecimento INT NOT NULL,
+    2 -- idCategoria INT NOT NULL
 );
 
 insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
@@ -493,8 +497,7 @@ insert into estabelecimento values(
 	'2023-09-07' -- dataUltimoAcesso
 );
 
-insert into categoria_estabelecimento values(
-	2, -- id INT PRIMARY KEY,
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
 	2, -- idEstabelecimento INT NOT NULL,
 	1 -- idCategoria INT NOT NULL
 );
@@ -717,8 +720,7 @@ insert into estabelecimento values(
 	'2023-09-07' -- dataUltimoAcesso
 );
 
-insert into categoria_estabelecimento values(
-	3, -- id INT PRIMARY KEY,
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
 	3, -- idEstabelecimento INT NOT NULL,
 	1 -- idCategoria INT NOT NULL
 );
@@ -866,8 +868,7 @@ insert into estabelecimento values(
 	'2023-09-07' -- dataUltimoAcesso
 );
 
-insert into categoria_estabelecimento values(
-	4, -- id INT PRIMARY KEY,
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
 	4, -- idEstabelecimento INT NOT NULL,
 	2 -- idCategoria INT NOT NULL
 );
@@ -1002,8 +1003,7 @@ insert into estabelecimento values(
 	'2023-09-07' -- dataUltimoAcesso
 );
 
-insert into categoria_estabelecimento values(
-	5, -- id INT PRIMARY KEY,
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
 	5, -- idEstabelecimento INT NOT NULL,
 	6 -- idCategoria INT NOT NULL
 );

@@ -270,7 +270,3 @@ ALTER TABLE favorito add (CONSTRAINT favorito_estabelecimento_fk FOREIGN KEY (id
 ------ comida_estabelecimento
 ALTER TABLE comida_estabelecimento add (CONSTRAINT comidaEstabelecimento_estabelecimento_fk FOREIGN KEY (idEstabelecimento) REFERENCES estabelecimento (id));
 ALTER TABLE comida_estabelecimento add (CONSTRAINT comidaEstabelecimento_Comida_fk FOREIGN KEY (idComida) REFERENCES comida (id));
-
-
--- ALTER TABLE favorito add ();
-    
