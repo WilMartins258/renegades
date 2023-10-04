@@ -31,7 +31,7 @@
       </div>
       <div class="info">
         <h3>Forma de Contato e Redes Sociais</h3>
-        <p>Email: {{ email }}</p>
+        <!-- <p>Email: {{ email }}</p> faz sentido ter email aqui? -->
         <p>Telefone: {{ telefone }}</p>
         <p>Redes Sociais: <a :href="facebook">{{ facebook }}</a>, <a :href="instagram">{{ instagram }}</a>, <a :href="twitter">{{ twitter }}</a></p>
         <p>Nosso site: <a :href="site">{{ site }}</a></p>
@@ -89,6 +89,8 @@
 </template>
 
 <script>
+import api from './../../services/backend.service.js';
+
 export default {
     name: "DetalhaPagEstabelecimento",
     data() {
@@ -110,10 +112,12 @@ export default {
             Endereco: "",
         };
     },
-    created() {
+    async created() {
       // Acesse o parâmetro 'id' da URL usando this.$route.params.id
       this.id = this.$route.params.id;
-      console.log("Id para carregar dados do banco ->",this.id);
+      console.log("Id para carregar dados do banco ->", this.id);
+      const dadosEstabelecimento = await api.get(`/estabelecimento/${this.$route.params.id}`);
+      console.log("dadosEstabelecimento", dadosEstabelecimento);
     },
     methods: {
         selecionarNota(notaSelecionada) {
@@ -139,7 +143,6 @@ export default {
         },
     },
     mounted() {
-             
              this.nomeDoEstabelecimento = "Jeff's Burger"; 
              this.categoria = "Hamburgueria"; 
              this.imagemEstabelecimento = "https://www.plakart.com.br/img/galerias/40/0004_19b5c1b5b20643f9fc9045e14cd8ef67.jpeg"; 
