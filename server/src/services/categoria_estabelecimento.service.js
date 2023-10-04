@@ -14,11 +14,15 @@ const atualizar = async () => {};
 
 const pegarPorIdEstabelecimento = async (idEstabelecimento, conn) => {
     try {
-        const categoriaEstabelecimentoQuery = '';
+        const categoriaEstabelecimentoQuery = `
+        SELECT cat.nome 
+            FROM categoria_estabelecimento ce
+            JOIN categoria cat ON ce.idCategoria = cat.id
+                WHERE ce.idEstabelecimento = ?;`;
 
-        const [idCategoriaEstabelecimento] = await conn.query(categoriaEstabelecimentoQuery, idEstabelecimento);
+        const [categoriaEstabelecimento] = await conn.query(categoriaEstabelecimentoQuery, idEstabelecimento);
 
-        return idCategoriaEstabelecimento;
+        return categoriaEstabelecimento;
     } catch (error) {
         throw new Error(`Erro ao inserir categoria do estabelecimento: ${error.message}`);
     }
