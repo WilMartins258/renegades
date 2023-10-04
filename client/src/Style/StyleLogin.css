@@ -52,6 +52,7 @@
     font-weight: bold;
     cursor: pointer;
 }
+
 .login-html .sign-in:checked + .tab,
 .login-html .sign-up:checked + .tab{
     color:#e91e2f;
@@ -208,13 +209,6 @@
         font-size: 12px;
         padding: 10px;
     }
-    .login-html .tab{
-        font-size:13px;
-    }
-
-
-
-
 
 
 }
