@@ -12,13 +12,24 @@ const inserir = async (dadosOpcional, conn) => {
 
 const atualizar = async () => {};
 
-const pegarPorId = async () => {};
+const pegarPorIdEstabelecimento = async (idEstabelecimento, conn) => {
+    try {
+        const opcionalEstabelecimentoQuery = `
+        SELECT op.nome 
+            FROM opcional_estabelecimento oe
+            JOIN opcional op ON oe.idOpcional = op.id
+                WHERE oe.idEstabelecimento = 1;`;
 
-const excluir = async () => {};
+        const [opcionalEstabelecimento] = await conn.query(opcionalEstabelecimentoQuery, idEstabelecimento);
+
+        return opcionalEstabelecimento;
+    } catch (error) {
+        throw new Error(`Erro ao buscar opcionais do estabelecimento: ${error.message}`);
+    }
+};
 
 module.exports = {
     inserir,
     atualizar,
-    pegarPorId,
-    excluir
+    pegarPorIdEstabelecimento
 };
