@@ -15,13 +15,16 @@ const atualizar = async () => {};
 const pegarPorIdEstabelecimento = async (idEstabelecimento, conn) => {
     try {
         const musicaEstabelecimentoQuery = `
-        `;
+        SELECT m.nome
+            FROM musica_estabelecimento me
+            JOIN estiloMusica m ON me.idEstiloMusica = m.id
+                WHERE me.idEstabelecimento = ?;`;
 
         const [musicasEstabelecimento] = await conn.query(musicaEstabelecimentoQuery, idEstabelecimento);
 
         return musicasEstabelecimento;
     } catch (error) {
-        throw new Error(`Erro ao buscar redes sociais do estabelecimento: ${error.message}`);
+        throw new Error(`Erro ao buscar musicas do estabelecimento: ${error.message}`);
     }
 };
 
