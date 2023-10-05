@@ -266,7 +266,7 @@ export default {
     },
 
     getEstabelecimentoLink(estabelecimento) {
-      // ...
+      return `/paginaestabelecimento/${estabelecimento.id}`;
     },
 
     filterByCategory(category) {
