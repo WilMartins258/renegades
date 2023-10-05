@@ -465,6 +465,30 @@ insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSoc
 	'https://www.LINK_CARDAPIO.com.br/' -- redeSocial VARCHAR(200) not null
 );
 
+insert into musica_estabelecimento (idEstabelecimento, idEstiloMusica) values(
+	1, -- idEstabelecimento INT not null,
+	1  -- idEstiloMusica    INT not null
+);
+
+insert into musica_estabelecimento (idEstabelecimento, idEstiloMusica) values(
+	1, -- idEstabelecimento INT not null,
+	3  -- idEstiloMusica    INT not null
+);
+
+insert into musica_estabelecimento (idEstabelecimento, idEstiloMusica) values(
+	1, -- idEstabelecimento INT not null,
+	5  -- idEstiloMusica    INT not null
+);
+
+insert into musica_estabelecimento (idEstabelecimento, idEstiloMusica) values(
+	1, -- idEstabelecimento INT not null,
+	7  -- idEstiloMusica    INT not null
+);
+
+insert into musica_estabelecimento (idEstabelecimento, idEstiloMusica) values(
+	1, -- idEstabelecimento INT not null,
+	9  -- idEstiloMusica    INT not null
+);
 
 insert into recomendacao values(
 	null, -- id
@@ -1030,20 +1054,17 @@ insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
 	6 -- idCategoria INT NOT NULL
 );
 
-insert into musica_estabelecimento values(
-	1, -- id                INT PRIMARY KEY,
+insert into musica_estabelecimento (idEstabelecimento, idEstiloMusica) values(
 	5, -- idEstabelecimento INT not null,
 	1 -- idEstiloMusica    INT not null ---------> PAGODE
 );
 
-insert into musica_estabelecimento values(
-	2, -- id                INT PRIMARY KEY,
+insert into musica_estabelecimento (idEstabelecimento, idEstiloMusica) values(
 	5, -- idEstabelecimento INT not null,
 	2 -- idEstiloMusica    INT not null ---------> SAMBA
 );
 
-insert into musica_estabelecimento values(
-	3, -- id                INT PRIMARY KEY,
+insert into musica_estabelecimento (idEstabelecimento, idEstiloMusica) values(
 	5, -- idEstabelecimento INT not null,
 	3 -- idEstiloMusica    INT not null ---------> FUNK
 );

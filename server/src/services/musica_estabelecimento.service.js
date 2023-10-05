@@ -12,13 +12,27 @@ const inserir = async (dadoDeMusica, conn) => {
 
 const atualizar = async () => {};
 
-const pegarPorId = async () => {};
+const pegarPorIdEstabelecimento = async (idEstabelecimento, conn) => {
+    try {
+        const musicaEstabelecimentoQuery = `
+        SELECT m.nome
+            FROM musica_estabelecimento me
+            JOIN estiloMusica m ON me.idEstiloMusica = m.id
+                WHERE me.idEstabelecimento = ?;`;
+
+        const [musicasEstabelecimento] = await conn.query(musicaEstabelecimentoQuery, idEstabelecimento);
+
+        return musicasEstabelecimento;
+    } catch (error) {
+        throw new Error(`Erro ao buscar musicas do estabelecimento: ${error.message}`);
+    }
+};
 
 const excluir = async () => {};
 
 module.exports = {
     inserir,
     atualizar,
-    pegarPorId,
+    pegarPorIdEstabelecimento,
     excluir
 };
