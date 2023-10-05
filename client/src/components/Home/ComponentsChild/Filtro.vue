@@ -481,6 +481,7 @@ export default {
   width: 350px; /* Defina a largura desejada */
   margin-right: 10px;
   background: rgba(211, 201, 201, 0.89);
+
 }
 
 .search-container button {
