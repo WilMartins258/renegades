@@ -23,14 +23,16 @@ router.get('/:id', async (req, res) => {
             const dadosCategoria = await categoria_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id, connection);
             const dadosOpcionais = await opcional_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id, connection);
             const dadosRedesSociais = await redeSocial_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id, connection);
+            const dadosMusica = await musica_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id, connection);
 
-            console.log('dadosRedesSociais::: ', dadosRedesSociais);
+            console.log('dadosMusica::: ', dadosMusica);
 
             res.status(200).send({
                 ...dadosEstabelecimento[0],
                 dadosCategoria,
                 dadosOpcionais,
-                dadosRedesSociais
+                dadosRedesSociais,
+                dadosMusica
             });
         } else {
             res.status(404).send('Id de estabelecimento não encontrado!');
