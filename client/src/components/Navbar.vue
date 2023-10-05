@@ -30,15 +30,6 @@
       </li>
     </ul>
 
-    <i
-      class="uil uil-search search-icon"
-      id="searchIcon"
-      v-if="notIsLoginPage"
-    ></i>
-    <div class="search-box">
-      <i class="uil uil-search search-icon"></i>
-      <input type="text" placeholder="Pesquise aqui..." />
-    </div>
     <div>
 
   <img
@@ -80,23 +71,11 @@ export default {
   },
   mounted() {
     const nav = document.querySelector(".nav"),
-      searchIcon = document.querySelector("#searchIcon"),
       navOpenBtn = document.querySelector(".navOpenBtn"),
       navCloseBtn = document.querySelector(".navCloseBtn");
 
-    searchIcon.addEventListener("click", () => {
-      nav.classList.toggle("openSearch");
-      nav.classList.remove("openNav");
-      if (nav.classList.contains("openSearch")) {
-        return searchIcon.classList.replace("uil-search", "uil-times");
-      }
-      searchIcon.classList.replace("uil-times", "uil-search");
-    });
-
     navOpenBtn.addEventListener("click", () => {
       nav.classList.add("openNav");
-      nav.classList.remove("openSearch");
-      searchIcon.classList.replace("uil-times", "uil-search");
     });
 
     navCloseBtn.addEventListener("click", () => {
