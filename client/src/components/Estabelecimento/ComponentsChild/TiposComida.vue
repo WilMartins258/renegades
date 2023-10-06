@@ -42,7 +42,7 @@ export default {
   methods: {
     async metodoInicial() {
       try {
-        const tipos = await api.get('/tipos-de-comida');
+        const tipos = await api.get('/comida');
         this.tiposDeComida = tipos.data;
       } catch (error) {
         console.error('ERRO: ', error);
