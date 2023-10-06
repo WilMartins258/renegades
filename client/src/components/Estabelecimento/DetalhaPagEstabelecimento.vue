@@ -34,11 +34,10 @@
       </div>
       <div class="info">
         <h3>Forma de Contato e Redes Sociais:</h3>
-        <!-- <p>Email: {{ email }}</p> faz sentido ter email aqui? -->
-        <p>Telefone: {{ telefone }}</p>
+        <p >Telefone: {{ telefone }}</p>
         <p>Redes Sociais: <a :href="facebook">{{ facebook }}</a>, <a :href="instagram">{{ instagram }}</a>, <a :href="twitter">{{ twitter }}</a></p>
-        <p>Nosso site: <a :href="site">{{ site }}</a></p>
-        <p>Cardápio Online: <a :href="cardapio">{{ cardapio }}</a></p>
+        <p v-if="this.site.length > 0">Nosso site: <a :href="site">{{ site }}</a></p>
+        <p v-if="this.cardapio.length > 0">Cardápio Online: <a :href="cardapio">{{ cardapio }}</a></p>
       </div>
       <div class="info">
         <h3>Horário de Atendimento:</h3>
@@ -138,7 +137,6 @@ export default {
             imagemEstabelecimento: "",
             descricao: "",
             opcional: "",
-            email: "",
             telefone: "",
             facebook: "",
             instagram: "",
@@ -205,7 +203,6 @@ export default {
             ];
              this.opcional = ["Area Kids", "Estacionamento", "Wifi"].join(', ');
              this.musica = ["Rock", "Classica"].join(', ');
-             this.email = "@teste"; 
              this.telefone = "1533325151"; 
              this.facebook = "@facebook"; 
              this.instagram = "@instagram"; 
