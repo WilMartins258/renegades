@@ -155,9 +155,11 @@ export default {
       try {
         // Acesse o parâmetro 'id' da URL usando this.$route.params.id
         this.id = this.$route.params.id;
-        console.log("Id para carregar dados do banco ->", this.id);
         const dadosEstabelecimento = await api.get(`/estabelecimento/${this.$route.params.id}`);
         console.log("dadosEstabelecimento", dadosEstabelecimento.data);
+
+        this.endereco = `${dadosEstabelecimento.data.logradouro}, ${dadosEstabelecimento.data.numeroEstabelecimento} - ${dadosEstabelecimento.data.bairro}. CEP: ${dadosEstabelecimento.data.cep}. ${dadosEstabelecimento.data.cidade} - ${dadosEstabelecimento.data.estado}`;
+
       } catch (error) {
         console.log('ERROR:: ', error);
       }
