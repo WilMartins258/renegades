@@ -11,11 +11,11 @@
     </header>
 
     <section class="description">
-      <h2>Descrição do Estabelecimento</h2>
+      <h2>Descrição do Estabelecimento:</h2>
       <p>{{ descricao }}</p>
     </section>
 
-    <br><h2>Recomendações do Chef</h2>
+    <br><h2>Recomendações do Chef:</h2>
     <section class="chef-recomendacoes">
       <div class="recomendacao" v-for="prato in pratosChef" :key="prato.id">
         <h3>{{ prato.nome }}</h3>
@@ -26,11 +26,14 @@
 
     <section class="adicionais-info">
       <div class="info">
-        <h3>O que oferecemos</h3>
-        <p>{{ opcional }}</p>
+        <h3>O que oferecemos:</h3>
+        <p>{{ opcional }}</p><br>
+
+        <h3 v-if="this.musica.length > 0">Nossa Playlist:</h3>
+        <p>{{  musica }}</p>
       </div>
       <div class="info">
-        <h3>Forma de Contato e Redes Sociais</h3>
+        <h3>Forma de Contato e Redes Sociais:</h3>
         <!-- <p>Email: {{ email }}</p> faz sentido ter email aqui? -->
         <p>Telefone: {{ telefone }}</p>
         <p>Redes Sociais: <a :href="facebook">{{ facebook }}</a>, <a :href="instagram">{{ instagram }}</a>, <a :href="twitter">{{ twitter }}</a></p>
@@ -38,7 +41,7 @@
         <p>Cardápio Online: <a :href="cardapio">{{ cardapio }}</a></p>
       </div>
       <div class="info">
-        <h3>Horário de Atendimento</h3>
+        <h3>Horário de Atendimento:</h3>
         <p>Segunda a Sexta: 10:00 - 22:00</p>
         <p>Sábado e Domingo: 12:00 - 23:00</p>
       </div>
@@ -143,6 +146,7 @@ export default {
             site: "",
             cardapio: "",
             Endereco: "",
+            musica: "",
             avaliacao: [], // Array de avaliações
             MediaNt: 0, // Média que vem do banco
             visibleAvaliacaoEstab: [], // Array para armazenar as avaliações visíveis
@@ -200,6 +204,7 @@ export default {
                 { id: 2, nome: "Picanha Jeff's", descricao: "Descrição do Prato 2", imagem: "https://www.guiaponto.com.br/fotos/fotos/c583037d236eaabd4bf1db9d64437594.png" },
             ];
              this.opcional = ["Area Kids", "Estacionamento", "Wifi"].join(', ');
+             this.musica = ["Rock", "Classica"].join(', ');
              this.email = "@teste"; 
              this.telefone = "1533325151"; 
              this.facebook = "@facebook"; 
