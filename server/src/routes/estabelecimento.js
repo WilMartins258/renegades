@@ -16,8 +16,6 @@ router.get('/:id', async (req, res) => {
     let connection;
     try {
         connection = await transaction;
-        console.log('req.params.id::: ', req.params.id);
-
         if (req.params.id) {
             const dadosEstabelecimento = await estabelecimento_Service.pegarPorId(req.params.id, connection);
             const dadosCategoria = await categoria_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id, connection);
