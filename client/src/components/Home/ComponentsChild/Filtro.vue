@@ -95,11 +95,26 @@
       max="10"
       step="1"
     />
+    
     <p>Distância: {{ filtroDistancia }} km</p>
     <br />
     <button @click="limparFiltroDistancia">Remover Filtro</button>
+<div class="distance-input-container">
+    <input
+    type="text"
+    v-model="filtroDistanciaText"
+    @input="validarDistancia"
+    placeholder="Digite a distância"
+  />
+  <p>Limite max. 10 km</p>  
+    </div><br>
+  <div>
+  <button @click="aplicarFiltroDistanciaText">Filtrar</button>
+</div>
   </div>
 </div>
+
+
 <div class="Centraliza">
       <div class="cards">
         <a
@@ -140,6 +155,7 @@ export default {
     opcionais: [],
     comidas: [],
     filtroDistancia: 0,
+    filtroDistanciaText: "",
     filtroNomeEstabelecimento: "",
     };
   },
@@ -332,6 +348,7 @@ export default {
       } else {
         // Caso contrário, redefina-o para zero
         this.filtroDistancia = 0;
+        this.filtroDistanciaText = "";
       }
     },
     filtrarPorNome() {
@@ -348,6 +365,16 @@ export default {
       this.filteredEstabelecimentos = this.estabelecimentos.filter((estabelecimento) =>
         estabelecimento.nome.toLowerCase().includes(nomeFiltrado)
       );
+    }
+  },
+
+  aplicarFiltroDistanciaText() {
+    const distancia = parseFloat(this.filtroDistanciaText);
+    if (!isNaN(distancia) && distancia >= 0 && distancia <= 10) {
+      this.filtroDistancia = distancia; // Atualiza o valor da distância se for válido
+    } else {
+      // Se o valor não estiver dentro do intervalo desejado, limpe o campo de entrada
+      this.filtroDistanciaText = "";
     }
   },
   },
@@ -379,6 +406,19 @@ export default {
   .filters-container button:hover{
       background:#ff9800;     
   }
+  
+  .filter-container input[type="text"]  {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  width: 150px; /* Defina a largura desejada */
+  margin-right: 20px;
+  background: rgba(211, 201, 201, 0.89);
+}
+
+.distance-input-container p{
+  font-size: 12px;
+}
 
   .quadro-Opcionais {
     border: 2px solid white;
@@ -467,6 +507,7 @@ export default {
     font-weight: bold;
   }
   
+  
   .search-container {
   display: flex;
   justify-content: center; /* Centraliza horizontalmente */
@@ -481,7 +522,6 @@ export default {
   width: 350px; /* Defina a largura desejada */
   margin-right: 10px;
   background: rgba(211, 201, 201, 0.89);
-
 }
 
 .search-container button {
