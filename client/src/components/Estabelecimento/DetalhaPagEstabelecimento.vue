@@ -29,8 +29,8 @@
         <h3>O que oferecemos:</h3>
         <p>{{ opcional }}</p><br>
 
-        <h3 v-if="this.musica.length > 0">Nossa Playlist:</h3>
-        <p>{{  musica }}</p>
+        <h3 v-if=this.tocaMusica>Nossa Playlist:</h3>
+        <p v-if=this.tocaMusica>{{ musica }}</p>
       </div>
       <div class="info">
         <h3>Forma de Contato e Redes Sociais:</h3>
@@ -93,7 +93,7 @@
         <div class="avaliacao">
           <div class="customer-info">
                 Esse Estabelecimento é nota:<br>
-            <span class="nota"> {{ MediaNt }} </span>
+            <span class="nota"> {{ mediaNt }} </span>
           </div>
         </div><br>
         <div v-for="(review, index) in visibleAvaliacaoEstab" :key="index">
@@ -143,10 +143,11 @@ export default {
             twitter: "",
             site: "",
             cardapio: "",
-            Endereco: "",
+            endereco: "",
+            tocaMusica: false,
             musica: "",
             avaliacao: [], // Array de avaliações
-            MediaNt: 0, // Média que vem do banco
+            mediaNt: 0, // Média que vem do banco
             visibleAvaliacaoEstab: [], // Array para armazenar as avaliações visíveis
             numToShow: 0, // Número inicial de avaliações para mostrar
         };
@@ -155,9 +156,40 @@ export default {
       try {
         // Acesse o parâmetro 'id' da URL usando this.$route.params.id
         this.id = this.$route.params.id;
-        console.log("Id para carregar dados do banco ->", this.id);
         const dadosEstabelecimento = await api.get(`/estabelecimento/${this.$route.params.id}`);
         console.log("dadosEstabelecimento", dadosEstabelecimento.data);
+
+        this.nomeDoEstabelecimento = dadosEstabelecimento.data.nome;
+        this.categoria = dadosEstabelecimento.data.dadosCategoriaArray.join(' - ');
+        this.endereco = `${dadosEstabelecimento.data.logradouro}, ${dadosEstabelecimento.data.numeroEstabelecimento} - ${dadosEstabelecimento.data.bairro}. CEP: ${dadosEstabelecimento.data.cep}. ${dadosEstabelecimento.data.cidade} - ${dadosEstabelecimento.data.estado}`;
+
+        this.opcional = dadosEstabelecimento.data.dadosOpcionaisArray.join(', ');
+
+        const redesSociais = dadosEstabelecimento.data.dadosRedesSociais;
+        for (let i=0;i < redesSociais.length; i++) {
+          switch (redesSociais[i].id) {
+            case 1:
+              this.facebook = redesSociais[i].redeSocial;
+              break;
+            case 2:
+              this.instagram = redesSociais[i].redeSocial;
+              break;
+            case 3:
+              this.twitter = redesSociais[i].redeSocial;
+              break;
+            case 4:
+              this.site = redesSociais[i].redeSocial;
+              break;
+            case 5:
+              this.cardapio = redesSociais[i].redeSocial;
+              break;
+            default:
+              break;
+          }
+        }
+    
+        this.tocaMusica = dadosEstabelecimento.data.tocaMusica;
+        
       } catch (error) {
         console.log('ERROR:: ', error);
       }
@@ -192,24 +224,24 @@ export default {
     },
     mounted() {
          //Dados do estabelecimento    
-             this.nomeDoEstabelecimento = "Jeff's Burger"; 
-             this.categoria = "Hamburgueria"; 
-             this.imagemEstabelecimento = "https://www.plakart.com.br/img/galerias/40/0004_19b5c1b5b20643f9fc9045e14cd8ef67.jpeg"; 
-             this.descricao = "Big Jeff's Burger está em Sorocaba desde 2015 sempre com grandes conceitos em Hamburguer artesanal";
-             this.pratosChef = [
-                { id: 1, nome: "Big Jeff's", descricao: "Descrição do Prato 1", imagem: "https://media-cdn.tripadvisor.com/media/photo-s/15/35/5b/64/20180904-221944-largejpg.jpg" },
-                { id: 2, nome: "Picanha Jeff's", descricao: "Descrição do Prato 2", imagem: "https://www.guiaponto.com.br/fotos/fotos/c583037d236eaabd4bf1db9d64437594.png" },
-                { id: 2, nome: "Picanha Jeff's", descricao: "Descrição do Prato 2", imagem: "https://www.guiaponto.com.br/fotos/fotos/c583037d236eaabd4bf1db9d64437594.png" },
-            ];
-             this.opcional = ["Area Kids", "Estacionamento", "Wifi"].join(', ');
-             this.musica = ["Rock", "Classica"].join(', ');
-             this.telefone = "1533325151"; 
-             this.facebook = "@facebook"; 
-             this.instagram = "@instagram"; 
-             this.twitter = "@twitter"; 
-             this.site = "WWW"; 
-             this.cardapio = ""; 
-             this.endereco = "meu end.";
+            //  this.nomeDoEstabelecimento = "Jeff's Burger"; 
+            //  this.categoria = "Hamburgueria"; 
+            //  this.imagemEstabelecimento = "https://www.plakart.com.br/img/galerias/40/0004_19b5c1b5b20643f9fc9045e14cd8ef67.jpeg"; 
+            //  this.descricao = "Big Jeff's Burger está em Sorocaba desde 2015 sempre com grandes conceitos em Hamburguer artesanal";
+            //  this.pratosChef = [
+            //     { id: 1, nome: "Big Jeff's", descricao: "Descrição do Prato 1", imagem: "https://media-cdn.tripadvisor.com/media/photo-s/15/35/5b/64/20180904-221944-largejpg.jpg" },
+            //     { id: 2, nome: "Picanha Jeff's", descricao: "Descrição do Prato 2", imagem: "https://www.guiaponto.com.br/fotos/fotos/c583037d236eaabd4bf1db9d64437594.png" },
+            //     { id: 2, nome: "Picanha Jeff's", descricao: "Descrição do Prato 2", imagem: "https://www.guiaponto.com.br/fotos/fotos/c583037d236eaabd4bf1db9d64437594.png" },
+            // ];
+            //  this.opcional = ["Area Kids", "Estacionamento", "Wifi"].join(', ');
+            //  this.musica = ["Rock", "Classica"].join(', ');
+            //  this.telefone = "1533325151"; 
+            //  this.facebook = "@facebook"; 
+            //  this.instagram = "@instagram"; 
+            //  this.twitter = "@twitter"; 
+            //  this.site = "WWW"; 
+            //  this.cardapio = ""; 
+            //  this.endereco = "meu end.";
 
         //Avalições do estabelecimento     
              this.avaliacao = [ // valores que serão substituídos pelos do BD
@@ -227,7 +259,7 @@ export default {
         },
       ];
   
-        this.MediaNt = 5; // Irá passar aqui o valor da média
+        this.mediaNt = 5; // Irá passar aqui o valor da média
         this.visibleAvaliacao = this.avaliacao.slice(0, this.numToShow); // exibe as 4 primeiras avaliações
 
 

@@ -16,8 +16,6 @@ router.get('/:id', async (req, res) => {
     let connection;
     try {
         connection = await transaction;
-        console.log('req.params.id::: ', req.params.id);
-
         if (req.params.id) {
             const dadosEstabelecimento = await estabelecimento_Service.pegarPorId(req.params.id, connection);
             const dadosCategoria = await categoria_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id, connection);
@@ -27,19 +25,27 @@ router.get('/:id', async (req, res) => {
             const dadosRedesSociais = await redeSocial_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id, connection);
             const dadosMusica = await musica_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id, connection);
             const dadosHorarios = await horario_Service.pegarPorIdEstabelecimento(req.params.id, connection);
+            const dadosRecomendacao = await recomendacao_Service.pegarPorIdEstabelecimento(req.params.id, connection);
 
-            // A linha abaixo é um exemplo de como transformar os objetos em arrays de acordo a necessidade.
-            // const dadosMusicaArray = dadosMusica.map(musica => musica.nome);
-
-
-            console.log('dadosCategoriaArray::: ', dadosCategoriaArray);
+            let tocaMusica = false;
+            if (dadosOpcionaisArray) {
+                for (let i=0; i < dadosOpcionaisArray.length ;i++) {
+                    if (dadosOpcionaisArray[i] == 'Toca Música') {
+                        console.log('Toca Música');
+                        tocaMusica = true;
+                    }
+                }
+            }
 
             res.status(200).send({
                 ...dadosEstabelecimento[0],
                 dadosCategoriaArray,
                 dadosOpcionaisArray,
                 dadosRedesSociais,
-                dadosMusica
+                dadosMusica,
+                dadosHorarios,
+                dadosRecomendacao,
+                tocaMusica: tocaMusica
             });
         } else {
             res.status(404).send('Id de estabelecimento não encontrado!');
@@ -139,7 +145,7 @@ router.post('/', async (req, res) => {
             } catch (error) {
                 throw new Error(`Erro ao inserir estilos musicais ao estabelecimento: ${error.message}`);
             }
-        };  
+        };
 
         for (let i = 0; i < horariosSelecionados.length; i++) {
             try {
