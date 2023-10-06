@@ -24,6 +24,11 @@ router.use(
 );
 
 router.use(
+    "/comida",
+    require("./comida.js")
+);
+
+router.use(
     "/opcional",
     require("./opcional.js")
 );
