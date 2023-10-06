@@ -93,7 +93,7 @@
         <div class="avaliacao">
           <div class="customer-info">
                 Esse Estabelecimento é nota:<br>
-            <span class="nota"> {{ MediaNt }} </span>
+            <span class="nota"> {{ mediaNt }} </span>
           </div>
         </div><br>
         <div v-for="(review, index) in visibleAvaliacaoEstab" :key="index">
@@ -143,10 +143,10 @@ export default {
             twitter: "",
             site: "",
             cardapio: "",
-            Endereco: "",
+            endereco: "",
             musica: "",
             avaliacao: [], // Array de avaliações
-            MediaNt: 0, // Média que vem do banco
+            mediaNt: 0, // Média que vem do banco
             visibleAvaliacaoEstab: [], // Array para armazenar as avaliações visíveis
             numToShow: 0, // Número inicial de avaliações para mostrar
         };
@@ -227,7 +227,7 @@ export default {
         },
       ];
   
-        this.MediaNt = 5; // Irá passar aqui o valor da média
+        this.mediaNt = 5; // Irá passar aqui o valor da média
         this.visibleAvaliacao = this.avaliacao.slice(0, this.numToShow); // exibe as 4 primeiras avaliações
 
 
