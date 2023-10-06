@@ -27,12 +27,7 @@ router.get('/:id', async (req, res) => {
             const dadosRedesSociais = await redeSocial_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id, connection);
             const dadosMusica = await musica_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id, connection);
             const dadosHorarios = await horario_Service.pegarPorIdEstabelecimento(req.params.id, connection);
-
-            // A linha abaixo é um exemplo de como transformar os objetos em arrays de acordo a necessidade.
-            // const dadosMusicaArray = dadosMusica.map(musica => musica.nome);
-
-
-            console.log('dadosHorarios::: ', dadosHorarios);
+            const dadosRecomendacao = await recomendacao_Service.pegarPorIdEstabelecimento(req.params.id, connection);
 
             res.status(200).send({
                 ...dadosEstabelecimento[0],
@@ -40,7 +35,8 @@ router.get('/:id', async (req, res) => {
                 dadosOpcionaisArray,
                 dadosRedesSociais,
                 dadosMusica,
-                dadosHorarios
+                dadosHorarios,
+                dadosRecomendacao
             });
         } else {
             res.status(404).send('Id de estabelecimento não encontrado!');
