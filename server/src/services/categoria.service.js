@@ -1,12 +1,16 @@
 const db = require('../models/db.js');
 
 const pegarTudo = async () => {
-    const categoriasQuery = `SELECT * FROM categoria;`;
-    const connection = await db;
-
-    const [categorias] = await connection.query(categoriasQuery);
-
-    return categorias;
+    try {
+        const categoriasQuery = `SELECT * FROM categoria;`;
+        const connection = await db;
+    
+        const [categorias] = await connection.query(categoriasQuery);
+    
+        return categorias;
+    } catch (error) {
+        throw new Error(`Erro ao buscar categorias: ${error.message}`);
+    }
 }
 
 const atualizar = async () => {};
