@@ -29,8 +29,8 @@
         <h3>O que oferecemos:</h3>
         <p>{{ opcional }}</p><br>
 
-        <h3 v-if="this.musica.length > 0">Nossa Playlist:</h3>
-        <p>{{  musica }}</p>
+        <h3 v-if=this.tocaMusica>Nossa Playlist:</h3>
+        <p v-if=this.tocaMusica>{{ musica }}</p>
       </div>
       <div class="info">
         <h3>Forma de Contato e Redes Sociais:</h3>
@@ -144,6 +144,7 @@ export default {
             site: "",
             cardapio: "",
             endereco: "",
+            tocaMusica: false,
             musica: "",
             avaliacao: [], // Array de avaliações
             mediaNt: 0, // Média que vem do banco
@@ -186,6 +187,8 @@ export default {
               break;
           }
         }
+    
+        this.tocaMusica = dadosEstabelecimento.data.tocaMusica;
         
       } catch (error) {
         console.log('ERROR:: ', error);
