@@ -12,7 +12,22 @@ const inserir = async (dadosHorario, conn) => {
 
 const atualizar = async () => {};
 
-const pegarPorIdEstabelecimento = async () => {};
+const pegarPorIdEstabelecimento = async (idEstabelecimento, conn) => {
+    try {
+        const horariosEstabelecimentoQuery = `
+        SELECT ds.id, ds.diaSemana, ds.numeroDia, h.horarioInicio, h.horarioFim
+            FROM horario h
+            JOIN diaSemana ds ON h.idDiaSemana = ds.id
+                WHERE h.idEstabelecimento = ?
+                ORDER BY ds.id;`;
+
+        const [horariosEstabelecimento] = await conn.query(horariosEstabelecimentoQuery, idEstabelecimento);
+
+        return horariosEstabelecimento;
+    } catch (error) {
+        throw new Error(`Erro ao buscar horários do estabelecimento: ${error.message}`);
+    }
+};
 
 module.exports = {
     inserir,
