@@ -27,6 +27,16 @@ router.get('/:id', async (req, res) => {
             const dadosHorarios = await horario_Service.pegarPorIdEstabelecimento(req.params.id, connection);
             const dadosRecomendacao = await recomendacao_Service.pegarPorIdEstabelecimento(req.params.id, connection);
 
+            let tocaMusica = false;
+            if (dadosOpcionaisArray) {
+                for (let i=0; i < dadosOpcionaisArray.length ;i++) {
+                    if (dadosOpcionaisArray[i] == 'Toca Música') {
+                        console.log('Toca Música');
+                        tocaMusica = true;
+                    }
+                }
+            }
+
             res.status(200).send({
                 ...dadosEstabelecimento[0],
                 dadosCategoriaArray,
@@ -34,7 +44,8 @@ router.get('/:id', async (req, res) => {
                 dadosRedesSociais,
                 dadosMusica,
                 dadosHorarios,
-                dadosRecomendacao
+                dadosRecomendacao,
+                tocaMusica: tocaMusica
             });
         } else {
             res.status(404).send('Id de estabelecimento não encontrado!');
