@@ -325,6 +325,7 @@ methods: {
         recomendacao: this.recomendacao,
         estabelecimentoPhoto: this.estabelecimentoPhoto,
         categoriasSelecionadas: this.categoriasSelecionadas,
+        tiposDeComidaSelecionados: this.tiposDeComidaSelecionados,
         opcoesSelecionadas: this.opcoesSelecionadas,
         estilosSelecionadas: this.estilosSelecionadas,
         rdSocialSelecionadas: this.RdSocialSelecionadas,
