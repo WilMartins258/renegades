@@ -32,14 +32,15 @@ router.get('/:id', async (req, res) => {
             // const dadosMusicaArray = dadosMusica.map(musica => musica.nome);
 
 
-            console.log('dadosCategoriaArray::: ', dadosCategoriaArray);
+            console.log('dadosHorarios::: ', dadosHorarios);
 
             res.status(200).send({
                 ...dadosEstabelecimento[0],
                 dadosCategoriaArray,
                 dadosOpcionaisArray,
                 dadosRedesSociais,
-                dadosMusica
+                dadosMusica,
+                dadosHorarios
             });
         } else {
             res.status(404).send('Id de estabelecimento não encontrado!');
@@ -139,7 +140,7 @@ router.post('/', async (req, res) => {
             } catch (error) {
                 throw new Error(`Erro ao inserir estilos musicais ao estabelecimento: ${error.message}`);
             }
-        };  
+        };
 
         for (let i = 0; i < horariosSelecionados.length; i++) {
             try {

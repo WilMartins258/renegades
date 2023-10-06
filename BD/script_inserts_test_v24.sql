@@ -329,99 +329,51 @@ insert into horario values( -- domingo	        10:00–00:00
 	000000  -- horarioFim TIME not null
 );
 
-insert into horario values( -- segunda-feira	10:00–00:00
+insert into horario values( -- segunda-feira	10:00–02:00
 	null, -- id
 	1, -- idEstabelecimento INT not null,
 	2, -- idDiaSemana INT not null,
 	100000, -- horarioInicio TIME not null,
-	000000  -- horarioFim TIME not null
-);
-
-insert into horario values( -- segunda-feira	00:00–02:00
-	null, -- id
-	1, -- idEstabelecimento INT not null,
-	2, -- idDiaSemana INT not null,
-	000000, -- horarioInicio TIME not null,
 	020000  -- horarioFim TIME not null
 );
 
-insert into horario values( -- terça-feira	    10:00–00:00
+insert into horario values( -- terça-feira	    10:00–02:00
 	null, -- id
 	1, -- idEstabelecimento INT not null,
 	3, -- idDiaSemana INT not null,
 	100000, -- horarioInicio TIME not null,
-	000000  -- horarioFim TIME not null
-);
-
-insert into horario values( -- terça-feira	    00:00–02:00
-	null, -- id
-	1, -- idEstabelecimento INT not null,
-	3, -- idDiaSemana INT not null,
-	000000, -- horarioInicio TIME not null,
 	020000  -- horarioFim TIME not null
 );
 
-insert into horario values( -- quarta-feira	    10:00–00:00
+insert into horario values( -- quarta-feira	    10:00–02:00
 	null, -- id
 	1, -- idEstabelecimento INT not null,
 	4, -- idDiaSemana INT not null,
 	100000, -- horarioInicio TIME not null,
-	000000  -- horarioFim TIME not null
-);
-
-insert into horario values( -- quarta-feira	    00:00–02:00
-	null, -- id
-	1, -- idEstabelecimento INT not null,
-	4, -- idDiaSemana INT not null,
-	000000, -- horarioInicio TIME not null,
 	020000  -- horarioFim TIME not null
 );
 
-insert into horario values( -- quinta-feira	    10:00–00:00
+insert into horario values( -- quinta-feira	    10:00–02:00
 	null, -- id
 	1, -- idEstabelecimento INT not null,
 	5, -- idDiaSemana INT not null,
 	100000, -- horarioInicio TIME not null,
-	000000  -- horarioFim TIME not null
-);
-
-insert into horario values( -- quinta-feira	    00:00–02:00
-	null, -- id
-	1, -- idEstabelecimento INT not null,
-	5, -- idDiaSemana INT not null,
-	000000, -- horarioInicio TIME not null,
 	020000  -- horarioFim TIME not null
 );
 
-insert into horario values( -- sexta-feira	    10:00–00:00
+insert into horario values( -- sexta-feira	    10:00–04:00
 	null, -- id
 	1, -- idEstabelecimento INT not null,
 	6, -- idDiaSemana INT not null,
 	100000, -- horarioInicio TIME not null,
-	000000  -- horarioFim TIME not null
-);
-
-insert into horario values( -- sexta-feira	    00:00–04:00
-	null, -- id
-	1, -- idEstabelecimento INT not null,
-	6, -- idDiaSemana INT not null,
-	000000, -- horarioInicio TIME not null,
 	040000  -- horarioFim TIME not null
 );
 
-insert into horario values( -- sábado	    10:00–00:00
+insert into horario values( -- sábado	    10:00–04:00
 	null, -- id
 	1, -- idEstabelecimento INT not null,
 	7, -- idDiaSemana INT not null,
 	100000, -- horarioInicio TIME not null,
-	000000  -- horarioFim TIME not null
-);
-
-insert into horario values( -- sábado	    00:00–04:00
-	null, -- id
-	1, -- idEstabelecimento INT not null,
-	7, -- idDiaSemana INT not null,
-	000000, -- horarioInicio TIME not null,
 	040000  -- horarioFim TIME not null
 );
 
@@ -572,117 +524,62 @@ insert into usuario values( -- Mc Donalds - Sorocaba
 
 ---------------------------------------------------------------- HORÁRIO INÍCIO
 
-insert into horario values( -- domingo	09:00–00:00
+insert into horario values( -- domingo	09:00–02:00
 	null, -- id
 	2, -- idEstabelecimento INT not null,
 	1, -- idDiaSemana INT not null,
 	090000, -- horarioInicio TIME not null,
-	000000  -- horarioFim TIME not null
-);
-
-insert into horario values( -- domingo	00:00–02:00
-	null, -- id
-	2, -- idEstabelecimento INT not null,
-	1, -- idDiaSemana INT not null,
-	000000, -- horarioInicio TIME not null,
 	020000  -- horarioFim TIME not null
 );
 
-insert into horario values( -- segunda-feira	09:00–00:00
+insert into horario values( -- segunda-feira	09:00–02:00
 	null, -- id
 	2, -- idEstabelecimento INT not null,
 	2, -- idDiaSemana INT not null,
 	090000, -- horarioInicio TIME not null,
-	000000  -- horarioFim TIME not null
-);
-
-insert into horario values( -- segunda-feira	00:00–02:00
-	null, -- id
-	2, -- idEstabelecimento INT not null,
-	2, -- idDiaSemana INT not null,
-	000000, -- horarioInicio TIME not null,
 	020000  -- horarioFim TIME not null
 );
 
-insert into horario values( -- terça-feira	    09:00–00:00
+insert into horario values( -- terça-feira	    09:00–02:00
 	null, -- id
 	2, -- idEstabelecimento INT not null,
 	3, -- idDiaSemana INT not null,
 	090000, -- horarioInicio TIME not null,
-	000000  -- horarioFim TIME not null
-);
-
-insert into horario values( -- terça-feira	    00:00–02:00
-	null, -- id
-	2, -- idEstabelecimento INT not null,
-	3, -- idDiaSemana INT not null,
-	000000, -- horarioInicio TIME not null,
 	020000  -- horarioFim TIME not null
 );
 
-insert into horario values( -- quarta-feira	    09:00–00:00
+insert into horario values( -- quarta-feira	    09:00–02:00
 	null, -- id
 	2, -- idEstabelecimento INT not null,
 	4, -- idDiaSemana INT not null,
 	090000, -- horarioInicio TIME not null,
-	000000  -- horarioFim TIME not null
-);
-
-insert into horario values( -- quarta-feira	    00:00–02:00
-	null, -- id
-	2, -- idEstabelecimento INT not null,
-	4, -- idDiaSemana INT not null,
-	000000, -- horarioInicio TIME not null,
 	020000  -- horarioFim TIME not null
 );
 
-insert into horario values( -- quinta-feira	    09:00–00:00
+insert into horario values( -- quinta-feira	    09:00–02:00
 	null, -- id
 	2, -- idEstabelecimento INT not null,
 	5, -- idDiaSemana INT not null,
 	090000, -- horarioInicio TIME not null,
-	000000  -- horarioFim TIME not null
-);
-
-insert into horario values( -- quinta-feira	    00:00–02:00
-	null, -- id
-	2, -- idEstabelecimento INT not null,
-	5, -- idDiaSemana INT not null,
-	000000, -- horarioInicio TIME not null,
 	020000  -- horarioFim TIME not null
 );
 
-insert into horario values( -- sexta-feira	    09:00–00:00
+insert into horario values( -- sexta-feira	    09:00–04:00
 	null, -- id
 	2, -- idEstabelecimento INT not null,
 	6, -- idDiaSemana INT not null,
 	090000, -- horarioInicio TIME not null,
-	000000  -- horarioFim TIME not null
-);
-
-insert into horario values( -- sexta-feira	    00:00–04:00
-	null, -- id
-	2, -- idEstabelecimento INT not null,
-	6, -- idDiaSemana INT not null,
-	000000, -- horarioInicio TIME not null,
 	040000  -- horarioFim TIME not null
 );
 
-insert into horario values( -- sábado	    09:00–00:00
+insert into horario values( -- sábado	    09:00–05:00
 	null, -- id
 	2, -- idEstabelecimento INT not null,
 	7, -- idDiaSemana INT not null,
 	090000, -- horarioInicio TIME not null,
-	000000  -- horarioFim TIME not null
-);
-
-insert into horario values( -- sábado	    00:00–05:00
-	null, -- id
-	2, -- idEstabelecimento INT not null,
-	7, -- idDiaSemana INT not null,
-	000000, -- horarioInicio TIME not null,
 	050000  -- horarioFim TIME not null
 );
+
 
 ---------------------------------------------------------------- HORÁRIO FIM
 
@@ -943,7 +840,7 @@ insert into usuario values(
 insert into horario values( -- domingo	09:00–00:00
 	null, -- id
 	4, -- idEstabelecimento INT not null,
-	1, -- idDiaSemana INT not null,
+	8, -- idDiaSemana INT not null,
 	180000, -- horarioInicio TIME not null,
 	000000  -- horarioFim TIME not null
 );
@@ -951,47 +848,7 @@ insert into horario values( -- domingo	09:00–00:00
 insert into horario values( -- segunda-feira	09:00–00:00
 	null, -- id
 	4, -- idEstabelecimento INT not null,
-	2, -- idDiaSemana INT not null,
-	180000, -- horarioInicio TIME not null,
-	000000  -- horarioFim TIME not null
-);
-
-insert into horario values( -- terça-feira	    09:00–00:00
-	null, -- id
-	4, -- idEstabelecimento INT not null,
-	3, -- idDiaSemana INT not null,
-	180000, -- horarioInicio TIME not null,
-	000000  -- horarioFim TIME not null
-);
-
-insert into horario values( -- quarta-feira	    09:00–00:00
-	null, -- id
-	4, -- idEstabelecimento INT not null,
-	4, -- idDiaSemana INT not null,
-	180000, -- horarioInicio TIME not null,
-	000000  -- horarioFim TIME not null
-);
-
-insert into horario values( -- quinta-feira	    09:00–00:00
-	null, -- id
-	4, -- idEstabelecimento INT not null,
-	5, -- idDiaSemana INT not null,
-	180000, -- horarioInicio TIME not null,
-	000000  -- horarioFim TIME not null
-);
-
-insert into horario values( -- sexta-feira	    09:00–00:00
-	null, -- id
-	4, -- idEstabelecimento INT not null,
-	6, -- idDiaSemana INT not null,
-	180000, -- horarioInicio TIME not null,
-	000000  -- horarioFim TIME not null
-);
-
-insert into horario values( -- sábado	    09:00–00:00
-	null, -- id
-	4, -- idEstabelecimento INT not null,
-	7, -- idDiaSemana INT not null,
+	10, -- idDiaSemana INT not null,
 	180000, -- horarioInicio TIME not null,
 	000000  -- horarioFim TIME not null
 );
