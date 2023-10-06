@@ -156,10 +156,36 @@ export default {
         // Acesse o parâmetro 'id' da URL usando this.$route.params.id
         this.id = this.$route.params.id;
         const dadosEstabelecimento = await api.get(`/estabelecimento/${this.$route.params.id}`);
-        console.log("dadosEstabelecimento", dadosEstabelecimento.data);
-
+        // console.log("dadosEstabelecimento", dadosEstabelecimento.data);
+        
         this.endereco = `${dadosEstabelecimento.data.logradouro}, ${dadosEstabelecimento.data.numeroEstabelecimento} - ${dadosEstabelecimento.data.bairro}. CEP: ${dadosEstabelecimento.data.cep}. ${dadosEstabelecimento.data.cidade} - ${dadosEstabelecimento.data.estado}`;
 
+        const redesSociais = dadosEstabelecimento.data.dadosRedesSociais;
+        for (let i=0;i < redesSociais.length; i++) {
+          console.log("i:: ", i);
+          console.log("redesSociais[i].id:: ", redesSociais[i].id);
+
+          switch (redesSociais[i].id) {
+            case 1:
+              this.facebook = redesSociais[i].redeSocial;
+              break;
+            case 2:
+              this.instagram = redesSociais[i].redeSocial;
+              break;
+            case 3:
+              this.twitter = redesSociais[i].redeSocial;
+              break;
+            case 4:
+              this.site = redesSociais[i].redeSocial;
+              break;
+            case 5:
+              this.cardapio = redesSociais[i].redeSocial;
+              break;
+            default:
+              break;
+          }
+        }
+        
       } catch (error) {
         console.log('ERROR:: ', error);
       }
