@@ -160,8 +160,9 @@ export default {
 
         this.nomeDoEstabelecimento = dadosEstabelecimento.data.nome;
         this.categoria = dadosEstabelecimento.data.dadosCategoriaArray.join(' - ');
-        
         this.endereco = `${dadosEstabelecimento.data.logradouro}, ${dadosEstabelecimento.data.numeroEstabelecimento} - ${dadosEstabelecimento.data.bairro}. CEP: ${dadosEstabelecimento.data.cep}. ${dadosEstabelecimento.data.cidade} - ${dadosEstabelecimento.data.estado}`;
+
+        this.opcional = dadosEstabelecimento.data.dadosOpcionaisArray.join(', ');
 
         const redesSociais = dadosEstabelecimento.data.dadosRedesSociais;
         for (let i=0;i < redesSociais.length; i++) {
