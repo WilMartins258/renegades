@@ -11,7 +11,7 @@ const redeSocial_estabelecimento_Service = require('../services/redeSocial_estab
 const musica_estabelecimento_Service = require('../services/musica_estabelecimento.service.js');
 const horario_Service = require('../services/horario.service.js');
 const recomendacao_Service = require('../services/recomendacao.service.js');
-const comida_Service = require('../services/comida_estabelecimento.service.js');
+const comida_estabelecimento_Service = require('../services/comida_estabelecimento.service.js');
 
 router.get('/:id', async (req, res) => {
     let connection;
@@ -90,8 +90,6 @@ router.post('/', async (req, res) => {
             tiposDeComidaSelecionados
         } = req.body;
 
-        console.log('tiposDeComidaSelecionados:: ', tiposDeComidaSelecionados);
-
         const removerCaracteresEspeciais = (str) => {
             const resultado = str.replace(/[\/\.\-]/g, '');
             return resultado;
@@ -156,6 +154,14 @@ router.post('/', async (req, res) => {
                 await horario_Service.inserir([idEstabelecimento, horariosSelecionados[i].dia, horariosSelecionados[i].abre, horariosSelecionados[i].fecha], connection);
             } catch (error) {
                 throw new Error(`Erro ao inserir horários do estabelecimento: ${error.message}`);
+            }
+        };
+
+        for (let i = 0; i < tiposDeComidaSelecionados.length; i++) {
+            try {
+                await comida_estabelecimento_Service.inserir([idEstabelecimento, tiposDeComidaSelecionados[i].id], connection);
+            } catch (error) {
+                throw new Error(`Erro ao inserir comidas do estabelecimento: ${error.message}`);
             }
         };
 

@@ -1,6 +1,6 @@
 const inserir = async (dadosComida, conn) => {
     try {
-        const inserirComidaEstabelecimentoQuery = ``;
+        const inserirComidaEstabelecimentoQuery = `INSERT INTO comida_estabelecimento (idEstabelecimento, idComida) VALUES (?, ?);`;
 
         const [idComidaEstabelecimentoInserido] = await conn.query(inserirComidaEstabelecimentoQuery, dadosComida);
 
