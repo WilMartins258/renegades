@@ -6,9 +6,9 @@ const cors = require('cors');
 // Criando uma instância do express
 const app = express();
 
-app.use(express.json());
+app.use(cors());
+app.use(express.json({ limit: '5mb' })); // Define o tamanho máximo dos payloads para 5Mb
 app.use(router);
-app.use(cors);
 
 const PORT = 3001;
 
