@@ -330,7 +330,7 @@ methods: {
         estilosSelecionadas: this.estilosSelecionadas,
         rdSocialSelecionadas: this.RdSocialSelecionadas,
         contatosSelecionadas: this.ContatosSelecionadas,
-        horariosSelecionados: this.HorariosSelecionados,
+        horariosSelecionados: this.HorariosSelecionados
       };
       
       const salvarEstabelecimento = await api.post('estabelecimento', formData);
@@ -348,6 +348,7 @@ methods: {
     }
   },
   nextSection() {
+
     if (this.currentSection < 6) {
       this.currentSection++;
     }
