@@ -193,7 +193,7 @@
     />
     <img
       v-if="estabelecimentoPhoto"
-      :src="estabelecimentoPhoto"
+      :src="estabelecimentoPhoto64"
       alt="Foto do Estabelecimento"
       class="miniatura-imagem"
     />
@@ -275,6 +275,7 @@ data() {
       recomendacao: [
       { name: '', description:  '', photo: null },],
       estabelecimentoPhoto: null,
+      estabelecimentoPhoto64: null,
       categoriasSelecionadas: [],
       opcoesSelecionadas: [],
       RdSocialSelecionadas: [],
@@ -332,6 +333,8 @@ methods: {
         contatosSelecionadas: this.ContatosSelecionadas,
         horariosSelecionados: this.HorariosSelecionados
       };
+
+      console.log('this.estabelecimentoPhoto:: ', this.estabelecimentoPhoto)
       
       const salvarEstabelecimento = await api.post('estabelecimento', formData);
 
@@ -429,8 +432,30 @@ methods: {
   async handleEstabelecimentoPhotoChange(event) {
     const inputImagem = document.getElementById('estabelecimentoPhoto');
     const image = inputImagem?.files[0];
+
     if (image) {
-      this.estabelecimentoPhoto = await retornaCodigoBase64(image);
+        const fileReader = new FileReader();
+
+        // Use um Promisify para FileReader
+        const readAsArrayBuffer = (file) => {
+            return new Promise((resolve, reject) => {
+                fileReader.onloadend = () => resolve(fileReader.result);
+                fileReader.onerror = reject;
+                fileReader.readAsArrayBuffer(file);
+            });
+        };
+
+        try {
+            const arrayBuffer = await readAsArrayBuffer(image);
+            const bufferInsano = new Uint8Array(arrayBuffer);
+
+            this.estabelecimentoPhoto = bufferInsano;
+            this.estabelecimentoPhoto64 = await retornaCodigoBase64(image);;
+            // console.log('Imagem convertida para ArrayBuffer e armazenada:', this.estabelecimentoPhoto);
+            // console.log('bufferInsano:', bufferInsano);
+        } catch (error) {
+            console.error('Erro ao converter a imagem para ArrayBuffer:', error);
+        }
     }
   },
 
