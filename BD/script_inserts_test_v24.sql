@@ -238,7 +238,7 @@ insert into estabelecimento values(
 	1, -- id 
 	'Mc Donalds - Votorantim', -- nome
 	'21587059000106', -- cnpj
-	null, -- fotoPrincipal   
+	'.png', -- fotoPrincipal   
 	'Este é o Mc Donalds de Votorantim', -- descricao
 	true, -- ativo
 	false, -- oculto
@@ -480,7 +480,7 @@ insert into estabelecimento values(
 	2, -- id 
     'Mc Donalds - SOROCABA', -- nome
     '76842463000162', -- cnpj
-    null, -- fotoPrincipal   
+    '.png', -- fotoPrincipal   
     'Este é o Mc Donalds de Sorocaba Campolim', -- descricao
     true, -- ativo
     false, -- oculto
@@ -646,7 +646,7 @@ insert into estabelecimento values(
 	3, -- id 
 	'Kikos Hot-Dog', -- nome
 	'11892673000110',  -- cnpj
-	null, -- fotoPrincipal   
+	'.jpg', -- fotoPrincipal   
 	'Kikos Hot-Dog DESCRICAO', -- descricao
 	true, -- ativo
 	false, -- oculto
@@ -794,7 +794,7 @@ insert into estabelecimento values(
 	4, -- id 
 	'Pizzaria Booa', -- nome
 	'59363162000137',  -- cnpj
-	null, -- fotoPrincipal   
+	'.jpg', -- fotoPrincipal   
 	'Pizzaria Booa - DESCRIÇÃO', -- descricao
 	true, -- ativo
 	false, -- oculto
@@ -889,7 +889,7 @@ insert into estabelecimento values(
 	5,                      -- id 
 	'Mada Bar',             -- nome
 	'73936746000185',       -- cnpj
-	null,                   -- fotoPrincipal   
+	'.jpg',                   -- fotoPrincipal   
 	'Mada Bar - DESCRIÇÃO', -- descricao
 	true,                   -- ativo
 	false,                   -- oculto
