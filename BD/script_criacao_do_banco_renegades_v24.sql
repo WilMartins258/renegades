@@ -97,7 +97,7 @@ CREATE TABLE estabelecimento (
 	id                     INT PRIMARY KEY AUTO_INCREMENT,
 	nome                   VARCHAR(100) not null,
 	cnpj                   VARCHAR(20) not null, -- UNIQUEE
-	fotoPrincipal          LONGBLOB, -- not null
+	fotoPrincipal          VARCHAR(20), -- not null
 	descricao              VARCHAR(400) not null,
 	ativo                  BOOLEAN DEFAULT true not null,
 	oculto                 BOOLEAN DEFAULT false not null,
