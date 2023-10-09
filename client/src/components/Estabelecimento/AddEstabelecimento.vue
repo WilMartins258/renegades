@@ -275,6 +275,7 @@ data() {
       recomendacao: [
       { name: '', description:  '', photo: null },],
       estabelecimentoPhoto: null,
+      estabelecimentoPhotoType: "",
       estabelecimentoPhoto64: null,
       categoriasSelecionadas: [],
       opcoesSelecionadas: [],
@@ -325,6 +326,7 @@ methods: {
         numero: this.numero,
         recomendacao: this.recomendacao,
         estabelecimentoPhoto: this.estabelecimentoPhoto,
+        estabelecimentoPhotoType: this.estabelecimentoPhotoType,
         categoriasSelecionadas: this.categoriasSelecionadas,
         tiposDeComidaSelecionados: this.tiposDeComidaSelecionados,
         opcoesSelecionadas: this.opcoesSelecionadas,
@@ -428,7 +430,6 @@ methods: {
     }
   },
 
-  /*Img estabelecimento*/
   async handleEstabelecimentoPhotoChange(event) {
     const inputImagem = document.getElementById('estabelecimentoPhoto');
     const image = inputImagem?.files[0];
@@ -436,7 +437,6 @@ methods: {
     if (image) {
         const fileReader = new FileReader();
 
-        // Use um Promisify para FileReader
         const readAsArrayBuffer = (file) => {
             return new Promise((resolve, reject) => {
                 fileReader.onloadend = () => resolve(fileReader.result);
@@ -450,6 +450,7 @@ methods: {
             const bufferValido = new Uint8Array(arrayBuffer);
 
             this.estabelecimentoPhoto = bufferValido;
+            this.estabelecimentoPhotoType = image.type;
             this.estabelecimentoPhoto64 = await retornaCodigoBase64(image);;
         } catch (error) {
             console.error('Erro ao converter a imagem para ArrayBuffer:', error);
