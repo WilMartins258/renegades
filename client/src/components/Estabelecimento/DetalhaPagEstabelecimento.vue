@@ -154,19 +154,15 @@ export default {
     },
     async created() {
       try {
-        // Acesse o parâmetro 'id' da URL usando this.$route.params.id
         this.id = this.$route.params.id;
-        // this.imagemEstabelecimento = '/2.png'; // isso aqui funciona
-        this.imagemEstabelecimento = require(`./images/${this.$route.params.id}.png`); // isso aqui funciona
-
+        
         const dadosEstabelecimento = await api.get(`/estabelecimento/${this.$route.params.id}`);
-        console.log("dadosEstabelecimento", dadosEstabelecimento.data);
+        this.imagemEstabelecimento = require(`./images/${this.$route.params.id}${dadosEstabelecimento.data.fotoPrincipal}`);
 
         this.nomeDoEstabelecimento = dadosEstabelecimento.data.nome;
         this.descricao = dadosEstabelecimento.data.descricao;
         this.categoria = dadosEstabelecimento.data.dadosCategoriaArray.join(' - ');
         this.endereco = `${dadosEstabelecimento.data.logradouro}, ${dadosEstabelecimento.data.numeroEstabelecimento} - ${dadosEstabelecimento.data.bairro}. CEP: ${dadosEstabelecimento.data.cep}. ${dadosEstabelecimento.data.cidade} - ${dadosEstabelecimento.data.estado}`;
-
         this.opcional = dadosEstabelecimento.data.dadosOpcionaisArray.join(', ');
 
         const redesSociais = dadosEstabelecimento.data.dadosRedesSociais;
