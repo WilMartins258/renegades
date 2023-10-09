@@ -270,3 +270,39 @@ ALTER TABLE favorito add (CONSTRAINT favorito_estabelecimento_fk FOREIGN KEY (id
 ------ comida_estabelecimento
 ALTER TABLE comida_estabelecimento add (CONSTRAINT comidaEstabelecimento_estabelecimento_fk FOREIGN KEY (idEstabelecimento) REFERENCES estabelecimento (id));
 ALTER TABLE comida_estabelecimento add (CONSTRAINT comidaEstabelecimento_Comida_fk FOREIGN KEY (idComida) REFERENCES comida (id));
+
+
+------------ TRIGGER
+DELIMITER //
+
+-- Verifica se a trigger existe
+-- DROP TRIGGER IF EXISTS calcularAvaliacoes; não está funcionando
+
+CREATE TRIGGER calcularAvaliacoes
+AFTER INSERT ON avaliacao
+FOR EACH ROW
+BEGIN
+    DECLARE totalAvaliacoes INT;
+    DECLARE somaNotas INT;
+    DECLARE media FLOAT;
+
+    -- Calcula o número total de avaliações para o estabelecimento
+    SELECT COUNT(*) INTO totalAvaliacoes FROM avaliacao WHERE idEstabelecimento = NEW.idEstabelecimento;
+
+    -- Calcula a soma das notas das avaliações para o estabelecimento
+    SELECT SUM(nota) INTO somaNotas FROM avaliacao WHERE idEstabelecimento = NEW.idEstabelecimento;
+
+    -- Calcula a média das notas
+    IF totalAvaliacoes > 0 THEN
+        SET media = somaNotas / totalAvaliacoes;
+    ELSE
+        SET media = 0;
+    END IF;
+
+    -- Atualiza os campos na tabela estabelecimento
+    UPDATE estabelecimento
+    SET numeroAvaliacoes = totalAvaliacoes, nota = media
+    WHERE id = NEW.idEstabelecimento;
+END;
+//
+DELIMITER ;
