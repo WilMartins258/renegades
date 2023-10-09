@@ -128,7 +128,7 @@ CREATE TABLE horario (
 CREATE TABLE recomendacao (
 	id                INT PRIMARY KEY AUTO_INCREMENT,
 	idEstabelecimento INT not null,
-	foto              LONGBLOB not null,
+	foto              VARCHAR(20) not null,
 	nome              VARCHAR(50) not null,
 	descricao         VARCHAR(50) not null
 ) AUTO_INCREMENT = 1;
