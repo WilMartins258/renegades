@@ -138,7 +138,7 @@ router.post('/', async (req, res) => {
             }
         };
 
-        fs.writeFile(`./src/images/estabelecimento/${idEstabelecimento}.${extensaoImagem}`, bufferImagemEstabelecimento, (err) => {
+        fs.writeFile(`./../../../client/src/components/Estabelecimento/images/${idEstabelecimento}.${extensaoImagem}`, bufferImagemEstabelecimento, (err) => {
             if (err) {
               console.error('Erro ao salvar a imagem:', err);
             } else {
