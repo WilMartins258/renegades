@@ -417,44 +417,52 @@ methods: {
     }
   },
   async AddFoto(event, index) {
-    const inputImagem = document.getElementById(`fotoIndic${index+1}`);
-    const image = inputImagem?.files[0];
+    try {
+      const inputImagem = document.getElementById(`fotoIndic${index+1}`);
+      const image = inputImagem?.files[0];
 
-    if (image) {
-      const imagemBase64 = await retornaCodigoBase64(image);
-      const file = event.target.files[0];
-      if (file) {
-        // const imageURL = URL.createObjectURL(file);
-        this.recomendacao[index].photo = imagemBase64;
+      if (image) {
+        const imagemBase64 = await retornaCodigoBase64(image);
+        const file = event.target.files[0];
+        if (file) {
+          // const imageURL = URL.createObjectURL(file);
+          this.recomendacao[index].photo = imagemBase64;
+        }
       }
+    } catch (error) {
+      console.log('ERROR:: ', error);
     }
   },
 
   async handleEstabelecimentoPhotoChange(event) {
-    const inputImagem = document.getElementById('estabelecimentoPhoto');
-    const image = inputImagem?.files[0];
+    try {
+      const inputImagem = document.getElementById('estabelecimentoPhoto');
+      const image = inputImagem?.files[0];
 
-    if (image) {
-        const fileReader = new FileReader();
+      if (image) {
+          const fileReader = new FileReader();
 
-        const readAsArrayBuffer = (file) => {
-            return new Promise((resolve, reject) => {
-                fileReader.onloadend = () => resolve(fileReader.result);
-                fileReader.onerror = reject;
-                fileReader.readAsArrayBuffer(file);
-            });
-        };
+          const readAsArrayBuffer = (file) => {
+              return new Promise((resolve, reject) => {
+                  fileReader.onloadend = () => resolve(fileReader.result);
+                  fileReader.onerror = reject;
+                  fileReader.readAsArrayBuffer(file);
+              });
+          };
 
-        try {
-            const arrayBuffer = await readAsArrayBuffer(image);
-            const bufferValido = new Uint8Array(arrayBuffer);
+          try {
+              const arrayBuffer = await readAsArrayBuffer(image);
+              const bufferValido = new Uint8Array(arrayBuffer);
 
-            this.estabelecimentoPhoto = bufferValido;
-            this.estabelecimentoPhotoType = image.type;
-            this.estabelecimentoPhoto64 = await retornaCodigoBase64(image);;
-        } catch (error) {
-            console.error('Erro ao converter a imagem para ArrayBuffer:', error);
-        }
+              this.estabelecimentoPhoto = bufferValido;
+              this.estabelecimentoPhotoType = image.type;
+              this.estabelecimentoPhoto64 = await retornaCodigoBase64(image);;
+          } catch (error) {
+              console.error('Erro ao converter a imagem para ArrayBuffer:', error);
+          }
+      }
+    } catch (error) {
+      console.log('ERROR:: ', error);
     }
   },
 
