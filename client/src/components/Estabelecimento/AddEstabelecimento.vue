@@ -447,12 +447,10 @@ methods: {
 
         try {
             const arrayBuffer = await readAsArrayBuffer(image);
-            const bufferInsano = new Uint8Array(arrayBuffer);
+            const bufferValido = new Uint8Array(arrayBuffer);
 
-            this.estabelecimentoPhoto = bufferInsano;
+            this.estabelecimentoPhoto = bufferValido;
             this.estabelecimentoPhoto64 = await retornaCodigoBase64(image);;
-            // console.log('Imagem convertida para ArrayBuffer e armazenada:', this.estabelecimentoPhoto);
-            // console.log('bufferInsano:', bufferInsano);
         } catch (error) {
             console.error('Erro ao converter a imagem para ArrayBuffer:', error);
         }
