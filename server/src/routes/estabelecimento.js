@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const fs = require('fs');
+// const nelson = require('./../images/estabelecimento');
 
 // Importando services e transaction
 const transaction = require('./../models/transaction.js');
@@ -94,14 +96,20 @@ router.post('/', async (req, res) => {
             const resultado = str.replace(/[\/\.\-]/g, '');
             return resultado;
         };
-        const cnpjTratado = removerCaracteresEspeciais(cnpj);
 
+        const transformarBuffer = async (objetoBuffer) => {
+            const valoresBuffer = Object.values(objetoBuffer);
+            return Buffer.from(valoresBuffer);
+        };
+
+        const bufferImagemEstabelecimento = await transformarBuffer(estabelecimentoPhoto);
+        const cnpjTratado = removerCaracteresEspeciais(cnpj);
         const dataDeHoje = new Date().toISOString().substring(0, 10);
 
         const dadosEstabelecimento = {
             nome: nomeEstabelecimento,
             cnpj: cnpjTratado,
-            fotoPrincipal: estabelecimentoPhoto,
+            fotoPrincipal: 'estabelecimentoPhoto',
             descricao: descricaoEstabelecimento,
             cep: cep,
             estado: endereco.uf,
@@ -124,6 +132,14 @@ router.post('/', async (req, res) => {
                 throw new Error(`Erro ao inserir categoria do estabelecimento: ${error.message}`);
             }
         };
+
+        fs.writeFile(`./src/images/estabelecimento/${idEstabelecimento}`, bufferImagemEstabelecimento, (err) => {
+            if (err) {
+              console.error('Erro ao salvar a imagem:', err);
+            } else {
+              console.log('Imagem salva com sucesso em:', `./src/images/estabelecimento/${idEstabelecimento}`);
+            }
+        });
 
         for (let i = 0; i < opcoesSelecionadas.length; i++) {
             try {
@@ -165,13 +181,13 @@ router.post('/', async (req, res) => {
             }
         };
 
-        for (let i = 0; i < recomendacao.length; i++) {
-            try {
-                await recomendacao_Service.inserir([idEstabelecimento, recomendacao[i].name, recomendacao[i].description, recomendacao[i].photo], connection);
-            } catch (error) {
-                throw new Error(`Erro ao inserir recomendacao do estabelecimento: ${error.message}`);
-            }
-        };
+        // for (let i = 0; i < recomendacao.length; i++) {
+        //     try {
+        //         await recomendacao_Service.inserir([idEstabelecimento, recomendacao[i].name, recomendacao[i].description, recomendacao[i].photo], connection);
+        //     } catch (error) {
+        //         throw new Error(`Erro ao inserir recomendacao do estabelecimento: ${error.message}`);
+        //     }
+        // };
 
         await connection.commit();
 
