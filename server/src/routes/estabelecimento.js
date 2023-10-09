@@ -15,6 +15,8 @@ const horario_Service = require('../services/horario.service.js');
 const recomendacao_Service = require('../services/recomendacao.service.js');
 const comida_estabelecimento_Service = require('../services/comida_estabelecimento.service.js');
 
+const extensaoImagem_Service = require('../services/utils/extensaoImagens.service.js');
+
 router.get('/:id', async (req, res) => {
     let connection;
     try {
@@ -80,6 +82,7 @@ router.post('/', async (req, res) => {
             descricaoEstabelecimento,
             cnpj,
             estabelecimentoPhoto,
+            estabelecimentoPhotoType,
             endereco,
             cep,
             numero,
@@ -133,11 +136,13 @@ router.post('/', async (req, res) => {
             }
         };
 
-        fs.writeFile(`./src/images/estabelecimento/${idEstabelecimento}`, bufferImagemEstabelecimento, (err) => {
+        const extensaoImagem = extensaoImagem_Service.encontrarExtensaoImagem(estabelecimentoPhotoType);
+
+        fs.writeFile(`./src/images/estabelecimento/${idEstabelecimento}.${extensaoImagem}`, bufferImagemEstabelecimento, (err) => {
             if (err) {
               console.error('Erro ao salvar a imagem:', err);
             } else {
-              console.log('Imagem salva com sucesso em:', `./src/images/estabelecimento/${idEstabelecimento}`);
+              console.log('Imagem salva com sucesso em:', `./src/images/estabelecimento/${idEstabelecimento}.${extensaoImagem}`);
             }
         });
 
