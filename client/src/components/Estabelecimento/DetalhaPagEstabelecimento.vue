@@ -157,7 +157,7 @@ export default {
         // Acesse o parâmetro 'id' da URL usando this.$route.params.id
         this.id = this.$route.params.id;
         // this.imagemEstabelecimento = '/2.png'; // isso aqui funciona
-        // this.imagemEstabelecimento = require(`./images/${this.$route.params.id}.png`); // isso aqui funciona
+        this.imagemEstabelecimento = require(`./images/${this.$route.params.id}.png`); // isso aqui funciona
 
         const dadosEstabelecimento = await api.get(`/estabelecimento/${this.$route.params.id}`);
         console.log("dadosEstabelecimento", dadosEstabelecimento.data);
@@ -193,6 +193,7 @@ export default {
         }
     
         this.tocaMusica = dadosEstabelecimento.data.tocaMusica;
+        this.musica = dadosEstabelecimento.data.dadosMusicaArray.join(', ');
         
       } catch (error) {
         console.log('ERROR:: ', error);

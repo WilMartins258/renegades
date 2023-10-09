@@ -29,6 +29,7 @@ router.get('/:id', async (req, res) => {
             const dadosOpcionaisArray = dadosOpcionais.map(opcional => opcional.nome);
             const dadosRedesSociais = await redeSocial_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id, connection);
             const dadosMusica = await musica_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id, connection);
+            const dadosMusicaArray = dadosMusica.map(musica => musica.nome);
             const dadosHorarios = await horario_Service.pegarPorIdEstabelecimento(req.params.id, connection);
             const dadosRecomendacao = await recomendacao_Service.pegarPorIdEstabelecimento(req.params.id, connection);
 
@@ -46,7 +47,7 @@ router.get('/:id', async (req, res) => {
                 dadosCategoriaArray,
                 dadosOpcionaisArray,
                 dadosRedesSociais,
-                dadosMusica,
+                dadosMusicaArray,
                 dadosHorarios,
                 dadosRecomendacao,
                 tocaMusica: tocaMusica
