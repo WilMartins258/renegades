@@ -36,7 +36,6 @@ router.get('/:id', async (req, res) => {
             if (dadosOpcionaisArray) {
                 for (let i=0; i < dadosOpcionaisArray.length ;i++) {
                     if (dadosOpcionaisArray[i] == 'Toca Música') {
-                        console.log('Toca Música');
                         tocaMusica = true;
                     }
                 }
