@@ -109,10 +109,12 @@ router.post('/', async (req, res) => {
         const cnpjTratado = removerCaracteresEspeciais(cnpj);
         const dataDeHoje = new Date().toISOString().substring(0, 10);
 
+        const extensaoImagem = extensaoImagem_Service.encontrarExtensaoImagem(estabelecimentoPhotoType);
+
         const dadosEstabelecimento = {
             nome: nomeEstabelecimento,
             cnpj: cnpjTratado,
-            fotoPrincipal: 'estabelecimentoPhoto',
+            fotoPrincipal: `.${extensaoImagem}`,
             descricao: descricaoEstabelecimento,
             cep: cep,
             estado: endereco.uf,
@@ -135,8 +137,6 @@ router.post('/', async (req, res) => {
                 throw new Error(`Erro ao inserir categoria do estabelecimento: ${error.message}`);
             }
         };
-
-        const extensaoImagem = extensaoImagem_Service.encontrarExtensaoImagem(estabelecimentoPhotoType);
 
         fs.writeFile(`./src/images/estabelecimento/${idEstabelecimento}.${extensaoImagem}`, bufferImagemEstabelecimento, (err) => {
             if (err) {
