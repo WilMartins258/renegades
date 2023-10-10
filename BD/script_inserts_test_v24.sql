@@ -2,8 +2,6 @@
 
 SET FOREIGN_KEY_CHECKS = 0;
 
-DELETE FROM testTable;
-
 DELETE FROM categoria;
 DELETE FROM estiloMusica;
 DELETE FROM contato;
