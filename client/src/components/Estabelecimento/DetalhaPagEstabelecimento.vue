@@ -157,7 +157,7 @@ export default {
         this.id = this.$route.params.id;
         
         const dadosEstabelecimento = await api.get(`/estabelecimento/${this.$route.params.id}`);
-        this.imagemEstabelecimento = require(`./images/${this.$route.params.id}${dadosEstabelecimento.data.fotoPrincipal}`);
+        this.imagemEstabelecimento = require(`./images/${this.$route.params.id}.${dadosEstabelecimento.data.fotoPrincipal}`);
 
         this.nomeDoEstabelecimento = dadosEstabelecimento.data.nome;
         this.descricao = dadosEstabelecimento.data.descricao;
