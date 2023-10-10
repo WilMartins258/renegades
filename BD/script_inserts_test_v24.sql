@@ -459,7 +459,7 @@ insert into recomendacao values(
 insert into recomendacao values(
 	null, -- id
 	1, -- idEstabelecimento INT not null,
-	'Big Tasty BLOB', -- foto LONGBLOB not null,
+	'png', -- foto LONGBLOB not null,
 	'Big Tasty', -- nome VARCHAR(50) not null,
 	'Big Tasty - descrição'-- descricao VARCHAR(50) not null
 );
@@ -605,7 +605,7 @@ insert into recomendacao values(
 insert into recomendacao values(
 	null, -- id
 	2, -- idEstabelecimento INT not null,
-	'Quarteirão BLOB', -- foto LONGBLOB not null,
+	'png', -- foto LONGBLOB not null,
 	'Quarteirão', -- nome VARCHAR(50) not null,
 	'Quarteirão - descrição'-- descricao VARCHAR(50) not null
 );
@@ -613,7 +613,7 @@ insert into recomendacao values(
 insert into recomendacao values(
 	null, -- id
 	2, -- idEstabelecimento INT not null,
-	'Big Tasty BLOB', -- foto LONGBLOB not null,
+	'png', -- foto LONGBLOB not null,
 	'Big Tasty', -- nome VARCHAR(50) not null,
 	'Big Tasty - descrição'-- descricao VARCHAR(50) not null
 );
@@ -765,7 +765,7 @@ insert into recomendacao values(
 insert into recomendacao values(
 	null, -- id
 	3, -- idEstabelecimento INT not null,
-	'Hot Dog Mega BLOB', -- foto LONGBLOB not null,
+	'png', -- foto LONGBLOB not null,
 	'Hot Dog Mega', -- nome VARCHAR(50) not null,
 	'Hot Dog Mega - descrição'-- descricao VARCHAR(50) not null
 );
@@ -773,7 +773,7 @@ insert into recomendacao values(
 insert into recomendacao values(
 	null, -- id
 	3, -- idEstabelecimento INT not null,
-	'Porção de batata BLOB', -- foto LONGBLOB not null,
+	'png', -- foto LONGBLOB not null,
 	'Porção de batata', -- nome VARCHAR(50) not null,
 	'Porção de batata - descrição'-- descricao VARCHAR(50) not null
 );
@@ -873,7 +873,7 @@ insert into recomendacao values(
 insert into recomendacao values(
 	null, -- id
 	4, -- idEstabelecimento INT not null,
-	'Pizza de Frango com Catupiry BLOB', -- foto LONGBLOB not null,
+	'png', -- foto LONGBLOB not null,
 	'Pizza de Frango com Catupiry', -- nome VARCHAR(50) not null,
 	'Pizza de Frango com Catupiry - descrição'-- descricao VARCHAR(50) not null
 );
@@ -988,7 +988,7 @@ insert into recomendacao values(
 insert into recomendacao values(
 	null, -- id
 	5, -- idEstabelecimento INT not null,
-	'Drik Mada 03 BLOB', -- foto LONGBLOB not null,
+	'png', -- foto LONGBLOB not null,
 	'Drik Mada 03', -- nome VARCHAR(50) not null,
 	'Drik Mada 03 - descrição'-- descricao VARCHAR(50) not null
 );
