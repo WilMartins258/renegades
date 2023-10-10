@@ -16,6 +16,7 @@ const recomendacao_Service = require('../services/recomendacao.service.js');
 const comida_estabelecimento_Service = require('../services/comida_estabelecimento.service.js');
 
 const extensaoImagem_Service = require('../services/utils/extensaoImagens.service.js');
+const buffer_Service = require('../services/utils/buffer.service.js');
 
 router.get('/:id', async (req, res) => {
     let connection;
@@ -100,12 +101,7 @@ router.post('/', async (req, res) => {
             return resultado;
         };
 
-        const transformarBuffer = async (objetoBuffer) => {
-            const valoresBuffer = Object.values(objetoBuffer);
-            return Buffer.from(valoresBuffer);
-        };
-
-        const bufferImagemEstabelecimento = await transformarBuffer(estabelecimentoPhoto);
+        const bufferImagemEstabelecimento = await buffer_Service.transformarBufferEmValido(estabelecimentoPhoto);
         const cnpjTratado = removerCaracteresEspeciais(cnpj);
         const dataDeHoje = new Date().toISOString().substring(0, 10);
 
