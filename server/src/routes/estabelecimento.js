@@ -114,7 +114,7 @@ router.post('/', async (req, res) => {
         const dadosEstabelecimento = {
             nome: nomeEstabelecimento,
             cnpj: cnpjTratado,
-            fotoPrincipal: `.${extensaoImagem}`,
+            fotoPrincipal: `${extensaoImagem}`,
             descricao: descricaoEstabelecimento,
             cep: cep,
             estado: endereco.uf,
@@ -127,6 +127,9 @@ router.post('/', async (req, res) => {
         }
         const dadosEstabelecimentoArray = Object.values(dadosEstabelecimento);
 
+        console.log('dadosEstabelecimentoArray:: ', dadosEstabelecimentoArray);
+
+
         const idEstabelecimento = await estabelecimento_Service.inserir(dadosEstabelecimentoArray, connection);
         await usuario_Service.inserirIdEstabelecimento([idEstabelecimento, idUsuario], connection);
 
@@ -138,53 +141,53 @@ router.post('/', async (req, res) => {
             }
         };
 
-        fs.writeFile(`./../../../client/src/components/Estabelecimento/images/${idEstabelecimento}.${extensaoImagem}`, bufferImagemEstabelecimento, (err) => {
+        fs.writeFile(`./../client/src/components/Estabelecimento/images/${idEstabelecimento}.${extensaoImagem}`, bufferImagemEstabelecimento, (err) => {
             if (err) {
               console.error('Erro ao salvar a imagem:', err);
             } else {
-              console.log('Imagem salva com sucesso em:', `./src/images/estabelecimento/${idEstabelecimento}.${extensaoImagem}`);
+              console.log('Imagem do estabelecimento salva com sucesso em:', `.../client/src/components/Estabelecimento/images`);
             }
         });
 
-        for (let i = 0; i < opcoesSelecionadas.length; i++) {
-            try {
-                await opcional_estabelecimento_Service.inserir([idEstabelecimento, opcoesSelecionadas[i].id], connection);
-            } catch (error) {
-                throw new Error(`Erro ao inserir opcionais do estabelecimento: ${error.message}`);
-            }
-        };
+        // for (let i = 0; i < opcoesSelecionadas.length; i++) {
+        //     try {
+        //         await opcional_estabelecimento_Service.inserir([idEstabelecimento, opcoesSelecionadas[i].id], connection);
+        //     } catch (error) {
+        //         throw new Error(`Erro ao inserir opcionais do estabelecimento: ${error.message}`);
+        //     }
+        // };
 
-        for (let i = 0; i < rdSocialSelecionadas.length; i++) {
-            try {
-                await redeSocial_estabelecimento_Service.inserir([idEstabelecimento, rdSocialSelecionadas[i].idRede, rdSocialSelecionadas[i].perfil], connection);
-            } catch (error) {
-                throw new Error(`Erro ao inserir redes sociais do estabelecimento: ${error.message}`);
-            }
-        };
+        // for (let i = 0; i < rdSocialSelecionadas.length; i++) {
+        //     try {
+        //         await redeSocial_estabelecimento_Service.inserir([idEstabelecimento, rdSocialSelecionadas[i].idRede, rdSocialSelecionadas[i].perfil], connection);
+        //     } catch (error) {
+        //         throw new Error(`Erro ao inserir redes sociais do estabelecimento: ${error.message}`);
+        //     }
+        // };
 
-        for (let i = 0; i < estilosSelecionadas.length; i++) {
-            try {
-                await musica_estabelecimento_Service.inserir([idEstabelecimento, estilosSelecionadas[i].id], connection);
-            } catch (error) {
-                throw new Error(`Erro ao inserir estilos musicais ao estabelecimento: ${error.message}`);
-            }
-        };
+        // for (let i = 0; i < estilosSelecionadas.length; i++) {
+        //     try {
+        //         await musica_estabelecimento_Service.inserir([idEstabelecimento, estilosSelecionadas[i].id], connection);
+        //     } catch (error) {
+        //         throw new Error(`Erro ao inserir estilos musicais ao estabelecimento: ${error.message}`);
+        //     }
+        // };
 
-        for (let i = 0; i < horariosSelecionados.length; i++) {
-            try {
-                await horario_Service.inserir([idEstabelecimento, horariosSelecionados[i].dia, horariosSelecionados[i].abre, horariosSelecionados[i].fecha], connection);
-            } catch (error) {
-                throw new Error(`Erro ao inserir horários do estabelecimento: ${error.message}`);
-            }
-        };
+        // for (let i = 0; i < horariosSelecionados.length; i++) {
+        //     try {
+        //         await horario_Service.inserir([idEstabelecimento, horariosSelecionados[i].dia, horariosSelecionados[i].abre, horariosSelecionados[i].fecha], connection);
+        //     } catch (error) {
+        //         throw new Error(`Erro ao inserir horários do estabelecimento: ${error.message}`);
+        //     }
+        // };
 
-        for (let i = 0; i < tiposDeComidaSelecionados.length; i++) {
-            try {
-                await comida_estabelecimento_Service.inserir([idEstabelecimento, tiposDeComidaSelecionados[i].id], connection);
-            } catch (error) {
-                throw new Error(`Erro ao inserir comidas do estabelecimento: ${error.message}`);
-            }
-        };
+        // for (let i = 0; i < tiposDeComidaSelecionados.length; i++) {
+        //     try {
+        //         await comida_estabelecimento_Service.inserir([idEstabelecimento, tiposDeComidaSelecionados[i].id], connection);
+        //     } catch (error) {
+        //         throw new Error(`Erro ao inserir comidas do estabelecimento: ${error.message}`);
+        //     }
+        // };
 
         // for (let i = 0; i < recomendacao.length; i++) {
         //     try {
@@ -194,7 +197,8 @@ router.post('/', async (req, res) => {
         //     }
         // };
 
-        await connection.commit();
+        // await connection.commit();
+        await connection.rollback();
 
         res.status(200).send({
             msg: 'Estabelecimento adicionado com sucesso!',
