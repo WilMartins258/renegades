@@ -180,14 +180,15 @@ router.post('/', async (req, res) => {
             }
         };
 
-        // for (let i = 0; i < recomendacao.length; i++) {
-        //     try {
-        //         // await recomendacao_Service.inserir([idEstabelecimento, recomendacao[i].name, recomendacao[i].description, recomendacao[i].photo], connection);
-        //         console.log('for de recomendacao:: ', i)
-        //     } catch (error) {
-        //         throw new Error(`Erro ao inserir recomendacao do estabelecimento: ${error.message}`);
-        //     }
-        // };
+        for (let i = 0; i < recomendacao.length; i++) {
+            try {
+                const tipoFotoRecomendacao = extensaoImagem_Service.encontrarExtensaoImagem(recomendacao[i].type);
+                await recomendacao_Service.inserir([idEstabelecimento, recomendacao[i].name, recomendacao[i].description, tipoFotoRecomendacao], connection);
+                console.log('for de recomendacao:: ', i)
+            } catch (error) {
+                throw new Error(`Erro ao inserir recomendacao do estabelecimento: ${error.message}`);
+            }
+        };
 
         await connection.commit();
 
