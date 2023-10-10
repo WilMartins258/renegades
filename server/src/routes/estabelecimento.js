@@ -149,45 +149,45 @@ router.post('/', async (req, res) => {
             }
         });
 
-        // for (let i = 0; i < opcoesSelecionadas.length; i++) {
-        //     try {
-        //         await opcional_estabelecimento_Service.inserir([idEstabelecimento, opcoesSelecionadas[i].id], connection);
-        //     } catch (error) {
-        //         throw new Error(`Erro ao inserir opcionais do estabelecimento: ${error.message}`);
-        //     }
-        // };
+        for (let i = 0; i < opcoesSelecionadas.length; i++) {
+            try {
+                await opcional_estabelecimento_Service.inserir([idEstabelecimento, opcoesSelecionadas[i].id], connection);
+            } catch (error) {
+                throw new Error(`Erro ao inserir opcionais do estabelecimento: ${error.message}`);
+            }
+        };
 
-        // for (let i = 0; i < rdSocialSelecionadas.length; i++) {
-        //     try {
-        //         await redeSocial_estabelecimento_Service.inserir([idEstabelecimento, rdSocialSelecionadas[i].idRede, rdSocialSelecionadas[i].perfil], connection);
-        //     } catch (error) {
-        //         throw new Error(`Erro ao inserir redes sociais do estabelecimento: ${error.message}`);
-        //     }
-        // };
+        for (let i = 0; i < rdSocialSelecionadas.length; i++) {
+            try {
+                await redeSocial_estabelecimento_Service.inserir([idEstabelecimento, rdSocialSelecionadas[i].idRede, rdSocialSelecionadas[i].perfil], connection);
+            } catch (error) {
+                throw new Error(`Erro ao inserir redes sociais do estabelecimento: ${error.message}`);
+            }
+        };
 
-        // for (let i = 0; i < estilosSelecionadas.length; i++) {
-        //     try {
-        //         await musica_estabelecimento_Service.inserir([idEstabelecimento, estilosSelecionadas[i].id], connection);
-        //     } catch (error) {
-        //         throw new Error(`Erro ao inserir estilos musicais ao estabelecimento: ${error.message}`);
-        //     }
-        // };
+        for (let i = 0; i < estilosSelecionadas.length; i++) {
+            try {
+                await musica_estabelecimento_Service.inserir([idEstabelecimento, estilosSelecionadas[i].id], connection);
+            } catch (error) {
+                throw new Error(`Erro ao inserir estilos musicais ao estabelecimento: ${error.message}`);
+            }
+        };
 
-        // for (let i = 0; i < horariosSelecionados.length; i++) {
-        //     try {
-        //         await horario_Service.inserir([idEstabelecimento, horariosSelecionados[i].dia, horariosSelecionados[i].abre, horariosSelecionados[i].fecha], connection);
-        //     } catch (error) {
-        //         throw new Error(`Erro ao inserir horários do estabelecimento: ${error.message}`);
-        //     }
-        // };
+        for (let i = 0; i < horariosSelecionados.length; i++) {
+            try {
+                await horario_Service.inserir([idEstabelecimento, horariosSelecionados[i].dia, horariosSelecionados[i].abre, horariosSelecionados[i].fecha], connection);
+            } catch (error) {
+                throw new Error(`Erro ao inserir horários do estabelecimento: ${error.message}`);
+            }
+        };
 
-        // for (let i = 0; i < tiposDeComidaSelecionados.length; i++) {
-        //     try {
-        //         await comida_estabelecimento_Service.inserir([idEstabelecimento, tiposDeComidaSelecionados[i].id], connection);
-        //     } catch (error) {
-        //         throw new Error(`Erro ao inserir comidas do estabelecimento: ${error.message}`);
-        //     }
-        // };
+        for (let i = 0; i < tiposDeComidaSelecionados.length; i++) {
+            try {
+                await comida_estabelecimento_Service.inserir([idEstabelecimento, tiposDeComidaSelecionados[i].id], connection);
+            } catch (error) {
+                throw new Error(`Erro ao inserir comidas do estabelecimento: ${error.message}`);
+            }
+        };
 
         // for (let i = 0; i < recomendacao.length; i++) {
         //     try {
@@ -197,8 +197,7 @@ router.post('/', async (req, res) => {
         //     }
         // };
 
-        // await connection.commit();
-        await connection.rollback();
+        await connection.commit();
 
         res.status(200).send({
             msg: 'Estabelecimento adicionado com sucesso!',
