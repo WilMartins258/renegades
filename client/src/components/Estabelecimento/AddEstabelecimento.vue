@@ -273,7 +273,7 @@ data() {
       },
       numero: "",
       recomendacao: [
-      { name: '', description:  '', photo: null },],
+      { name: '', description:  '', photo: null, photoBuffer: null, type: null },],
       estabelecimentoPhoto: null,
       estabelecimentoPhotoType: "",
       estabelecimentoPhoto64: null,
@@ -336,7 +336,7 @@ methods: {
         horariosSelecionados: this.HorariosSelecionados
       };
 
-      console.log('this.estabelecimentoPhoto:: ', this.estabelecimentoPhoto)
+      // console.log('formData:: ', formData);
       
       const salvarEstabelecimento = await api.post('estabelecimento', formData);
 
@@ -420,13 +420,25 @@ methods: {
     try {
       const inputImagem = document.getElementById(`fotoIndic${index+1}`);
       const image = inputImagem?.files[0];
-
       if (image) {
-        const imagemBase64 = await retornaCodigoBase64(image);
+        // const imagemBase64 = await retornaCodigoBase64(image);
         const file = event.target.files[0];
         if (file) {
-          // const imageURL = URL.createObjectURL(file);
-          this.recomendacao[index].photo = imagemBase64;
+          const fileReader = new FileReader();
+          const readAsArrayBuffer = (file) => {
+              return new Promise((resolve, reject) => {
+                  fileReader.onloadend = () => resolve(fileReader.result);
+                  fileReader.onerror = reject;
+                  fileReader.readAsArrayBuffer(file);
+              });
+          };
+
+          const arrayBuffer = await readAsArrayBuffer(file);
+          const bufferValido = new Uint8Array(arrayBuffer);
+
+          // this.recomendacao[index].photo = imagemBase64;
+          this.recomendacao[index].photoBuffer = bufferValido;
+          this.recomendacao[index].type = file.type;
         }
       }
     } catch (error) {
