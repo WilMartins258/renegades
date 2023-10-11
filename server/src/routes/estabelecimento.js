@@ -134,11 +134,11 @@ router.post('/', async (req, res) => {
             }
         };
 
-        // fs.writeFile(`./../client/src/components/Estabelecimento/images/${idEstabelecimento}.${extensaoImagem}`, bufferImagemEstabelecimento, (err) => {
-        //     if (err) {
-        //       console.error('Erro ao salvar a imagem:', err);
-        //     }
-        // });
+        fs.writeFile(`./../client/src/components/Estabelecimento/images/${idEstabelecimento}.${extensaoImagem}`, bufferImagemEstabelecimento, (err) => {
+            if (err) {
+              console.error('Erro ao salvar imagem do estabelecimento:', err);
+            }
+        });
 
         for (let i = 0; i < opcoesSelecionadas.length; i++) {
             try {
@@ -188,7 +188,7 @@ router.post('/', async (req, res) => {
 
                 fs.writeFile(`./../client/src/images/recomendacaoo/${idRecomendacao}.${extensaoRecomendacao}`, bufferImagemEstabelecimento, (err) => {
                 if (err) {
-                console.error('Erro ao salvar a imagem:', err);
+                    console.error('Erro ao salvar imagem da recomendação:', err);
                 }
         });
             } catch (error) {
