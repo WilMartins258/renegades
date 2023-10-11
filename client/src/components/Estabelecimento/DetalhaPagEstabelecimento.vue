@@ -35,7 +35,7 @@
       <div class="info">
         <h3>Forma de Contato e Redes Sociais:</h3>
         <p >Telefone: {{ telefone }}</p>
-        <p>Redes Sociais: <a :href="facebook">{{ facebook }}</a>, <a :href="instagram">{{ instagram }}</a>, <a :href="twitter">{{ twitter }}</a></p>
+        <p>Redes Sociais: <a :href="facebook" target="_blank" >{{ facebook }}</a>, <a :href="instagram" target="_blank">{{ instagram }}</a>, <a :href="twitter" target="_blank">{{ twitter }}</a></p>
         <p v-if="this.site.length > 0">Nosso site: <a :href="site">{{ site }}</a></p>
         <p v-if="this.cardapio.length > 0">Cardápio Online: <a :href="cardapio">{{ cardapio }}</a></p>
       </div>
