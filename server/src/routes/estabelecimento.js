@@ -134,11 +134,11 @@ router.post('/', async (req, res) => {
             }
         };
 
-        fs.writeFile(`./../client/src/components/Estabelecimento/images/${idEstabelecimento}.${extensaoImagem}`, bufferImagemEstabelecimento, (err) => {
-            if (err) {
-              console.error('Erro ao salvar a imagem:', err);
-            }
-        });
+        // fs.writeFile(`./../client/src/components/Estabelecimento/images/${idEstabelecimento}.${extensaoImagem}`, bufferImagemEstabelecimento, (err) => {
+        //     if (err) {
+        //       console.error('Erro ao salvar a imagem:', err);
+        //     }
+        // });
 
         for (let i = 0; i < opcoesSelecionadas.length; i++) {
             try {
@@ -182,9 +182,15 @@ router.post('/', async (req, res) => {
 
         for (let i = 0; i < recomendacao.length; i++) {
             try {
-                const tipoFotoRecomendacao = extensaoImagem_Service.encontrarExtensaoImagem(recomendacao[i].type);
-                await recomendacao_Service.inserir([idEstabelecimento, recomendacao[i].name, recomendacao[i].description, tipoFotoRecomendacao], connection);
-                console.log('for de recomendacao:: ', i)
+                const extensaoRecomendacao = extensaoImagem_Service.encontrarExtensaoImagem(recomendacao[i].type);
+                const idRecomendacao = await recomendacao_Service.inserir([idEstabelecimento, recomendacao[i].name, recomendacao[i].description, extensaoRecomendacao], connection);
+                console.log('idRecomendacao:: ', idRecomendacao)
+
+                fs.writeFile(`./../client/src/images/recomendacaoo/${idRecomendacao}.${extensaoRecomendacao}`, bufferImagemEstabelecimento, (err) => {
+                if (err) {
+                console.error('Erro ao salvar a imagem:', err);
+                }
+        });
             } catch (error) {
                 throw new Error(`Erro ao inserir recomendacao do estabelecimento: ${error.message}`);
             }

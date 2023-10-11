@@ -130,7 +130,7 @@ CREATE TABLE recomendacao (
 	idEstabelecimento INT not null,
 	foto              VARCHAR(20) not null,
 	nome              VARCHAR(50) not null,
-	descricao         VARCHAR(50) not null
+	descricao         VARCHAR(500) not null
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE promocao (
