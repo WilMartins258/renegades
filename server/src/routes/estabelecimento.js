@@ -123,9 +123,6 @@ router.post('/', async (req, res) => {
         }
         const dadosEstabelecimentoArray = Object.values(dadosEstabelecimento);
 
-        console.log('dadosEstabelecimentoArray:: ', dadosEstabelecimentoArray);
-
-
         const idEstabelecimento = await estabelecimento_Service.inserir(dadosEstabelecimentoArray, connection);
         await usuario_Service.inserirIdEstabelecimento([idEstabelecimento, idUsuario], connection);
 
@@ -140,8 +137,6 @@ router.post('/', async (req, res) => {
         fs.writeFile(`./../client/src/components/Estabelecimento/images/${idEstabelecimento}.${extensaoImagem}`, bufferImagemEstabelecimento, (err) => {
             if (err) {
               console.error('Erro ao salvar a imagem:', err);
-            } else {
-              console.log('Imagem do estabelecimento salva com sucesso em:', `.../client/src/components/Estabelecimento/images`);
             }
         });
 
@@ -185,13 +180,15 @@ router.post('/', async (req, res) => {
             }
         };
 
-        // for (let i = 0; i < recomendacao.length; i++) {
-        //     try {
-        //         await recomendacao_Service.inserir([idEstabelecimento, recomendacao[i].name, recomendacao[i].description, recomendacao[i].photo], connection);
-        //     } catch (error) {
-        //         throw new Error(`Erro ao inserir recomendacao do estabelecimento: ${error.message}`);
-        //     }
-        // };
+        for (let i = 0; i < recomendacao.length; i++) {
+            try {
+                const tipoFotoRecomendacao = extensaoImagem_Service.encontrarExtensaoImagem(recomendacao[i].type);
+                await recomendacao_Service.inserir([idEstabelecimento, recomendacao[i].name, recomendacao[i].description, tipoFotoRecomendacao], connection);
+                console.log('for de recomendacao:: ', i)
+            } catch (error) {
+                throw new Error(`Erro ao inserir recomendacao do estabelecimento: ${error.message}`);
+            }
+        };
 
         await connection.commit();
 
