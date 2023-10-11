@@ -1,3 +1,5 @@
+USE renegades_stage;
+
 -- RESET
 
 SET FOREIGN_KEY_CHECKS = 0;
@@ -69,6 +71,7 @@ insert into categoria (id, nome) values (14, 'Creperia');
 insert into categoria (id, nome) values (15, 'Doceria');
 insert into categoria (id, nome) values (16, 'Comida de rua');
 insert into categoria (id, nome) values (17, 'Sucaria');
+insert into categoria (id, nome) values (18, 'Fast Food');
 
 -- ---------------------------- CATEGORIA -- INÍCIO
 
@@ -1070,4 +1073,118 @@ insert into avaliacao values(
 	'2023-10-01', -- data              DATE not null,
 	1 -- nota              INT not null -- Somente de 1 a 5
 );
+
+-- -----------------------------------------------> Habib's INÍCIO
+
+insert into estabelecimento values(
+	6,                      -- id 
+	"Habib's",             -- nome
+	'56.765.680/0001-99',       -- cnpj
+	'jpg',                   -- fotoPrincipal   
+	"Rede de fast-food árabe, popular pelas esfihas, tem um ambiente simples e informal também para grandes grupos.", -- descricao
+	true,                   -- ativo
+	false,                   -- oculto
+	'Validado',             -- statusValidacao
+	null, -- nota
+	0, -- numeroAvaliacoes INT,
+	'3145', -- numeroEstabelecimento  VARCHAR(9) not null,
+	'Av. Itavuvu', -- logradouro             VARCHAR(200) not null,
+	'Jardim Santa Cecilia', -- bairro                 VARCHAR(200) not null,
+	'Sorocaba', -- cidade                 VARCHAR(200) not null,
+	'SP', -- estado                 VARCHAR(200) not null,
+	'18078-005', -- cep               VARCHAR(9) not null,
+	'2023-10-10', -- dataUltimoAcesso
+	'2023-10-10' -- dataUltimoAcesso
+);
+
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
+	6, -- idEstabelecimento INT NOT NULL,
+	18 -- idCategoria INT NOT NULL
+);
+
+insert into musica_estabelecimento (idEstabelecimento, idEstiloMusica) values(
+	6, -- idEstabelecimento INT not null,
+	4 -- idEstiloMusica    INT not null ---------> Rock
+);
+
+insert into musica_estabelecimento (idEstabelecimento, idEstiloMusica) values(
+	6, -- idEstabelecimento INT not null,
+	13 -- idEstiloMusica    INT not null ---------> Classica
+);
+
+insert into musica_estabelecimento (idEstabelecimento, idEstiloMusica) values(
+	6, -- idEstabelecimento INT not null,
+	20 -- idEstiloMusica    INT not null ---------> Alternativa
+);
+
+insert into usuario values(
+	9,                   -- id
+	6,                -- idEstabelecimento
+    'Habibs usuario09',           -- nome
+	'15999999999',           -- celular
+    '11122233355',       -- cpf
+    'usuario09@gmail.com', -- email
+    'senha123',          -- senha
+	null,                -- fotoPerfil
+    '1989-09-24',        -- dataNascimento
+	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	null, -- numero not null
+	null, -- lodradouro not null,
+	null, -- bairro not null,
+	null, -- cidade not null,
+	null, -- estado not null,
+	null -- cep not null,
+);
+
+---------------------------------------------------------------- HORÁRIO INÍCIO
+
+insert into horario values(
+	null, -- id
+	6, -- idEstabelecimento INT not null,
+	8, -- idDiaSemana INT not null,
+	000000, -- horarioInicio TIME not null,
+	060000  -- horarioFim TIME not null
+);
+
+insert into horario values(
+	null, -- id
+	6, -- idEstabelecimento INT not null,
+	10, -- idDiaSemana INT not null,
+	000000, -- horarioInicio TIME not null,
+	060000  -- horarioFim TIME not null
+);
+
+insert into contato_estabelecimento values(
+	null,       -- id INT
+	6,          -- idEstabelecimento INT not null,
+	1,          -- idTipoContato INT not null, -- TELEFONE
+	'999999999', -- contato VARCHAR(200) not null
+	true -- isWhatsapp        BOOLEAN not null
+);
+
+insert into recomendacao values(
+	null, -- id
+	6, -- idEstabelecimento INT not null,
+	'png', -- foto LONGBLOB not null,
+	'Mini Kibe', -- nome VARCHAR(50) not null,
+	'Mini Kibe - O minikibe clássico do Habib’s como você nunca viu, feito com proteína vegetal. Produto Vegetariano.'-- descricao VARCHAR(50) not null
+);
+
+insert into recomendacao values(
+	null, -- id
+	6, -- idEstabelecimento INT not null,
+	'png', -- foto LONGBLOB not null,
+	"Bib'sfiha de Carne", -- nome VARCHAR(50) not null,
+	"Bib'sfiha de Carne - Carne temperada com limão, tomate, tahine, cebola e tempero especial."-- descricao VARCHAR(50) not null
+);
+
+insert into recomendacao values(
+	null, -- id
+	6, -- idEstabelecimento INT not null,
+	'png', -- foto LONGBLOB not null,
+	'Pudim de Leite Condensado', -- nome VARCHAR(50) not null,
+	'Pudim de Leite Condensado - O pudim de leite que todo mundo ama, perfeito para qualquer momento!'-- descricao VARCHAR(50) not null
+);
+
+-- -----------------------------------------------> Habib's FIM
 
