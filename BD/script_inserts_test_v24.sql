@@ -444,7 +444,7 @@ insert into musica_estabelecimento (idEstabelecimento, idEstiloMusica) values(
 );
 
 insert into recomendacao values(
-	null, -- id
+	1, -- id
 	1, -- idEstabelecimento INT not null,
 	'png', -- foto LONGBLOB not null,
 	'Big Mac', -- nome VARCHAR(50) not null,
@@ -452,7 +452,7 @@ insert into recomendacao values(
 );
 
 insert into recomendacao values(
-	null, -- id
+	2, -- id
 	1, -- idEstabelecimento INT not null,
 	'Quarteirão BLOB', -- foto LONGBLOB not null,
 	'Quarteirão', -- nome VARCHAR(50) not null,
@@ -460,7 +460,7 @@ insert into recomendacao values(
 );
 
 insert into recomendacao values(
-	null, -- id
+	3, -- id
 	1, -- idEstabelecimento INT not null,
 	'png', -- foto LONGBLOB not null,
 	'Big Tasty', -- nome VARCHAR(50) not null,
@@ -598,7 +598,7 @@ insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSoc
 	'https://www.mcdonalds.com.br/' -- redeSocial VARCHAR(200) not null
 );
 insert into recomendacao values(
-	null, -- id
+	4, -- id
 	2, -- idEstabelecimento INT not null,
 	'png', -- foto LONGBLOB not null,
 	'Big Mac', -- nome VARCHAR(50) not null,
@@ -606,7 +606,7 @@ insert into recomendacao values(
 );
 
 insert into recomendacao values(
-	null, -- id
+	5, -- id
 	2, -- idEstabelecimento INT not null,
 	'png', -- foto LONGBLOB not null,
 	'Quarteirão', -- nome VARCHAR(50) not null,
@@ -614,7 +614,7 @@ insert into recomendacao values(
 );
 
 insert into recomendacao values(
-	null, -- id
+	6, -- id
 	2, -- idEstabelecimento INT not null,
 	'png', -- foto LONGBLOB not null,
 	'Big Tasty', -- nome VARCHAR(50) not null,
@@ -758,7 +758,7 @@ insert into contato_estabelecimento values(
 );
 
 insert into recomendacao values(
-	null, -- id
+	7, -- id
 	3, -- idEstabelecimento INT not null,
 	'png', -- foto LONGBLOB not null,
 	'Hot Dog Super', -- nome VARCHAR(50) not null,
@@ -766,7 +766,7 @@ insert into recomendacao values(
 );
 
 insert into recomendacao values(
-	null, -- id
+	8, -- id
 	3, -- idEstabelecimento INT not null,
 	'png', -- foto LONGBLOB not null,
 	'Hot Dog Mega', -- nome VARCHAR(50) not null,
@@ -774,7 +774,7 @@ insert into recomendacao values(
 );
 
 insert into recomendacao values(
-	null, -- id
+	9, -- id
 	3, -- idEstabelecimento INT not null,
 	'png', -- foto LONGBLOB not null,
 	'Porção de batata', -- nome VARCHAR(50) not null,
@@ -866,7 +866,7 @@ insert into contato_estabelecimento values(
 );
 
 insert into recomendacao values(
-	null, -- id
+	10, -- id
 	4, -- idEstabelecimento INT not null,
 	'png', -- foto LONGBLOB not null,
 	'Pizza de Calabresa', -- nome VARCHAR(50) not null,
@@ -874,7 +874,7 @@ insert into recomendacao values(
 );
 
 insert into recomendacao values(
-	null, -- id
+	11, -- id
 	4, -- idEstabelecimento INT not null,
 	'png', -- foto LONGBLOB not null,
 	'Pizza de Frango com Catupiry', -- nome VARCHAR(50) not null,
@@ -973,7 +973,7 @@ insert into contato_estabelecimento values(
 );
 
 insert into recomendacao values(
-	null, -- id
+	12, -- id
 	5, -- idEstabelecimento INT not null,
 	'png', -- foto LONGBLOB not null,
 	'Drik Mada 01', -- nome VARCHAR(50) not null,
@@ -981,7 +981,7 @@ insert into recomendacao values(
 );
 
 insert into recomendacao values(
-	null, -- id
+	13, -- id
 	5, -- idEstabelecimento INT not null,
 	'png', -- foto LONGBLOB not null,
 	'Drik Mada 02', -- nome VARCHAR(50) not null,
@@ -989,7 +989,7 @@ insert into recomendacao values(
 );
 
 insert into recomendacao values(
-	null, -- id
+	14, -- id
 	5, -- idEstabelecimento INT not null,
 	'png', -- foto LONGBLOB not null,
 	'Drik Mada 03', -- nome VARCHAR(50) not null,
@@ -1191,7 +1191,7 @@ insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSoc
 	'https://www.LINK_CARDAPIO.com.br/' -- redeSocial VARCHAR(200) not null
 );
 insert into recomendacao values(
-	null, -- id
+	15, -- id
 	6, -- idEstabelecimento INT not null,
 	'png', -- foto LONGBLOB not null,
 	'Mini Kibe', -- nome VARCHAR(50) not null,
@@ -1199,7 +1199,7 @@ insert into recomendacao values(
 );
 
 insert into recomendacao values(
-	null, -- id
+	16, -- id
 	6, -- idEstabelecimento INT not null,
 	'png', -- foto LONGBLOB not null,
 	"Bib'sfiha de Carne", -- nome VARCHAR(50) not null,
@@ -1207,7 +1207,7 @@ insert into recomendacao values(
 );
 
 insert into recomendacao values(
-	null, -- id
+	17, -- id
 	6, -- idEstabelecimento INT not null,
 	'png', -- foto LONGBLOB not null,
 	'Pudim de Leite Condensado', -- nome VARCHAR(50) not null,
