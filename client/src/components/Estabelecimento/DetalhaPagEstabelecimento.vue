@@ -18,9 +18,11 @@
     <br><h2>Recomendações do Chef:</h2>
     <section class="chef-recomendacoes">
       <div class="recomendacao" v-for="prato in pratosChef" :key="prato.id">
-        <h3>{{ prato.nome }}</h3>
-        <p>{{ prato.descricao }}</p>
-        <img :src="prato.imagem" :alt="'Imagem de ' + prato.nome" class="imagem-prato"/>
+        <div>
+          <h3>{{ prato.nome }}</h3>
+          <p>{{ prato.descricao }}</p>
+          <img :src="prato.imagem" :alt="'Imagem de ' + prato.nome" class="imagem-prato"/>
+        </div>
       </div>
     </section>
 
@@ -187,10 +189,20 @@ export default {
           dadosOpcionaisArray,
           tocaMusica,
           dadosMusicaArray,
-          fotoPrincipal
+          formatoFoto,
+          dadosRecomendacao
         } = dadosEstabelecimento.data;
 
-        this.imagemEstabelecimento = require(`./images/${this.$route.params.id}.${fotoPrincipal}`);
+        this.imagemEstabelecimento = require(`./images/${this.$route.params.id}.${formatoFoto}`);
+        
+        console.log('dadosRecomendacao:: ', dadosRecomendacao);
+
+         this.pratosChef = [
+            { id: 1, nome: "Big Jeff's", descricao: "Descrição do Prato 1", imagem: "https://media-cdn.tripadvisor.com/media/photo-s/15/35/5b/64/20180904-221944-largejpg.jpg" },
+            { id: 2, nome: "Picanha Jeff's", descricao: "Descrição do Prato 2", imagem: "https://www.guiaponto.com.br/fotos/fotos/c583037d236eaabd4bf1db9d64437594.png" },
+            { id: 2, nome: "Picanha Jeff's", descricao: "Descrição do Prato 2", imagem: "https://www.guiaponto.com.br/fotos/fotos/c583037d236eaabd4bf1db9d64437594.png" },
+        ];
+
 
         this.nomeDoEstabelecimento = nome;
         this.descricao = descricao;
