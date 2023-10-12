@@ -16,6 +16,28 @@ router.get('/:idUsuario', async (req, res) => {
     }
 });
 
+router.post('/', async (req, res) => {
+    try {
+        const {
+            idUsuario,
+            idEstabelecimento
+        } = req.body;
+
+        await favorito_Service.inserir([idUsuario, idEstabelecimento]);
+
+        res.status(200).send({
+            status: true,
+            msg: 'Favorito adicionado com sucesso'
+        });
+    } catch (error) {
+        console.error('ERROR:: ', error);
+        res.status(400).send({
+            msg: 'Erro ao adicionar favorito',
+            error: error
+        });
+    }
+});
+
 router.delete('/:idFavorito', async (req, res) => {
     try {
         const idFavorito = req?.params?.idFavorito;
