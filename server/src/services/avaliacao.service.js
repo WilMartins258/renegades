@@ -35,9 +35,10 @@ const pegarPorIdUsuario = async (idUsuario) => {
 const pegarPorIdEstabelecimento = async (idEstabelecimento, conn) => {
     try {
         const avaliacaoQuery = `
-        SELECT a.id as 'idAvaliacao', a.idUsuario, a.descricao, a.nota, a.data
-            FROM  estabelecimento e JOIN avaliacao a
-            on e.id = a.idEstabelecimento
+        SELECT u.nome, a.descricao, a.nota, a.data
+            FROM  estabelecimento e 
+            JOIN avaliacao a on e.id = a.idEstabelecimento
+            JOIN usuario u on u.id = a.idUsuario
                 WHERE e.id = ?;`;
 
         const [avaliacoesEstabelecimento] = await conn.query(avaliacaoQuery, idEstabelecimento);
