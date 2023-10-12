@@ -35,7 +35,10 @@ const pegarPorIdUsuario = async (idUsuario) => {
 const pegarPorIdEstabelecimento = async (idEstabelecimento) => {
     try {
         const avaliacaoQuery = `
-        `;
+        SELECT a.id as 'idAvaliacao', a.idUsuario, a.descricao, a.nota, a.data
+            FROM  estabelecimento e JOIN avaliacao a
+            on e.id = a.idEstabelecimento
+                WHERE e.id = ?;`;
         const connection = await db;
 
         const [avaliacoesEstabelecimento] = await connection.query(avaliacaoQuery, idEstabelecimento);
