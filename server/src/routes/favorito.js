@@ -38,11 +38,12 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.delete('/:idFavorito', async (req, res) => {
+router.delete('/:idUsuario/:idEstabelecimento', async (req, res) => {
     try {
-        const idFavorito = req?.params?.idFavorito;
+        const idUsuario = req?.params?.idUsuario;
+        const idEstabelecimento = req?.params?.idEstabelecimento;
 
-        await favorito_Service.excluirPorIdFavorito(idFavorito);
+        await favorito_Service.excluirPorDadosFavorito([idUsuario, idEstabelecimento]);
         
         res.status(200).send({
             exclusao: true
