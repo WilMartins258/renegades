@@ -14,6 +14,7 @@ const musica_estabelecimento_Service = require('../services/musica_estabelecimen
 const horario_Service = require('../services/horario.service.js');
 const recomendacao_Service = require('../services/recomendacao.service.js');
 const comida_estabelecimento_Service = require('../services/comida_estabelecimento.service.js');
+const avaliacao_Service = require('../services/avaliacao.service.js');
 
 const extensaoImagem_Service = require('../services/utils/extensaoImagens.service.js');
 const buffer_Service = require('../services/utils/buffer.service.js');
@@ -33,6 +34,7 @@ router.get('/:id', async (req, res) => {
             const dadosMusicaArray = dadosMusica.map(musica => musica.nome);
             const dadosHorarios = await horario_Service.pegarPorIdEstabelecimento(req.params.id, connection);
             const dadosRecomendacao = await recomendacao_Service.pegarPorIdEstabelecimento(req.params.id, connection);
+            const dadosAvaliacao = await avaliacao_Service.pegarPorIdEstabelecimento(req.params.id, connection);
 
             let tocaMusica = false;
             if (dadosOpcionaisArray) {
@@ -51,7 +53,8 @@ router.get('/:id', async (req, res) => {
                 dadosMusicaArray,
                 dadosHorarios,
                 dadosRecomendacao,
-                tocaMusica: tocaMusica
+                tocaMusica: tocaMusica,
+                dadosAvaliacao
             });
         } else {
             res.status(404).send('Id de estabelecimento não encontrado!');
