@@ -6,7 +6,6 @@ const inserir = async (dadosFavorito) => {
         const connection = await db;
 
         await connection.query(favoritoInsertQuery, dadosFavorito);
-        
     } catch (error) {
         throw new Error(`Erro ao adicionar favorito: ${error.message}`);
     }
