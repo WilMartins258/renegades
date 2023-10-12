@@ -195,9 +195,8 @@ export default {
 
         this.imagemEstabelecimento = require(`./images/${this.$route.params.id}.${formatoFoto}`);
         
-        
         for (let i=0; i < dadosRecomendacao.length; i++) {
-          dadosRecomendacao[i].imagem = require(`./../../images/recomendacao/${dadosRecomendacao[i].id}.${formatoFoto}`);
+          dadosRecomendacao[i].imagem = require(`./../../images/recomendacao/${dadosRecomendacao[i].id}.${dadosRecomendacao[i].formatoFoto}`);
         };
 
         this.pratosChef = dadosRecomendacao;
