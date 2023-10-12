@@ -203,9 +203,13 @@ export default {
 
         this.imagemEstabelecimento = require(`./images/${this.$route.params.id}.${formatoFoto}`);
         
-        for (let i=0; i < dadosRecomendacao.length; i++) {
-          dadosRecomendacao[i].imagem = require(`./../../images/recomendacao/${dadosRecomendacao[i].id}.${dadosRecomendacao[i].formatoFoto}`);
-        };
+        try {
+          for (let i=0; i < dadosRecomendacao.length; i++) {
+            dadosRecomendacao[i].imagem = require(`./../../images/recomendacao/${dadosRecomendacao[i].id}.${dadosRecomendacao[i].formatoFoto}`);
+          };
+        } catch (error) {
+          console.log('Erro ao exibir recomendações do estabelecimento');
+        }
 
         this.pratosChef = dadosRecomendacao;
         this.nomeDoEstabelecimento = nome;
@@ -244,6 +248,24 @@ export default {
         this.horarios = todosHorarios;
         this.tocaMusica = tocaMusica;
         this.musica = dadosMusicaArray.join(', ');
+
+        this.avaliacao = [
+          {
+            stars: 5,
+            username: "João da Silva",
+            date: "20/09/2023",
+            descricao: "Excelente experiência no estabelecimento. Ótimo atendimento e comida deliciosa."
+          },
+          {
+            stars: 5,
+            username: "Roberto Alberto",
+            date: "18/09/2023",
+            descricao: "Excelente estabelecimento. Ótimo atendimento"
+          },
+        ];
+  
+        this.mediaNt = 5; // Irá passar aqui o valor da média
+        this.visibleAvaliacao = this.avaliacao.slice(0, this.numToShow); // exibe as 4 primeiras avaliações
         
       } catch (error) {
         console.log('ERROR:: ', error);
@@ -276,27 +298,6 @@ export default {
         toggleFavorito() {
             this.favorito = !this.favorito;
         },
-    },
-    mounted() {   
-      this.avaliacao = [
-        {
-          stars: 5,
-          username: "João da Silva",
-          date: "20/09/2023",
-          descricao: "Excelente experiência no estabelecimento. Ótimo atendimento e comida deliciosa."
-        },
-        {
-          stars: 5,
-          username: "Roberto Alberto",
-          date: "18/09/2023",
-          descricao: "Excelente estabelecimento. Ótimo atendimento"
-        },
-      ];
-  
-        this.mediaNt = 5; // Irá passar aqui o valor da média
-        this.visibleAvaliacao = this.avaliacao.slice(0, this.numToShow); // exibe as 4 primeiras avaliações
-
-
     },
     computed:{
       userType() {
