@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const avaliacao_Service = require('../services/avaliacao.service.js');
 
-router.get('/:idUsuario', async (req, res) => {
+router.get('/usuario/:idUsuario', async (req, res) => {
     try {
         const idUsuario = req?.params?.idUsuario;
         const avaliacao = await avaliacao_Service.pegarPorIdUsuario(idUsuario);

@@ -64,7 +64,7 @@ export default {
   methods: {
     async metodoInicial() {
       try {
-        const avaliacoes = await api.get(`/avaliacao/${sessionStorage.getItem('idUsuario')}`);
+        const avaliacoes = await api.get(`/avaliacao/usuario/${sessionStorage.getItem('idUsuario')}`);
 
         for (let i = 0; i < avaliacoes.data.length; i++) {
           avaliacoes.data[i].data = dataToDiaMesAno(avaliacoes.data[i].data); 
