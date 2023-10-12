@@ -289,11 +289,22 @@ export default {
             this.limpa_Avaliacao();
         },
         limpa_Avaliacao() {
-            this.nota = 0; // Define a nota como 0
-            this.$refs.userReview.value = ""; // Limpa o campo de avaliação
+          this.nota = 0; // Define a nota como 0
+          this.$refs.userReview.value = ""; // Limpa o campo de avaliação
         },
-        toggleFavorito() {
+        async toggleFavorito() {
+          try {
             this.favorito = !this.favorito;
+            if (sessionStorage.getItem('idUsuario')) {
+              const dadosFavorito = {
+                idUsuario: sessionStorage.getItem('idUsuario'),
+                idEstabelecimento: this.$route.params.id
+              }
+              const inserirFavorito = await api.post('/favorito', dadosFavorito);
+            }
+          } catch (error) {
+            console.log('ERROR:: ', error);
+          }
         },
     },
     computed:{
