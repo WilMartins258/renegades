@@ -174,6 +174,7 @@ export default {
         this.imagemEstabelecimento = require(`./images/${this.$route.params.id}.${dadosEstabelecimento.data.fotoPrincipal}`);
 
         const {
+          dadosRedesSociais,
           dadosHorarios
         } = dadosEstabelecimento.data;
 
@@ -183,23 +184,22 @@ export default {
         this.endereco = `${dadosEstabelecimento.data.logradouro}, ${dadosEstabelecimento.data.numeroEstabelecimento} - ${dadosEstabelecimento.data.bairro}. CEP: ${dadosEstabelecimento.data.cep}. ${dadosEstabelecimento.data.cidade} - ${dadosEstabelecimento.data.estado}`;
         this.opcional = dadosEstabelecimento.data.dadosOpcionaisArray.join(', ');
 
-        const redesSociais = dadosEstabelecimento.data.dadosRedesSociais;
-        for (let i=0; i < redesSociais.length; i++) {
-          switch (redesSociais[i].id) {
+        for (let i=0; i < dadosRedesSociais.length; i++) {
+          switch (dadosRedesSociais[i].id) {
             case 1:
-              this.facebook = redesSociais[i].redeSocial;
+              this.facebook = dadosRedesSociais[i].redeSocial;
               break;
             case 2:
-              this.instagram = redesSociais[i].redeSocial;
+              this.instagram = dadosRedesSociais[i].redeSocial;
               break;
             case 3:
-              this.twitter = redesSociais[i].redeSocial;
+              this.twitter = dadosRedesSociais[i].redeSocial;
               break;
             case 4:
-              this.site = redesSociais[i].redeSocial;
+              this.site = dadosRedesSociais[i].redeSocial;
               break;
             case 5:
-              this.cardapio = redesSociais[i].redeSocial;
+              this.cardapio = dadosRedesSociais[i].redeSocial;
               break;
             default:
               break;
