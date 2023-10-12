@@ -15,6 +15,20 @@ router.get('/usuario/:idUsuario', async (req, res) => {
     }
 });
 
+router.get('/estabelecimento/:idEstabelecimento', async (req, res) => {
+    try {
+        const idEstabelecimento = req?.params?.idEstabelecimento;
+        const avaliacao = await avaliacao_Service.pegarPorIdEstabelecimento(idEstabelecimento);
+
+        res.status(200).send(avaliacao);
+    } catch (error) {
+        console.log('ERROR:: ', error);
+        res.status(400).send({
+            msg: error
+        });
+    }
+});
+
 router.put('/', async (req, res) => {
     try {
         const { idAvaliacao, descricao, nota } = req.body;
