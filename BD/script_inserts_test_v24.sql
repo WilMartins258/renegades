@@ -454,7 +454,7 @@ insert into recomendacao values(
 insert into recomendacao values(
 	2, -- id
 	1, -- idEstabelecimento INT not null,
-	'Quarteirão BLOB', -- foto LONGBLOB not null,
+	'png', -- foto LONGBLOB not null,
 	'Quarteirão', -- nome VARCHAR(50) not null,
 	'Quarteirão - descrição'-- descricao VARCHAR(50) not null
 );
