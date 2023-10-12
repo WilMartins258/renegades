@@ -126,6 +126,7 @@
 
 <script>
 import api from './../../services/backend.service.js';
+// import openCageGeocodingApi from './../../services/openCageGeocoding.service.js'; 
 
 const formatarHorario = (horarioHhMmSs) => {
     // Divide o horário em horas, minutos e segundos
@@ -192,6 +193,13 @@ export default {
           formatoFoto,
           dadosRecomendacao
         } = dadosEstabelecimento.data;
+
+        // try {
+        //   const test = await openCageGeocodingApi.obterLatLongPorCEP('18117121');
+        //   console.log('test:: ', test);
+        // } catch (error) {
+        //   console.error('Erro ao obter latitude e longitude:', error);
+        // }
 
         this.imagemEstabelecimento = require(`./images/${this.$route.params.id}.${formatoFoto}`);
         
