@@ -173,6 +173,10 @@ export default {
         const dadosEstabelecimento = await api.get(`/estabelecimento/${this.$route.params.id}`);
         this.imagemEstabelecimento = require(`./images/${this.$route.params.id}.${dadosEstabelecimento.data.fotoPrincipal}`);
 
+        const {
+          dadosHorarios
+        } = dadosEstabelecimento.data;
+
         this.nomeDoEstabelecimento = dadosEstabelecimento.data.nome;
         this.descricao = dadosEstabelecimento.data.descricao;
         this.categoria = dadosEstabelecimento.data.dadosCategoriaArray.join(' - ');
@@ -203,9 +207,8 @@ export default {
         }
 
         let todosHorarios = '';
-        const horarios = dadosEstabelecimento.data.dadosHorarios;
-        for (let i=0; i < horarios.length; ++i) {
-          todosHorarios +=`<p>${horarios[i].diaSemana}: ${formatarHorario(horarios[i].horarioInicio)}h - ${formatarHorario(horarios[i].horarioFim)}h</p>`;
+        for (let i=0; i < dadosHorarios.length; ++i) {
+          todosHorarios +=`<p>${dadosHorarios[i].diaSemana}: ${formatarHorario(dadosHorarios[i].horarioInicio)}h - ${formatarHorario(dadosHorarios[i].horarioFim)}h</p>`;
         };
 
         this.horarios = todosHorarios;
