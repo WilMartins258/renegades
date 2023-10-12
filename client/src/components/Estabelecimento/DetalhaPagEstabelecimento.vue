@@ -175,12 +175,15 @@ export default {
 
         const {
           dadosRedesSociais,
-          dadosHorarios
+          dadosHorarios,
+          nome,
+          descricao,
+          dadosCategoriaArray
         } = dadosEstabelecimento.data;
 
-        this.nomeDoEstabelecimento = dadosEstabelecimento.data.nome;
-        this.descricao = dadosEstabelecimento.data.descricao;
-        this.categoria = dadosEstabelecimento.data.dadosCategoriaArray.join(' - ');
+        this.nomeDoEstabelecimento = nome;
+        this.descricao = descricao;
+        this.categoria = dadosCategoriaArray.join(' - ');
         this.endereco = `${dadosEstabelecimento.data.logradouro}, ${dadosEstabelecimento.data.numeroEstabelecimento} - ${dadosEstabelecimento.data.bairro}. CEP: ${dadosEstabelecimento.data.cep}. ${dadosEstabelecimento.data.cidade} - ${dadosEstabelecimento.data.estado}`;
         this.opcional = dadosEstabelecimento.data.dadosOpcionaisArray.join(', ');
 
