@@ -100,21 +100,7 @@ export default {
   }
 }
 
-@media screen and (max-width: 950px) {
 
-}
-
-@media screen and (max-width: 768px) {
-
-}
-
-@media screen and (max-width: 414px) {
-
-}
-
-@media screen and (max-width: 360px) {
-
-}
 
   </style>
   
