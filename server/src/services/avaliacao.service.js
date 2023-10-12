@@ -35,7 +35,7 @@ const pegarPorIdUsuario = async (idUsuario) => {
 const pegarPorIdEstabelecimento = async (idEstabelecimento, conn) => {
     try {
         const avaliacaoQuery = `
-        SELECT u.nome, a.descricao, a.nota, a.data
+        SELECT u.nome, a.descricao, a.nota as 'stars', a.data
             FROM  estabelecimento e 
             JOIN avaliacao a on e.id = a.idEstabelecimento
             JOIN usuario u on u.id = a.idUsuario
