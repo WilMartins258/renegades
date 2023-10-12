@@ -76,37 +76,9 @@
       }
     },
     created() {
-	    this.metodoInicial();
+	    
     },
     methods: {
-      async metodoInicial() {
-        try {
-        // console.log('metodoInicial da Carousel');
-
-        // const carousel = await api.get('/test');
-        // console.log('carousel:: ', carousel);
-        // console.log('carousel.data[0]:: ', carousel.data[0]);
-        // console.log('carousel.data.length:: ', carousel.data.length);
-
-        // const reconstructedBuffer = Uint8Array.from(carousel.data[0].blobTest).buffer;
-
-
-        // for (let i = 0; i < carousel.data.length; i++) {
-        //     try {
-        //       console.log('carousel.data[i].blobTest:: ', carousel.data[i].blobTest);
-
-        //       carousel.data[i].blobTest.data = carousel.data[i].blobTest.data.toString();
-                
-        //     } catch (error) {
-        //         throw new Error(`Erro ao decodificar imagens: ${error.message}`);
-        //     }
-        // };
-
-        // console.log('carousel.data pós:: ', carousel.data);
-        } catch (error) {
-          console.error('ERROR:: ', error);
-        }
-      },
       getSlideLink(slideId) {
         // Retorna o link com base no ID do slide
         return { name: 'PaginaEstabelecimento', params: { id: slideId } };
