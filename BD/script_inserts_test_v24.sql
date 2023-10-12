@@ -139,16 +139,16 @@ insert into redeSocial (id, nome) values (5, 'Cardápio Online');
 
 -- ---------------------------- diaSemana -- INÍCIO
 
-insert into diaSemana values (1, 'Domingo', '[0]');
-insert into diaSemana values (2, 'Segunda-feira', '[1]');
-insert into diaSemana values (3, 'Terça-feira', '[2]');
-insert into diaSemana values (4, 'Quarta-feira', '[3]');
-insert into diaSemana values (5, 'Quinta-feira', '[4]');
-insert into diaSemana values (6, 'Sexta-feira', '[5]');
-insert into diaSemana values (7, 'Sábado', '[6]');
-insert into diaSemana values (8, 'Segunda a sexta-feira', '[1, 2, 3, 4, 5]');
-insert into diaSemana values (9, 'Terça a sexta-feira', '[2, 3, 4, 5]');
-insert into diaSemana values (10, 'Final de semana', '[0, 6]');
+insert into diaSemana values (1, 'Domingo', 0);
+insert into diaSemana values (2, 'Segunda-feira', 1);
+insert into diaSemana values (3, 'Terça-feira', 2);
+insert into diaSemana values (4, 'Quarta-feira', 3);
+insert into diaSemana values (5, 'Quinta-feira', 4);
+insert into diaSemana values (6, 'Sexta-feira', 5);
+insert into diaSemana values (7, 'Sábado', 6);
+insert into diaSemana values (8, 'Segunda a sexta-feira', 7);
+insert into diaSemana values (9, 'Terça a sexta-feira', 8);
+insert into diaSemana values (10, 'Final de semana', 9);
 
 -- ---------------------------- diaSemana -- FIM
 
