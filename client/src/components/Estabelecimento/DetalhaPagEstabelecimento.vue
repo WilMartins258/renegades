@@ -308,14 +308,19 @@ export default {
         },
         async toggleFavorito() {
           try {
-            this.favorito = !this.favorito;
-            if (sessionStorage.getItem('idUsuario')) {
-              const dadosFavorito = {
-                idUsuario: sessionStorage.getItem('idUsuario'),
-                idEstabelecimento: this.$route.params.id
+            // Se for favorito do usuário exclui o favorito senão for adiciona como favorito
+            if (this.favorito) {
+              await api.delete(`/favorito/${sessionStorage.getItem('idUsuario')}/${this.$route.params.id}`);
+            } else {
+              if (sessionStorage.getItem('idUsuario')) {
+                const dadosFavorito = {
+                  idUsuario: sessionStorage.getItem('idUsuario'),
+                  idEstabelecimento: this.$route.params.id
+                }
+                await api.post('/favorito', dadosFavorito);
               }
-              const inserirFavorito = await api.post('/favorito', dadosFavorito);
             }
+            this.favorito = !this.favorito;
           } catch (error) {
             console.log('ERROR:: ', error);
           }
