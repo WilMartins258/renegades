@@ -109,7 +109,7 @@
                   &#9733;
                 </span>
               </div><br>
-              {{ review.username }} - Data: {{ review.date }}
+              {{ review.nome }} - Data: {{ review.data }}
             </label>
             <br><br>
             <p class="descricao">{{ review.descricao }}</p>
@@ -126,6 +126,7 @@
 
 <script>
 import api from './../../services/backend.service.js';
+import dataToDiaMesAno from './../../services/dataToDiaMesAno.service.js';
 // import openCageGeocodingApi from './../../services/openCageGeocoding.service.js'; 
 
 const formatarHorario = (horarioHhMmSs) => {
@@ -191,7 +192,9 @@ export default {
           tocaMusica,
           dadosMusicaArray,
           formatoFoto,
-          dadosRecomendacao
+          dadosRecomendacao,
+          dadosAvaliacao,
+          nota
         } = dadosEstabelecimento.data;
 
         // try {
@@ -253,22 +256,12 @@ export default {
         this.tocaMusica = tocaMusica;
         this.musica = dadosMusicaArray.join(', ');
 
-        this.avaliacao = [
-          {
-            stars: 5,
-            username: "João da Silva",
-            date: "20/09/2023",
-            descricao: "Excelente experiência no estabelecimento. Ótimo atendimento e comida deliciosa."
-          },
-          {
-            stars: 5,
-            username: "Roberto Alberto",
-            date: "18/09/2023",
-            descricao: "Excelente estabelecimento. Ótimo atendimento"
-          },
-        ];
-  
-        this.mediaNt = 5; // Irá passar aqui o valor da média
+        for (let i = 0; i < dadosAvaliacao.length; i++) {
+          dadosAvaliacao[i].data = dataToDiaMesAno(dadosAvaliacao[i].data);
+        }
+
+        this.avaliacao = dadosAvaliacao;
+        this.mediaNt = nota;
         this.visibleAvaliacao = this.avaliacao.slice(0, this.numToShow); // exibe as 4 primeiras avaliações
         
       } catch (error) {
