@@ -44,7 +44,7 @@ const pegarPorId = async (idEstabelecimento, conn) => {
 
 const carousel = async () => {
   try {
-    const carouselQuery = `SELECT id, fotoPrincipal, nota FROM estabelecimento order by nota desc limit 10;`;
+    const carouselQuery = `SELECT id, fotoPrincipal FROM estabelecimento order by nota desc limit 10;`;
     const connection = await db;
 
     const [estabelecimentosCarousel] = await connection.query(carouselQuery);
