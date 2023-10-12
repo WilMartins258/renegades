@@ -15,7 +15,7 @@ const atualizar = async () => {};
 const pegarPorIdEstabelecimento = async (idEstabelecimento, conn) => {
     try {
         const recomendacoesQuery = `
-        SELECT r.id, r.nome, r.descricao, r.foto 
+        SELECT r.id, r.nome, r.descricao, r.foto as 'formatoFoto'
             FROM recomendacao r
             WHERE r.idEstabelecimento = ?;`;
 
