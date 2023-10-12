@@ -76,13 +76,14 @@
       </tbody>
     </table>
   </div>
+    <br>
     <button @click="InativarPromocao" v-show="listaPromocoes.length > 0">Inativar</button>
   </div>
   
-    <!-- Fieldset para listar promoções Inativas -->
-    <fieldset class="fieldset">
+    <!-- Listar promoções Inativas -->
+    <div class="table-inativas">
       <label>Inativos</label>
-      <div class="table-container">
+      <div class="table-container-inativas">
       <br>
       <table>
         <!-- Tabela para listar promoções Inativas -->
@@ -106,15 +107,15 @@
         </tbody>
       </table>
     </div>
-    </fieldset>
+    </div>
 
-    <!-- Fieldset para listar promoções Concluídas -->
-    <fieldset class="fieldset">
+    <!-- Listar promoções Concluídas -->
+    <div class="table-concluidas">
       <label>Concluídos</label>
-      <div class="table-container">
+      <div class="table-container-concluidas">
       <br>
       <table>
-        <!-- Tabela para listar promoções Concluídas -->
+        <!-- Listar promoções Concluídas -->
         <thead>
           <tr>
             <th>Código</th>
@@ -135,7 +136,7 @@
         </tbody>
       </table>
     </div>
-    </fieldset>
+    </div>
 
 </template>
 
@@ -224,21 +225,43 @@ export default {
       };
     },
     InativarPromocao() {
+       // Filtra as promoções que devem ser inativadas
+       const promocoesInativar = this.listaPromocoes.filter(
+        (promocao) => promocao.Inativar
+      );
 
+      if (promocoesInativar.length === 0) {
+        alert("Selecione uma promoção para inativá-la.");
+      } else {
+        const confirmacao = confirm(
+          "Deseja mesmo inativar a(s) promoção(ões) selecionada(s)?"
+        );
+        if (confirmacao) {
+          // Move as promoções selecionadas para a lista de inativados
+          this.listaPromocoes = this.listaPromocoes.filter(
+            (promocao) => !promocao.Inativar
+          );
+          this.listaPromocoesInativas = this.listaPromocoesInativas.concat(
+            promocoesInativar
+          );
+          // Limpa a seleção de Inativar nas promoções
+          promocoesInativar.forEach((promocao) => (promocao.Inativar = false));
+        }
+      }
     },  
   },
   mounted() {
         // substitua pelos dados do BD
         this.listaPromocoes = [
       {
-        codigo: "001",
+        codigo: "01",
         nome: "Promoção ativa 1",
         descricao: "Descrição da Promoção ativa 1",
         dataInicio: "24/09/2023",
         dataFim: "02/10/2023",
       },
       {
-        codigo: "002",
+        codigo: "02",
         nome: "Promoção ativa 2",
         descricao: "Descrição da Promoção ativa 2",
         dataInicio: "01/10/2023",
@@ -248,14 +271,14 @@ export default {
     // substitua pelos dados do BD
     this.listaPromocoesInativas = [
       {
-        codigo: "001",
+        codigo: "10",
         nome: "Promoção Inativa 1",
         descricao: "Descrição da Promoção Inativa 1",
         dataInicio: "20/09/2023",
         dataFim: "30/09/2023",
       },
       {
-        codigo: "002",
+        codigo: "11",
         nome: "Promoção Inativa 2",
         descricao: "Descrição da Promoção Inativa 2",
         dataInicio: "01/10/2023",
@@ -267,14 +290,14 @@ export default {
     // substitua pelos dados do BD
     this.listaPromocoesConcluidas = [
       {
-        codigo: "101",
+        codigo: "20",
         nome: "Promoção Concluída 1",
         descricao: "Descrição da Promoção Concluída 1",
         dataInicio: "15/08/2023",
         dataFim: "30/08/2023",
       },
       {
-        codigo: "102",
+        codigo: "21",
         nome: "Promoção Concluída 2",
         descricao: "Descrição da Promoção Concluída 2",
         dataInicio: "01/07/2023",
@@ -292,7 +315,7 @@ export default {
   margin-bottom: 10px; /* Ajuste a margem conforme necessário */
 }
   .container {
-    max-width: 700px;
+    max-width: 800px;
     margin: 0 auto;
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.8); 
@@ -301,12 +324,24 @@ export default {
   }
 
   .table-container {
-  max-height: 300px; /* Adjust the height as needed */
+  max-height: 200px; /* Adjust the height as needed */
   overflow: auto;
 }
 
-  .fieldset {
-  max-width: 700px;
+.table-container-inativas {
+  max-height: 300px; 
+  overflow: auto;
+}
+
+.table-container-concluidas {
+  max-height: 300px; 
+  overflow: auto;
+}
+
+
+.table-inativas, 
+  .table-concluidas {
+  max-width: 800px;
   margin: 20px auto;
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.8);
@@ -358,12 +393,7 @@ export default {
   button:hover {
     background: #ff9800;
   }
-  
-  .disabled-button {
-    background: gray;
-    cursor: not-allowed;
-  }
-  
+    
   button:disabled:hover {
     background: gray;
   }
@@ -373,10 +403,6 @@ export default {
     padding: 8px 50px;
     border-radius: 25px;
     background: rgba(211, 201, 201, 0.774);
-  }
-  
-  .error input {
-    border-color: red; /* Estilizar o campo de entrada quando estiver vazio */
   }
   
   .error-message {
@@ -391,7 +417,8 @@ export default {
     .container {
       max-width: 950px;
     }
-    .fieldset {
+    .table-inativas, 
+    .table-concluidas {
       max-width: 950px;
     }
   }
@@ -400,28 +427,37 @@ export default {
     .container {
       max-width: 768px;
     }
-    .fieldset {
+    .table-inativas, 
+    .table-concluidas {
       max-width: 768px;
     }
+    
+
+
   }
   
   @media (max-width: 768px) {
     .container {
       max-width: 600px;
     }
-    .fieldset {
+    .table-inativas, 
+    .table-concluidas {
       max-width: 600px;
     }
   }
   
   @media (max-width: 600px) {
-  .respButton{
+    .container {
+      max-width: 500px;
+    }
+    .table-inativas, 
+    .table-concluidas {
+      max-width: 500px;
+    }
+    .respButton{
     padding: 8px 25px;
   }
-    .container {
-      max-width: 350px;
-    }
-    
+ 
     form {
       justify-content: flex-start;
     }
@@ -429,17 +465,21 @@ export default {
     button {
       margin-top: 8px;
     }
+    
+
   }
   
   @media (max-width: 414px) {
-    
-    
     table {
       font-size: 9px; 
     }
     th,
     td {
       padding: 6px; 
+    }
+
+    h1{
+      font-size: 28px;
     }
   }
   
