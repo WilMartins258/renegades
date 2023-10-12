@@ -263,6 +263,20 @@ export default {
         this.avaliacao = dadosAvaliacao;
         this.mediaNt = nota;
         this.visibleAvaliacao = this.avaliacao.slice(0, this.numToShow); // exibe as 4 primeiras avaliações
+
+        // Verifica se o estabelecimento é favorito do usuário logado
+        try {
+          if (sessionStorage.getItem('idUsuario')) {
+            const verificaFavorito = await api.get(`/favorito/${sessionStorage.getItem('idUsuario')}`);
+            for (let i = 0; i < verificaFavorito.data.length; i++) {
+              if (verificaFavorito.data[i].idEstabelecimento == this.$route.params.id) {
+                this.favorito = true;
+              }
+            }
+          }
+        } catch (error) {
+          console.log('Erro ao verificar se o estabelecimento é favorito do usuário:: ', error);
+        }
         
       } catch (error) {
         console.log('ERROR:: ', error);
