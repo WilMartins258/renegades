@@ -41,15 +41,14 @@
       </div>
       <div class="info">
         <h3>Horário de Atendimento:</h3>
-        <p>Segunda a Sexta: 10:00 - 22:00</p>
-        <p>Sábado e Domingo: 12:00 - 23:00</p>
+        <div v-html="horarios"></div>
       </div>
     </section>
 
     <section class="endereco-info">
       <div class="endereco">
         <h2>Endereço</h2>
-        <p>{{  endereco }}</p>
+        <p>{{ endereco }}</p>
       </div>
       <div class="endereco">
         <!-- Replace with actual map integration -->
@@ -126,6 +125,20 @@
 <script>
 import api from './../../services/backend.service.js';
 
+const formatarHorario = (horarioHhMmSs) => {
+    // Divide o horário em horas, minutos e segundos
+    const partes = horarioHhMmSs.split(":");
+    
+    // Obtém horas e minutos
+    const horas = partes[0];
+    const minutos = partes[1];
+    
+    // Formata horas e minutos
+    const horarioHhMm = horas + ":" + minutos;
+    
+    return horarioHhMm;
+}
+
 export default {
     name: "DetalhaPagEstabelecimento",
     data() {
@@ -146,6 +159,7 @@ export default {
             endereco: "",
             tocaMusica: false,
             musica: "",
+            horarios: "",
             avaliacao: [], // Array de avaliações
             mediaNt: 0, // Média que vem do banco
             visibleAvaliacaoEstab: [], // Array para armazenar as avaliações visíveis
@@ -166,7 +180,7 @@ export default {
         this.opcional = dadosEstabelecimento.data.dadosOpcionaisArray.join(', ');
 
         const redesSociais = dadosEstabelecimento.data.dadosRedesSociais;
-        for (let i=0;i < redesSociais.length; i++) {
+        for (let i=0; i < redesSociais.length; i++) {
           switch (redesSociais[i].id) {
             case 1:
               this.facebook = redesSociais[i].redeSocial;
@@ -187,7 +201,14 @@ export default {
               break;
           }
         }
-    
+
+        let todosHorarios = '';
+        const horarios = dadosEstabelecimento.data.dadosHorarios;
+        for (let i=0; i < horarios.length; ++i) {
+          todosHorarios +=`<p>${horarios[i].diaSemana}: ${formatarHorario(horarios[i].horarioInicio)}h - ${formatarHorario(horarios[i].horarioFim)}h</p>`;
+        };
+
+        this.horarios = todosHorarios;
         this.tocaMusica = dadosEstabelecimento.data.tocaMusica;
         this.musica = dadosEstabelecimento.data.dadosMusicaArray.join(', ');
         
