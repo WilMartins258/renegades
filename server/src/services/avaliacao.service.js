@@ -24,16 +24,31 @@ const pegarPorIdUsuario = async (idUsuario) => {
                 WHERE idUsuario = ?;`;
         const connection = await db;
 
-        const [avaliacoes] = await connection.query(avaliacaoQuery, idUsuario);
+        const [avaliacoesUsuario] = await connection.query(avaliacaoQuery, idUsuario);
 
-        return avaliacoes;
+        return avaliacoesUsuario;
     } catch (error) {
         throw new Error(`Erro ao buscar avaliações do usuário: ${error.message}`);
+    }
+};
+
+const pegarPorIdEstabelecimento = async (idEstabelecimento) => {
+    try {
+        const avaliacaoQuery = `
+        `;
+        const connection = await db;
+
+        const [avaliacoesEstabelecimento] = await connection.query(avaliacaoQuery, idEstabelecimento);
+
+        return avaliacoesEstabelecimento;
+    } catch (error) {
+        throw new Error(`Erro ao buscar avaliações do estabelecimento: ${error.message}`);
     }
 };
 
 module.exports = {
     inserir,
     atualizar,
-    pegarPorIdUsuario
+    pegarPorIdUsuario,
+    pegarPorIdEstabelecimento
 };
