@@ -39,8 +39,20 @@ const excluirPorIdFavorito = async (idFavorito) => {
     }
 };
 
+const excluirPorDadosFavorito = async (dadosFavorito) => {
+    try {
+        const favoritoQuery = 'DELETE FROM favorito WHERE idUsuario = ? AND idEstabelecimento = ?;';
+        const connection = await db;
+
+        await connection.query(favoritoQuery, dadosFavorito);
+    } catch (error) {
+        throw new Error(`Erro ao excluir favorito do usuário: ${error.message}`);
+    }
+};
+
 module.exports = {
     inserir,
     pegarPorIdUsuario,
-    excluirPorIdFavorito
+    excluirPorIdFavorito,
+    excluirPorDadosFavorito
 };
