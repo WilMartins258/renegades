@@ -1029,51 +1029,6 @@ insert into favorito values(
     2 -- idEstabelecimento INT NOT NULL
 );
 
-insert into avaliacao values(
-    null, -- id INT PRIMARY KEY AUTO_INCREMENT,
-    1, -- idUsuario         INT not null,
-	1, -- idEstabelecimento INT not null,
-	'Avaliação do estabelecimento 1 - AVALIACAO', -- avaliacao         VARCHAR(200) not null,
-	'2023-10-01', -- data              DATE not null,
-	5 -- nota              INT not null -- Somente de 1 a 5
-);
-
-insert into avaliacao values(
-    null, -- id INT PRIMARY KEY AUTO_INCREMENT,
-    1, -- idUsuario         INT not null,
-	2, -- idEstabelecimento INT not null,
-	'Avaliação do estabelecimento 2 - AVALIACAO', -- avaliacao         VARCHAR(200) not null,
-	'2023-10-01', -- data              DATE not null,
-	4 -- nota              INT not null -- Somente de 1 a 5
-);
-
-insert into avaliacao values(
-    null, -- id INT PRIMARY KEY AUTO_INCREMENT,
-    1, -- idUsuario         INT not null,
-	3, -- idEstabelecimento INT not null,
-	'Avaliação do estabelecimento 3 - AVALIACAO', -- avaliacao         VARCHAR(200) not null,
-	'2023-10-01', -- data              DATE not null,
-	4 -- nota              INT not null -- Somente de 1 a 5
-);
-
-insert into avaliacao values(
-    null, -- id INT PRIMARY KEY AUTO_INCREMENT,
-    1, -- idUsuario         INT not null,
-	4, -- idEstabelecimento INT not null,
-	'Avaliação do estabelecimento 4 - AVALIACAO', -- avaliacao         VARCHAR(200) not null,
-	'2023-10-01', -- data              DATE not null,
-	3 -- nota              INT not null -- Somente de 1 a 5
-);
-
-insert into avaliacao values(
-    null, -- id INT PRIMARY KEY AUTO_INCREMENT,
-    1, -- idUsuario         INT not null,
-	5, -- idEstabelecimento INT not null,
-	'Avaliação do estabelecimento 5 - AVALIACAO', -- avaliacao         VARCHAR(200) not null,
-	'2023-10-01', -- data              DATE not null,
-	1 -- nota              INT not null -- Somente de 1 a 5
-);
-
 -- -----------------------------------------------> Habib's INÍCIO
 
 insert into estabelecimento values(
@@ -1216,3 +1171,141 @@ insert into recomendacao values(
 
 -- -----------------------------------------------> Habib's FIM
 
+
+-- --------------------------------------------------------------------------------------> AVALIAÇÕES INÍCIO
+insert into avaliacao values(
+    null, -- id INT PRIMARY KEY AUTO_INCREMENT,
+    1, -- idUsuario         INT not null,
+	1, -- idEstabelecimento INT not null,
+	'Avaliação do estabelecimento 1 - willian', -- avaliacao         VARCHAR(200) not null,
+	'2023-10-01', -- data              DATE not null,
+	5 -- nota              INT not null -- Somente de 1 a 5
+);
+
+insert into avaliacao values(
+    null, -- id INT PRIMARY KEY AUTO_INCREMENT,
+    1, -- idUsuario         INT not null,
+	2, -- idEstabelecimento INT not null,
+	'Avaliação do estabelecimento 2 - willian', -- avaliacao         VARCHAR(200) not null,
+	'2023-10-01', -- data              DATE not null,
+	4 -- nota              INT not null -- Somente de 1 a 5
+);
+
+insert into avaliacao values(
+    null, -- id INT PRIMARY KEY AUTO_INCREMENT,
+    1, -- idUsuario         INT not null,
+	3, -- idEstabelecimento INT not null,
+	'Avaliação do estabelecimento 3 - willian', -- avaliacao         VARCHAR(200) not null,
+	'2023-10-01', -- data              DATE not null,
+	3 -- nota              INT not null -- Somente de 1 a 5
+);
+
+insert into avaliacao values(
+    null, -- id INT PRIMARY KEY AUTO_INCREMENT,
+    1, -- idUsuario         INT not null,
+	4, -- idEstabelecimento INT not null,
+	'Avaliação do estabelecimento 4 - willian', -- avaliacao         VARCHAR(200) not null,
+	'2023-10-01', -- data              DATE not null,
+	2 -- nota              INT not null -- Somente de 1 a 5
+);
+
+insert into avaliacao values(
+    null, -- id INT PRIMARY KEY AUTO_INCREMENT,
+    1, -- idUsuario         INT not null,
+	5, -- idEstabelecimento INT not null,
+	'Avaliação do estabelecimento 5 - willian', -- avaliacao         VARCHAR(200) not null,
+	'2023-10-01', -- data              DATE not null,
+	1 -- nota              INT not null -- Somente de 1 a 5
+);
+
+insert into avaliacao values(
+    null, -- id INT PRIMARY KEY AUTO_INCREMENT,
+    2, -- idUsuario         INT not null,
+	1, -- idEstabelecimento INT not null,
+	'Avaliação do estabelecimento 1 - lucas', -- avaliacao         VARCHAR(200) not null,
+	'2023-10-01', -- data              DATE not null,
+	1 -- nota              INT not null -- Somente de 1 a 5
+);
+
+insert into avaliacao values(
+    null, -- id INT PRIMARY KEY AUTO_INCREMENT,
+    2, -- idUsuario         INT not null,
+	2, -- idEstabelecimento INT not null,
+	'Avaliação do estabelecimento 2 - lucas', -- avaliacao         VARCHAR(200) not null,
+	'2023-10-01', -- data              DATE not null,
+	2 -- nota              INT not null -- Somente de 1 a 5
+);
+
+insert into avaliacao values(
+    null, -- id INT PRIMARY KEY AUTO_INCREMENT,
+    2, -- idUsuario         INT not null,
+	3, -- idEstabelecimento INT not null,
+	'Avaliação do estabelecimento 3 - lucas', -- avaliacao         VARCHAR(200) not null,
+	'2023-10-01', -- data              DATE not null,
+	3 -- nota              INT not null -- Somente de 1 a 5
+);
+
+insert into avaliacao values(
+    null, -- id INT PRIMARY KEY AUTO_INCREMENT,
+    2, -- idUsuario         INT not null,
+	4, -- idEstabelecimento INT not null,
+	'Avaliação do estabelecimento 4 - lucas', -- avaliacao         VARCHAR(200) not null,
+	'2023-10-01', -- data              DATE not null,
+	4 -- nota              INT not null -- Somente de 1 a 5
+);
+
+insert into avaliacao values(
+    null, -- id INT PRIMARY KEY AUTO_INCREMENT,
+    2, -- idUsuario         INT not null,
+	5, -- idEstabelecimento INT not null,
+	'Avaliação do estabelecimento 5 - lucas', -- avaliacao         VARCHAR(200) not null,
+	'2023-10-01', -- data              DATE not null,
+	5 -- nota              INT not null -- Somente de 1 a 5
+);
+
+insert into avaliacao values(
+    null, -- id INT PRIMARY KEY AUTO_INCREMENT,
+    3, -- idUsuario         INT not null,
+	1, -- idEstabelecimento INT not null,
+	'Avaliando o Mc Votorantim', -- avaliacao         VARCHAR(200) not null,
+	'2023-10-01', -- data              DATE not null,
+	3 -- nota              INT not null -- Somente de 1 a 5
+);
+
+insert into avaliacao values(
+    null, -- id INT PRIMARY KEY AUTO_INCREMENT,
+    4, -- idUsuario         INT not null,
+	1, -- idEstabelecimento INT not null,
+	'Avaliando o Mc Votorantim', -- avaliacao         VARCHAR(200) not null,
+	'2023-10-01', -- data              DATE not null,
+	5 -- nota              INT not null -- Somente de 1 a 5
+);
+
+insert into avaliacao values(
+    null, -- id INT PRIMARY KEY AUTO_INCREMENT,
+    6, -- idUsuario         INT not null,
+	1, -- idEstabelecimento INT not null,
+	'Avaliando o Mc Votorantim', -- avaliacao         VARCHAR(200) not null,
+	'2023-10-01', -- data              DATE not null,
+	4 -- nota              INT not null -- Somente de 1 a 5
+);
+
+insert into avaliacao values(
+    null, -- id INT PRIMARY KEY AUTO_INCREMENT,
+    7, -- idUsuario         INT not null,
+	1, -- idEstabelecimento INT not null,
+	'Avaliando o Mc Votorantim', -- avaliacao         VARCHAR(200) not null,
+	'2023-10-01', -- data              DATE not null,
+	1 -- nota              INT not null -- Somente de 1 a 5
+);
+
+insert into avaliacao values(
+    null, -- id INT PRIMARY KEY AUTO_INCREMENT,
+    8, -- idUsuario         INT not null,
+	1, -- idEstabelecimento INT not null,
+	'Avaliando o Mc Votorantim', -- avaliacao         VARCHAR(200) not null,
+	'2023-10-01', -- data              DATE not null,
+	2 -- nota              INT not null -- Somente de 1 a 5
+);
+
+-- --------------------------------------------------------------------------------------> AVALIAÇÕES FIM
