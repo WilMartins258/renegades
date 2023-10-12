@@ -6,7 +6,7 @@
       <img :src="imagemEstabelecimento" alt="Imagem do Estabelecimento" class="imagem-estabelecimento"/>
       <div class="icons">
         <span class="star-icon" :class="{ selected: favorito }" @click="toggleFavorito">&#9733;</span>
-        <span class="share-icon">Compartilhar</span>
+        <span class="share-icon" @click="compartilhar">Compartilhar</span>
       </div>
     </header>
 
@@ -305,6 +305,14 @@ export default {
         limpa_Avaliacao() {
           this.nota = 0; // Define a nota como 0
           this.$refs.userReview.value = ""; // Limpa o campo de avaliação
+        },
+        compartilhar() { // Por enquanto apenas coloca a URL do estabelecimento na área de transferência (CTRL+V) do usuário
+          try {
+           
+
+          } catch (error) {
+            console.log('Erro ao tentar compartilhar estabelecimento');
+          }
         },
         async toggleFavorito() {
           try {
