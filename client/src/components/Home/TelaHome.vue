@@ -8,7 +8,6 @@
 <script>
 import CombinedCarousel from "../Home/ComponentsChild/Carousel.vue";
 import Filtro from "../Home/ComponentsChild/Filtro.vue";
-import api from "./../../services/backend.service.js";
 
 export default {
   name: "TelaHome",
@@ -16,14 +15,6 @@ export default {
     CombinedCarousel,
     Filtro,
   },
-  created() {
-	  this.metodoInicial();
-  },
-  methods: {
-    async metodoInicial() {
-      console.log('metodoInicial da HOME');
-    }
-  }
 };
 
 </script>
