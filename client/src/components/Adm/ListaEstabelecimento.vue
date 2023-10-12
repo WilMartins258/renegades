@@ -70,10 +70,16 @@ export default {
       // Lógica para filtro
     },
     ativarEstabelecimento(index) {
-      // Lógica para ativar o estabelecimento (usar this.estabelecimentos[index])
+      if (window.confirm("Confirme a validação deste estabelecimento?")) {
+      // Confirmação do usuário
+      this.estabelecimentos[index].status = "Validado";
+      }
     },
     inativarEstabelecimento(index) {
-      // Lógica para inativar o estabelecimento (usar this.estabelecimentos[index])
+      if (window.confirm("Confirme a invalidação deste estabelecimento?")) {
+      // Confirmação do usuário
+      this.estabelecimentos[index].status = "Não Validado";
+      }
     },
   },
   mounted() {
@@ -109,6 +115,7 @@ export default {
         return nome.includes(query);
       });
     },
+    
   },
 };
 </script>
@@ -150,7 +157,6 @@ export default {
 
   legend{
     font-weight: bold;
-    
   }
 
   input {
@@ -203,5 +209,110 @@ export default {
   .ativDesativ-buttons button {
     margin-right: 10px;
   }
+
+  /*Responsivo*/
+@media (max-width: 1160px) {
+  .container {
+    max-width: 95%;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 950px) {
+  .container {
+    max-width: 90%;
+  }
+
+  input {
+    padding: 8px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 85%;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    max-width: 100%;
+  }
+
+  input {
+    padding: 8px 10px;
+  }
+
+  .radio-buttons {
+      flex-direction: column; 
+  }
+
+  .radio-buttons label {
+      margin-right: 0;
+      margin-bottom: 10px; 
+  }
+  .radio-buttons input[type="radio"] {
+    margin-right: 5px;
+  }
+}
+
+@media (max-width: 414px) {
+  .container {
+    max-width: 100%;
+  }
+
+  h1{
+    font-size: 27px;
+  }
+
+  legend{
+    font-size: 15px;
+  }
+
+  input {
+    padding: 8px 5px;
+  }
+
+  th,
+  td {
+    padding: 8px 5px;
+  }
+
+  button {
+    padding: 8px 10px;
+  }
+  .radio-buttons {
+    flex-direction: column;
+  }
+
+  .radio-buttons label {
+    display: block;
+    margin: 5px 0;
+  }
+
+  .radio-buttons input[type="radio"] {
+    margin-right: 5px;
+  }
+}
+
+/* Estilos para tela com largura de até 350px */
+@media (max-width: 350px) {
+  .container {
+    max-width: 70%;
+  }
+
+  input {
+    padding: 8px 5px;
+  }
+
+  th,
+  td {
+    padding: 8px 5px;
+  }
+
+  button {
+    padding: 8px 10px;
+  }
+}
   
   </style>
