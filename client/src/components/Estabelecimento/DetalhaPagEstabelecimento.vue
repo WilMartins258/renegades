@@ -195,15 +195,12 @@ export default {
 
         this.imagemEstabelecimento = require(`./images/${this.$route.params.id}.${formatoFoto}`);
         
-        console.log('dadosRecomendacao:: ', dadosRecomendacao);
+        
+        for (let i=0; i < dadosRecomendacao.length; i++) {
+          dadosRecomendacao[i].imagem = require(`./../../images/recomendacao/${dadosRecomendacao[i].id}.${formatoFoto}`);
+        };
 
-         this.pratosChef = [
-            { id: 1, nome: "Big Jeff's", descricao: "Descrição do Prato 1", imagem: "https://media-cdn.tripadvisor.com/media/photo-s/15/35/5b/64/20180904-221944-largejpg.jpg" },
-            { id: 2, nome: "Picanha Jeff's", descricao: "Descrição do Prato 2", imagem: "https://www.guiaponto.com.br/fotos/fotos/c583037d236eaabd4bf1db9d64437594.png" },
-            { id: 2, nome: "Picanha Jeff's", descricao: "Descrição do Prato 2", imagem: "https://www.guiaponto.com.br/fotos/fotos/c583037d236eaabd4bf1db9d64437594.png" },
-        ];
-
-
+        this.pratosChef = dadosRecomendacao;
         this.nomeDoEstabelecimento = nome;
         this.descricao = descricao;
         this.categoria = dadosCategoriaArray.join(' - ');
