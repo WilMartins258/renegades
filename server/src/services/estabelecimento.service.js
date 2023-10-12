@@ -28,7 +28,7 @@ const atualizar = async (dadosEstabelecimento, conn) => {
 const pegarPorId = async (idEstabelecimento, conn) => {
     try {
       const estabelecimentoQuery = `
-      SELECT nome, fotoPrincipal, descricao, nota, numeroEstabelecimento, logradouro, bairro, cidade, estado, cep
+      SELECT nome, fotoPrincipal as 'formatoFoto', descricao, nota, numeroEstabelecimento, logradouro, bairro, cidade, estado, cep
         FROM estabelecimento
         WHERE id = ?;`;
   
