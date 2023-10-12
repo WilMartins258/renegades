@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const fs = require('fs');
-// const nelson = require('./../images/estabelecimento');
 
 // Importando services e transaction
 const transaction = require('./../models/transaction.js');
