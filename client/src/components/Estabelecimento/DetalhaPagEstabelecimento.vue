@@ -178,13 +178,19 @@ export default {
           dadosHorarios,
           nome,
           descricao,
-          dadosCategoriaArray
+          dadosCategoriaArray,
+          logradouro,
+          numeroEstabelecimento,
+          bairro,
+          cep,
+          cidade,
+          estado
         } = dadosEstabelecimento.data;
 
         this.nomeDoEstabelecimento = nome;
         this.descricao = descricao;
         this.categoria = dadosCategoriaArray.join(' - ');
-        this.endereco = `${dadosEstabelecimento.data.logradouro}, ${dadosEstabelecimento.data.numeroEstabelecimento} - ${dadosEstabelecimento.data.bairro}. CEP: ${dadosEstabelecimento.data.cep}. ${dadosEstabelecimento.data.cidade} - ${dadosEstabelecimento.data.estado}`;
+        this.endereco = `${logradouro}, ${numeroEstabelecimento} - ${bairro}. CEP: ${cep}. ${cidade} - ${estado}`;
         this.opcional = dadosEstabelecimento.data.dadosOpcionaisArray.join(', ');
 
         for (let i=0; i < dadosRedesSociais.length; i++) {
