@@ -1,6 +1,16 @@
 const db = require('../models/db.js');
 
-const inserir = async (dadosOpcional) => {};
+const inserir = async (dadosFavorito) => {
+    try {
+        const favoritoInsertQuery = `INSERT into favorito (idUsuario, idEstabelecimento) values (?, ?)`;
+        const connection = await db;
+
+        await connection.query(favoritoInsertQuery, dadosFavorito);
+        
+    } catch (error) {
+        throw new Error(`Erro ao adicionar favorito: ${error.message}`);
+    }
+};
 
 const pegarPorIdUsuario = async (idUsuario) => {
     try {
