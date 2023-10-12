@@ -6,7 +6,7 @@
       <img :src="imagemEstabelecimento" alt="Imagem do Estabelecimento" class="imagem-estabelecimento"/>
       <div class="icons">
         <span class="star-icon" :class="{ selected: favorito }" @click="toggleFavorito">&#9733;</span>
-        <span class="share-icon">Compartilhar</span>
+        <span class="share-icon" @click="compartilharEstabelecimento">Compartilhar</span>
       </div>
     </header>
 
@@ -306,16 +306,58 @@ export default {
           this.nota = 0; // Define a nota como 0
           this.$refs.userReview.value = ""; // Limpa o campo de avaliação
         },
+        compartilharEstabelecimento() { // Por enquanto apenas coloca a URL do estabelecimento na área de transferência (CTRL+V) do usuário
+          try {
+            const textoParaCopiar = `http://localhost:8080/PaginaEstabelecimento/${this.$route.params.id}`;
+            const elementoTemporario = document.createElement("textarea");
+            elementoTemporario.value = textoParaCopiar;
+            document.body.appendChild(elementoTemporario);
+            elementoTemporario.select();
+            document.execCommand("copy");
+            document.body.removeChild(elementoTemporario);
+
+            // Criar um elemento de mensagem
+            const mensagem = document.createElement("div");
+            mensagem.textContent = "Texto copiado com sucesso!";
+            mensagem.style.position = "fixed";
+            mensagem.style.background = "#333";
+            mensagem.style.color = "#fff";
+            mensagem.style.padding = "10px";
+            mensagem.style.borderRadius = "5px";
+            mensagem.style.zIndex = "9999";
+
+            // Posicionar a mensagem ao lado do cursor do mouse
+            document.addEventListener("mousemove", (event) => {
+                mensagem.style.top = `${event.clientY}px`;
+                mensagem.style.left = `${event.clientX}px`;
+            });
+
+            // Adicionar a mensagem à DOM
+            document.body.appendChild(mensagem);
+
+            // Remover a mensagem após alguns segundos
+            setTimeout(() => {
+                document.body.removeChild(mensagem);
+            }, 1500); // A mensagem será removida após 1,5 segundo (1500 milissegundos)
+          } catch (error) {
+            console.log('Erro ao tentar compartilhar estabelecimento');
+          }
+        },
         async toggleFavorito() {
           try {
-            this.favorito = !this.favorito;
-            if (sessionStorage.getItem('idUsuario')) {
-              const dadosFavorito = {
-                idUsuario: sessionStorage.getItem('idUsuario'),
-                idEstabelecimento: this.$route.params.id
+            // Se for favorito do usuário exclui o favorito senão for adiciona como favorito
+            if (this.favorito) {
+              await api.delete(`/favorito/${sessionStorage.getItem('idUsuario')}/${this.$route.params.id}`);
+            } else {
+              if (sessionStorage.getItem('idUsuario')) {
+                const dadosFavorito = {
+                  idUsuario: sessionStorage.getItem('idUsuario'),
+                  idEstabelecimento: this.$route.params.id
+                }
+                await api.post('/favorito', dadosFavorito);
               }
-              const inserirFavorito = await api.post('/favorito', dadosFavorito);
             }
+            this.favorito = !this.favorito;
           } catch (error) {
             console.log('ERROR:: ', error);
           }
