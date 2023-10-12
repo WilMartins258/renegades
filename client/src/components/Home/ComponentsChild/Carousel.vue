@@ -51,32 +51,22 @@
           },
   
         },
-        slides: [
-          {
-            id: 1,
-            title: 'Slide 1',
-            imageSrc: 'https://blog.letskuk.com.br/wp-content/uploads/2022/10/lanches-gourmet.jpg',
-          },
-          {
-            id: 2,
-            title: 'Slide 2',
-            imageSrc: 'https://img.freepik.com/fotos-gratis/vista-frontal-deliciosas-batatas-fritas-com-cheeseburgers-em-fundo-escuro-lanche-prato-fast-food-torrada-hamburguer-jantar_140725-158687.jpg?w=740&t=st=1692622686~exp=1692623286~hmac=10621949a66dec1c810347ee36096f0b72d67389a49664278c2c51bb11d313e1',
-          },
-          {
-            id: 3,
-            title: 'Slide 3',
-            imageSrc: 'https://blog.letskuk.com.br/wp-content/uploads/2022/10/lanches-gourmet.jpg',
-          },
-          {
-            id: 4,
-            title: 'Slide 4',
-            imageSrc: 'https://img.freepik.com/fotos-gratis/vista-frontal-deliciosas-batatas-fritas-com-cheeseburgers-em-fundo-escuro-lanche-prato-fast-food-torrada-hamburguer-jantar_140725-158687.jpg?w=740&t=st=1692622686~exp=1692623286~hmac=10621949a66dec1c810347ee36096f0b72d67389a49664278c2c51bb11d313e1',
-          },
-        ],
+        slides: []
       }
     },
-    created() {
-	    
+    async created() {
+      try {
+        // Retorna os 10 estabelecimentos com as maiores notas do banco de dados
+        const estabelecimentosCarousel = await api.get('/carousel');
+
+        for (let i = 0; i < estabelecimentosCarousel.data.length; i++) {
+          estabelecimentosCarousel.data[i].imageSrc = require(`./../../Estabelecimento/images/${estabelecimentosCarousel.data[i].id}.${estabelecimentosCarousel.data[i].formatoFoto}`);
+        };
+
+        this.slides = estabelecimentosCarousel.data;
+      } catch (error) {
+        console.log('Erro ao buscar estabelecimentos do Carousel:: ', error);
+      }
     },
     methods: {
       getSlideLink(slideId) {

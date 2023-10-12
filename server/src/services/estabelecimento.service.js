@@ -1,3 +1,5 @@
+const db = require('../models/db.js');
+
 const inserir = async (dadosEstabelecimento, conn) => {
     try {
       const estabelecimentoQuery = `
@@ -40,8 +42,22 @@ const pegarPorId = async (idEstabelecimento, conn) => {
     }
 };
 
+const carousel = async () => {
+  try {
+    const carouselQuery = `SELECT id, nome as 'title', fotoPrincipal as 'formatoFoto' FROM estabelecimento order by nota desc limit 10;`;
+    const connection = await db;
+
+    const [estabelecimentosCarousel] = await connection.query(carouselQuery);
+
+    return estabelecimentosCarousel;
+  } catch (error) {
+    throw new Error(`Erro ao buscar estabelecimento para o carousel: ${error.message}`);
+  }
+};
+
 module.exports = {
   inserir,
   atualizar,
-  pegarPorId
+  pegarPorId,
+  carousel
 };

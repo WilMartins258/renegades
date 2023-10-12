@@ -1269,7 +1269,7 @@ insert into avaliacao values(
 	1, -- idEstabelecimento INT not null,
 	'Avaliando o Mc Votorantim', -- avaliacao         VARCHAR(200) not null,
 	'2023-10-01', -- data              DATE not null,
-	3 -- nota              INT not null -- Somente de 1 a 5
+	5 -- nota              INT not null -- Somente de 1 a 5
 );
 
 insert into avaliacao values(
@@ -1296,7 +1296,7 @@ insert into avaliacao values(
 	1, -- idEstabelecimento INT not null,
 	'Avaliando o Mc Votorantim', -- avaliacao         VARCHAR(200) not null,
 	'2023-10-01', -- data              DATE not null,
-	1 -- nota              INT not null -- Somente de 1 a 5
+	5 -- nota              INT not null -- Somente de 1 a 5
 );
 
 insert into avaliacao values(
@@ -1305,7 +1305,163 @@ insert into avaliacao values(
 	1, -- idEstabelecimento INT not null,
 	'Avaliando o Mc Votorantim', -- avaliacao         VARCHAR(200) not null,
 	'2023-10-01', -- data              DATE not null,
-	2 -- nota              INT not null -- Somente de 1 a 5
+	5 -- nota              INT not null -- Somente de 1 a 5
+);
+
+insert into avaliacao values(
+    null, -- id INT PRIMARY KEY AUTO_INCREMENT,
+    7, -- idUsuario         INT not null,
+	2, -- idEstabelecimento INT not null,
+	'Avaliando o Mc Votorantim', -- avaliacao         VARCHAR(200) not null,
+	'2023-10-01', -- data              DATE not null,
+	5 -- nota              INT not null -- Somente de 1 a 5
+);
+
+insert into avaliacao values(
+    null, -- id INT PRIMARY KEY AUTO_INCREMENT,
+    8, -- idUsuario         INT not null,
+	2, -- idEstabelecimento INT not null,
+	'Avaliando o Mc Votorantim', -- avaliacao         VARCHAR(200) not null,
+	'2023-10-01', -- data              DATE not null,
+	5 -- nota              INT not null -- Somente de 1 a 5
+);
+
+insert into avaliacao values(
+    null, -- id INT PRIMARY KEY AUTO_INCREMENT,
+    8, -- idUsuario         INT not null,
+	3, -- idEstabelecimento INT not null,
+	'Avaliando o Mc Votorantim', -- avaliacao         VARCHAR(200) not null,
+	'2023-10-01', -- data              DATE not null,
+	5 -- nota              INT not null -- Somente de 1 a 5
 );
 
 -- --------------------------------------------------------------------------------------> AVALIAÇÕES FIM
+
+-- --------------------------------------------------------------------------------------> TESTES ERRADOS DE ESTABELECIMENTO
+insert into estabelecimento values(
+	7,                      -- id 
+	"ESTABLECECIMENTO 7",             -- nome
+	'56.765.680/0001-99',       -- cnpj
+	'png',                   -- fotoPrincipal   
+	"ESTABLECECIMENTO 7", -- descricao
+	true,                   -- ativo
+	false,                   -- oculto
+	'Validado',             -- statusValidacao
+	1.244, -- nota
+	0, -- numeroAvaliacoes INT,
+	'3145', -- numeroEstabelecimento  VARCHAR(9) not null,
+	'Av. Itavuvu', -- logradouro             VARCHAR(200) not null,
+	'Jardim Santa Cecilia', -- bairro                 VARCHAR(200) not null,
+	'Sorocaba', -- cidade                 VARCHAR(200) not null,
+	'SP', -- estado                 VARCHAR(200) not null,
+	'18078-005', -- cep               VARCHAR(9) not null,
+	'2023-10-10', -- dataUltimoAcesso
+	'2023-10-10' -- dataUltimoAcesso
+);
+
+insert into estabelecimento values(
+	8,                      -- id 
+	"ESTABLECECIMENTO 8",             -- nome
+	'56.765.680/0001-99',       -- cnpj
+	'png',                   -- fotoPrincipal   
+	"ESTABLECECIMENTO 8", -- descricao
+	true,                   -- ativo
+	false,                   -- oculto
+	'Validado',             -- statusValidacao
+	3.444, -- nota
+	0, -- numeroAvaliacoes INT,
+	'3145', -- numeroEstabelecimento  VARCHAR(9) not null,
+	'Av. Itavuvu', -- logradouro             VARCHAR(200) not null,
+	'Jardim Santa Cecilia', -- bairro                 VARCHAR(200) not null,
+	'Sorocaba', -- cidade                 VARCHAR(200) not null,
+	'SP', -- estado                 VARCHAR(200) not null,
+	'18078-005', -- cep               VARCHAR(9) not null,
+	'2023-10-10', -- dataUltimoAcesso
+	'2023-10-10' -- dataUltimoAcesso
+);
+
+insert into estabelecimento values(
+	9,                      -- id 
+	"ESTABLECECIMENTO 9",             -- nome
+	'56.765.680/0001-99',       -- cnpj
+	'png',                   -- fotoPrincipal   
+	"ESTABLECECIMENTO 9", -- descricao
+	true,                   -- ativo
+	false,                   -- oculto
+	'Validado',             -- statusValidacao
+	4.444, -- nota
+	0, -- numeroAvaliacoes INT,
+	'3145', -- numeroEstabelecimento  VARCHAR(9) not null,
+	'Av. Itavuvu', -- logradouro             VARCHAR(200) not null,
+	'Jardim Santa Cecilia', -- bairro                 VARCHAR(200) not null,
+	'Sorocaba', -- cidade                 VARCHAR(200) not null,
+	'SP', -- estado                 VARCHAR(200) not null,
+	'18078-005', -- cep               VARCHAR(9) not null,
+	'2023-10-10', -- dataUltimoAcesso
+	'2023-10-10' -- dataUltimoAcesso
+);
+
+insert into estabelecimento values(
+	10,                      -- id 
+	"ESTABLECECIMENTO 10",             -- nome
+	'56.765.680/0001-99',       -- cnpj
+	'png',                   -- fotoPrincipal   
+	"ESTABLECECIMENTO 10", -- descricao
+	true,                   -- ativo
+	false,                   -- oculto
+	'Validado',             -- statusValidacao
+	2.5555, -- nota
+	0, -- numeroAvaliacoes INT,
+	'3145', -- numeroEstabelecimento  VARCHAR(9) not null,
+	'Av. Itavuvu', -- logradouro             VARCHAR(200) not null,
+	'Jardim Santa Cecilia', -- bairro                 VARCHAR(200) not null,
+	'Sorocaba', -- cidade                 VARCHAR(200) not null,
+	'SP', -- estado                 VARCHAR(200) not null,
+	'18078-005', -- cep               VARCHAR(9) not null,
+	'2023-10-10', -- dataUltimoAcesso
+	'2023-10-10' -- dataUltimoAcesso
+);
+
+insert into estabelecimento values(
+	11,                      -- id 
+	"ESTABLECECIMENTO 11",             -- nome
+	'56.765.680/0001-99',       -- cnpj
+	'png',                   -- fotoPrincipal   
+	"ESTABLECECIMENTO 11", -- descricao
+	true,                   -- ativo
+	false,                   -- oculto
+	'Validado',             -- statusValidacao
+	1.988, -- nota
+	0, -- numeroAvaliacoes INT,
+	'3145', -- numeroEstabelecimento  VARCHAR(9) not null,
+	'Av. Itavuvu', -- logradouro             VARCHAR(200) not null,
+	'Jardim Santa Cecilia', -- bairro                 VARCHAR(200) not null,
+	'Sorocaba', -- cidade                 VARCHAR(200) not null,
+	'SP', -- estado                 VARCHAR(200) not null,
+	'18078-005', -- cep               VARCHAR(9) not null,
+	'2023-10-10', -- dataUltimoAcesso
+	'2023-10-10' -- dataUltimoAcesso
+);
+
+insert into estabelecimento values(
+	12,                      -- id 
+	"ESTABLECECIMENTO 12",             -- nome
+	'56.765.680/0001-99',       -- cnpj
+	'png',                   -- fotoPrincipal   
+	"ESTABLECECIMENTO 12", -- descricao
+	true,                   -- ativo
+	false,                   -- oculto
+	'Validado',             -- statusValidacao
+	2.390, -- nota
+	0, -- numeroAvaliacoes INT,
+	'3145', -- numeroEstabelecimento  VARCHAR(9) not null,
+	'Av. Itavuvu', -- logradouro             VARCHAR(200) not null,
+	'Jardim Santa Cecilia', -- bairro                 VARCHAR(200) not null,
+	'Sorocaba', -- cidade                 VARCHAR(200) not null,
+	'SP', -- estado                 VARCHAR(200) not null,
+	'18078-005', -- cep               VARCHAR(9) not null,
+	'2023-10-10', -- dataUltimoAcesso
+	'2023-10-10' -- dataUltimoAcesso
+);
+
+-- --------------------------------------------------------------------------------------> TESTES ERRADOS DE ESTABELECIMENTO
