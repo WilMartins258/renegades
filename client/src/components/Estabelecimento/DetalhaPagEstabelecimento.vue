@@ -201,7 +201,11 @@ export default {
         //   console.error('Erro ao obter latitude e longitude:', error);
         // }
 
-        this.imagemEstabelecimento = require(`./images/${this.$route.params.id}.${formatoFoto}`);
+        try {
+          this.imagemEstabelecimento = require(`./images/${this.$route.params.id}.${formatoFoto}`);
+        } catch (error) {
+          console.log('Erro ao exibir imagem do estabelecimento');
+        }
         
         try {
           for (let i=0; i < dadosRecomendacao.length; i++) {
