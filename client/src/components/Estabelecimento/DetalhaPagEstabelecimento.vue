@@ -171,8 +171,7 @@ export default {
         this.id = this.$route.params.id;
         
         const dadosEstabelecimento = await api.get(`/estabelecimento/${this.$route.params.id}`);
-        this.imagemEstabelecimento = require(`./images/${this.$route.params.id}.${dadosEstabelecimento.data.fotoPrincipal}`);
-
+        // Removendo objetos com dados de dentro do retorno do backend
         const {
           dadosRedesSociais,
           dadosHorarios,
@@ -184,14 +183,20 @@ export default {
           bairro,
           cep,
           cidade,
-          estado
+          estado,
+          dadosOpcionaisArray,
+          tocaMusica,
+          dadosMusicaArray,
+          fotoPrincipal
         } = dadosEstabelecimento.data;
+
+        this.imagemEstabelecimento = require(`./images/${this.$route.params.id}.${fotoPrincipal}`);
 
         this.nomeDoEstabelecimento = nome;
         this.descricao = descricao;
         this.categoria = dadosCategoriaArray.join(' - ');
         this.endereco = `${logradouro}, ${numeroEstabelecimento} - ${bairro}. CEP: ${cep}. ${cidade} - ${estado}`;
-        this.opcional = dadosEstabelecimento.data.dadosOpcionaisArray.join(', ');
+        this.opcional = dadosOpcionaisArray.join(', ');
 
         for (let i=0; i < dadosRedesSociais.length; i++) {
           switch (dadosRedesSociais[i].id) {
@@ -221,8 +226,8 @@ export default {
         };
 
         this.horarios = todosHorarios;
-        this.tocaMusica = dadosEstabelecimento.data.tocaMusica;
-        this.musica = dadosEstabelecimento.data.dadosMusicaArray.join(', ');
+        this.tocaMusica = tocaMusica;
+        this.musica = dadosMusicaArray.join(', ');
         
       } catch (error) {
         console.log('ERROR:: ', error);
