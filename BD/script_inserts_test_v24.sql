@@ -388,6 +388,30 @@ insert into contato_estabelecimento values(
 	false -- isWhatsapp        BOOLEAN not null
 );
 
+insert into contato_estabelecimento values(
+	null,       -- id INT
+	1,          -- idEstabelecimento INT not null,
+	2,          -- idTipoContato INT not null, -- TELEFONE
+	'44555555555', -- contato VARCHAR(200) not null
+	true -- isWhatsapp        BOOLEAN not null
+);
+
+insert into contato_estabelecimento values(
+	null,       -- id INT
+	1,          -- idEstabelecimento INT not null,
+	1,          -- idTipoContato INT not null, -- TELEFONE
+	'99555555555', -- contato VARCHAR(200) not null
+	true -- isWhatsapp        BOOLEAN not null
+);
+
+insert into contato_estabelecimento values(
+	null,       -- id INT
+	1,          -- idEstabelecimento INT not null,
+	1,          -- idTipoContato INT not null, -- TELEFONE
+	'88555555555', -- contato VARCHAR(200) not null
+	false -- isWhatsapp        BOOLEAN not null
+);
+
 insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
 	1,          -- idEstabelecimento INT not null,
 	1,          -- idTipoRedeSocial  INT not null, -- SITE
