@@ -121,7 +121,7 @@ export default {
     },
     editarCategoria(index) {
       this.editingIndex = index;
-      this.novaCategoria = this.listaCategorias[index].categoria; // Preencher o campo de categoria
+      this.novaCategoria = this.listaCategorias[index].nome; // Preencher o campo de categoria
       this.ativo = this.listaCategorias[index].ativo; // Preencher o campo "Ativo"
       this.isEditing = true;
     },
@@ -131,7 +131,7 @@ export default {
       this.limparCampos();
     },
     salvarEdicao(index) {
-      this.listaCategorias[index].categoria = this.novaCategoria;
+      this.listaCategorias[index].nome = this.novaCategoria;
       this.listaCategorias[index].ativo = this.ativo;
 
       this.editingIndex = -1;
