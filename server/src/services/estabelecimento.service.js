@@ -76,10 +76,25 @@ const filtros = async () => {
   }
 };
 
+const pegarParaValidacao = async () => {
+  try {
+    const estabelecimentosQuery = `SELECT id, nome, statusValidacao FROM estabelecimento;`;
+    const connection = await db;
+
+    const [estabelecimentosValidacao] = await connection.query(estabelecimentosQuery);
+
+    return estabelecimentosValidacao;
+    
+  } catch (error) {
+    throw new Error(`Erro ao buscar estabelecimento para validação: ${error.message}`);
+  }
+};
+
 module.exports = {
   inserir,
   atualizar,
   pegarPorId,
   carousel,
-  filtros
+  filtros,
+  pegarParaValidacao
 };
