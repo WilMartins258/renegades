@@ -56,6 +56,8 @@
 </template>
 
 <script>
+import api from './../../services/backend.service.js';
+
 export default {
   name: "ListaEstabelecimentos",
   data() {
@@ -82,15 +84,29 @@ export default {
       }
     },
   },
-  mounted() {
-    this.estabelecimentos = [
-      { id: 1, nome: "Estabelecimento X", link: "/atulestabelecimento", status: "Pendente" },
-      { id: 2, nome: "Estabelecimento Y", link: "/atulestabelecimento", status: "Validado" },
-      { id: 3, nome: "Estabelecimento Z", link: "/atulestabelecimento", status: "Não Validado" },
-      { id: 4, nome: "Estabelecimento G", link: "/atulestabelecimento", status: "Pendente" },
-      { id: 5, nome: "Estabelecimento H", link: "/atulestabelecimento", status: "Validado" },
-      { id: 6, nome: "Estabelecimento P", link: "/atulestabelecimento", status: "Não Validado" },
-    ];
+  async created() {
+    try {
+      // const estabelecimentosRequest = await api.get('/estabelecimento/validacao');
+
+      // for (let i=0; i < estabelecimentosRequest.data.length ; i++) {
+      //   estabelecimentosRequest.data[i].link = `http://localhost:8080/PaginaEstabelecimento/${estabelecimentosRequest.data[i].id}`;
+      // };
+
+      // console.log('estabelecimentosRequest.data:: ', estabelecimentosRequest.data);
+
+      // this.estabelecimentos = estabelecimentosRequest.data;
+      // this.estabelecimentos = [
+      //     { id: 1, nome: "Estabelecimento X", link: "/atulestabelecimento", status: "Pendente" },
+      //     { id: 2, nome: "Estabelecimento Y", link: "/atulestabelecimento", status: "Validado" },
+      //     { id: 3, nome: "Estabelecimento Z", link: "/atulestabelecimento", status: "Não Validado" },
+      //     { id: 4, nome: "Estabelecimento G", link: "/atulestabelecimento", status: "Pendente" },
+      //     { id: 5, nome: "Estabelecimento H", link: "/atulestabelecimento", status: "Validado" },
+      //     { id: 6, nome: "Estabelecimento P", link: "/atulestabelecimento", status: "Não Validado" },
+      //   ];
+      
+    } catch (error) {
+      console.log('Erro ao buscar estabelecimentos para validação: ', error);
+    }
   },
   computed: {
     estabelecimentosFiltrados() {
