@@ -35,6 +35,7 @@ router.get('/:id', async (req, res) => {
             const dadosHorarios = await horario_Service.pegarPorIdEstabelecimento(req.params.id, connection);
             const dadosRecomendacao = await recomendacao_Service.pegarPorIdEstabelecimento(req.params.id, connection);
             const dadosAvaliacao = await avaliacao_Service.pegarPorIdEstabelecimento(req.params.id, connection);
+            const dadosContatos = await contato_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id, connection);
 
             let tocaMusica = false;
             if (dadosOpcionaisArray) {
@@ -54,7 +55,8 @@ router.get('/:id', async (req, res) => {
                 dadosHorarios,
                 dadosRecomendacao,
                 tocaMusica: tocaMusica,
-                dadosAvaliacao
+                dadosAvaliacao,
+                dadosContatos
             });
         } else {
             res.status(404).send('Id de estabelecimento não encontrado!');

@@ -12,7 +12,7 @@ const atualizar = async () => {};
 
 const pegarPorIdEstabelecimento = async (idEstabelecimento, conn) => {
     try {
-        const contatoEstabelecimentoQuery = ``;
+        const contatoEstabelecimentoQuery = `SELECT * FROM contato_estabelecimento WHERE idEstabelecimento = ?;`;
 
         const [contatoEstabelecimento] = await conn.query(contatoEstabelecimentoQuery, idEstabelecimento);
 
