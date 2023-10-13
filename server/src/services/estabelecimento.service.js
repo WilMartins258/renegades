@@ -55,9 +55,31 @@ const carousel = async () => {
   }
 };
 
+const filtros = async () => {
+  try {
+    const filtrosQuery = `
+    SELECT e.id, 
+      e.nome, 
+      e.fotoPrincipal, 
+      e.cep, 
+      (SELECT GROUP_CONCAT(idCategoria) FROM categoria_estabelecimento cat WHERE cat.idEstabelecimento = e.id) as idCategorias,
+      (SELECT GROUP_CONCAT(id) FROM opcional_estabelecimento op WHERE op.idEstabelecimento = e.id) as idOpcionais,
+      (SELECT GROUP_CONCAT(idComida) FROM comida_estabelecimento com WHERE com.idEstabelecimento = e.id) as idComidas
+    FROM estabelecimento e;`;
+    const connection = await db;
+
+    const [estabelecimentosFiltros] = await connection.query(filtrosQuery);
+
+    return estabelecimentosFiltros;
+  } catch (error) {
+    throw new Error(`Erro ao buscar estabelecimento para filtros: ${error.message}`);
+  }
+};
+
 module.exports = {
   inserir,
   atualizar,
   pegarPorId,
-  carousel
+  carousel,
+  filtros
 };
