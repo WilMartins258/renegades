@@ -48,7 +48,7 @@
       </thead>
       <tbody>
         <tr v-for="(categoria, index) in listaCategorias" :key="index">
-          <td>{{ categoria.categoria }}</td>
+          <td>{{ categoria.nome }}</td>
           <td>{{ categoria.ativo }}</td>
           <td>
             <template v-if="editingIndex !== index">
@@ -72,6 +72,8 @@
 </template>
 
 <script>
+import api from './../../services/backend.service.js';
+
 export default {
   name: "DashCategoria",
   data() {
@@ -83,6 +85,16 @@ export default {
       editingIndex: -1, // Índice da categoria em edição
       ativo: "sim",
     };
+  },
+  async created() {
+    try {
+      const categorias = await api.get('/categoria');
+
+      this.listaCategorias = categorias.data;
+
+    } catch (error) {
+      console.log('Erro ao buscar categorias: ', error);
+    }
   },
   methods: {
     salvarCategoria() {
