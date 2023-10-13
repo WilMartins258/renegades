@@ -19,6 +19,20 @@ const avaliacao_Service = require('../services/avaliacao.service.js');
 const extensaoImagem_Service = require('../services/utils/extensaoImagens.service.js');
 const buffer_Service = require('../services/utils/buffer.service.js');
 
+router.get('/validacao', async (req, res) => {
+    try {
+        const estabelecimentos = await estabelecimento_Service.pegarParaValidacao();
+
+        res.status(200).send(estabelecimentos);
+    } catch (error) {
+        console.error('Erro na rota GET /validacao', error);
+        res.status(500).send({
+            errorMsg: 'Erro ao buscar estabelecimentos para validação',
+            error: error.message
+        });
+    }
+});
+
 router.get('/:id', async (req, res) => {
     let connection;
     try {
