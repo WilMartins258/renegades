@@ -98,27 +98,12 @@ p {
   background-color: yellow;
 }
 
-/*Responsivo */
+/*Responsive */
 @media screen and (max-width: 1160px) {
   .quadro-estilosMusicais {
     width: 100%;
   }
 }
 
-@media screen and (max-width: 950px) {
-
-}
-
-@media screen and (max-width: 768px) {
-
-}
-
-@media screen and (max-width: 414px) {
-
-}
-
-@media screen and (max-width: 360px) {
-
-}
 </style>
   

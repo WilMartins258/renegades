@@ -568,7 +568,7 @@ margin-top: 10px;
 }
 
 
-/* Responsividade */
+/* Responsive */
 
 @media (max-width: 1160px) {
 #form-wrap {

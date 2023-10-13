@@ -431,9 +431,6 @@ export default {
     .table-concluidas {
       max-width: 768px;
     }
-    
-
-
   }
   
   @media (max-width: 768px) {
@@ -465,8 +462,6 @@ export default {
     button {
       margin-top: 8px;
     }
-    
-
   }
   
   @media (max-width: 414px) {

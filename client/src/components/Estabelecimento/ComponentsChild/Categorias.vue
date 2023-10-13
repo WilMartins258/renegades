@@ -98,7 +98,7 @@
     background-color: yellow;
   }
 
-  /*Responsivo*/
+  /*Responsive*/
 
   @media screen and (max-width: 1160px) {
   .quadro-categorias {

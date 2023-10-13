@@ -261,7 +261,6 @@ button:disabled:hover {
   .container {
     max-width: 768px;
   }
-  /* Adjust button padding for smaller screens */
   button {
     padding: 8px 30px;
   }
@@ -271,7 +270,6 @@ button:disabled:hover {
   .container {
     max-width: 600px;
   }
-  /* Adjust table font size and padding */
   table {
     font-size: 14px;
   }
@@ -287,7 +285,6 @@ button:disabled:hover {
     flex-direction: column;
     align-items: flex-start;
   }
-  /* Adjust button padding for smaller screens */
   button {
     padding: 8px 20px;
   }

@@ -292,8 +292,6 @@ input {
 .respButton {
     padding: 6px 12px;
   }
-/* Responsive*/
-
 
 /* Responsive*/
 

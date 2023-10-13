@@ -206,29 +206,24 @@ fieldset {
   font-size: 20px;
 }
 
-/* Estilos para telas com largura menor ou igual a 414px (exemplo: iPhone 5/SE) */
+/* Responsive */
 @media (max-width: 414px) {
   .avaliacao-box {
     padding: 10px;
-    /* Reduza o padding para economizar espaço */
   }
 
   .group .button {
     font-size: 14px;
-    /* Reduza o tamanho do texto dos botões */
   }
 
   .star {
     font-size: 18px;
-    /* Reduza o tamanho das estrelas */
   }
 }
 
-/* Responsivo*/
 @media (max-width: 360px) {
   .avaliacao-box {
     padding: 5px;
-    /* Reduza ainda mais o padding para economizar espaço */
   }
 
   legend {
@@ -237,12 +232,10 @@ fieldset {
 
   .group .button {
     font-size: 12px;
-    /* Reduza ainda mais o tamanho do texto dos botões */
   }
 
   .star {
     font-size: 16px;
-    /* Reduza ainda mais o tamanho das estrelas */
   }
 
   legend {

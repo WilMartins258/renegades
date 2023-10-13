@@ -94,7 +94,7 @@ p {
   background-color: yellow;
 }
 
-/* Responsividade */
+/* Responsive */
 
 @media screen and (max-width: 1160px) {
   .tipos-de-comida {

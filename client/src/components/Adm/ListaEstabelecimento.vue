@@ -226,7 +226,7 @@ export default {
     margin-right: 10px;
   }
 
-  /*Responsivo*/
+  /*Responsive*/
 @media (max-width: 1160px) {
   .container {
     max-width: 95%;
