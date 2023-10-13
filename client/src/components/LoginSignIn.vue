@@ -11,7 +11,7 @@
 			<span v-if="!validarSenha" class="error">A senha é obrigatória</span>
 		</div>
 		<!--<div class="group">
-			<input id="check" type="checkbox" class="check" v-model="keepSignIn">
+			<input id="check" type="checkbox" class="check" v-model="lembrarUser">
 			<label for="check"><span class="icon"></span> Mantenha-me conectado</label>
 		</div>-->
 		<div class="group">
@@ -33,7 +33,7 @@ export default {
 		return {
 			Email: '',
 			Senha: '',
-			keepSignIn: true,
+			//lembrarUser: true,
 			validarEmail: true,
 			validarSenha: true,
 		}
@@ -71,7 +71,6 @@ export default {
 						sessionStorage.setItem('tipoUsuario', login.data.tipoUsuario);
 
 						// A partir daqui precisamos verificar para onde vamos direcionar o usuário após login concluído
-						// Defina isLoggedIn como true na store
 
 						
 						this.$router.push({ name: 'home' });
