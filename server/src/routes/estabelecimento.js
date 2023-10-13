@@ -13,6 +13,7 @@ const musica_estabelecimento_Service = require('../services/musica_estabelecimen
 const horario_Service = require('../services/horario.service.js');
 const recomendacao_Service = require('../services/recomendacao.service.js');
 const comida_estabelecimento_Service = require('../services/comida_estabelecimento.service.js');
+const contato_estabelecimento_Service = require('../services/contato_estabelecimento.service.js');
 const avaliacao_Service = require('../services/avaliacao.service.js');
 
 const extensaoImagem_Service = require('../services/utils/extensaoImagens.service.js');
@@ -95,7 +96,8 @@ router.post('/', async (req, res) => {
             estilosSelecionadas,
             rdSocialSelecionadas,
             horariosSelecionados,
-            tiposDeComidaSelecionados
+            tiposDeComidaSelecionados,
+            contatosSelecionados
         } = req.body;
 
         const removerCaracteresEspeciais = (str) => {
@@ -127,6 +129,14 @@ router.post('/', async (req, res) => {
 
         const idEstabelecimento = await estabelecimento_Service.inserir(dadosEstabelecimentoArray, connection);
         await usuario_Service.inserirIdEstabelecimento([idEstabelecimento, idUsuario], connection);
+
+        for (let i = 0; i < contatosSelecionados.length; i++) {
+            try {
+                await contato_estabelecimento_Service.inserir([idEstabelecimento, contatosSelecionados[i].id, contatosSelecionados[i].numero, contatosSelecionados[i].isWhatsapp], connection);
+            } catch (error) {
+                throw new Error(`Erro ao inserir contatos do estabelecimento: ${error.message}`);
+            }
+        };
 
         for (let i = 0; i < categoriasSelecionadas.length; i++) {
             try {
