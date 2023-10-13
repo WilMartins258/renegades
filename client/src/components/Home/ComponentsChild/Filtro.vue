@@ -157,6 +157,7 @@ export default {
     filtroDistancia: 0,
     filtroDistanciaText: "",
     filtroNomeEstabelecimento: "",
+    categoriasSelecionadas: [], // controla o array de categorias selecionados
     };
   },
   mounted() {
@@ -182,7 +183,7 @@ export default {
             nome: "Lanchonete da Maria",
             categoria: "Lanchonete",
             foto: "https://www.emporiotambo.com.br/pub/media/resized/1300x800/ves/blog/xcomo-decorar-uma-lanchonete-com-pouco-dinheiro.jpg.pagespeed.ic.o-02P9_HPT.webp",
-            opcionais: ["Estacionamento", ],
+            opcionais: ["Estacionamento", "Área Kids"],
             comidas: [null]
           },
           {
@@ -214,7 +215,7 @@ export default {
             nome: "Absoluto",
             categoria: "Restaurante",
             foto: "https://i.pinimg.com/564x/49/0b/64/490b640ca8bb4726489296c98509fdb6.jpg",
-            opcionais: ["Wifi", "Permite Animais", "Área Kids"],
+            opcionais: ["Wifi", "Permite Animais", "Área Kids","Estacionamento"],
             comidas: ["Italiana"]
           },
           {
@@ -235,10 +236,9 @@ export default {
     filteredEstabelecimentos() {
   let filtered = this.estabelecimentos;
 
-  if (this.filtroCategoria) {
-    filtered = filtered.filter(
-      (estabelecimento) =>
-        estabelecimento.categoria === this.filtroCategoria
+  if (this.categoriasSelecionadas.length > 0) {
+    filtered = filtered.filter((estabelecimento) =>
+      this.categoriasSelecionadas.includes(estabelecimento.categoria)
     );
   }
 
@@ -300,11 +300,27 @@ export default {
     },
 
     filterByCategory(category) {
-      this.filtroCategoria = category;
+      const index = this.categoriasSelecionadas.indexOf(category);
+      if (category === 'Todos') {
+        this.categoriasSelecionadas = [];
+      } else if (index === -1) {
+        if (this.categoriasSelecionadas.length < 3) {
+          this.categoriasSelecionadas.push(category);
+        }
+      } else {
+        this.categoriasSelecionadas.splice(index, 1);
+      }
     },
 
-    filterByOpcionais(opcionais) {
-      this.filtroOpcionais = opcionais;
+    filterByOpcionais(opcional) {
+      const index = this.filtroOpcionais.indexOf(opcional);
+      if (opcional === 'Todos') {
+        this.filtroOpcionais = [];
+      } else if (index === -1) {
+        this.filtroOpcionais.push(opcional);
+      } else {
+        this.filtroOpcionais.splice(index, 1);
+      }
     },
 
     filterByComida(comida) {
@@ -320,19 +336,29 @@ export default {
     },
 
     selecionarCategoria(categoria) {
-      if (categoria === 'Todos') {
-        this.filtroCategoria = null; // Reseta filtro
-      } else {
-        this.filtroCategoria = categoria;
+      const index = this.categoriasSelecionadas.indexOf(categoria);
+      if (categoria === 'Todos') {// limpe a matriz de categorias selecionadas
+        this.categoriasSelecionadas = [];
+      } else if (index === -1) {// Adicione a categoria à matriz
+        if (this.categoriasSelecionadas.length < 3) {
+          this.categoriasSelecionadas.push(categoria);
+        }
+      } else {// Remova a categoria se já estiver presente
+        this.categoriasSelecionadas.splice(index, 1);
       }
     },
 
 
-      selecionarOpcional(opcional) {
+    selecionarOpcional(opcional) {
       if (opcional === 'Todos') {
-        this.filtroOpcionais = []; // Reseta filtro para uma array vazia
+        this.filtroOpcionais = [];
       } else {
-        this.filtroOpcionais = [opcional]; // Define como uma array com um elemento
+        const index = this.filtroOpcionais.indexOf(opcional);
+        if (index === -1) {
+          this.filtroOpcionais.push(opcional);
+        } else {
+          this.filtroOpcionais.splice(index, 1);
+        }
       }
     },
 
@@ -345,7 +371,7 @@ export default {
     },
 
     isCategoriaSelecionada(categoria) {
-      return this.filtroCategoria === categoria;
+      return this.categoriasSelecionadas.includes(categoria);
     },
 
     isOpcionalSelecionado(opcional) {
