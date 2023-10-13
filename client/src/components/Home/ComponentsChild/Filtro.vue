@@ -227,10 +227,7 @@ export default {
             comidas: ["Brasileira"]
           },
           
-    ],
-    this.categorias = ["Pizzaria", "Bar", "Lanchonete", "Hamburgueria", "Restaurante"];
-    this.opcionais = ["Wifi", "Estacionamento", "Área Kids", "Possui Área de Fumantes", "Permite Animais", "Precisa de Agendamento"];
-    this.comidas = ["Brasileira", "Japonesa", "Italiana"];
+    ]
   },
   computed: {
     filteredEstabelecimentos() {
@@ -286,10 +283,28 @@ export default {
         comidas
       } = dadosFiltros.data;
 
-      console.log('estabelecimentos:: ', estabelecimentos);
-      console.log('categorias:: ', categorias);
-      console.log('opcionais:: ', opcionais);
-      console.log('comidas:: ', comidas);     
+      try {
+        const opcionaisArray = opcionais.map(objeto => objeto.nome);
+        this.opcionais = opcionaisArray;
+      } catch (error) {
+        console.log('Erro ao tratar opcionais: ', error);
+      }
+
+      try {
+        const categoriasArray = categorias.map(objeto => objeto.nome);
+        this.categorias = categoriasArray;
+      } catch (error) {
+        console.log('Erro ao tratar categorias: ', error);
+      }
+
+      try {
+        const comidasArray = comidas.map(objeto => objeto.nome);
+        this.comidas = comidasArray;
+      } catch (error) {
+        console.log('Erro ao tratar comidas: ', error);
+      }
+
+      
     } catch (error) {
       console.log('Erro ao buscar informações dos filtros: ', error);
     }
