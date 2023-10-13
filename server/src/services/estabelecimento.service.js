@@ -78,7 +78,7 @@ const filtros = async () => {
 
 const pegarParaValidacao = async () => {
   try {
-    const estabelecimentosQuery = `SELECT id, nome, statusValidacao FROM estabelecimento;`;
+    const estabelecimentosQuery = `SELECT id, nome, status FROM estabelecimento;`;
     const connection = await db;
 
     const [estabelecimentosValidacao] = await connection.query(estabelecimentosQuery);
