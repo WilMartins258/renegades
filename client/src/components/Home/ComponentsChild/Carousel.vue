@@ -88,12 +88,14 @@
   
   .fundo {
     background: linear-gradient(to right, rgba(233, 30, 47, 0.5), rgba(255, 152, 0, 0.5));
+    
   }
   
   .imageSrc {
-    max-width: 100%; /* Ajustar a largura máxima da imagem */
-    height: 300px; /* Ajustar a altura automaticamente proporcionalmente à largura */
+    width: 400px; /* Ajustar a largura máxima da imagem */
+    height: 300px; /* Ajusta a altura máxima da imagem */
     margin-bottom: 10px; /* Espaço abaixo da imagem */
+    border-radius: 25px;
   }
 
   a {
