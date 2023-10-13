@@ -199,7 +199,11 @@ export default {
         } = dadosEstabelecimento.data;
 
         // Depois podemos ver uma forma mais bonita de apresentar os telefones do estabelecimento
-        this.telefone = `${dadosContatos[0].contato} / ${dadosContatos[1].contato ? dadosContatos[1].contato : ''}`
+        try {
+          this.telefone = `${dadosContatos[0]?.contato ? dadosContatos[0]?.contato : ''}/ ${dadosContatos[1]?.contato ? dadosContatos[1]?.contato : ''}`
+        } catch (error) {
+          console.log('Erro ao carregar contato: ', error);
+        }
 
         // try {
         //   const test = await openCageGeocodingApi.obterLatLongPorCEP('18117121');
