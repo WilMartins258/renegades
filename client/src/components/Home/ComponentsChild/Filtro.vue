@@ -230,7 +230,6 @@ export default {
     this.categorias = ["Pizzaria", "Bar", "Lanchonete", "Hamburgueria", "Restaurante"];
     this.opcionais = ["Wifi", "Estacionamento", "Área Kids", "Possui Área de Fumantes", "Permite Animais", "Precisa de Agendamento"];
     this.comidas = ["Brasileira", "Japonesa", "Italiana"];
-
   },
   computed: {
     filteredEstabelecimentos() {
@@ -276,11 +275,26 @@ export default {
 },
 
   },
-  methods: {
-    async metodoInicial() {
-      // ...
-    },
+  async created() {
+    try {
+      const dadosFiltros = await api.get('/filtro');
 
+      const {
+        estabelecimentos,
+        categorias,
+        opcionais,
+        comidas
+      } = dadosFiltros.data;
+
+      console.log('estabelecimentos:: ', estabelecimentos);
+      console.log('categorias:: ', categorias);
+      console.log('opcionais:: ', opcionais);
+      console.log('comidas:: ', comidas);     
+    } catch (error) {
+      console.log('Erro ao buscar informações dos filtros: ', error);
+    }
+  },
+  methods: {
     getEstabelecimentoLink(estabelecimento) {
       return `/paginaestabelecimento/${estabelecimento.id}`;
     },
