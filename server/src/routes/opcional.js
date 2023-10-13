@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const opcionaolService = require('../services/opcional.service.js');
+const opcionaol_Service = require('../services/opcional.service.js');
 
 router.get('/', async (req, res) => {
     try {
-        const opcionais = await opcionaolService.getAllOpcionais();
+        const opcionais = await opcionaol_Service.pegarTudo();
 
         res.status(200).send(opcionais);
     } catch (error) {

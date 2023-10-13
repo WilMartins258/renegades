@@ -1,14 +1,14 @@
 const db = require('../models/db.js');
 
-const getAllOpcionais = async () => {
-    const getAllOpcionaisQuery = `SELECT * FROM opcional;`;
+const pegarTudo = async () => {
+    const opcionaisQuery = `SELECT * FROM opcional;`;
     const connection = await db;
 
-    const [opcionais] = await connection.query(getAllOpcionaisQuery);
+    const [opcionais] = await connection.query(opcionaisQuery);
 
     return opcionais;
 }
 
 module.exports = {
-    getAllOpcionais
+    pegarTudo
 };
