@@ -1,10 +1,8 @@
 const inserir = async (dadosContato, conn) => {
     try {
-        const inserirContatoEstabelecimentoQuery = ``;
+        const inserirContatoEstabelecimentoQuery = `INSERT into contato_estabelecimento (idEstabelecimento, idContato, contato, isWhatsapp) VALUES (?, ?, ?, ?);`;
 
-        const [idContatoEstabelecimento] = await conn.query(inserirContatoEstabelecimentoQuery, dadosContato);
-
-        return idContatoEstabelecimento?.insertId;
+        await conn.query(inserirContatoEstabelecimentoQuery, dadosContato);
     } catch (error) {
         throw new Error(`Erro ao inserir contato do estabelecimento: ${error.message}`);
     }
