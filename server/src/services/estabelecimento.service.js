@@ -63,7 +63,7 @@ const filtros = async () => {
       e.fotoPrincipal, 
       e.cep, 
       (SELECT GROUP_CONCAT(idCategoria) FROM categoria_estabelecimento cat WHERE cat.idEstabelecimento = e.id) as idCategorias,
-      (SELECT GROUP_CONCAT(id) FROM opcional_estabelecimento op WHERE op.idEstabelecimento = e.id) as idOpcionais,
+      (SELECT GROUP_CONCAT(idOpcional) FROM opcional_estabelecimento op WHERE op.idEstabelecimento = e.id) as idOpcionais,
       (SELECT GROUP_CONCAT(idComida) FROM comida_estabelecimento com WHERE com.idEstabelecimento = e.id) as idComidas
     FROM estabelecimento e;`;
     const connection = await db;
