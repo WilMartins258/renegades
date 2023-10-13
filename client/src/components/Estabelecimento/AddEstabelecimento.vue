@@ -332,7 +332,7 @@ methods: {
         opcoesSelecionadas: this.opcoesSelecionadas,
         estilosSelecionadas: this.estilosSelecionadas,
         rdSocialSelecionadas: this.RdSocialSelecionadas,
-        contatosSelecionadas: this.ContatosSelecionadas,
+        contatosSelecionados: this.ContatosSelecionadas,
         horariosSelecionados: this.HorariosSelecionados
       };
 
