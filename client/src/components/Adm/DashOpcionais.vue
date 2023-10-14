@@ -72,6 +72,8 @@
 </template>
 
 <script>
+import api from './../../services/backend.service.js';
+
 export default {
   name: "DashOpcionais",
   data() {
@@ -83,6 +85,23 @@ export default {
       editingIndex: -1, // Índice da Opcional em edição
       ativo: "sim",
     };
+  },
+  async created() {
+    try {
+      const buscarOpcionais = await api.get('/opcional');
+
+      const opcionais = buscarOpcionais.data.map(objeto => {
+        return {
+          id: objeto.id,
+          categoria: objeto.nome,
+          ativo: objeto.ativo
+        };
+      });
+
+      this.listaOpcionals = opcionais;
+    } catch (error) {
+      console.log('Erro ao buscar os opcionais: ', error);
+    }
   },
   methods: {
     salvarOpcional() {
