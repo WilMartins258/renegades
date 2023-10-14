@@ -240,7 +240,7 @@ export default {
           nome: "Bar do João",
           categoria: ["Bar"].join(', '),
           foto: "https://www.lojaskd.com.br/blog/wp-content/webp-express/webp-images/doc-root/blog/wp-content/uploads/2023/06/Nomes-para-bar-1024x576.png.webp",
-          opcionais: ["Tem Wi-fi livre", "Possui Estacionamento",],
+          opcionais: ["Tem Wi-fi livre", "Possui Estacionamento", "Oferece Rodízio"],
           comidas: [null]
         },
         {
@@ -248,7 +248,7 @@ export default {
           nome: "Lanchonete da Maria",
           categoria: ["Lanchonete", "Pizzaria"].join(', '),
           foto: "https://www.emporiotambo.com.br/pub/media/resized/1300x800/ves/blog/xcomo-decorar-uma-lanchonete-com-pouco-dinheiro.jpg.pagespeed.ic.o-02P9_HPT.webp",
-          opcionais: ["Possui Estacionamento", "Possui Área Kids"],
+          opcionais: ["Possui Estacionamento", "Possui Área Kids", "Toca Música"],
           comidas: [null]
         },
         {
@@ -256,7 +256,7 @@ export default {
           nome: "Pizzaria do Carlos",
           categoria: ["Pizzaria"].join(', '),
           foto: "https://diariodorio.com/wp-content/uploads/2020/07/daleopizzaria_20200710_144435_0.jpg",
-          opcionais: ["Tem Wi-fi livre", "Possui Área Kids"],
+          opcionais: ["Tem Wi-fi livre", "Possui Área Kids", "Toca Música", "Música ao Vivo"],
           comidas: [null]
         },
         {
@@ -288,8 +288,8 @@ export default {
           nome: "Bumbu",
           categoria: ["Restaurante"].join(', '),
           foto: "https://4.bp.blogspot.com/-JiIZTUI6GzY/WN1phr5KOYI/AAAAAAAAANc/wALXGWFUwCo-ZK6pGrsPJ0UlyCpbTMqLQCLcB/s1600/fachada-bambu.jpg",
-          opcionais: ["Tem Wi-fi livre", "Possui Área Kids"],
-          comidas: ["Brasileira"]
+          opcionais: ["Tem Wi-fi livre", "Possui Área Kids", "Tem taxa de 10%"],
+          comidas: ["Brasileira", "Japonesa"]
         }
       ]
 
