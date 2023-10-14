@@ -216,6 +216,15 @@ export default {
         comidas
       } = dadosFiltros.data;
 
+      // Aqui vamos receber a latitude e longitude de cada cep de estabelecimento através de uma API (Google por exemplo)
+      // try {
+      //   for (let i=0; i < estabelecimentos.length; i++) {
+          
+      //   };
+      // } catch (error) {
+      //   console.log('Erro ao inserir latitude e longitude dos estabelecimentos: ', error);
+      // }
+
       try {
         for (let i=0; i < estabelecimentos.length; i++) {
           estabelecimentos[i].foto = require(`./../../Estabelecimento/images/${estabelecimentos[i].id}.${estabelecimentos[i].formatoFoto}`);
