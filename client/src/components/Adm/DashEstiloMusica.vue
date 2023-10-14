@@ -126,7 +126,7 @@ export default {
               ativo: this.ativo,
             });
           } catch (error) {
-            console.log('Erro ao inserir nova categoria na lista: ', error);
+            console.log('Erro ao inserir novo estilo de música na lista: ', error);
           }
         }
         this.novaMusica = "";
