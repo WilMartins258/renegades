@@ -88,9 +88,9 @@ export default {
   },
   async created() {
     try {
-      const estilosMusica = await api.get('/estiloMusica');
+      const buscarMusicas = await api.get('/estiloMusica');
 
-      const musicas = estilosMusica.data.map(objeto => {
+      const musicas = buscarMusicas.data.map(objeto => {
         return {
           id: objeto.id,
           musica: objeto.nome, // Aqui é onde a chave 'nome' é alterada para 'musica'
