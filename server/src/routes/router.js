@@ -54,11 +54,6 @@ router.use(
 );
 
 router.use(
-    "/filtro",
-    require("./filtro.js")
-);
-
-router.use(
     "/favorito",
     require("./favorito.js")
 );

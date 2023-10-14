@@ -19,6 +19,10 @@ const avaliacao_Service = require('../services/avaliacao.service.js');
 const extensaoImagem_Service = require('../services/utils/extensaoImagens.service.js');
 const buffer_Service = require('../services/utils/buffer.service.js');
 
+const categoria_Service = require('../services/categoria.service.js');
+const opcionaol_Service = require('../services/opcional.service.js');
+const comida_Service = require('../services/comida.service.js');
+
 router.get('/validacao', async (req, res) => {
     try {
         const estabelecimentos = await estabelecimento_Service.pegarParaValidacao();
@@ -28,6 +32,28 @@ router.get('/validacao', async (req, res) => {
         console.error('Erro na rota GET /validacao', error);
         res.status(500).send({
             errorMsg: 'Erro ao buscar estabelecimentos para validação',
+            error: error.message
+        });
+    }
+});
+
+router.get('/filtro', async (req, res) => {
+    try {
+        console.log('/filtro')
+        const estabelecimentos = await estabelecimento_Service.filtros();
+        const categorias = await categoria_Service.pegarTudo();
+        const opcionais = await opcionaol_Service.pegarTudo();
+        const comidas = await comida_Service.pegarTudo();
+
+        res.status(200).send({
+            estabelecimentos,
+            categorias,
+            opcionais,
+            comidas
+        });  
+    } catch (error) {
+        res.status(500).send({
+            errorMsg: 'Erro ao buscar estabelecimentos',
             error: error.message
         });
     }
