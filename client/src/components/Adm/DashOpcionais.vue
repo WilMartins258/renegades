@@ -149,10 +149,22 @@ export default {
       this.isEditing = false;
       this.limparCampos();
     },
-    salvarEdicao(index) {
+    async salvarEdicao(index) {
       if (this.novaOpcional.trim() !== "") {
         this.listaOpcionals[index].categoria = this.novaOpcional;
         this.listaOpcionals[index].ativo = this.ativo;
+
+        const novosOpcional = {
+          nome: this.listaOpcionals[index].categoria,
+          ativo: this.listaOpcionals[index].ativo,
+          id: this.listaOpcionals[index].id
+        };
+        try {
+          await api.put('/opcional', novosOpcional);
+        } catch (error) {
+          console.log('Erro ao atualizar opcional: ', error);
+        }
+
         this.editingIndex = -1;
         this.isEditing = false;
         this.limparCampos();

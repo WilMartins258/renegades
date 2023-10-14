@@ -13,6 +13,20 @@ const inserir = async (dadosOpcional) => {
     }
 };
 
+const atualizar = async (novosDadosOpcional) => {
+    try {
+        const opcionaisQuery = `
+        UPDATE opcional
+            SET nome = ?, ativo = ?
+            WHERE id = ?;`;
+        const connection = await db;
+
+        await connection.query(opcionaisQuery, novosDadosOpcional);
+    } catch (error) {
+        throw new Error(`Erro ao atualizar opcional: ${error.message}`);
+    }
+};
+
 const pegarTudo = async () => {
     try {
         const opcionaisQuery = `SELECT * FROM opcional;`;
@@ -28,5 +42,6 @@ const pegarTudo = async () => {
 
 module.exports = {
     inserir,
+    atualizar,
     pegarTudo
 };

@@ -15,6 +15,32 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.put('/', async (req, res) => {
+    try {
+        const {
+            nome,
+            ativo,
+            id
+        } = req.body;
+
+        const novosDadosOpcional = {
+            nome: nome,
+            ativo: ativo,
+            id: id
+        };
+        const novosDadosOpcionalArray = Object.values(novosDadosOpcional);
+
+        await opcionaol_Service.atualizar(novosDadosOpcionalArray);
+        res.status(200).send();
+    } catch (error) {
+        console.log('ERROR:: ', error);
+        res.status(500).send({
+            errorMsg: 'Ocorreu um erro ao processar a solicitação.',
+            error: error.message
+        });
+    }
+});
+
 router.post('/', async (req, res) => {
     try {
         const {
