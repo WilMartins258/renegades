@@ -12,6 +12,13 @@ const calcularDistancia = (lat1, lon1, lat2, lon2) => {
     return distancia;
 };
 
+// Aqui vamos implementar a função da API para descobrir latitude e longitude baseado no CEP do estabelecimento
+const obterCoordenadasDoCEP = (cep) => {
+    // Faça uma requisição para o serviço de geocodificação usando o CEP
+    // Retorne as coordenadas (latitude e longitude) obtidas da resposta da API
+};
+
 module.exports = {
-    calcularDistancia
+    calcularDistancia,
+    obterCoordenadasDoCEP
 };
