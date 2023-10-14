@@ -48,15 +48,21 @@ router.get('/filtro', async (req, res) => {
             for (let i=0; i < estabelecimentos.length; i++) {
                 if (estabelecimentos[i].categoriasString) {
                     estabelecimentos[i].categoria = estabelecimentos[i].categoriasString.split(',').map(item => item.trim());
-                };
+                } else {
+                    estabelecimentos[i].categoria = [null];
+                }
 
                 if (estabelecimentos[i].opcionaisString) {
                     estabelecimentos[i].opcionais = estabelecimentos[i].opcionaisString.split(',').map(item => item.trim());
-                };
+                } else {
+                    estabelecimentos[i].opcionais = [null];
+                }
 
                 if (estabelecimentos[i].comidasString) {
                     estabelecimentos[i].comidas = estabelecimentos[i].comidasString.split(',').map(item => item.trim());
-                };
+                } else {
+                    estabelecimentos[i].comidas = [null];
+                }
             };
         } catch (error) {
             console.log('Erro ao tratar componentes do estabelecimento: ', error);
