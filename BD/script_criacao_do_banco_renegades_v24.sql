@@ -20,7 +20,7 @@ CREATE TABLE testTable (
 CREATE TABLE categoria (
 	id                INT PRIMARY KEY AUTO_INCREMENT,
 	nome              VARCHAR(50) not null,
-	ativo             BOOLEAN DEFAULT true
+	ativo             ENUM('Sim', 'Não') DEFAULT 'Sim' not null
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE estiloMusica (
