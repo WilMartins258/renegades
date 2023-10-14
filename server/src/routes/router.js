@@ -34,8 +34,8 @@ router.use(
 );
 
 router.use(
-    "/estilomusica",
-    require("./estilomusica.js")
+    "/estiloMusica",
+    require("./estiloMusica.js")
 );
 
 router.use(
