@@ -224,7 +224,6 @@ export default {
         console.log('Erro ao tratar estabelecimentos para filtro da home: ', error);
       }
       console.log('estabelecimentos:: ', estabelecimentos);
-      // this.estabelecimentos = estabelecimentos;
       
       const estabelecimentosTeste = [
         {
@@ -293,7 +292,8 @@ export default {
         }
       ]
 
-      this.estabelecimentos = estabelecimentosTeste;
+      // this.estabelecimentos = estabelecimentosTeste;
+      this.estabelecimentos = estabelecimentos;
 
 
       try {
