@@ -53,10 +53,10 @@ router.post('/', async (req, res) => {
             ativo: ativo
         };
         const dadosCategoriaArray = Object.values(dadosCategoria);
-        
-        const idCategoriaIserida = await categoria_Service.inserir(dadosCategoriaArray);
 
-        res.status(200).send(idCategoriaIserida);  
+        const id = await categoria_Service.inserir(dadosCategoriaArray);
+
+        res.status(200).send({id});
     } catch (error) {
         console.log('ERROR:: ', error);
         res.status(500).send({
