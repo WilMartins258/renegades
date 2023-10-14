@@ -13,6 +13,20 @@ const inserir = async (dadosEstiloMusica) => {
     }
 };
 
+const atualizar = async (novosDadosEstiloMusica) => {
+    try {
+        const estiloMusicaQuery = `
+        UPDATE estiloMusica
+            SET nome = ?, ativo = ?
+            WHERE id = ?;`;
+        const connection = await db;
+    
+        await connection.query(estiloMusicaQuery, novosDadosEstiloMusica);
+    } catch (error) {
+        throw new Error(`Erro ao atualizar estilo de música: ${error.message}`);
+    }
+};
+
 const pegarTudo = async () => {
     const estiloMusicaQuery = "SELECT * FROM estiloMusica;";
     const connection = await db;
@@ -24,5 +38,6 @@ const pegarTudo = async () => {
 
 module.exports = {
     inserir,
+    atualizar,
     pegarTudo
 };
