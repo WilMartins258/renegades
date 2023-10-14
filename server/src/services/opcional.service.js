@@ -1,12 +1,16 @@
 const db = require('../models/db.js');
 
 const pegarTudo = async () => {
-    const opcionaisQuery = `SELECT * FROM opcional;`;
-    const connection = await db;
+    try {
+        const opcionaisQuery = `SELECT * FROM opcional;`;
+        const connection = await db;
 
-    const [opcionais] = await connection.query(opcionaisQuery);
+        const [opcionais] = await connection.query(opcionaisQuery);
 
-    return opcionais;
+        return opcionais;
+    } catch (error) {
+        throw new Error(`Erro ao buscar opcionais: ${error.message}`);
+    }
 }
 
 module.exports = {
