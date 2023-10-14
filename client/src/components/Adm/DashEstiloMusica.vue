@@ -86,25 +86,24 @@ export default {
       ativo: "sim",
     };
   },
-  created() {
-	  this.metodoInicial();
+  async created() {
+    try {
+      const estilosMusica = await api.get('/estiloMusica');
+
+      const musicas = estilosMusica.data.map(objeto => {
+        return {
+          id: objeto.id,
+          musica: objeto.nome, // Aqui é onde a chave 'nome' é alterada para 'musica'
+          ativo: objeto.ativo
+        };
+      });
+
+      this.listaMusicas = musicas;
+    } catch (error) {
+      console.log('Erro ao buscar os estilos de música: ', error);
+    }
   },
   methods: {
-    async metodoInicial() {
-      console.log('Estilos músicais \n');
-      try {
-        const estilosMusica = await api.get('/estiloMusica');
-        const estilosMusicaArray = [];
-
-        for (let i = 0; i < estilosMusica.data.length; i++) {
-          estilosMusicaArray[i] = estilosMusica.data[i].nome;
-        };
-
-        this.listaMusicas = estilosMusicaArray;
-      } catch (error) {
-        console.error('Erro ao recuperar os estilos de música.');
-      }
-    },
     salvarMusica() {
       if (this.novaMusica.trim() !== "") {
         if (this.isEditing) {
