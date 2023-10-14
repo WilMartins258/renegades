@@ -20,3 +20,11 @@ SELECT * FROM categoria_estabelecimento;
 SELECT * FROM musica_estabelecimento;
 SELECT * FROM avaliacao;
 SELECT * FROM favorito;
+
+-- Query para identificar estabelecimentos pelos opcionais
+-- SELECT e.nome
+	-- FROM estabelecimento e
+    -- LEFT JOIN opcional_estabelecimento op_e ON e.id = op_e.idEstabelecimento
+    -- LEFT JOIN opcional op ON op.id = op_e.idOpcional
+		-- WHERE op.id = 5;
+
