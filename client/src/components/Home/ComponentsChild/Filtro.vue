@@ -165,7 +165,7 @@ export default {
       {
             id: 1,
             nome: "Jeff's Burger",
-            categoria: "Hamburgueria",
+            categoria: ["Lanchonete", "Pizzaria", "Restaurante"].join(', '),
             foto: "https://www.plakart.com.br/img/galerias/40/0004_19b5c1b5b20643f9fc9045e14cd8ef67.jpeg",
             opcionais: ["Wifi", "Precisa de Agendamento", "Área Kids"],
             comidas: [null]
@@ -173,7 +173,7 @@ export default {
         {
             id: 2,
             nome: "Bar do João",
-            categoria: "Bar",
+            categoria: ["Bar"].join(', '),
             foto: "https://www.lojaskd.com.br/blog/wp-content/webp-express/webp-images/doc-root/blog/wp-content/uploads/2023/06/Nomes-para-bar-1024x576.png.webp",
             opcionais: ["Wifi", "Estacionamento", ],
             comidas: [null]
@@ -181,7 +181,7 @@ export default {
           {
             id: 3,
             nome: "Lanchonete da Maria",
-            categoria: "Lanchonete",
+            categoria: ["Lanchonete","Pizzaria"].join(', '),
             foto: "https://www.emporiotambo.com.br/pub/media/resized/1300x800/ves/blog/xcomo-decorar-uma-lanchonete-com-pouco-dinheiro.jpg.pagespeed.ic.o-02P9_HPT.webp",
             opcionais: ["Estacionamento", "Área Kids"],
             comidas: [null]
@@ -189,7 +189,7 @@ export default {
           {
             id: 4,
             nome: "Pizzaria do Carlos",
-            categoria: "Pizzaria",
+            categoria: ["Pizzaria"].join(', '),
             foto: "https://diariodorio.com/wp-content/uploads/2020/07/daleopizzaria_20200710_144435_0.jpg",
             opcionais: ["Wifi", "Área Kids"],
             comidas: [null]
@@ -197,7 +197,7 @@ export default {
           {
             id: 5,
             nome: "Burger King",
-            categoria: "Hamburgueria",
+            categoria: ["Hamburgueria"].join(', '),
             foto: "https://agendasorocaba.com.br/wp-content/uploads/2019/07/Burger-King-03.jpg",
             opcionais: ["Wifi", "Couvert Grátis", "Área Kids"],
             comidas: [null]
@@ -205,7 +205,7 @@ export default {
           {
             id: 6,
             nome: "Izumi",
-            categoria: "Restaurante",
+            categoria: ["Restaurante"].join(', '),
             foto: "https://izumima.com/wp-content/uploads/2023/01/IMG_8822-2048x1536.jpg",
             opcionais: ["Wifi", "Possui Área de Fumantes",],
             comidas: ["Japonesa"]
@@ -213,7 +213,7 @@ export default {
           {
             id: 7,
             nome: "Absoluto",
-            categoria: "Restaurante",
+            categoria: ["Restaurante"].join(', '),
             foto: "https://i.pinimg.com/564x/49/0b/64/490b640ca8bb4726489296c98509fdb6.jpg",
             opcionais: ["Wifi", "Permite Animais", "Área Kids","Estacionamento"],
             comidas: ["Italiana"]
@@ -221,7 +221,7 @@ export default {
           {
             id: 8,
             nome: "Bumbu",
-            categoria: "Restaurante",
+            categoria: ["Restaurante"].join(', '),
             foto: "https://4.bp.blogspot.com/-JiIZTUI6GzY/WN1phr5KOYI/AAAAAAAAANc/wALXGWFUwCo-ZK6pGrsPJ0UlyCpbTMqLQCLcB/s1600/fachada-bambu.jpg",
             opcionais: ["Wifi", "Área Kids"],
             comidas: ["Brasileira"]
@@ -235,7 +235,9 @@ export default {
 
   if (this.categoriasSelecionadas.length > 0) {
     filtered = filtered.filter((estabelecimento) =>
-      this.categoriasSelecionadas.includes(estabelecimento.categoria)
+      this.categoriasSelecionadas.every((categoria) =>
+        estabelecimento.categoria.includes(categoria)
+      )
     );
   }
 
