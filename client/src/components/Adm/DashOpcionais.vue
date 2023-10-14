@@ -17,7 +17,7 @@
         <input
           type="radio"
           id="ativoSim"
-          value="sim"
+          value="Sim"
           v-model="ativo"
         />
         <label for="ativoSim">Sim</label>
