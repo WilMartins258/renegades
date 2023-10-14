@@ -44,6 +44,24 @@ router.get('/filtro', async (req, res) => {
         const opcionais = await opcionaol_Service.pegarTudo();
         const comidas = await comida_Service.pegarTudo();
 
+        try {
+            for (let i=0; i < estabelecimentos.length; i++) {
+                if (estabelecimentos[i].categoriasString) {
+                    estabelecimentos[i].categorias = estabelecimentos[i].categoriasString.split(',').map(item => item.trim());
+                };
+
+                if (estabelecimentos[i].opcionaisString) {
+                    estabelecimentos[i].opcionais = estabelecimentos[i].opcionaisString.split(',').map(item => item.trim());
+                };
+
+                if (estabelecimentos[i].comidasString) {
+                    estabelecimentos[i].comidas = estabelecimentos[i].comidasString.split(',').map(item => item.trim());
+                };
+            };
+        } catch (error) {
+            console.log('Erro ao tratar componentes do estabelecimento: ', error);
+        }
+
         res.status(200).send({
             estabelecimentos,
             categorias,
