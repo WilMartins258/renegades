@@ -32,7 +32,7 @@ CREATE TABLE estiloMusica (
 CREATE TABLE opcional (
 	id                INT PRIMARY KEY AUTO_INCREMENT,
 	nome	          VARCHAR(100) not null,
-	ativo             BOOLEAN DEFAULT true
+	ativo             ENUM('Sim', 'Não') DEFAULT 'Sim' not null
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE contato (
