@@ -1,5 +1,16 @@
 const db = require('../models/db.js');
 
+const inserir = async (dadosCategoria) => {
+    try {
+        const categoriasQuery = ``;
+        const connection = await db;
+    
+        await connection.query(categoriasQuery, dadosCategoria);
+    } catch (error) {
+        throw new Error(`Erro ao inserir categoria: ${error.message}`);
+    }
+};
+
 const pegarTudo = async () => {
     try {
         const categoriasQuery = `SELECT * FROM categoria;`;
@@ -28,6 +39,7 @@ const atualizar = async (novosDadosCategoria) => {
 };
 
 module.exports = {
+    inserir,
     pegarTudo,
     atualizar
 };
