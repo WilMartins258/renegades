@@ -60,7 +60,7 @@ const filtros = async () => {
     const filtrosQuery = `
     SELECT e.id, 
       e.nome, 
-      e.fotoPrincipal, 
+      e.fotoPrincipal as 'formatoFoto', 
       e.cep, 
       (SELECT GROUP_CONCAT(idCategoria) FROM categoria_estabelecimento cat WHERE cat.idEstabelecimento = e.id) as idCategorias,
       (SELECT GROUP_CONCAT(idOpcional) FROM opcional_estabelecimento op WHERE op.idEstabelecimento = e.id) as idOpcionais,
