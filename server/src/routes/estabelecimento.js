@@ -47,7 +47,7 @@ router.get('/filtro', async (req, res) => {
         try {
             for (let i=0; i < estabelecimentos.length; i++) {
                 if (estabelecimentos[i].categoriasString) {
-                    estabelecimentos[i].categorias = estabelecimentos[i].categoriasString.split(',').map(item => item.trim());
+                    estabelecimentos[i].categoria = estabelecimentos[i].categoriasString.split(',').map(item => item.trim());
                 };
 
                 if (estabelecimentos[i].opcionaisString) {
