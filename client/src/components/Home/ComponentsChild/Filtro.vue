@@ -130,7 +130,7 @@
           class="card-image"
         />
         <h3>{{ estabelecimento.nome }}</h3>
-        <p class="description">{{ estabelecimento.categoriasString }}</p> <!--Era estabelecimento.categoria-->
+        <p class="description">{{ estabelecimento.categoria }}</p> <!--Era estabelecimento.categoria-->
       </div>
     </a>
   </div>
@@ -223,7 +223,7 @@ export default {
       } catch (error) {
         console.log('Erro ao tratar estabelecimentos para filtro da home: ', error);
       }
-      // console.log('estabelecimentos:: ', estabelecimentos);
+      console.log('estabelecimentos:: ', estabelecimentos);
       // this.estabelecimentos = estabelecimentos;
       
       const estabelecimentosTeste = [
@@ -232,7 +232,7 @@ export default {
           nome: "Jeff's Burger",
           categoria: ["Lanchonete", "Pizzaria", "Restaurante"].join(', '),
           foto: "https://www.plakart.com.br/img/galerias/40/0004_19b5c1b5b20643f9fc9045e14cd8ef67.jpeg",
-          opcionais: ["Wifi", "Precisa de Agendamento", "Área Kids"],
+          opcionais: ["Faz entrega", "Entrega Grátis", "Possui Área Kids"],
           comidas: [null]
         },
         {
@@ -240,7 +240,7 @@ export default {
           nome: "Bar do João",
           categoria: ["Bar"].join(', '),
           foto: "https://www.lojaskd.com.br/blog/wp-content/webp-express/webp-images/doc-root/blog/wp-content/uploads/2023/06/Nomes-para-bar-1024x576.png.webp",
-          opcionais: ["Wifi", "Estacionamento",],
+          opcionais: ["Tem Wi-fi livre", "Possui Estacionamento",],
           comidas: [null]
         },
         {
@@ -248,7 +248,7 @@ export default {
           nome: "Lanchonete da Maria",
           categoria: ["Lanchonete", "Pizzaria"].join(', '),
           foto: "https://www.emporiotambo.com.br/pub/media/resized/1300x800/ves/blog/xcomo-decorar-uma-lanchonete-com-pouco-dinheiro.jpg.pagespeed.ic.o-02P9_HPT.webp",
-          opcionais: ["Estacionamento", "Área Kids"],
+          opcionais: ["Possui Estacionamento", "Possui Área Kids"],
           comidas: [null]
         },
         {
@@ -256,7 +256,7 @@ export default {
           nome: "Pizzaria do Carlos",
           categoria: ["Pizzaria"].join(', '),
           foto: "https://diariodorio.com/wp-content/uploads/2020/07/daleopizzaria_20200710_144435_0.jpg",
-          opcionais: ["Wifi", "Área Kids"],
+          opcionais: ["Tem Wi-fi livre", "Possui Área Kids"],
           comidas: [null]
         },
         {
@@ -264,7 +264,7 @@ export default {
           nome: "Burger King",
           categoria: ["Hamburgueria"].join(', '),
           foto: "https://agendasorocaba.com.br/wp-content/uploads/2019/07/Burger-King-03.jpg",
-          opcionais: ["Wifi", "Couvert Grátis", "Área Kids"],
+          opcionais: ["Tem Wi-fi livre", "Couvert Grátis", "Possui Área Kids"],
           comidas: [null]
         },
         {
@@ -272,7 +272,7 @@ export default {
           nome: "Izumi",
           categoria: ["Restaurante"].join(', '),
           foto: "https://izumima.com/wp-content/uploads/2023/01/IMG_8822-2048x1536.jpg",
-          opcionais: ["Wifi", "Possui Área de Fumantes",],
+          opcionais: ["Tem Wi-fi livre", "Possui Área de Fumantes",],
           comidas: ["Japonesa"]
         },
         {
@@ -280,7 +280,7 @@ export default {
           nome: "Absoluto",
           categoria: ["Restaurante"].join(', '),
           foto: "https://i.pinimg.com/564x/49/0b/64/490b640ca8bb4726489296c98509fdb6.jpg",
-          opcionais: ["Wifi", "Permite Animais", "Área Kids", "Estacionamento"],
+          opcionais: ["Tem Wi-fi livre", "Permite Animais", "Possui Área Kids", "Possui Estacionamento"],
           comidas: ["Italiana"]
         },
         {
@@ -288,7 +288,7 @@ export default {
           nome: "Bumbu",
           categoria: ["Restaurante"].join(', '),
           foto: "https://4.bp.blogspot.com/-JiIZTUI6GzY/WN1phr5KOYI/AAAAAAAAANc/wALXGWFUwCo-ZK6pGrsPJ0UlyCpbTMqLQCLcB/s1600/fachada-bambu.jpg",
-          opcionais: ["Wifi", "Área Kids"],
+          opcionais: ["Tem Wi-fi livre", "Possui Área Kids"],
           comidas: ["Brasileira"]
         }
       ]
