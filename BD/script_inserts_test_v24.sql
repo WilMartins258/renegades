@@ -35,7 +35,7 @@ SET FOREIGN_KEY_CHECKS = 1;
 insert into OPCIONAL (id, nome) values (1, 'Faz entrega');
 insert into OPCIONAL (id, nome) values (2, 'Entrega Grátis');
 insert into OPCIONAL (id, nome) values (3, 'Toca Música');
-insert into OPCIONAL (id, nome) values (4, 'Toca Música ao Vivo');
+insert into OPCIONAL (id, nome) values (4, 'Música ao Vivo');
 insert into OPCIONAL (id, nome) values (5, 'Oferece Rodízio');
 insert into OPCIONAL (id, nome) values (6, 'Precisa de Agendamento');
 insert into OPCIONAL (id, nome) values (7, 'Possui Estacionamento');
