@@ -41,4 +41,29 @@ router.put('/', async (req, res) => {
     }
 });
 
+router.post('/', async (req, res) => {
+    try {
+        const {
+            nome,
+            ativo
+        } = req.body;
+
+        const dadosCategoria = {
+            nome: nome,
+            ativo: ativo
+        };
+        const dadosCategoriaArray = Object.values(dadosCategoria);
+        
+        const idCategoriaIserida = await categoria_Service.inserir(dadosCategoriaArray);
+
+        res.status(200).send(idCategoriaIserida);  
+    } catch (error) {
+        console.log('ERROR:: ', error);
+        res.status(500).send({
+            errorMsg: 'Ocorreu um erro ao processar a solicitação.',
+            error: error.message
+        });
+    }
+});
+
 module.exports = router;
