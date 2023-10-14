@@ -13,8 +13,8 @@
       </li>
       <li>
         <a
-          ><router-link to="/categoria" v-if="notIsLoginPage"
-            >Categoria</router-link
+          ><router-link to="/cupons" v-if="notIsLoginPage"
+            >Promoções</router-link
           ></a
         >
       </li>

@@ -23,6 +23,12 @@ const routes = [
   },
   
   {
+    path: '/cupons',
+    name: 'cupons',
+    component: () => import(/* webpackChunkName: "cupons" */ '../views/ViewAreaEstabelecimento/Cupons'),
+  },
+ 
+  {
   path: '/Usuario',
   name: 'Usuario',
   component: () => import(/* webpackChunkName: "Usuario" */ '../views/ViewUsuarios/Usuario'),
@@ -51,6 +57,7 @@ const routes = [
     name: 'AreaDoAdm',
     component: () => import(/* webpackChunkName: "AreaDoAdm" */ '../views/ViewAdm/Adm'),
   },
+  
 
   {
     path: '/gerenciacategoria',
