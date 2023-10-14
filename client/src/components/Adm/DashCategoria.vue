@@ -130,9 +130,22 @@ export default {
       this.isEditing = false;
       this.limparCampos();
     },
-    salvarEdicao(index) {
+    async salvarEdicao(index) {
       this.listaCategorias[index].nome = this.novaCategoria;
       this.listaCategorias[index].ativo = this.ativo;
+
+      const novosDadosCategoria = {
+        nome: this.listaCategorias[index].nome,
+        ativo: this.listaCategorias[index].ativo,
+        id: this.listaCategorias[index].id
+      };
+
+      try {
+        await api.put('/categoria', novosDadosCategoria);
+        
+      } catch (error) {
+        console.log('Erro ao atualizar categoria: ', error);
+      }
 
       this.editingIndex = -1;
       this.isEditing = false;
