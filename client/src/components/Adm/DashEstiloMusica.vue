@@ -17,14 +17,14 @@
         <input
           type="radio"
           id="ativoSim"
-          value="sim"
+          value="Sim"
           v-model="ativo"
         />
         <label for="ativoSim">Sim</label>
         <input
           type="radio"
           id="ativoNao"
-          value="não"
+          value="Não"
           v-model="ativo"
         />
         <label for="ativoNao">Não</label>
@@ -150,10 +150,22 @@ export default {
       this.isEditing = false;
       this.limparCampos();
     },
-    salvarEdicao(index) {
+    async salvarEdicao(index) {
       if (this.novaMusica.trim() !== "") {
         this.listaMusicas[index].musica = this.novaMusica;
         this.listaMusicas[index].ativo = this.ativo;
+
+        const novosDadosEstiloMusica = {
+          nome: this.listaMusicas[index].musica,
+          ativo: this.listaMusicas[index].ativo,
+          id: this.listaMusicas[index].id
+        };
+        try {
+          await api.put('/estiloMusica', novosDadosEstiloMusica);
+        } catch (error) {
+          console.log('Erro ao atualizar estilo de música: ', error);
+        }
+
         this.editingIndex = -1;
         this.isEditing = false;
         this.limparCampos();
