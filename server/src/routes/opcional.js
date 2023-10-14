@@ -7,7 +7,11 @@ router.get('/', async (req, res) => {
 
         res.status(200).send(opcionais);
     } catch (error) {
-        console.error('ERROR:: ', error);
+        console.log('ERROR:: ', error);
+        res.status(500).send({
+            errorMsg: 'Ocorreu um erro ao processar a solicitação.',
+            error: error.message
+        });
     }
 });
 
