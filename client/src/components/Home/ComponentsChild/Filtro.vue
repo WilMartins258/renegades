@@ -130,7 +130,7 @@
           class="card-image"
         />
         <h3>{{ estabelecimento.nome }}</h3>
-        <p class="description">{{ estabelecimento.categoria }}</p> <!--Era estabelecimento.categoria-->
+        <p class="description">{{ estabelecimento.categoria.join(', ') }}</p>
       </div>
     </a>
   </div>
