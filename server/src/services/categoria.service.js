@@ -13,7 +13,19 @@ const pegarTudo = async () => {
     }
 }
 
-const atualizar = async () => {};
+const atualizar = async (novosDadosCategoria) => {
+    try {
+        const categoriasQuery = `
+        UPDATE categoria
+            SET nome = ?, ativo = ?
+            WHERE id = ?;`;
+        const connection = await db;
+    
+        await connection.query(categoriasQuery, novosDadosCategoria);
+    } catch (error) {
+        throw new Error(`Erro ao atualizar categoria: ${error.message}`);
+    }
+};
 
 module.exports = {
     pegarTudo,
