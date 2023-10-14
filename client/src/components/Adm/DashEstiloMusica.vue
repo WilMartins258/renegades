@@ -104,7 +104,7 @@ export default {
     }
   },
   methods: {
-    salvarMusica() {
+    async salvarMusica() {
       if (this.novaMusica.trim() !== "") {
         if (this.isEditing) {
           this.listaMusicas[this.editingIndex] = {
@@ -113,10 +113,21 @@ export default {
           };
           this.isEditing = false;
         } else {
-          this.listaMusicas.push({
-            musica: this.novaMusica,
-            ativo: this.ativo,
-          });
+          try {
+            const novoEstiloDeMusica = {
+              nome: this.novaMusica,
+              ativo: this.ativo
+            };
+            const inserirEstiloMusica = await api.post('/estiloMusica', novoEstiloDeMusica);
+
+            this.listaMusicas.push({
+              id: inserirEstiloMusica.data.id,
+              musica: this.novaMusica,
+              ativo: this.ativo,
+            });
+          } catch (error) {
+            console.log('Erro ao inserir nova categoria na lista: ', error);
+          }
         }
         this.novaMusica = "";
         this.campoVazio = false;
