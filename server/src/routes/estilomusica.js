@@ -15,4 +15,29 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.post('/', async (req, res) => {
+    try {
+        const {
+            nome,
+            ativo
+        } = req.body;
+
+        const dadosEstiloMusica = {
+            nome: nome,
+            ativo: ativo
+        };
+        const dadosEstiloMusicaArray = Object.values(dadosEstiloMusica);
+
+        const id = await estiloMusicaService.inserir(dadosEstiloMusicaArray);
+
+        res.status(200).send({id});
+    } catch (error) {
+        console.log('ERROR:: ', error);
+        res.status(500).send({
+            errorMsg: 'Ocorreu um erro ao processar a solicitação.',
+            error: error.message
+        });
+    }
+});
+
 module.exports = router;
