@@ -689,6 +689,11 @@ insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
 	1 -- idCategoria INT NOT NULL
 );
 
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    3, -- idEstabelecimento INT NOT NULL,
+    5 -- idOpcional INT NOT NULL
+);
+
 insert into usuario values(
 	6,                   -- id
 	3,                -- idEstabelecimento
@@ -837,6 +842,11 @@ insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
 	2 -- idCategoria INT NOT NULL
 );
 
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    4, -- idEstabelecimento INT NOT NULL,
+    5 -- idOpcional INT NOT NULL
+);
+
 insert into usuario values(
 	7,                   -- id
 	4,                -- idEstabelecimento
@@ -930,6 +940,16 @@ insert into estabelecimento values(
 insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
 	5, -- idEstabelecimento INT NOT NULL,
 	6 -- idCategoria INT NOT NULL
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    5, -- idEstabelecimento INT NOT NULL,
+    4 -- idOpcional INT NOT NULL
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    5, -- idEstabelecimento INT NOT NULL,
+    5 -- idOpcional INT NOT NULL
 );
 
 insert into musica_estabelecimento (idEstabelecimento, idEstiloMusica) values(
@@ -1075,6 +1095,11 @@ insert into estabelecimento values(
 insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
 	6, -- idEstabelecimento INT NOT NULL,
 	18 -- idCategoria INT NOT NULL
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    6, -- idEstabelecimento INT NOT NULL,
+    1 -- idOpcional INT NOT NULL
 );
 
 insert into musica_estabelecimento (idEstabelecimento, idEstiloMusica) values(
@@ -1356,246 +1381,3 @@ insert into avaliacao values(
 );
 
 -- --------------------------------------------------------------------------------------> AVALIAÇÕES FIM
-
--- --------------------------------------------------------------------------------------> TESTES ERRADOS DE ESTABELECIMENTO
-insert into estabelecimento values(
-	7,                      -- id 
-	"ESTABLECECIMENTO 7",             -- nome
-	'56.765.680/0001-99',       -- cnpj
-	'png',                   -- fotoPrincipal   
-	"ESTABLECECIMENTO 7", -- descricao
-	true,                   -- ativo
-	false,                   -- oculto
-	'Validado',             -- statusValidacao
-	1.244, -- nota
-	0, -- numeroAvaliacoes INT,
-	'3145', -- numeroEstabelecimento  VARCHAR(9) not null,
-	'Av. Itavuvu', -- logradouro             VARCHAR(200) not null,
-	'Jardim Santa Cecilia', -- bairro                 VARCHAR(200) not null,
-	'Sorocaba', -- cidade                 VARCHAR(200) not null,
-	'SP', -- estado                 VARCHAR(200) not null,
-	'18078-005', -- cep               VARCHAR(9) not null,
-	'2023-10-10', -- dataUltimoAcesso
-	'2023-10-10' -- dataUltimoAcesso
-);
-
-insert into estabelecimento values(
-	8,                      -- id 
-	"ESTABLECECIMENTO 8",             -- nome
-	'56.765.680/0001-99',       -- cnpj
-	'png',                   -- fotoPrincipal   
-	"ESTABLECECIMENTO 8", -- descricao
-	true,                   -- ativo
-	false,                   -- oculto
-	'Validado',             -- statusValidacao
-	3.444, -- nota
-	0, -- numeroAvaliacoes INT,
-	'3145', -- numeroEstabelecimento  VARCHAR(9) not null,
-	'Av. Itavuvu', -- logradouro             VARCHAR(200) not null,
-	'Jardim Santa Cecilia', -- bairro                 VARCHAR(200) not null,
-	'Sorocaba', -- cidade                 VARCHAR(200) not null,
-	'SP', -- estado                 VARCHAR(200) not null,
-	'18078-005', -- cep               VARCHAR(9) not null,
-	'2023-10-10', -- dataUltimoAcesso
-	'2023-10-10' -- dataUltimoAcesso
-);
-
-insert into estabelecimento values(
-	9,                      -- id 
-	"ESTABLECECIMENTO 9",             -- nome
-	'56.765.680/0001-99',       -- cnpj
-	'png',                   -- fotoPrincipal   
-	"ESTABLECECIMENTO 9", -- descricao
-	true,                   -- ativo
-	false,                   -- oculto
-	'Validado',             -- statusValidacao
-	4.444, -- nota
-	0, -- numeroAvaliacoes INT,
-	'3145', -- numeroEstabelecimento  VARCHAR(9) not null,
-	'Av. Itavuvu', -- logradouro             VARCHAR(200) not null,
-	'Jardim Santa Cecilia', -- bairro                 VARCHAR(200) not null,
-	'Sorocaba', -- cidade                 VARCHAR(200) not null,
-	'SP', -- estado                 VARCHAR(200) not null,
-	'18078-005', -- cep               VARCHAR(9) not null,
-	'2023-10-10', -- dataUltimoAcesso
-	'2023-10-10' -- dataUltimoAcesso
-);
-
-insert into estabelecimento values(
-	10,                      -- id 
-	"ESTABLECECIMENTO 10",             -- nome
-	'56.765.680/0001-99',       -- cnpj
-	'png',                   -- fotoPrincipal   
-	"ESTABLECECIMENTO 10", -- descricao
-	true,                   -- ativo
-	false,                   -- oculto
-	'Validado',             -- statusValidacao
-	2.5555, -- nota
-	0, -- numeroAvaliacoes INT,
-	'3145', -- numeroEstabelecimento  VARCHAR(9) not null,
-	'Av. Itavuvu', -- logradouro             VARCHAR(200) not null,
-	'Jardim Santa Cecilia', -- bairro                 VARCHAR(200) not null,
-	'Sorocaba', -- cidade                 VARCHAR(200) not null,
-	'SP', -- estado                 VARCHAR(200) not null,
-	'18078-005', -- cep               VARCHAR(9) not null,
-	'2023-10-10', -- dataUltimoAcesso
-	'2023-10-10' -- dataUltimoAcesso
-);
-
-insert into estabelecimento values(
-	11,                      -- id 
-	"ESTABLECECIMENTO 11",             -- nome
-	'56.765.680/0001-99',       -- cnpj
-	'png',                   -- fotoPrincipal   
-	"ESTABLECECIMENTO 11", -- descricao
-	true,                   -- ativo
-	false,                   -- oculto
-	'Validado',             -- statusValidacao
-	1.988, -- nota
-	0, -- numeroAvaliacoes INT,
-	'3145', -- numeroEstabelecimento  VARCHAR(9) not null,
-	'Av. Itavuvu', -- logradouro             VARCHAR(200) not null,
-	'Jardim Santa Cecilia', -- bairro                 VARCHAR(200) not null,
-	'Sorocaba', -- cidade                 VARCHAR(200) not null,
-	'SP', -- estado                 VARCHAR(200) not null,
-	'18078-005', -- cep               VARCHAR(9) not null,
-	'2023-10-10', -- dataUltimoAcesso
-	'2023-10-10' -- dataUltimoAcesso
-);
-
-insert into estabelecimento values(
-	12,                      -- id 
-	"ESTABLECECIMENTO 12",             -- nome
-	'56.765.680/0001-99',       -- cnpj
-	'png',                   -- fotoPrincipal   
-	"ESTABLECECIMENTO 12", -- descricao
-	true,                   -- ativo
-	false,                   -- oculto
-	'Validado',             -- statusValidacao
-	2.390, -- nota
-	0, -- numeroAvaliacoes INT,
-	'3145', -- numeroEstabelecimento  VARCHAR(9) not null,
-	'Av. Itavuvu', -- logradouro             VARCHAR(200) not null,
-	'Jardim Santa Cecilia', -- bairro                 VARCHAR(200) not null,
-	'Sorocaba', -- cidade                 VARCHAR(200) not null,
-	'SP', -- estado                 VARCHAR(200) not null,
-	'18078-005', -- cep               VARCHAR(9) not null,
-	'2023-10-10', -- dataUltimoAcesso
-	'2023-10-10' -- dataUltimoAcesso
-);
-
--- --------------------------------------------------------------------------------------> TESTES ERRADOS DE ESTABELECIMENTO
-
-
--- --------------------------------------------------------------------------------------> PROMOÇÕES INÍCIO
-
-INSERT INTO promocao VALUES (
-	null, -- id                INT PRIMARY KEY AUTO_INCREMENT,
-	1, -- idEstabelecimento INT not null,
-	'Mc lanche metade do preço', -- nome              VARCHAR(100) not null,
-	'Apresente o código da promoção no momento da finalização da compra e receba um desconto de metade do valor do seu lanche', -- descricao         VARCHAR(400) not null,
-	'XXY-38', -- codigo            VARCHAR(20) not null,
-	'2023-10-14', -- dataInicio        DATE not null,
-	'2023-10-20' -- dataFim           DATE not null
-);
-
-INSERT INTO promocao VALUES (
-	null, -- id                INT PRIMARY KEY AUTO_INCREMENT,
-	1, -- idEstabelecimento INT not null,
-	'Big Mc metade do preço', -- nome              VARCHAR(100) not null,
-	'Apresente o código da promoção no momento da finalização da compra e receba um desconto de metade do valor do seu lanche', -- descricao         VARCHAR(400) not null,
-	'XXY-39', -- codigo            VARCHAR(20) not null,
-	'2023-10-14', -- dataInicio        DATE not null,
-	'2023-10-20' -- dataFim           DATE not null
-);
-
-INSERT INTO promocao VALUES (
-	null, -- id                INT PRIMARY KEY AUTO_INCREMENT,
-	1, -- idEstabelecimento INT not null,
-	'Chickem Jr. metade do preço', -- nome              VARCHAR(100) not null,
-	'Apresente o código da promoção no momento da finalização da compra e receba um desconto de metade do valor do seu lanche', -- descricao         VARCHAR(400) not null,
-	'XXY-40', -- codigo            VARCHAR(20) not null,
-	'2023-10-14', -- dataInicio        DATE not null,
-	'2023-10-20' -- dataFim           DATE not null
-);
-
-INSERT INTO promocao VALUES (
-	null, -- id                INT PRIMARY KEY AUTO_INCREMENT,
-	6, -- idEstabelecimento INT not null,
-	"10 Bib'sfiha de Carne por R$ 8,99", -- nome              VARCHAR(100) not null,
-	"Apresente o código da promoção no momento da finalização da compra e pague somente R$ 8,99 por 10 Bib'sfihas de Carne", -- descricao         VARCHAR(400) not null,
-	'ESFIRRA10', -- codigo            VARCHAR(20) not null,
-	'2023-10-14', -- dataInicio        DATE not null,
-	'2023-11-30' -- dataFim           DATE not null
-);
-
-INSERT INTO promocao VALUES (
-	null, -- id                INT PRIMARY KEY AUTO_INCREMENT,
-	4, -- idEstabelecimento INT not null,
-	"Rodízio Promocional", -- nome              VARCHAR(100) not null,
-	"Apresente o código da promoção ao pedir pelo rodízio na Booa e pague apenas R$ 25,99.", -- descricao         VARCHAR(400) not null,
-	'RODIZIO-BOOA', -- codigo            VARCHAR(20) not null,
-	'2023-10-05', -- dataInicio        DATE not null,
-	'2023-11-25' -- dataFim           DATE not null
-);
-
-INSERT INTO promocao VALUES (
-	null, -- id                INT PRIMARY KEY AUTO_INCREMENT,
-	3, -- idEstabelecimento INT not null,
-	"Cachorrão Especial Promocional", -- nome              VARCHAR(100) not null,
-	"Apresente o código da promoção no momento da finalização da compra e pague somente R$ 18,99 por um Cachorrão Especial no Kiko's (Somente um uso por pessoa)", -- descricao         VARCHAR(400) not null,
-	'DOGESPECIAL-KIKOS', -- codigo            VARCHAR(20) not null,
-	'2023-10-05', -- dataInicio        DATE not null,
-	'2023-12-30' -- dataFim           DATE not null
-);
-
-INSERT INTO promocao VALUES (
-	null, -- id                INT PRIMARY KEY AUTO_INCREMENT,
-	3, -- idEstabelecimento INT not null,
-	"Cachorrão Super + Batata Média", -- nome              VARCHAR(100) not null,
-	"Apresente o código da promoção ao fazer o pedido de um Cachorrão Super e por mais R$ 8,00 leva uma batata média no combo.", -- descricao         VARCHAR(400) not null,
-	'SUPERBATATA-KIKOS', -- codigo            VARCHAR(20) not null,
-	'2023-10-05', -- dataInicio        DATE not null,
-	'2023-12-30' -- dataFim           DATE not null
-);
-
-INSERT INTO promocao VALUES (
-	null, -- id                INT PRIMARY KEY AUTO_INCREMENT,
-	2, -- idEstabelecimento INT not null,
-	"Promoção vencida 1", -- nome              VARCHAR(100) not null,
-	"Promoção vencida 1 - descrição", -- descricao         VARCHAR(400) not null,
-	'VENCIDA_01', -- codigo            VARCHAR(20) not null,
-	'2023-09-05', -- dataInicio        DATE not null,
-	'2023-10-10' -- dataFim           DATE not null
-);
-
-INSERT INTO promocao VALUES (
-	null, -- id                INT PRIMARY KEY AUTO_INCREMENT,
-	5, -- idEstabelecimento INT not null,
-	"Promoção vencida 2", -- nome VARCHAR(100) not null,
-	"Promoção vencida 2 - descrição", -- descricao         VARCHAR(400) not null,
-	'VENCIDA_02', -- codigo            VARCHAR(20) not null,
-	'2023-09-15', -- dataInicio        DATE not null,
-	'2023-09-25' -- dataFim           DATE not null
-);
-
-INSERT INTO promocao VALUES (
-	null, -- id                INT PRIMARY KEY AUTO_INCREMENT,
-	7, -- idEstabelecimento INT not null,
-	"Promoção vencida 3", -- nome VARCHAR(100) not null,
-	"Promoção vencida 3 - descrição", -- descricao         VARCHAR(400) not null,
-	'VENCIDA_03', -- codigo            VARCHAR(20) not null,
-	'2023-09-15', -- dataInicio        DATE not null,
-	'2023-09-25' -- dataFim           DATE not null
-);
-
-INSERT INTO promocao VALUES (
-	null, -- id                INT PRIMARY KEY AUTO_INCREMENT,
-	5, -- idEstabelecimento INT not null,
-	"Drink Especial de Limão", -- nome VARCHAR(100) not null,
-	"Apresente o código da promoção ao pagar a compra de um Drink Especial de Limão e pague apenas R$ 32,00", -- descricao         VARCHAR(400) not null,
-	'LIMAO_MADA', -- codigo            VARCHAR(20) not null,
-	'2023-10-13', -- dataInicio        DATE not null,
-	'2023-10-28' -- dataFim           DATE not null
-);
--- --------------------------------------------------------------------------------------> PROMOÇÕES FIM
