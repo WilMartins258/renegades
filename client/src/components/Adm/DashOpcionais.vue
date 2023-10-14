@@ -104,7 +104,7 @@ export default {
     }
   },
   methods: {
-    salvarOpcional() {
+    async salvarOpcional() {
       if (this.novaOpcional.trim() !== "") {
         if (this.isEditing) {
           this.listaOpcionals[this.editingIndex] = {opcional: this.novaOpcional,
@@ -112,10 +112,21 @@ export default {
           };
           this.isEditing = false;
         } else {
-          this.listaOpcionals.push({
-            categoria: this.novaOpcional,
-            ativo: this.ativo, // Adicionando o valor "ativo" ao novo opcional
-          });
+          try {
+            const novoOpcional = {
+              nome: this.novaOpcional,
+              ativo: this.ativo
+            };
+            const inserirOpcional = await api.post('/opcional', novoOpcional);
+
+            this.listaOpcionals.push({
+              id: inserirOpcional.data.id,
+              categoria: this.novaOpcional,
+              ativo: this.ativo,
+            });
+          } catch (error) {
+            console.log('Erro ao inserir novo opcional na lista: ', error);
+          }
         }
         this.novaOpcional = "";
         this.campoVazio = false;
