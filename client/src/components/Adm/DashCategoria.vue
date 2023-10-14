@@ -97,21 +97,37 @@ export default {
     }
   },
   methods: {
-    salvarCategoria() {
+    async salvarCategoria() {
       if (this.novaCategoria.trim() !== "") {
-        if (this.isEditing) {
-          this.listaCategorias[this.editingIndex] = {categoria: this.novaCategoria,
-            ativo: this.ativo, // Adicionando o valor "ativo" à categoria existente
-          };
-          this.isEditing = false;
-        } else {
-          this.listaCategorias.push({
-            categoria: this.novaCategoria,
-            ativo: this.ativo, // Adicionando o valor "ativo" à nova categoria
-          });
+        try {
+          if (this.isEditing) {
+            this.listaCategorias[this.editingIndex] = {
+              nome: this.novaCategoria,
+              ativo: this.ativo, // Adicionando o valor "ativo" à categoria existente
+            };
+            this.isEditing = false;
+          } else {
+            const novaCategoria = {
+              nome: this.novaCategoria,
+              ativo: this.ativo
+            };
+            try {
+              const inserirCategoria = await api.post('/categoria', novaCategoria);
+
+              this.listaCategorias.push({
+                id: inserirCategoria.data.id,
+                nome: this.novaCategoria,
+                ativo: this.ativo
+              });
+            } catch (error) {
+              console.log('Erro ao inserir nova categoria na lista: ', error);
+            }
+          }     
+          this.novaCategoria = "";
+          this.campoVazio = false;
+        } catch (error) {
+          console.log('Erro ao salvar categoria: ', error);
         }
-        this.novaCategoria = "";
-        this.campoVazio = false;
       } else {
         this.campoVazio = true;
       }
