@@ -39,7 +39,6 @@ router.get('/validacao', async (req, res) => {
 
 router.get('/filtro', async (req, res) => {
     try {
-        console.log('/filtro')
         const estabelecimentos = await estabelecimento_Service.filtros();
         const categorias = await categoria_Service.pegarTudo();
         const opcionais = await opcionaol_Service.pegarTudo();
