@@ -15,4 +15,30 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.put('/', async (req, res) => {
+    try {
+        const {
+            nome,
+            ativo,
+            id
+        } = req.body;
+
+        const novosDadosCategoria = {
+            nome: nome,
+            ativo: ativo,
+            id: id
+        };
+        const novosDadosCategoriaArray = Object.values(novosDadosCategoria);
+
+        await categoria_Service.atualizar(novosDadosCategoriaArray);
+        res.status(200).send();  
+    } catch (error) {
+        console.log('ERROR:: ', error);
+        res.status(500).send({
+            errorMsg: 'Ocorreu um erro ao processar a solicitação.',
+            error: error.message
+        });
+    }
+});
+
 module.exports = router;
