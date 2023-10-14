@@ -73,12 +73,12 @@ insert into categoria (id, nome) values (18, 'Fast Food');
 
 -- ---------------------------- COMIDA -- FIM
 
-insert into comida (id, nome) values (1, 'Comida Braseileira');
-insert into comida (id, nome) values (2, 'Comida Japonesa');
-insert into comida (id, nome) values (3, 'Comida Italiana');
-insert into comida (id, nome) values (4, 'Comida Mexicana');
-insert into comida (id, nome) values (5, 'Comida Indiana');
-insert into comida (id, nome) values (6, 'Comida Francesa');
+insert into comida (id, nome) values (1, 'Braseileira');
+insert into comida (id, nome) values (2, 'Japonesa');
+insert into comida (id, nome) values (3, 'Italiana');
+insert into comida (id, nome) values (4, 'Mexicana');
+insert into comida (id, nome) values (5, 'Indiana');
+insert into comida (id, nome) values (6, 'Francesa');
 
 
 -- ---------------------------- COMIDA -- FIM
