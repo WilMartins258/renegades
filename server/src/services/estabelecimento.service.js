@@ -1,45 +1,45 @@
 const db = require('../models/db.js');
 
 const inserir = async (dadosEstabelecimento, conn) => {
-    try {
-      const estabelecimentoQuery = `
+  try {
+    const estabelecimentoQuery = `
         INSERT INTO estabelecimento (nome, cnpj, fotoPrincipal, descricao, 
         cep, estado, cidade, logradouro, bairro, numeroEstabelecimento, dataCadastro, dataUltimoAcesso) 
         VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );`;
-  
-      const [insercaoEstabelecimento] = await conn.query(estabelecimentoQuery, dadosEstabelecimento);
-  
-      return insercaoEstabelecimento?.insertId;
-    } catch (error) {
-      throw new Error(`Erro ao inserir dados do estabelecimento: ${error.message}`);
-    }
+
+    const [insercaoEstabelecimento] = await conn.query(estabelecimentoQuery, dadosEstabelecimento);
+
+    return insercaoEstabelecimento?.insertId;
+  } catch (error) {
+    throw new Error(`Erro ao inserir dados do estabelecimento: ${error.message}`);
+  }
 };
 
 const atualizar = async (dadosEstabelecimento, conn) => {
-    try {
-      const estabelecimentoQuery = ``;
-  
-      const [atualizacaoEstabelecimento] = await conn.query(estabelecimentoQuery, dadosEstabelecimento);
-  
-      return atualizacaoEstabelecimento;
-    } catch (error) {
-      throw new Error(`Erro ao atualizar dados do estabelecimento: ${error.message}`);
-    }
+  try {
+    const estabelecimentoQuery = ``;
+
+    const [atualizacaoEstabelecimento] = await conn.query(estabelecimentoQuery, dadosEstabelecimento);
+
+    return atualizacaoEstabelecimento;
+  } catch (error) {
+    throw new Error(`Erro ao atualizar dados do estabelecimento: ${error.message}`);
+  }
 };
 
 const pegarPorId = async (idEstabelecimento, conn) => {
-    try {
-      const estabelecimentoQuery = `
+  try {
+    const estabelecimentoQuery = `
       SELECT nome, fotoPrincipal as 'formatoFoto', descricao, nota, numeroEstabelecimento, logradouro, bairro, cidade, estado, cep
         FROM estabelecimento
         WHERE id = ?;`;
-  
-      const [dadosEstabelecimento] = await conn.query(estabelecimentoQuery, idEstabelecimento);
-  
-      return dadosEstabelecimento;
-    } catch (error) {
-      throw new Error(`Erro ao ler dados do estabelecimento: ${error.message}`);
-    }
+
+    const [dadosEstabelecimento] = await conn.query(estabelecimentoQuery, idEstabelecimento);
+
+    return dadosEstabelecimento;
+  } catch (error) {
+    throw new Error(`Erro ao ler dados do estabelecimento: ${error.message}`);
+  }
 };
 
 const carousel = async () => {
@@ -58,13 +58,29 @@ const carousel = async () => {
 const filtros = async () => {
   try {
     const filtrosQuery = `
-    SELECT e.id, 
-      e.nome, 
-      e.fotoPrincipal as 'formatoFoto', 
-      e.cep, 
-      (SELECT GROUP_CONCAT(idCategoria) FROM categoria_estabelecimento cat WHERE cat.idEstabelecimento = e.id) as idCategorias,
-      (SELECT GROUP_CONCAT(idOpcional) FROM opcional_estabelecimento op WHERE op.idEstabelecimento = e.id) as idOpcionais,
-      (SELECT GROUP_CONCAT(idComida) FROM comida_estabelecimento com WHERE com.idEstabelecimento = e.id) as idComidas
+    SELECT
+      e.id,
+      e.nome,
+      e.fotoPrincipal AS 'formatoFoto',
+      e.cep,
+      (
+        SELECT GROUP_CONCAT(c.nome) 
+        FROM categoria_estabelecimento ce 
+        JOIN categoria c ON ce.idCategoria = c.id 
+        WHERE ce.idEstabelecimento = e.id
+      ) AS categoriasString,
+      (
+        SELECT GROUP_CONCAT(o.nome) 
+        FROM opcional_estabelecimento oe 
+        JOIN opcional o ON oe.idOpcional = o.id 
+        WHERE oe.idEstabelecimento = e.id
+      ) AS opcionaisString,
+      (
+        SELECT GROUP_CONCAT(co.nome) 
+        FROM comida_estabelecimento ce 
+        JOIN comida co ON ce.idComida = co.id 
+        WHERE ce.idEstabelecimento = e.id
+      ) AS comidasString
     FROM estabelecimento e;`;
     const connection = await db;
 
@@ -84,7 +100,7 @@ const pegarParaValidacao = async () => {
     const [estabelecimentosValidacao] = await connection.query(estabelecimentosQuery);
 
     return estabelecimentosValidacao;
-    
+
   } catch (error) {
     throw new Error(`Erro ao buscar estabelecimento para validação: ${error.message}`);
   }
