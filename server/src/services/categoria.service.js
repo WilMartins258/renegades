@@ -2,10 +2,12 @@ const db = require('../models/db.js');
 
 const inserir = async (dadosCategoria) => {
     try {
-        const categoriasQuery = ``;
+        const categoriasQuery = `INSERT into categoria (nome, ativo) VALUES (?, ?);`;
         const connection = await db;
     
-        await connection.query(categoriasQuery, dadosCategoria);
+        const [insercaoCategoria] = await connection.query(categoriasQuery, dadosCategoria);
+
+        return insercaoCategoria?.insertId;
     } catch (error) {
         throw new Error(`Erro ao inserir categoria: ${error.message}`);
     }
