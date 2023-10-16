@@ -1,40 +1,25 @@
 <template>
-    <link href="https://fonts.googleapis.com/css?family=Cabin|Indie+Flower|Inknut+Antiqua|Lora|Ravi+Prakash" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"  />
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <div class="container">
-    <div class="item" v-for="cupom in cupons" :key="cupom.codigo">
-      <div class="right-codigo">
-        <h5 >Código</h5>
-        <h2 class="codigo">{{ cupom.codigo }}</h2>
-        <span class="up-border"></span>
-        <span class="down-border"></span>
-      </div>
-      
-      <div class="item-left">
-        <p class="event">{{ cupom.nome }}</p>
-        <p class="categoria">{{ cupom.categoria.join(', ') }}</p>
-        <h2 class="title">{{ cupom.descricao }}</h2>
-        
-        <div class="sce">
-          <div class="icon">
-            <i class="fa fa-table"></i>
-          </div>
-          <p>Promoção Ativa: <br> 
-            de {{ cupom.dtInicio }} a {{ cupom.dtFim }}</p>
+      <div class="ticket" v-for="cupom in cupons" :key="cupom.codigo">
+        <div class="ticket-left">
+            <div class="cut-line-left"></div>
+            <p class="text-code">Código:</p><br>
+            <p class="code">{{cupom.codigo}}</p>
+            <div class="cut-line-left"></div>
         </div>
-        <div class="fix"></div>
-        <div class="loc">
-          <div class="icon">
-            <i class="fa fa-map-marker"></i>
-          </div>
-          <p>{{ cupom.endereco }}</p>
+        <div class= "ticket-right">
+            <div class="cut-line"></div>
+            <p class="name">{{cupom.nome}}</p><br>
+            <p class="category">{{ cupom.categoria.join(', ') }}</p>
+            <p class="description">{{ cupom.descricao }}</p><br>
+            <p class="icon"> <i class="	fas fa-calendar-alt"></i>Promoção Ativa: de {{ cupom.dtInicio }} a {{ cupom.dtFim }}</p><br>
+            <p><i class="fas fa-map-marker-alt"></i> {{ cupom.endereco }}</p>
+            <button class="page">Acessar a Página</button>
+            <div class="cut-line"></div>
         </div>
-        <div class="fix"></div>
-        <button class="page">Acessar a Página</button>
-      </div>
     </div>
-  </div>
+    </div>
 </template>
 
 <script>
@@ -79,111 +64,104 @@
 
 <style scoped>
 
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.ticket {
+            width: 700px;
+            background: #fff;
+            border-radius: 25px;
+            padding: 20px;
+            display: flex;
+            position: relative;
+            -webkit-mask-image: radial-gradient(circle at 10px, transparent 10px, red 10.5px), radial-gradient(circle at 31px 31px, red 31px, transparent 31.5px);
+            -webkit-mask-position: -10px, -31px -31px;
+            -webkit-mask-size: 100% 40px, 100%;
+            -webkit-mask-composite: source-out, destination-over;
+            mask-composite: subtract, add;
+            margin-bottom: 20px; 
+        }
 
-div.container {
-  max-width: 1450px;
-  margin: 0 auto;
-  overflow: hidden
-}
+        .ticket-left {
+            border-right: 1px dashed #ccc;
+            padding-right: 10px;
+            position: relative;
+        }
 
-.container .item {
-  width: 48%;
-  padding: 0 20px;
-  background: #fff;
-  overflow: hidden;
-  margin: 10px
-  
-}
-.container .right-codigo, .container .item-left {
-  float: left;
-  padding: 20px 
-}
-.container .right-codigo {
-  padding: 79px 50px;
-  margin-right: 20px;
-  width: 25%;
-  position: relative;
-  height: 286px
-}
-.container .right-codigo .up-border, .container .right-codigo .down-border {
-    padding: 14px 15px;
-    background-color: rgba(0,0,0,0.5);;
-    border-radius: 50%;
-    position: absolute
-}
-.container .right-codigo .up-border {
-  top: -8px;
-  right: -35px;
-}
-.container .right-codigo .down-border {
-  bottom: -13px;
-  right: -35px;
-}
-.container .right-codigo .codigo {
-  font-size:40px;
-  text-align: center;
-  color: #111
-}
-.container .right-codigo .day, .container .item-left .event {
-  color: #555;
-  font-size: 25px;
-  margin-bottom: 9px;
-}
+        .ticket-right {
+            padding-left: 10px;
+            position: relative;
+        }
 
-.categoria{
-    color: #555;
-  font-size: 17px;
+        .text-code {
+            font-size: 20px;
+            margin-top: 20px;
+        }
 
-}
-.container .right-codigo .day {
-  text-align: center;
-  font-size: 25px;
-}
-.container .item-left {
-  width: 71%;
-  padding: 34px 0px 19px 46px;
-  border-left: 3px dotted #999;
-} 
-.container .item-left .title {
-  color: #111;
-  font-size: 34px;
-  margin-bottom: 12px
-}
-.container .item-left .sce {
-  margin-top: 5px;
-  display: block
-}
-.container .item-left .sce .icon, .container .item-left .sce p,
-.container .item-left .loc .icon, .container .item-left .loc p{
-    float: left;
-    word-spacing: 5px;
-    letter-spacing: 1px;
-    color: #888;
-    margin-bottom: 10px;
-}
-.container .item-left .sce .icon, .container .item-left .loc .icon {
-  margin-right: 10px;
-  font-size: 20px;
-  color: #666
-}
+        .code{
+            font-weight: bold;
+            writing-mode: vertical-rl; /* Isso define a orientação vertical */
+            text-orientation: upright; /* Isso mantém o texto em posição vertical */
+            text-transform: uppercase;
+        }
 
-.container .item-left .loc {
-    display: block
-}
+        .name {
+            font-size: 1.5em;
+        }
 
-.fix {clear: both}
-.container .item .page{
-    color: #fff;
-    padding: 6px 14px;
-    float: right;
-    margin-top: 10px;
-    font-size: 18px;
-    border: none;
-    cursor: pointer
-}
-.container .item .page {
-    background: #777
-}
+        .category {
+            color: #777;
+        }
+
+        .description {
+            margin-top: 10px;
+        }
+
+        .icon {
+            font-size: 1.2em;
+            margin-right: 5px;
+        }
+
+        .page {
+            margin-top: 10px;
+            color: #fff;
+            padding: 6px 14px;
+            float: right;
+            margin-top: 10px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            background: #e91e2f;
+            border-radius: 25px;
+        }
+
+        .page:hover {
+            background: #ff9800;
+        }
+
+
+        .cut-line {
+            width: 30px;
+            height: 20px;
+            background: rgb(190, 185, 185);
+            border-radius: 25px 25px 0 0;
+            position: absolute;
+            bottom: -20px;
+            left: -15px;
+        }
+
+        .cut-line-left {
+            width: 30px;
+            height: 20px;
+            background: rgb(190, 185, 185);
+            border-radius: 0 0 25px 25px;
+            position: absolute;
+            top: -20px;
+            left: 65px;
+        }
 
 
 </style>

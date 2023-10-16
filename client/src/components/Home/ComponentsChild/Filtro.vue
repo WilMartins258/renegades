@@ -165,9 +165,9 @@ export default {
     filteredEstabelecimentos() {
   let filtered = this.estabelecimentos;
 
-  if (this.categoriasSelecionadas.length > 0) {
+    if (this.categoriasSelecionadas.length > 0) {
     filtered = filtered.filter((estabelecimento) =>
-      this.categoriasSelecionadas.every((categoria) =>
+      this.categoriasSelecionadas.some((categoria) =>
         estabelecimento.categoria.includes(categoria)
       )
     );
@@ -339,15 +339,20 @@ export default {
     },
 
     filterByCategory(category) {
-      const index = this.categoriasSelecionadas.indexOf(category);
-      if (category === 'Todos') {
-        this.categoriasSelecionadas = [];
-      } else if (index === -1) {
-        if (this.categoriasSelecionadas.length < 3) {
+  const index = this.categoriasSelecionadas.indexOf(category);
+  
+
+      if (category === 'Todos' || this.categoriasSelecionadas.length < 3) {
+        if (category === 'Todos') {
+          // Se a categoria for "Todos", limpe a seleção atual
+          this.categoriasSelecionadas = [];
+        } else if (index === -1) {
+          // Adicione a categoria à matriz se ainda não estiver presente
           this.categoriasSelecionadas.push(category);
+        } else {
+          // Remova a categoria se já estiver presente
+          this.categoriasSelecionadas.splice(index, 1);
         }
-      } else {
-        this.categoriasSelecionadas.splice(index, 1);
       }
     },
 
