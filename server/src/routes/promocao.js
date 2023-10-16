@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const recomendacao_Service = require('../services/recomendacao.service.js');
+const promocao_Service = require('../services/promocao.service.js');
 
 router.get('/', async (req, res) => {
     try {

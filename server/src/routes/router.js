@@ -64,8 +64,8 @@ router.use(
 );
 
 router.use(
-    "/recomendacao",
-    require("./recomendacao.js")
+    "/promocao",
+    require("./promocao.js")
 );
 
 router.use((req, res) => {
