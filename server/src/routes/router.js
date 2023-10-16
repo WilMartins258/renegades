@@ -9,11 +9,6 @@ router.use(cors());
 // Rotas do backend
 
 router.use(
-    "/",
-    require("./home.js")
-);
-
-router.use(
     "/login",
     require("./login.js")
 );
