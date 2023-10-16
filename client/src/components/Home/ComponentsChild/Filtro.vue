@@ -209,9 +209,9 @@ export default {
   async created() {
     try {
       const dadosFiltros = await api.get('/estabelecimento/filtro');
-      // const google = await distance_Service.obterCoordenadasDoCEP('12345-678');
+      // const geolocalizacao = await distance_Service.obterCoordenadasDoCEP();
 
-      // console.log('google:: ', google)
+      // console.log('geolocalizacao:: ', geolocalizacao)
 
       const {
         estabelecimentos,
