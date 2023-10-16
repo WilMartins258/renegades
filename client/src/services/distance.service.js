@@ -1,3 +1,5 @@
+const axios = require('axios');
+
 // Calculo de distância usando a Fórmula de Haversine
 const calcularDistancia = (lat1, lon1, lat2, lon2) => {
     const raioTerra = 6371; // Raio da Terra em quilômetros
@@ -12,11 +14,29 @@ const calcularDistancia = (lat1, lon1, lat2, lon2) => {
     return distancia;
 };
 
-// Aqui vamos implementar a função da API para descobrir latitude e longitude baseado no CEP do estabelecimento
-const obterCoordenadasDoCEP = (cep) => {
-    // Faça uma requisição para o serviço de geocodificação usando o CEP
-    // Retorne as coordenadas (latitude e longitude) obtidas da resposta da API
-};
+async function obterCoordenadasDoCEP() {
+  const numeroEndereco = "";
+  const cep = "18117-260";
+  const apiKey = "";
+
+  const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${numeroEndereco},${cep}&key=${apiKey}`;
+
+  try {
+    const response = await axios.get(apiUrl);
+    const data = response.data;
+    // Aqui você pode lidar com os dados de resposta da API, como as coordenadas geográficas
+    const latitude = data.results[0].geometry.location.lat;
+    const longitude = data.results[0].geometry.location.lng;
+
+    console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+    return ({
+      latitude: latitude,
+      longitude: longitude
+    })
+  } catch (error) {
+    console.error('Erro ao obter os dados:', error);
+  }
+}
 
 module.exports = {
     calcularDistancia,
