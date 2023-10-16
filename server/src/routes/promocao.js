@@ -3,9 +3,9 @@ const promocao_Service = require('../services/promocao.service.js');
 
 router.get('/', async (req, res) => {
     try {
-        const recomendacoesAtivas = await recomendacao_Service.pegarRecomendacoesAtivas();
+        const promocoesAtivas = await promocao_Service.pegarPromocoesAtivas();
 
-        res.status(200).send(recomendacoesAtivas);
+        res.status(200).send(promocoesAtivas);
     } catch (error) {
         console.log('ERROR:: ', error);
         res.status(500).send({
