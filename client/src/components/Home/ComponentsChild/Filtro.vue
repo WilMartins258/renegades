@@ -141,6 +141,7 @@
 
 <script>
 import api from "./../../../services/backend.service.js";
+import distance_Service from "./../../../services/distance.service.js";
 
 export default {
   name: "Filtro",
@@ -208,6 +209,9 @@ export default {
   async created() {
     try {
       const dadosFiltros = await api.get('/estabelecimento/filtro');
+      // const google = await distance_Service.obterCoordenadasDoCEP('12345-678');
+
+      // console.log('google:: ', google)
 
       const {
         estabelecimentos,
