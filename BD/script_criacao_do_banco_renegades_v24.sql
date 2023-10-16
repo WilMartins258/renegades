@@ -83,7 +83,9 @@ CREATE TABLE usuario (
 	bairro            VARCHAR(200),
 	cidade            VARCHAR(200),
 	estado            VARCHAR(200),
-	cep               VARCHAR(9)
+	cep               VARCHAR(9),
+	latitude          FLOAT,
+	longitude         FLOAT
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE estabelecimento (
@@ -103,8 +105,11 @@ CREATE TABLE estabelecimento (
 	cidade                 VARCHAR(200) not null,
 	estado                 VARCHAR(200) not null,
 	cep                    VARCHAR(9) not null,
+	latitude               FLOAT,
+	longitude              FLOAT,
 	dataCadastro           DATE not null,
-	dataUltimoAcesso       DATE not null
+	dataUltimoAcesso       DATE not null,
+	
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE horario (
