@@ -15,7 +15,16 @@ const inserir = async (dadosPromocao) => {
 
 const pegarPromocoesAtivas = async () => {
     try {
-        const promocaoQuery = `SELECT * FROM promocao WHERE status = 'Ativa';`;
+        const promocaoQuery = `
+        SELECT p.idEstabelecimento, p.nome, p.descricao, p.codigo, p.dataInicio, p.dataFim,
+        (
+            SELECT GROUP_CONCAT(c.nome) 
+            FROM categoria_estabelecimento cat_e 
+            JOIN categoria c ON cat_e.idCategoria = c.id 
+            WHERE cat_e.idEstabelecimento = p.idEstabelecimento
+        ) AS categoriasString
+        FROM promocao p
+            WHERE p.status = 'Ativa';`;
         const connection = await db;
 
         const [promocoesAtivas] = await connection.query(promocaoQuery);
