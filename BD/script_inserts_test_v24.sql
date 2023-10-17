@@ -1653,7 +1653,7 @@ INSERT INTO promocao VALUES (
 	'VENCIDA_02', -- codigo            VARCHAR(20) not null,
 	'Ativa', -- ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa' not null,
 	'2023-09-15', -- dataInicio        DATE not null,
-	'2023-09-25' -- dataFim           DATE not null
+	'2023-10-10' -- dataFim           DATE not null
 );
 
 INSERT INTO promocao VALUES (
@@ -1664,7 +1664,7 @@ INSERT INTO promocao VALUES (
 	'VENCIDA_03', -- codigo            VARCHAR(20) not null,
 	'Ativa', -- ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa' not null,
 	'2023-09-15', -- dataInicio        DATE not null,
-	'2023-09-25' -- dataFim           DATE not null
+	'2023-10-12' -- dataFim           DATE not null
 );
 
 INSERT INTO promocao VALUES (
