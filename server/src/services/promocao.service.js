@@ -16,7 +16,7 @@ const inserir = async (dadosPromocao) => {
 
 const pegarPromocoesAtivas = async () => {
     try {
-        const promocaoQuery = `SELECT * FROM promocao;`;
+        const promocaoQuery = `SELECT * FROM promocao WHERE status = 'Ativa';`;
         const connection = await db;
 
         const [promocoesAtivas] = await connection.query(promocaoQuery);
