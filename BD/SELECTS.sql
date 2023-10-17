@@ -21,6 +21,11 @@ SELECT * FROM musica_estabelecimento;
 SELECT * FROM avaliacao;
 SELECT * FROM favorito;
 
+SELECT p.idEstabelecimento, p.nome, p.descricao, p.codigo, p.dataInicio, p.dataFim
+	FROM promocao p
+    LEFT JOIN categoria_estabelecimento cat_e ON cat_e.idEstabelecimento = p.idEstabelecimento
+    WHERE p.status = 'Ativa';
+
 -- Query para identificar estabelecimentos pelos opcionais
 -- SELECT e.nome
 	-- FROM estabelecimento e
