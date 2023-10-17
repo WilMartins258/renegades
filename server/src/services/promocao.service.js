@@ -2,7 +2,7 @@ const db = require('../models/db.js');
 
 const inserir = async (dadosPromocao) => {
     try {
-        const promocaoQuery = `INSERT into opcional (nome, ativo) VALUES (?, ?);`;
+        const promocaoQuery = ``;
         const connection = await db;
 
         const [insercaoPromocao] = await connection.query(promocaoQuery, dadosPromocao);
@@ -16,7 +16,7 @@ const inserir = async (dadosPromocao) => {
 const pegarPromocoesAtivas = async () => {
     try {
         const promocaoQuery = `
-        SELECT p.idEstabelecimento, p.nome, p.descricao, p.codigo, p.dataInicio, p.dataFim, e.numeroEstabelecimento, e.logradouro, e.bairro, e.cidade,
+        SELECT p.idEstabelecimento, p.nome as 'nomePromo', p.descricao, p.codigo, p.dataInicio, p.dataFim, e.numeroEstabelecimento, e.logradouro, e.bairro, e.cidade, e.nome,
         (
             SELECT GROUP_CONCAT(c.nome) 
             FROM categoria_estabelecimento cat_e 
