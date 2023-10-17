@@ -213,7 +213,7 @@ insert into usuario values(
     'Julio Cesar de Castro',           -- nome
 	'15999999999',               -- celular
     '11122233344',           -- cpf
-    'kaguebushin@gmail.com', -- email
+    'kagebushin@gmail.com', -- email
     'senha123',              -- senha
 	null,                    -- fotoPerfil
     '1989-09-24',            -- dataNascimento
