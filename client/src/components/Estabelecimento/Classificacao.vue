@@ -3,7 +3,7 @@
       <div class="avaliacao">
         <div class="customer-info">
           Minha nota é:<br>
-          <span class="nota"> {{ MediaNt }} </span>
+          <span class="nota"> {{ MediaNt.toFixed(1) }} </span>
         </div>
       </div><br>
       <div v-for="(review, index) in visibleAvaliacao" :key="index">
@@ -18,7 +18,7 @@
                 &#9733;
               </span>
             </div><br>
-            {{ review.username }} - Data: {{ review.date }}
+            {{ review.nome }} - Data: {{ review.date }}
           </label>
           <br><br>
           <p class="descricao">{{ review.descricao }}</p>
@@ -33,6 +33,7 @@
   
   <script>
   import api from './../../services/backend.service.js';
+  import dataFormat from './../../services/dataToDiaMesAno.service.js';
 
   export default {
     name: "Classificacao",
@@ -46,58 +47,28 @@
     },
     methods: {
       showMoreFields() {
-        // exibe mais 4 campos
         this.numToShow += 6;
         this.visibleAvaliacao = this.avaliacao.slice(0, this.numToShow);
       },
     },
     async created() {
       try {
-        // console.log('id:: ', sessionStorage.getItem(''))
-        // const avaliacoesRequest = api.get(`/avaliacao/${}`);
+        if(sessionStorage.getItem('idEstabelecimento')) {
+          const avaliacoesRequest = await api.get(`/avaliacao/estabelecimento/${sessionStorage.getItem('idEstabelecimento')}`);
+
+          if (avaliacoesRequest.data) {
+            const avaliacoes = avaliacoesRequest.data.avaliacao;
+            for (let i=0; i < avaliacoes.length ; i++) {
+              avaliacoes[i].date = dataFormat(avaliacoes[i].data);
+            }
+            this.avaliacao = avaliacoes;
+            this.visibleAvaliacao = this.avaliacao.slice(0, this.numToShow); // exibe as 4 primeiras avaliações
+            this.MediaNt = avaliacoesRequest.data.notaEstabelecimento[0].nota;
+          }
+        }
       } catch (error) {
         console.log('Erro ao buscar avaliações do estabelecimento: ', error);
       }
-    },
-    mounted() {
-      this.avaliacao = [ // valores que serão substituídos pelos do BD
-        {
-          stars: 4,
-          username: "João da Silva",
-          date: "20/09/2023",
-          descricao: "Excelente experiência no estabelecimento. Ótimo atendimento e comida deliciosa."
-        },
-        {
-          stars: 3,
-          username: "Roberto Alberto",
-          date: "18/09/2023",
-          descricao: "Excelente estabelecimento. Ótimo atendimento"
-        },
-
-        {
-          stars: 5,
-          username: "Silvio",
-          date: "15/08/2023",
-          descricao: "O melhor lugar que já fui!!!"
-        },
-
-        {
-          stars: 1,
-          username: "Nayara",
-          date: "14/07/2023",
-          descricao: "Simplesmente péssimo!"
-        },
-
-        {
-          stars: 2,
-          username: "Amanda",
-          date: "14/07/2023",
-          descricao: "péssimo!"
-        },
-        
-      ];
-      this.MediaNt = 5; // Irá passar aqui o valor da média
-      this.visibleAvaliacao = this.avaliacao.slice(0, this.numToShow); // exibe as 4 primeiras avaliações
     }
   };
   </script>
