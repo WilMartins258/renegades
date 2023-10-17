@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const avaliacao_Service = require('../services/avaliacao.service.js');
+const estabelecimento_Service = require('../services/estabelecimento.service.js');
 
 router.get('/usuario/:idUsuario', async (req, res) => {
     try {
@@ -19,8 +20,12 @@ router.get('/estabelecimento/:idEstabelecimento', async (req, res) => {
     try {
         const idEstabelecimento = req?.params?.idEstabelecimento;
         const avaliacao = await avaliacao_Service.pegarPorIdEstabelecimento(idEstabelecimento);
+        const notaEstabelecimento = await estabelecimento_Service.pegarNotaEstabelecimentoPorId(idEstabelecimento);
 
-        res.status(200).send(avaliacao);
+        res.status(200).send({
+            avaliacao,
+            notaEstabelecimento
+        });
     } catch (error) {
         console.log('ERROR:: ', error);
         res.status(400).send({
