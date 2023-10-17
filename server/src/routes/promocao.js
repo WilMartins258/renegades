@@ -29,17 +29,17 @@ router.get('/usuario', async (req, res) => {
     }
 });
 
-router.get('/', async (req, res) => {
+router.get('/estabelecimento', async (req, res) => {
     try {    
 
     } catch (error) {
         console.log('ERROR:: ', error);
         res.status(500).send({
-            errorMsg: 'Ocorreu um erro ao processar a solicitação.',
-            error: error.message
+            errorMsg: 'Ocorreu um erro ao buscar promoções do estabelecimento.',
+            error: error,
+            message: message
         });
     }
 });
-
 
 module.exports = router;
