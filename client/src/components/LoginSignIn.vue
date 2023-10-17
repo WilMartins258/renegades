@@ -69,6 +69,7 @@ export default {
 						sessionStorage.setItem('idUsuario', login.data.id);
 						sessionStorage.setItem('nomeUsuario', login.data.nome);
 						sessionStorage.setItem('tipoUsuario', login.data.tipoUsuario);
+						sessionStorage.setItem('idEstabelecimento', login.data.idEstabelecimento);
 
 						// A partir daqui precisamos verificar para onde vamos direcionar o usuário após login concluído
 
