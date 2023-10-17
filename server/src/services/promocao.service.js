@@ -26,7 +26,21 @@ const pegarPromocoesAtivas = async () => {
     }
 }
 
+const verificarValidadeDePromocoes = async () => {
+    try {
+        const promocoesQuery = `INSERT into opcional (nome, ativo) VALUES (?, ?);`;
+        const connection = await db;
+
+        const [insercaoOpcional] = await connection.query(promocoesQuery);
+
+        return insercaoOpcional?.insertId;
+    } catch (error) {
+        throw new Error(`Erro ao verificar validade de promoções: ${error.message}`);
+    }
+};
+
 module.exports = {
     inserir,
-    pegarPromocoesAtivas
+    pegarPromocoesAtivas,
+    verificarValidadeDePromocoes
 };
