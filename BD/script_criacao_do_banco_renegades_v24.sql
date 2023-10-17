@@ -108,8 +108,7 @@ CREATE TABLE estabelecimento (
 	latitude               FLOAT,
 	longitude              FLOAT,
 	dataCadastro           DATE not null,
-	dataUltimoAcesso       DATE not null,
-	
+	dataUltimoAcesso       DATE not null
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE horario (

@@ -169,7 +169,9 @@ insert into usuario values(
 	'Conjunto Habitacional Jardim Serrano', -- bairro            VARCHAR(200),
 	'Votorantim', -- cidade            VARCHAR(200),
 	'SP', -- estado            VARCHAR(200),
-	'18117121'-- cep               VARCHAR(9)
+	'18117121', -- cep               VARCHAR(9)
+	null,
+	null
 );
 
 ---------------------------- USUÁRIO WILLIAN -- FIM
@@ -194,7 +196,9 @@ insert into usuario values(
 	'Bairro do Lucas', -- bairro not null,
 	'Sorocaba', -- cidade not null,
 	'SP', -- estado not null,
-	'1112233' -- cep not null,
+	'1112233', -- cep not null,
+	null,
+	null
 );
 
 ---------------------------- USUÁRIO LUCAS -- FIM
@@ -219,7 +223,9 @@ insert into usuario values(
 	null, -- bairro not null,
 	null, -- cidade not null,
 	null, -- estado not null,
-	null -- cep not null,
+	null, -- cep not null,
+	null,
+	null
 );
 
 ---------------------------- USUÁRIO ADM JULIO -- FIM
@@ -248,6 +254,8 @@ insert into estabelecimento values(
 	'Votorantim', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18110375', -- cep               VARCHAR(9) not null,
+	null,
+	null,
 	'2023-09-07', -- dataUltimoAcesso
 	'2023-09-07' -- dataUltimoAcesso
 );
@@ -313,7 +321,9 @@ insert into usuario values( -- Mc Donalds - Votorantim
 	null, -- bairro not null,
 	null, -- cidade not null,
 	null, -- estado not null,
-	null -- cep not null,
+	null, -- cep not null,
+	null,
+	null
 );
 
 ---------------------------------------------------------------- HORÁRIO INÍCIO
@@ -514,6 +524,8 @@ insert into estabelecimento values(
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18047620', -- cep               VARCHAR(9) not null,
+	null,
+	null,
 	'2023-09-07', -- dataUltimoAcesso
 	'2023-09-07' -- dataUltimoAcesso
 );
@@ -540,7 +552,9 @@ insert into usuario values( -- Mc Donalds - Sorocaba
 	null, -- bairro not null,
 	null, -- cidade not null,
 	null, -- estado not null,
-	null -- cep not null,
+	null, -- cep not null,
+	null,
+	null
 );
 
 ---------------------------------------------------------------- HORÁRIO INÍCIO
@@ -680,6 +694,8 @@ insert into estabelecimento values(
 	'Votorantim', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18110570', -- cep               VARCHAR(9) not null,
+	null,
+	null,
 	'2023-09-07', -- dataUltimoAcesso
 	'2023-09-07' -- dataUltimoAcesso
 );
@@ -710,7 +726,9 @@ insert into usuario values(
 	null, -- bairro not null,
 	null, -- cidade not null,
 	null, -- estado not null,
-	null -- cep not null,
+	null, -- cep not null,
+	null,
+	null
 );
 
 ---------------------------------------------------------------- HORÁRIO INÍCIO
@@ -833,6 +851,8 @@ insert into estabelecimento values(
 	'Votorantim', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18116440', -- cep               VARCHAR(9) not null,
+	null,
+	null,
 	'2023-09-07', -- dataUltimoAcesso
 	'2023-09-07' -- dataUltimoAcesso
 );
@@ -863,7 +883,9 @@ insert into usuario values(
 	null, -- bairro not null,
 	null, -- cidade not null,
 	null, -- estado not null,
-	null -- cep not null,
+	null, -- cep not null,
+	null,
+	null
 );
 
 ---------------------------------------------------------------- HORÁRIO INÍCIO
@@ -933,6 +955,8 @@ insert into estabelecimento values(
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18048110', -- cep               VARCHAR(9) not null,
+	null,
+	null,
 	'2023-09-07', -- dataUltimoAcesso
 	'2023-09-07' -- dataUltimoAcesso
 );
@@ -983,7 +1007,9 @@ insert into usuario values(
 	null, -- bairro not null,
 	null, -- cidade not null,
 	null, -- estado not null,
-	null -- cep not null,
+	null, -- cep not null,
+	null,
+	null
 );
 
 ---------------------------------------------------------------- HORÁRIO INÍCIO
@@ -1088,6 +1114,8 @@ insert into estabelecimento values(
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18078-005', -- cep               VARCHAR(9) not null,
+	null,
+	null,
 	'2023-10-10', -- dataUltimoAcesso
 	'2023-10-10' -- dataUltimoAcesso
 );
@@ -1133,7 +1161,9 @@ insert into usuario values(
 	null, -- bairro not null,
 	null, -- cidade not null,
 	null, -- estado not null,
-	null -- cep not null,
+	null, -- cep not null,
+	null,
+	null
 );
 
 ---------------------------------------------------------------- HORÁRIO INÍCIO
@@ -1401,6 +1431,8 @@ insert into estabelecimento values(
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18078-005', -- cep               VARCHAR(9) not null,
+	null,
+	null,
 	'2023-10-10', -- dataUltimoAcesso
 	'2023-10-10' -- dataUltimoAcesso
 );
@@ -1422,6 +1454,8 @@ insert into estabelecimento values(
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18078-005', -- cep               VARCHAR(9) not null,
+	null,
+	null,
 	'2023-10-10', -- dataUltimoAcesso
 	'2023-10-10' -- dataUltimoAcesso
 );
@@ -1443,6 +1477,8 @@ insert into estabelecimento values(
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18078-005', -- cep               VARCHAR(9) not null,
+	null,
+	null,
 	'2023-10-10', -- dataUltimoAcesso
 	'2023-10-10' -- dataUltimoAcesso
 );
@@ -1464,6 +1500,8 @@ insert into estabelecimento values(
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18078-005', -- cep               VARCHAR(9) not null,
+	null,
+	null,
 	'2023-10-10', -- dataUltimoAcesso
 	'2023-10-10' -- dataUltimoAcesso
 );
@@ -1485,6 +1523,8 @@ insert into estabelecimento values(
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18078-005', -- cep               VARCHAR(9) not null,
+	null,
+	null,
 	'2023-10-10', -- dataUltimoAcesso
 	'2023-10-10' -- dataUltimoAcesso
 );
@@ -1506,6 +1546,8 @@ insert into estabelecimento values(
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18078-005', -- cep               VARCHAR(9) not null,
+	null,
+	null,
 	'2023-10-10', -- dataUltimoAcesso
 	'2023-10-10' -- dataUltimoAcesso
 );
@@ -1521,6 +1563,7 @@ INSERT INTO promocao VALUES (
 	'Mc lanche metade do preço', -- nome              VARCHAR(100) not null,
 	'Apresente o código da promoção no momento da finalização da compra e receba um desconto de metade do valor do seu lanche', -- descricao         VARCHAR(400) not null,
 	'XXY-38', -- codigo            VARCHAR(20) not null,
+	'Ativa', -- ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa' not null,
 	'2023-10-14', -- dataInicio        DATE not null,
 	'2023-10-20' -- dataFim           DATE not null
 );
@@ -1531,6 +1574,7 @@ INSERT INTO promocao VALUES (
 	'Big Mc metade do preço', -- nome              VARCHAR(100) not null,
 	'Apresente o código da promoção no momento da finalização da compra e receba um desconto de metade do valor do seu lanche', -- descricao         VARCHAR(400) not null,
 	'XXY-39', -- codigo            VARCHAR(20) not null,
+	'Ativa', -- ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa' not null,
 	'2023-10-14', -- dataInicio        DATE not null,
 	'2023-10-20' -- dataFim           DATE not null
 );
@@ -1541,6 +1585,7 @@ INSERT INTO promocao VALUES (
 	'Chickem Jr. metade do preço', -- nome              VARCHAR(100) not null,
 	'Apresente o código da promoção no momento da finalização da compra e receba um desconto de metade do valor do seu lanche', -- descricao         VARCHAR(400) not null,
 	'XXY-40', -- codigo            VARCHAR(20) not null,
+	'Ativa', -- ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa' not null,
 	'2023-10-14', -- dataInicio        DATE not null,
 	'2023-10-20' -- dataFim           DATE not null
 );
@@ -1551,6 +1596,7 @@ INSERT INTO promocao VALUES (
 	"10 Bib'sfiha de Carne por R$ 8,99", -- nome              VARCHAR(100) not null,
 	"Apresente o código da promoção no momento da finalização da compra e pague somente R$ 8,99 por 10 Bib'sfihas de Carne", -- descricao         VARCHAR(400) not null,
 	'ESFIRRA10', -- codigo            VARCHAR(20) not null,
+	'Ativa', -- ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa' not null,
 	'2023-10-14', -- dataInicio        DATE not null,
 	'2023-11-30' -- dataFim           DATE not null
 );
@@ -1561,6 +1607,7 @@ INSERT INTO promocao VALUES (
 	"Rodízio Promocional", -- nome              VARCHAR(100) not null,
 	"Apresente o código da promoção ao pedir pelo rodízio na Booa e pague apenas R$ 25,99.", -- descricao         VARCHAR(400) not null,
 	'RODIZIO-BOOA', -- codigo            VARCHAR(20) not null,
+	'Ativa', -- ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa' not null,
 	'2023-10-05', -- dataInicio        DATE not null,
 	'2023-11-25' -- dataFim           DATE not null
 );
@@ -1571,6 +1618,7 @@ INSERT INTO promocao VALUES (
 	"Cachorrão Especial Promocional", -- nome              VARCHAR(100) not null,
 	"Apresente o código da promoção no momento da finalização da compra e pague somente R$ 18,99 por um Cachorrão Especial no Kiko's (Somente um uso por pessoa)", -- descricao         VARCHAR(400) not null,
 	'DOGESPECIAL-KIKOS', -- codigo            VARCHAR(20) not null,
+	'Ativa', -- ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa' not null,
 	'2023-10-05', -- dataInicio        DATE not null,
 	'2023-12-30' -- dataFim           DATE not null
 );
@@ -1581,6 +1629,7 @@ INSERT INTO promocao VALUES (
 	"Cachorrão Super + Batata Média", -- nome              VARCHAR(100) not null,
 	"Apresente o código da promoção ao fazer o pedido de um Cachorrão Super e por mais R$ 8,00 leva uma batata média no combo.", -- descricao         VARCHAR(400) not null,
 	'SUPERBATATA-KIKOS', -- codigo            VARCHAR(20) not null,
+	'Ativa', -- ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa' not null,
 	'2023-10-05', -- dataInicio        DATE not null,
 	'2023-12-30' -- dataFim           DATE not null
 );
@@ -1591,6 +1640,7 @@ INSERT INTO promocao VALUES (
 	"Promoção vencida 1", -- nome              VARCHAR(100) not null,
 	"Promoção vencida 1 - descrição", -- descricao         VARCHAR(400) not null,
 	'VENCIDA_01', -- codigo            VARCHAR(20) not null,
+	'Ativa', -- ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa' not null,
 	'2023-09-05', -- dataInicio        DATE not null,
 	'2023-10-10' -- dataFim           DATE not null
 );
@@ -1601,6 +1651,7 @@ INSERT INTO promocao VALUES (
 	"Promoção vencida 2", -- nome VARCHAR(100) not null,
 	"Promoção vencida 2 - descrição", -- descricao         VARCHAR(400) not null,
 	'VENCIDA_02', -- codigo            VARCHAR(20) not null,
+	'Ativa', -- ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa' not null,
 	'2023-09-15', -- dataInicio        DATE not null,
 	'2023-09-25' -- dataFim           DATE not null
 );
@@ -1611,6 +1662,7 @@ INSERT INTO promocao VALUES (
 	"Promoção vencida 3", -- nome VARCHAR(100) not null,
 	"Promoção vencida 3 - descrição", -- descricao         VARCHAR(400) not null,
 	'VENCIDA_03', -- codigo            VARCHAR(20) not null,
+	'Ativa', -- ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa' not null,
 	'2023-09-15', -- dataInicio        DATE not null,
 	'2023-09-25' -- dataFim           DATE not null
 );
@@ -1621,6 +1673,7 @@ INSERT INTO promocao VALUES (
 	"Drink Especial de Limão", -- nome VARCHAR(100) not null,
 	"Apresente o código da promoção ao pagar a compra de um Drink Especial de Limão e pague apenas R$ 32,00", -- descricao         VARCHAR(400) not null,
 	'LIMAO_MADA', -- codigo            VARCHAR(20) not null,
+	'Ativa', -- ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa' not null,
 	'2023-10-13', -- dataInicio        DATE not null,
 	'2023-10-28' -- dataFim           DATE not null
 );
