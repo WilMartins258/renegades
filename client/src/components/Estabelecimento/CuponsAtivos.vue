@@ -49,7 +49,7 @@
             <p class="description">{{ cupom.descricao }}</p><br>
             <p class="icon"> <i class="	fas fa-calendar-alt"></i>Promoção Ativa: de {{ cupom.dtInicio }} a {{ cupom.dtFim }}</p><br>
             <p><i class="fas fa-map-marker-alt"></i> {{ cupom.endereco }}</p>
-            <router-link :to="'/paginaestabelecimento/' + cupom.id">
+            <router-link :to="'/paginaestabelecimento/' + cupom.idEstabelecimento">
               <button class="page">Acessar a Página</button>
             </router-link>
             <div class="cut-line"></div>
@@ -60,6 +60,7 @@
 </template>
 
 <script>
+import api from './../../services/backend.service.js';
     export default {
         name: "CuponsAtivos",
         data(){
@@ -81,7 +82,7 @@
         mounted() {
           this.cupons = [
                 {
-                    id: 100,
+                    idEstabelecimento: 100,
                     codigo: "Seu dia",
                     nome: "Jeff Burg",
                     categoria: ["Hamburgueria", "Pizzaria"],
@@ -91,7 +92,7 @@
                     endereco: "Nove de julho, 150"
                 },
                 {
-                    id: 200,
+                    idEstabelecimento: 200,
                     codigo: "Seu dia",
                     nome: "teste 2",
                     categoria: ["Hamburgueria", "Restaurante"],
@@ -101,7 +102,7 @@
                     endereco: "10 de julho, 300"
                 },
                 {
-                    id: 300,
+                    idEstabelecimento: 300,
                     codigo: "Especial da Semana",
                     nome: "Pizza Italia",
                     categoria: ["Pizzaria"],
@@ -111,7 +112,7 @@
                     endereco: "Rua das Pizzas, 123"
                 },
                 {
-                    id: 400,
+                    idEstabelecimento: 400,
                     codigo: "Bebidas em Dobro",
                     nome: "Bar do João",
                     categoria: ["Bar"],
@@ -121,7 +122,7 @@
                     endereco: "Avenida dos Bares, 456"
                 },
                 {
-                    id: 500,
+                    idEstabelecimento: 500,
                     codigo: "Oferta Especial",
                     nome: "Sorveteria Gelada",
                     categoria: ["Sorveteria"],
@@ -131,7 +132,7 @@
                     endereco: "Praça das Sobremesas, 789"
                 },
                 {
-                    id: 600,
+                    idEstabelecimento: 600,
                     codigo: "Happy Hour",
                     nome: "Café Expresso",
                     categoria: ["Cafeteria"],
@@ -141,7 +142,7 @@
                     endereco: "Rua do Café, 101"
                 },
                 {
-                    id: 700,
+                    idEstabelecimento: 700,
                     codigo: "Dia da Família",
                     nome: "Pizzaria do Luigi",
                     categoria: ["Pizzaria"],
@@ -151,7 +152,7 @@
                     endereco: "Travessa das Famílias, 222"
                 },
                 {
-                    id: 800,
+                    idEstabelecimento: 800,
                     codigo: "Lanches em Promoção",
                     nome: "Lanchonete Saboroso",
                     categoria: ["Lanchonete"],
@@ -161,7 +162,7 @@
                     endereco: "Avenida dos Lanches, 333"
                 },
                 {
-                    id: 900,
+                    idEstabelecimento: 900,
                     codigo: "Noite de Karaokê",
                     nome: "Bar Cantarolar",
                     categoria: ["Bar", "Entretenimento"],
@@ -171,7 +172,7 @@
                     endereco: "Rua dos Cantores, 505"
                 },
                 {
-                    id: 1000,
+                    idEstabelecimento: 1000,
                     codigo: "Especial de Aniversário",
                     nome: "Restaurante Delicioso",
                     categoria: ["Restaurante"],
@@ -182,6 +183,24 @@
                 }
             ];
             this.categorias = ["Hamburgueria", "Pizzaria", "Restaurante", "Categoria 1", "Categoria 2"];
+        },
+        async created() {
+            try {
+                const promocoesRequest = await api.get('/promocao');
+
+                
+
+                if (promocoesRequest.data) {
+                    const promocoes = promocoesRequest.data;
+                    for (let i=0; i < promocoes.length ; i++) {
+
+                    };
+                }  
+
+                console.log('promocoes:: ', promocoes)
+            } catch (error) {
+                console.log('Erro ao buscar promoções: ', error);
+            }
         },
         methods: {
             selecionarCategoria(categoria) {
