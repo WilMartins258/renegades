@@ -106,11 +106,28 @@ const pegarParaValidacao = async () => {
   }
 };
 
+const pegarNotaEstabelecimentoPorId = async (idEstabelecimento) => {
+  try {
+    const estabelecimentoQuery = `
+      SELECT nota
+        FROM estabelecimento
+        WHERE id = ?;`;
+    const connection = await db;
+      
+    const [dadosEstabelecimento] = await connection.query(estabelecimentoQuery, idEstabelecimento);
+
+    return dadosEstabelecimento;
+  } catch (error) {
+    throw new Error(`Erro ao buscar nota do estabelecimento: ${error.message}`);
+  }
+};
+
 module.exports = {
   inserir,
   atualizar,
   pegarPorId,
   carousel,
   filtros,
-  pegarParaValidacao
+  pegarParaValidacao,
+  pegarNotaEstabelecimentoPorId
 };
