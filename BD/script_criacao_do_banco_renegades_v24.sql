@@ -137,6 +137,7 @@ CREATE TABLE promocao (
 	nome              VARCHAR(100) not null,
 	descricao         VARCHAR(400) not null,
 	codigo            VARCHAR(20) not null,
+	status            ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa' not null,
 	dataInicio        DATE not null,
 	dataFim           DATE not null
 ) AUTO_INCREMENT = 1;
@@ -304,3 +305,16 @@ BEGIN
 END;
 //
 DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE AtualizarStatusPromocoes()
+BEGIN
+    UPDATE promocao
+    SET status = 'Vencida'
+    WHERE dataFim < CURDATE();
+END;
+//
+
+DELIMITER ;
+
