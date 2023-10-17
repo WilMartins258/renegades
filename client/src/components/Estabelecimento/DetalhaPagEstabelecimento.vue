@@ -94,7 +94,7 @@
         <div class="avaliacao">
           <div class="customer-info">
                 Esse Estabelecimento é nota:<br>
-            <span class="nota"> {{ mediaNt.toFixed(1) }} </span>
+            <span class="nota"> {{ mediaNt?.toFixed(1) }} </span>
           </div>
         </div><br>
         <div v-for="(review, index) in visibleAvaliacaoEstab" :key="index">
