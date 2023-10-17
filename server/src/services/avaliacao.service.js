@@ -40,8 +40,9 @@ const pegarPorIdEstabelecimento = async (idEstabelecimento, conn) => {
             JOIN avaliacao a on e.id = a.idEstabelecimento
             JOIN usuario u on u.id = a.idUsuario
                 WHERE e.id = ?;`;
+        const connection = await db; // isso pode dar problema por não usar o conn
 
-        const [avaliacoesEstabelecimento] = await conn.query(avaliacaoQuery, idEstabelecimento);
+        const [avaliacoesEstabelecimento] = await connection.query(avaliacaoQuery, idEstabelecimento);
 
         return avaliacoesEstabelecimento;
     } catch (error) {
