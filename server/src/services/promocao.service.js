@@ -6,7 +6,6 @@ const inserir = async (dadosPromocao) => {
         const connection = await db;
 
         const [insercaoPromocao] = await connection.query(promocaoQuery, dadosPromocao);
-        connection.end();
 
         return insercaoPromocao?.insertId;
     } catch (error) {
@@ -20,7 +19,6 @@ const pegarPromocoesAtivas = async () => {
         const connection = await db;
 
         const [promocoesAtivas] = await connection.query(promocaoQuery);
-        connection.end();
 
         return promocoesAtivas;
     } catch (error) {
