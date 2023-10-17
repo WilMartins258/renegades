@@ -36,3 +36,9 @@ npm install imask --save
 ```
 vue3-carousel
 ```
+
+## Instalação Font Awesome - ferramentas de fontes e ícones
+```
+npm install font-awesome
+import 'font-awesome/css/font-awesome.css';
+```

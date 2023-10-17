@@ -1,7 +1,10 @@
 <template>
 	<form action="#" @submit.prevent="submit" class="sign-in-htm">
 		<div class="group">
-			<label for="sign-in-user" class="label">Email</label>
+			<label for="sign-in-user" class="label">Email 
+				<InfoPopup>	<span class="popup">Informe seu email</span>
+				</InfoPopup></label>
+			
 			<input id="sign-in-user" type="text" class="input" v-model="Email">
 			<span v-if="!validarEmail" class="error">O e-mail é inválido</span>
 		</div>
@@ -27,8 +30,11 @@
 
 <script>
 import api from './../services/backend.service.js';
-
+import InfoPopup from './InfoPopup.vue';
 export default {
+	components: {
+		InfoPopup
+  },
 	data() {
 		return {
 			Email: '',
@@ -99,5 +105,9 @@ export default {
 .error {
 	color: red;
 	font-size: 12px;
+}
+
+.popup{
+	font-size: 9px; 
 }
 </style>
