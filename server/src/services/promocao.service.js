@@ -16,7 +16,7 @@ const inserir = async (dadosPromocao) => {
 const pegarPromocoesAtivas = async () => {
     try {
         const promocaoQuery = `
-        SELECT p.idEstabelecimento, p.nome, p.descricao, p.codigo, p.dataInicio, p.dataFim,
+        SELECT p.idEstabelecimento, p.nome, p.descricao, p.codigo, p.dataInicio, p.dataFim, e.numeroEstabelecimento, e.logradouro, e.bairro, e.cidade,
         (
             SELECT GROUP_CONCAT(c.nome) 
             FROM categoria_estabelecimento cat_e 
@@ -24,7 +24,8 @@ const pegarPromocoesAtivas = async () => {
             WHERE cat_e.idEstabelecimento = p.idEstabelecimento
         ) AS categoriasString
         FROM promocao p
-            WHERE p.status = 'Ativa';`;
+			LEFT JOIN estabelecimento e ON e.id = p.idEstabelecimento
+				WHERE p.status = 'Ativa';`;
         const connection = await db;
 
         const [promocoesAtivas] = await connection.query(promocaoQuery);
