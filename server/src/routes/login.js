@@ -23,6 +23,7 @@ router.post('/', async (req, res) => {
                 res.status(200).send({
                     login: true,
                     id: resultadoLogin.id,
+                    idEstabelecimento: idEstabelecimento,
                     nome: resultadoLogin.nome,
                     tipoUsuario: resultadoLogin.tipoUsuario,
                     fotoperfil: resultadoLogin.fotoperfil
