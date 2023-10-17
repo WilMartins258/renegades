@@ -47,7 +47,7 @@
             <p class="name">{{cupom.nome}}</p><br>
             <p class="category">{{ cupom.categoria.join(', ') }}</p>
             <p class="description">{{ cupom.descricao }}</p><br>
-            <p class="icon"> <i class="	fas fa-calendar-alt"></i>Promoção Ativa: de {{ cupom.dtInicio }} a {{ cupom.dtFim }}</p><br>
+            <p class="icon"> <i class="	fas fa-calendar-alt"></i>Promoção Ativa: de {{ cupom.dataInicio }} a {{ cupom.dataFim }}</p><br>
             <p><i class="fas fa-map-marker-alt"></i> {{ cupom.endereco }}</p>
             <router-link :to="'/paginaestabelecimento/' + cupom.idEstabelecimento">
               <button class="page">Acessar a Página</button>
@@ -69,8 +69,8 @@ import api from './../../services/backend.service.js';
                 nome: "",
                 categoria: [],
                 descricao: "",
-                dtInicio: "",
-                dtFim: "",
+                dataInicio: "",
+                dataFim: "",
                 endereco: "",
                 cupons: [],
                 filtroCategoria: [],
@@ -80,6 +80,7 @@ import api from './../../services/backend.service.js';
             }
         },
         mounted() {
+            
           this.cupons = [
                 {
                     idEstabelecimento: 100,
@@ -87,8 +88,8 @@ import api from './../../services/backend.service.js';
                     nome: "Jeff Burg",
                     categoria: ["Hamburgueria", "Pizzaria"],
                     descricao: "Aproveite seu aniversario",
-                    dtInicio: "14/10/2023",
-                    dtFim: "18/10/2023",
+                    dataInicio: "14/10/2023",
+                    dataFim: "18/10/2023",
                     endereco: "Nove de julho, 150"
                 },
                 {
@@ -97,8 +98,8 @@ import api from './../../services/backend.service.js';
                     nome: "teste 2",
                     categoria: ["Hamburgueria", "Restaurante"],
                     descricao: "Chopp em dobro",
-                    dtInicio: "14/10/2023",
-                    dtFim: "18/10/2023",
+                    dataInicio: "14/10/2023",
+                    dataFim: "18/10/2023",
                     endereco: "10 de julho, 300"
                 },
                 {
@@ -107,8 +108,8 @@ import api from './../../services/backend.service.js';
                     nome: "Pizza Italia",
                     categoria: ["Pizzaria"],
                     descricao: "Desconto de 20% em qualquer pizza.",
-                    dtInicio: "16/10/2023",
-                    dtFim: "22/10/2023",
+                    dataInicio: "16/10/2023",
+                    dataFim: "22/10/2023",
                     endereco: "Rua das Pizzas, 123"
                 },
                 {
@@ -117,8 +118,8 @@ import api from './../../services/backend.service.js';
                     nome: "Bar do João",
                     categoria: ["Bar"],
                     descricao: "Compre uma bebida e ganhe outra igual.",
-                    dtInicio: "15/10/2023",
-                    dtFim: "21/10/2023",
+                    dataInicio: "15/10/2023",
+                    dataFim: "21/10/2023",
                     endereco: "Avenida dos Bares, 456"
                 },
                 {
@@ -127,8 +128,8 @@ import api from './../../services/backend.service.js';
                     nome: "Sorveteria Gelada",
                     categoria: ["Sorveteria"],
                     descricao: "Leve 3 sorvetes e pague apenas por 2.",
-                    dtInicio: "14/10/2023",
-                    dtFim: "20/10/2023",
+                    dataInicio: "14/10/2023",
+                    dataFim: "20/10/2023",
                     endereco: "Praça das Sobremesas, 789"
                 },
                 {
@@ -137,8 +138,8 @@ import api from './../../services/backend.service.js';
                     nome: "Café Expresso",
                     categoria: ["Cafeteria"],
                     descricao: "Das 16h às 18h, café a metade do preço.",
-                    dtInicio: "15/10/2023",
-                    dtFim: "19/10/2023",
+                    dataInicio: "15/10/2023",
+                    dataFim: "19/10/2023",
                     endereco: "Rua do Café, 101"
                 },
                 {
@@ -147,8 +148,8 @@ import api from './../../services/backend.service.js';
                     nome: "Pizzaria do Luigi",
                     categoria: ["Pizzaria"],
                     descricao: "Crianças comem de graça aos domingos.",
-                    dtInicio: "16/10/2023",
-                    dtFim: "23/10/2023",
+                    dataInicio: "16/10/2023",
+                    dataFim: "23/10/2023",
                     endereco: "Travessa das Famílias, 222"
                 },
                 {
@@ -157,8 +158,8 @@ import api from './../../services/backend.service.js';
                     nome: "Lanchonete Saboroso",
                     categoria: ["Lanchonete"],
                     descricao: "Todos os lanches com 15% de desconto.",
-                    dtInicio: "17/10/2023",
-                    dtFim: "22/10/2023",
+                    dataInicio: "17/10/2023",
+                    dataFim: "22/10/2023",
                     endereco: "Avenida dos Lanches, 333"
                 },
                 {
@@ -167,8 +168,8 @@ import api from './../../services/backend.service.js';
                     nome: "Bar Cantarolar",
                     categoria: ["Bar", "Entretenimento"],
                     descricao: "Toda sexta-feira, noite de karaokê com prêmios.",
-                    dtInicio: "14/10/2023",
-                    dtFim: "21/10/2023",
+                    dataInicio: "14/10/2023",
+                    dataFim: "21/10/2023",
                     endereco: "Rua dos Cantores, 505"
                 },
                 {
@@ -177,8 +178,8 @@ import api from './../../services/backend.service.js';
                     nome: "Restaurante Delicioso",
                     categoria: ["Restaurante"],
                     descricao: "No seu aniversário, ganhe uma sobremesa grátis.",
-                    dtInicio: "15/10/2023",
-                    dtFim: "20/10/2023",
+                    dataInicio: "15/10/2023",
+                    dataFim: "20/10/2023",
                     endereco: "Avenida dos Restaurantes, 777"
                 }
             ];
@@ -195,9 +196,9 @@ import api from './../../services/backend.service.js';
                     for (let i=0; i < promocoes.length ; i++) {
 
                     };
+                    console.log('promocoes:: ', promocoes)
                 }  
 
-                console.log('promocoes:: ', promocoes)
             } catch (error) {
                 console.log('Erro ao buscar promoções: ', error);
             }
