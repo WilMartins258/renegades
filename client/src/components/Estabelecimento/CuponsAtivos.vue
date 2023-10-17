@@ -45,6 +45,7 @@
         <div class= "ticket-right">
             <div class="cut-line"></div>
             <p class="name">{{cupom.nome}}</p><br>
+            <p class="name">{{cupom.nomePromo}}</p><br>
             <p class="category">{{ cupom.categoria.join(', ') }}</p>
             <p class="description">{{ cupom.descricao }}</p><br>
             <p class="icon"> <i class="	fas fa-calendar-alt"></i>Promoção Ativa: de {{ cupom.dataInicio }} a {{ cupom.dataFim }}</p><br>
@@ -69,6 +70,7 @@ import dataFormat from './../../services/dataToDiaMesAno.service';
             return{
                 codigo: "",
                 nome: "",
+                nomePromo: "",
                 categoria: [],
                 descricao: "",
                 dataInicio: "",
