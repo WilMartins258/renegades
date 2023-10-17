@@ -61,6 +61,8 @@
 
 <script>
 import api from './../../services/backend.service.js';
+import dataFormat from './../../services/dataToDiaMesAno.service';
+
     export default {
         name: "CuponsAtivos",
         data(){
@@ -79,126 +81,24 @@ import api from './../../services/backend.service.js';
                 filtroNomeEstabelecimento: "",
             }
         },
-        mounted() {
-            
-          this.cupons = [
-                {
-                    idEstabelecimento: 100,
-                    codigo: "Seu dia",
-                    nome: "Jeff Burg",
-                    categoria: ["Hamburgueria", "Pizzaria"],
-                    descricao: "Aproveite seu aniversario",
-                    dataInicio: "14/10/2023",
-                    dataFim: "18/10/2023",
-                    endereco: "Nove de julho, 150"
-                },
-                {
-                    idEstabelecimento: 200,
-                    codigo: "Seu dia",
-                    nome: "teste 2",
-                    categoria: ["Hamburgueria", "Restaurante"],
-                    descricao: "Chopp em dobro",
-                    dataInicio: "14/10/2023",
-                    dataFim: "18/10/2023",
-                    endereco: "10 de julho, 300"
-                },
-                {
-                    idEstabelecimento: 300,
-                    codigo: "Especial da Semana",
-                    nome: "Pizza Italia",
-                    categoria: ["Pizzaria"],
-                    descricao: "Desconto de 20% em qualquer pizza.",
-                    dataInicio: "16/10/2023",
-                    dataFim: "22/10/2023",
-                    endereco: "Rua das Pizzas, 123"
-                },
-                {
-                    idEstabelecimento: 400,
-                    codigo: "Bebidas em Dobro",
-                    nome: "Bar do João",
-                    categoria: ["Bar"],
-                    descricao: "Compre uma bebida e ganhe outra igual.",
-                    dataInicio: "15/10/2023",
-                    dataFim: "21/10/2023",
-                    endereco: "Avenida dos Bares, 456"
-                },
-                {
-                    idEstabelecimento: 500,
-                    codigo: "Oferta Especial",
-                    nome: "Sorveteria Gelada",
-                    categoria: ["Sorveteria"],
-                    descricao: "Leve 3 sorvetes e pague apenas por 2.",
-                    dataInicio: "14/10/2023",
-                    dataFim: "20/10/2023",
-                    endereco: "Praça das Sobremesas, 789"
-                },
-                {
-                    idEstabelecimento: 600,
-                    codigo: "Happy Hour",
-                    nome: "Café Expresso",
-                    categoria: ["Cafeteria"],
-                    descricao: "Das 16h às 18h, café a metade do preço.",
-                    dataInicio: "15/10/2023",
-                    dataFim: "19/10/2023",
-                    endereco: "Rua do Café, 101"
-                },
-                {
-                    idEstabelecimento: 700,
-                    codigo: "Dia da Família",
-                    nome: "Pizzaria do Luigi",
-                    categoria: ["Pizzaria"],
-                    descricao: "Crianças comem de graça aos domingos.",
-                    dataInicio: "16/10/2023",
-                    dataFim: "23/10/2023",
-                    endereco: "Travessa das Famílias, 222"
-                },
-                {
-                    idEstabelecimento: 800,
-                    codigo: "Lanches em Promoção",
-                    nome: "Lanchonete Saboroso",
-                    categoria: ["Lanchonete"],
-                    descricao: "Todos os lanches com 15% de desconto.",
-                    dataInicio: "17/10/2023",
-                    dataFim: "22/10/2023",
-                    endereco: "Avenida dos Lanches, 333"
-                },
-                {
-                    idEstabelecimento: 900,
-                    codigo: "Noite de Karaokê",
-                    nome: "Bar Cantarolar",
-                    categoria: ["Bar", "Entretenimento"],
-                    descricao: "Toda sexta-feira, noite de karaokê com prêmios.",
-                    dataInicio: "14/10/2023",
-                    dataFim: "21/10/2023",
-                    endereco: "Rua dos Cantores, 505"
-                },
-                {
-                    idEstabelecimento: 1000,
-                    codigo: "Especial de Aniversário",
-                    nome: "Restaurante Delicioso",
-                    categoria: ["Restaurante"],
-                    descricao: "No seu aniversário, ganhe uma sobremesa grátis.",
-                    dataInicio: "15/10/2023",
-                    dataFim: "20/10/2023",
-                    endereco: "Avenida dos Restaurantes, 777"
-                }
-            ];
-            this.categorias = ["Hamburgueria", "Pizzaria", "Restaurante", "Categoria 1", "Categoria 2"];
-        },
         async created() {
             try {
                 const promocoesRequest = await api.get('/promocao');
 
-                
-
-                if (promocoesRequest.data) {
-                    const promocoes = promocoesRequest.data;
+                if (promocoesRequest.data.promocoesAtivas) {
+                    const promocoes = promocoesRequest.data.promocoesAtivas;
                     for (let i=0; i < promocoes.length ; i++) {
-
+                        promocoes[i].dataInicio = dataFormat(promocoes[i].dataInicio);
+                        promocoes[i].dataFim = dataFormat(promocoes[i].dataFim);
                     };
                     console.log('promocoes:: ', promocoes)
-                }  
+                    this.cupons = promocoes;
+                }
 
+                if (promocoesRequest.data.categorias) {
+                    const categoriasArray = promocoesRequest.data.categorias.map(objeto => objeto.nome);
+                    this.categoria = categoriasArray;
+                }
             } catch (error) {
                 console.log('Erro ao buscar promoções: ', error);
             }
