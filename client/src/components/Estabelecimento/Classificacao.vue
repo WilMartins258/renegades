@@ -32,6 +32,8 @@
   </template>
   
   <script>
+  import api from './../../services/backend.service.js';
+
   export default {
     name: "Classificacao",
     data() {
@@ -48,6 +50,14 @@
         this.numToShow += 6;
         this.visibleAvaliacao = this.avaliacao.slice(0, this.numToShow);
       },
+    },
+    async created() {
+      try {
+        // console.log('id:: ', sessionStorage.getItem(''))
+        // const avaliacoesRequest = api.get(`/avaliacao/${}`);
+      } catch (error) {
+        console.log('Erro ao buscar avaliações do estabelecimento: ', error);
+      }
     },
     mounted() {
       this.avaliacao = [ // valores que serão substituídos pelos do BD
@@ -86,7 +96,6 @@
         },
         
       ];
-  
       this.MediaNt = 5; // Irá passar aqui o valor da média
       this.visibleAvaliacao = this.avaliacao.slice(0, this.numToShow); // exibe as 4 primeiras avaliações
     }
