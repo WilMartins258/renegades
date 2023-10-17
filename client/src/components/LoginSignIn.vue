@@ -2,14 +2,17 @@
 	<form action="#" @submit.prevent="submit" class="sign-in-htm">
 		<div class="group">
 			<label for="sign-in-user" class="label">Email 
-				<InfoPopup>	<span class="popup">Informe seu email</span>
-				</InfoPopup></label>
+				<InfoPopup>	<span class="popup">Insira o seu endereço de email.</span>
+				</InfoPopup>
+			</label>
 			
 			<input id="sign-in-user" type="text" class="input" v-model="Email">
 			<span v-if="!validarEmail" class="error">O e-mail é inválido</span>
 		</div>
 		<div class="group">
-			<label for="sign-in-pass" class="label">Senha</label>
+			<label for="sign-in-pass" class="label">Senha
+				<InfoPopup>	<span class="popup">Insira a senha informada no momento do cadastro.</span></InfoPopup>
+			</label>
 			<input id="sign-in-pass" type="password" class="input" data-type="password" v-model="Senha">
 			<span v-if="!validarSenha" class="error">A senha é obrigatória</span>
 		</div>

@@ -1,23 +1,30 @@
 <template>
 	<form action="#" @submit.prevent="submit" class="sign-up-htm">
 		<div class="group">
-			<label for="sign-up-name" class="label">Nome</label>
+			<label for="sign-up-name" class="label">Nome
+				<InfoPopup>	<span class="popup">Digite o seu nome completo no campo</span></InfoPopup>
+			</label>
 			<input id="sign-up-name" type="text" class="input" v-model="Nome" :class="{ 'error': !isNomeValido }">
 			<span v-if="!isNomeValido" class="error-message">{{ nomeErro }}</span>
 		</div>
 
 		<div class="group">
-			<label for="sign-up-user" class="label">E-mail</label>
+			<label for="sign-up-user" class="label">E-mail
+				<InfoPopup>	<span class="popup">Insira o seu endereço de email.</span></InfoPopup>
+			</label>
 			<input id="sign-up-user" type="text" class="input" v-model="Email" :class="{ 'error': !isEmailValido }">
 			<span v-if="!isEmailValido" class="error-message">{{ emailErro }}</span>
 		</div>
 
 		<div class="group">
-			<label for="sign-up-pass1" class="label">Senha</label>
+			<label for="sign-up-pass1" class="label">Senha
+				<InfoPopup>	<span class="popup">Evite usar informações pessoais óbvias, como seu nome, data de nascimento ou sequências numéricas simples, como "123456.".</span></InfoPopup>
+			</label>
 			<input id="sign-up-pass1" type="password" class="input" data-type="password" v-model="Senha1"
 				:class="{ 'error': !isSenhaValida }">
 			<span v-if="!isSenhaValida" class="error-message">{{ senhaErro }}</span>
 		</div>
+
 
 		<div class="group">
 			<label for="sign-up-pass" class="label">Confirme sua senha</label>
@@ -37,8 +44,11 @@
 
 <script>
 import api from './../services/backend.service.js';
-
+import InfoPopup from './InfoPopup.vue';
 export default {
+	components: {
+		InfoPopup
+  },
 	data() {
 		return {
 			Nome: '',
@@ -159,5 +169,9 @@ export default {
 .error-message {
 	color: red;
 	font-size: 12px;
+}
+
+.popup{
+	font-size: 9px; 
 }
 </style>
