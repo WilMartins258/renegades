@@ -8,6 +8,7 @@
 <script>
 import CombinedCarousel from "../Home/ComponentsChild/Carousel.vue";
 import Filtro from "../Home/ComponentsChild/Filtro.vue";
+import api from "./../../services/backend.service.js";
 
 export default {
   name: "TelaHome",
@@ -15,6 +16,13 @@ export default {
     CombinedCarousel,
     Filtro,
   },
+  async created() {
+    try {
+      await api.get('/');
+    } catch (error) {
+      console.log('Erro ao acionar rota /; Erro: ', error);
+    }
+  }
 };
 
 </script>
