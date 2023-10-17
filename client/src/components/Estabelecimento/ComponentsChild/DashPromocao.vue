@@ -126,7 +126,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(promocao, index) in listaPromocoesConcluidas" :key="index"><!-- Preencher com as promoções concluídas -->
+          <tr v-for="(promocao, index) in listaPromocoesVencidas" :key="index"><!-- Preencher com as promoções concluídas -->
             <td>{{ promocao.codigo }}</td>
             <td>{{ promocao.nome }}</td>
             <td>{{ promocao.descricao }}</td>
@@ -155,7 +155,7 @@ export default {
       },
       listaPromocoes: [],
       listaPromocoesInativas: [],
-      listaPromocoesConcluidas: [], 
+      listaPromocoesVencidas: [], 
       listaPromocoes: [],
       campoVazio: false,
       isEditing: false,
@@ -288,7 +288,7 @@ export default {
     ];
 
     // substitua pelos dados do BD
-    this.listaPromocoesConcluidas = [
+    this.listaPromocoesVencidas = [
       {
         codigo: "20",
         nome: "Promoção Concluída 1",
