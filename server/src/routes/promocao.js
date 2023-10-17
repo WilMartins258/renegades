@@ -10,6 +10,7 @@ router.get('/', async (req, res) => {
         for (let i=0; i < promocoesAtivas.length; i++) {
             if (promocoesAtivas[i].categoriasString) {
                 promocoesAtivas[i].categoria = promocoesAtivas[i].categoriasString.split(',').map(item => item.trim());
+                promocoesAtivas[i].endereco = `${promocoesAtivas[i].logradouro}, nº${promocoesAtivas[i].numeroEstabelecimento} - ${promocoesAtivas[i].bairro} / ${promocoesAtivas[i].cidade}`;
             } else {
                 promocoesAtivas[i].categoria = [null];
             }
