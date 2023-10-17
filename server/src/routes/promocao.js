@@ -2,7 +2,7 @@ const router = require('express').Router();
 const promocao_Service = require('../services/promocao.service.js');
 const categoria_Service = require('../services/categoria.service.js');
 
-router.get('/', async (req, res) => {
+router.get('/usuario', async (req, res) => {
     try {
         const promocoesAtivas = await promocao_Service.pegarPromocoesAtivas();
         const categorias = await categoria_Service.pegarTudo();
@@ -20,6 +20,18 @@ router.get('/', async (req, res) => {
             promocoesAtivas,
             categorias
         });
+    } catch (error) {
+        console.log('ERROR:: ', error);
+        res.status(500).send({
+            errorMsg: 'Ocorreu um erro ao processar a solicitação.',
+            error: error.message
+        });
+    }
+});
+
+router.get('/', async (req, res) => {
+    try {    
+
     } catch (error) {
         console.log('ERROR:: ', error);
         res.status(500).send({
