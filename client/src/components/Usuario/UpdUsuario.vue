@@ -142,7 +142,6 @@ export default{
     async metodoInicial() {
       try {
         if (sessionStorage.getItem('idUsuario')) {
-          console.log('ESTÁ LOGADO');
           const requisicaoUsuario = await api.get(`/usuario/${sessionStorage.getItem('idUsuario')}`);          
           const dadosUsuario = requisicaoUsuario.data;
           const dataFormatada = dataToDiaMesAno(dadosUsuario.dataNascimento);
@@ -161,7 +160,6 @@ export default{
           this.endereco.cidade = dadosUsuario.cidade;
           this.endereco.numero = dadosUsuario.numeroResidencia;
         } else {
-          console.log('NÃO ESTÁ LOGADO');
           alert('usuário não autenticado, autentique para visualizar dados.');
         }
       } catch (error) {
