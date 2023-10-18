@@ -186,7 +186,6 @@ export default {
   white-space: nowrap;
 }
 .table-container {
-  max-height: 300px; 
   overflow: auto;
 }
 
