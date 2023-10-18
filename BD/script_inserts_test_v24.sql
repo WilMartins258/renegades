@@ -1709,7 +1709,7 @@ INSERT INTO comida_estabelecimento VALUES (
 
 -- --------------------------------------------------------------------------------------> USUÁRIOS INATIVOS DE TESTE INÍCIO
 
-insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values( -- Mc Donalds - Votorantim
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, status, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values( -- Mc Donalds - Votorantim
 	null,                   -- id
 	null,                -- idEstabelecimento
     'Usuario inativo 01',           -- nome
@@ -1720,6 +1720,7 @@ insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fo
 	null,                -- fotoPerfil
     '1989-09-24',        -- dataNascimento
 	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	'Inativo', -- status            ENUM('Ativo', 'Inativo') DEFAULT 'Ativo' not null,
 	null, -- numero not null
 	null, -- lodradouro not null,
 	null, -- bairro not null,
@@ -1730,7 +1731,7 @@ insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fo
 	null
 );
 
-insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values( -- Mc Donalds - Votorantim
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, status, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values( -- Mc Donalds - Votorantim
 	null,                   -- id
 	null,                -- idEstabelecimento
     'Usuario inativo 02',           -- nome
@@ -1741,6 +1742,7 @@ insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fo
 	null,                -- fotoPerfil
     '1989-09-24',        -- dataNascimento
 	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	'Inativo', -- status            ENUM('Ativo', 'Inativo') DEFAULT 'Ativo' not null,
 	null, -- numero not null
 	null, -- lodradouro not null,
 	null, -- bairro not null,
@@ -1751,7 +1753,7 @@ insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fo
 	null
 );
 
-insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values( -- Mc Donalds - Votorantim
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, status, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values( -- Mc Donalds - Votorantim
 	null,                   -- id
 	null,                -- idEstabelecimento
     'Usuario inativo 03',           -- nome
@@ -1762,6 +1764,7 @@ insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fo
 	null,                -- fotoPerfil
     '1989-09-24',        -- dataNascimento
 	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	'Inativo', -- status            ENUM('Ativo', 'Inativo') DEFAULT 'Ativo' not null,
 	null, -- numero not null
 	null, -- lodradouro not null,
 	null, -- bairro not null,
