@@ -2,7 +2,7 @@ const db = require('../models/db.js');
 
 const pegarTudo = async () => {
   try {
-    const usuarioQuery = ``;
+    const usuarioQuery = 'SELECT id, nome, status FROM usuario;';
     const connection = await db;
     
     const [usuarios] = await connection.query(usuarioQuery);
