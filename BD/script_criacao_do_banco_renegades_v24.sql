@@ -97,7 +97,7 @@ CREATE TABLE estabelecimento (
 	descricao              VARCHAR(400) not null,
 	ativo                  BOOLEAN DEFAULT true not null,
 	oculto                 BOOLEAN DEFAULT false not null,
-	status        ENUM('Pendente', 'Validado', 'Não validado') DEFAULT 'Pendente' not null,
+	status                 ENUM('Pendente', 'Validado', 'Não Validado') DEFAULT 'Pendente' not null,
 	nota                   FLOAT DEFAULT null,
 	numeroAvaliacoes       INT DEFAULT 0 not null,
 	numeroEstabelecimento  VARCHAR(9) not null,

@@ -1445,7 +1445,7 @@ insert into estabelecimento values(
 	"ESTABLECECIMENTO 8", -- descricao
 	true,                   -- ativo
 	false,                   -- oculto
-	'Validado',             -- statusValidacao
+	'Pendente',             -- statusValidacao
 	3.444, -- nota
 	0, -- numeroAvaliacoes INT,
 	'3145', -- numeroEstabelecimento  VARCHAR(9) not null,
@@ -1468,7 +1468,7 @@ insert into estabelecimento values(
 	"ESTABLECECIMENTO 9", -- descricao
 	true,                   -- ativo
 	false,                   -- oculto
-	'Validado',             -- statusValidacao
+	'Pendente',             -- statusValidacao
 	4.444, -- nota
 	0, -- numeroAvaliacoes INT,
 	'3145', -- numeroEstabelecimento  VARCHAR(9) not null,
@@ -1491,7 +1491,7 @@ insert into estabelecimento values(
 	"ESTABLECECIMENTO 10", -- descricao
 	true,                   -- ativo
 	false,                   -- oculto
-	'Validado',             -- statusValidacao
+	'Não Validado',             -- statusValidacao
 	2.5555, -- nota
 	0, -- numeroAvaliacoes INT,
 	'3145', -- numeroEstabelecimento  VARCHAR(9) not null,
@@ -1514,7 +1514,7 @@ insert into estabelecimento values(
 	"ESTABLECECIMENTO 11", -- descricao
 	true,                   -- ativo
 	false,                   -- oculto
-	'Validado',             -- statusValidacao
+	'Não Validado',             -- statusValidacao
 	1.988, -- nota
 	0, -- numeroAvaliacoes INT,
 	'3145', -- numeroEstabelecimento  VARCHAR(9) not null,
