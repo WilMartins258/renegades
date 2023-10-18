@@ -1707,3 +1707,68 @@ INSERT INTO comida_estabelecimento VALUES (
 -- --------------------------------------------------------------------------------------> COMIDAS TESTE FIM
 
 
+-- --------------------------------------------------------------------------------------> USUÁRIOS INATIVOS DE TESTE INÍCIO
+
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values( -- Mc Donalds - Votorantim
+	null,                   -- id
+	null,                -- idEstabelecimento
+    'Usuario inativo 01',           -- nome
+	'15999999999',           -- celular
+    '11122233355',       -- cpf
+    'inativo01@gmail.com', -- email
+    'senha123',          -- senha
+	null,                -- fotoPerfil
+    '1989-09-24',        -- dataNascimento
+	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	null, -- numero not null
+	null, -- lodradouro not null,
+	null, -- bairro not null,
+	null, -- cidade not null,
+	null, -- estado not null,
+	null, -- cep not null,
+	null,
+	null
+);
+
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values( -- Mc Donalds - Votorantim
+	null,                   -- id
+	null,                -- idEstabelecimento
+    'Usuario inativo 02',           -- nome
+	'15999999999',           -- celular
+    '11122233355',       -- cpf
+    'inativo02@gmail.com', -- email
+    'senha123',          -- senha
+	null,                -- fotoPerfil
+    '1989-09-24',        -- dataNascimento
+	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	null, -- numero not null
+	null, -- lodradouro not null,
+	null, -- bairro not null,
+	null, -- cidade not null,
+	null, -- estado not null,
+	null, -- cep not null,
+	null,
+	null
+);
+
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values( -- Mc Donalds - Votorantim
+	null,                   -- id
+	null,                -- idEstabelecimento
+    'Usuario inativo 03',           -- nome
+	'15999999999',           -- celular
+    '11122233355',       -- cpf
+    'inativo03@gmail.com', -- email
+    'senha123',          -- senha
+	null,                -- fotoPerfil
+    '1989-09-24',        -- dataNascimento
+	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	null, -- numero not null
+	null, -- lodradouro not null,
+	null, -- bairro not null,
+	null, -- cidade not null,
+	null, -- estado not null,
+	null, -- cep not null,
+	null,
+	null
+);
+-- --------------------------------------------------------------------------------------> USUÁRIOS INATIVOS DE TESTE FIM
