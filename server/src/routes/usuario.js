@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
             'Adicione o ID do usuário desejado no final da rota, exemplo: usuario/id'
         );
     } catch (error) {
-        console.error('Erro na rota GET /: ', error);
+        console.log('Erro na rota GET /: ', error);
         res.status(500).send({
             errorMsg: 'Ocorreu um erro ao processar a solicitação.',
             error: error.message
