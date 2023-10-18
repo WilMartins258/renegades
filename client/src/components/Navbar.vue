@@ -36,9 +36,9 @@
     :src="avatarUrl"
     alt="Avatar"
     class="avatar"
-    v-if="isLoggedIn"
+    v-if="logged"
   />
-  <ul class="submenu" v-show="isLoggedIn">
+  <ul class="submenu" v-show="logged">
       <li>
         <a><router-link v-show="userType === '0'" to="/usuario">Meu Perfil</router-link></a>
         <a><router-link v-show="userType === '1'" to="/AreaDoEstabelecimento">Meu Estabelecimento</router-link></a>
@@ -61,7 +61,7 @@
 export default {
   name: "Navbar",
   name: "NavigationBar",
-  props: ["logo"],
+  props: ["logo", "logged"],
   data() {
     return {
       nome: "",

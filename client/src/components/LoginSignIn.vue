@@ -83,7 +83,7 @@ export default {
 						// A partir daqui precisamos verificar para onde vamos direcionar o usuário após login concluído
 
 						
-						this.$router.push({ name: 'home' });
+						this.$router.push({ name: 'home', query: {  logged: 'true' }});
 					}
 				} else {
 					// Isso indica que não foi possível fazer o login 

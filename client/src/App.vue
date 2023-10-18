@@ -1,6 +1,6 @@
 <template><div>
-  <Navbar :logo="logo_src"/>
-  <router-view />
+  <Navbar :logo="logo_src" :logged="logged"/>
+  <router-view @logged="setLogged($event)"/>
   <Footer />
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,12 +19,20 @@
       Navbar,
       Footer
     },
-    
+    //fazer uma logica para setar true para logged quando houver um id de usuario session estorange
     data(){
       return{
         logo_src: "/img/logo.gif",
+        logged: false
       }
-    }
+    },
+    watch: {
+      $route() {
+        if (!this.$route.query.logged) return
+        this.logged = this.$route.query.logged === 'true'
+        this.$router.replace({ name: this.$route.name, query: {} })
+      }
+    }   
   }
 </script>
 
