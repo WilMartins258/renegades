@@ -52,6 +52,8 @@
   </template>
   
   <script>
+  import api from './../../services/backend.service.js';
+
   export default {
     name: "ListaUsuarios",
     data() {
@@ -65,6 +67,14 @@
         pesquisar() {
             // Lógica para filtro
         },
+    },
+    async created() {
+      const requestUsuarios = await api.get('/usuario');
+      try {
+        
+      } catch (error) {
+        console.log('Erro ao buscar usuários: ', error);
+      }
     },
     mounted() {
       this.usuarios = [
