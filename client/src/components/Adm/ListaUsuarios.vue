@@ -69,22 +69,14 @@
         },
     },
     async created() {
-      const requestUsuarios = await api.get('/usuario');
       try {
-        
+        const requestUsuarios = await api.get('/usuario');
+        if (requestUsuarios.data) {
+          this.usuarios = requestUsuarios.data;
+        }
       } catch (error) {
         console.log('Erro ao buscar usuários: ', error);
       }
-    },
-    mounted() {
-      this.usuarios = [
-        { id: 1, nome: "Roberto", link: "/alterausuario", ativo: true },
-        { id: 2, nome: "Alberto", link: "/alterausuario", ativo: false },
-        { id: 3, nome: "Amanda", link: "/alterausuario", ativo: true },
-        { id: 4, nome: "Nayara", link: "/alterausuario", ativo: false },
-        { id: 5, nome: "Alberto b.", link: "/alterausuario", ativo: true },
-        { id: 6, nome: "Alberto c.", link: "/alterausuario", ativo: false },
-      ];
     },
     computed: {
         usuariosFiltrados() {
