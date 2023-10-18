@@ -5,10 +5,19 @@ const usuario_Service = require('../services/usuario.service.js');
 
 router.get('/', async (req, res) => {
     try {
-        const reqBody = req.body;
-        res.status(200).send(
-            'Adicione o ID do usuário desejado no final da rota, exemplo: usuario/id'
-        );
+        const usuarios = await usuario_Service.pegarTudo();
+
+        if (usuarios) {
+            for (let i=0; i < usuarios.length ;i++) {
+                if (usuarios[i].status == 'Ativo') {
+                    usuarios[i].ativo = true
+                } else {
+                    usuarios[i].ativo = false
+                }
+            }
+        }
+
+        res.status(200).send(usuarios);
     } catch (error) {
         console.log('Erro na rota GET /: ', error);
         res.status(500).send({
