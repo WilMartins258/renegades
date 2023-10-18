@@ -93,13 +93,12 @@ import dataFormat from './../../services/dataToDiaMesAno.service';
                         promocoes[i].dataInicio = dataFormat(promocoes[i].dataInicio);
                         promocoes[i].dataFim = dataFormat(promocoes[i].dataFim);
                     };
-                    console.log('promocoes:: ', promocoes)
                     this.cupons = promocoes;
                 }
 
                 if (promocoesRequest.data.categorias) {
                     const categoriasArray = promocoesRequest.data.categorias.map(objeto => objeto.nome);
-                    this.categoria = categoriasArray;
+                    this.categorias = categoriasArray;
                 }
             } catch (error) {
                 console.log('Erro ao buscar promoções: ', error);
