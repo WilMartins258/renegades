@@ -1,5 +1,18 @@
 const db = require('../models/db.js');
 
+const pegarTudo = async () => {
+  try {
+    const usuarioQuery = ``;
+    const connection = await db;
+    
+    const [usuarios] = await connection.query(usuarioQuery);
+  
+    return usuarios;
+  } catch (error) {
+    throw new Error(`Erro ao buscar usuários: ${error.message}`);
+  }
+};
+
 const checarEmail = async (email) => {
   const checkEmailQuery = `SELECT email 
                             FROM usuario 
@@ -86,6 +99,7 @@ const excluir = async () => {
 };
 
 module.exports = {
+  pegarTudo,
   checarEmail,
   inserirIdEstabelecimento,
   inserir,
