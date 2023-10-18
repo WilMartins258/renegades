@@ -153,7 +153,7 @@ insert into diaSemana values (10, 'Final de semana', 9);
 ---------------------------- USUÁRIO WILLIAN -- INÍCIO
 
 
-insert into usuario values(
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
 	1,                   -- id
 	null,                -- idEstabelecimento
     'Willian M. Ribeiro',-- nome
@@ -180,7 +180,7 @@ insert into usuario values(
 
 ---------------------------- USUÁRIO LUCAS -- INÍCIO
 
-insert into usuario values(
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
 	2,                   -- id
 	null,                -- idEstabelecimento
     'Lucas Maximiano dos Santos',   -- nome
@@ -207,7 +207,7 @@ insert into usuario values(
 
 ---------------------------- USUÁRIO ADM JULIO -- INÍCIO
 
-insert into usuario values(
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
 	3,                       -- id
 	null,                    -- idEstabelecimento
     'Julio Cesar de Castro',           -- nome
@@ -305,7 +305,7 @@ insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
     7 -- idOpcional INT NOT NULL
 );
 
-insert into usuario values( -- Mc Donalds - Votorantim
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values( -- Mc Donalds - Votorantim
 	4,                   -- id
 	1,                -- idEstabelecimento
     'usuario04 - MC Donalds',           -- nome
@@ -536,7 +536,7 @@ insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
 );
 
 
-insert into usuario values( -- Mc Donalds - Sorocaba
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values( -- Mc Donalds - Sorocaba
 	5,                   -- id
 	2,                -- idEstabelecimento
     'Dono do MC CAMPOLIM SOROCABA',           -- nome
@@ -710,7 +710,7 @@ insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
     5 -- idOpcional INT NOT NULL
 );
 
-insert into usuario values(
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
 	6,                   -- id
 	3,                -- idEstabelecimento
     'Dono do Kiko',           -- nome
@@ -867,7 +867,7 @@ insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
     5 -- idOpcional INT NOT NULL
 );
 
-insert into usuario values(
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
 	7,                   -- id
 	4,                -- idEstabelecimento
     'Dono da Pizzaria Booa Pizza usuario07',           -- nome
@@ -991,7 +991,7 @@ insert into musica_estabelecimento (idEstabelecimento, idEstiloMusica) values(
 	3 -- idEstiloMusica    INT not null ---------> FUNK
 );
 
-insert into usuario values(
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
 	8,                   -- id
 	5,                -- idEstabelecimento
     'Mada Bar usuario08',           -- nome
@@ -1145,7 +1145,7 @@ insert into musica_estabelecimento (idEstabelecimento, idEstiloMusica) values(
 	20 -- idEstiloMusica    INT not null ---------> Alternativa
 );
 
-insert into usuario values(
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
 	9,                   -- id
 	6,                -- idEstabelecimento
     'Habibs usuario09',           -- nome
