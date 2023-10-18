@@ -141,6 +141,8 @@
 </template>
 
 <script>
+import api from './../../../services/backend.service.js';
+
 export default {
   name: "CadastroPromocoes",
   data() {
@@ -161,6 +163,26 @@ export default {
       isEditing: false,
       editingIndex: -1,
     };
+  },
+  async created() {
+    try {
+      const promocoesRequest = await api.get('/promocao/estabelecimento');
+
+      if (promocoesRequest.data.promocoesAtivas) {
+
+      }
+
+      if (promocoesRequest.data.promocoesInativas) {
+        
+      }
+
+      if (promocoesRequest.data.promocoesVencidas) {
+        
+      }
+      
+    } catch (error) {
+      console.log('Erro ao buscar promoções do estabelecimentos: ', error);
+    }
   },
   methods: {
     salvarPromocao() {

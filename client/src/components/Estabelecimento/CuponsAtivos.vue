@@ -85,7 +85,7 @@ import dataFormat from './../../services/dataToDiaMesAno.service';
         },
         async created() {
             try {
-                const promocoesRequest = await api.get('/promocao');
+                const promocoesRequest = await api.get('/promocao/usuario');
 
                 if (promocoesRequest.data.promocoesAtivas) {
                     const promocoes = promocoesRequest.data.promocoesAtivas;
