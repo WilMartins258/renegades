@@ -178,7 +178,6 @@ export default {
 </script>
 
 <style scoped>
-
 .container {
   max-width: 700px;
   margin: 0 auto;
@@ -187,8 +186,8 @@ export default {
   white-space: nowrap;
 }
 .table-container {
-  max-height: 300px; 
   overflow: auto;
+  
 }
 
 h1 {
