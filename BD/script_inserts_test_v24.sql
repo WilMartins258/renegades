@@ -160,7 +160,7 @@ insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fo
 	'15999998888',       -- celular
     '44455566677',       -- cpf
     'willian@gmail.com', -- email
-    'senha123',          -- senha
+    '123456',          -- senha
 	null,                -- fotoPerfil
     '2000-09-24',        -- dataNascimento
 	0,                    -- tipoUsuario ENUM(0, 1, 2) NOT NULL
@@ -187,7 +187,7 @@ insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fo
 	'15999997777',           -- celular
     '11122244433',       -- cpf
     'lucas@gmail.com',   -- email
-    'senha123',          -- senha
+    '123456',          -- senha
 	null,                -- fotoPerfil
     '2000-05-01',        -- dataNascimento
 	0, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
@@ -214,7 +214,7 @@ insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fo
 	'15999999999',               -- celular
     '11122233344',           -- cpf
     'kagebushin@gmail.com', -- email
-    'senha123',              -- senha
+    '123456',              -- senha
 	null,                    -- fotoPerfil
     '1989-09-24',            -- dataNascimento
 	2, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
@@ -312,7 +312,7 @@ insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fo
 	'15999999999',           -- celular
     '11122233355',       -- cpf
     'usuario04@gmail.com', -- email
-    'senha123',          -- senha
+    '123456',          -- senha
 	null,                -- fotoPerfil
     '1989-09-24',        -- dataNascimento
 	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
@@ -543,7 +543,7 @@ insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fo
 	'15999999999',           -- celular
     '11122233355',       -- cpf
     'usuario05@gmail.com', -- email
-    'senha123',          -- senha
+    '123456',          -- senha
 	null,                -- fotoPerfil
     '1989-09-24',        -- dataNascimento
 	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
@@ -717,7 +717,7 @@ insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fo
 	'15999999999',           -- celular
     '11122233355',       -- cpf
     'usuario06@gmail.com', -- email
-    'senha123',          -- senha
+    '123456',          -- senha
 	null,                -- fotoPerfil
     '1989-09-24',        -- dataNascimento
 	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
@@ -874,7 +874,7 @@ insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fo
 	'15999999999',           -- celular
     '11122233355',       -- cpf
     'usuario07@gmail.com', -- email
-    'senha123',          -- senha
+    '123456',          -- senha
 	null,                -- fotoPerfil
     '1989-09-24',        -- dataNascimento
 	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
@@ -998,7 +998,7 @@ insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fo
 	'15999999999',           -- celular
     '11122233355',       -- cpf
     'usuario08@gmail.com', -- email
-    'senha123',          -- senha
+    '123456',          -- senha
 	null,                -- fotoPerfil
     '1989-09-24',        -- dataNascimento
 	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
@@ -1152,7 +1152,7 @@ insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fo
 	'15999999999',           -- celular
     '11122233355',       -- cpf
     'usuario09@gmail.com', -- email
-    'senha123',          -- senha
+    '123456',          -- senha
 	null,                -- fotoPerfil
     '1989-09-24',        -- dataNascimento
 	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
@@ -1716,7 +1716,7 @@ insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fo
 	'15999999999',           -- celular
     '11122233355',       -- cpf
     'inativo01@gmail.com', -- email
-    'senha123',          -- senha
+    '123456',          -- senha
 	null,                -- fotoPerfil
     '1989-09-24',        -- dataNascimento
 	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
@@ -1737,7 +1737,7 @@ insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fo
 	'15999999999',           -- celular
     '11122233355',       -- cpf
     'inativo02@gmail.com', -- email
-    'senha123',          -- senha
+    '123456',          -- senha
 	null,                -- fotoPerfil
     '1989-09-24',        -- dataNascimento
 	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
@@ -1758,7 +1758,7 @@ insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fo
 	'15999999999',           -- celular
     '11122233355',       -- cpf
     'inativo03@gmail.com', -- email
-    'senha123',          -- senha
+    '123456',          -- senha
 	null,                -- fotoPerfil
     '1989-09-24',        -- dataNascimento
 	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
