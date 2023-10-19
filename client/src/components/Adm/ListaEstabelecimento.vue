@@ -71,16 +71,33 @@ export default {
     pesquisar() {
       // Lógica para filtro
     },
-    ativarEstabelecimento(index) {
+    async ativarEstabelecimento(index) {
       if (window.confirm("Confirme a validação deste estabelecimento?")) {
-      // Confirmação do usuário
-      this.estabelecimentos[index].status = "Validado";
+        // Confirmação do usuário
+        try {
+          const atualizarEstabelecimento = {
+            novoStatus: 'Validado'
+          }
+          await api.put('/estabelecimento/status', atualizarEstabelecimento);
+          this.estabelecimentos[index].status = "Validado";
+        } catch (error) {
+          console.log('Erro: ', error);
+        }
       }
     },
-    inativarEstabelecimento(index) {
+    async inativarEstabelecimento(index) {
       if (window.confirm("Confirme a invalidação deste estabelecimento?")) {
+        try {
+          const atualizarEstabelecimento = {
+            novoStatus: 'Não Validado'
+          }
+          await api.put('/estabelecimento/status', atualizarEstabelecimento);
+          this.estabelecimentos[index].status = "Não Validado";
+
+        } catch (error) {
+          console.log('Erro: ', error);
+        }
       // Confirmação do usuário
-      this.estabelecimentos[index].status = "Não Validado";
       }
     },
   },
