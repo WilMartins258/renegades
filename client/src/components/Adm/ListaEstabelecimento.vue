@@ -44,8 +44,8 @@
                 <a :href="estabelecimento.link">Acessar</a>
               </td>
               <td class="ativDesativ-buttons">
-                <button v-if="estabelecimento.status === 'Pendente'" @click="ativarEstabelecimento(index)"><i class="uil uil-check"></i></button>
-                <button v-if="estabelecimento.status === 'Pendente'" @click="inativarEstabelecimento(index)"><i class="uil uil-times"></i></button>
+                <button v-if="estabelecimento.status === 'Pendente'" @click="ativarEstabelecimento(estabelecimento)"><i class="uil uil-check"></i></button>
+                <button v-if="estabelecimento.status === 'Pendente'" @click="inativarEstabelecimento(estabelecimento)"><i class="uil uil-times"></i></button>
               </td>
             </tr>
           </tbody>
@@ -76,7 +76,8 @@ export default {
         // Confirmação do usuário
         try {
           const atualizarEstabelecimento = {
-            novoStatus: 'Validado'
+            novoStatus: 'Validado',
+            id: index.id
           }
           await api.put('/estabelecimento/status', atualizarEstabelecimento);
           this.estabelecimentos[index].status = "Validado";
@@ -89,7 +90,8 @@ export default {
       if (window.confirm("Confirme a invalidação deste estabelecimento?")) {
         try {
           const atualizarEstabelecimento = {
-            novoStatus: 'Não Validado'
+            novoStatus: 'Não Validado',
+            id: index.id
           }
           await api.put('/estabelecimento/status', atualizarEstabelecimento);
           this.estabelecimentos[index].status = "Não Validado";
