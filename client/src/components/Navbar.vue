@@ -115,7 +115,7 @@ export default {
     // Defina isLoggedIn como falso
     this.isLoggedIn = false;
     // Redirecione o usuário para a página inicial
-    this.$router.push({ name: 'home' });
+    this.$router.push({ name: 'home', query: {  logged: 'false' }});
   },
   },
 };

@@ -25,7 +25,20 @@
         logo_src: "/img/logo.gif",
         logged: false
       }
+    },methods: {
+    // Método para atualizar o estado "logged"
+    updateLoggedState() {
+      const tipoUsuario = sessionStorage.getItem("tipoUsuario");
+      this.logged = tipoUsuario !== null && tipoUsuario !== "";
     },
+    setLogged(value) {
+      this.logged = value;
+    },
+  },
+  created() {
+    // Verifique o sessionStorage ao criar o componente
+    this.updateLoggedState();
+  },
     watch: {
       $route() {
         if (!this.$route.query.logged) return
