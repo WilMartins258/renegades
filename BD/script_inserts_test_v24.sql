@@ -158,7 +158,7 @@ insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fo
 	null,                -- idEstabelecimento
     'Willian Soares Ribeiro',-- nome
 	'15971161518',       -- celular
-    '004.159.750-85',       -- cpf
+    '00415975085',       -- cpf
     'willian@gmail.com', -- email
     '123456',          -- senha
 	null,                -- fotoPerfil
