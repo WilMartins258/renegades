@@ -20,6 +20,7 @@
           id="ativoSim"
           value="Sim"
           v-model="ativo"
+          checked
         />
         <label for="ativoSim">Sim</label>
         <input
