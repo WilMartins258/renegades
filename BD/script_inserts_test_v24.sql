@@ -156,20 +156,20 @@ insert into diaSemana values (10, 'Final de semana', 9);
 insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
 	1,                   -- id
 	null,                -- idEstabelecimento
-    'Willian M. Ribeiro',-- nome
-	'15999998888',       -- celular
-    '44455566677',       -- cpf
+    'Willian Soares Ribeiro',-- nome
+	'15971161518',       -- celular
+    '00415975085',       -- cpf
     'willian@gmail.com', -- email
     '123456',          -- senha
 	null,                -- fotoPerfil
     '2000-09-24',        -- dataNascimento
 	0,                    -- tipoUsuario ENUM(0, 1, 2) NOT NULL
 	97, -- numeroResidencia  VARCHAR(9),
-	'Rua Pedro Nunes', -- logradouro        VARCHAR(200),
-	'Conjunto Habitacional Jardim Serrano', -- bairro            VARCHAR(200),
+	'Rua João Serrano', -- logradouro        VARCHAR(200),
+	'Jardim Serrano', -- bairro            VARCHAR(200),
 	'Votorantim', -- cidade            VARCHAR(200),
 	'SP', -- estado            VARCHAR(200),
-	'18117121', -- cep               VARCHAR(9)
+	'18117130', -- cep               VARCHAR(9)
 	null,
 	null
 );
