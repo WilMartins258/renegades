@@ -1,6 +1,7 @@
 <template>
 	<form action="#" @submit.prevent="submit" class="sign-up-htm">
 		<div class="group">
+			<WelcomeMessage v-if="mostrarMensagem" :title="tituloMsg" :message="mensagemPUser" @close="fecharMensagem" />
 			<label for="sign-up-name" class="label">Nome
 				<InfoPopup>	<span class="popup">Digite o seu nome completo no campo</span></InfoPopup>
 			</label>
@@ -37,7 +38,7 @@
 		</div>
 		<div class="hr"></div>
 		<div class="foot-lnk">
-			<label for="tab-1">Já é Membro?</label>
+			<label for="tab-1" @click="chamaLogin">Já é Membro?</label>
 		</div>
 	</form>
 </template>
@@ -45,9 +46,12 @@
 <script>
 import api from './../services/backend.service.js';
 import InfoPopup from './InfoPopup.vue';
+
+import WelcomeMessage from './Message.vue';
 export default {
 	components: {
-		InfoPopup
+		InfoPopup,
+		WelcomeMessage,
   },
 	data() {
 		return {
@@ -62,7 +66,10 @@ export default {
 			nomeErro: '',
 			emailErro: '',
 			senhaErro: '',
-			senhasIguaisErro: ''
+			senhasIguaisErro: '',
+			mostrarMensagem: false,
+			tituloMsg: "Bem-vindo!",
+			mensagem: "Seu login foi confirmado com sucesso.",
 		}
 	},
 	methods: {
@@ -83,6 +90,7 @@ export default {
 					sessionStorage.setItem('idUsuario', usuarioCriado.data.id);
 					sessionStorage.setItem('nomeUsuario', usuarioCriado.data.nome);
 					sessionStorage.setItem('tipoUsuario', usuarioCriado.data.tipoUsuario);
+					this.mostrarmensagemPUser();
 				} catch (error) {
 					console.error('error:: ', error);
 				}
@@ -160,7 +168,16 @@ export default {
 			this.emailErro = '';
 			this.senhaErro = '';
 			this.senhasIguaisErro = '';
-		}
+		},
+		chamaLogin() {
+        window.location.reload();
+    },
+    mostrarmensagemPUser() {
+      this.mostrarMensagem = true;
+    },
+    fecharMensagem() {
+      this.mostrarMensagem = false;
+    },
 	},
 }
 </script>
