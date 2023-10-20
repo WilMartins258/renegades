@@ -29,7 +29,7 @@ const atualizar = async (novosDadosEstiloMusica) => {
 
 const pegarTudo = async () => {
     try {
-        const estiloMusicaQuery = "SELECT * FROM estiloMusica;";
+        const estiloMusicaQuery = "SELECT * FROM estiloMusica order by nome;";
         const connection = await db;
 
         const [estilosMusica] = await connection.query(estiloMusicaQuery);

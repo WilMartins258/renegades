@@ -2,7 +2,7 @@ const db = require('../models/db.js');
 
 const pegarTudo = async () => {
     try {
-        const comidasQuery = `SELECT * FROM comida;`;
+        const comidasQuery = `SELECT * FROM comida  order by nome;`;
         const connection = await db;
     
         const [comidas] = await connection.query(comidasQuery);

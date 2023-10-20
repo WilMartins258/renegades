@@ -15,7 +15,7 @@ const inserir = async (dadosCategoria) => {
 
 const pegarTudo = async () => {
     try {
-        const categoriasQuery = `SELECT * FROM categoria;`;
+        const categoriasQuery = `SELECT * FROM categoria order by nome;`;
         const connection = await db;
     
         const [categorias] = await connection.query(categoriasQuery);

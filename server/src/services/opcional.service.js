@@ -29,7 +29,7 @@ const atualizar = async (novosDadosOpcional) => {
 
 const pegarTudo = async () => {
     try {
-        const opcionaisQuery = `SELECT * FROM opcional;`;
+        const opcionaisQuery = `SELECT * FROM opcional  order by nome;`;
         const connection = await db;
 
         const [opcionais] = await connection.query(opcionaisQuery);
