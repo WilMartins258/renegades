@@ -25,6 +25,28 @@ DELETE FROM musica_estabelecimento;
 DELETE FROM avaliacao;
 DELETE FROM favorito;
 
+-- Resetar as sequências de autoincremento para cada tabela
+ALTER TABLE categoria AUTO_INCREMENT = 1;
+ALTER TABLE estiloMusica AUTO_INCREMENT = 1;
+ALTER TABLE contato AUTO_INCREMENT = 1;
+ALTER TABLE redeSocial AUTO_INCREMENT = 1;
+ALTER TABLE comida AUTO_INCREMENT = 1;
+ALTER TABLE diaSemana AUTO_INCREMENT = 1;
+ALTER TABLE opcional AUTO_INCREMENT = 1;
+ALTER TABLE usuario AUTO_INCREMENT = 1;
+ALTER TABLE estabelecimento AUTO_INCREMENT = 1;
+ALTER TABLE horario AUTO_INCREMENT = 1;
+ALTER TABLE recomendacao AUTO_INCREMENT = 1;
+ALTER TABLE promocao AUTO_INCREMENT = 1;
+ALTER TABLE redeSocial_estabelecimento AUTO_INCREMENT = 1;
+ALTER TABLE contato_estabelecimento AUTO_INCREMENT = 1;
+ALTER TABLE opcional_estabelecimento AUTO_INCREMENT = 1;
+ALTER TABLE comida_estabelecimento AUTO_INCREMENT = 1;
+ALTER TABLE categoria_estabelecimento AUTO_INCREMENT = 1;
+ALTER TABLE musica_estabelecimento AUTO_INCREMENT = 1;
+ALTER TABLE avaliacao AUTO_INCREMENT = 1;
+ALTER TABLE favorito AUTO_INCREMENT = 1;
+
 SET FOREIGN_KEY_CHECKS = 1;
 
 
