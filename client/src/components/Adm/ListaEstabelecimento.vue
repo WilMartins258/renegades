@@ -80,8 +80,7 @@ export default {
             id: index.id
           }
           await api.put('/estabelecimento/status', atualizarEstabelecimento);
-          this.estabelecimentos[index.id].status = "Validado";
-          console.log('this.estabelecimentos: ', this.estabelecimentos);
+          this.estabelecimentos[(index.id - 1)].status = "Validado";
 
         } catch (error) {
           console.log('Erro: ', error);
@@ -95,11 +94,8 @@ export default {
             novoStatus: 'Não Validado',
             id: index.id
           }
-          console.log('index: ', index);
           await api.put('/estabelecimento/status', atualizarEstabelecimento);
-          this.estabelecimentos[index.id].status = "Não Validado";
-          
-          console.log('this.estabelecimentos: ', this.estabelecimentos);
+          this.estabelecimentos[(index.id - 1)].status = "Não Validado";
 
         } catch (error) {
           console.log('Erro: ', error);
