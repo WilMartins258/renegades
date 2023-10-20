@@ -1,12 +1,12 @@
 <template>
 	<form action="#" @submit.prevent="submit" class="sign-up-htm">
 		<div class="group">
-			<WelcomeMessage v-if="mostrarMensagem" :title="tituloMsg" :message="mensagemPUser" @close="fecharMensagem" />
+			<ComponentMessage v-if="mostrarMensagem" :title="tituloMsg" :message="mensagemPUser" @close="fecharMensagem" />
 			<label for="sign-up-name" class="label">Nome
 				<InfoPopup>	<span class="popup">Digite o seu nome completo no campo</span></InfoPopup>
 			</label>
 			<input id="sign-up-name" type="text" class="input" v-model="Nome" :class="{ 'error': !isNomeValido }">
-			<span v-if="!isNomeValido" class="error-message">{{ nomeErro }}</span>
+			<span v-if="!isEmailValido" class="error-message">{{ emailErro }}</span>
 		</div>
 
 		<div class="group">
@@ -47,11 +47,13 @@
 import api from './../services/backend.service.js';
 import InfoPopup from './InfoPopup.vue';
 
-import WelcomeMessage from './Message.vue';
+ 
+
+import ComponentMessage from './Message.vue';
 export default {
 	components: {
 		InfoPopup,
-		WelcomeMessage,
+		ComponentMessage,
   },
 	data() {
 		return {
@@ -69,7 +71,7 @@ export default {
 			senhasIguaisErro: '',
 			mostrarMensagem: false,
 			tituloMsg: "Bem-vindo!",
-			mensagem: "Seu login foi confirmado com sucesso.",
+			mensagemPUser: "Seu cadastro foi concluído com êxito. Agora, estamos redirecionando você para a página inicial.",
 		}
 	},
 	methods: {
@@ -91,6 +93,7 @@ export default {
 					sessionStorage.setItem('nomeUsuario', usuarioCriado.data.nome);
 					sessionStorage.setItem('tipoUsuario', usuarioCriado.data.tipoUsuario);
 					this.mostrarmensagemPUser();
+					
 				} catch (error) {
 					console.error('error:: ', error);
 				}
@@ -135,6 +138,7 @@ export default {
 			);
 
 			return this.isNomeValido && this.isEmailValido && this.isSenhaValida && this.isSenhasIguais;
+			
 		},
 		validarNome() {
 			return this.Nome.trim() !== '' && this.Nome.length >= 5;
@@ -175,8 +179,10 @@ export default {
     mostrarmensagemPUser() {
       this.mostrarMensagem = true;
     },
+	
     fecharMensagem() {
       this.mostrarMensagem = false;
+	  this.$router.push({ name: 'home', query: {  logged: 'true' }});
     },
 	},
 }
