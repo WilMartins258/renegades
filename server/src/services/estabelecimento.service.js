@@ -122,6 +122,22 @@ const pegarNotaEstabelecimentoPorId = async (idEstabelecimento) => {
   }
 };
 
+const atualizarStatus = async (dadosEstabelecimento) => {
+  try {
+    const estabelecimentoQuery = `
+      UPDATE estabelecimento
+        SET status = ?
+          WHERE id = ?;`;
+    const connection = await db;
+
+    const [atualizacaoStatusEstabelecimento] = await connection.query(estabelecimentoQuery, dadosEstabelecimento);
+
+    return atualizacaoStatusEstabelecimento;
+  } catch (error) {
+    throw new Error(`Erro ao atualizar status do estabelecimento: ${error.message}`);
+  }
+};
+
 module.exports = {
   inserir,
   atualizar,
@@ -129,5 +145,6 @@ module.exports = {
   carousel,
   filtros,
   pegarParaValidacao,
-  pegarNotaEstabelecimentoPorId
+  pegarNotaEstabelecimentoPorId,
+  atualizarStatus
 };

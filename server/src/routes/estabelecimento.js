@@ -314,10 +314,33 @@ router.put('/', async (req, res) => {
             msg: 'Dados do estabelecimento alterados com sucesso!'
         });
     } catch (error) {
-        console.error('Erro na rota PUT: ', error);
+        console.log('Erro na rota PUT: ', error);
         res.status(500).send({
             errorMsg: 'Ocorreu um erro ao processar a solicitação.',
             error: error.message
+        });
+    }
+});
+
+router.put('/status', async (req, res) => {
+    try {
+        const { novoStatus, id } = req.body;
+
+        const dadosEstabelecimento = {
+            novoStatus: novoStatus,
+            id: id
+        }
+        const dadosEstabelecimentoArray = Object.values(dadosEstabelecimento);
+
+        const atualizarEstabelecimento = await estabelecimento_Service.atualizarStatus(dadosEstabelecimentoArray);
+
+        res.status(200).send({atualizarEstabelecimento});
+    } catch (error) {
+        console.log('Erro ao atualizar status do estabelecimento: ', error);
+        res.status(500).send({
+            errorMsg: 'Erro ao atualizar status do estabelecimento.',
+            msg: error.message,
+            error: error
         });
     }
 });
