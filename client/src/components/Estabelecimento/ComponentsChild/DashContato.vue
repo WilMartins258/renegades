@@ -4,11 +4,11 @@
     <div>
       <form @submit.prevent="salvarContato">
        <label for="tipoContato">Tipo de Contato:
-            <InfoPopup>	
+            <InfoPopup class="custom-popup">	
               <span class="popup">Olá! Para adicionar seu contato, siga estas etapas simples:</span>
-                <br><span class="popup">1 - Escolha se deseja adicionar um telefone ou celular.</span>
+                <br><span class="popup">1 - Escolha se deseja adicionar um número de telefone ou celular.</span>
                 <br><span class="popup">2 - Digite o número no campo apropriado.</span>
-                  <br><span class="popup">3 - Marque a caixa de seleção 'WhatsApp' se o número for WhatsApp.</span>
+                  <br><span class="popup">3 - Marque a caixa de seleção 'WhatsApp' se desejar que este número seja associado ao WhatsApp.</span>
                   <br><span class="popup">4 - Clique no botão 'Salvar' para concluir a ação.</span>
             </InfoPopup>
        </label>
@@ -208,6 +208,7 @@ label {
 }
 
 .container {
+  white-space: nowrap;
   max-width: 700px;
   margin: 0 auto;
   padding: 20px;
@@ -306,11 +307,12 @@ input {
     padding: 6px 12px;
   }
 
-  .popup{
-font-size: 10px;
-max-width: 200px; /* Defina a largura máxima desejada */
-word-wrap: break-word; /* Permitir quebra de palavras */
-}
+
+.custom-popup {
+    font-size: 15px;
+    max-width: 200px; /* Defina a largura máxima desejada */
+    white-space: normal; /* Remova o white-space: nowrap */
+  }
 
 /* Responsive*/
 
