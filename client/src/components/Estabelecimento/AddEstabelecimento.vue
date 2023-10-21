@@ -223,9 +223,12 @@
   </section><!-- Fecha seção 6-->
   <br>
   <div class="buttons">
-    <button class="custom-button" @click="previousSection" v-if="currentSection !== 1"><i class="uil uil-arrow-circle-left"></i></button>
-    <button class="custom-button" @click="nextSection" v-if="currentSection !== 6"><i class="uil uil-arrow-circle-right"></i></button>
-  </div>
+  <img class="custom-Imag" @click="voltarSection" v-if="currentSection !== 1" 
+                                        src="../../../public/img/ArrowVoltar.png" alt="Voltar"/>
+  <div class="space-between-arrows"></div>
+  <img class="custom-Imag" @click="avancarSection" v-if="currentSection !== 6" 
+                                        src="../../../public/img/ArrowAvancar.png" alt="Avançar"/>
+</div>
 </div>
 
       <!------------------------------------->
@@ -352,7 +355,7 @@ methods: {
       console.error('ERROR:: ', error);
     }
   },
-  nextSection() {
+  avancarSection() {
 
     if (this.currentSection < 6) {
       this.currentSection++;
@@ -360,7 +363,7 @@ methods: {
     this.scrollToTop()
   },
 
-  previousSection() {
+  voltarSection() {
     if (this.currentSection > 1) {
       this.currentSection--;
     }
@@ -567,6 +570,23 @@ border: 2px solid red;
 margin-top: 10px;
 }
 
+.custom-Imag{
+  background-size: cover;
+  background-position: center; 
+  width: 90px; 
+  height:90px; 
+  background-color: #e91e2f;
+  border-radius: 25px;
+  transition: background-color 0.2s;
+}
+
+.custom-Imag:hover {
+  background-color: #ff9800; 
+}
+.space-between-arrows {
+  width: 10px; 
+  display: inline-block;
+}
 
 /* Responsive */
 
@@ -581,6 +601,10 @@ margin-top: 10px;
 #form-wrap {
   max-width: 768px;
 }
+.custom-Imag{
+  width: 60px; 
+  height:60px; 
+}
 }
 
 @media (max-width: 768px) {
@@ -590,6 +614,10 @@ margin-top: 10px;
   margin-bottom: 10px;
   display: block;
   width: 100%;
+}
+.custom-Imag{
+  width: 50px; 
+  height:50px; 
 }
 
 }
