@@ -68,8 +68,8 @@ export default {
 			senhaErro: '',
 			senhasIguaisErro: '',
 			mostrarMensagem: false,
-			tituloMsg: "Bem-vindo!",
-			mensagemPUser: "Seu cadastro foi concluído com êxito. Agora, estamos redirecionando você para a página inicial.",
+			tituloMsg: '',
+			mensagemPUser: '',
 		}
 	},
 	methods: {
@@ -93,7 +93,7 @@ export default {
 					this.mostrarmensagemPUser();
 					
 				} catch (error) {
-					console.error('error:: ', error);
+					this.mostrarmensagemError(error.response.data.msg);
 				}
 			}
 		},
@@ -175,12 +175,23 @@ export default {
         window.location.reload();
     },
     mostrarmensagemPUser() {
-      this.mostrarMensagem = true;
+		this.tituloMsg = "Seja Bem Vindo!";
+		this.mensagemPUser = "Seu cadastro foi concluído com êxito. Agora, estamos redirecionando você para a página inicial.";
+		this.mostrarMensagem = true;
+    },
+
+	mostrarmensagemError(msg) {
+		this.tituloMsg = "Erro"
+		this.mensagemPUser = msg
+		this.mostrarMensagem = true;
     },
 	
     fecharMensagem() {
       this.mostrarMensagem = false;
-	  this.$router.push({ name: 'home', query: {  logged: 'true' }});
+	  if(sessionStorage.getItem('idUsuario')){
+			this.$router.push({ name: 'home', query: {  logged: 'true' }});
+		}
+	  
     },
 	},
 }

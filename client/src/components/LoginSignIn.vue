@@ -49,7 +49,7 @@ export default {
 			validarEmail: true,
 			validarSenha: true,
 			mostrarMensagem: false,
-			tituloMsg: "Erro",
+			tituloMsg: "",
 			mensagemPUser: "",
 		}
 	},
@@ -95,9 +95,7 @@ export default {
 					console.log('Exibir mensagem para o usuário preencher os campos de e-mail e senha');
 				}
 			} catch (error) {
-				console.error('ERRO:: ', error);
-				console.log('error.response.data:: ', error.response.data);
-				this.mostrarmensagemPUser(error.response.data.msg);
+				this.mostrarmensagemError(error.response.data.msg);
 			}
 		},
 		limparCampos() {
@@ -107,6 +105,13 @@ export default {
 			this.validarSenha = true;
 		},
 		mostrarmensagemPUser(msg) {
+			this.tituloMsg = "Seja Bem Vindo!"
+			this.mensagemPUser = msg
+			this.mostrarMensagem = true;
+		},
+
+		mostrarmensagemError(msg) {
+			this.tituloMsg = "Erro"
 			this.mensagemPUser = msg
 			this.mostrarMensagem = true;
 		},
