@@ -99,6 +99,11 @@ export default {
         return;
       }
 
+      if (!this.validarNumero()) {
+        this.campoVazio = true;
+        return;
+      }
+
       let tipoContatoId;
 
       if (this.tipoContato === "Telefone") {
@@ -131,6 +136,7 @@ export default {
       this.tipoContato = "Telefone";
       this.numero = "";
       this.isWhatsapp = false;
+      this.campoVazio = false;
     },
     editarContato(index) {
       this.editingIndex = index;
@@ -177,6 +183,11 @@ export default {
       }
 
       this.numero = numero;
+    },
+
+    validarNumero() {
+      let minCaracteres = this.tipoContato === 'Celular' ? 11 : 10;
+      return this.numero.replace(/\D/g, '').length >= minCaracteres;
     },
 
     limparCampoNumero() {
@@ -291,6 +302,7 @@ input {
   padding: 8px 15px;
   border-radius: 25px;
   background: rgba(211, 201, 201, 0.774);
+  color: #000;
 }
 
 .error input {

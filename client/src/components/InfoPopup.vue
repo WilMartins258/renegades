@@ -43,7 +43,7 @@
   /* Estilo para a caixa flutuante */
   .info-popup {
     position: absolute;
-    background-color: #f1f1f1;
+    background-color: #fff;
     color: #333;
     border: 1px solid #ccc;
     padding: 10px;

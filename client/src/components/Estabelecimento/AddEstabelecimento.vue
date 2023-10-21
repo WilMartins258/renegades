@@ -6,7 +6,13 @@
           </div>
       </div>
     <div class="posicaoform-wrap">
-
+      <InfoPopupEstab
+  v-if="showDescriptionPopup"
+  :show="showDescriptionPopup"
+  :title="currentSectionInfo.title"
+  :description="currentSectionInfo.descricaoEstUser"
+  @close="closeDescriptionPopup"
+></InfoPopupEstab>
       <!------------------------------------->
                    <!--1-Endereço-->
       <div>
@@ -249,6 +255,7 @@ import EstilosMusicas from "./ComponentsChild/EstilosMusicas.vue";
 import TiposComida from "./ComponentsChild/TiposComida.vue";
 import api from "./../../services/backend.service.js";
 import { retornaCodigoBase64 } from "./../../services/conversorDeImagem.service.js";
+import InfoPopupEstab from "./ComponentsChild/InfoPopupEstab.vue";
 
 export default {
 components: {
@@ -258,7 +265,8 @@ components: {
   DashRdSociais,
   Categorias,
   EstilosMusicas,
-  TiposComida
+  TiposComida,
+  InfoPopupEstab
 },
 name: "AddEstabelecimento",
 data() {
@@ -287,6 +295,34 @@ data() {
       HorariosSelecionados: [],
       estilosSelecionadas: [],
       tiposDeComidaSelecionados: [],
+      showDescriptionPopup: false,
+      currentSectionInfo: null, // Informações da seção atual
+      sectionInfo: [
+        { 
+          title: "Seção 1: Endereço", 
+          descricaoEstUser: "Vamos começar pelo endereço do seu estabelecimento. Por favor, preencha o CEP para localizarmos seu endereço, clique em 'Próximo' para continuar." 
+        },
+        { 
+          title: "Seção 2: Dados de Contato", 
+          descricaoEstUser: "Agora, informe os dados de contato, incluindo telefone, celular e redes sociais, se desejar. Marque a caixa 'WhatsApp' se o número estiver associado a ele. Clique em 'Próximo'." 
+        },
+        { 
+          title: "Seção 3: Dados do Estabelecimento", 
+          descricaoEstUser: "Nesta seção, insira o nome, CNPJ, Descrição e categoria do seu estabelecimento. Essas informações são importantes para os usuários encontrarem você facilmente. Clique em 'Próximo'." 
+        },
+        { 
+          title: "Seção 4: Ofertas para Clientes", 
+          descricaoEstUser: "O que o seu estabelecimento oferece aos clientes? Selecione suas opções. Clique em 'Próximo'." 
+        },
+        { 
+          title: "Seção 5: Indicação do Chef", 
+          descricaoEstUser: "Carregue uma foto do seu estabelecimento e informe os horários de atendimento. A imagem é uma ótima maneira de atrair clientes. Clique em 'Próximo'."
+        },
+        { 
+          title: "Seção 6: Foto e Horário de Atendimento", 
+          descricaoEstUser: " Carregue uma foto do seu estabelecimento e informe os horários de atendimento. Clique em 'Salvar' para finalizar o cadastro do seu estabelecimento. Seus dados serão salvos e visíveis para os usuários em breve." 
+        },
+      ],
     };
 },
 methods: {
@@ -356,11 +392,12 @@ methods: {
     }
   },
   avancarSection() {
-
     if (this.currentSection < 6) {
       this.currentSection++;
+      this.title = "Novo Título da Seção"; // Atualize o título aqui
+      this.openDescriptionPopup(); // Abra o popup ao avançar
     }
-    this.scrollToTop()
+    this.scrollToTop();
   },
 
   voltarSection() {
@@ -369,6 +406,18 @@ methods: {
     }
     this.scrollToTop()
   },
+
+  openDescriptionPopup() {
+    this.showDescriptionPopup = true;
+    this.currentSectionInfo = this.sectionInfo[this.currentSection - 1]; // Informações da seção atual
+  },
+  closeDescriptionPopup() {
+    this.showDescriptionPopup = false;
+  },
+
+    loadSectionInfo() {
+      this.currentSectionInfo = this.sectionInfo[this.currentSection - 1];
+    },
 
   cancelar() {
     this.$router.push("/AreaDoEstabelecimento");
@@ -497,6 +546,7 @@ methods: {
   }
 },
   mounted(){
+    this.openDescriptionPopup();// Carregar popup primeira seção
     const cnpjInput = document.getElementById("cnpj");
     const cnpjMask = IMask(cnpjInput, {
       mask: "00.000.000/0000-00",
@@ -619,11 +669,7 @@ margin-top: 10px;
   width: 50px; 
   height:50px; 
 }
-
 }
-
-
-
 
 </style>
 
