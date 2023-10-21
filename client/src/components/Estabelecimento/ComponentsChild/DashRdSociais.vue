@@ -270,6 +270,7 @@ input {
   padding: 8px 60px;
   border-radius: 25px;
   background: rgba(211, 201, 201, 0.774);
+  color: #000;
 }
 
 
