@@ -51,7 +51,7 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     display: none;
     z-index: 1;
-    width: 200px;
+    width: 300px;
     top: 40px;
     left: 0;
   }
