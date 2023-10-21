@@ -342,7 +342,7 @@ export default {
   const index = this.categoriasSelecionadas.indexOf(category);
   
 
-      if (category === 'Todos' || this.categoriasSelecionadas.length < 3) {
+      if (category === 'Todos') {
         if (category === 'Todos') {
           // Se a categoria for "Todos", limpe a seleção atual
           this.categoriasSelecionadas = [];
@@ -384,7 +384,7 @@ export default {
       if (categoria === 'Todos') {// limpe a matriz de categorias selecionadas
         this.categoriasSelecionadas = [];
       } else if (index === -1) {// Adicione a categoria à matriz
-        if (this.categoriasSelecionadas.length < 3) {
+        if (this.categoriasSelecionadas) {
           this.categoriasSelecionadas.push(categoria);
         }
       } else {// Remova a categoria se já estiver presente
