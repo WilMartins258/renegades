@@ -44,6 +44,7 @@
         if (!this.$route.query.logged) return
         this.logged = this.$route.query.logged === 'true'
         this.$router.replace({ name: this.$route.name, query: {} })
+        
       }
     }   
   }

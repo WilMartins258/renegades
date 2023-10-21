@@ -46,10 +46,8 @@
 <script>
 import api from './../services/backend.service.js';
 import InfoPopup from './InfoPopup.vue';
-
- 
-
 import ComponentMessage from './Message.vue';
+
 export default {
 	components: {
 		InfoPopup,
@@ -190,8 +188,8 @@ export default {
 
 <style>
 .error-message {
-	color: red;
-	font-size: 12px;
+	color: orange;
+	font-size: 15px;
 }
 
 .popup{

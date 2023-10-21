@@ -1,5 +1,6 @@
 <template>
 	<form action="#" @submit.prevent="submit" class="sign-in-htm">
+		<ComponentMessage v-if="mostrarMensagem" :title="tituloMsg" :message="mensagemPUser" @close="fecharMensagem" />
 		<div class="group">
 			<label for="sign-in-user" class="label">Email 
 				<InfoPopup>	<span class="popup">Insira o seu endereço de email.</span>
@@ -34,9 +35,11 @@
 <script>
 import api from './../services/backend.service.js';
 import InfoPopup from './InfoPopup.vue';
+import ComponentMessage from './Message.vue';
 export default {
 	components: {
-		InfoPopup
+		InfoPopup,
+		ComponentMessage
   },
 	data() {
 		return {
@@ -45,6 +48,9 @@ export default {
 			//lembrarUser: true,
 			validarEmail: true,
 			validarSenha: true,
+			mostrarMensagem: false,
+			tituloMsg: "Erro",
+			mensagemPUser: "",
 		}
 	},
 	methods: {
@@ -81,7 +87,6 @@ export default {
 						sessionStorage.setItem('idEstabelecimento', login.data.idEstabelecimento);
 
 						// A partir daqui precisamos verificar para onde vamos direcionar o usuário após login concluído
-
 						
 						this.$router.push({ name: 'home', query: {  logged: 'true' }});
 					}
@@ -92,6 +97,7 @@ export default {
 			} catch (error) {
 				console.error('ERRO:: ', error);
 				console.log('error.response.data:: ', error.response.data);
+				this.mostrarmensagemPUser(error.response.data.msg);
 			}
 		},
 		limparCampos() {
@@ -99,15 +105,23 @@ export default {
 			this.Senha = '';
 			this.validarEmail = true;
 			this.validarSenha = true;
-		}
+		},
+		mostrarmensagemPUser(msg) {
+			this.mensagemPUser = msg
+			this.mostrarMensagem = true;
+		},
+			
+		fecharMensagem() {
+			this.mostrarMensagem = false;
+		},
 	},
 }
 </script>
 
 <style>
 .error {
-	color: red;
-	font-size: 12px;
+	color: orange;
+	font-size: 15px;
 }
 
 .popup{

@@ -2,7 +2,7 @@
 	width:100%;
 	margin:auto;
 	max-width:525px;
-	min-height:700px;
+	min-height:780px;
 	position:relative;
 	background:url(../../public/img/FormEstabelecimento.jpg) no-repeat center;
     background-size: 40% 100%;
@@ -55,7 +55,7 @@
 
 .login-html .sign-in:checked + .tab,
 .login-html .sign-up:checked + .tab{
-    color:#e91e2f;
+    color:orangered;
     border-color:#e91e2f;
     font: bold;
 }
@@ -132,7 +132,7 @@
     color:#000;
 }
 .login-form .group .check:checked + label .icon{
-    background:#e91e2f;
+    background:#ff9800;
 }
 .login-form .group .check:checked + label .icon:before{
     transform:scale(1) rotate(45deg);
@@ -159,11 +159,11 @@
 }
 
 .foot-lnk a {
-    color: red;
+    color: #fff;
   }
 
   .foot-lnk :hover{
-    color: #e91e2f;
+    color: #ff9800;
     cursor: pointer;
   }
 
