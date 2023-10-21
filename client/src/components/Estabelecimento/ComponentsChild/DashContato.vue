@@ -3,7 +3,15 @@
     <!--<h1>Contatos</h1>-->  
     <div>
       <form @submit.prevent="salvarContato">
-       <label for="tipoContato">Tipo de Contato:</label>
+       <label for="tipoContato">Tipo de Contato:
+            <InfoPopup>	
+              <span class="popup">Olá! Para adicionar seu contato, siga estas etapas simples:</span>
+                <br><span class="popup">1 - Escolha se deseja adicionar um telefone ou celular.</span>
+                <br><span class="popup">2 - Digite o número no campo apropriado.</span>
+                  <br><span class="popup">3 - Marque a caixa de seleção 'WhatsApp' se o número for WhatsApp.</span>
+                  <br><span class="popup">4 - Clique no botão 'Salvar' para concluir a ação.</span>
+            </InfoPopup>
+       </label>
         <select v-model="tipoContato" id="tipoContato" @change="aplicarMascara">
           <option value="Telefone">Telefone</option>
           <option value="Celular">Celular</option>
@@ -14,9 +22,12 @@
         <label for="isWhatsapp"><img src="../../../../public/img/whatsappLogo.png" alt="É WhatsApp?" class="whatsapp-image" /> É WhatsApp:</label>
         <input v-model="isWhatsapp" type="checkbox" id="isWhatsapp" name="isWhatsapp" />
         <p v-if="campoVazio" class="error-message">Informe um número válido.</p>
+        <div>
+        <br>
         <button type="submit" :disabled="isEditing" :class="{ 'disabled-button': isEditing }">
           {{ isEditing ? 'Salvando...' : 'Salvar' }}
         </button>
+      </div>
       </form>
     </div>
     <div class="table-container">
@@ -60,8 +71,11 @@
 </template>
 
 <script>
-
+import InfoPopup from '../../InfoPopup.vue';
 export default {
+  components: {
+		InfoPopup
+  },
   props:{
     ContatosSelecionadas: Array, // O valor passado pelo componente pai
   },
@@ -194,7 +208,6 @@ label {
 }
 
 .container {
-  white-space: nowrap;
   max-width: 700px;
   margin: 0 auto;
   padding: 20px;
@@ -292,6 +305,12 @@ input {
 .respButton {
     padding: 6px 12px;
   }
+
+  .popup{
+font-size: 10px;
+max-width: 200px; /* Defina a largura máxima desejada */
+word-wrap: break-word; /* Permitir quebra de palavras */
+}
 
 /* Responsive*/
 
