@@ -1,9 +1,15 @@
 <template>
   <div class="container">
-    <!--<h1>Redes Sociais</h1>-->
     <div>
       <form @submit.prevent="salvarRedeSocial">
-        <label for="redeSocial">Rede Social:</label>
+        <label for="redeSocial">Rede Social:
+            <InfoPopup>	
+              <span class="popup">Olá! Para adicionar sua rede social, siga estas etapas simples:</span>
+                <br><span class="popup">1 - Escolha a rede social que deseja compartilhar.</span>
+                <br><span class="popup">2 - Digite seu perfil ou nome de usuário da rede social escolhida no campo apropriado.</span>
+                  <br><span class="popup">3 - Clique no botão 'Salvar' para concluir a ação.</span>
+            </InfoPopup>
+        </label>
         <select v-model="redeSocial" id="redeSocial">
           <option value="1">Facebook</option>
           <option value="2">Instagram</option>
@@ -21,6 +27,7 @@
           :class="{ 'error': campoVazio }"
         />
         <p v-if="campoVazio" class="error-message">Informe um valor válido.</p>
+        <p v-if="redeSocialJaIncluida" class="error-message">Rede social já incluída.</p>
         <button type="submit" :disabled="isEditing" :class="{ 'disabled-button': isEditing }">
           {{ isEditing ? 'Salvando...' : 'Salvar' }}
         </button>
@@ -65,7 +72,11 @@
 </template>
 
 <script>
+import InfoPopup from '../../InfoPopup.vue';
 export default {
+  components: {
+		InfoPopup
+  },
   props: {
     RdSocialSelecionadas: Array, // O valor passado pelo componente pai
   },
@@ -79,25 +90,38 @@ export default {
       isEditing: false,
       listaRedesSociais: [],
       editingIndex: -1,
+      redesSociaisIncluidas: new Set(),
+      redeSocialJaIncluida: false,
     };
   },
   methods: {
     salvarRedeSocial() {
       if (!this.perfil) {
         this.campoVazio = true;
+        this.redeSocialJaIncluida = false;
         return;
       }
       const arrayRedes = [null, 'Facebook', 'Instagram', 'Twitter', 'Site do Estabelecimento', 'Cardápio Online'];
+      const redeSocial = arrayRedes[this.redeSocial];
+
+      if (this.redesSociaisIncluidas.has(redeSocial)) {
+        this.redeSocialJaIncluida = true;
+        this.campoVazio = false;
+        return;
+      }
+
       const novaRedeSocial = {
-        redeSocial: arrayRedes[this.redeSocial],
+        redeSocial: redeSocial,
         perfil: this.perfil,
         idRede: this.redeSocial
       };
+
       if (this.isEditing) {
         this.listaRedesSociais[this.editingIndex] = novaRedeSocial;
         this.isEditing = false;
       } else {
         this.listaRedesSociais.push(novaRedeSocial);
+        this.redesSociaisIncluidas.add(redeSocial);
       }
       this.limparCampos();
        this.$emit('dados-salvos', this.listaRedesSociais); //Enviar dados para o Componente pai
@@ -106,17 +130,34 @@ export default {
       this.redeSocial = "1";
       this.perfil = "";
       this.campoVazio = false;
+      this.redeSocialJaIncluida = false;
     },
     editarRedeSocial(index) {
       this.editingIndex = index;
-      this.redeSocial = this.listaRedesSociais[index].redeSocial;
+      this.redeSocial = this.listaRedesSociais[index].idRede;
       this.perfil = this.listaRedesSociais[index].perfil;
       this.isEditing = true;
     },
     salvarEdicao(index) {
-      this.listaRedesSociais[index].redeSocial = this.redeSocial;
-      this.listaRedesSociais[index].perfil = this.perfil;
+      const arrayRedes = [null, 'Facebook', 'Instagram', 'Twitter', 'Site do Estabelecimento', 'Cardápio Online'];
+      const novaRedeSocial = arrayRedes[this.redeSocial];
+      const perfil = this.perfil;
+
+      if (this.jaExisteOutraRedeSocial(novaRedeSocial, index)) {
+        this.redeSocialJaIncluida = true;
+        return;
+      }
+      
+
+      this.listaRedesSociais[index].redeSocial = novaRedeSocial;
+      this.listaRedesSociais[index].perfil = perfil;
       this.editingIndex = -1;
+      this.isEditing = false;
+      this.limparCampos();
+    },
+    cancelarEdicao() {
+      this.editingIndex = -1;
+      this.isEditing = false;
       this.limparCampos();
     },
     excluirRedeSocial(index) {
@@ -124,10 +165,13 @@ export default {
         this.listaRedesSociais.splice(index, 1);
       }
     },
-    cancelarEdicao() {
-      this.editingIndex = -1;
-      this.isEditing = false;
-      this.limparCampos();
+    jaExisteOutraRedeSocial(novaRedeSocial, index) {
+      for (let i = 0; i < this.listaRedesSociais.length; i++) {
+        if (i !== index && this.listaRedesSociais[i].redeSocial === novaRedeSocial) {
+          return true;
+        }
+      }
+      return false;
     },
   },
 };
@@ -157,7 +201,7 @@ label {
   margin: 0 auto;
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.418); 
-  white-space: nowrap;
+  
 }
 
 .table-container {
@@ -234,6 +278,14 @@ input {
   color: red;
   margin-top: 5px;
   font-size: 14px;
+}
+
+.popup{
+
+  font-size: 10px;
+  max-width: 200px; /* Defina a largura máxima desejada */
+  word-wrap: break-word; /* Permitir quebra de palavras */
+
 }
 
 /* Responsive*/
