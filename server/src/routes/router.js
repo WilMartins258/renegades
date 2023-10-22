@@ -49,11 +49,6 @@ router.use(
 );
 
 router.use(
-    "/carousel",
-    require("./carousel.js")
-);
-
-router.use(
     "/favorito",
     require("./favorito.js")
 );

@@ -37,6 +37,19 @@ router.get('/validacao', async (req, res) => {
     }
 });
 
+router.get('/carousel', async (req, res) => {
+    try {
+        const estabelecimentosCarousel = await estabelecimento_Service.carousel();
+
+        res.status(200).send(estabelecimentosCarousel);  
+    } catch (error) {
+        res.status(500).send({
+            errorMsg: 'Erro ao buscar estabelecimentos para o carousel.',
+            error: error.message
+        });
+    }
+});
+
 router.get('/filtro', async (req, res) => {
     try {
         const estabelecimentos = await estabelecimento_Service.filtros();
@@ -76,7 +89,7 @@ router.get('/filtro', async (req, res) => {
         });  
     } catch (error) {
         res.status(500).send({
-            errorMsg: 'Erro ao buscar estabelecimentos',
+            errorMsg: 'Erro ao buscar estabelecimentos para os filtros.',
             error: error.message
         });
     }

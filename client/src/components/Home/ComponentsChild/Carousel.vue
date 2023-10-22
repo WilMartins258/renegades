@@ -57,7 +57,7 @@
     async created() {
       try {
         // Retorna os 10 estabelecimentos com as maiores notas do banco de dados
-        const estabelecimentosCarousel = await api.get('/carousel');
+        const estabelecimentosCarousel = await api.get('/estabelecimento/carousel');
 
         for (let i = 0; i < estabelecimentosCarousel.data.length; i++) {
           estabelecimentosCarousel.data[i].imageSrc = require(`./../../Estabelecimento/images/${estabelecimentosCarousel.data[i].id}.${estabelecimentosCarousel.data[i].formatoFoto}`);
