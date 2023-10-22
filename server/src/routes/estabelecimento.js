@@ -20,8 +20,9 @@ const extensaoImagem_Service = require('../services/utils/extensaoImagens.servic
 const buffer_Service = require('../services/utils/buffer.service.js');
 
 const categoria_Service = require('../services/categoria.service.js');
-const opcionaol_Service = require('../services/opcional.service.js');
+const opcional_Service = require('../services/opcional.service.js');
 const comida_Service = require('../services/comida.service.js');
+const estiloMusica_Service = require('../services/estiloMusica.service.js');
 
 router.get('/validacao', async (req, res) => {
     try {
@@ -54,7 +55,7 @@ router.get('/filtro', async (req, res) => {
     try {
         const estabelecimentos = await estabelecimento_Service.filtros();
         const categorias = await categoria_Service.pegarTudo();
-        const opcionais = await opcionaol_Service.pegarTudo();
+        const opcionais = await opcional_Service.pegarTudo();
         const comidas = await comida_Service.pegarTudo();
 
         try {
@@ -158,8 +159,16 @@ router.get('/meuEstabelecimento/:id', async (req, res) => {
     try {
         console.log('req.params.id:: ', req.params.id);
 
+        const categorias = await categoria_Service.pegarTudo();
+        const opcionais = await opcional_Service.pegarTudo();
+        const estilosMusica = await estiloMusica_Service.pegarTudo();
+        const comidas = await comida_Service.pegarTudo();
+
        res.status(200).send({
-        test: 'ok'
+        categorias,
+        opcionais,
+        estilosMusica,
+        comidas
        }); 
     } catch (error) {
         console.log('Erro ao buscar dados do estabelecimento para a página de atualização de dados: ', error);

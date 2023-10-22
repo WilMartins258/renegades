@@ -523,24 +523,6 @@ data() {
   }
 },
 methods: {
-
-  async metodoInicial() {
-      try {
-        const categorias = await api.get('/categoria');
-        const opcionais = await api.get('/opcional');
-        const estilosMusica = await api.get('/estiloMusica');
-        const tipos = await api.get('/comida');
-      
-
-        this.categoria = categorias.data;
-        this.opcoes = opcionais.data;
-        this.estilos = estilosMusica.data;
-        this.tiposDeComida = tipos.data;
-
-      } catch (error) {
-        console.error('ERROR:: ', error);
-      }
-    },
     //DashCategoria------------------------------------------------------
     selecionarCategoria(opcao) { //Dash Categoria
         if (this.opcaopcaoCategSelecionadaoCategSelecionada(opcao)) {
@@ -1148,8 +1130,29 @@ computed: {
     return this.tiposDeComidaSelecionados.map(tipo => tipo.nome).join(", ");
   },
   },
-  created() {
-    this.metodoInicial();
+  async created() {
+    try {      
+      console.log('idEstabelecimento:: ', sessionStorage.getItem('idEstabelecimento'));
+
+      const dadosEstabelecimentoRequest = await api.get(`/estabelecimento/meuEstabelecimento/${sessionStorage.getItem('idEstabelecimento')}`);
+
+      console.log('dadosEstabelecimentoRequest:: ', dadosEstabelecimentoRequest.data);
+
+      const {
+        categorias,
+        opcionais,
+        estilosMusica,
+        comidas
+      } = dadosEstabelecimentoRequest.data;
+      this.categoria = categorias;
+      this.opcoes = opcionais;
+      this.estilos = estilosMusica;
+      this.tiposDeComida = comidas;
+
+      
+    } catch (error) {
+      console.log('Erro ao buscar dados da página:: ', error);
+    }
   },
 
 };
