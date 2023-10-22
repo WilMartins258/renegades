@@ -13,7 +13,7 @@ const inserir = async (dadosPromocao) => {
     }
 };
 
-const pegarPromocoesAtivas = async () => {
+const pegarTodasPromocoesAtivas = async () => {
     try {
         const promocaoQuery = `
         SELECT p.idEstabelecimento, p.nome as 'nomePromo', p.descricao, p.codigo, p.dataInicio, p.dataFim, e.numeroEstabelecimento, e.logradouro, e.bairro, e.cidade, e.nome,
@@ -47,6 +47,6 @@ const verificarValidadeDePromocoes = async () => {
 
 module.exports = {
     inserir,
-    pegarPromocoesAtivas,
+    pegarTodasPromocoesAtivas,
     verificarValidadeDePromocoes
 };

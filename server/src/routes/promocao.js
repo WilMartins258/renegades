@@ -4,7 +4,7 @@ const categoria_Service = require('../services/categoria.service.js');
 
 router.get('/usuario', async (req, res) => {
     try {
-        const promocoesAtivas = await promocao_Service.pegarPromocoesAtivas();
+        const promocoesAtivas = await promocao_Service.pegarTodasPromocoesAtivas();
         const categorias = await categoria_Service.pegarTudo();
 
         for (let i=0; i < promocoesAtivas.length; i++) {
@@ -30,7 +30,7 @@ router.get('/usuario', async (req, res) => {
 });
 
 router.get('/estabelecimento', async (req, res) => {
-    try {    
+    try {
 
     } catch (error) {
         console.log('ERROR:: ', error);
