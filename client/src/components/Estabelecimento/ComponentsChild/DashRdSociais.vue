@@ -24,9 +24,9 @@
           id="perfil"
           name="perfil"
           placeholder="Digite aqui"
-          :class="{ 'error': campoVazio }"
+          :class="{ 'error': campoVazioRdSocial }"
         />
-        <p v-if="campoVazio" class="error-message">Informe um valor válido.</p>
+        <p v-if="campoVazioRdSocial" class="error-message">Informe um valor válido.</p>
         <p v-if="redeSocialJaIncluida" class="error-message">Rede social já incluída.</p>
         <button type="submit" :disabled="isEditingRdSocial" :class="{ 'disabled-button': isEditingRdSocial }">
           {{ isEditingRdSocial ? 'Salvando...' : 'Salvar' }}
@@ -47,7 +47,7 @@
           <td>{{ rede.redeSocial }}</td>
           <td>{{ rede.perfil }}</td>
           <td>
-            <template v-if="editingIndex !== index">
+            <template v-if="editingIndexRdSocial !== index">
               <button class="respButton" @click="editarRedeSocial(index)">
                 <i class="uil uil-edit"></i>
               </button>
@@ -86,10 +86,10 @@ export default {
       redeSocial: "1",
       value: this.redeSocial,
       perfil: "",
-      campoVazio: false,
+      campoVazioRdSocial: false,
       isEditingRdSocial: false,
       listaRedesSociais: [],
-      editingIndex: -1,
+      editingIndexRdSocial: -1,
       redesSociaisIncluidas: new Set(),
       redeSocialJaIncluida: false,
     };
@@ -97,7 +97,7 @@ export default {
   methods: {
     salvarRedeSocial() {
       if (!this.perfil) {
-        this.campoVazio = true;
+        this.campoVazioRdSocial = true;
         this.redeSocialJaIncluida = false;
         return;
       }
@@ -106,7 +106,7 @@ export default {
 
       if (this.redesSociaisIncluidas.has(redeSocial)) {
         this.redeSocialJaIncluida = true;
-        this.campoVazio = false;
+        this.campoVazioRdSocial = false;
         return;
       }
 
@@ -117,23 +117,23 @@ export default {
       };
 
       if (this.isEditingRdSocial) {
-        this.listaRedesSociais[this.editingIndex] = novaRedeSocial;
+        this.listaRedesSociais[this.editingIndexRdSocial] = novaRedeSocial;
         this.isEditingRdSocial = false;
       } else {
         this.listaRedesSociais.push(novaRedeSocial);
         this.redesSociaisIncluidas.add(redeSocial);
       }
-      this.limparCampos();
-       this.$emit('dados-salvos', this.listaRedesSociais); //Enviar dados para o Componente pai
+      this.limparCamposRdSocial();
+      this.$emit('dados-salvos', this.listaRedesSociais); //Enviar dados para o Componente pai
     },
-    limparCampos() {
+    limparCamposRdSocial() {
       this.redeSocial = "1";
       this.perfil = "";
-      this.campoVazio = false;
+      this.campoVazioRdSocial = false;
       this.redeSocialJaIncluida = false;
     },
     editarRedeSocial(index) {
-      this.editingIndex = index;
+      this.editingIndexRdSocial = index;
       this.redeSocial = this.listaRedesSociais[index].idRede;
       this.perfil = this.listaRedesSociais[index].perfil;
       this.isEditingRdSocial = true;
@@ -147,18 +147,18 @@ export default {
         this.redeSocialJaIncluida = true;
         return;
       }
-      
+
 
       this.listaRedesSociais[index].redeSocial = novaRedeSocial;
       this.listaRedesSociais[index].perfil = perfil;
-      this.editingIndex = -1;
+      this.editingIndexRdSocial = -1;
       this.isEditingRdSocial = false;
-      this.limparCampos();
+      this.limparCamposRdSocial();
     },
     cancelarEdicaoRdSocial() {
-      this.editingIndex = -1;
+      this.editingIndexRdSocial = -1;
       this.isEditingRdSocial = false;
-      this.limparCampos();
+      this.limparCamposRdSocial();
     },
     excluirRedeSocial(index) {
       if (confirm("Tem certeza que deseja excluir?")) {

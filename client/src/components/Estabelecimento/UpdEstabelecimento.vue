@@ -361,12 +361,77 @@
             <br />
             <p>Tipos de Comida Selecionados: {{ tiposDeComidaSelecionadosString }}</p>
           </div>
-         <!-- Dash Tipos Comida  Termina aqui--> 
+         <!-- Dash Tipos Comida Termina aqui--> 
       </div>
       <div>
         <h2>Horário de atencimento:</h2><br>
-        <!-- Chamada para o Component --> 
-        <DashHorAtendimento :HorariosSelecionados="HorariosSelecionados" :horarioSelecionado="horarioSelecionado" @dados-salvos="receberHorario" />
+        <!-- Dash Hprario Atendimento inicia aqui --> 
+        <div class="container">
+          <div>
+            <form @submit.prevent="salvarHorario">
+              <label for="diaSemana">Dias de Funcionamento:</label>
+              <select v-model="diaSelecionado" id="diaSemana">
+                <option value="1">Domingo</option>
+                <option value="2">Segunda-feira</option>
+                <option value="3">Terça-feira</option>
+                <option value="4">Quarta-feira</option>
+                <option value="5">Quinta-feira</option>
+                <option value="6">Sexta-feira</option>
+                <option value="7">Sábado</option>
+                <option value="8">Segunda a Sexta</option>
+                <option value="9">terça a Sexta</option>
+                <option value="10">Sábado a Domingo </option>
+              </select>
+              <label for="horaInicio">Início:</label>
+              <input v-model="horaInicio" type="time" id="horaInicio" name="horaInicio" />
+              <label for="horaTermino">Término:</label>
+              <input v-model="horaTermino" type="time" id="horaTermino" name="horaTermino" />
+              <button type="submit" :disabled="isEditingHorario" :class="{ 'disabled-button': isEditingHorario }">
+                {{ isEditingHorario ? 'Salvando...' : 'Salvar' }}
+              </button>
+            </form>
+            <p v-if="timeFieldsError" class="error-message">{{ timeFieldsError }}</p>
+          </div>
+          <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Dia de Atendimento</th>
+                <th>Abre</th>
+                <th>Fecha</th>
+                <th>Editar/Excluir</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(horario, index) in listahorarios" :key="index">
+                <td>{{ diaSemana[horario.dia] }}</td>
+                <td>{{ horario.abre }}</td>
+                <td>{{ horario.fecha }}</td>
+                <td>
+                  <template v-if="editingIndexHorario !== index">
+                      <button class="respButton" @click="editarhorario(index)">
+                        <i class="uil uil-edit"></i>
+                      </button>
+                      <button class="respButton" @click="excluirhorario(index)">
+                        <i class="uil uil-file-times-alt"></i>
+                      </button>
+                    </template>
+                    <template v-else>
+                      <button class="respButton" @click="salvarEdicaoHorario(index)">
+                        <i class="uil uil-check"></i>
+                      </button>
+                      <button class="respButton" @click="cancelarEdicaohorario">
+                        <i class="uil uil-times"></i>
+                      </button>
+                  </template>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </div>
+
+        <!-- Dash Hprario Atendimento Termina aqui --> 
       </div>
     </div>
   
@@ -376,7 +441,6 @@
         <button type="button" class="button" id="salvarButton" @click="salvar" disabled>Salvar</button>
         <button type="button" class="button" id="excluirButton">Excluir</button>
         <button type="button" class="button" id="cancelarButton" @click="cancelar" disabled>Cancelar</button>
-
       </div>
 </div>
 
@@ -443,6 +507,15 @@ data() {
       editingIndexRdSocial: -1,//DashRedeSocial
       redesSociaisIncluidas: new Set(),//DashRedeSocial
       redeSocialJaIncluida: false,//DashRedeSocial
+      diaSelecionado: "2",//DashHorarioAttendimento
+      diaSemana: [null, "Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Segunda a Sexta", "terça a Sexta", "Sábado a Domingo"],//DashHorarioAttendimento
+      horariosPorDia: {},//DashHorarioAttendimento
+      horaInicio: "",//DashHorarioAttendimento
+      horaTermino: "",//DashHorarioAttendimento
+      listahorarios: [], //DashHorarioAttendimento
+      editingIndexHorario: -1,//DashHorarioAttendimento
+      isEditingHorario: false,//DashHorarioAttendimento
+      timeFieldsError: false,//DashHorarioAttendimento
   }
 },
 methods: {
@@ -711,12 +784,92 @@ methods: {
 
 
     //DashHorarioAtendimento------------------------------------------------------
-  
-  
-    receberHorario(horario) {
-    this.HorariosSelecionados = horario;
-  },
+    salvarHorario() {
+      if (!this.horaInicio || !this.horaTermino) {
+        this.timeFieldsError = "Preencha todos os campos.";
+      } else {
+        const diaSelecionado = this.diaSelecionado;
+        const novoHorario = {
+          dia: diaSelecionado,
+          abre: this.horaInicio,
+          fecha: this.horaTermino,
+        };
+        this.listahorarios.push(novoHorario);
+        this.limparCamposhorario();
+        this.timeFieldsError = ""; // Limpar o erro, caso tenha sido exibido anteriormente
+        this.$emit("dados-salvos", this.listahorarios); // Emitir o evento para atualizar o valor no componente pai
+      }
+    },
+    limparCamposhorario() {
+      this.diaSelecionado = "1"; // Restaurar o valor padrão para Segunda-feira
+      this.horaInicio = "";
+      this.horaTermino = "";
+    },
+    editarhorario(index) {
+      this.editingIndexHorario = index;
+      this.diaSelecionado = this.listahorarios[index].dia;
+      this.horaInicio = this.listahorarios[index].abre;
+      this.horaTermino = this.listahorarios[index].fecha;
+      this.isEditingHorario = true;
+    },
+    salvarEdicaoHorario(index) {
+      if (!this.horaInicio || !this.horaTermino) {
+        this.timeFieldsError = "Preencha todos os campos.";
+        return;
+      }
 
+      const diaSelecionado = this.diaSelecionado;
+      const novoHorario = {
+        dia: diaSelecionado,
+        abre: this.horaInicio,
+        fecha: this.horaTermino,
+      };
+
+      // Atualize o horário editado no array this.listahorarios
+      this.listahorarios[index] = novoHorario;
+
+      // Limpe os campos e redefina as variáveis de controle
+      this.limparCamposhorario();
+      this.editingIndexHorario = -1;
+      this.isEditingHorario = false;
+      this.timeFieldsError = "";
+
+      this.$emit("dados-salvos", this.listahorarios); // Emita o evento para atualizar o valor no componente pai
+    },
+    cancelarEdicaohorario() {
+      this.editingIndexHorario = -1;
+      this.limparCamposhorario();
+      this.isEditingHorario = false;
+    },
+    excluirhorario(index) {
+      const diaExcluido = this.listahorarios[index].dia;
+
+      if (
+        diaExcluido === "Segunda a Sexta" ||
+        diaExcluido === "terça a Sexta" ||
+        diaExcluido === "Sábado a Domingo"
+      ) {
+        const diasEspeciais = {
+          "Segunda a Sexta": ["Segunda", "Terca", "Quarta", "Quinta", "Sexta"],
+          "terça a Sexta": ["Terca", "Quarta", "Quinta", "Sexta"],
+          "Sábado a Domingo": ["Sabado", "Domingo"],
+        };
+
+        diasEspeciais[diaExcluido].forEach((dia) => {
+          if (this.horariosPorDia[dia] > 0) {
+            this.horariosPorDia[dia]--;
+          }
+        });
+      } else {
+        if (this.horariosPorDia[diaExcluido] > 0) {
+          this.horariosPorDia[diaExcluido]--;
+        }
+      }
+      if (confirm("Tem certeza que deseja excluir?")) {
+        this.listahorarios.splice(index, 1);
+      }
+    },
+//--------------------------Metodo dos Dash's encerra Aqui----------------------------------------------------------------------
   async salvarDados() {
     const formData = {
       nomeEstabelecimento: this.nomeEstabelecimento,

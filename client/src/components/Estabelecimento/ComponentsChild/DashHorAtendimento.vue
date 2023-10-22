@@ -20,8 +20,8 @@
         <input v-model="horaInicio" type="time" id="horaInicio" name="horaInicio" />
         <label for="horaTermino">Término:</label>
         <input v-model="horaTermino" type="time" id="horaTermino" name="horaTermino" />
-        <button type="submit" :disabled="isEditing" :class="{ 'disabled-button': isEditing }">
-          {{ isEditing ? 'Salvando...' : 'Salvar' }}
+        <button type="submit" :disabled="isEditingHorario" :class="{ 'disabled-button': isEditingHorario }">
+          {{ isEditingHorario ? 'Salvando...' : 'Salvar' }}
         </button>
       </form>
       <p v-if="timeFieldsError" class="error-message">{{ timeFieldsError }}</p>
@@ -42,7 +42,7 @@
           <td>{{ horario.abre }}</td>
           <td>{{ horario.fecha }}</td>
           <td>
-            <template v-if="editingIndex !== index">
+            <template v-if="editingIndexHorario !== index">
                 <button class="respButton" @click="editarhorario(index)">
                   <i class="uil uil-edit"></i>
                 </button>
@@ -51,10 +51,10 @@
                 </button>
               </template>
               <template v-else>
-                <button class="respButton" @click="salvarEdicao(index)">
+                <button class="respButton" @click="salvarEdicaoHorario(index)">
                   <i class="uil uil-check"></i>
                 </button>
-                <button class="respButton" @click="cancelarEdicao">
+                <button class="respButton" @click="cancelarEdicaohorario">
                   <i class="uil uil-times"></i>
                 </button>
             </template>
@@ -82,15 +82,15 @@ export default {
       horaInicio: "",
       horaTermino: "",
       listahorarios: [], // Array para armazenar os horários de atendimento
-      editingIndex: -1,
-      isEditing: false,
+      editingIndexHorario: -1,
+      isEditingHorario: false,
       timeFieldsError: false,
     };
   },
   methods: {
     salvarHorario() {
       if (!this.horaInicio || !this.horaTermino) {
-        this.timeFieldsError = "Preencha ambos os horários.";
+        this.timeFieldsError = "Preencha todos os campos.";
       } else {
         const diaSelecionado = this.diaSelecionado;
         const novoHorario = {
@@ -99,33 +99,51 @@ export default {
           fecha: this.horaTermino,
         };
         this.listahorarios.push(novoHorario);
-        this.limparCampos();
+        this.limparCamposhorario();
         this.timeFieldsError = ""; // Limpar o erro, caso tenha sido exibido anteriormente
         this.$emit("dados-salvos", this.listahorarios); // Emitir o evento para atualizar o valor no componente pai
       }
     },
-    limparCampos() {
+    limparCamposhorario() {
       this.diaSelecionado = "1"; // Restaurar o valor padrão para Segunda-feira
       this.horaInicio = "";
       this.horaTermino = "";
     },
     editarhorario(index) {
-      this.editingIndex = index;
+      this.editingIndexHorario = index;
       this.diaSelecionado = this.listahorarios[index].dia;
       this.horaInicio = this.listahorarios[index].abre;
       this.horaTermino = this.listahorarios[index].fecha;
-      this.isEditing = true;
+      this.isEditingHorario = true;
     },
-    salvarEdicao(index) {
-      const diaSelecionado = this.diaSelecionado;
-      const diaAnterior = this.listahorarios[index].dia;
+    salvarEdicaoHorario(index) {
+      if (!this.horaInicio || !this.horaTermino) {
+        this.timeFieldsError = "Preencha todos os campos.";
+        return;
+      }
 
-      // ... (restante do código para salvar a edição)
+      const diaSelecionado = this.diaSelecionado;
+      const novoHorario = {
+        dia: diaSelecionado,
+        abre: this.horaInicio,
+        fecha: this.horaTermino,
+      };
+
+      // Atualize o horário editado no array this.listahorarios
+      this.listahorarios[index] = novoHorario;
+
+      // Limpe os campos e redefina as variáveis de controle
+      this.limparCamposhorario();
+      this.editingIndexHorario = -1;
+      this.isEditingHorario = false;
+      this.timeFieldsError = "";
+
+      this.$emit("dados-salvos", this.listahorarios); // Emita o evento para atualizar o valor no componente pai
     },
-    cancelarEdicao() {
-      this.editingIndex = -1;
-      this.limparCampos();
-      this.isEditing = false;
+    cancelarEdicaohorario() {
+      this.editingIndexHorario = -1;
+      this.limparCamposhorario();
+      this.isEditingHorario = false;
     },
     excluirhorario(index) {
       const diaExcluido = this.listahorarios[index].dia;
@@ -151,8 +169,9 @@ export default {
           this.horariosPorDia[diaExcluido]--;
         }
       }
-
-      this.listahorarios.splice(index, 1);
+      if (confirm("Tem certeza que deseja excluir?")) {
+        this.listahorarios.splice(index, 1);
+      }
     },
 
   },
@@ -207,7 +226,7 @@ table {
 
 th,
 td {
-  border: 1px solid #ccc;
+  border: 1px solid #fff;
   padding: 8px;
   text-align: center;
   color: #000;
@@ -224,7 +243,7 @@ button {
   border: none;
   padding: 8px 13px;
   border-radius: 25px;
-  color: #ccc;
+  color: #fff;
 }
 
 button:hover {
