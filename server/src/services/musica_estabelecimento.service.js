@@ -1,3 +1,5 @@
+const db = require('../models/db.js');
+
 const inserir = async (dadoDeMusica, conn) => {
     try {
         const inserirMusicaEstabelecimentoQuery = `INSERT INTO musica_estabelecimento (idEstabelecimento, idEstiloMusica) VALUES (?, ?);`;
