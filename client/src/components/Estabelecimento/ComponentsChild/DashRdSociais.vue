@@ -3,7 +3,7 @@
     <div>
       <form @submit.prevent="salvarRedeSocial">
         <label for="redeSocial">Rede Social:
-            <InfoPopup>	
+            <InfoPopup class="custom-popup">  	
               <span class="popup">Olá! Para adicionar sua rede social, siga estas etapas simples:</span>
                 <br><span class="popup">1 - Escolha a rede social que deseja compartilhar.</span>
                 <br><span class="popup">2 - Digite seu perfil ou nome de usuário da rede social escolhida no campo apropriado.</span>
@@ -201,7 +201,7 @@ label {
   margin: 0 auto;
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.418); 
-  
+  white-space: nowrap;
 }
 
 .table-container {
@@ -281,13 +281,11 @@ input {
   font-size: 14px;
 }
 
-.popup{
-
-  font-size: 10px;
-  max-width: 200px; /* Defina a largura máxima desejada */
-  word-wrap: break-word; /* Permitir quebra de palavras */
-
-}
+.custom-popup {
+    font-size: 15px;
+    max-width: 200px; /* Defina a largura máxima desejada */
+    white-space: normal; /* Remova o white-space: nowrap */
+  }
 
 /* Responsive*/
 

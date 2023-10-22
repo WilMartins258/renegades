@@ -16,8 +16,8 @@
           <option value="Telefone">Telefone</option>
           <option value="Celular">Celular</option>
         </select>
-        <label for="numero">Número:</label>
-        <input v-model="numero" type="text" id="numero" name="numero" placeholder="Digite aqui"
+        <label for="numeroContato">Número:</label>
+        <input v-model="numeroContato" type="text" id="numeroContato" name="numeroContato" placeholder="Digite aqui"
           :class="{ 'error': campoVazio }" @input="aplicarMascara" />
         <label for="isWhatsapp"><img src="../../../../public/img/whatsappLogo.png" alt="É WhatsApp?" class="whatsapp-image" /> É WhatsApp:</label>
         <input v-model="isWhatsapp" type="checkbox" id="isWhatsapp" name="isWhatsapp" />
@@ -43,7 +43,7 @@
       <tbody>
         <tr v-for="(contato, index) in listaContatos" :key="index">
           <td>{{ contato.tipoContato }}</td>
-          <td>{{ contato.numero }}</td>
+          <td>{{ contato.numeroContato }}</td>
           <td>{{ contato.isWhatsapp ? 'Sim' : 'Não' }}</td>
           <td>
             <template v-if="editingIndex !== index">
@@ -83,7 +83,7 @@ export default {
   data() {
     return {
       tipoContato: "Telefone",
-      numero: "",
+      numeroContato: "",
       campoVazio: false,
       isEditingContato: false,
       listaContatos: [],
@@ -93,13 +93,13 @@ export default {
   },
   methods: {
     salvarContato() {
-      // Verifique se o campo numero está vazio
-      if (!this.numero) {
+      // Verifique se o campo numeroContato está vazio
+      if (!this.numeroContato) {
         this.campoVazio = true;
         return;
       }
 
-      if (!this.validarNumero()) {
+      if (!this.validarnumeroContato()) {
         this.campoVazio = true;
         return;
       }
@@ -114,7 +114,7 @@ export default {
 
       const novoContato = {
         tipoContato: this.tipoContato,
-        numero: this.numero,
+        numeroContato: this.numeroContato,
         isWhatsapp: this.isWhatsapp,
       };
       
@@ -129,12 +129,12 @@ export default {
         // Adicionar um novo contato
         this.listaContatos.push(novoContato);
       }
-      this.limparCampos();
+      this.limparCamposContato();
       this.$emit("dados-salvos", this.listaContatos);
     },
-    limparCampos() {
+    limparCamposContato() {
       this.tipoContato = "Telefone";
-      this.numero = "";
+      this.numeroContato = "";
       this.isWhatsapp = false;
       this.campoVazio = false;
     },
@@ -142,7 +142,7 @@ export default {
       this.editingIndex = index;
       this.isEditingContato = true; // Defina como true ao editar um contato
       this.tipoContato = this.listaContatos[index].tipoContato;
-      this.numero = this.listaContatos[index].numero;
+      this.numeroContato = this.listaContatos[index].numeroContato;
       this.isWhatsapp = this.listaContatos[index].isWhatsapp;
     },
     excluirContato(index) {
@@ -153,47 +153,47 @@ export default {
     salvarEdicaoContato(index) {
         this.listaContatos[index] = {
           tipoContato: this.tipoContato,
-          numero: this.numero,
+          numeroContato: this.numeroContato,
           isWhatsapp: this.isWhatsapp,
         };
         this.editingIndex = -1;
         this.isEditingContato = false;
-        this.limparCampos();
+        this.limparCamposContato();
       },
     cancelarEdicaoContato() {
       this.editingIndex = -1;
       this.isEditingContato = false; // Defina como false ao cancelar a edição
-      this.limparCampos();
+      this.limparCamposContato();
     },
     limparCampoVazio() {
       this.campoVazio = false;
     },
     aplicarMascara() {
-      let numero = this.numero.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+      let numeroContato = this.numeroContato.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
       let maxCaracteres = this.tipoContato === 'Celular' ? 11 : 10;
 
-      if (numero.length > maxCaracteres) {
-        numero = numero.slice(0, maxCaracteres); // Limitar o número de caracteres
+      if (numeroContato.length > maxCaracteres) {
+        numeroContato = numeroContato.slice(0, maxCaracteres); // Limitar o número de caracteres
       }
 
       if (this.tipoContato === 'Telefone') {
         // Aplicar a máscara de telefone
-        numero = numero.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
+        numeroContato = numeroContato.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
       } else if (this.tipoContato === 'Celular') {
         // Aplicar a máscara de celular
-        numero = numero.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+        numeroContato = numeroContato.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
       }
 
-      this.numero = numero;
+      this.numeroContato = numeroContato;
     },
 
-    validarNumero() {
+    validarnumeroContato() {
       let minCaracteres = this.tipoContato === 'Celular' ? 11 : 10;
-      return this.numero.replace(/\D/g, '').length >= minCaracteres;
+      return this.numeroContato.replace(/\D/g, '').length >= minCaracteres;
     },
 
-    limparCampoNumero() {
-      this.numero = "";
+    limparCamponumeroContato() {
+      this.numeroContato = "";
       console.log(this.tipoContato);
     },
     
@@ -294,7 +294,7 @@ button:disabled:hover {
     height: auto; 
   }
 
-  input#numero {
+  input#numeroContato {
   width: 50%; /* Preencher todo o espaço disponível no contêiner */
   box-sizing: border-box; /* Incluir borda e preenchimento no tamanho total */
 }
@@ -393,7 +393,7 @@ input {
 }
 
 @media (max-width: 414px) {
-  input#numero {
+  input#numeroContato {
   width: 100%; /* Preencher todo o espaço disponível no contêiner */
   box-sizing: border-box; /* Incluir borda e preenchimento no tamanho total */
 }
