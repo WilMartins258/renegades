@@ -1585,9 +1585,9 @@ INSERT INTO promocao VALUES (
 	'Mc lanche metade do preço', -- nome              VARCHAR(100) not null,
 	'Apresente o código da promoção no momento da finalização da compra e receba um desconto de metade do valor do seu lanche', -- descricao         VARCHAR(400) not null,
 	'XXY-38', -- codigo            VARCHAR(20) not null,
-	'Ativa', -- ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa' not null,
+	'Inativa', -- ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa' not null,
 	'2023-10-14', -- dataInicio        DATE not null,
-	'2023-10-20' -- dataFim           DATE not null
+	'2023-12-20' -- dataFim           DATE not null
 );
 
 INSERT INTO promocao VALUES (
@@ -1596,9 +1596,9 @@ INSERT INTO promocao VALUES (
 	'Big Mc metade do preço', -- nome              VARCHAR(100) not null,
 	'Apresente o código da promoção no momento da finalização da compra e receba um desconto de metade do valor do seu lanche', -- descricao         VARCHAR(400) not null,
 	'XXY-39', -- codigo            VARCHAR(20) not null,
-	'Ativa', -- ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa' not null,
+	'Inativa', -- ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa' not null,
 	'2023-10-14', -- dataInicio        DATE not null,
-	'2023-10-20' -- dataFim           DATE not null
+	'2023-12-20' -- dataFim           DATE not null
 );
 
 INSERT INTO promocao VALUES (
