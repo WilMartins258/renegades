@@ -2,7 +2,7 @@ const db = require('../models/db.js');
 
 const inserir = async (dadosPromocao) => {
     try {
-        const promocaoQuery = ``;
+        const promocaoQuery = 'INSERT INTO promocao (idEstabelecimento, nome, descricao, codigo, dataInicio, dataFim) VALUES (?, ?, ?, ?, ?, ?);';
         const connection = await db;
 
         const [insercaoPromocao] = await connection.query(promocaoQuery, dadosPromocao);
