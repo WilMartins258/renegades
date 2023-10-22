@@ -249,7 +249,7 @@ button {
   border: none;
   padding: 8px 20px;
   border-radius: 25px;
-  color: #ccc;
+  color: #fff;
 }
 
 button:hover {
