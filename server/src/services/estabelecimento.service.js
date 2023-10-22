@@ -81,7 +81,8 @@ const filtros = async () => {
         JOIN comida co ON ce.idComida = co.id 
         WHERE ce.idEstabelecimento = e.id
       ) AS comidasString
-    FROM estabelecimento e;`;
+    FROM estabelecimento e
+    WHERE e.status = 'Validado';`;
     const connection = await db;
 
     const [estabelecimentosFiltros] = await connection.query(filtrosQuery);
