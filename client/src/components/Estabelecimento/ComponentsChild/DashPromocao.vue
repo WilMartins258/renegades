@@ -198,35 +198,41 @@ export default {
     }
   },
   methods: {
-    salvarPromocao() {
-
-       // Formate as datas antes de adicioná-las à lista de promoções
-      this.novaPromocao.dataInicio = new Date(this.novaPromocao.dataInicio).toLocaleDateString('pt-BR');
-      this.novaPromocao.dataFim = new Date(this.novaPromocao.dataFim).toLocaleDateString('pt-BR');
-      if (
-        this.novaPromocao.codigo.trim() !== "" &&
-        this.novaPromocao.nome.trim() !== "" &&
-        this.novaPromocao.descricao.trim() !== "" &&
-        this.novaPromocao.dataInicio !== "" &&
-        this.novaPromocao.dataFim !== ""
-      ) {
-        if (this.isEditing) {
-          this.listaPromocoes[this.editingIndex] = this.novaPromocao;
-          this.isEditing = false;
+    async salvarPromocao() {
+      try {
+        // Formate as datas antes de adicioná-las à lista de promoções
+        this.novaPromocao.dataInicio = new Date(this.novaPromocao.dataInicio).toLocaleDateString('pt-BR');
+        this.novaPromocao.dataFim = new Date(this.novaPromocao.dataFim).toLocaleDateString('pt-BR');
+        if (
+          this.novaPromocao.codigo.trim() !== "" &&
+          this.novaPromocao.nome.trim() !== "" &&
+          this.novaPromocao.descricao.trim() !== "" &&
+          this.novaPromocao.dataInicio !== "" &&
+          this.novaPromocao.dataFim !== ""
+        ) {
+          if (this.isEditing) {
+            this.listaPromocoes[this.editingIndex] = this.novaPromocao;
+            this.isEditing = false;
+          } else {
+            this.listaPromocoes.push({ ...this.novaPromocao });
+            this.novaPromocao.idEstabelecimento = sessionStorage.getItem('idEstabelecimento');
+            await api.post('/promocao', this.novaPromocao);
+          }
+          this.novaPromocao = {
+            codigo: "",
+            nome: "",
+            descricao: "",
+            dataInicio: "",
+            dataFim: "",
+            Inativar: false,
+          };
+          this.campoVazio = false;
         } else {
-          this.listaPromocoes.push({ ...this.novaPromocao });
+          this.campoVazio = true;
         }
-        this.novaPromocao = {
-          codigo: "",
-          nome: "",
-          descricao: "",
-          dataInicio: "",
-          dataFim: "",
-          Inativar: false,
-        };
-        this.campoVazio = false;
-      } else {
-        this.campoVazio = true;
+        
+      } catch (error) {
+        console.log('Erro ao salvar promoção: ', error);
       }
     },
     editarPromocao(index) {
