@@ -142,6 +142,7 @@
 
 <script>
 import api from './../../../services/backend.service.js';
+import dataFormat from './../../../services/dataToDiaMesAno.service';
 
 export default {
   name: "CadastroPromocoes",
@@ -166,20 +167,32 @@ export default {
   },
   async created() {
     try {
-      const promocoesRequest = await api.get('/promocao/estabelecimento');
+      const promocoesRequest = await api.get(`/promocao/estabelecimento/${sessionStorage.getItem('idEstabelecimento')}`);
 
-      if (promocoesRequest.data.promocoesAtivas) {
+      const {
+        promocoesAtivas,
+        promocoesInativas,
+        promocoesVencidas
+      } = promocoesRequest.data;
 
+      for (let i=0; i < promocoesAtivas.length; i++) {
+        promocoesAtivas[i].dataInicio = dataFormat(promocoesAtivas[i].dataInicio);
+        promocoesAtivas[i].dataFim = dataFormat(promocoesAtivas[i].dataFim);
       }
 
-      if (promocoesRequest.data.promocoesInativas) {
-        
+      for (let i=0; i < promocoesInativas.length; i++) {
+        promocoesInativas[i].dataInicio = dataFormat(promocoesInativas[i].dataInicio);
+        promocoesInativas[i].dataFim = dataFormat(promocoesInativas[i].dataFim);
       }
 
-      if (promocoesRequest.data.promocoesVencidas) {
-        
+      for (let i=0; i < promocoesVencidas.length; i++) {
+        promocoesVencidas[i].dataInicio = dataFormat(promocoesVencidas[i].dataInicio);
+        promocoesVencidas[i].dataFim = dataFormat(promocoesVencidas[i].dataFim);
       }
-      
+
+      this.listaPromocoes = promocoesAtivas;
+      this.listaPromocoesInativas = promocoesInativas
+      this.listaPromocoesVencidas = promocoesVencidas;
     } catch (error) {
       console.log('Erro ao buscar promoções do estabelecimentos: ', error);
     }
@@ -271,63 +284,7 @@ export default {
         }
       }
     },  
-  },
-  mounted() {
-        // substitua pelos dados do BD
-        this.listaPromocoes = [
-      {
-        codigo: "01",
-        nome: "Promoção ativa 1",
-        descricao: "Descrição da Promoção ativa 1",
-        dataInicio: "24/09/2023",
-        dataFim: "02/10/2023",
-      },
-      {
-        codigo: "02",
-        nome: "Promoção ativa 2",
-        descricao: "Descrição da Promoção ativa 2",
-        dataInicio: "01/10/2023",
-        dataFim: "10/10/2023",
-      },
-    ]
-    // substitua pelos dados do BD
-    this.listaPromocoesInativas = [
-      {
-        codigo: "10",
-        nome: "Promoção Inativa 1",
-        descricao: "Descrição da Promoção Inativa 1",
-        dataInicio: "20/09/2023",
-        dataFim: "30/09/2023",
-      },
-      {
-        codigo: "11",
-        nome: "Promoção Inativa 2",
-        descricao: "Descrição da Promoção Inativa 2",
-        dataInicio: "01/10/2023",
-        dataFim: "10/10/2023",
-      },
-      
-    ];
-
-    // substitua pelos dados do BD
-    this.listaPromocoesVencidas = [
-      {
-        codigo: "20",
-        nome: "Promoção Concluída 1",
-        descricao: "Descrição da Promoção Concluída 1",
-        dataInicio: "15/08/2023",
-        dataFim: "30/08/2023",
-      },
-      {
-        codigo: "21",
-        nome: "Promoção Concluída 2",
-        descricao: "Descrição da Promoção Concluída 2",
-        dataInicio: "01/07/2023",
-        dataFim: "15/07/2023",
-      },
-
-    ];
-  },
+  }
 };
 </script>
 

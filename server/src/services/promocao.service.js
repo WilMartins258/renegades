@@ -13,7 +13,7 @@ const inserir = async (dadosPromocao) => {
     }
 };
 
-const pegarPromocoesPorIdEstabelecimento = async (idEstabelecimento) => {
+const pegarPorIdEstabelecimento = async (idEstabelecimento) => {
     try {
         const promocaoQuery = 'SELECT * FROM promocao WHERE idEstabelecimento = ?;';
         const connection = await db;
@@ -60,6 +60,6 @@ const verificarValidadeDePromocoes = async () => {
 module.exports = {
     inserir,
     pegarTodasPromocoesAtivas,
-    pegarPromocoesPorIdEstabelecimento,
+    pegarPorIdEstabelecimento,
     verificarValidadeDePromocoes
 };
