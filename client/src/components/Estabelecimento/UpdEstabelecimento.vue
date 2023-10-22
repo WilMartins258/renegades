@@ -5,7 +5,6 @@
       <!------------------------------------->
                    <!--1-Endereço-->
 <!-- Foto Estabelecimento -->
-<!-- Foto Estabelecimento -->
 <h2>Foto do estabelecimento</h2><br>
 <div class="group">
 <div class="image-container"> <!-- Novo contêiner para centralizar -->
@@ -14,7 +13,7 @@
       id="estabelecimentoPhoto"
       accept="image/*"
       @change="handleEstabelecimentoPhotoChange"
-      />
+       disabled />
 </div>
 <img
   v-if="estabelecimentoPhoto"
@@ -111,6 +110,7 @@
           type="file"
           accept="image/*"
           @change="AddFoto($event, index)"
+          disabled
           />
         <img
           v-if="recomendacao.photo && recomendacao.photo.imageURL"
@@ -155,7 +155,7 @@
               </select>
               <label for="numeroContato">Número:</label>
               <input v-model="numeroContato" type="text" id="numeroContato" name="numeroContato" placeholder="Digite aqui"
-                :class="{ 'error': campoVazio }" @input="aplicarMascara" />
+                :class="{ 'error': campoVazio }" @input="aplicarMascara" disabled/>
               <label for="isWhatsapp"><img src="../../../public/img/whatsappLogo.png" alt="É WhatsApp?" class="whatsapp-image" /> É WhatsApp:</label>
               <input v-model="isWhatsapp" type="checkbox" id="isWhatsapp" name="isWhatsapp" />
               <p v-if="campoVazio" class="error-message">Informe um número válido.</p>
@@ -207,6 +207,7 @@
         </div>
     </div>
     <!-- Dash Contatos  Termina aqui--> 
+    <br>
     <!-- Dash RdSocial inicia aqui--> 
       <div class="container">
       <div>
@@ -219,7 +220,7 @@
                     <br><span class="popup">3 - Clique no botão 'Salvar' para concluir a ação.</span>
               </InfoPopup>
           </label>
-          <select v-model="redeSocial" id="redeSocial">
+          <select v-model="redeSocial" id="redeSocial" >
             <option value="1">Facebook</option>
             <option value="2">Instagram</option>
             <option value="3">Twitter</option>
@@ -234,6 +235,7 @@
             name="perfil"
             placeholder="Digite aqui"
             :class="{ 'error': campoVazioRdSocial }"
+            disabled
           />
           <p v-if="campoVazioRdSocial" class="error-message">Informe um valor válido.</p>
           <p v-if="redeSocialJaIncluida" class="error-message">Rede social já incluída.</p>
@@ -302,7 +304,7 @@
                 <div id="categoriaSelecionadas">
                   <br><p>Categorias selecionadas: {{ categoriaSelecionadasString }}</p>
                 </div>
-
+                
                 <!-- Dash Categoria Termina aqui--> 
           </div>
           <div>
@@ -352,6 +354,8 @@
                 :key="tipo.id"
                 :class="{ botaoTiposComida: true, selecionado: opcaoComidaSelecionada(tipo) }"
                 @click="selecionarComida(tipo)"
+                disabled 
+                class="button" id="teste"
               >
                 {{ tipo.nome }}
               </button>
@@ -383,10 +387,10 @@
                 <option value="10">Sábado a Domingo </option>
               </select>
               <label for="horaInicio">Início:</label>
-              <input v-model="horaInicio" type="time" id="horaInicio" name="horaInicio" />
+              <input v-model="horaInicio" type="time" id="horaInicio" name="horaInicio" disabled/>
               <label for="horaTermino">Término:</label>
-              <input v-model="horaTermino" type="time" id="horaTermino" name="horaTermino" />
-              <button type="submit" :disabled="isEditingHorario" :class="{ 'disabled-button': isEditingHorario }">
+              <input v-model="horaTermino" type="time" id="horaTermino" name="horaTermino" disabled/>
+              <button type="submit" :disabled="isEditingHorario" :class="{ 'disabled-button': isEditingHorario }" class="button" id="teste" d>
                 {{ isEditingHorario ? 'Salvando...' : 'Salvar' }}
               </button>
             </form>
@@ -1094,8 +1098,9 @@ desabilitarCampos() {
 
 alterar() {
   this.habilitarCampos();
-  // Desabilitar o botão "Alterar"
+  // Desabilitar o botão "Alterar" e "Excluir"
   document.getElementById("alterarButton").setAttribute("disabled", true);
+  document.getElementById("excluirButton").setAttribute("disabled", true);
   // Habilitar os botões "Salvar" e "Cancelar"
   document.getElementById("salvarButton").removeAttribute("disabled");
   document.getElementById("cancelarButton").removeAttribute("disabled");
@@ -1105,7 +1110,8 @@ cancelar() {
   this.desabilitarCampos();
   // Habilitar o botão "Alterar"
   document.getElementById("alterarButton").removeAttribute("disabled");
-  // Desabilitar os botões "Salvar" e "Cancelar"
+  // Desabilitar os botões "Salvar" , "Cancelar" e "Excluir"
+  document.getElementById("excluirButton").removeAttribute("disabled", true);
   document.getElementById("salvarButton").setAttribute("disabled", true);
   document.getElementById("cancelarButton").setAttribute("disabled", true);
 },
@@ -1114,7 +1120,7 @@ salvar() {
   this.desabilitarCampos();
   // Habilitar o botão "Alterar"
   document.getElementById("alterarButton").removeAttribute("disabled");
-  // Desabilitar os botões "Salvar" e "Cancelar"
+  // Desabilitar os botões "Salvar" , "Cancelar e "Excluir"
   document.getElementById("salvarButton").setAttribute("disabled", true);
   document.getElementById("cancelarButton").setAttribute("disabled", true);
 },
@@ -1472,16 +1478,31 @@ font-size: 14px;
 /* Responsive */
 
 @media (max-width: 1160px) {
+  .column {
+    flex-direction: column;
+  }
 #form-wrap {
-  max-width: 950px;
+  max-width: 700px;
   background-size: 100% 100%;
 }
+.container {
+    max-width: 900px;
+  }
+  table {
+    font-size: 17px;
+  }
+  th,
+  td {
+    padding: 6px;
+  }
 }
 
 @media (max-width: 950px) {
 #form-wrap {
   max-width: 768px;
 }
+
+
 }
 
 @media (max-width: 768px) {
@@ -1493,6 +1514,64 @@ font-size: 14px;
   width: 100%;
 }
 
+
+
+  .respButton {
+    padding: 4px 10px;
+  }
+
+  .container {
+    max-width: 800px;
+  }
+
+  form {
+    justify-content: flex-start;
+  }
+
+  button {
+    margin-top: 8px;
+  }
+  table {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  .respButton {
+    padding: 4px 10px;
+  }
+
+  .container {
+    max-width: 650px;
+  }
+
+  form {
+    justify-content: flex-start;
+  }
+
+  button {
+    margin-top: 8px;
+  }
+}
+
+@media (max-width: 414px) {
+
+  .container {
+    max-width: 240px;
+  }
+  
+  input#numeroContato {
+  width: 100%; /* Preencher todo o espaço disponível no contêiner */
+  box-sizing: border-box; /* Incluir borda e preenchimento no tamanho total */
+}
+  table {
+    font-size: 9px;
+  }
+
+  th,
+  td {
+    padding: 2px 8px;
+  }
 }
 
 </style>
