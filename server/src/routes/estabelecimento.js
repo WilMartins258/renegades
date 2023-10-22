@@ -154,6 +154,23 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+router.get('/meuEstabelecimento/:id', async (req, res) => {
+    try {
+        console.log('req.params.id:: ', req.params.id);
+
+       res.status(200).send({
+        test: 'ok'
+       }); 
+    } catch (error) {
+        console.log('Erro ao buscar dados do estabelecimento para a página de atualização de dados: ', error);
+        res.status(500).send({
+            errorMsg: 'Erro ao buscar dados do estabelecimento para a página de atualização de dados.',
+            msg: 'Erro ao buscar dados do estabelecimento para a página de atualização de dados.',
+            error: error.message
+        });
+    }
+});
+
 router.post('/', async (req, res) => {
     let connection;
     try {
