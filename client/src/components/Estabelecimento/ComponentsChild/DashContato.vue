@@ -24,8 +24,8 @@
         <p v-if="campoVazio" class="error-message">Informe um número válido.</p>
         <div>
         <br>
-        <button type="submit" :disabled="isEditing" :class="{ 'disabled-button': isEditing }">
-          {{ isEditing ? 'Salvando...' : 'Salvar' }}
+        <button type="submit" :disabled="isEditingContato" :class="{ 'disabled-button': isEditingContato }">
+          {{ isEditingContato ? 'Salvando...' : 'Salvar' }}
         </button>
       </div>
       </form>
@@ -55,10 +55,10 @@
               </button>
             </template>
             <template v-else>
-              <button class="respButton" @click="salvarEdicao(index)">
+              <button class="respButton" @click="salvarEdicaoContato(index)">
                 <i class="uil uil-check"></i>
               </button>
-              <button class="respButton" @click="cancelarEdicao">
+              <button class="respButton" @click="cancelarEdicaoContato">
                 <i class="uil uil-times"></i>
               </button>
             </template>
@@ -85,7 +85,7 @@ export default {
       tipoContato: "Telefone",
       numero: "",
       campoVazio: false,
-      isEditing: false,
+      isEditingContato: false,
       listaContatos: [],
       editingIndex: -1,
       isWhatsapp: false,
@@ -121,10 +121,10 @@ export default {
       // Adicione o tipoContatoId ao novoContato
       novoContato.id = tipoContatoId;
 
-      if (this.isEditing) {
+      if (this.isEditingContato) {
         // Atualizar um contato existente
         this.listaContatos[this.editingIndex] = novoContato;
-        this.isEditing = false; // Defina como false após a edição
+        this.isEditingContato = false; // Defina como false após a edição
       } else {
         // Adicionar um novo contato
         this.listaContatos.push(novoContato);
@@ -140,27 +140,29 @@ export default {
     },
     editarContato(index) {
       this.editingIndex = index;
-      this.isEditing = true; // Defina como true ao editar um contato
+      this.isEditingContato = true; // Defina como true ao editar um contato
       this.tipoContato = this.listaContatos[index].tipoContato;
       this.numero = this.listaContatos[index].numero;
       this.isWhatsapp = this.listaContatos[index].isWhatsapp;
     },
     excluirContato(index) {
-      this.listaContatos.splice(index, 1);
+      if (confirm("Tem certeza que deseja excluir o contato?")) {
+        this.listaContatos.splice(index, 1);
+      }
     },
-    salvarEdicao(index) {
+    salvarEdicaoContato(index) {
         this.listaContatos[index] = {
           tipoContato: this.tipoContato,
           numero: this.numero,
           isWhatsapp: this.isWhatsapp,
         };
         this.editingIndex = -1;
-        this.isEditing = false;
+        this.isEditingContato = false;
         this.limparCampos();
       },
-    cancelarEdicao() {
+    cancelarEdicaoContato() {
       this.editingIndex = -1;
-      this.isEditing = false; // Defina como false ao cancelar a edição
+      this.isEditingContato = false; // Defina como false ao cancelar a edição
       this.limparCampos();
     },
     limparCampoVazio() {

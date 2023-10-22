@@ -28,8 +28,8 @@
         />
         <p v-if="campoVazio" class="error-message">Informe um valor válido.</p>
         <p v-if="redeSocialJaIncluida" class="error-message">Rede social já incluída.</p>
-        <button type="submit" :disabled="isEditing" :class="{ 'disabled-button': isEditing }">
-          {{ isEditing ? 'Salvando...' : 'Salvar' }}
+        <button type="submit" :disabled="isEditingRdSocial" :class="{ 'disabled-button': isEditingRdSocial }">
+          {{ isEditingRdSocial ? 'Salvando...' : 'Salvar' }}
         </button>
       </form>
     </div>
@@ -56,10 +56,10 @@
               </button>
             </template>
             <template v-else>
-              <button class="respButton" @click="salvarEdicao(index)">
+              <button class="respButton" @click="salvarEdicaoRdSocial(index)">
                 <i class="uil uil-check"></i>
               </button>
-              <button class="respButton" @click="cancelarEdicao">
+              <button class="respButton" @click="cancelarEdicaoRdSocial">
                 <i class="uil uil-times"></i>
               </button>
             </template>
@@ -87,7 +87,7 @@ export default {
       value: this.redeSocial,
       perfil: "",
       campoVazio: false,
-      isEditing: false,
+      isEditingRdSocial: false,
       listaRedesSociais: [],
       editingIndex: -1,
       redesSociaisIncluidas: new Set(),
@@ -116,9 +116,9 @@ export default {
         idRede: this.redeSocial
       };
 
-      if (this.isEditing) {
+      if (this.isEditingRdSocial) {
         this.listaRedesSociais[this.editingIndex] = novaRedeSocial;
-        this.isEditing = false;
+        this.isEditingRdSocial = false;
       } else {
         this.listaRedesSociais.push(novaRedeSocial);
         this.redesSociaisIncluidas.add(redeSocial);
@@ -136,9 +136,9 @@ export default {
       this.editingIndex = index;
       this.redeSocial = this.listaRedesSociais[index].idRede;
       this.perfil = this.listaRedesSociais[index].perfil;
-      this.isEditing = true;
+      this.isEditingRdSocial = true;
     },
-    salvarEdicao(index) {
+    salvarEdicaoRdSocial(index) {
       const arrayRedes = [null, 'Facebook', 'Instagram', 'Twitter', 'Site do Estabelecimento', 'Cardápio Online'];
       const novaRedeSocial = arrayRedes[this.redeSocial];
       const perfil = this.perfil;
@@ -152,12 +152,12 @@ export default {
       this.listaRedesSociais[index].redeSocial = novaRedeSocial;
       this.listaRedesSociais[index].perfil = perfil;
       this.editingIndex = -1;
-      this.isEditing = false;
+      this.isEditingRdSocial = false;
       this.limparCampos();
     },
-    cancelarEdicao() {
+    cancelarEdicaoRdSocial() {
       this.editingIndex = -1;
-      this.isEditing = false;
+      this.isEditingRdSocial = false;
       this.limparCampos();
     },
     excluirRedeSocial(index) {
