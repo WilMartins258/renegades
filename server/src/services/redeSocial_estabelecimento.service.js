@@ -1,3 +1,5 @@
+const db = require('../models/db.js');
+
 const inserir = async (dadosRedeSocial, conn) => {
     try {
         const inserirRedeSocailEstabelecimentoQuery = `INSERT INTO redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) VALUES ( ?, ?, ? );`;
@@ -12,15 +14,16 @@ const inserir = async (dadosRedeSocial, conn) => {
 
 const atualizar = async () => {};
 
-const pegarPorIdEstabelecimento = async (idEstabelecimento, conn) => {
+const pegarPorIdEstabelecimento = async (idEstabelecimento) => {
     try {
         const redesSociaisEstabelecimentoQuery = `
         SELECT rs.id, rs.nome, rse.redeSocial
             FROM redeSocial_estabelecimento rse
             JOIN redeSocial rs ON rse.idRedeSocial = rs.id
                 WHERE rse.idEstabelecimento = ?;`;
+        const connection = await db;
 
-        const [redesSociaisEstabelecimento] = await conn.query(redesSociaisEstabelecimentoQuery, idEstabelecimento);
+        const [redesSociaisEstabelecimento] = await connection.query(redesSociaisEstabelecimentoQuery, idEstabelecimento);
 
         return redesSociaisEstabelecimento;
     } catch (error) {

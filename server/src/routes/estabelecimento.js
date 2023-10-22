@@ -106,7 +106,7 @@ router.get('/:id', async (req, res) => {
             const dadosCategoriaArray = dadosCategoria.map(categoria => categoria.nome);
             const dadosOpcionais = await opcional_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id, connection);
             const dadosOpcionaisArray = dadosOpcionais.map(opcional => opcional.nome);
-            const dadosRedesSociais = await redeSocial_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id, connection);
+            const dadosRedesSociais = await redeSocial_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id);
             const dadosMusica = await musica_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id);
             const dadosMusicaArray = dadosMusica.map(musica => musica.nome);
             const dadosHorarios = await horario_Service.pegarPorIdEstabelecimento(req.params.id, connection);
