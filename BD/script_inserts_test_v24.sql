@@ -1609,7 +1609,7 @@ INSERT INTO promocao VALUES (
 	'XXY-40', -- codigo            VARCHAR(20) not null,
 	'Ativa', -- ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa' not null,
 	'2023-10-14', -- dataInicio        DATE not null,
-	'2023-10-20' -- dataFim           DATE not null
+	'2024-10-20' -- dataFim           DATE not null
 );
 
 INSERT INTO promocao VALUES (
