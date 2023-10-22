@@ -157,18 +157,36 @@ router.get('/:id', async (req, res) => {
 
 router.get('/meuEstabelecimento/:id', async (req, res) => {
     try {
-        console.log('req.params.id:: ', req.params.id);
-
         const categorias = await categoria_Service.pegarTudo();
         const opcionais = await opcional_Service.pegarTudo();
         const estilosMusica = await estiloMusica_Service.pegarTudo();
         const comidas = await comida_Service.pegarTudo();
+        const dadosEstabelecimento = await estabelecimento_Service.pegarPorId(req.params.id);
+        const opcionaisEstabelecimento = await opcional_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id);
+        const categoriasEstabelecimento = await categoria_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id);
+        const redeSociaisEstabelecimento = await redeSocial_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id);
+        const musicasEstabelecimento = await musica_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id);
+        const horariosEstabelecimento = await horario_Service.pegarPorIdEstabelecimento(req.params.id);
+        const recomendacoesEstabelecimento = await recomendacao_Service.pegarPorIdEstabelecimento(req.params.id);
+        const comidasEstabelecimento = await comida_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id);
+        const contatosEstabelecimento = await contato_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id);
+        const avaliacao = await avaliacao_Service.pegarPorIdEstabelecimento(req.params.id);
 
        res.status(200).send({
         categorias,
         opcionais,
         estilosMusica,
-        comidas
+        comidas,
+        dadosEstabelecimento,
+        opcionaisEstabelecimento,
+        categoriasEstabelecimento,
+        redeSociaisEstabelecimento,
+        musicasEstabelecimento,
+        horariosEstabelecimento,
+        recomendacoesEstabelecimento,
+        comidasEstabelecimento,
+        contatosEstabelecimento,
+        avaliacao
        }); 
     } catch (error) {
         console.log('Erro ao buscar dados do estabelecimento para a página de atualização de dados: ', error);
