@@ -146,25 +146,83 @@
       <div class="column">
           <div>
             <h2>Categoria do Estebelecimento:</h2><br>
-            <!-- Chamada para o Component --> 
-            <Categorias :value="categoriasSelecionadas" @input="receberCategoriasSelecionadas" />
-          </div>
-        <div>
-            <h2>Meu Estebelecimento Oferece:</h2><br>
-            <!-- Chamada para o Component --> 
-            <Opcionais :value="opcoesSelecionadas" @input="receberOpcoesSelecionadas"/>
-        </div>
-        <div>
+            <!-- Dash Categoria inicia aqui--> 
+
+              <div class="quadro-categorias">
+                
+                    <button
+                      v-for="opcao in categoria"
+                      :key="opcao.id"
+                      :class="{ botaoCategoria: true, selecionado: opcaopcaoCategSelecionadaoCategSelecionada(opcao) }"
+                      @click="selecionarCategoria(opcao)"
+                    >
+                      {{ opcao.nome }}
+                    </button>
+                  </div>
+              
+                  <div id="categoriaSelecionadas">
+                    <br><p>Categorias selecionadas: {{ categoriaSelecionadasString }}</p>
+                  </div>
+
+                  <!-- Dash Categoria Termina aqui--> 
+            </div>
+            <div>
+                  <h2>Meu Estebelecimento Oferece:</h2><br>
+                  <!-- Dash Opcionais inicia aqui--> 
+                  <div class="quadro-Opcionais">
+              <button
+                v-for="opcao in opcoes"
+                :key="opcao.id"
+                :class="{ botaoOpcionais: true, selecionado: opcaoOpicionaisSelecionada(opcao) }"
+                @click="selecionarOpcionais(opcao)"
+              >
+                {{ opcao.nome }}
+              </button>
+            </div>
+
+            <div id="opcoesSelecionadas">
+              <br /><p>Opções selecionadas: {{ opcoesSelecionadasString }}</p>
+            </div>
+            <!-- Dash Opcionais Termina aqui--> 
+            </div>
+           <div>
             <h2>Minha Playlist:</h2><br>
-            <!-- Chamada para o Component --> 
-            <EstilosMusicas :value="estilosSelecionadas" @input="receberEstiloMusicais"/>
+             <!-- Dash Estilos Musicais inicia aqui--> 
+             <div class="quadro-estilosMusicais">
+                <button v-for="opcao in estilos" :key="opcao.id" :class="{ botaoEstiloMusical: true, selecionado: opcaoMusicalSelecionada(opcao) }"
+                  @click="selecionarEstilo(opcao)">
+                  {{ opcao.nome }}
+                </button>
+              </div>
+
+              <div id="estilosSelecionadas">
+                <br>
+                <p>Estilos selecionados: {{ estilosSelecionadasString }}</p>
+              </div>
+              <!-- Dash Estilos Musicais  Termina aqui--> 
         </div>
        </div>
 
        <div class="column">
-        <div>
-          <h2>Tipo de Comida:</h2><br>
-          <TiposComida :value="tiposDeComidaSelecionados" @input="receberTiposDeComidaSelecionados"/>
+            <div>
+                <h2>Tipo de Comida:</h2><br>
+                <!-- DashT ipos Comida inicia aqui--> 
+              <div class="tipos-de-comida">
+                <button
+                  v-for="tipo in tiposDeComida"
+                  :key="tipo.id"
+                  :class="{ botaoTiposComida: true, selecionado: opcaoComidaSelecionada(tipo) }"
+                  @click="selecionarComida(tipo)"
+                >
+                  {{ tipo.nome }}
+                </button>
+             </div>
+
+            <div id="tiposDeComidaSelecionados">
+              <br />
+              <p>Tipos de Comida Selecionados: {{ tiposDeComidaSelecionadosString }}</p>
+            </div>
+           <!-- Dash Tipos Comida  Termina aqui--> 
         </div>
         <div>
           <h2>Horário de atencimento:</h2><br>
@@ -193,22 +251,16 @@
   import IMask from "imask";
   import axios from "axios";
   import DashHorAtendimento from "./ComponentsChild/DashHorAtendimento.vue"
-  import Opcionais from "./ComponentsChild/Opcionais.vue"
   import DashContato from "./ComponentsChild/DashContato.vue";
   import DashRdSociais from "./ComponentsChild/DashRdSociais.vue";
-  import Categorias from "./ComponentsChild/Categorias.vue";
   import TiposComida from "./ComponentsChild/TiposComida.vue";
-  import EstilosMusicas from "./ComponentsChild/EstilosMusicas.vue";
   import api from "./../../services/backend.service.js";
   
   export default {
   components: {
     DashHorAtendimento,
     DashContato,
-    Opcionais,
     DashRdSociais,
-    Categorias,
-    EstilosMusicas,
     TiposComida
   },
   name: "UpdUsuario",
@@ -229,33 +281,98 @@
         recomendacao: [
         { name: '', description:  '', photo: null },],
         estabelecimentoPhoto: null,
-        categoriasSelecionadas: [],
-        opcoesSelecionadas: [],
         RdSocialSelecionadas: [],
         ContatosSelecionadas: [],
         HorariosSelecionados: [],
-        estilosSelecionadas: [],
         tiposDeComidaSelecionados: [],
         editar: false,
-      };
+        categoriaSelecionadas: [], //DashCategoria
+        categoria: [],//DashCategoria
+        opcoesSelecionadas: [],//DashOpcionais
+        opcoes: [],//DashOpcionais
+        estilosSelecionadas: [],//DashEstilosMusicais
+      estilos: [],//DashEstilosMusicais
+      tiposDeComidaSelecionados: [],//DashTiposComida
+      tiposDeComida: [],//DashTiposComida
+    }
   },
   methods: {
-       // Recebe os dados do componente "Categorias"
-    receberCategoriasSelecionadas(categorias) {
-      this.categoriasSelecionadas = categorias;
-    },
-    // Recebe os dados do componente "Tipos de Comida"
-    receberTiposDeComidaSelecionados(TiposComida){
-      this.tiposDeComidaSelecionados = TiposComida;
-    },
-    // Recebe os dados do componente "Opcionais"
-    receberOpcoesSelecionadas(opcionais) {
-      this.opcoesSelecionadas = opcionais;
-    },
-    // Recebe os dados do componente "Estilos Musicais"
-    receberEstiloMusicais(estiloMusicais) {
-      this.estilosSelecionadas = estiloMusicais;
-    },
+
+    async metodoInicial() {
+        try {
+          const categorias = await api.get('/categoria');
+          const opcionais = await api.get('/opcional');
+          const estilosMusica = await api.get('/estiloMusica');
+          const tipos = await api.get('/comida');
+        
+
+          this.categoria = categorias.data;
+          this.opcoes = opcionais.data;
+          this.estilos = estilosMusica.data;
+          this.tiposDeComida = tipos.data;
+
+        } catch (error) {
+          console.error('ERROR:: ', error);
+        }
+      },
+      //DashCategoria------------------------------------------------------
+      selecionarCategoria(opcao) { //Dash Categoria
+          if (this.opcaopcaoCategSelecionadaoCategSelecionada(opcao)) {
+            this.categoriaSelecionadas = this.categoriaSelecionadas.filter(item => item.id !== opcao.id);
+          } else {
+            if (this.categoriaSelecionadas.length < 3) {
+          this.categoriaSelecionadas.push(opcao);
+        } else {
+          alert('Só é permitido a inclusão de 3 categorias.');
+        };
+          }
+          this.$emit("input", this.categoriaSelecionadas); // Emita o evento input aqui
+        },
+      opcaopcaoCategSelecionadaoCategSelecionada(opcao) {
+          return this.categoriaSelecionadas.some(item => item.id === opcao.id);
+        },
+
+      //DashOpcionais------------------------------------------------------
+      selecionarOpcionais(opcao) {
+        if (this.opcaoOpicionaisSelecionada(opcao)) {
+          this.opcoesSelecionadas = this.opcoesSelecionadas.filter(item => item.id !== opcao.id);
+        } else {
+          this.opcoesSelecionadas.push(opcao);
+        }
+        this.$emit("input", this.opcoesSelecionadas); // Emita o evento input aqui
+        },
+      opcaoOpicionaisSelecionada(opcao) {
+          return this.opcoesSelecionadas.some(item => item.id === opcao.id);
+        },
+
+      //DashEstilosMusicas------------------------------------------------------
+      selecionarEstilo(opcao) {
+        if (this.opcaoMusicalSelecionada(opcao)) {
+          // Se a opção já estiver selecionada, remova-a da lista
+          this.estilosSelecionadas = this.estilosSelecionadas.filter(item => item.id !== opcao.id);
+        } else {
+          // Caso contrário, adicione-a à lista
+          this.estilosSelecionadas.push(opcao);
+        }
+        this.$emit("input", this.estilosSelecionadas); // Emita o evento input aqui
+      },
+      opcaoMusicalSelecionada(opcao) {
+          return this.estilosSelecionadas.some(item => item.id === opcao.id);
+        },
+
+      //DashTipos Comida------------------------------------------------------
+      selecionarComida(tipo) {
+        if (this.opcaoComidaSelecionada(tipo)) {
+          this.tiposDeComidaSelecionados = this.tiposDeComidaSelecionados.filter(item => item.id !== tipo.id);
+        } else {
+          this.tiposDeComidaSelecionados.push(tipo);
+        }
+        this.$emit("input", this.tiposDeComidaSelecionados); // Emitir o evento input aqui
+      },
+      opcaoComidaSelecionada(tipo) {
+        return this.tiposDeComidaSelecionados.some(item => item.id === tipo.id);
+      },
+
     // Recebe os dados do componente "DashRdSocias"
     receberRdSociais(dados) {
         this.RdSocialSelecionadas = dados;
@@ -527,7 +644,23 @@
     progressBarWidth() {
       return `${Math.round((this.currentSection - 1) / 5 * 100)}%`;
     },
-  },
+    categoriaSelecionadasString() { // DashCategoria
+      return this.categoriaSelecionadas.map(opcao => opcao.nome).join(", ");
+      },
+      opcoesSelecionadasString() {// DashOpcionais
+      return this.opcoesSelecionadas.map(opcao => opcao.nome).join(", ");
+    },
+    estilosSelecionadasString() {// DashEstilosMusicais
+      return this.estilosSelecionadas.map(opcao => opcao.nome).join(", ");
+    },
+    tiposDeComidaSelecionadosString() {// DashTiposComida
+      return this.tiposDeComidaSelecionados.map(tipo => tipo.nome).join(", ");
+    },
+    },
+    created() {
+	    this.metodoInicial();
+    },
+  
   };
   </script>
   
@@ -634,9 +767,6 @@
   justify-content: center;
 }
 
-
-
-
 .button {
     margin-right: 10px;
   }
@@ -683,6 +813,49 @@
   padding: 10px 15px;
 }
   
+/* Stile Dash Categoria, Opcionais, EstilosMusicais e Tipos Commida*/
+
+.quadro-categorias,
+.quadro-Opcionais,
+.quadro-estilosMusicais,
+
+.tipos-de-comida {
+    border: 2px solid white;
+    padding: 20px;
+    width: 400px;
+    text-align: center;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.418); 
+  }
+
+  p{ /*ajustar de acordo com o fundo*/
+    color: white;
+  }
+  
+  .botaoCategoria,
+  .botaoOpcionais,
+  .botaoEstiloMusical,
+  .botaoTiposComida {
+    background-color: red;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 25px; 
+    color: #fff;
+  }
+  
+  .botaoCategoria.selecionado,
+  .botaoOpcionais.selecionado,
+  .botaoEstiloMusical.selecionado,
+  .botaoTiposComida.selecionado {
+    background-color: orange;
+  }
+  
+  .botaoCategoria:hover,
+  .botaoOpcionais:hover,
+  .botaoTiposComida:hover {
+    background-color: yellow;
+  }
 
   
   /* Responsive */
