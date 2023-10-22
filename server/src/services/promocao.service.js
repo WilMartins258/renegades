@@ -13,6 +13,18 @@ const inserir = async (dadosPromocao) => {
     }
 };
 
+const pegarPromocoesPorIdEstabelecimento = async (idEstabelecimento) => {
+    try {
+        const promocaoQuery = 'SELECT * FROM promocao WHERE idEstabelecimento = ?;';
+        const connection = await db;
+
+        const [promocao] = await connection.query(promocaoQuery, idEstabelecimento);
+        return promocao;
+    } catch (error) {
+        throw new Error(`Erro ao buscar promoções: ${error.message}`);
+    }
+};
+
 const pegarTodasPromocoesAtivas = async () => {
     try {
         const promocaoQuery = `
@@ -48,5 +60,6 @@ const verificarValidadeDePromocoes = async () => {
 module.exports = {
     inserir,
     pegarTodasPromocoesAtivas,
+    pegarPromocoesPorIdEstabelecimento,
     verificarValidadeDePromocoes
 };
