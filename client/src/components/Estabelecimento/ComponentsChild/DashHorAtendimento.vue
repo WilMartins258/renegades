@@ -105,7 +105,7 @@ export default {
       }
     },
     limparCamposhorario() {
-      this.diaSelecionado = "1"; // Restaurar o valor padrão para Segunda-feira
+      this.diaSelecionado = "2"; // Restaurar o valor padrão para Segunda-feira
       this.horaInicio = "";
       this.horaTermino = "";
     },
