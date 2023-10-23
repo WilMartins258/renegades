@@ -1180,6 +1180,7 @@ computed: {
       this.recomendacao = recomendacoesEstabelecimento;
       this.opcoesSelecionadas = opcionaisEstabelecimento;
       this.categoriaSelecionadas = categoriasEstabelecimento;
+      this.tiposDeComidaSelecionados = comidasEstabelecimento;
 
       console.log('recomendacoesEstabelecimento:: ', recomendacoesEstabelecimento);
 
