@@ -170,7 +170,7 @@ export default {
     };
   },
   methods: {
-    salvarPromocao() {
+    async salvarPromocao() {
       //Divide a string de data em dia, mês e ano
       const dataInicioParts = this.novaPromocao.dataInicio.split('-');
       const dataFimParts = this.novaPromocao.dataFim.split('-');
@@ -200,6 +200,8 @@ export default {
           this.isEditing = false;
         } else {
           this.listaPromocoes.push({ ...this.novaPromocao });
+          this.novaPromocao.idEstabelecimento = sessionStorage.getItem('idEstabelecimento');
+          await api.post('/promocao', this.novaPromocao);
         }
         this.novaPromocao = {
           codigo: "",
