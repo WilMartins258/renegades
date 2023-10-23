@@ -30,6 +30,7 @@
         <div class="form-group">
         <br><button type="submit">{{ isEditing ? 'Salvando...' : 'Salvar' }}</button>
         <p v-if="campoVazio" class="error-message">Obrigatórios preencher todos os campos.</p>
+        <p v-if="dataInvalida" class="error-message">A data de início deve ser inferior à data fim.</p>
       </div>
       </form>
     </div>
@@ -130,8 +131,8 @@
             <td>{{ promocao.codigo }}</td>
             <td>{{ promocao.nome }}</td>
             <td>{{ promocao.descricao }}</td>
-            <td>{{ promocao.dataInicio }}</td>
-            <td>{{ promocao.dataFim }}</td>
+            <td>{{ formatarData(promocao.dataInicio) }}</td>
+            <td>{{ formatarData(promocao.dataFim) }}</td>
           </tr>
         </tbody>
       </table>
@@ -199,25 +200,39 @@ export default {
   },
   methods: {
     async salvarPromocao() {
-      try {
-        // Formate as datas antes de adicioná-las à lista de promoções
-        this.novaPromocao.dataInicio = new Date(this.novaPromocao.dataInicio).toLocaleDateString('pt-BR');
-        this.novaPromocao.dataFim = new Date(this.novaPromocao.dataFim).toLocaleDateString('pt-BR');
-        if (
-          this.novaPromocao.codigo.trim() !== "" &&
-          this.novaPromocao.nome.trim() !== "" &&
-          this.novaPromocao.descricao.trim() !== "" &&
-          this.novaPromocao.dataInicio !== "" &&
-          this.novaPromocao.dataFim !== ""
-        ) {
-          if (this.isEditing) {
-            this.listaPromocoes[this.editingIndex] = this.novaPromocao;
-            this.isEditing = false;
-          } else {
-            this.listaPromocoes.push({ ...this.novaPromocao });
-            this.novaPromocao.idEstabelecimento = sessionStorage.getItem('idEstabelecimento');
-            await api.post('/promocao', this.novaPromocao);
+        try {
+          const dataInicio = new Date(this.novaPromocao.dataInicio);
+          const dataFim = new Date(this.novaPromocao.dataFim);
+
+          if (this.novaPromocao.codigo.trim() === "") {
+            this.campoVazio = true;
+            this.dataInvalida = false;
+            return; // Stop execution
           }
+          if (dataInicio >= dataFim) {
+            this.dataInvalida = true;
+            this.campoVazio = false;
+            return; // Interrompe a execução
+          } else {
+            this.campoVazio = false;
+          }
+
+          if (
+            this.novaPromocao.nome.trim() !== "" &&
+            this.novaPromocao.descricao.trim() !== "" &&
+            this.novaPromocao.dataInicio !== "" &&
+            this.novaPromocao.dataFim !== ""
+          ) {
+            if (this.isEditing) {
+        this.listaPromocoes[this.editingIndex] = this.novaPromocao;
+        this.isEditing = false;
+      } else {
+        this.novaPromocao.dataInicio = this.formatarData(this.novaPromocao.dataInicio);
+        this.novaPromocao.dataFim = this.formatarData(this.novaPromocao.dataFim);
+        this.listaPromocoes.push({ ...this.novaPromocao });
+        this.novaPromocao.idEstabelecimento = sessionStorage.getItem('idEstabelecimento');
+        await api.post('/promocao', this.novaPromocao);
+      }
           this.novaPromocao = {
             codigo: "",
             nome: "",
@@ -226,11 +241,7 @@ export default {
             dataFim: "",
             Inativar: false,
           };
-          this.campoVazio = false;
-        } else {
-          this.campoVazio = true;
         }
-        
       } catch (error) {
         console.log('Erro ao salvar promoção: ', error);
       }
@@ -290,6 +301,13 @@ export default {
         }
       }
     },  
+    formatarData(data) {
+    const dataObj = new Date(data);
+    const dia = String(dataObj.getDate()).padStart(2, '0');
+    const mes = String(dataObj.getMonth() + 1).padStart(2, '0');
+    const ano = dataObj.getFullYear();
+    return `${dia}/${mes}/${ano}`;
+  }
   }
 };
 </script>
