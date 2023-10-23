@@ -1175,7 +1175,9 @@ computed: {
       this.endereco.cidade = cidade;
       this.endereco.uf = estado;
 
-      // console.log('dadosEstabelecimento:: ', dadosEstabelecimento);
+      this.recomendacao = recomendacoesEstabelecimento;
+
+      console.log('recomendacoesEstabelecimento:: ', recomendacoesEstabelecimento);
 
 
       
