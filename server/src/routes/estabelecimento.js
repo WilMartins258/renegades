@@ -111,7 +111,7 @@ router.get('/:id', async (req, res) => {
             const dadosMusicaArray = dadosMusica.map(musica => musica.nome);
             const dadosHorarios = await horario_Service.pegarPorIdEstabelecimento(req.params.id);
             const dadosRecomendacao = await recomendacao_Service.pegarPorIdEstabelecimento(req.params.id);
-            const dadosAvaliacao = await avaliacao_Service.pegarPorIdEstabelecimento(req.params.id, connection);
+            const dadosAvaliacao = await avaliacao_Service.pegarPorIdEstabelecimento(req.params.id);
             const dadosContatos = await contato_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id, connection);
 
             let tocaMusica = false;
