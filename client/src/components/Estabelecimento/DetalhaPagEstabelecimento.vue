@@ -1,11 +1,11 @@
 <template>
   <div>
     <header>
-      <h1>{{ nomeDoEstabelecimento }}</h1>
-      <p>{{ categoria }}</p>
+      <h1 class="gradient">{{ nomeDoEstabelecimento }}</h1><br>
+      <p>{{ categoria }}</p><br>
       <img :src="imagemEstabelecimento" alt="Imagem do Estabelecimento" class="imagem-estabelecimento"/>
       <div class="icons">
-        <span class="star-icon" :class="{ selected: favorito }" @click="toggleFavorito">&#9733;</span>
+        <span  class="star-icon" :class="{ selected: favorito }" @click="toggleFavorito"   >&#9733;</span>
         <span class="share-icon" @click="compartilharEstabelecimento">Compartilhar</span>
       </div>
     </header>
@@ -19,8 +19,8 @@
     <section class="chef-recomendacoes">
       <div class="recomendacao" v-for="prato in pratosChef" :key="prato.id">
         <div>
-          <h3>{{ prato.nome }}</h3>
-          <p>{{ prato.descricao }}</p>
+          <h2>{{ prato.nome }}</h2><br>
+          <p>{{ prato.descricao }}</p><br>
           <img :src="prato.imagem" :alt="'Imagem de ' + prato.nome" class="imagem-prato"/>
         </div>
       </div>
@@ -28,30 +28,32 @@
 
     <section class="adicionais-info">
       <div class="info">
-        <h3>O que oferecemos:</h3>
+        <h2>O que oferecemos:</h2><br>
         <p>{{ opcional }}</p><br>
 
-        <h3 v-if=this.tocaMusica>Nossa Playlist:</h3>
+        <h2 v-if=this.tocaMusica>Nossa Playlist:</h2><br>
         <p v-if=this.tocaMusica>{{ musica }}</p>
       </div>
       <div class="info">
-        <h3>Forma de Contato e Redes Sociais:</h3>
+        <h2>Forma de Contato e Redes Sociais:</h2><br>
         <p >Telefone: {{ telefone }}</p>
-        <p>Redes Sociais: <a :href="facebook" target="_blank" >{{ facebook }}</a>, <a :href="instagram" target="_blank">{{ instagram }}</a>, <a :href="twitter" target="_blank">{{ twitter }}</a></p>
-        <p v-if="this.site.length > 0">Nosso site: <a :href="site" target="_blank">{{ site }}</a></p>
-        <p v-if="this.cardapio.length > 0">Cardápio Online: <a :href="cardapio" target="_blank">{{ cardapio }}</a></p>
+        <br><p>Redes Sociais: <a :href="facebook" target="_blank" >{{ facebook }}</a>, <a :href="instagram" target="_blank">{{ instagram }}</a>, <a :href="twitter" target="_blank">{{ twitter }}</a></p>
+        <br><p v-if="this.site.length > 0">Nosso site: <a :href="site" target="_blank">{{ site }}</a></p>
+        <br><p v-if="this.cardapio.length > 0">Cardápio Online: <a :href="cardapio" target="_blank">{{ cardapio }}</a></p>
       </div>
-      <div class="info">
-        <h3>Horário de Atendimento:</h3>
-        <div v-html="horarios"></div>
-      </div>
+
     </section>
 
     <section class="endereco-info">
       <div class="endereco">
-        <h2>Endereço</h2>
-        <p>{{ endereco }}</p>
+        <h2>Endereço</h2><br>
+        <p>{{ endereco }}</p><br><br>
+
+        <h2>Horário de Atendimento:</h2><br>
+        <p v-html="horarios"></p>
       </div>
+
+
       <div class="endereco">
         <!-- Replace with actual map integration -->
         <iframe
@@ -93,7 +95,7 @@
         <div>
         <div class="avaliacao">
           <div class="customer-info">
-                Esse Estabelecimento é nota:<br>
+                <h3>Esse Estabelecimento é nota:</h3>
             <span class="nota"> {{ mediaNt?.toFixed(1) }} </span>
           </div>
         </div><br>
@@ -402,10 +404,15 @@ header {
   border-radius: 15px; 
 }
 
-header h1 {
-    margin: 0;
-    color: #ff9800;
+
+.gradient {
+  background-image: linear-gradient(to bottom, #df8600, #db3240, #ff0015);
+  color: black;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
+
 
 .icons {
     float: right;
@@ -433,9 +440,13 @@ header h1 {
 
 h2{
   text-align: center;
-  color: #fff;
+  color: #D62718;
+  font-size: 2em;
 }
 
+h3{
+  color: #D62718;
+}
 .recomendacao {
     flex: 1;
     padding: 10px;
@@ -673,6 +684,9 @@ button:hover {
   align-items: center; /* Centraliza verticalmente */
 
 } 
-
+ p{
+  font-weight: bold;
+  font-size: 22px;
+ }
 
 </style>
