@@ -1139,6 +1139,7 @@ computed: {
       const {
         nome,
         formatoFoto,
+        cnpj,
         descricao,
         nota,
         numeroEstabelecimento,
@@ -1165,6 +1166,14 @@ computed: {
       this.opcoes = opcionais;
       this.estilos = estilosMusica;
       this.tiposDeComida = comidas;
+      this.nomeEstabelecimento = nome;
+      this.descricaoEstabelecimento = descricao;
+      this.cnpj = cnpj;
+      this.cep = cep;
+      this.endereco.rua = logradouro;
+      this.endereco.bairro = bairro;
+      this.endereco.cidade = cidade;
+      this.endereco.uf = estado;
 
       // console.log('dadosEstabelecimento:: ', dadosEstabelecimento);
 
