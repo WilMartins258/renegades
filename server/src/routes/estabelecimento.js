@@ -102,12 +102,12 @@ router.get('/:id', async (req, res) => {
         connection = await transaction;
         if (req.params.id) {
             const dadosEstabelecimento = await estabelecimento_Service.pegarPorId(req.params.id, connection);
-            const dadosCategoria = await categoria_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id, connection);
+            const dadosCategoria = await categoria_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id);
             const dadosCategoriaArray = dadosCategoria.map(categoria => categoria.nome);
-            const dadosOpcionais = await opcional_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id, connection);
+            const dadosOpcionais = await opcional_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id);
             const dadosOpcionaisArray = dadosOpcionais.map(opcional => opcional.nome);
-            const dadosRedesSociais = await redeSocial_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id, connection);
-            const dadosMusica = await musica_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id, connection);
+            const dadosRedesSociais = await redeSocial_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id);
+            const dadosMusica = await musica_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id);
             const dadosMusicaArray = dadosMusica.map(musica => musica.nome);
             const dadosHorarios = await horario_Service.pegarPorIdEstabelecimento(req.params.id, connection);
             const dadosRecomendacao = await recomendacao_Service.pegarPorIdEstabelecimento(req.params.id, connection);
@@ -157,18 +157,36 @@ router.get('/:id', async (req, res) => {
 
 router.get('/meuEstabelecimento/:id', async (req, res) => {
     try {
-        console.log('req.params.id:: ', req.params.id);
-
         const categorias = await categoria_Service.pegarTudo();
         const opcionais = await opcional_Service.pegarTudo();
         const estilosMusica = await estiloMusica_Service.pegarTudo();
         const comidas = await comida_Service.pegarTudo();
+        const dadosEstabelecimento = await estabelecimento_Service.pegarPorId(req.params.id);
+        const opcionaisEstabelecimento = await opcional_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id);
+        const categoriasEstabelecimento = await categoria_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id);
+        const redeSociaisEstabelecimento = await redeSocial_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id);
+        const musicasEstabelecimento = await musica_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id);
+        const horariosEstabelecimento = await horario_Service.pegarPorIdEstabelecimento(req.params.id);
+        const recomendacoesEstabelecimento = await recomendacao_Service.pegarPorIdEstabelecimento(req.params.id);
+        const comidasEstabelecimento = await comida_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id);
+        const contatosEstabelecimento = await contato_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id);
+        const avaliacao = await avaliacao_Service.pegarPorIdEstabelecimento(req.params.id);
 
        res.status(200).send({
         categorias,
         opcionais,
         estilosMusica,
-        comidas
+        comidas,
+        dadosEstabelecimento,
+        opcionaisEstabelecimento,
+        categoriasEstabelecimento,
+        redeSociaisEstabelecimento,
+        musicasEstabelecimento,
+        horariosEstabelecimento,
+        recomendacoesEstabelecimento,
+        comidasEstabelecimento,
+        contatosEstabelecimento,
+        avaliacao
        }); 
     } catch (error) {
         console.log('Erro ao buscar dados do estabelecimento para a página de atualização de dados: ', error);

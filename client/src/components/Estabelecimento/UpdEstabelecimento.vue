@@ -1132,8 +1132,6 @@ computed: {
   },
   async created() {
     try {      
-      console.log('idEstabelecimento:: ', sessionStorage.getItem('idEstabelecimento'));
-
       const dadosEstabelecimentoRequest = await api.get(`/estabelecimento/meuEstabelecimento/${sessionStorage.getItem('idEstabelecimento')}`);
 
       console.log('dadosEstabelecimentoRequest:: ', dadosEstabelecimentoRequest.data);
@@ -1142,7 +1140,17 @@ computed: {
         categorias,
         opcionais,
         estilosMusica,
-        comidas
+        comidas,
+        // dadosEstabelecimento,
+        // opcionaisEstabelecimento,
+        // categoriasEstabelecimento,
+        // redeSociaisEstabelecimento,
+        // musicasEstabelecimento,
+        // horariosEstabelecimento,
+        // recomendacoesEstabelecimento,
+        // comidasEstabelecimento,
+        // contatosEstabelecimento,
+        // avaliacao
       } = dadosEstabelecimentoRequest.data;
       this.categoria = categorias;
       this.opcoes = opcionais;
