@@ -188,6 +188,12 @@ router.get('/meuEstabelecimento/:id', async (req, res) => {
             horariosEstabelecimento[i].fecha = horariosEstabelecimento[i].horarioFim;
         };
 
+        for (let i=0; i < contatosEstabelecimento.length ;i++) {
+            contatosEstabelecimento[i].dia = contatosEstabelecimento[i].id;
+            contatosEstabelecimento[i].numeroContato = contatosEstabelecimento[i].contato;
+            contatosEstabelecimento[i].tipoContato = contatosEstabelecimento[i].nome;
+        };
+
        res.status(200).send({
         ...dadosEstabelecimento[0],
         categorias,

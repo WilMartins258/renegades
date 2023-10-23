@@ -1184,6 +1184,7 @@ computed: {
       this.estilosSelecionadas = musicasEstabelecimento;
       this.listaRedesSociais = redeSociaisEstabelecimento;
       this.listahorarios = horariosEstabelecimento;
+      this.listaContatos = contatosEstabelecimento;
 
       console.log('recomendacoesEstabelecimento:: ', recomendacoesEstabelecimento);
 
