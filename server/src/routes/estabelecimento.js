@@ -182,6 +182,18 @@ router.get('/meuEstabelecimento/:id', async (req, res) => {
             redeSociaisEstabelecimento[i].redeSocial = redeSociaisEstabelecimento[i].nome;
         };
 
+        for (let i=0; i < horariosEstabelecimento.length ;i++) {
+            horariosEstabelecimento[i].dia = horariosEstabelecimento[i].id;
+            horariosEstabelecimento[i].abre = horariosEstabelecimento[i].horarioInicio;
+            horariosEstabelecimento[i].fecha = horariosEstabelecimento[i].horarioFim;
+        };
+
+        for (let i=0; i < contatosEstabelecimento.length ;i++) {
+            contatosEstabelecimento[i].dia = contatosEstabelecimento[i].id;
+            contatosEstabelecimento[i].numeroContato = contatosEstabelecimento[i].contato;
+            contatosEstabelecimento[i].tipoContato = contatosEstabelecimento[i].nome;
+        };
+
        res.status(200).send({
         ...dadosEstabelecimento[0],
         categorias,
