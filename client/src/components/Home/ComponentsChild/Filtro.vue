@@ -8,7 +8,7 @@
       />
       <button @click="filtrarPorNome"> <i class="uil uil-search search-icon"></i></button>
     </div>
-    <!-- Contêiner externo para botões e quadros de submenu -->
+    <!-- Conteiner externo para botões e quadros de submenu -->
     <div class="filters-container">
       <!-- Categoria Filter -->
       <div class="filter-container">
@@ -118,24 +118,26 @@
 <div class="Centraliza">
       <div class="cards">
         <a
-          v-for="estabelecimento in filteredEstabelecimentos"
+          v-for="(estabelecimento, index) in filteredEstabelecimentos"
           :key="estabelecimento.id"
           :href="getEstabelecimentoLink(estabelecimento)"
           class="card-container"
         >
-      <div class="card">
-        <img
-          :src="estabelecimento.foto"
-          alt="Foto do estabelecimento"
-          class="card-image"
-        />
-        <h3>{{ estabelecimento.nome }}</h3>
-        <p class="description">{{ estabelecimento.categoria.join(', ') }}</p>
+          <div class="card">
+            <img
+              :src="estabelecimento.foto"
+              alt="Foto do estabelecimento"
+              class="card-image"
+            />
+            <h3>{{ estabelecimento.nome }}</h3>
+            <p class="description">{{ estabelecimento.categoria.join(', ') }}</p>
+          </div>
+        </a>
       </div>
-    </a>
+      <!-- Botão "Exibir Mais" -->
+      <button @click="exibirMaisCards" v-if="cardsExibidos < filteredEstabelecimentos.length">Exibir Mais</button>
+    </div>
   </div>
-</div>
-</div>
 </div>
 </template>
 
@@ -159,6 +161,8 @@ export default {
     filtroDistanciaText: "",
     filtroNomeEstabelecimento: "",
     categoriasSelecionadas: [], // controla o array de categorias selecionados
+    cardsPorPagina: 20, // Quantidade de cards por página
+    cardsExibidos: 20, // controla a quantidade de cards já exibidos
     };
   },
   computed: {
@@ -201,6 +205,8 @@ export default {
       estabelecimento.nome.toLowerCase().includes(nomeFiltrado)
     );
   }
+  // Limita a quantidade de cards exibidos com base em cardsExibidos
+  filtered = filtered.slice(0, this.cardsExibidos);
 
   return filtered;
 },
@@ -461,6 +467,9 @@ export default {
       this.filtroDistanciaText = "";
     }
   },
+  exibirMaisCards() {
+      this.cardsExibidos += 20;       // Aumentar a quantidade de cards exibidos em 20
+    },
   },
 };
 </script>

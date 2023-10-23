@@ -124,8 +124,10 @@ export default {
         const nome = estabelecimento.nome.toLowerCase();
         const status = estabelecimento.status.toLowerCase();
 
-        if (this.filtro === "pendente" && estabelecimento.status !== "Pendente") {
-          return false;
+        if (this.filtro === "pendente") {
+          if (estabelecimento.status !== "Pendente") {
+            return false; // Ocultar estabelecimentos que não são "Pendente"
+          }
         }
         if (this.filtro === "validado" && estabelecimento.status !== "Validado") {
           return false;
@@ -134,13 +136,12 @@ export default {
           return false;
         }
         if (this.filtro === "todos" && !nome.includes(query)) {
-            return false;
+          return false;
         }
 
         return nome.includes(query);
       });
     },
-    
   },
 };
 </script>
