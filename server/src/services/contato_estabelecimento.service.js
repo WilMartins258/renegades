@@ -14,7 +14,10 @@ const atualizar = async () => {};
 
 const pegarPorIdEstabelecimento = async (idEstabelecimento) => {
     try {
-        const contatoEstabelecimentoQuery = `SELECT * FROM contato_estabelecimento WHERE idEstabelecimento = ?;`;
+        const contatoEstabelecimentoQuery = `
+        SELECT ce.id, ce.idEstabelecimento, ce.idContato, c.nome, ce.contato, ce.isWhatsapp FROM contato_estabelecimento ce
+	        JOIN contato c ON c.id = ce.idContato
+            WHERE idEstabelecimento = ?;`;
         const connection = await db;
 
         const [contatoEstabelecimento] = await connection.query(contatoEstabelecimentoQuery, idEstabelecimento);
