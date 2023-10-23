@@ -5,6 +5,7 @@ const data_Service = require('../services/utils/dataToMySql.service.js');
 
 router.get('/usuario', async (req, res) => {
     try {
+        await promocao_Service.verificarValidadeDePromocoes();
         const promocoesAtivas = await promocao_Service.pegarTodasPromocoesAtivas();
         const categorias = await categoria_Service.pegarTudo();
 
@@ -32,6 +33,7 @@ router.get('/usuario', async (req, res) => {
 
 router.get('/estabelecimento/:idEstabelecimento', async (req, res) => {
     try {
+        await promocao_Service.verificarValidadeDePromocoes();
         const todasPromocoes = await promocao_Service.pegarPorIdEstabelecimento(req.params.idEstabelecimento);
 
         const promocoesAtivas = []
