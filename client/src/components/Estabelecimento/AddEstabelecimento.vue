@@ -572,7 +572,7 @@ computed: {
   background-attachment: fixed;
   margin: auto;
   max-width: 525px;
-  min-height: 1010px;
+  min-height: 1500px;
   position: relative;
 }
 
