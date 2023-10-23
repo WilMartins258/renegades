@@ -16,7 +16,7 @@ const atualizar = async () => {};
 
 const pegarPorIdEstabelecimento = async (idEstabelecimento) => {
     try {
-        const comidaEstabelecimentoQuery = ``;
+        const comidaEstabelecimentoQuery = `SELECT * FROM comida_estabelecimento WHERE idEstabelecimento = ?;`;
         const connection = await db;
 
         const [comidasEstabelecimento] = await connection.query(comidaEstabelecimentoQuery, idEstabelecimento);
