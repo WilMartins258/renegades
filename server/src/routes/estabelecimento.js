@@ -101,7 +101,7 @@ router.get('/:id', async (req, res) => {
     try {
         connection = await transaction;
         if (req.params.id) {
-            const dadosEstabelecimento = await estabelecimento_Service.pegarPorId(req.params.id, connection);
+            const dadosEstabelecimento = await estabelecimento_Service.pegarPorId(req.params.id);
             const dadosCategoria = await categoria_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id);
             const dadosCategoriaArray = dadosCategoria.map(categoria => categoria.nome);
             const dadosOpcionais = await opcional_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id);

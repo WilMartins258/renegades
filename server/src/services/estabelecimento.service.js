@@ -27,14 +27,15 @@ const atualizar = async (dadosEstabelecimento, conn) => {
   }
 };
 
-const pegarPorId = async (idEstabelecimento, conn) => {
+const pegarPorId = async (idEstabelecimento) => {
   try {
     const estabelecimentoQuery = `
       SELECT nome, fotoPrincipal as 'formatoFoto', descricao, nota, numeroEstabelecimento, logradouro, bairro, cidade, estado, cep
         FROM estabelecimento
         WHERE id = ?;`;
+    const connection = await db;
 
-    const [dadosEstabelecimento] = await conn.query(estabelecimentoQuery, idEstabelecimento);
+    const [dadosEstabelecimento] = await connection.query(estabelecimentoQuery, idEstabelecimento);
 
     return dadosEstabelecimento;
   } catch (error) {
