@@ -1,3 +1,5 @@
+const db = require('../models/db.js');
+
 const inserir = async (dadosHorario, conn) => {
     try {
         const horarioQuery = `INSERT INTO horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) VALUES (?, ?, ?, ?);`;
@@ -12,7 +14,7 @@ const inserir = async (dadosHorario, conn) => {
 
 const atualizar = async () => {};
 
-const pegarPorIdEstabelecimento = async (idEstabelecimento, conn) => {
+const pegarPorIdEstabelecimento = async (idEstabelecimento) => {
     try {
         const horariosEstabelecimentoQuery = `
         SELECT ds.id, ds.diaSemana, ds.numeroDia, h.horarioInicio, h.horarioFim
@@ -20,8 +22,9 @@ const pegarPorIdEstabelecimento = async (idEstabelecimento, conn) => {
             JOIN diaSemana ds ON h.idDiaSemana = ds.id
                 WHERE h.idEstabelecimento = ?
                 ORDER BY ds.id;`;
+        const connection = await db;
 
-        const [horariosEstabelecimento] = await conn.query(horariosEstabelecimentoQuery, idEstabelecimento);
+        const [horariosEstabelecimento] = await connection.query(horariosEstabelecimentoQuery, idEstabelecimento);
 
         return horariosEstabelecimento;
     } catch (error) {

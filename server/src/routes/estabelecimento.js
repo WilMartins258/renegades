@@ -109,7 +109,7 @@ router.get('/:id', async (req, res) => {
             const dadosRedesSociais = await redeSocial_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id);
             const dadosMusica = await musica_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id);
             const dadosMusicaArray = dadosMusica.map(musica => musica.nome);
-            const dadosHorarios = await horario_Service.pegarPorIdEstabelecimento(req.params.id, connection);
+            const dadosHorarios = await horario_Service.pegarPorIdEstabelecimento(req.params.id);
             const dadosRecomendacao = await recomendacao_Service.pegarPorIdEstabelecimento(req.params.id, connection);
             const dadosAvaliacao = await avaliacao_Service.pegarPorIdEstabelecimento(req.params.id, connection);
             const dadosContatos = await contato_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id, connection);
