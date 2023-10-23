@@ -383,7 +383,8 @@ methods: {
         sessionStorage.setItem('idEstabelecimento', salvarEstabelecimento.data.idEstabelecimento);
         sessionStorage.setItem('tipoUsuario', salvarEstabelecimento.data.tipoUsuario);
 
-
+        // incluir msg e direcionar para a tela do perfil do estabelecimento
+        this.$router.push({ name: '/AreaDoEstabelecimento'})
         console.log("salvarEstabelecimento:: ", salvarEstabelecimento);
         console.log("idEstabelecimento:: ", sessionStorage.getItem('idEstabelecimento'));
       }
