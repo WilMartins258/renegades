@@ -18,7 +18,7 @@ export default {
   },
   async created() {
     try {
-      await api.get('/');
+      // await api.get('/');
     } catch (error) {
       console.log('Erro ao acionar rota /; Erro: ', error);
     }
