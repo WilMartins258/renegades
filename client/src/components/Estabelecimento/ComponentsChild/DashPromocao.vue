@@ -302,7 +302,6 @@ export default {
   },
   async mounted() {
     try {
-      await api.get('/promocao');
       const promocoesRequest = await api.get(`/promocao/estabelecimento/${sessionStorage.getItem('idEstabelecimento')}`);
 
       const {
