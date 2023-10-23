@@ -1137,25 +1137,37 @@ computed: {
       console.log('dadosEstabelecimentoRequest:: ', dadosEstabelecimentoRequest.data);
 
       const {
+        nome,
+        formatoFoto,
+        descricao,
+        nota,
+        numeroEstabelecimento,
+        logradouro,
+        bairro,
+        cidade,
+        estado,
+        cep,
         categorias,
         opcionais,
         estilosMusica,
         comidas,
-        // dadosEstabelecimento,
-        // opcionaisEstabelecimento,
-        // categoriasEstabelecimento,
-        // redeSociaisEstabelecimento,
-        // musicasEstabelecimento,
-        // horariosEstabelecimento,
-        // recomendacoesEstabelecimento,
-        // comidasEstabelecimento,
-        // contatosEstabelecimento,
-        // avaliacao
+        opcionaisEstabelecimento,
+        categoriasEstabelecimento,
+        redeSociaisEstabelecimento,
+        musicasEstabelecimento,
+        horariosEstabelecimento,
+        recomendacoesEstabelecimento,
+        comidasEstabelecimento,
+        contatosEstabelecimento,
+        avaliacao
       } = dadosEstabelecimentoRequest.data;
       this.categoria = categorias;
       this.opcoes = opcionais;
       this.estilos = estilosMusica;
       this.tiposDeComida = comidas;
+
+      // console.log('dadosEstabelecimento:: ', dadosEstabelecimento);
+
 
       
     } catch (error) {

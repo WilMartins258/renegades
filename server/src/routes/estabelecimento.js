@@ -173,11 +173,11 @@ router.get('/meuEstabelecimento/:id', async (req, res) => {
         const avaliacao = await avaliacao_Service.pegarPorIdEstabelecimento(req.params.id);
 
        res.status(200).send({
+        ...dadosEstabelecimento[0],
         categorias,
         opcionais,
         estilosMusica,
         comidas,
-        dadosEstabelecimento,
         opcionaisEstabelecimento,
         categoriasEstabelecimento,
         redeSociaisEstabelecimento,
