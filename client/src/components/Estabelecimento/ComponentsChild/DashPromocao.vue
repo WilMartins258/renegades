@@ -327,7 +327,7 @@ export default {
 
       this.listaPromocoes = promocoesAtivas;
       this.listaPromocoesInativas = promocoesInativas
-      this.listaPromocoesVencidas = promocoesVencidas;
+      this.listaPromocoesConcluidas = promocoesVencidas;
     } catch (error) {
       console.log('Erro ao buscar promoções do estabelecimentos: ', error);
     }
