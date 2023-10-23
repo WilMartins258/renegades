@@ -1,3 +1,5 @@
+const db = require('../models/db.js');
+
 const inserir = async (dadosCategoria, conn) => {
     try {
         const inserirCategoriaEstabelecimentoQuery = `INSERT INTO categoria_estabelecimento (idEstabelecimento, idCategoria) VALUES (?, ?);`;
@@ -12,15 +14,16 @@ const inserir = async (dadosCategoria, conn) => {
 
 const atualizar = async () => {};
 
-const pegarPorIdEstabelecimento = async (idEstabelecimento, conn) => {
+const pegarPorIdEstabelecimento = async (idEstabelecimento) => {
     try {
         const categoriaEstabelecimentoQuery = `
         SELECT cat.nome 
             FROM categoria_estabelecimento ce
             JOIN categoria cat ON ce.idCategoria = cat.id
                 WHERE ce.idEstabelecimento = ?;`;
+        const connection = await db;
 
-        const [categoriaEstabelecimento] = await conn.query(categoriaEstabelecimentoQuery, idEstabelecimento);
+        const [categoriaEstabelecimento] = await connection.query(categoriaEstabelecimentoQuery, idEstabelecimento);
 
         return categoriaEstabelecimento;
     } catch (error) {
