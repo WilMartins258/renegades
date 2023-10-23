@@ -172,6 +172,11 @@ router.get('/meuEstabelecimento/:id', async (req, res) => {
         const contatosEstabelecimento = await contato_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id);
         const avaliacao = await avaliacao_Service.pegarPorIdEstabelecimento(req.params.id);
 
+        for (let i=0; i < recomendacoesEstabelecimento.length ;i++) {
+            recomendacoesEstabelecimento[i].name = recomendacoesEstabelecimento[i].nome;
+            recomendacoesEstabelecimento[i].description = recomendacoesEstabelecimento[i].descricao;
+        };
+
        res.status(200).send({
         ...dadosEstabelecimento[0],
         categorias,
