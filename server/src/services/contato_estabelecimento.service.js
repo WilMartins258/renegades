@@ -1,3 +1,5 @@
+const db = require('../models/db.js');
+
 const inserir = async (dadosContato, conn) => {
     try {
         const inserirContatoEstabelecimentoQuery = `INSERT into contato_estabelecimento (idEstabelecimento, idContato, contato, isWhatsapp) VALUES (?, ?, ?, ?);`;
@@ -10,11 +12,12 @@ const inserir = async (dadosContato, conn) => {
 
 const atualizar = async () => {};
 
-const pegarPorIdEstabelecimento = async (idEstabelecimento, conn) => {
+const pegarPorIdEstabelecimento = async (idEstabelecimento) => {
     try {
         const contatoEstabelecimentoQuery = `SELECT * FROM contato_estabelecimento WHERE idEstabelecimento = ?;`;
+        const connection = await db;
 
-        const [contatoEstabelecimento] = await conn.query(contatoEstabelecimentoQuery, idEstabelecimento);
+        const [contatoEstabelecimento] = await connection.query(contatoEstabelecimentoQuery, idEstabelecimento);
 
         return contatoEstabelecimento;
     } catch (error) {

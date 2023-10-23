@@ -112,7 +112,7 @@ router.get('/:id', async (req, res) => {
             const dadosHorarios = await horario_Service.pegarPorIdEstabelecimento(req.params.id);
             const dadosRecomendacao = await recomendacao_Service.pegarPorIdEstabelecimento(req.params.id);
             const dadosAvaliacao = await avaliacao_Service.pegarPorIdEstabelecimento(req.params.id);
-            const dadosContatos = await contato_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id, connection);
+            const dadosContatos = await contato_estabelecimento_Service.pegarPorIdEstabelecimento(req.params.id);
 
             let tocaMusica = false;
             if (dadosOpcionaisArray) {
