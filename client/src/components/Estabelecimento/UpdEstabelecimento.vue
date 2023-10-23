@@ -1166,6 +1166,7 @@ computed: {
       this.opcoes = opcionais;
       this.estilos = estilosMusica;
       this.tiposDeComida = comidas;
+
       this.nomeEstabelecimento = nome;
       this.descricaoEstabelecimento = descricao;
       this.cnpj = cnpj;
@@ -1177,6 +1178,7 @@ computed: {
       this.endereco.uf = estado;
 
       this.recomendacao = recomendacoesEstabelecimento;
+      this.opcoesSelecionadas = opcionaisEstabelecimento;
 
       console.log('recomendacoesEstabelecimento:: ', recomendacoesEstabelecimento);
 
