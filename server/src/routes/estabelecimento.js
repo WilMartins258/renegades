@@ -177,6 +177,11 @@ router.get('/meuEstabelecimento/:id', async (req, res) => {
             recomendacoesEstabelecimento[i].description = recomendacoesEstabelecimento[i].descricao;
         };
 
+        for (let i=0; i < redeSociaisEstabelecimento.length ;i++) {
+            redeSociaisEstabelecimento[i].perfil = redeSociaisEstabelecimento[i].redeSocial;
+            redeSociaisEstabelecimento[i].redeSocial = redeSociaisEstabelecimento[i].nome;
+        };
+
        res.status(200).send({
         ...dadosEstabelecimento[0],
         categorias,
