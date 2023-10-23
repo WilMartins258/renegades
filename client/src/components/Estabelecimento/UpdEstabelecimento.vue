@@ -1170,6 +1170,7 @@ computed: {
       this.descricaoEstabelecimento = descricao;
       this.cnpj = cnpj;
       this.cep = cep;
+      this.numero = numeroEstabelecimento;
       this.endereco.rua = logradouro;
       this.endereco.bairro = bairro;
       this.endereco.cidade = cidade;
