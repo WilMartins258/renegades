@@ -1179,6 +1179,7 @@ computed: {
 
       this.recomendacao = recomendacoesEstabelecimento;
       this.opcoesSelecionadas = opcionaisEstabelecimento;
+      this.categoriaSelecionadas = categoriasEstabelecimento;
 
       console.log('recomendacoesEstabelecimento:: ', recomendacoesEstabelecimento);
 
