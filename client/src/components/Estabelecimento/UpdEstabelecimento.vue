@@ -1182,6 +1182,7 @@ computed: {
       this.categoriaSelecionadas = categoriasEstabelecimento;
       this.tiposDeComidaSelecionados = comidasEstabelecimento;
       this.listaRedesSociais = redeSociaisEstabelecimento;
+      this.listahorarios = horariosEstabelecimento;
 
       console.log('recomendacoesEstabelecimento:: ', recomendacoesEstabelecimento);
 
