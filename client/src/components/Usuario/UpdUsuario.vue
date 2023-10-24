@@ -160,6 +160,13 @@ export default{
           this.endereco.uf = dadosUsuario.estado;
           this.endereco.cidade = dadosUsuario.cidade;
           this.endereco.numero = dadosUsuario.numeroResidencia;
+          if (dadosUsuario.fotoPerfil) {
+            try {
+              this.avatarSrc = require(`./images/${sessionStorage.getItem('idUsuario')}.${dadosUsuario.fotoPerfil}`);
+            } catch (error) {
+              console.log('Erro ao exibir imagem do usuário');
+            }
+          }
         } else {
           alert('usuário não autenticado, autentique para visualizar dados.');
         }
