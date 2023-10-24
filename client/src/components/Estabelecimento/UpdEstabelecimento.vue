@@ -1099,12 +1099,16 @@ cancelar() {
 },
 
 salvar() {
-  this.desabilitarCampos();
-  // Habilitar o botão "Alterar"
-  document.getElementById("alterarButton").removeAttribute("disabled");
-  // Desabilitar os botões "Salvar" , "Cancelar e "Excluir"
-  document.getElementById("salvarButton").setAttribute("disabled", true);
-  document.getElementById("cancelarButton").setAttribute("disabled", true);
+  try {
+    this.desabilitarCampos();
+    // Habilitar o botão "Alterar"
+    document.getElementById("alterarButton").removeAttribute("disabled");
+    // Desabilitar os botões "Salvar" , "Cancelar e "Excluir"
+    document.getElementById("salvarButton").setAttribute("disabled", true);
+    document.getElementById("cancelarButton").setAttribute("disabled", true);
+  } catch (error) {
+    console.log('Erro ao atualizar dados do estabelecimento: ', error);
+  }
 },
 },
   mounted(){
