@@ -118,7 +118,7 @@
 <div class="Centraliza">
       <div class="cards">
         <a
-          v-for="(estabelecimento, index) in filteredEstabelecimentos"
+        v-for="estabelecimento in filteredEstabelecimentos"
           :key="estabelecimento.id"
           :href="getEstabelecimentoLink(estabelecimento)"
           class="card-container"
@@ -135,7 +135,9 @@
         </a>
       </div>
       <!-- Botão "Exibir Mais" -->
-      <button @click="exibirMaisCards" v-if="cardsExibidos < filteredEstabelecimentos.length">Exibir Mais</button>
+      <br><br> <div><button @click="exibirMaisCards" v-if="cardsExibidos < estabelecimentos.length">Exibir Mais</button></div>
+      
+      
     </div>
   </div>
 </div>
@@ -161,8 +163,8 @@ export default {
     filtroDistanciaText: "",
     filtroNomeEstabelecimento: "",
     categoriasSelecionadas: [], // controla o array de categorias selecionados
-    cardsPorPagina: 20, // Quantidade de cards por página
-    cardsExibidos: 20, // controla a quantidade de cards já exibidos
+    cardsPorPagina: 4, // Quantidade de cards por página
+    cardsExibidos: 2, // controla a quantidade de cards já exibidos
     };
   },
   computed: {
@@ -468,7 +470,7 @@ export default {
     }
   },
   exibirMaisCards() {
-      this.cardsExibidos += 20;       // Aumentar a quantidade de cards exibidos em 20
+      this.cardsExibidos += 4;       // Aumentar a quantidade de cards exibidos em 20
     },
   },
 };
