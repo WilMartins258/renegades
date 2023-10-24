@@ -65,19 +65,21 @@ router.put('/', async (req, res) => {
             bairro,
             logradouro,
             numero,
-            fotoBuffer
+            fotoBuffer,
+            fotoType
         } = req.body;
 
         const dataNascMySqlFormat = dataToMySql_Service.dataToMySqlFormat(dataNascimento);
 
-        console.log('fotoBuffer:: ', fotoBuffer);
-          
+        const extensaoImagem = extensaoImagem_Service.encontrarExtensaoImagem(fotoType);
+        const bufferFotoValidado = await buffer_Service.transformarBufferEmValido(fotoBuffer);
+        
         const novosDadosUsuario = {
             nome,
             celular,
             email,
             senha,
-            fotoPerfil: 'test-blob',
+            fotoPerfil: extensaoImagem,
             dataNascimento: dataNascMySqlFormat,
             cep,
             estado,
