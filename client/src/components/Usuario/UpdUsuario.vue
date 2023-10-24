@@ -318,7 +318,6 @@ export default{
         excluirButton.removeAttribute("disabled");
 
         try {
-          // Posteriormente temos que adicionar a foto
           const novosDadosUsuario = {
             idUsuario: sessionStorage.getItem('idUsuario'),
             nome: nomeInput.value,
@@ -331,7 +330,8 @@ export default{
             cidade: cidadeInput.value,
             bairro: bairroInput.value,
             logradouro: ruaInput.value,
-            numero: numeroInput.value
+            numero: numeroInput.value,
+            foto: this.fotoUsuario
           };
           await api.put('/usuario', novosDadosUsuario);
         } catch (error) {
