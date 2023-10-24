@@ -4,7 +4,7 @@
 
       <div class="personal-image">
               <label class="label">
-                <input type="file" @change="AtualizarImagem" />
+                <input type="file" @change="AtualizarImagem" id="input_imagem"/>
                 <figure class="personal-figure">
                   <img :src="avatarSrc" class="personal-avatar" alt="avatar" ref="avatarImage">
                   <figcaption class="personal-figcaption">
@@ -94,7 +94,6 @@
 
 <script>
   import IMask from "imask";
-  import axios from "axios";
   import api from './../../services/backend.service';
   import dataToDiaMesAno from './../../services/dataToDiaMesAno.service.js';
 
@@ -132,7 +131,8 @@ export default{
       celular: "",
       email: "",
       senha: "",
-      senhaConfirm: ""
+      senhaConfirm: "",
+      fotoUsuario: ""
   };
   },
   created() {
@@ -208,16 +208,39 @@ export default{
       }
       */
     },
-    AtualizarImagem(event) {
-      const file = event.target.files[0];
+    async AtualizarImagem(event) {
+      try {
+        const inputImagem = document.getElementById('input_imagem');
+        const file = inputImagem?.files[0];
 
-      if (file) {
-        const reader = new FileReader();
-        reader.
-        onload = () => {
-              this.avatarSrc = reader.result;
-            };
-            reader.readAsDataURL(file);
+        if (file) {
+          const reader = new FileReader();
+
+          const fileReader = new FileReader();
+          const readAsArrayBuffer = (file) => {
+              return new Promise((resolve, reject) => {
+                  fileReader.onloadend = () => resolve(fileReader.result);
+                  fileReader.onerror = reject;
+                  fileReader.readAsArrayBuffer(file);
+              });
+          };
+
+          reader.
+          onload = () => {
+            this.avatarSrc = reader.result;
+          };
+          reader.readAsDataURL(file);
+        
+          try {
+            const arrayBuffer = await readAsArrayBuffer(file);
+            const bufferValido = new Uint8Array(arrayBuffer);
+            this.fotoUsuario = bufferValido;
+          } catch (error) {
+            console.log('Erro ao ler imagem como buffer: ', error);
+          }
+        }
+      } catch (error) {
+        console.log('Erro ao atualizar imagem do usuário: ', error);
       }
     }, 
     setupFormListeners() {
@@ -295,7 +318,6 @@ export default{
         excluirButton.removeAttribute("disabled");
 
         try {
-          // Posteriormente temos que adicionar a foto
           const novosDadosUsuario = {
             idUsuario: sessionStorage.getItem('idUsuario'),
             nome: nomeInput.value,
@@ -308,7 +330,8 @@ export default{
             cidade: cidadeInput.value,
             bairro: bairroInput.value,
             logradouro: ruaInput.value,
-            numero: numeroInput.value
+            numero: numeroInput.value,
+            fotoBuffer: this.fotoUsuario
           };
           await api.put('/usuario', novosDadosUsuario);
         } catch (error) {

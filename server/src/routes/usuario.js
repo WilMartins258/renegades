@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const dataToMySql_Service = require('../services/utils/dataToMySql.service.js');
 const usuario_Service = require('../services/usuario.service.js');
+const extensaoImagem_Service = require('../services/utils/extensaoImagens.service.js');
+const buffer_Service = require('../services/utils/buffer.service.js');
 
 router.get('/', async (req, res) => {
     try {
@@ -62,17 +64,20 @@ router.put('/', async (req, res) => {
             cidade,
             bairro,
             logradouro,
-            numero
+            numero,
+            fotoBuffer
         } = req.body;
 
         const dataNascMySqlFormat = dataToMySql_Service.dataToMySqlFormat(dataNascimento);
+
+        console.log('fotoBuffer:: ', fotoBuffer);
           
         const novosDadosUsuario = {
             nome,
             celular,
             email,
             senha,
-            foto: 'test-blob',
+            fotoPerfil: 'test-blob',
             dataNascimento: dataNascMySqlFormat,
             cep,
             estado,
