@@ -132,7 +132,8 @@ export default{
       email: "",
       senha: "",
       senhaConfirm: "",
-      fotoUsuario: ""
+      fotoUsuario: "",
+      fotoUsuarioType: ""
   };
   },
   created() {
@@ -235,6 +236,7 @@ export default{
             const arrayBuffer = await readAsArrayBuffer(file);
             const bufferValido = new Uint8Array(arrayBuffer);
             this.fotoUsuario = bufferValido;
+            this.fotoUsuarioType = file.type;
           } catch (error) {
             console.log('Erro ao ler imagem como buffer: ', error);
           }
@@ -331,7 +333,8 @@ export default{
             bairro: bairroInput.value,
             logradouro: ruaInput.value,
             numero: numeroInput.value,
-            fotoBuffer: this.fotoUsuario
+            fotoBuffer: this.fotoUsuario,
+            fotoType: this.fotoUsuarioType
           };
           await api.put('/usuario', novosDadosUsuario);
         } catch (error) {
