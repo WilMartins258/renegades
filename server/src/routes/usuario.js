@@ -4,6 +4,7 @@ const dataToMySql_Service = require('../services/utils/dataToMySql.service.js');
 const usuario_Service = require('../services/usuario.service.js');
 const extensaoImagem_Service = require('../services/utils/extensaoImagens.service.js');
 const buffer_Service = require('../services/utils/buffer.service.js');
+const fs = require('fs');
 
 router.get('/', async (req, res) => {
     try {
@@ -72,7 +73,7 @@ router.put('/', async (req, res) => {
         const dataNascMySqlFormat = dataToMySql_Service.dataToMySqlFormat(dataNascimento);
 
         const extensaoImagem = extensaoImagem_Service.encontrarExtensaoImagem(fotoType);
-        const bufferFotoValidado = await buffer_Service.transformarBufferEmValido(fotoBuffer);
+        const bufferFotoUusuario= await buffer_Service.transformarBufferEmValido(fotoBuffer);
         
         const novosDadosUsuario = {
             nome,
@@ -91,6 +92,12 @@ router.put('/', async (req, res) => {
         };
         const novosDadosUsuarioArray = Object.values(novosDadosUsuario);
         await usuario_Service.atualizar(novosDadosUsuarioArray);
+
+        fs.writeFile(`./../client/src/components/Usuario/images/${idUsuario}.${extensaoImagem}`, bufferFotoUusuario, (err) => {
+            if (err) {
+              console.error('Erro ao salvar imagem do usuário:', err);
+            }
+        });
 
         res.status(200).send({
             msg: 'Dados do usuário alterados com sucesso!',
