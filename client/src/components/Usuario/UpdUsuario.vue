@@ -331,7 +331,7 @@ export default{
             bairro: bairroInput.value,
             logradouro: ruaInput.value,
             numero: numeroInput.value,
-            foto: this.fotoUsuario
+            fotoBuffer: this.fotoUsuario
           };
           await api.put('/usuario', novosDadosUsuario);
         } catch (error) {
