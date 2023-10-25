@@ -552,7 +552,7 @@ h3{
 
 .avaliacao-estabelecimento{
     padding: 20px;
-    background-color: #f0f0f0a9;
+    background-color: #f0f0f0c4;
     text-align: center;
     max-width: 700px; 
     margin: 0 auto; 
