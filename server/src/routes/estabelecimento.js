@@ -388,6 +388,8 @@ router.post('/', async (req, res) => {
 router.put('/', async (req, res) => {
     try {
         const reqBody = req.body;
+        console.log('PUT estabelecimento')
+        console.log('reqBody:: ', reqBody)
 
         res.status(200).send({
             msg: 'Dados do estabelecimento alterados com sucesso!'
