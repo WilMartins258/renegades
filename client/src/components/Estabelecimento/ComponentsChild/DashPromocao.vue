@@ -58,7 +58,7 @@
           </td>
           <td>{{ promocao.codigo }}</td>
           <td>{{ promocao.nome }}</td>
-          <td>{{ promocao.descricao }}</td>
+          <td class="descricao-promo">{{ promocao.descricao }}</td>
           <td>{{ promocao.dataInicio }}</td>
           <td>{{ promocao.dataFim }}</td>
           <td>
@@ -104,7 +104,7 @@
           <tr v-for="(promocao, index) in listaPromocoesInativas" :key="index"> <!-- Preencher com as promoções inativas -->
             <td>{{ promocao.codigo }}</td>
             <td>{{ promocao.nome }}</td>
-            <td>{{ promocao.descricao }}</td>
+            <td class="descricao-promo">{{ promocao.descricao }}</td>
             <td>{{ promocao.dataInicio }}</td>
             <td>{{ promocao.dataFim }}</td>
           </tr>
@@ -133,7 +133,7 @@
           <tr v-for="(promocao, index) in listaPromocoesConcluidas" :key="index"><!-- Preencher com as promoções concluídas -->
             <td>{{ promocao.codigo }}</td>
             <td>{{ promocao.nome }}</td>
-            <td>{{ promocao.descricao }}</td>
+            <td class="descricao-promo">{{ promocao.descricao }}</td>
             <td>{{ promocao.dataInicio }}</td>
             <td>{{ promocao.dataFim }}</td>
           </tr>
@@ -352,6 +352,7 @@ export default {
   .table-container {
   max-height: 200px; /* Adjust the height as needed */
   overflow: auto;
+  
 }
 
 .table-container-inativas {
@@ -362,6 +363,7 @@ export default {
 .table-container-concluidas {
   max-height: 300px; 
   overflow: auto;
+  
 }
 
 
@@ -406,6 +408,10 @@ export default {
   th {
     background-color: #f2f2f2;
   }
+
+  .descricao-promo {
+  white-space: pre-wrap;
+}
   
   button {
     background: #e91e2f;

@@ -257,6 +257,8 @@ import dataFormat from './../../services/dataToDiaMesAno.service';
   width: 350px; /* Defina a largura desejada */
   margin-right: 10px;
   background: rgba(211, 201, 201, 0.89);
+  font-weight: bold;
+  font-size: 16px;
 }
 
 .search-container button {
