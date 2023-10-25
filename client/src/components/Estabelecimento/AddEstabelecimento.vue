@@ -190,19 +190,19 @@
    <!-- Foto Estabelecimento -->
      <h3>Adicione aqui a foto do seu estabelecimento</h3><br>
   <div class="group">
-    <label for="estabelecimentoPhoto" class="label">Foto do Estabelecimento:</label><br />
-    <input
-      type="file"
-      id="estabelecimentoPhoto"
-      accept="image/*"
-      @change="handleEstabelecimentoPhotoChange"
-    />
-    <img
-      v-if="estabelecimentoPhoto"
-      :src="estabelecimentoPhoto64"
-      alt="Foto do Estabelecimento"
-      class="miniatura-imagem"
-    />
+    <div class="personal-image center-image">
+    <div class="personal-image">
+        <label class="label" for="estabelecimentoPhoto">
+          <input type="file" id="estabelecimentoPhoto" accept="image/*" @change="handleEstabelecimentoPhotoChange" style="display: none" />
+          <figure class="personal-figure">
+            <img :src="fotoEstabelecimento" class="personal-avatar round-avatar" alt="Foto do Estabelecimento" ref="avatarImage" />
+            <figcaption class="personal-figcaption">
+              <img src="https://raw.githubusercontent.com/ThiagoLuizNunes/angular-boilerplate/master/src/assets/imgs/camera-white.png" alt="Adicionar Foto" />
+            </figcaption>
+          </figure>
+        </label>
+      </div>
+    </div>
   </div>
   <br>
   <!-- Chamada para o Component --> 
@@ -210,22 +210,26 @@
   <DashHorAtendimento :HorariosSelecionados="HorariosSelecionados" :horarioSelecionado="horarioSelecionado" @dados-salvos="receberHorario" />
 
   <br>
-  <div class="group">
-        <div>
-          <input
-            type="button"
-            class="button"
-            value="Salvar"
-            @click="salvarDados"
-          />
-          <input
-            type="button"
-            class="button"
-            value="Cancelar"
-            @click="cancelar"
-          /> <br><br>
-        </div>
-      </div>
+  <fieldset>
+    <legend>Finalizar Cadastro:</legend>
+    <br>
+      <div class="group">
+            <div>
+              <input
+                type="button"
+                class="button"
+                value="Salvar"
+                @click="salvarDados"
+              />
+              <input
+                type="button"
+                class="button"
+                value="Cancelar"
+                @click="cancelar"
+              /> <br><br>
+            </div>
+          </div>
+    </fieldset>
   </section><!-- Fecha seção 6-->
   <br>
   <div class="buttons">
@@ -287,7 +291,7 @@ data() {
       { name: '', description:  '', photo: null, photoBuffer: null, type: null },],
       estabelecimentoPhoto: null,
       estabelecimentoPhotoType: "",
-      estabelecimentoPhoto64: null,
+      fotoEstabelecimento: "https://abravidro.org.br/wp-content/uploads/2015/04/sem-imagem10.jpg",
       categoriasSelecionadas: [],
       opcoesSelecionadas: [],
       RdSocialSelecionadas: [],
@@ -395,8 +399,8 @@ methods: {
   avancarSection() {
     if (this.currentSection < 6) {
       this.currentSection++;
-      this.title = "Novo Título da Seção"; // Atualize o título aqui
-      this.openDescriptionPopup(); // Abra o popup ao avançar
+     // this.title = "Novo Título da Seção"; // Atualize o título aqui
+      //this.openDescriptionPopup(); // Abra o popup ao avançar
     }
     this.scrollToTop();
   },
@@ -521,7 +525,7 @@ methods: {
 
               this.estabelecimentoPhoto = bufferValido;
               this.estabelecimentoPhotoType = image.type;
-              this.estabelecimentoPhoto64 = await retornaCodigoBase64(image);;
+              this.fotoEstabelecimento = await retornaCodigoBase64(image);;
           } catch (error) {
               console.error('Erro ao converter a imagem para ArrayBuffer:', error);
           }
@@ -582,6 +586,7 @@ computed: {
     position: absolute;
     padding: 50px 30px 50px 30px;
     flex-wrap: wrap;
+    
   }
 
   .progress {
@@ -638,6 +643,83 @@ margin-top: 10px;
   width: 10px; 
   display: inline-block;
 }
+/* Estilo imagem Estabelecimento */
+.personal-image {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  .personal-image input[type="file"] {
+    display: none;
+  }
+  
+  .personal-figure {
+    position: relative;
+    width: 150px;
+    height: 150px;
+  }
+  
+  .personal-avatar {
+    cursor: pointer;
+    width: inherit;
+    height: inherit;
+    box-sizing: border-box;
+    border-radius: 25px;
+    border: 2px solid transparent;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+    transition: all ease-in-out .3s;
+  }
+  .personal-avatar:hover {
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
+  }
+  
+  .personal-figcaption {
+    cursor: pointer;
+    position: absolute;
+    top: 0px;
+    width: inherit;
+    height: inherit;
+    border-radius: 25px;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0);
+    transition: all ease-in-out .3s;
+  }
+  .personal-figcaption:hover {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, .5);
+  }
+  .personal-figcaption > img {
+    margin-top: 32.5px;
+    width: 50px;
+    height: 50px;
+  }
+  
+  .center-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+fieldset {
+        border: 2px solid #ff9800;
+        border-radius: 20px;
+        padding: 10px;
+        margin-bottom: 20px;
+        box-shadow: 4px 4px 4px #e91e2f, 4px 4px 4px ;
+        flex-direction: column; 
+        justify-content: center; 
+        align-items: center;
+        display: flex; 
+    }
+
+    legend {
+        font-weight: bold;
+        color: #fff;
+        font-size: 15px;
+    }
+
 
 /* Responsive */
 
