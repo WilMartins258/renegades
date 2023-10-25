@@ -855,104 +855,6 @@ methods: {
         this.listahorarios.splice(index, 1);
       }
     },
-//--------------------------Metodo dos Dash's encerra Aqui----------------------------------------------------------------------
-  async salvarDados() {
-    const formData = {
-      nomeEstabelecimento: this.nomeEstabelecimento,
-      descricaoEstabelecimento: this.descricaoEstabelecimento,
-      cnpj: this.cnpj,
-      cep: this.cep,
-      endereco: this.endereco,
-      numero: this.numero,
-      recomendacao: this.recomendacao,
-      estabelecimentoPhoto: this.estabelecimentoPhoto,
-      categoriasSelecionadas: this.categoriasSelecionadas,
-      tiposDeComidaSelecionados: this.tiposDeComidaSelecionados,
-      opcoesSelecionadas: this.opcoesSelecionadas,
-      estilosSelecionadas: this.estilosSelecionadas,
-      RdSocialSelecionadas: this.RdSocialSelecionadas,
-      ContatosSelecionadas: this.ContatosSelecionadas,
-      HorariosSelecionados: this.HorariosSelecionados,
-    };
-    const formDataFake = {
-      nomeEstabelecimento: 'nome estabelecimento',
-      descricaoEstabelecimento: 'descricaoEstabelecimento',
-      categoriasSelecionadas: [
-        {
-          id: 1,
-          nome: 'Pizzaria',
-        },
-        {
-          id: 2,
-          nome: 'Hamburgueria',
-        },
-        {
-          id: 3,
-          nome: 'Lanchonete',
-        },
-      ],
-      cnpj: 'cnpj',
-      cep: '',
-      endereco: this.endereco,
-      numero: '1234',
-      recomendacao: this.recomendacao,
-      estabelecimentoPhoto: this.estabelecimentoPhoto,
-      opcoesSelecionadas: [
-        {
-          id: 2,
-          nome: 'Wi-Fi',
-        },
-        {
-          id: 3,
-          nome: 'Estacionamento',
-        },
-      ],
-      estilosSelecionadas: this.estilosSelecionadas,
-      RdSocialSelecionadas: [
-        {
-          redeSocial: 'Facebook',
-          perfil: 'link facebook',
-        },
-        {
-          redeSocial: 'Instagram',
-          perfil: 'link instagram',
-        },
-      ],
-      ContatosSelecionadas: [
-        {
-          tipoContato: 'Celular',
-          numero: '(15) 98163-5309',
-          isWhatsapp: true,
-          id: 2,
-        },
-        {
-          tipoContato: 'Telefone',
-          numero: '(15) 3242-2433',
-          isWhatsapp: false,
-          id: 1,
-        },
-        {
-          tipoContato: 'Telefone',
-          numero: '(15) 9811-1412',
-          isWhatsapp: true,
-          id: 1,
-        },
-      ],
-      HorariosSelecionados: this.HorariosSelecionados,
-    };
-
-
-    console.log("Dados do formulário e componentes filhos:", formDataFake);
-    
-    const salvarEstabelecimento = await api.post('estabelecimento', formDataFake);
-
-    if (salvarEstabelecimento) {
-      console.log("salvarEstabelecimento:: ", salvarEstabelecimento);
-    }
-    
-    
-    
-  },
   nextSection() {
     console.log('nomeEstabelecimento:', this.nomeEstabelecimento);
     console.log('descricaoEstabelecimento:', this.descricaoEstabelecimento);
@@ -1102,6 +1004,23 @@ async salvar() {
   try {
     console.log('PUT estabelecimento')
     this.desabilitarCampos();
+    const novosDadosEstabelecimento = {
+      nomeEstabelecimento: this.nomeEstabelecimento,
+      descricaoEstabelecimento: this.descricaoEstabelecimento,
+      cnpj: this.cnpj,
+      cep: this.cep,
+      endereco: this.endereco,
+      numero: this.numero,
+      recomendacao: this.recomendacao,
+      estabelecimentoPhoto: this.estabelecimentoPhoto,
+      categoriasSelecionadas: this.categoriasSelecionadas,
+      tiposDeComidaSelecionados: this.tiposDeComidaSelecionados,
+      opcoesSelecionadas: this.opcoesSelecionadas,
+      estilosSelecionadas: this.estilosSelecionadas,
+      RdSocialSelecionadas: this.RdSocialSelecionadas,
+      ContatosSelecionadas: this.ContatosSelecionadas,
+      HorariosSelecionados: this.HorariosSelecionados
+    };
     const atualizacaoDados = await api.put('/estabelecimento', {nelson: 'nelson'});
     console.log('atualizacaoDados:: ', atualizacaoDados)
 
