@@ -1098,9 +1098,13 @@ cancelar() {
   document.getElementById("cancelarButton").setAttribute("disabled", true);
 },
 
-salvar() {
+async salvar() {
   try {
+    console.log('PUT estabelecimento')
     this.desabilitarCampos();
+    const atualizacaoDados = await api.put('/estabelecimento', {nelson: 'nelson'});
+    console.log('atualizacaoDados:: ', atualizacaoDados)
+
     // Habilitar o botão "Alterar"
     document.getElementById("alterarButton").removeAttribute("disabled");
     // Desabilitar os botões "Salvar" , "Cancelar e "Excluir"
