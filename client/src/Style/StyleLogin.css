@@ -78,6 +78,7 @@
 .login-form .group .input{
     width:100%;
     color:#000;
+    font-size: 16px;
     display:block;
     font-weight: bold;
 }
