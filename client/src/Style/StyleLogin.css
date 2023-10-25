@@ -69,11 +69,17 @@
     margin-bottom:15px;
 }
 .login-form .group .label,
-.login-form .group .input,
 .login-form .group .button{
     width:100%;
     color:#fff;
     display:block;
+}
+
+.login-form .group .input{
+    width:100%;
+    color:#000;
+    display:block;
+    font-weight: bold;
 }
 .login-form .group .input,
 .login-form .group .button{
