@@ -855,36 +855,6 @@ methods: {
         this.listahorarios.splice(index, 1);
       }
     },
-  nextSection() {
-    console.log('nomeEstabelecimento:', this.nomeEstabelecimento);
-    console.log('descricaoEstabelecimento:', this.descricaoEstabelecimento);
-    console.log('cnpj:', this.cnpj);
-    console.log('cep:', this.cep);
-    console.log('endereco:', this.endereco);
-    console.log('numero:', this.numero);
-    console.log('recomendacao:', this.recomendacao);
-    console.log('estabelecimentoPhoto:', this.estabelecimentoPhoto);
-    console.log('categoriasSelecionadas:', this.categoriasSelecionadas);
-    console.log('opcoesSelecionadas:', this.opcoesSelecionadas);
-    console.log('estilosSelecionadas:', this.estilosSelecionadas);
-    console.log('RdSocialSelecionadas:', this.RdSocialSelecionadas);
-    console.log('ContatosSelecionadas:', this.ContatosSelecionadas);
-    console.log('HorariosSelecionados:', this.HorariosSelecionados);
-
-
-    if (this.currentSection < 6) {
-      this.currentSection++;
-    }
-    this.scrollToTop()
-  },
-
-  previousSection() {
-    if (this.currentSection > 1) {
-      this.currentSection--;
-    }
-    this.scrollToTop()
-  },
-
   cancelar() {
     this.$router.push("/AreaDoEstabelecimento");
   },
