@@ -122,7 +122,8 @@
     <br>
     <!-- Chamada para o Component --> 
     <Categorias :value="categoriasSelecionadas" @input="receberCategoriasSelecionadas" />
-
+    <br>
+    <h2>Tipo de Comida do Restaurante:</h2>
     <br>
     <TiposComida :value="tiposDeComidaSelecionados" @input=" receberTiposDeComidaSelecionados"/>
   </section><!-- Fecha seção 3-->
@@ -132,7 +133,9 @@
   <br>
   <!-- Chamada para o Component --> 
   <Opcionais :value="opcoesSelecionadas" @input="receberOpcoesSelecionadas"/>
-  <br><br>
+  <br>
+  <h2>Selecione os Estilos Musicais do Estabelecimento:</h2>
+  <br>
   <!-- Chamada para o Component --> 
   <EstilosMusicas :value="estilosSelecionadas" @input="receberEstiloMusicais"/>
   </section><!-- Fecha seção 4-->
@@ -419,6 +422,7 @@ methods: {
   avancarSection() {
     if (this.currentSection < 6) {
       this.currentSection++;
+      this.calculaAltura(); // Calcule a altura
      // this.title = "Novo Título da Seção"; // Atualize o título aqui
       //this.openDescriptionPopup(); // Abra o popup ao avançar
     }
@@ -428,6 +432,7 @@ methods: {
   voltarSection() {
     if (this.currentSection > 1) {
       this.currentSection--;
+      this.calculaAltura(); // Calcule a altura 
     }
     this.scrollToTop()
   },
@@ -574,7 +579,30 @@ methods: {
       top: 0,
       behavior: "smooth", // Isso cria uma rolagem suave
     })
-  }
+  },
+  calculaAltura() {
+    const formWrap = document.getElementById('form-wrap');
+    if (formWrap) {
+      switch (this.currentSection) {
+        case 2:
+          formWrap.style.minHeight = '1200px'; // Ajuste de altura para a seção 2
+          break;
+        case 3:
+          formWrap.style.minHeight = '1400px'; // Ajuste de altura para a seção 3
+          break;
+        case 4:
+          formWrap.style.minHeight = '1400px'; // Ajuste de altura para a seção 4
+          break;
+        case 5:
+          formWrap.style.minHeight = '1600px'; // Ajuste de altura para a seção 5
+          break;
+
+        // Adicione casos para outras seções, se necessário
+        default:
+          formWrap.style.minHeight = '1090px'; // Altura padrão
+      }
+    }
+  },
 },
   mounted(){
     this.openDescriptionPopup();// Carregar popup primeira seção
@@ -602,9 +630,11 @@ computed: {
   background-attachment: fixed;
   margin: auto;
   max-width: 525px;
-  min-height: 1500px;
+  min-height: 1090px;
   position: relative;
 }
+
+
 
 .posicaoform-wrap {
     width: 100%;
