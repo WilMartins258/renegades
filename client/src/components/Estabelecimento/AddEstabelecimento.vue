@@ -423,8 +423,8 @@ methods: {
     if (this.currentSection < 6) {
       this.currentSection++;
       this.calculaAltura(); // Calcule a altura
-     // this.title = "Novo Título da Seção"; // Atualize o título aqui
-      //this.openDescriptionPopup(); // Abra o popup ao avançar
+      this.title = "Novo Título da Seção"; // Atualize o título aqui
+      this.openDescriptionPopup(); // Abra o popup ao avançar
     }
     this.scrollToTop();
   },
