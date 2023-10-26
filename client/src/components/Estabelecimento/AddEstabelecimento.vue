@@ -163,19 +163,39 @@
         required
       ></textarea>
 
-      <label :for="'fotoIndic' + (index + 1)" class="label">Foto da {{ index + 1 }}° Indicação:</label><br />
-      <input
-        :id="'fotoIndic' + (index + 1)"
-        type="file"
-        accept="image/*"
-        @change="AddFoto($event, index)"
-      />
-      <img
-        v-if="recomendacoes.photo && recomendacoes.photo.imageURL"
-        :src="recomendacoes.photo.imageURL"
-        alt="Foto da Indicação"
-        class="miniatura-imagem"
-      />
+      <div class="image-container">
+          <br>
+          <label
+            :for="'fotoIndic' + (index + 1)"
+            class="label image-label"
+            style="cursor: pointer;"
+          >
+            <input
+              :id="'fotoIndic' + (index + 1)"
+              type="file"
+              accept="image/*"
+              @change="AddFoto($event, index)"
+              style="display: none;"
+            />
+            <img
+              v-if="recomendacoes.photo && recomendacoes.photo.imageURL"
+              :src="recomendacoes.photo.imageURL"
+              alt="Foto da Indicação"
+              class="miniatura-imagem"
+            />
+            <img
+              v-else
+              src="https://abravidro.org.br/wp-content/uploads/2015/04/sem-imagem10.jpg"
+              alt="Foto da Indicação"
+              class="miniatura-imagem"
+            />
+            <div class="image-overlay">
+              <img src="https://raw.githubusercontent.com/ThiagoLuizNunes/angular-boilerplate/master/src/assets/imgs/camera-white.png" alt="Adicionar Foto" />
+              <p>{{ recomendacoes.description }}</p>
+            </div>
+          </label>
+        </div>
+
     </div>
 
     <div class="buttons">
@@ -288,7 +308,7 @@ data() {
       },
       numero: "",
       recomendacao: [
-      { name: '', description:  '', photo: null, photoBuffer: null, type: null },],
+      { name: '', description:  '', photo: {imageURL: 'https://abravidro.org.br/wp-content/uploads/2015/04/sem-imagem10.jpg' }, photoBuffer: null, type: null },],
       estabelecimentoPhoto: null,
       estabelecimentoPhotoType: "",
       fotoEstabelecimento: "https://abravidro.org.br/wp-content/uploads/2015/04/sem-imagem10.jpg",
@@ -475,27 +495,33 @@ methods: {
   },
   async AddFoto(event, index) {
     try {
-      const inputImagem = document.getElementById(`fotoIndic${index+1}`);
+      const inputImagem = document.getElementById(`fotoIndic${index + 1}`);
       const image = inputImagem?.files[0];
       if (image) {
-        // const imagemBase64 = await retornaCodigoBase64(image);
         const file = event.target.files[0];
         if (file) {
           const fileReader = new FileReader();
           const readAsArrayBuffer = (file) => {
-              return new Promise((resolve, reject) => {
-                  fileReader.onloadend = () => resolve(fileReader.result);
-                  fileReader.onerror = reject;
-                  fileReader.readAsArrayBuffer(file);
-              });
+            return new Promise((resolve, reject) => {
+              fileReader.onloadend = () => resolve(fileReader.result);
+              fileReader.onerror = reject;
+              fileReader.readAsArrayBuffer(file);
+            });
           };
 
           const arrayBuffer = await readAsArrayBuffer(file);
           const bufferValido = new Uint8Array(arrayBuffer);
 
-          // this.recomendacao[index].photo = imagemBase64;
+          // Salve a imagem no objeto recomendacoes
           this.recomendacao[index].photoBuffer = bufferValido;
           this.recomendacao[index].type = file.type;
+
+          // Exiba a miniatura da imagem
+          const imageURL = URL.createObjectURL(file);
+          this.recomendacao[index].photo = { imageURL }; // Adicione a miniatura
+
+          // Limpe o input de arquivo para permitir a seleção de outra imagem
+          inputImagem.value = "";
         }
       }
     } catch (error) {
@@ -618,14 +644,6 @@ color: #fff;
 color: #fff;
 }
 
-.miniatura-imagem {
-width: 100px; 
-height: 100px; 
-object-fit: cover;
-border: 2px solid red;
-margin-top: 10px;
-}
-
 .custom-Imag{
   background-size: cover;
   background-position: center; 
@@ -643,13 +661,56 @@ margin-top: 10px;
   width: 10px; 
   display: inline-block;
 }
+
+/* Estilo imagem Indicação */
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.image-label {
+  position: relative;
+}
+
+.miniatura-imagem {
+  width: 100px;
+  height: 100px;
+  border-radius: 25px;
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+  border-radius: 25px;
+}
+
+.image-overlay img {
+  width: 50px;
+  height: 50px;
+}
+
+.image-label:hover .image-overlay {
+  opacity: 1;
+}
+
 /* Estilo imagem Estabelecimento */
-.personal-image {
+    .personal-image {
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
   }
   .personal-image input[type="file"] {
     display: none;
