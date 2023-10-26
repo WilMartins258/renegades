@@ -276,7 +276,7 @@ router.post('/', async (req, res) => {
 
         for (let i = 0; i < contatosSelecionados.length; i++) {
             try {
-                await contato_estabelecimento_Service.inserir([idEstabelecimento, contatosSelecionados[i].id, contatosSelecionados[i].numero, contatosSelecionados[i].isWhatsapp], connection);
+                await contato_estabelecimento_Service.inserir([idEstabelecimento, contatosSelecionados[i].id, contatosSelecionados[i].numeroContato, contatosSelecionados[i].isWhatsapp], connection);
             } catch (error) {
                 throw new Error(`Erro ao inserir contatos do estabelecimento: ${error.message}`);
             }
