@@ -402,7 +402,7 @@ methods: {
         horariosSelecionados: this.HorariosSelecionados
       };
 
-      console.log('estabelecimentoPhoto:: ', this.estabelecimentoPhoto);
+      console.log('formData:: ', formData);
       
       const salvarEstabelecimento = await api.post('estabelecimento', formData);
 
