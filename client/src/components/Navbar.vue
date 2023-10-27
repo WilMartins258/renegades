@@ -93,6 +93,11 @@ export default {
   computed: {
     /*Ocultar na NavBar quando Page de login*/
     notIsLoginPage() {
+      const isLogged = sessionStorage.getItem('atualizarHome');
+      if (isLogged == 1) {
+        sessionStorage.setItem('atualizarHome', 0);
+        location.reload();
+      }
       return this.$route.name !== "Login";
     },
     userType() {
