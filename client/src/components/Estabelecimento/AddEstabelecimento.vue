@@ -1,12 +1,12 @@
 <template>
   <div id="form-wrap" class="form" autocomplete="off" >
-    <ComponentMessage v-if="mostrarMensagem" :title="tituloMsg" :message="mensagemPUser" @close="fecharMensagem" />
         <div class="progress">
           <div class="progress-bar" :style="{ width: progressBarWidth }">
             <span class="progressTextSpan">{{ progressBarWidth }}</span>
           </div>
       </div>
     <div class="posicaoform-wrap">
+      <ComponentMessage v-if="mostrarMensagem" :title="tituloMsg" :message="mensagemPUser" @close="fecharMensagem" />
       <InfoPopupEstab
   v-if="showDescriptionPopup"
   :show="showDescriptionPopup"
@@ -413,11 +413,9 @@ methods: {
         sessionStorage.setItem('idEstabelecimento', salvarEstabelecimento.data.idEstabelecimento);
         sessionStorage.setItem('tipoUsuario', salvarEstabelecimento.data.tipoUsuario);
 
-        // Chama MSG
-        this.mostrarmensagemPUser();
-
        //  console.log("salvarEstabelecimento:: ", salvarEstabelecimento);
        //  console.log("idEstabelecimento:: ", sessionStorage.getItem('idEstabelecimento'));
+       this.$router.push('/AreaDoEstabelecimento');
 
       }
     } catch (error) {
@@ -455,7 +453,7 @@ methods: {
     },
 
   cancelar() {
-    this.$router.push("/AreaDoEstabelecimento");
+    this.$router.push("home");
   },
   limpa_formulário_cep() {
     document.getElementById("rua").value = "";
@@ -622,9 +620,8 @@ methods: {
 	
     fecharMensagem() {
       this.mostrarMensagem = false;
-	  if(sessionStorage.getItem('idUsuario')==='1'){
-      router.push('/AreaDoEstabelecimento');
-		}
+      this.$router.push('/AreaDoEstabelecimento');
+
     },
 },
   mounted(){
