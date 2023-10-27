@@ -650,9 +650,34 @@ insert into contato_estabelecimento values(
 
 insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
 	2,          -- idEstabelecimento INT not null,
+	1,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.facebook.com/McDonaldsBrasil/?locale=pt_BR' -- redeSocial VARCHAR(200) not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	2,          -- idEstabelecimento INT not null,
+	2,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.instagram.com/mcdonalds_br/?hl=pt-br' -- redeSocial VARCHAR(200) not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	2,          -- idEstabelecimento INT not null,
+	3,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://twitter.com/McDonalds_BR?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor' -- redeSocial VARCHAR(200) not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	2,          -- idEstabelecimento INT not null,
 	4,          -- idTipoRedeSocial  INT not null, -- SITE
 	'https://www.mcdonalds.com.br/' -- redeSocial VARCHAR(200) not null
 );
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	2,          -- idEstabelecimento INT not null,
+	5,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.mcdonalds.com.br/cardapio' -- redeSocial VARCHAR(200) not null
+);
+
 insert into recomendacao values(
 	4, -- id
 	2, -- idEstabelecimento INT not null,
@@ -1223,12 +1248,6 @@ insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSoc
 	6,          -- idEstabelecimento INT not null,
 	2,          -- idTipoRedeSocial  INT not null, -- SITE
 	'https://www.LINK_INSTAGRAM.com.br/' -- redeSocial VARCHAR(200) not null
-);
-
-insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
-	1,          -- idEstabelecimento INT not null,
-	3,          -- idTipoRedeSocial  INT not null, -- SITE
-	'https://www.LINK_TWITTER.com.br/' -- redeSocial VARCHAR(200) not null
 );
 
 insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
