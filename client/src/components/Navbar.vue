@@ -18,7 +18,7 @@
           ></a
         >
       </li>
-      <li>
+      <li v-if="!logged">
         <a>
           <router-link to="/login" v-if="notIsLoginPage"
             >Entrar/Cadastrar</router-link
