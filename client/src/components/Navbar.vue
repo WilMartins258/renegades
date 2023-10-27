@@ -93,8 +93,9 @@ export default {
   computed: {
     /*Ocultar na NavBar quando Page de login*/
     notIsLoginPage() {
-      const isLogged = sessionStorage.getItem('atualizarHome');
-      if (isLogged == 1) {
+      // 1 = positivo (página deve ser atualizada) null ou 0 = negativo
+      const atualizarHome = sessionStorage.getItem('atualizarHome');
+      if (atualizarHome == 1) {
         sessionStorage.setItem('atualizarHome', 0);
         location.reload();
       }
