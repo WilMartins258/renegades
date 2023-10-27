@@ -1,5 +1,6 @@
 <template>
   <div id="form-wrap" class="form">
+    <ComponentMessage v-if="mostrarMensagem" :title="tituloMsg" :message="mensagemPUser" @close="fecharMensagem" />
         <div class="progress">
           <div class="progress-bar" :style="{ width: progressBarWidth }">
             <span class="progressTextSpan">{{ progressBarWidth }}</span>
@@ -283,6 +284,7 @@ import TiposComida from "./ComponentsChild/TiposComida.vue";
 import api from "./../../services/backend.service.js";
 import { retornaCodigoBase64 } from "./../../services/conversorDeImagem.service.js";
 import InfoPopupEstab from "./ComponentsChild/InfoPopupEstab.vue";
+import ComponentMessage from './../Message.vue';
 
 export default {
 components: {
@@ -293,7 +295,8 @@ components: {
   Categorias,
   EstilosMusicas,
   TiposComida,
-  InfoPopupEstab
+  InfoPopupEstab,
+  ComponentMessage
 },
 name: "AddEstabelecimento",
 data() {
@@ -410,13 +413,15 @@ methods: {
         sessionStorage.setItem('idEstabelecimento', salvarEstabelecimento.data.idEstabelecimento);
         sessionStorage.setItem('tipoUsuario', salvarEstabelecimento.data.tipoUsuario);
 
-        // incluir msg e direcionar para a tela do perfil do estabelecimento
-        this.$router.push({ name: '/AreaDoEstabelecimento'})
-        console.log("salvarEstabelecimento:: ", salvarEstabelecimento);
-        console.log("idEstabelecimento:: ", sessionStorage.getItem('idEstabelecimento'));
+        // Chama MSG
+        this.mostrarmensagemPUser();
+
+       //  console.log("salvarEstabelecimento:: ", salvarEstabelecimento);
+       //  console.log("idEstabelecimento:: ", sessionStorage.getItem('idEstabelecimento'));
+
       }
     } catch (error) {
-      console.error('ERROR:: ', error);
+      this.mostrarmensagemError(error.response.data.msg);
     }
   },
   avancarSection() {
@@ -603,6 +608,24 @@ methods: {
       }
     }
   },
+  mostrarmensagemPUser() {
+		this.tituloMsg = "Seja Bem Vindo!"
+		this.mensagemPUser = "Seu cadastro foi concluído com êxito. Agora, estamos redirecionando você para a area do Estabelecimento .";
+		this.mostrarMensagem = true;
+    },
+
+	mostrarmensagemError(msg) {
+		this.tituloMsg = "Erro"
+		this.mensagemPUser = msg
+		this.mostrarMensagem = true;
+    },
+	
+    fecharMensagem() {
+      this.mostrarMensagem = false;
+	  if(sessionStorage.getItem('idUsuario')==='2'){
+      router.push('/AreaDoEstabelecimento');
+		}
+    },
 },
   mounted(){
     this.openDescriptionPopup();// Carregar popup primeira seção

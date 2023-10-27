@@ -1,10 +1,10 @@
 <template><div>
-  <Navbar :logo="logo_src" :logged="logged"/>
+  <Navbar :logo="logo_src" :logged="logged" :userType="userType"/>
   <router-view @logged="setLogged($event)"/>
   <Footer />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap" rel="stylesheet">
 </div>
 
 </template>
