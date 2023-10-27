@@ -443,19 +443,19 @@ insert into contato_estabelecimento values(
 insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
 	1,          -- idEstabelecimento INT not null,
 	1,          -- idTipoRedeSocial  INT not null, -- SITE
-	'https://www.LINK_FACEBOOK.com.br/' -- redeSocial VARCHAR(200) not null
+	'https://www.facebook.com/McDonaldsBrasil/?locale=pt_BR' -- redeSocial VARCHAR(200) not null
 );
 
 insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
 	1,          -- idEstabelecimento INT not null,
 	2,          -- idTipoRedeSocial  INT not null, -- SITE
-	'https://www.LINK_INSTAGRAM.com.br/' -- redeSocial VARCHAR(200) not null
+	'https://www.instagram.com/mcdonalds_br/?hl=pt-br' -- redeSocial VARCHAR(200) not null
 );
 
 insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
 	1,          -- idEstabelecimento INT not null,
 	3,          -- idTipoRedeSocial  INT not null, -- SITE
-	'https://www.LINK_TWITTER.com.br/' -- redeSocial VARCHAR(200) not null
+	'https://twitter.com/McDonalds_BR?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor' -- redeSocial VARCHAR(200) not null
 );
 
 insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
@@ -467,7 +467,7 @@ insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSoc
 insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
 	1,          -- idEstabelecimento INT not null,
 	5,          -- idTipoRedeSocial  INT not null, -- SITE
-	'https://www.LINK_CARDAPIO.com.br/' -- redeSocial VARCHAR(200) not null
+	'https://www.mcdonalds.com.br/cardapio' -- redeSocial VARCHAR(200) not null
 );
 
 insert into musica_estabelecimento (idEstabelecimento, idEstiloMusica) values(
@@ -498,25 +498,25 @@ insert into musica_estabelecimento (idEstabelecimento, idEstiloMusica) values(
 insert into recomendacao values(
 	1, -- id
 	1, -- idEstabelecimento INT not null,
-	'png', -- foto LONGBLOB not null,
+	'jpg', -- foto LONGBLOB not null,
 	'Big Mac', -- nome VARCHAR(50) not null,
-	'Big Mac - descrição'-- descricao VARCHAR(50) not null
+	'O clássico dos clássicos o incomparável Big Mac'-- descricao VARCHAR(50) not null
 );
 
 insert into recomendacao values(
 	2, -- id
 	1, -- idEstabelecimento INT not null,
 	'png', -- foto LONGBLOB not null,
-	'Quarteirão', -- nome VARCHAR(50) not null,
-	'Quarteirão - descrição'-- descricao VARCHAR(50) not null
+	'Chicken Jr', -- nome VARCHAR(50) not null,
+	'Delícioso lanche com hamburguer de carne de frango.'-- descricao VARCHAR(50) not null
 );
 
 insert into recomendacao values(
 	3, -- id
 	1, -- idEstabelecimento INT not null,
-	'png', -- foto LONGBLOB not null,
-	'Big Tasty', -- nome VARCHAR(50) not null,
-	'Big Tasty - descrição'-- descricao VARCHAR(50) not null
+	'jpg', -- foto LONGBLOB not null,
+	'Mc Flurry Ovomaltine', -- nome VARCHAR(50) not null,
+	'Após seu lanche que tal uma bela sobremesa? Mc Flurry Ovomaltine é a escolha certa'-- descricao VARCHAR(50) not null
 );
 
 -- <----------------------------------------------> Mc Donalds - Votorantim
