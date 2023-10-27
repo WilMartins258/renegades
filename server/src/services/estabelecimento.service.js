@@ -45,7 +45,7 @@ const pegarPorId = async (idEstabelecimento) => {
 
 const carousel = async () => {
   try {
-    const carouselQuery = `SELECT id, nome as 'title', fotoPrincipal as 'formatoFoto' FROM estabelecimento WHERE status = 'Validado' order by nota desc limit 10;`;
+    const carouselQuery = `SELECT id, nome as 'title', fotoPrincipal as 'formatoFoto' FROM estabelecimento WHERE status = 'Validado' AND ativo = true AND oculto = false order by nota desc limit 10;`;
     const connection = await db;
 
     const [estabelecimentosCarousel] = await connection.query(carouselQuery);
@@ -83,7 +83,8 @@ const filtros = async () => {
         WHERE ce.idEstabelecimento = e.id
       ) AS comidasString
     FROM estabelecimento e
-    WHERE e.status = 'Validado';`;
+    WHERE e.status = 'Validado'
+    AND ativo = true AND oculto = false;`;
     const connection = await db;
 
     const [estabelecimentosFiltros] = await connection.query(filtrosQuery);
