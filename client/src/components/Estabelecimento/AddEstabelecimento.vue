@@ -1,5 +1,5 @@
 <template>
-  <div id="form-wrap" class="form">
+  <div id="form-wrap" class="form" autocomplete="off" >
     <ComponentMessage v-if="mostrarMensagem" :title="tituloMsg" :message="mensagemPUser" @close="fecharMensagem" />
         <div class="progress">
           <div class="progress-bar" :style="{ width: progressBarWidth }">
@@ -622,7 +622,7 @@ methods: {
 	
     fecharMensagem() {
       this.mostrarMensagem = false;
-	  if(sessionStorage.getItem('idUsuario')==='2'){
+	  if(sessionStorage.getItem('idUsuario')==='1'){
       router.push('/AreaDoEstabelecimento');
 		}
     },
