@@ -1,5 +1,5 @@
 <template>
-	<form action="#" @submit.prevent="submit" class="sign-up-htm">
+	<form action="#" @submit.prevent="submit" class="sign-up-htm" autocomplete="off" >
 		<div class="group">
 			<ComponentMessage v-if="mostrarMensagem" :title="tituloMsg" :message="mensagemPUser" @close="fecharMensagem" />
 			<label for="sign-up-name" class="label">Nome

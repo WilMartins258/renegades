@@ -1,5 +1,5 @@
 <template>
-  <div id="form-wrap" class="form">
+  <div id="form-wrap" class="form" autocomplete="off" >
     <ComponentMessage v-if="mostrarMensagem" :title="tituloMsg" :message="mensagemPUser" @close="fecharMensagem" />
         <div class="progress">
           <div class="progress-bar" :style="{ width: progressBarWidth }">
@@ -7,6 +7,7 @@
           </div>
       </div>
     <div class="posicaoform-wrap">
+     
       <InfoPopupEstab
   v-if="showDescriptionPopup"
   :show="showDescriptionPopup"
@@ -412,12 +413,11 @@ methods: {
       if (salvarEstabelecimento) {
         sessionStorage.setItem('idEstabelecimento', salvarEstabelecimento.data.idEstabelecimento);
         sessionStorage.setItem('tipoUsuario', salvarEstabelecimento.data.tipoUsuario);
-
-        // Chama MSG
+        
         this.mostrarmensagemPUser();
-
        //  console.log("salvarEstabelecimento:: ", salvarEstabelecimento);
        //  console.log("idEstabelecimento:: ", sessionStorage.getItem('idEstabelecimento'));
+
 
       }
     } catch (error) {
@@ -430,6 +430,7 @@ methods: {
       this.calculaAltura(); // Calcule a altura
       this.title = "Novo Título da Seção"; // Atualize o título aqui
       this.openDescriptionPopup(); // Abra o popup ao avançar
+      
     }
     this.scrollToTop();
   },
@@ -455,7 +456,7 @@ methods: {
     },
 
   cancelar() {
-    this.$router.push("/AreaDoEstabelecimento");
+    this.$router.push("home");
   },
   limpa_formulário_cep() {
     document.getElementById("rua").value = "";
@@ -622,13 +623,13 @@ methods: {
 	
     fecharMensagem() {
       this.mostrarMensagem = false;
-	  if(sessionStorage.getItem('idUsuario')==='2'){
-      router.push('/AreaDoEstabelecimento');
-		}
+      if(sessionStorage.getItem('idUsuario')=='1'){
+        this.$router.push('/AreaDoEstabelecimento');
+      }
     },
 },
   mounted(){
-    this.openDescriptionPopup();// Carregar popup primeira seção
+    this.openDescriptionPopup();//Carregar popup primeira seção
     const cnpjInput = document.getElementById("cnpj");
     const cnpjMask = IMask(cnpjInput, {
       mask: "00.000.000/0000-00",
