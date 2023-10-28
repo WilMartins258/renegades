@@ -118,6 +118,6 @@ module.exports = {
   inserir,
   atualizar,
   pegarPorId,
-  buscarLocalizacaoPorId
+  buscarLocalizacaoPorId,
   excluir
 };
