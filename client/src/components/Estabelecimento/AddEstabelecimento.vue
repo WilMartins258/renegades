@@ -196,7 +196,7 @@
             />
             <div class="image-overlay">
               <img src="https://raw.githubusercontent.com/ThiagoLuizNunes/angular-boilerplate/master/src/assets/imgs/camera-white.png" alt="Adicionar Foto" />
-              <p>{{ recomendacoes.description }}</p>
+             
             </div>
           </label>
         </div>
@@ -512,7 +512,7 @@ methods: {
         const file = event.target.files[0];
         if (file) {
           const fileReader = new FileReader();
-          const readAsArrayBuffer = (file) => {
+          const readAsArrayBuffer = (file) => {client/src/components/Estabelecimento/AddEstabelecimento.vue
             return new Promise((resolve, reject) => {
               fileReader.onloadend = () => resolve(fileReader.result);
               fileReader.onerror = reject;
