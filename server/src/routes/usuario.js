@@ -162,10 +162,11 @@ router.post('/', async (req, res) => {
 
 router.get('/localizacao/:idUsuario', async (req, res) => {
     const idUsuario = req?.params?.idUsuario;
-    console.log('idUsuario: ', idUsuario);
+
+    const localizacao = await usuario_Service.buscarLocalizacaoPorId(idUsuario);
     
     try {
-        res.status(200).send('localizacao usuário');
+        res.status(200).send({localizacao});
     } catch (error) {
         console.log('Erro ao buscar localização do usuário: ', error);
         res.status(500).send({
