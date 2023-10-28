@@ -7,21 +7,20 @@
 <!-- Foto Estabelecimento -->
 <h2>Foto do estabelecimento</h2><br>
 <div class="group">
-<div class="image-container"> <!-- Novo contêiner para centralizar -->
-    <input
-      type="file"
-      id="estabelecimentoPhoto"
-      accept="image/*"
-      @change="handleEstabelecimentoPhotoChange"
-       disabled />
-</div>
-<img
-  v-if="estabelecimentoPhoto"
-  :src="estabelecimentoPhoto"
-  alt="Foto do Estabelecimento"
-  class="miniatura-imagem"
-/>
-</div>
+    <div class="personal-image center-image">
+    <div class="personal-image">
+        <label class="label" for="estabelecimentoPhoto">
+          <input type="file" id="estabelecimentoPhoto" accept="image/*" @change="handleEstabelecimentoPhotoChange" style="display: none" />
+          <figure class="personal-figure">
+            <img :src="fotoEstabelecimento" class="personal-avatar round-avatar" alt="Foto do Estabelecimento" ref="avatarImage" />
+            <figcaption class="personal-figcaption">
+              <img src="https://raw.githubusercontent.com/ThiagoLuizNunes/angular-boilerplate/master/src/assets/imgs/camera-white.png" alt="Adicionar Foto" />
+            </figcaption>
+          </figure>
+        </label>
+      </div>
+    </div>
+  </div>
 <br>
       <div>
 
@@ -60,7 +59,7 @@
 <h2>Informações do estabelecimento:</h2><br>
 <div class="column">
         <div class="group">
-      <label for="nome" class="label">Nome do Estabelecimento:</label><br/>
+      <label for="nomeEstabelecimento" class="label">Nome do Estabelecimento:</label><br/>
       <input type="text" v-model="nomeEstabelecimento" id="nomeEstabelecimento" class="input" name="nome" disabled/>
     </div>
 
@@ -460,6 +459,7 @@ import axios from "axios";
 import DashHorAtendimento from "./ComponentsChild/DashHorAtendimento.vue"
 import InfoPopup from '../../components/InfoPopup.vue';
 import api from "./../../services/backend.service.js";
+import { retornaCodigoBase64 } from "./../../services/conversorDeImagem.service.js";
 
 export default {
 components: {
@@ -482,8 +482,10 @@ data() {
       },
       numero: "",
       recomendacao: [
-      { name: '', description:  '', photo: null },],
+      { name: '', description:  '', photo: {imageURL: 'https://abravidro.org.br/wp-content/uploads/2015/04/sem-imagem10.jpg' }, photoBuffer: null, type: null },],
       estabelecimentoPhoto: null,
+      estabelecimentoPhotoType: "",
+      fotoEstabelecimento: "https://abravidro.org.br/wp-content/uploads/2015/04/sem-imagem10.jpg",
       HorariosSelecionados: [],
       tiposDeComidaSelecionados: [],
       editar: false,
@@ -906,21 +908,75 @@ methods: {
       }
     },
 
-  AddFoto(event, index) {
-    const file = event.target.files[0];
-    if (file) {
-      const imageURL = URL.createObjectURL(file);
-      this.recomendacao[index].photo = { file, imageURL };
+    async AddFoto(event, index) {
+    try {
+      const inputImagem = document.getElementById(`fotoIndic${index + 1}`);
+      const image = inputImagem?.files[0];
+      if (image) {
+        const file = event.target.files[0];
+        if (file) {
+          const fileReader = new FileReader();
+          const readAsArrayBuffer = (file) => {
+            return new Promise((resolve, reject) => {
+              fileReader.onloadend = () => resolve(fileReader.result);
+              fileReader.onerror = reject;
+              fileReader.readAsArrayBuffer(file);
+            });
+          };
+
+          const arrayBuffer = await readAsArrayBuffer(file);
+          const bufferValido = new Uint8Array(arrayBuffer);
+
+          // Salve a imagem no objeto recomendacoes
+          this.recomendacao[index].photoBuffer = bufferValido;
+          this.recomendacao[index].type = file.type;
+
+          // Exiba a miniatura da imagem
+          const imageURL = URL.createObjectURL(file);
+          this.recomendacao[index].photo = { imageURL }; // Adicione a miniatura
+
+          // Limpe o input de arquivo para permitir a seleção de outra imagem
+          inputImagem.value = "";
+        }
+      }
+    } catch (error) {
+      console.log('ERROR:: ', error);
     }
   },
 
   /*Img estabelecimento*/
-  handleEstabelecimentoPhotoChange(event) {
-    const file = event.target.files[0];
-    if (file) {
-      this.estabelecimentoPhoto = URL.createObjectURL(file);
+  async handleEstabelecimentoPhotoChange(event) {
+    try {
+      const inputImagem = document.getElementById('estabelecimentoPhoto');
+      const image = inputImagem?.files[0];
+
+      if (image) {
+          const fileReader = new FileReader();
+
+          const readAsArrayBuffer = (file) => {
+              return new Promise((resolve, reject) => {
+                  fileReader.onloadend = () => resolve(fileReader.result);
+                  fileReader.onerror = reject;
+                  fileReader.readAsArrayBuffer(file);
+              });
+          };
+
+          try {
+              const arrayBuffer = await readAsArrayBuffer(image);
+              const bufferValido = new Uint8Array(arrayBuffer);
+
+              this.estabelecimentoPhoto = bufferValido;
+              this.estabelecimentoPhotoType = image.type;
+              this.fotoEstabelecimento = await retornaCodigoBase64(image);;
+          } catch (error) {
+              console.error('Erro ao converter a imagem para ArrayBuffer:', error);
+          }
+      }
+    } catch (error) {
+      console.log('ERROR:: ', error);
     }
   },
+
 
   removerecomendacoes() {
     if (this.recomendacao.length > 0) {
@@ -1211,12 +1267,63 @@ text-align: center;
 color: #fff;
 }
 
-.miniatura-imagem {
-width: 100px; 
-height: 100px; 
-object-fit: cover;
-border: 2px solid red;
-margin-top: 10px;
+/* Estilo imagem Estabelecimento */
+.personal-image {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+  .personal-image input[type="file"] {
+    display: none;
+  }
+  
+  .personal-figure {
+    position: relative;
+    width: 150px;
+    height: 150px;
+  }
+  
+  .personal-avatar {
+    cursor: pointer;
+    width: inherit;
+    height: inherit;
+    box-sizing: border-box;
+    border-radius: 25px;
+    border: 2px solid transparent;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+    transition: all ease-in-out .3s;
+  }
+  .personal-avatar:hover {
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
+  }
+  
+  .personal-figcaption {
+    cursor: pointer;
+    position: absolute;
+    top: 0px;
+    width: inherit;
+    height: inherit;
+    border-radius: 25px;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0);
+    transition: all ease-in-out .3s;
+  }
+  .personal-figcaption:hover {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, .5);
+  }
+  .personal-figcaption > img {
+    margin-top: 32.5px;
+    width: 50px;
+    height: 50px;
+  }
+  
+  .center-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .recomendacoes-container {
