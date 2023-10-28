@@ -78,56 +78,72 @@
 <!------------------------------------------------------------------------------------------------------------->
   
 <h2>Indicação do Chef</h2><br><br>
-<div class="recomendacoes-container">
-<div v-for="(recomendacao, index) in recomendacao" :key="index" class="recomendacao">
-  <div class="recomendacao-item">
-    <div id="indication-container">
-      <div class="group">
-        <label :for="'indicacao' + (index + 1)" class="label">{{ index + 1 }}° Indicação:</label><br />
-        <input
-          :id="'indicacao' + (index + 1)"
-          v-model="recomendacao.name"
-          type="text"
-          class="input"
-          :name="'indicacao' + (index + 1)"
-          disabled/><br />
+    <div class="recomendacoes-container">
+    <div v-for="(recomendacoes, index) in recomendacao" :key="index" class="recomendacao">
+      <div class="recomendacao-item">
+      <div id="indication-container">
+        <div class="group">
+      <label :for="'indicacao' + (index + 1)" class="label">{{ index + 1 }}° Indicação:</label><br />
+      <input
+        :id="'indicacao' + (index + 1)"
+        v-model="recomendacoes.name"
+        type="text"
+        class="input"
+        :name="'indicacao' + (index + 1)"
+      /><br />
 
-        <label :for="'descricaoIndic' + (index + 1)" class="label">Descrição da {{ index + 1 }}° Indicação:</label><br />
-        <textarea
-          :id="'descricaoIndic' + (index + 1)"
-          v-model="recomendacao.description"
-          class="input"
-          :name="'descricaoIndic' + (index + 1)"
-          rows="4"
-          maxlength="200"
-          required disabled
-        ></textarea>
+      <label :for="'descricaoIndic' + (index + 1)" class="label">Descrição da {{ index + 1 }}° Indicação:</label><br />
+      <textarea
+        :id="'descricaoIndic' + (index + 1)"
+        v-model="recomendacoes.description"
+        class="input"
+        :name="'descricaoIndic' + (index + 1)"
+        rows="4"
+        maxlength="200"
+        required
+      ></textarea>
 
-        <label :for="'fotoIndic' + (index + 1)" class="label">Foto da {{ index + 1 }}° Indicação:</label><br />
-        <input
-          :id="'fotoIndic' + (index + 1)"
-          type="file"
-          accept="image/*"
-          @change="AddFoto($event, index)"
-          disabled
-          />
-        <img
-          v-if="recomendacao.photo && recomendacao.photo.imageURL"
-          :src="recomendacao.photo.imageURL"
-          alt="Foto da Indicação"
-          class="miniatura-imagem"
-        />
+      <div class="image-container">
+          <br>
+          <label
+            :for="'fotoIndic' + (index + 1)"
+            class="label image-label"
+            style="cursor: pointer;"
+          >
+            <input
+              :id="'fotoIndic' + (index + 1)"
+              type="file"
+              accept="image/*"
+              @change="AddFoto($event, index)"
+              style="display: none;"
+            />
+            <img
+              v-if="recomendacoes.photo && recomendacoes.photo.imageURL"
+              :src="recomendacoes.photo.imageURL"
+              alt="Foto da Indicação"
+              class="miniatura-imagem"
+            />
+            <img
+              v-else
+              src="https://abravidro.org.br/wp-content/uploads/2015/04/sem-imagem10.jpg"
+              alt="Foto da Indicação"
+              class="miniatura-imagem"
+            />
+            <div class="image-overlay">
+              <img src="https://raw.githubusercontent.com/ThiagoLuizNunes/angular-boilerplate/master/src/assets/imgs/camera-white.png" alt="Adicionar Foto" />
+             
+            </div>
+          </label>
+        </div>
+      </div>
       </div>
     </div>
   </div>
-</div>
-
-</div>
-<div class="buttons">
-  <button class="custom-button" v-if="recomendacao.length < 3" @click="addrecomendacoes" >Adicionar Recomendação</button>
-  <button class="custom-button" v-if="recomendacao.length > 1" @click="removerecomendacoes" >Cancelar Recomendação</button>
-</div>
-
+    <div class="buttons">
+      <button class="custom-button" v-if="recomendacao.length < 3" @click="addrecomendacoes">Adicionar Recomendação</button>
+      <button class="custom-button" v-if="recomendacao.length > 1" @click="removerecomendacoes">Cancelar Recomendação</button>
+    </div>
+  </div>
 
 
   <!--4-Contato-->
@@ -904,7 +920,7 @@ methods: {
       /*Img Cardápio*/
     addrecomendacoes() {
       if (this.recomendacao.length < 3) {
-        this.recomendacao.push({ name: '', description: '', photo: null });
+        this.recomendacao.push({ name: '', description: '' });
       }
     },
 
@@ -1265,6 +1281,50 @@ text-align: center;
 
 .label {
 color: #fff;
+}
+
+/* Estilo imagem Indicação */
+
+
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.image-label {
+  position: relative;
+}
+
+.miniatura-imagem {
+  width: 100px;
+  height: 100px;
+  border-radius: 25px;
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+  border-radius: 25px;
+}
+
+.image-overlay img {
+  width: 50px;
+  height: 50px;
+}
+
+.image-label:hover .image-overlay {
+  opacity: 1;
 }
 
 /* Estilo imagem Estabelecimento */
