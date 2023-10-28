@@ -244,7 +244,7 @@ export default {
       } catch (error) {
         console.log('Erro ao tratar estabelecimentos para filtro da home: ', error);
       }
-      console.log('estabelecimentos:: ', estabelecimentos);
+      // console.log('estabelecimentos:: ', estabelecimentos);
       
       const estabelecimentosTeste = [
         {
