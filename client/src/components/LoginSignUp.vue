@@ -74,7 +74,6 @@ export default {
 	},
 	methods: {
 		async submit() {
-			console.log('submit');
 			if (this.validarCampos()) {
 				this.$emit('do-sign-up', { ...this.$data });
 				this.ocultarMensagemErro();
@@ -85,7 +84,6 @@ export default {
 						senha: this.Senha1
 					};
 					const usuarioCriado = await api.post('/usuario', informacoesDoUsuario);
-					console.log('usuarioCriado:: ', usuarioCriado);
 
 					sessionStorage.setItem('idUsuario', usuarioCriado.data.id);
 					sessionStorage.setItem('nomeUsuario', usuarioCriado.data.nome);
