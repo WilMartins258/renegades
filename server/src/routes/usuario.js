@@ -160,4 +160,19 @@ router.post('/', async (req, res) => {
     }
 });
 
+router.get('/localizacao/:idUsuario', async (req, res) => {
+    const idUsuario = req?.params?.idUsuario;
+    console.log('idUsuario: ', idUsuario);
+    
+    try {
+        res.status(200).send('localizacao usuário');
+    } catch (error) {
+        console.log('Erro ao buscar localização do usuário: ', error);
+        res.status(500).send({
+            errorMsg: 'Ocorreu um erro ao processar a solicitação.',
+            error: error.message
+        });
+    }
+});
+
 module.exports = router;
