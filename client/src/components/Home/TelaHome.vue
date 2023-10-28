@@ -21,7 +21,18 @@ export default {
       if (sessionStorage.getItem('idUsuario')) {
         console.log("está logado");
         const localizacaoUsuarioRequest = await api.get(`/usuario/localizacao/${sessionStorage.getItem('idUsuario')}`);
-        console.log("localizacaoUsuarioRequest:: ", localizacaoUsuarioRequest);
+
+        const {
+          latitude,
+          longitude
+        } = localizacaoUsuarioRequest.data.localizacao;
+
+        console.log("latitude:: ", latitude);
+        console.log("longitude:: ", longitude);
+
+
+        sessionStorage.setItem('latitude', latitude);
+        sessionStorage.setItem('longitude', longitude);
       } else {
         try {
           if ("geolocation" in navigator) {
