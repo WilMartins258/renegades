@@ -18,9 +18,48 @@ export default {
   },
   async created() {
     try {
-      // await api.get('/');
+      if (sessionStorage.getItem('idUsuario')) {
+        console.log("está logado");
+        const localizacaoUsuarioRequest = await api.get(`/usuario/localizacao/${sessionStorage.getItem('idUsuario')}`);
+        console.log("localizacaoUsuarioRequest:: ", localizacaoUsuarioRequest);
+      } else {
+        try {
+          if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(
+              async (position) => {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+
+                // const salvarLocalizacaoUsuario = await api.post('/usuario/localizacao');
+
+                console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+              },
+              (error) => {
+                switch (error.code) {
+                  case error.PERMISSION_DENIED:
+                    console.log("Usuário rejeitou a solicitação de geolocalização.");
+                    break;
+                  case error.POSITION_UNAVAILABLE:
+                    console.log("Informações de localização indisponíveis.");
+                    break;
+                  case error.TIMEOUT:
+                    console.log("A solicitação de geolocalização expirou.");
+                    break;
+                  case error.UNKNOWN_ERROR:
+                    console.log("Ocorreu um erro desconhecido ao obter a localização.");
+                    break;
+                }
+              }
+            );
+          } else {
+            console.log("Geolocalização não é suportada pelo seu navegador.");
+          }
+        } catch (error) {
+          console.log('Erro ao solicitar localização através do navegador: ', error);
+        }
+      }
     } catch (error) {
-      console.log('Erro ao acionar rota /; Erro: ', error);
+      console.log('Erro ao verificar localização do usuário: : ', error);
     }
   }
 };
