@@ -90,6 +90,19 @@ const atualizar = async (newUserData) => {
   }
 };
 
+const buscarLocalizacaoPorId = async (idUsuario) => {
+  try {
+    const localizacaoUsuarioQuery = "SELECT latitude, longitude FROM usuario WHERE id = ?";
+    const connection = await db;
+
+    const [localizacaoUsuario] = await connection.query(localizacaoUsuarioQuery, idUsuario);
+
+     return localizacaoUsuario[0];
+  } catch (error) {
+    throw new Error(`Erro ao buscar localização do usuário por id: ${error.message}`);
+  }
+};
+
 const excluir = async () => {
   try {
     
@@ -105,5 +118,6 @@ module.exports = {
   inserir,
   atualizar,
   pegarPorId,
+  buscarLocalizacaoPorId
   excluir
 };
