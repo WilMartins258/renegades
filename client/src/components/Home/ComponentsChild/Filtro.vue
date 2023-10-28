@@ -221,6 +221,11 @@ export default {
 
       // console.log('geolocalizacao:: ', geolocalizacao)
 
+      const distancia = await distance_Service.calcularDistancia(-23.5635557, -47.45699630000001, -23.5764854, -47.4629018);
+
+      console.log('distancia:: ', distancia)
+
+
       const {
         estabelecimentos,
         categorias,
