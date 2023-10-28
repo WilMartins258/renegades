@@ -1,17 +1,19 @@
 const axios = require('axios');
 
-// Calculo de distância usando a Fórmula de Haversine
-const calcularDistancia = (lat1, lon1, lat2, lon2) => {
-    const raioTerra = 6371; // Raio da Terra em quilômetros
-    const dLat = (lat2 - lat1) * (Math.PI / 180);
-    const dLon = (lon2 - lon1) * (Math.PI / 180);
-    const a =
-        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-        Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) *
-        Math.sin(dLon / 2) * Math.sin(dLon / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    const distancia = raioTerra * c; // Distância em quilômetros
-    return distancia;
+// Calculo de distância usando a API do Google - Directions
+const calcularDistancia = async (lat1, lon1, lat2, lon2) => {
+  try {
+    const apiKey = "";
+    const apiUrl = `https://maps.googleapis.com/maps/api/directions/json?origin=${lat1}, ${lon1}&destination=${lat2}, ${lon2}&mode=driving&key=${apiKey}`;
+
+    const response = await axios.get(apiUrl);
+    const data = response.data;
+
+    return data;    
+  } catch (error) {
+    console.log('Erro ao buscar distância do estabelecimento: ', error);
+    return 'test fail';
+  }
 };
 
 async function obterCoordenadasDoCEP() {
@@ -20,6 +22,7 @@ async function obterCoordenadasDoCEP() {
   const apiKey = "";
 
   const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${numeroEndereco},${cep}&key=${apiKey}`;
+  // const apiUrl https://maps.googleapis.com/maps/api/geocode/json?address=243, 18117-570&key=AIzaS{{API_KEY}}
 
   try {
     const response = await axios.get(apiUrl);
