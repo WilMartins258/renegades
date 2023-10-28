@@ -192,8 +192,8 @@ insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fo
 	'Votorantim', -- cidade            VARCHAR(200),
 	'SP', -- estado            VARCHAR(200),
 	'18117130', -- cep               VARCHAR(9)
-	null,
-	null
+	-23.5635557, 
+	-47.45699630000001
 );
 
 ---------------------------- USUÁRIO WILLIAN -- FIM
