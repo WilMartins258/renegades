@@ -85,10 +85,8 @@ export default {
 						sessionStorage.setItem('nomeUsuario', login.data.nome);
 						sessionStorage.setItem('tipoUsuario', login.data.tipoUsuario);
 						sessionStorage.setItem('idEstabelecimento', login.data.idEstabelecimento);
-
-						// A partir daqui precisamos verificar para onde vamos direcionar o usuário após login concluído
-						
 						sessionStorage.setItem('atualizarHome', 1);
+						
 						this.$router.push({ name: 'home', query: {  logged: 'true' }});
 					}
 				} else {
