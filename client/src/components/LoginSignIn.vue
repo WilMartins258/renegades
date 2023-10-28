@@ -86,12 +86,9 @@ export default {
 						sessionStorage.setItem('tipoUsuario', login.data.tipoUsuario);
 						sessionStorage.setItem('idEstabelecimento', login.data.idEstabelecimento);
 						sessionStorage.setItem('atualizarHome', 1);
-						
+
 						this.$router.push({ name: 'home', query: {  logged: 'true' }});
 					}
-				} else {
-					// Isso indica que não foi possível fazer o login 
-					console.log('Exibir mensagem para o usuário preencher os campos de e-mail e senha');
 				}
 			} catch (error) {
 				this.mostrarmensagemError(error.response.data.msg);
