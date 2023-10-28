@@ -45,7 +45,6 @@ export default {
   },
   methods: {
     async buscarLocalizacaoViaNavegador() {
-      console.log('buscarLocalizacaoViaNavegador');
       try {
         if ("geolocation" in navigator) {
           navigator.geolocation.getCurrentPosition(
@@ -62,7 +61,7 @@ export default {
                   longitude: longitude,
                   idUsuario: sessionStorage.getItem('idUsuario')
                 }
-                await api.post('/usuario/localizacao', localizacaoUsuario);
+                api.post('/usuario/localizacao', localizacaoUsuario);
               }
             },
             (error) => {

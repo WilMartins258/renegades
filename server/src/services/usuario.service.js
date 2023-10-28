@@ -103,7 +103,7 @@ const buscarLocalizacaoPorId = async (idUsuario) => {
   }
 };
 
-const salvarLocalizacaoPorId = async (localizacaoUsuario) => {
+const salvarLocalizacaoPorId = async (dadosLocalizacaoUsuario) => {
   try {
     const localizacaoUsuarioQuery = `
     UPDATE usuario 
@@ -111,9 +111,7 @@ const salvarLocalizacaoPorId = async (localizacaoUsuario) => {
     WHERE id = ?`;
     const connection = await db;
 
-    const [localizacaoUsuario] = await connection.query(localizacaoUsuarioQuery, localizacaoUsuario);
-
-     return localizacaoUsuario[0];
+    await connection.query(localizacaoUsuarioQuery, dadosLocalizacaoUsuario);
   } catch (error) {
     throw new Error(`Erro ao salvar localização do usuário: ${error.message}`);
   }

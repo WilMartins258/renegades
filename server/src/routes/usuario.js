@@ -176,4 +176,31 @@ router.get('/localizacao/:idUsuario', async (req, res) => {
     }
 });
 
+router.post('/localizacao', async (req, res) => {
+    try {
+        const {
+            latitude,
+            longitude,
+            idUsuario
+        } = req.body;
+
+        const localizacaoUsuario = {
+            latitude: latitude,
+            longitude: longitude,
+            idUsuario: idUsuario
+        }
+        const localizacaoUsuarioArray = Object.values(localizacaoUsuario);
+
+        // Propositalmente não há await
+        usuario_Service.salvarLocalizacaoPorId(localizacaoUsuarioArray);
+        res.status(200).send();
+    } catch (error) {
+        console.log('Erro ao buscar localização do usuário: ', error);
+        res.status(500).send({
+            errorMsg: 'Ocorreu um erro ao processar a solicitação.',
+            error: error.message
+        });
+    }
+});
+
 module.exports = router;
