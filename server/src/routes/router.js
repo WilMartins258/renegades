@@ -63,6 +63,11 @@ router.use(
     require("./promocao.js")
 );
 
+router.use(
+    "/distancia",
+    require("./distancia.js")
+);
+
 router.use((req, res) => {
     res.status(404).send('Página não encontrada');
 });
