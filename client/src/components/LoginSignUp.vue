@@ -189,6 +189,7 @@ export default {
     fecharMensagem() {
       this.mostrarMensagem = false;
 	  if(sessionStorage.getItem('idUsuario')){
+			sessionStorage.setItem('atualizarHome', 1);
 			this.$router.push({ name: 'home', query: {  logged: 'true' }});
 		}
 	  
