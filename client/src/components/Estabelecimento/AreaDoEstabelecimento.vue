@@ -36,6 +36,15 @@
           <div class="description">Minhas Avaliações</div>
         </router-link>
 
+                <router-link to="/favoritos" class="card">
+          <img
+            src="../../../public/img/Favoritos.jpg"
+            alt="Meus Favoritos"
+            class="card-image"
+          />
+          <div class="description">Favoritos</div>
+        </router-link>
+
       </div>
     </div>
   </template>
