@@ -3,22 +3,6 @@ const api = require('./backend.service.js')
 
 // Calculo de distância usando a API do Google - Directions
 const calcularDistancia = async (lat1, lon1, lat2, lon2) => {
-  // try {
-  //   console.log('calcularDistancia')
-  //   const apiKey = "";
-  //   const apiUrl = `https://maps.googleapis.com/maps/api/directions/json?origin=${lat1}, ${lon1}&destination=${lat2}, ${lon2}&mode=driving&key=${apiKey}`;
-
-  //   const response = await axios.get(apiUrl);
-  //   const data = response.data;
-
-  //   console.log('data:: ', data)
-
-
-  //   // return data;
-  // } catch (error) {
-  //   console.log('Erro ao buscar distância do estabelecimento: ', error);
-  //   // return 'test fail';
-  // }
   const apiUrl = 'http://localhost:3001/distancia';
   const response = await axios.get(apiUrl);
   console.log('response:: ', response)

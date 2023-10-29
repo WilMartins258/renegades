@@ -216,14 +216,22 @@ export default {
   },
   async created() {
     try {
-      const dadosFiltros = await api.get('/estabelecimento/filtro');
+      console.log('latitude:: ', sessionStorage.getItem('latitude'));
+      console.log('longitude:: ', sessionStorage.getItem('longitude'));
+      const coordenadas = {
+        latitude: sessionStorage.getItem('latitude'),
+        longitude: sessionStorage.getItem('longitude')
+      }
+      console.log('coordenadas:: ', coordenadas);
+
+      const dadosFiltros = await api.get('/estabelecimento/filtro', { params: coordenadas });
       // const geolocalizacao = await distance_Service.obterCoordenadasDoCEP();
 
       // console.log('geolocalizacao:: ', geolocalizacao)
 
-      const distancia = await distance_Service.calcularDistancia(-23.5635557, -47.45699630000001, -23.5764854, -47.4629018);
+      // const distancia = await distance_Service.calcularDistancia(-23.5635557, -47.45699630000001, -23.5764854, -47.4629018);
 
-      console.log('distancia:: ', distancia)
+      // console.log('distancia:: ', distancia)
 
 
       const {
