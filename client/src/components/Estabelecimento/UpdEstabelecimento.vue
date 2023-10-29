@@ -551,7 +551,6 @@ methods: {
         alert('Só é permitido a inclusão de 3 categorias.');
       };
         }
-        this.$emit("input", this.categoriaSelecionadas); // Emita o evento input aqui
       },
     opcaopcaoCategSelecionadaoCategSelecionada(opcao) {
         return this.categoriaSelecionadas.some(item => item.id === opcao.id);
@@ -564,7 +563,6 @@ methods: {
       } else {
         this.opcoesSelecionadas.push(opcao);
       }
-      this.$emit("input", this.opcoesSelecionadas); // Emita o evento input aqui
       },
     opcaoOpicionaisSelecionada(opcao) {
         return this.opcoesSelecionadas.some(item => item.id === opcao.id);
@@ -579,7 +577,6 @@ methods: {
         // Caso contrário, adicione-a à lista
         this.estilosSelecionadas.push(opcao);
       }
-      this.$emit("input", this.estilosSelecionadas); // Emita o evento input aqui
     },
     opcaoMusicalSelecionada(opcao) {
         return this.estilosSelecionadas.some(item => item.id === opcao.id);
@@ -592,7 +589,6 @@ methods: {
       } else {
         this.tiposDeComidaSelecionados.push(tipo);
       }
-      this.$emit("input", this.tiposDeComidaSelecionados); // Emitir o evento input aqui
     },
     opcaoComidaSelecionada(tipo) {
       return this.tiposDeComidaSelecionados.some(item => item.id === tipo.id);
@@ -637,7 +633,6 @@ methods: {
       this.listaContatos.push(novoContato);
     }
     this.limparCamposContato();
-    this.$emit("dados-salvos", this.listaContatos);
   },
   limparCamposContato() {
     this.tipoContato = "Telefone";
@@ -734,7 +729,6 @@ methods: {
         this.redesSociaisIncluidas.add(redeSocial);
       }
       this.limparCamposRdSocial();
-      this.$emit('dados-salvos', this.listaRedesSociais); //Enviar dados para o Componente pai
     },
     limparCamposRdSocial() {
       this.redeSocial = "1";
@@ -800,7 +794,6 @@ methods: {
         this.listahorarios.push(novoHorario);
         this.limparCamposhorario();
         this.timeFieldsError = ""; // Limpar o erro, caso tenha sido exibido anteriormente
-        this.$emit("dados-salvos", this.listahorarios); // Emitir o evento para atualizar o valor no componente pai
       }
     },
     limparCamposhorario() {
@@ -836,8 +829,6 @@ methods: {
       this.editingIndexHorario = -1;
       this.isEditingHorario = false;
       this.timeFieldsError = "";
-
-      this.$emit("dados-salvos", this.listahorarios); // Emita o evento para atualizar o valor no componente pai
     },
     cancelarEdicaohorario() {
       this.editingIndexHorario = -1;
