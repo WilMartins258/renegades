@@ -1121,8 +1121,8 @@ computed: {
         contatosEstabelecimento,
         avaliacao
       } = dadosEstabelecimentoRequest.data;
-      this.categoria = categorias;
-      this.opcoes = opcionais;
+      this.categorias = categorias;
+      this.opcionais = opcionais;
       this.estilos = estilosMusica;
       this.tiposDeComida = comidas;
 
@@ -1136,9 +1136,10 @@ computed: {
       this.endereco.cidade = cidade;
       this.endereco.uf = estado;
 
+      //Array
       this.recomendacao = recomendacoesEstabelecimento;
       this.opcionaisSelecionados = opcionaisEstabelecimento;
-      this.categorias = categoriasEstabelecimento;
+      this.categoriasSelecionadas = categoriasEstabelecimento;
       this.tiposDeComidaSelecionados = comidasEstabelecimento;
       this.estilosMusicaisSelecionados = musicasEstabelecimento;
       this.listaRedesSociais = redeSociaisEstabelecimento;
