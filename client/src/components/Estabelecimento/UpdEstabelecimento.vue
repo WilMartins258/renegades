@@ -304,56 +304,58 @@
           <h2>Categoria do Estebelecimento:</h2><br>
           <!-- Dash Categoria inicia aqui--> 
 
-            <div class="quadro-categorias">
-              
-                  <button
-                    v-for="opcao in categoria"
-                    :key="opcao.id"
-                    :class="{ botaoCategoria: true, selecionado: opcaopcaoCategSelecionadaoCategSelecionada(opcao) }"
-                    @click="selecionarCategoria(opcao)"
-                  >
-                    {{ opcao.nome }}
-                  </button>
-                </div>
-            
-                <div id="categoriaSelecionadas">
-                  <br><p>Categorias selecionadas: {{ categoriaSelecionadasString }}</p>
-                </div>
-                
-                <!-- Dash Categoria Termina aqui--> 
-          </div>
-          <div>
-                <h2>Meu Estebelecimento Oferece:</h2><br>
-                <!-- Dash Opcionais inicia aqui--> 
-                <div class="quadro-Opcionais">
+          <div class="quadro-categorias">
+            <div>   </div>
             <button
-              v-for="opcao in opcoes"
+              v-for="opcao in categorias"
               :key="opcao.id"
-              :class="{ botaoOpcionais: true, selecionado: opcaoOpicionaisSelecionada(opcao) }"
-              @click="selecionarOpcionais(opcao)"
+              :class="{ botao: true, selecionado: categoriaSelecionada(opcao) }"
+              @click="selecionarCategoria(opcao)"
             >
               {{ opcao.nome }}
             </button>
           </div>
-
-          <div id="opcoesSelecionadas">
-            <br /><p>Opções selecionadas: {{ opcoesSelecionadasString }}</p>
+          <div id="categoriasSelecionadas">
+            <br /><p>Categorias selecionadas: {{ categoriasSelecionadasString }}</p>
+         </div>
+         <!-- Dash Categoria Termina aqui--> 
+                
           </div>
+          
+          <div>
+                <h2>Meu Estebelecimento Oferece:</h2><br>
+                <!-- Dash Opcionais inicia aqui--> 
+                <div class="quadro-Opcionais">
+                  <button
+                    v-for="opcao in opcionais"
+                    :key="opcao.id"
+                    :class="{ botao: true, selecionado: opcionalSelecionado(opcao) }"
+                    @click="selecionarOpcional(opcao)"
+                  >
+                    {{ opcao.nome }}
+                  </button>
+                </div>
+                <div id="opcionaisSelecionados">
+                  <br /><p>Opcionais selecionados: {{ opcionaisSelecionadosString }}</p>
+                </div>
           <!-- Dash Opcionais Termina aqui--> 
           </div>
+          
          <div>
           <h2>Minha Playlist:</h2><br>
            <!-- Dash Estilos Musicais inicia aqui--> 
            <div class="quadro-estilosMusicais">
-              <button v-for="opcao in estilos" :key="opcao.id" :class="{ botaoEstiloMusical: true, selecionado: opcaoMusicalSelecionada(opcao) }"
-                @click="selecionarEstilo(opcao)">
+              <button
+                v-for="opcao in estilosMusicais"
+                :key="opcao.id"
+                :class="{ botao: true, selecionado: estiloMusicalSelecionado(opcao) }"
+                @click="selecionarEstiloMusical(opcao)"
+              >
                 {{ opcao.nome }}
               </button>
             </div>
-
-            <div id="estilosSelecionadas">
-              <br>
-              <p>Estilos selecionados: {{ estilosSelecionadasString }}</p>
+            <div id="estilosMusicalSelecionados">
+              <br /><p>Estilos musicais selecionados: {{ estilosMusicaisSelecionadosString }}</p>
             </div>
             <!-- Dash Estilos Musicais  Termina aqui--> 
       </div>
@@ -363,23 +365,19 @@
           <div>
               <h2>Tipo de Comida:</h2><br>
               <!-- DashT ipos Comida inicia aqui--> 
-            <div class="tipos-de-comida">
-              <button
-                v-for="tipo in tiposDeComida"
-                :key="tipo.id"
-                :class="{ botaoTiposComida: true, selecionado: opcaoComidaSelecionada(tipo) }"
-                @click="selecionarComida(tipo)"
-                disabled 
-                class="button" id="teste"
-              >
-                {{ tipo.nome }}
-              </button>
-           </div>
-
-          <div id="tiposDeComidaSelecionados">
-            <br />
-            <p>Tipos de Comida Selecionados: {{ tiposDeComidaSelecionadosString }}</p>
-          </div>
+              <div class="tipos-de-comida">
+                <button
+                  v-for="tipo in tiposDeComida"
+                  :key="tipo.id"
+                  :class="{ botao: true, selecionado: tipoComidaSelecionado(tipo) }"
+                  @click="selecionarTipoComida(tipo)"
+                >
+                  {{ tipo.nome }}
+                </button>
+              </div>
+              <div id="tiposDeComidaSelecionados">
+                <br /><p>Tipos de Comida Selecionados: {{ tiposDeComidaSelecionadosString }}</p>
+              </div>
          <!-- Dash Tipos Comida Termina aqui--> 
       </div>
       <div>
@@ -505,12 +503,12 @@ data() {
       HorariosSelecionados: [],
       tiposDeComidaSelecionados: [],
       editar: false,
-      categoriaSelecionadas: [], //DashCategoria
-      categoria: [],//DashCategoria
-      opcoesSelecionadas: [],//DashOpcionais
-      opcoes: [],//DashOpcionais
-      estilosSelecionadas: [],//DashEstilosMusicais
-      estilos: [],//DashEstilosMusicais
+      categoriasSelecionadas: [], //DashCategoria
+      categorias: [],//DashCategoria
+      opcionaisSelecionados: [],//DashOpcionais
+      opcionais: [],//DashOpcionais
+      estilosMusicaisSelecionados: [],//DashEstilosMusicais
+      estilosMusicais: [],//DashEstilosMusicais
       tiposDeComidaSelecionados: [],//DashTiposComida
       tiposDeComida: [],//DashTiposComida
       tipoContato: "Telefone", //DashContato
@@ -542,61 +540,55 @@ data() {
 },
 methods: {
     //DashCategoria------------------------------------------------------
-    selecionarCategoria(opcao) { //Dash Categoria
-        if (this.opcaopcaoCategSelecionadaoCategSelecionada(opcao)) {
-          this.categoriaSelecionadas = this.categoriaSelecionadas.filter(item => item.id !== opcao.id);
+    selecionarCategoria(categoria) {
+        if (this.categoriaSelecionada(categoria)) {
+          this.categoriasSelecionadas = this.categoriasSelecionadas.filter(item => item.id !== categoria.id);
         } else {
-          if (this.categoriaSelecionadas.length < 3) {
-        this.categoriaSelecionadas.push(opcao);
-      } else {
-        alert('Só é permitido a inclusão de 3 categorias.');
-      };
+          if (this.categoriasSelecionadas.length < 3) {
+            this.categoriasSelecionadas.push(categoria);
+          } else {
+            alert('Só é permitida a inclusão de 3 categorias.');
+          }
         }
-        this.$emit("input", this.categoriaSelecionadas); // Emita o evento input aqui
       },
-    opcaopcaoCategSelecionadaoCategSelecionada(opcao) {
-        return this.categoriaSelecionadas.some(item => item.id === opcao.id);
-      },
+    categoriaSelecionada(categoria) {
+      return this.categoriasSelecionadas.some(item => item.id === categoria.id);
+    },
 
     //DashOpcionais------------------------------------------------------
-    selecionarOpcionais(opcao) {
-      if (this.opcaoOpicionaisSelecionada(opcao)) {
-        this.opcoesSelecionadas = this.opcoesSelecionadas.filter(item => item.id !== opcao.id);
-      } else {
-        this.opcoesSelecionadas.push(opcao);
-      }
-      this.$emit("input", this.opcoesSelecionadas); // Emita o evento input aqui
-      },
-    opcaoOpicionaisSelecionada(opcao) {
-        return this.opcoesSelecionadas.some(item => item.id === opcao.id);
-      },
+    selecionarOpcional(opcional) {
+        if (this.opcionalSelecionado(opcional)) {
+          this.opcionaisSelecionados = this.opcionaisSelecionados.filter(item => item.id !== opcional.id);
+        } else {
+          this.opcionaisSelecionados.push(opcional);
+        }
+    },
+    opcionalSelecionado(opcional) {
+        return this.opcionaisSelecionados.some(item => item.id === opcional.id);
+    },
 
     //DashEstilosMusicas------------------------------------------------------
-    selecionarEstilo(opcao) {
-      if (this.opcaoMusicalSelecionada(opcao)) {
-        // Se a opção já estiver selecionada, remova-a da lista
-        this.estilosSelecionadas = this.estilosSelecionadas.filter(item => item.id !== opcao.id);
-      } else {
-        // Caso contrário, adicione-a à lista
-        this.estilosSelecionadas.push(opcao);
-      }
-      this.$emit("input", this.estilosSelecionadas); // Emita o evento input aqui
+    selecionarEstiloMusical(estilo) {
+        if (this.estiloMusicalSelecionado(estilo)) {
+          this.estilosMusicaisSelecionados = this.estilosMusicaisSelecionados.filter(item => item.id !== estilo.id);
+        } else {
+          this.estilosMusicaisSelecionados.push(estilo);
+        }
     },
-    opcaoMusicalSelecionada(opcao) {
-        return this.estilosSelecionadas.some(item => item.id === opcao.id);
+    opcionalSelecionado(opcional) {
+        return this.opcionaisSelecionados.some(item => item.id === opcional.id);
       },
 
     //DashTipos Comida------------------------------------------------------
-    selecionarComida(tipo) {
-      if (this.opcaoComidaSelecionada(tipo)) {
-        this.tiposDeComidaSelecionados = this.tiposDeComidaSelecionados.filter(item => item.id !== tipo.id);
-      } else {
-        this.tiposDeComidaSelecionados.push(tipo);
-      }
-      this.$emit("input", this.tiposDeComidaSelecionados); // Emitir o evento input aqui
+    selecionarTipoComida(tipo) {
+        if (this.tipoComidaSelecionado(tipo)) {
+          this.tiposDeComidaSelecionados = this.tiposDeComidaSelecionados.filter(item => item.id !== tipo.id);
+        } else {
+          this.tiposDeComidaSelecionados.push(tipo);
+        }
     },
-    opcaoComidaSelecionada(tipo) {
-      return this.tiposDeComidaSelecionados.some(item => item.id === tipo.id);
+    tipoComidaSelecionado(tipo) {
+        return this.tiposDeComidaSelecionados.some(item => item.id === tipo.id);
     },
 
     //DashContato------------------------------------------------------
@@ -1083,22 +1075,20 @@ async salvar() {
   });
 },
 computed: {
-  progressBarWidth() {
-    return `${Math.round((this.currentSection - 1) / 5 * 100)}%`;
-  },
-  categoriaSelecionadasString() { // DashCategoria
-    return this.categoriaSelecionadas.map(opcao => opcao.nome).join(", ");
+    categoriasSelecionadasString() {// DashCategoria
+      return this.categoriasSelecionadas.map(opcao => opcao.nome).join(", ");
     },
-    opcoesSelecionadasString() {// DashOpcionais
-    return this.opcoesSelecionadas.map(opcao => opcao.nome).join(", ");
+    opcionaisSelecionadosString() {// DashOpcionais
+      return this.opcionaisSelecionados.map(opcao => opcao.nome).join(", ");
+    },
+    tiposDeComidaSelecionadosString() {// DashEstilosMusicais
+      return this.tiposDeComidaSelecionados.map(tipo => tipo.nome).join(", ");
+    },
+    estilosMusicaisSelecionadosString() {// DashTiposComida
+      return this.estilosMusicaisSelecionados.map(opcao => opcao.nome).join(", ");
+    },
   },
-  estilosSelecionadasString() {// DashEstilosMusicais
-    return this.estilosSelecionadas.map(opcao => opcao.nome).join(", ");
-  },
-  tiposDeComidaSelecionadosString() {// DashTiposComida
-    return this.tiposDeComidaSelecionados.map(tipo => tipo.nome).join(", ");
-  },
-  },
+  
   async created() {
     try {      
       const dadosEstabelecimentoRequest = await api.get(`/estabelecimento/meuEstabelecimento/${sessionStorage.getItem('idEstabelecimento')}`);
@@ -1147,10 +1137,10 @@ computed: {
       this.endereco.uf = estado;
 
       this.recomendacao = recomendacoesEstabelecimento;
-      this.opcoesSelecionadas = opcionaisEstabelecimento;
-      this.categoriaSelecionadas = categoriasEstabelecimento;
+      this.opcionaisSelecionados = opcionaisEstabelecimento;
+      this.categorias = categoriasEstabelecimento;
       this.tiposDeComidaSelecionados = comidasEstabelecimento;
-      this.estilosSelecionadas = musicasEstabelecimento;
+      this.estilosMusicaisSelecionados = musicasEstabelecimento;
       this.listaRedesSociais = redeSociaisEstabelecimento;
       this.listahorarios = horariosEstabelecimento;
       this.listaContatos = contatosEstabelecimento;
@@ -1430,10 +1420,7 @@ p{ /*ajustar de acordo com o fundo*/
   color: white;
 }
 
-.botaoCategoria,
-.botaoOpcionais,
-.botaoEstiloMusical,
-.botaoTiposComida {
+.botao {
   background-color: red;
   padding: 10px 20px;
   margin: 5px;
@@ -1442,17 +1429,12 @@ p{ /*ajustar de acordo com o fundo*/
   color: #fff;
 }
 
-.botaoCategoria.selecionado,
-.botaoOpcionais.selecionado,
-.botaoEstiloMusical.selecionado,
-.botaoTiposComida.selecionado {
+.botao {
   background-color: orange;
 }
 
-.botaoCategoria:hover,
-.botaoOpcionais:hover,
-.botaoEstiloMusical:hover ,
-.botaoTiposComida:hover {
+.botao:hover
+{
   background-color: orange;
 }
 
