@@ -101,6 +101,7 @@ insert into comida (id, nome) values (3, 'Italiana');
 insert into comida (id, nome) values (4, 'Mexicana');
 insert into comida (id, nome) values (5, 'Indiana');
 insert into comida (id, nome) values (6, 'Francesa');
+insert into comida (id, nome) values (7, 'Árabe');
 
 
 -- ---------------------------- COMIDA -- FIM
