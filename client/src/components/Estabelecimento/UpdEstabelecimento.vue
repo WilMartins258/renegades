@@ -1150,6 +1150,14 @@ computed: {
       this.endereco.cidade = cidade;
       this.endereco.uf = estado;
 
+      // try {
+      //   for (let i=0; i < recomendacoesEstabelecimento.length; i++) {
+      //     recomendacoesEstabelecimento[i].photo.imageURL = require(`./../../images/recomendacao/${recomendacoesEstabelecimento[i].id}.${recomendacoesEstabelecimento[i].formatoFoto}`);
+      //   }
+      // } catch (error){
+      //   console.log('Erro:: ', error);
+      // }
+
       this.recomendacao = recomendacoesEstabelecimento;
       this.opcoesSelecionadas = opcionaisEstabelecimento;
       this.categoriaSelecionadas = categoriasEstabelecimento;
