@@ -53,6 +53,13 @@ router.get('/carousel', async (req, res) => {
 
 router.get('/filtro', async (req, res) => {
     try {
+        const {
+            latitude,
+            longitude
+        } = req.query;
+        console.log('latitude:: ', latitude);
+        console.log('longitude:: ', longitude);
+
         const estabelecimentos = await estabelecimento_Service.filtros();
         const categorias = await categoria_Service.pegarTudo();
         const opcionais = await opcional_Service.pegarTudo();
