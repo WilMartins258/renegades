@@ -368,8 +368,7 @@
                 v-for="tipo in tiposDeComida"
                 :key="tipo.id"
                 :class="{ botaoTiposComida: true, selecionado: opcaoComidaSelecionada(tipo) }"
-                @click="selecionarComida(tipo)"
-                disabled 
+                @click="selecionarComida(tipo)" 
                 class="button" id="teste"
               >
                 {{ tipo.nome }}
@@ -1131,6 +1130,11 @@ computed: {
         contatosEstabelecimento,
         avaliacao
       } = dadosEstabelecimentoRequest.data;
+      try {
+        this.fotoEstabelecimento = require(`./images/${sessionStorage.getItem('idEstabelecimento')}.${formatoFoto}`);
+      } catch (error) {
+        console.log('Error ao exibir foto: ', error);
+      }
       this.categoria = categorias;
       this.opcoes = opcionais;
       this.estilos = estilosMusica;
