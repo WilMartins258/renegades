@@ -1,6 +1,18 @@
 const db = require('../models/db.js');
 
-const inserir = async (dadosOpcional) => {};
+const inserir = async (dadosAvaliacao) => {
+    try {
+        const avaliacaoQuery = `
+        INSERT INTO avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) values (?, ?, ?, ?, ?);`;
+        const connection = await db;
+
+        const [insercaoAvaliacao] = await connection.query(avaliacaoQuery, dadosAvaliacao);
+
+        return insercaoAvaliacao?.insertId;
+    } catch (error) {
+        throw new Error(`Erro ao inserir avaliação do usuário: ${error.message}`);
+    }
+};
 
 const atualizar = async (novosDadosAvaliacao) => {
     try {
