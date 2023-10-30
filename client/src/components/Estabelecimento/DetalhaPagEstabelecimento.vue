@@ -333,15 +333,28 @@ export default {
             // Atualiza a valor de nota
             this.nota = notaSelecionada;
         },
-        avaliar() {
+        async avaliar() {
+          try {
             // Pega a avaliação do usuário
             const avaliacao = document.getElementById("user-review").value;
 
+            const dadosAvaliacao = {
+              idUsuario: sessionStorage.getItem('idUsuario'),
+              idEstabelecimento: this.id,
+              descricao: avaliacao,
+              nota: this.nota
+            };
+
+            const avaliacaoRequest = await api.post('/avaliacao', dadosAvaliacao);
+            
+            console.log(`test: ${avaliacaoRequest}`);
             // teste de saida:
             console.log(`Nota: ${this.nota}`);
             console.log(`Avaliação: ${avaliacao}`);
-            console.log(`Favoritar: ${this.favorito}`);
-            this.limpa_Avaliacao();
+            // this.limpa_Avaliacao();
+          } catch (error) {
+            console.log(`Erro ao salvar avaliação: `, error);
+          }
         },
         limpa_Avaliacao() {
           this.nota = 0; // Define a nota como 0
