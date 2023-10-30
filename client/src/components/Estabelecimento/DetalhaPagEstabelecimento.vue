@@ -20,7 +20,7 @@
       <div class="recomendacao" v-for="prato in pratosChef" :key="prato.id">
         <div>
           <h2><i class="fa-solid fa-utensils" style="color: #000000;"></i> {{ prato.nome }}</h2><br>
-          <p><i class="fa-regular fa-comment" style="color: #000000;"></i> {{ prato.descricao }}</p><br>
+          <p><i class="fa-regular fa-comment" style="color: #ff0000;"></i> {{ prato.descricao }}</p><br>
           <img :src="prato.imagem" :alt="'Imagem de ' + prato.nome" class="imagem-prato"/>
         </div>
       </div>
