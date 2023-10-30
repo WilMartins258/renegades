@@ -6,7 +6,7 @@
       <img :src="imagemEstabelecimento" alt="Imagem do Estabelecimento" class="imagem-estabelecimento"/>
       <div class="icons">
         <span  class="star-icon" :class="{ selected: favorito }" @click="toggleFavorito"   >&#9733;</span>
-        <span class="share-icon" @click="compartilharEstabelecimento">Compartilhar</span>
+        <span class="whatsapp-icon" @click="compartilharEstabelecimento"><img src="../../../public/img/WhatsIcon.png" alt=""></span>
       </div>
     </header>
 
@@ -19,8 +19,8 @@
     <section class="chef-recomendacoes">
       <div class="recomendacao" v-for="prato in pratosChef" :key="prato.id">
         <div>
-          <h2>{{ prato.nome }}</h2><br>
-          <p>{{ prato.descricao }}</p><br>
+          <h2><i class="fa-solid fa-utensils" style="color: #000000;"></i> {{ prato.nome }}</h2><br>
+          <p><i class="fa-regular fa-comment" style="color: #000000;"></i> {{ prato.descricao }}</p><br>
           <img :src="prato.imagem" :alt="'Imagem de ' + prato.nome" class="imagem-prato"/>
         </div>
       </div>
@@ -36,10 +36,39 @@
       </div>
       <div class="info">
         <h2>Forma de Contato e Redes Sociais:</h2><br>
-        <p >Telefone: {{ telefone }}</p>
-        <br><p>Redes Sociais: <a :href="facebook" target="_blank" >{{ facebook }}</a>, <a :href="instagram" target="_blank">{{ instagram }}</a>, <a :href="twitter" target="_blank">{{ twitter }}</a></p>
-        <br><p v-if="this.site.length > 0">Nosso site: <a :href="site" target="_blank">{{ site }}</a></p>
-        <br><p v-if="this.cardapio.length > 0">Cardápio Online: <a :href="cardapio" target="_blank">{{ cardapio }}</a></p>
+        <p >Telefone: <br><i class="fa-solid fa-mobile-screen-button" style="color: #000000;"></i> {{ telefone }}</p>
+
+        
+        <br><p>Redes Sociais:</p>
+        <p class="redes">
+            <a :href="facebook" target="_blank">
+              <i class="fa-brands fa-facebook" style="color: #4267b2;"></i>
+            </a>
+      
+            <a :href="instagram" target="_blank">
+              <i class="fab fa-instagram"></i>
+            </a>
+
+            <a class="twitter" :href="twitter" target="_blank">
+              <i class="fa-brands fa-twitter" style="color: #1da1f2;"></i>
+            </a>
+        </p>
+     
+        <p v-if="site.length > 0">
+          Nosso site:<br>
+          <a :href="site" target="_blank">
+            <i class="fa-solid fa-globe" style="color: #000000;"></i>
+          </a>
+        </p>
+
+        <p v-if="cardapio.length > 0">
+          Cardápio Online:<br>
+          <a :href="cardapio" target="_blank">
+            <i class="fa-solid fa-utensils" style="color: #3c3b40;"></i>
+          </a>
+        </p>
+      
+      
       </div>
 
     </section>
@@ -47,10 +76,11 @@
     <section class="endereco-info">
       <div class="endereco">
         <h2>Endereço</h2><br>
-        <p>{{ endereco }}</p><br><br>
+        <p><i class="fa-sharp fa-solid fa-location-dot" style="color: #ff0000;"></i>
+        {{ endereco }}</p><br><br>
 
         <h2>Horário de Atendimento:</h2><br>
-        <p v-html="horarios"></p>
+        <p><i class="fa-regular fa-clock" style="color: #ff0000;"></i></p><p v-html="horarios"></p>
       </div>
 
 
@@ -124,6 +154,7 @@
       </div>
     </section>
   </div>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </template>
 
 <script>
@@ -317,7 +348,19 @@ export default {
           this.$refs.userReview.value = ""; // Limpa o campo de avaliação
         },
         compartilharEstabelecimento() { // Por enquanto apenas coloca a URL do estabelecimento na área de transferência (CTRL+V) do usuário
-          try {
+           // URL para compartilhar
+           const url = `http://localhost:8080/PaginaEstabelecimento/${this.$route.params.id}`;
+
+           //Msg de Compartilhamento
+           const mensagem = "Better Choice: Sempre a sua melhor opção! Confira este estabelecimento: " + url;
+
+            // Link para compartilhar pelo WhatsApp com a URL, imagem e descrição
+            const linkWhatsApp = `https://api.whatsapp.com/send?text=${encodeURIComponent(mensagem)}`;
+
+            // Abra uma nova guia com o link do WhatsApp
+            window.open(`https://wa.me/?text=${encodeURIComponent(mensagem)}`, '_blank');
+
+         /* try {
             const textoParaCopiar = `http://localhost:8080/PaginaEstabelecimento/${this.$route.params.id}`;
             const elementoTemporario = document.createElement("textarea");
             elementoTemporario.value = textoParaCopiar;
@@ -351,7 +394,7 @@ export default {
             }, 1500); // A mensagem será removida após 1,5 segundo (1500 milissegundos)
           } catch (error) {
             console.log('Erro ao tentar compartilhar estabelecimento');
-          }
+          }*/
         },
         async toggleFavorito() {
           try {
@@ -481,6 +524,21 @@ h3{
     border-radius: 25px
 }
 
+.redes{
+  font-size: 25px;
+}
+
+a i {
+  margin-right: 10px;
+  transition: color 0.3s; 
+  color: #000000;
+}
+
+a i:hover {
+
+  color: #ff0000 !important;
+}
+
 .endereco-info{
     display: flex;
     justify-content: space-between;
@@ -539,9 +597,16 @@ h3{
 }
 
 .star-icon {
-    font-size: 26px; /* Tamanho da fonte desejado para a estrela */
+    font-size: 35px; /* Tamanho da fonte desejado para a estrela */
     cursor: pointer;
     transition: color 0.2s; /* Transição suave de cor ao passar o mouse */
+    color: #b39a9a;
+}
+
+.whatsapp-icon img {
+    cursor: pointer;
+    width: 26px;
+    height: 26px;
 }
 
 .star-icon.selected  {
