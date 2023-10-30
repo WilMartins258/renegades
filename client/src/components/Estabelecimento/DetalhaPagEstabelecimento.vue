@@ -29,7 +29,7 @@
     <section class="adicionais-info">
       <div class="info">
         <h2>O que oferecemos:</h2><br>
-        <p>{{ opcional }}</p><br>
+        <p> <i class="fa-solid fa-newspaper" style="color: #ff0000;"></i> {{ opcional }}</p><br>
 
         <h2 v-if=this.tocaMusica>Nossa Playlist:</h2><br>
         <p v-if=this.tocaMusica> <i class="fa-solid fa-music" style="color: #ff0000;"></i> {{ musica }}</p>
