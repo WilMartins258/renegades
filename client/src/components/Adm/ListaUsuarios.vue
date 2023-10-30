@@ -1,6 +1,7 @@
 <template>
     <div>
       <h1>Lista de Usuários</h1>
+      <ComponentMessage v-if="mostrarMensagem" :title="tituloMsg" :message="mensagemPUser" @close="fecharMensagem" />
       <div class="container">
        
         <fieldset>
@@ -53,20 +54,33 @@
   
   <script>
   import api from './../../services/backend.service.js';
+  import ComponentMessage from '../Message';
 
   export default {
     name: "ListaUsuarios",
+    components: {
+		ComponentMessage,
+  },
     data() {
       return {
         usuarios: [],
         searchQuery: "", // Variável para armazenar a consulta de pesquisa
         filtro: "ativos",
+        mostrarMensagem: false,
+        tituloMsg: '',
+        mensagemPUser: '',
       };
     },
     methods: {
-        pesquisar() {
-            // Lógica para filtro
-        },
+      mostrarmensagemError(msg) {
+        this.tituloMsg = "Erro"
+        this.mensagemPUser = msg
+        this.mostrarMensagem = true;
+      },
+    
+      fecharMensagem() {
+        this.mostrarMensagem = false;
+      },
     },
     async created() {
       try {
@@ -75,7 +89,7 @@
           this.usuarios = requestUsuarios.data;
         }
       } catch (error) {
-        console.log('Erro ao buscar usuários: ', error);
+        this.mostrarmensagemError(error.response.data.msg);
       }
     },
     computed: {
