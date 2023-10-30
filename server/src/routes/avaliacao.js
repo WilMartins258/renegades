@@ -34,6 +34,31 @@ router.get('/estabelecimento/:idEstabelecimento', async (req, res) => {
     }
 });
 
+router.post('/', async (req, res) => {
+    try {
+        const { idUsuario, idEstabelecimento, descricao, nota } = req.body;
+        const dataDeHoje = new Date().toISOString().substring(0, 10);
+
+        const dadosNovaAvaliacao = {
+            idUsuario: idUsuario,
+            idEstabelecimento: idEstabelecimento,
+            descricao: descricao,
+            data: dataDeHoje,
+            nota: nota
+        };
+        const dadosNovaAvaliacaoArray = Object.values(dadosNovaAvaliacao);
+        
+        const novoIdAvaliacao = await avaliacao_Service.inserir(dadosNovaAvaliacaoArray);
+
+        res.status(200).send({novoIdAvaliacao});
+    } catch (error) {
+        console.log('ERROR:: ', error);
+        res.status(400).send({
+            msg: error
+        });
+    }
+});
+
 router.put('/', async (req, res) => {
     try {
         const { idAvaliacao, descricao, nota } = req.body;
