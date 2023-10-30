@@ -32,7 +32,7 @@
         <p>{{ opcional }}</p><br>
 
         <h2 v-if=this.tocaMusica>Nossa Playlist:</h2><br>
-        <p v-if=this.tocaMusica>{{ musica }}</p>
+        <p v-if=this.tocaMusica> <i class="fa-solid fa-music" style="color: #ff0000;"></i> {{ musica }}</p>
       </div>
       <div class="info">
         <h2>Forma de Contato e Redes Sociais:</h2><br>
