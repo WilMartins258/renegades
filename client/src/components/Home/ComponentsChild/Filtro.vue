@@ -442,6 +442,13 @@ export default {
   exibirMaisCards() {
       this.cardsExibidos += 4;       // Aumentar a quantidade de cards exibidos em 20
     },
+    async buscarLocalizacaoViaGoogle() {
+      try {
+        
+      } catch (error) {
+        console.log('Erro ao buscar localização através do Google: ', error);
+      }
+    },
     async buscarLocalizacaoViaNavegador() {
       try {
         if ("geolocation" in navigator) {
