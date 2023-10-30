@@ -345,20 +345,11 @@ export default {
               nota: this.nota
             };
 
-            const avaliacaoRequest = await api.post('/avaliacao', dadosAvaliacao);
-            
-            console.log(`test: ${avaliacaoRequest}`);
-            // teste de saida:
-            console.log(`Nota: ${this.nota}`);
-            console.log(`Avaliação: ${avaliacao}`);
-            // this.limpa_Avaliacao();
+            await api.post('/avaliacao', dadosAvaliacao);
+            location.reload();
           } catch (error) {
             console.log(`Erro ao salvar avaliação: `, error);
           }
-        },
-        limpa_Avaliacao() {
-          this.nota = 0; // Define a nota como 0
-          this.$refs.userReview.value = ""; // Limpa o campo de avaliação
         },
         compartilharEstabelecimento() { // Por enquanto apenas coloca a URL do estabelecimento na área de transferência (CTRL+V) do usuário
            // URL para compartilhar
