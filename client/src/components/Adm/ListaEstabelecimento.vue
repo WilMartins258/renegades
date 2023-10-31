@@ -93,7 +93,7 @@ export default {
           this.estabelecimentos[(index.id - 1)].status = "Validado";
 
         } catch (error) {
-          this.mostrarmensagemError(error);
+          this.mostrarmensagemError(error.response.data.msg);
         }
       }
     },
@@ -108,7 +108,7 @@ export default {
           this.estabelecimentos[(index.id - 1)].status = "Não Validado";
 
         } catch (error) {
-          this.mostrarmensagemError(error);
+          this.mostrarmensagemError(error.response.data.msg);
         }
       // Confirmação do usuário
       }
@@ -124,7 +124,7 @@ export default {
 
       this.estabelecimentos = estabelecimentosRequest.data;     
     } catch (error) {
-      this.mostrarmensagemError(error);
+      this.mostrarmensagemError(error.response.data.msg);
     }
   },
   computed: {
