@@ -1046,11 +1046,11 @@ async salvar() {
       recomendacao: this.recomendacao,
       estabelecimentoPhoto: this.estabelecimentoPhoto, // OK
       categoriasSelecionadas: this.categoriaSelecionadas, // OK
-      tiposDeComidaSelecionados: this.tiposDeComidaSelecionados,
-      opcoesSelecionadas: this.opcoesSelecionadas,
-      estilosSelecionadas: this.estilosSelecionadas,
-      redesSociaisSelecionadas: this.RdSocialSelecionadas,
-      contatosSelecionados: this.ContatosSelecionadas,
+      tiposDeComidaSelecionados: this.tiposDeComidaSelecionados, // OK
+      opcoesSelecionadas: this.opcoesSelecionadas, // OK
+      estilosSelecionadas: this.estilosSelecionadas, // OK
+      redesSociaisSelecionadas: this.listaRedesSociais, // CORRIGIR EDITAR
+      contatosSelecionados: this.listaContatos,
       horariosSelecionados: this.listahorarios
     };
     console.log('novosDadosEstabelecimento:: ', novosDadosEstabelecimento)
