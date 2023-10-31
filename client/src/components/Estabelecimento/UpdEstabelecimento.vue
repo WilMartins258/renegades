@@ -1034,26 +1034,28 @@ cancelar() {
 
 async salvar() {
   try {
-    console.log('PUT estabelecimento')
+    console.log('PUT estabelecimento');
     this.desabilitarCampos();
     const novosDadosEstabelecimento = {
-      nomeEstabelecimento: this.nomeEstabelecimento,
-      descricaoEstabelecimento: this.descricaoEstabelecimento,
-      cnpj: this.cnpj,
-      cep: this.cep,
-      endereco: this.endereco,
-      numero: this.numero,
+      nomeEstabelecimento: this.nomeEstabelecimento, // OK
+      descricaoEstabelecimento: this.descricaoEstabelecimento, // OK
+      cnpj: this.cnpj, // OK
+      cep: this.cep, // OK
+      endereco: this.endereco, // OK
+      numero: this.numero, // OK
       recomendacao: this.recomendacao,
       estabelecimentoPhoto: this.estabelecimentoPhoto,
       categoriasSelecionadas: this.categoriasSelecionadas,
       tiposDeComidaSelecionados: this.tiposDeComidaSelecionados,
       opcoesSelecionadas: this.opcoesSelecionadas,
       estilosSelecionadas: this.estilosSelecionadas,
-      RdSocialSelecionadas: this.RdSocialSelecionadas,
-      ContatosSelecionadas: this.ContatosSelecionadas,
-      HorariosSelecionados: this.HorariosSelecionados
+      redesSociaisSelecionadas: this.RdSocialSelecionadas,
+      contatosSelecionados: this.ContatosSelecionadas,
+      horariosSelecionados: this.listahorarios
     };
-    const atualizacaoDados = await api.put('/estabelecimento', {nelson: 'nelson'});
+    console.log('novosDadosEstabelecimento:: ', novosDadosEstabelecimento)
+
+    const atualizacaoDados = await api.put('/estabelecimento', {novosDadosEstabelecimento});
     console.log('atualizacaoDados:: ', atualizacaoDados)
 
     // Habilitar o botão "Alterar"
