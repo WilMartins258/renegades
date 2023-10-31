@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <h1>Estilos Musicais</h1>
+    <ComponentMessage v-if="mostrarMensagem" :title="tituloMsg" :message="mensagemPUser" @close="fecharMensagem" />
     <div>
       <form @submit.prevent="salvarMusica">
         <label for="novaMusica">Nova música:</label><br>
@@ -74,9 +75,12 @@
 
 <script>
 import api from './../../services/backend.service.js';
-
+import ComponentMessage from '../Message';
 export default {
   name: "DashEstiloMusica",
+  components: {
+		ComponentMessage,
+  },
   data() {
     return {
       novaMusica: "",
@@ -85,6 +89,9 @@ export default {
       isEditing: false,
       editingIndex: -1,
       ativo: "sim",
+      mostrarMensagem: false,
+      tituloMsg: '',
+      mensagemPUser: '',
     };
   },
   async created() {
@@ -101,7 +108,7 @@ export default {
 
       this.listaMusicas = musicas;
     } catch (error) {
-      console.log('Erro ao buscar os estilos de música: ', error);
+      this.mostrarmensagemError(error.response.data.message);
     }
   },
   methods: {
@@ -127,7 +134,7 @@ export default {
               ativo: this.ativo,
             });
           } catch (error) {
-            console.log('Erro ao inserir novo estilo de música na lista: ', error);
+            this.mostrarmensagemError(error.response.data.message);
           }
         }
         this.novaMusica = "";
@@ -164,7 +171,7 @@ export default {
         try {
           await api.put('/estiloMusica', novosDadosEstiloMusica);
         } catch (error) {
-          console.log('Erro ao atualizar estilo de música: ', error);
+          this.mostrarmensagemError(error.response.data.message);
         }
 
         this.editingIndex = -1;
@@ -173,6 +180,15 @@ export default {
       } else {
         this.campoVazio = true;
       }
+    },
+    mostrarmensagemError(msg) {
+        this.tituloMsg = "Erro"
+        this.mensagemPUser = msg
+        this.mostrarMensagem = true;
+      },
+    
+    fecharMensagem() {
+      this.mostrarMensagem = false;
     },
   },
 };
