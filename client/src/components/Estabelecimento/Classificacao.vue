@@ -1,5 +1,6 @@
 <template>
     <div>
+      <ComponentMessage v-if="mostrarMensagem" :title="tituloMsg" :message="mensagemPUser" @close="fecharMensagem" />
       <div class="avaliacao">
         <div class="customer-info">
           Minha nota é:<br>
@@ -34,8 +35,11 @@
   <script>
   import api from './../../services/backend.service.js';
   import dataFormat from './../../services/dataToDiaMesAno.service.js';
-
+  import ComponentMessage from './../Message.vue';
   export default {
+    components: {
+      ComponentMessage
+    },
     name: "Classificacao",
     data() {
       return {
@@ -43,6 +47,9 @@
         MediaNt: 0, // Média que vem do banco
         visibleAvaliacao: [], // Array para armazenar as avaliações visíveis
         numToShow: 6, // Número inicial de avaliações para mostrar
+        mostrarMensagem: false,
+        tituloMsg: "",
+        mensagemPUser: "",
       };
     },
     methods: {
@@ -50,13 +57,22 @@
         this.numToShow += 6;
         this.visibleAvaliacao = this.avaliacao.slice(0, this.numToShow);
       },
+      mostrarmensagemPUser() {
+        this.tituloMsg = "Aviso!"
+        this.mensagemPUser = "Seu estabelecimento não possui avaliações!!"
+        this.mostrarMensagem = true;
+      },
+      fecharMensagem() {
+        this.mostrarMensagem = false;
+        this.$router.push('/AreaDoEstabelecimento');
+      },
     },
     async created() {
       try {
         if(sessionStorage.getItem('idEstabelecimento')) {
           const avaliacoesRequest = await api.get(`/avaliacao/estabelecimento/${sessionStorage.getItem('idEstabelecimento')}`);
 
-          if (avaliacoesRequest.data) {
+          if (avaliacoesRequest.data.notaEstabelecimento && avaliacoesRequest.data.notaEstabelecimento[0] && typeof avaliacoesRequest.data.notaEstabelecimento[0].nota === 'number') {
             const avaliacoes = avaliacoesRequest.data.avaliacao;
             for (let i=0; i < avaliacoes.length ; i++) {
               avaliacoes[i].date = dataFormat(avaliacoes[i].data);
@@ -64,6 +80,8 @@
             this.avaliacao = avaliacoes;
             this.visibleAvaliacao = this.avaliacao.slice(0, this.numToShow); // exibe as 4 primeiras avaliações
             this.MediaNt = avaliacoesRequest.data.notaEstabelecimento[0].nota;
+          }else{
+            this.mostrarmensagemPUser()
           }
         }
       } catch (error) {
