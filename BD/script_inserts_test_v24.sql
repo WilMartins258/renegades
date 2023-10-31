@@ -236,7 +236,7 @@ insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fo
     'Julio Cesar de Castro',           -- nome
 	'15999999999',               -- celular
     '11122233344',           -- cpf
-    'kagebushin@gmail.com', -- email
+    'adm@betterchoice.com', -- email
     '123456',              -- senha
 	null,                    -- fotoPerfil
     '1989-09-24',            -- dataNascimento
