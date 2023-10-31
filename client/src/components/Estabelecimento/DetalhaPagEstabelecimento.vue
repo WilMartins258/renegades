@@ -20,7 +20,7 @@
       <div class="recomendacao" v-for="prato in pratosChef" :key="prato.id">
         <div>
           <h2><i class="fa-solid fa-utensils" style="color: #000000;"></i> {{ prato.nome }}</h2><br>
-          <p><i class="fa-regular fa-comment" style="color: #000000;"></i> {{ prato.descricao }}</p><br>
+          <p><i class="fa-regular fa-comment" style="color: #ff0000;"></i> {{ prato.descricao }}</p><br>
           <img :src="prato.imagem" :alt="'Imagem de ' + prato.nome" class="imagem-prato"/>
         </div>
       </div>
@@ -29,7 +29,7 @@
     <section class="adicionais-info">
       <div class="info">
         <h2>O que oferecemos:</h2><br>
-        <p>{{ opcional }}</p><br>
+        <p> <i class="fa-solid fa-newspaper" style="color: #ff0000;"></i> {{ opcional }}</p><br>
 
         <h2 v-if=this.tocaMusica>Nossa Playlist:</h2><br>
         <p v-if=this.tocaMusica> <i class="fa-solid fa-music" style="color: #ff0000;"></i> {{ musica }}</p>
