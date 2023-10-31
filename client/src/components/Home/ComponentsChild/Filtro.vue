@@ -444,7 +444,7 @@ export default {
     },
     async buscarLocalizacaoViaGoogle() {
       try {
-        
+        // const localizacao = await api.get('/localizacao');
       } catch (error) {
         console.log('Erro ao buscar localização através do Google: ', error);
       }
@@ -456,6 +456,9 @@ export default {
             async (position) => {
               const latitude = position.coords.latitude;
               const longitude = position.coords.longitude;
+
+              console.log('latitude:: ', latitude);
+              console.log('longitude:: ', longitude);
 
               sessionStorage.setItem('latitude', latitude);
               sessionStorage.setItem('longitude', longitude);
