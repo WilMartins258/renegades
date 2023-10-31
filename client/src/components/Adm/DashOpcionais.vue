@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <h1>Opcionais</h1>
+    <ComponentMessage v-if="mostrarMensagem" :title="tituloMsg" :message="mensagemPUser" @close="fecharMensagem" />
     <div>
       <form @submit.prevent="salvarOpcional">
         <label for="novaOpcional">Novo Opcional:</label><br>
@@ -85,6 +86,9 @@ export default {
       isEditing: false, // Adicionamos um estado para controle de edição
       editingIndex: -1, // Índice da Opcional em edição
       ativo: "sim",
+      mostrarMensagem: false,
+      tituloMsg: '',
+      mensagemPUser: '',
     };
   },
   async created() {
@@ -101,7 +105,7 @@ export default {
 
       this.listaOpcionals = opcionais;
     } catch (error) {
-      console.log('Erro ao buscar os opcionais: ', error);
+      this.mostrarmensagemError(error.response.data.error.message);
     }
   },
   methods: {
@@ -126,7 +130,7 @@ export default {
               ativo: this.ativo,
             });
           } catch (error) {
-            console.log('Erro ao inserir novo opcional na lista: ', error);
+            this.mostrarmensagemError(error.response.data.error.message);
           }
         }
         this.novaOpcional = "";
@@ -163,7 +167,7 @@ export default {
         try {
           await api.put('/opcional', novosOpcional);
         } catch (error) {
-          console.log('Erro ao atualizar opcional: ', error);
+          this.mostrarmensagemError(error.response.data.error.message);
         }
 
         this.editingIndex = -1;
@@ -172,6 +176,15 @@ export default {
       } else {
         this.campoVazio = true;
       }
+    },
+    mostrarmensagemError(msg) {
+        this.tituloMsg = "Erro"
+        this.mensagemPUser = msg
+        this.mostrarMensagem = true;
+      },
+    
+    fecharMensagem() {
+      this.mostrarMensagem = false;
     },
   },
 };
