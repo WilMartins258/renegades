@@ -2,6 +2,7 @@
     <div class="container">
       <h1 class="title">Área do Estabelecimento</h1><br><br><br>
       <div class="card-container">
+        <div class="card-row">
         <router-link to="/alterausuario" class="card">
           <img
             src="../../../public/img/MeusDados.png"
@@ -27,6 +28,8 @@
           />
           <div class="description">Minhas Promoções</div>
         </router-link>
+      </div>
+      <div class="card-row">
         <router-link to="/avaliacaoestabelecimento" class="card">
           <img
             src="../../../public/img/Avaliacao.png"
@@ -44,7 +47,7 @@
           />
           <div class="description">Favoritos</div>
         </router-link>
-
+      </div>
       </div>
     </div>
   </template>
@@ -67,10 +70,16 @@
   
   .card-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
+  flex-direction: column;
+  align-items: center;
+  font-weight: bold;
   }
+
+  .card-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
   
   .card {
     display: flex;
@@ -81,10 +90,12 @@
     border-radius: 26px;
     padding: 10px;
     text-decoration: none;
-    color: #fff;
+    color: #000;
     margin-right: 10px;
     box-shadow: 4px 4px 4px #e91e2f, 4px 4px 4px ;
     margin-right: 25px;
+    background-color: #ff9900e0;
+    font-size: 25px;
   }
   
   .card:hover {
@@ -93,6 +104,7 @@
     transition-duration: .9s;
     /*background-color: #6e55b9;*/
     background: linear-gradient(to right, #e91e2f, #ff9800); /*degradê. utlizado cores na posição inversa*/
+
   }
   
   .card-image {

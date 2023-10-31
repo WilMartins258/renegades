@@ -95,10 +95,12 @@
     border-radius: 26px;
     padding: 10px;
     text-decoration: none;
-    color: #fff;
+    color: #000;
     margin-right: 10px;
     box-shadow: 4px 4px 4px #e91e2f, 4px 4px 4px ;
     margin-right: 25px;
+    background-color: #ff9900e0;
+    font-size: 22px;
   }
   
   .card:hover {
