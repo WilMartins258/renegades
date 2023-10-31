@@ -40,16 +40,16 @@
 
         
         <br><p>Redes Sociais:</p>
-        <p class="redes">
+        <p v-if="facebook.length > 0" class="redes">
             <a :href="facebook" target="_blank">
               <i class="fa-brands fa-facebook" style="color: #4267b2;"></i>
             </a>
       
-            <a :href="instagram" target="_blank">
+            <a v-if="instagram.length > 0" :href="instagram" target="_blank">
               <i class="fab fa-instagram"></i>
             </a>
 
-            <a class="twitter" :href="twitter" target="_blank">
+            <a v-if="twitter.length > 0" class="twitter" :href="twitter" target="_blank">
               <i class="fa-brands fa-twitter" style="color: #1da1f2;"></i>
             </a>
         </p>
