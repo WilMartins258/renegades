@@ -1100,7 +1100,6 @@ computed: {
         formatoFoto,
         cnpj,
         descricao,
-        nota,
         numeroEstabelecimento,
         logradouro,
         bairro,
@@ -1118,8 +1117,7 @@ computed: {
         horariosEstabelecimento,
         recomendacoesEstabelecimento,
         comidasEstabelecimento,
-        contatosEstabelecimento,
-        avaliacao
+        contatosEstabelecimento
       } = dadosEstabelecimentoRequest.data;
       try {
         this.fotoEstabelecimento = require(`./images/${sessionStorage.getItem('idEstabelecimento')}.${formatoFoto}`);
