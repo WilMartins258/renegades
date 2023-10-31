@@ -618,6 +618,16 @@ export default {
       text-decoration: none;
     }
 
+    .Centraliza {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* ... (o restante do seu código CSS) */
+
+
 .filter-submenu {
   display: flex;
   flex-wrap: wrap;
