@@ -1044,8 +1044,8 @@ async salvar() {
       endereco: this.endereco, // OK
       numero: this.numero, // OK
       recomendacao: this.recomendacao,
-      estabelecimentoPhoto: this.estabelecimentoPhoto,
-      categoriasSelecionadas: this.categoriasSelecionadas,
+      estabelecimentoPhoto: this.estabelecimentoPhoto, // OK
+      categoriasSelecionadas: this.categoriaSelecionadas, // OK
       tiposDeComidaSelecionados: this.tiposDeComidaSelecionados,
       opcoesSelecionadas: this.opcoesSelecionadas,
       estilosSelecionadas: this.estilosSelecionadas,
