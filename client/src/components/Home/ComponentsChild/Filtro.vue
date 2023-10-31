@@ -146,6 +146,7 @@
 <script>
 import api from "./../../../services/backend.service.js";
 import distance_Service from "./../../../services/distance.service.js";
+import axios from "axios";
 
 export default {
   name: "Filtro",
@@ -217,6 +218,7 @@ export default {
   async created() {
     // Lógica para verificar localização do usuário
     try {
+      // this.buscarLocalizacaoViaGoogle();
       if (sessionStorage.getItem('idUsuario')) {
         const localizacaoUsuarioRequest = await api.get(`/usuario/localizacao/${sessionStorage.getItem('idUsuario')}`);
 
@@ -443,11 +445,21 @@ export default {
       this.cardsExibidos += 4;       // Aumentar a quantidade de cards exibidos em 20
     },
     async buscarLocalizacaoViaGoogle() {
+      console.log('buscarLocalizacaoViaGoogle')
       try {
-        // const localizacao = await api.get('/localizacao');
-      } catch (error) {
-        console.log('Erro ao buscar localização através do Google: ', error);
-      }
+            const response = await axios.get('https://ipinfo.io/json');
+            const data = response.data;
+            const ipAddress = data.ip;
+            const city = data.city;
+            const region = data.region;
+            const country = data.country;
+            const location = `${city}, ${region}, ${country}`;
+            console.log(`data: ${data}`);
+            console.log(`Endereço IP: ${ipAddress}`);
+            console.log(`Localização: ${location}`);
+        } catch (error) {
+            console.error('Erro ao obter localização:', error);
+        }
     },
     async buscarLocalizacaoViaNavegador() {
       try {
