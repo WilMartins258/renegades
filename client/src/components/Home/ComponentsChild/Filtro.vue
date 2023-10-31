@@ -115,7 +115,9 @@
 </div>
 
 
-<div class="Centraliza">
+
+  </div>
+  <div class="Centraliza">
       <div class="cards">
         <a
         v-for="estabelecimento in filteredEstabelecimentos"
@@ -136,10 +138,7 @@
       </div>
       <!-- Botão "Exibir Mais" -->
       <br><br> <div><button @click="exibirMaisCards" v-if="cardsExibidos < estabelecimentos.length">Exibir Mais</button></div>
-      
-      
     </div>
-  </div>
 </div>
 </template>
 
@@ -522,7 +521,8 @@ export default {
     margin-bottom: 20px; 
   }
   
-  .filters-container button {
+  .filters-container button,
+  button {
     margin: 10 20px;
     border-radius: 20px;
     display:block;
@@ -534,7 +534,8 @@ export default {
     color: #fff;
   }
 
-  .filters-container button:hover{
+  .filters-container button:hover,
+  button:hover{
       background:#ff9800;     
   }
   
@@ -579,7 +580,7 @@ export default {
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px; /* Adicione um espaçamento entre os cards */
-    margin-top: 20px; /* Adicione margem na parte superior para separar dos botões de filtro */
+    margin-top: 50px; /* Adicione margem na parte superior para separar dos botões de filtro */
   }
     
     .card {
