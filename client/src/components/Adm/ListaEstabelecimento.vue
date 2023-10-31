@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Lista de Estabelecimentos</h1>
+    <ComponentMessage v-if="mostrarMensagem" :title="tituloMsg" :message="mensagemPUser" @close="fecharMensagem" />
     <div class="container">
       <fieldset>
         <legend>Informe aqui o nome do estabelecimento:</legend>
@@ -65,12 +66,21 @@ export default {
       estabelecimentos: [],
       searchQuery: "",
       filtro: "pendente",
+      mostrarMensagem: false,
+      tituloMsg: '',
+      mensagemPUser: '',
     };
   },
   methods: {
-    pesquisar() {
-      // Lógica para filtro
-    },
+    mostrarmensagemError(msg) {
+        this.tituloMsg = "Erro"
+        this.mensagemPUser = msg
+        this.mostrarMensagem = true;
+      },
+    
+      fecharMensagem() {
+        this.mostrarMensagem = false;
+      },
     async ativarEstabelecimento(index) {
       if (window.confirm("Confirme a validação deste estabelecimento?")) {
         // Confirmação do usuário
@@ -83,7 +93,7 @@ export default {
           this.estabelecimentos[(index.id - 1)].status = "Validado";
 
         } catch (error) {
-          console.log('Erro: ', error);
+          this.mostrarmensagemError(error);
         }
       }
     },
@@ -98,7 +108,7 @@ export default {
           this.estabelecimentos[(index.id - 1)].status = "Não Validado";
 
         } catch (error) {
-          console.log('Erro: ', error);
+          this.mostrarmensagemError(error);
         }
       // Confirmação do usuário
       }
@@ -114,7 +124,7 @@ export default {
 
       this.estabelecimentos = estabelecimentosRequest.data;     
     } catch (error) {
-      console.log('Erro ao buscar estabelecimentos para validação: ', error);
+      this.mostrarmensagemError(error);
     }
   },
   computed: {
