@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <h1>Categorias</h1>
+    <ComponentMessage v-if="mostrarMensagem" :title="tituloMsg" :message="mensagemPUser" @close="fecharMensagem" />
     <div>
       <form @submit.prevent="salvarCategoria">
         <label for="novaCategoria">Nova Categoria:</label> <br>
@@ -74,9 +75,12 @@
 
 <script>
 import api from './../../services/backend.service.js';
-
+import ComponentMessage from '../Message';
 export default {
   name: "DashCategoria",
+  components: {
+		ComponentMessage,
+  },
   data() {
     return {
       novaCategoria: "",
@@ -85,6 +89,9 @@ export default {
       isEditing: false, // Adicionamos um estado para controle de edição
       editingIndex: -1, // Índice da categoria em edição
       ativo: "sim",
+      mostrarMensagem: false,
+      tituloMsg: '',
+      mensagemPUser: '',
     };
   },
   async created() {
@@ -94,7 +101,7 @@ export default {
       this.listaCategorias = categorias.data;
 
     } catch (error) {
-      console.log('Erro ao buscar categorias: ', error);
+      this.mostrarmensagemError(error.response.data.message);
     }
   },
   methods: {
@@ -121,13 +128,13 @@ export default {
                 ativo: this.ativo
               });
             } catch (error) {
-              console.log('Erro ao inserir nova categoria na lista: ', error);
+              this.mostrarmensagemError(error.response.data.message);
             }
           }     
           this.novaCategoria = "";
           this.campoVazio = false;
         } catch (error) {
-          console.log('Erro ao salvar categoria: ', error);
+          this.mostrarmensagemError(error.response.data.message);
         }
       } else {
         this.campoVazio = true;
@@ -161,12 +168,21 @@ export default {
         await api.put('/categoria', novosDadosCategoria);
         
       } catch (error) {
-        console.log('Erro ao atualizar categoria: ', error);
+        this.mostrarmensagemError(error.response.data.message);
       }
 
       this.editingIndex = -1;
       this.isEditing = false;
       this.limparCampos();
+    },
+    mostrarmensagemError(msg) {
+      this.tituloMsg = "Erro"
+      this.mensagemPUser = msg
+      this.mostrarMensagem = true;
+    },
+    
+    fecharMensagem() {
+      this.mostrarMensagem = false;
     },
   },
 };
