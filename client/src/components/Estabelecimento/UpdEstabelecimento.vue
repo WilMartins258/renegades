@@ -1093,8 +1093,6 @@ computed: {
     try {      
       const dadosEstabelecimentoRequest = await api.get(`/estabelecimento/meuEstabelecimento/${sessionStorage.getItem('idEstabelecimento')}`);
 
-      console.log('dadosEstabelecimentoRequest:: ', dadosEstabelecimentoRequest.data);
-
       const {
         nome,
         formatoFoto,
@@ -1146,7 +1144,6 @@ computed: {
           this.recomendacao[i].photo.imageURL = require(`./../../images/recomendacao/${this.recomendacao[i].id}.${this.recomendacao[i].formatoFoto}`);
         }
       } catch (error){
-        console.log('Erro ao exibir imagens das recomendações: ', error);
         for (let i=0; i < this.recomendacao.length; i++) {
           this.recomendacao[i].photo = {};
           this.recomendacao[i].photo.imageURL = 'https://abravidro.org.br/wp-content/uploads/2015/04/sem-imagem10.jpg';
@@ -1160,11 +1157,6 @@ computed: {
       this.listaRedesSociais = redeSociaisEstabelecimento;
       this.listahorarios = horariosEstabelecimento;
       this.listaContatos = contatosEstabelecimento;
-
-      console.log('recomendacoesEstabelecimento:: ', recomendacoesEstabelecimento);
-
-
-      
     } catch (error) {
       console.log('Erro ao buscar dados da página:: ', error);
     }
