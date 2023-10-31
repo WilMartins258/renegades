@@ -75,9 +75,12 @@
 
 <script>
 import api from './../../services/backend.service.js';
-
+import ComponentMessage from '../Message';
 export default {
   name: "DashOpcionais",
+  components: {
+		ComponentMessage,
+  },
   data() {
     return {
       novaOpcional: "",
