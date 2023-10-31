@@ -1139,15 +1139,20 @@ computed: {
       this.endereco.cidade = cidade;
       this.endereco.uf = estado;
 
-      // try {
-      //   for (let i=0; i < recomendacoesEstabelecimento.length; i++) {
-      //     recomendacoesEstabelecimento[i].photo.imageURL = require(`./../../images/recomendacao/${recomendacoesEstabelecimento[i].id}.${recomendacoesEstabelecimento[i].formatoFoto}`);
-      //   }
-      // } catch (error){
-      //   console.log('Erro:: ', error);
-      // }
-
       this.recomendacao = recomendacoesEstabelecimento;
+      try {
+        for (let i=0; i < this.recomendacao.length; i++) {
+          this.recomendacao[i].photo = {};
+          this.recomendacao[i].photo.imageURL = require(`./../../images/recomendacao/${this.recomendacao[i].id}.${this.recomendacao[i].formatoFoto}`);
+        }
+      } catch (error){
+        console.log('Erro ao exibir imagens das recomendações: ', error);
+        for (let i=0; i < this.recomendacao.length; i++) {
+          this.recomendacao[i].photo = {};
+          this.recomendacao[i].photo.imageURL = 'https://abravidro.org.br/wp-content/uploads/2015/04/sem-imagem10.jpg';
+        }
+      }
+
       this.opcoesSelecionadas = opcionaisEstabelecimento;
       this.categoriaSelecionadas = categoriasEstabelecimento;
       this.tiposDeComidaSelecionados = comidasEstabelecimento;
