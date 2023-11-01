@@ -1043,7 +1043,7 @@ async salvar() {
       cep: this.cep, // OK
       endereco: this.endereco, // OK
       numero: this.numero, // OK
-      recomendacao: this.recomendacao,
+      recomendacao: this.recomendacao, // OK EXCETO IMAGENS
       estabelecimentoPhoto: this.estabelecimentoPhoto, // OK
       categoriasSelecionadas: this.categoriaSelecionadas, // OK
       tiposDeComidaSelecionados: this.tiposDeComidaSelecionados, // OK
@@ -1051,7 +1051,7 @@ async salvar() {
       estilosSelecionadas: this.estilosSelecionadas, // OK
       redesSociaisSelecionadas: this.listaRedesSociais, // CORRIGIR EDITAR
       contatosSelecionados: this.listaContatos,
-      horariosSelecionados: this.listahorarios
+      horariosSelecionados: this.listahorarios // NÃO CHECA WHATSAPP
     };
     console.log('novosDadosEstabelecimento:: ', novosDadosEstabelecimento)
 
