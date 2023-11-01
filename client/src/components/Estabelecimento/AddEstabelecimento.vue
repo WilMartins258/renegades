@@ -512,7 +512,7 @@ methods: {
         const file = event.target.files[0];
         if (file) {
           const fileReader = new FileReader();
-          const readAsArrayBuffer = (file) => {client/src/components/Estabelecimento/AddEstabelecimento.vue
+          const readAsArrayBuffer = (file) => {
             return new Promise((resolve, reject) => {
               fileReader.onloadend = () => resolve(fileReader.result);
               fileReader.onerror = reject;
