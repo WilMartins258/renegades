@@ -835,6 +835,9 @@ fieldset {
         font-size: 15px;
     }
 
+    .custom-button{
+      color: #fff;
+    }
 
 /* Responsive */
 
