@@ -88,6 +88,7 @@
     cursor: pointer;
     border-radius: 25px; 
     color: #fff;
+    display: inline-block;
   }
   
   .button.selecionado {

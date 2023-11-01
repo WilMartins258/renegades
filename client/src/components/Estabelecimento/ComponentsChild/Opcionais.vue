@@ -83,6 +83,7 @@ export default {
     margin: 5px;
     cursor: pointer;
     border-radius: 25px; 
+    display: inline-block;
   }
   
   .botao.selecionado {
