@@ -250,6 +250,7 @@ button {
   padding: 8px 20px;
   border-radius: 25px;
   color: #fff;
+  display: inline-block;
 }
 
 button:hover {

@@ -207,6 +207,7 @@ input[type="time"],
 select,
 button {
   margin: 0.4rem 0;
+  display: inline-block;
 }
 
 select,
