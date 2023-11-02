@@ -1503,6 +1503,7 @@ label,
 input,
 button {
 margin-right: 10px;
+display: inline-block;
 }
 
 table {
