@@ -1272,6 +1272,7 @@ justify-content: center;
 
 .button {
   margin-right: 10px;
+  display: inline-block;
 }
 
 h2 {
@@ -1440,6 +1441,7 @@ p{ /*ajustar de acordo com o fundo*/
   cursor: pointer;
   border-radius: 25px; 
   color: #fff;
+  display: inline-block;
 }
 
 .botaoCategoria.selecionado,
