@@ -218,7 +218,13 @@ export default {
     console.log('created:: ');
     // Lógica para verificar localização do usuário
     try {
-      await this.buscarLocalizacaoViaNavegador();
+      const localizacaoNavegador = await this.buscarLocalizacaoViaNavegador();
+
+      if (localizacaoNavegador) {
+        console.log('localizacaoNavegador TRUE: ', localizacaoNavegador);
+      } else {
+        console.log('localizacaoNavegador FALSE, ', localizacaoNavegador);
+      }
       
     } catch (error) {
       console.log('Erro ao verificar localização do usuário: : ', error);
@@ -450,68 +456,72 @@ export default {
       this.cardsExibidos += 4;       // Aumentar a quantidade de cards exibidos em 20
     },
     async buscarLocalizacaoViaNavegador() {
-      console.log('buscarLocalizacaoViaNavegador:: ');
       try {
         if ("geolocation" in navigator) {
-          console.log('geolocation true:: ');
+          const getLocation = async () => {
+            try {
+              const permissionStatus = await navigator.permissions.query({ name: 'geolocation' });
+              if (permissionStatus.state === 'granted' || permissionStatus.state === 'prompt') {
+                const position = await new Promise((resolve, reject) => {
+                  navigator.geolocation.getCurrentPosition(resolve, reject, {
+                    enableHighAccuracy: true,
+                    timeout: 5000
+                  });
+                });
 
-          // Verificar se o usuário já forneceu permissão para acessar a localização
-          navigator.permissions.query({ name: 'geolocation' }).then((permissionStatus) => {
-            if (permissionStatus.state === 'granted' || permissionStatus.state === 'prompt') {
-              // O usuário já forneceu permissão ou ainda está sendo solicitado, então podemos obter a localização
-              navigator.geolocation.getCurrentPosition(
-                (position) => {
-                  const latitude = position.coords.latitude;
-                  const longitude = position.coords.longitude;
-                  const accuracy = position.coords.accuracy
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+                const accuracy = position.coords.accuracy;
 
-                  console.log('latitude:: ', latitude);
-                  console.log('longitude:: ', longitude);
-                  console.log('accuracy:: ', accuracy);
+                sessionStorage.setItem('latitude', latitude);
+                sessionStorage.setItem('longitude', longitude);
 
-                  sessionStorage.setItem('latitude', latitude);
-                  sessionStorage.setItem('longitude', longitude);
+                /* Verificar a viabilidade de salvar a localização informada no banco
+                if (sessionStorage.getItem('idUsuario')) {
+                  const localizacaoUsuario = {
+                    latitude,
+                    longitude,
+                    idUsuario: sessionStorage.getItem('idUsuario')
+                  };
 
-                  if (sessionStorage.getItem('idUsuario')) {
-                    const localizacaoUsuario = {
-                      latitude,
-                      longitude,
-                      idUsuario: sessionStorage.getItem('idUsuario')
-                    };
-
-                    // api.post('/usuario/localizacao', localizacaoUsuario);
-                  }
-                },
-                (error) => {
-                  switch (error.code) {
-                    case error.PERMISSION_DENIED:
-                      console.log("Usuário rejeitou a solicitação de geolocalização.");
-                      break;
-                    case error.POSITION_UNAVAILABLE:
-                      console.log("Informações de localização indisponíveis.");
-                      break;
-                    case error.TIMEOUT:
-                      console.log("A solicitação de geolocalização expirou.");
-                      break;
-                    case error.UNKNOWN_ERROR:
-                      console.log("Ocorreu um erro desconhecido ao obter a localização.");
-                      break;
-                  }
-                },
-                {
-                  enableHighAccuracy: true,
-                  timeout: 5000
+                  
+                  // api.post('/usuario/localizacao', localizacaoUsuario);
                 }
-              );
-            } else {
-              console.log("O usuário negou a permissão de geolocalização.");
+                */
+                
+                return true;
+              } else {
+                console.log("O usuário negou a permissão de geolocalização.");
+                return false;
+              }
+            } catch (error) {
+              switch (error.code) {
+                case error.PERMISSION_DENIED:
+                  console.log("Usuário rejeitou a solicitação de geolocalização.");
+                  return false;
+                case error.POSITION_UNAVAILABLE:
+                  console.log("Informações de localização indisponíveis.");
+                  return false;
+                case error.TIMEOUT:
+                  console.log("A solicitação de geolocalização expirou.");
+                  return false;
+                case error.UNKNOWN_ERROR:
+                  console.log("Ocorreu um erro desconhecido ao obter a localização.");
+                  return false;
+                default:
+                  console.error("Erro ao obter localização:", error);
+                  return false;
+              }
             }
-          });
+          }
+          return getLocation();
         } else {
           console.log("Geolocalização não é suportada pelo seu navegador.");
+          return false;
         }
       } catch (error) {
         console.log('Erro ao solicitar localização através do navegador: ', error);
+        return false;
       }
     }
   },
