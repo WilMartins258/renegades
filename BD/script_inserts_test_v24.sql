@@ -277,8 +277,8 @@ insert into estabelecimento values(
 	'Votorantim', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18110375', -- cep               VARCHAR(9) not null,
-	null,
-	null,
+	-23.5369402, 
+	-47.4535156,
 	'2023-09-07', -- dataUltimoAcesso
 	'2023-09-07' -- dataUltimoAcesso
 );
@@ -547,8 +547,8 @@ insert into estabelecimento values(
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18047620', -- cep               VARCHAR(9) not null,
-	null,
-	null,
+	-23.5217748,
+	-47.46481559999999,
 	'2023-09-07', -- dataUltimoAcesso
 	'2023-09-07' -- dataUltimoAcesso
 );
@@ -742,8 +742,8 @@ insert into estabelecimento values(
 	'Votorantim', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18110570', -- cep               VARCHAR(9) not null,
-	null,
-	null,
+	-23.5424105,
+	-47.4632683,
 	'2023-09-07', -- dataUltimoAcesso
 	'2023-09-07' -- dataUltimoAcesso
 );
@@ -899,8 +899,8 @@ insert into estabelecimento values(
 	'Votorantim', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18116440', -- cep               VARCHAR(9) not null,
-	null,
-	null,
+	-23.5546401,
+	-47.4596561,
 	'2023-09-07', -- dataUltimoAcesso
 	'2023-09-07' -- dataUltimoAcesso
 );
@@ -1003,8 +1003,8 @@ insert into estabelecimento values(
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18048110', -- cep               VARCHAR(9) not null,
-	null,
-	null,
+	-23.5360016,
+	-47.4656231,
 	'2023-09-07', -- dataUltimoAcesso
 	'2023-09-07' -- dataUltimoAcesso
 );
