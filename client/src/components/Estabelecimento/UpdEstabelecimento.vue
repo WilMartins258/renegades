@@ -1138,6 +1138,13 @@ computed: {
         comidasEstabelecimento,
         contatosEstabelecimento
       } = dadosEstabelecimentoRequest.data;
+      for (let i = 0; i < contatosEstabelecimento.length; i++){
+        if(contatosEstabelecimento[i].isWhatsapp == 1){
+          contatosEstabelecimento[i].isWhatsapp = true;
+      }else{
+        contatosEstabelecimento[i].isWhatsapp = false
+      }
+      }
       try {
         this.fotoEstabelecimento = require(`./images/${sessionStorage.getItem('idEstabelecimento')}.${formatoFoto}`);
       } catch (error) {
