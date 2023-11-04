@@ -67,9 +67,32 @@ const obterDistanciaDoEstabelecimento = async (lat1, lon1, lat2, lon2) => {
     }
 };
 
+const obterDistanciaDeTodosEstabelecimentos= async (latitudeUsuario, longitudeUsuario, estabelecimentos) => {
+    try {
+        const apiKey = variaveisGlobais.googleApiKey();
+
+        for (let i=0; i < estabelecimentos.length; i++) {
+            if (i = 0) {
+                if (latitudeUsuario && longitudeUsuario) {
+                    if (estabelecimentos[i].cep) {
+                        const apiUrl = `https://maps.googleapis.com/maps/api/directions/json?origin=${latitudeUsuario},${longitudeUsuario}&destination=${estabelecimentos[i].numeroEstabelecimento},${estabelecimentos[i].cep}&mode=driving&key=${apiKey}`;
+                        const response = await axios.get(apiUrl);
+                        estabelecimentos[i].distancia = response.data.routes[0].legs[0].distance.value;
+                    }
+                }
+            }
+        }
+
+        return estabelecimentos;
+    } catch (error) {
+        throw new Error('Erro ao fazer a requisição para a API do Google Maps Directions: ', error);
+    }
+};
+
 module.exports = {
     obterCoordenadasViaGoogleApi,
     obterDistanciaDoEstabelecimento,
     procurarEstabelecimentosSemCoordenadas,
-    salvarCoordenadasDoEstabelecimento
+    salvarCoordenadasDoEstabelecimento,
+    obterDistanciaDeTodosEstabelecimentos
 } 
