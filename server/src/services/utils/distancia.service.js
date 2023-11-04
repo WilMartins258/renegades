@@ -1,5 +1,23 @@
 const axios = require('axios');
 const variaveisGlobais = require('../../../variaveis.js');
+const db = require('./../../models/db.js');
+
+const procurarEstabelecimentosSemCoordenadas = async () => {
+    try {
+        
+    } catch (error) {
+        
+    }
+};
+
+const salvarCoordenadasDoEstabelecimento = async () => {
+    try {
+        
+    } catch (error) {
+        
+    }
+};
+
 
 const calcularDistancia = async (lat1, lon1, lat2, lon2) => {
     const apiUrl = 'http://localhost:3001/distancia';
@@ -40,5 +58,7 @@ const obterDistanciaDoEstabelecimento = async (lat1, lon1, lat2, lon2) => {
 
 module.exports = {
     obterCoordenadasViaGoogleApi,
-    obterDistanciaDoEstabelecimento
+    obterDistanciaDoEstabelecimento,
+    procurarEstabelecimentosSemCoordenadas,
+    salvarCoordenadasDoEstabelecimento
 } 
