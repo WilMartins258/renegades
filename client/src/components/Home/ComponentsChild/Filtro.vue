@@ -228,6 +228,7 @@ export default {
           latitude: sessionStorage.getItem('latitude'),
           longitude: sessionStorage.getItem('longitude')
         }
+        console.log('coordenadas, ', coordenadas);
 
         const dadosFiltros = await api.get('/estabelecimento/filtro', { params: coordenadas });
 
@@ -249,6 +250,7 @@ export default {
       }
       
       this.estabelecimentos = estabelecimentos;
+      console.log('this.estabelecimentos:: ', this.estabelecimentos)
 
       try {
         const opcionaisArray = opcionais.map(objeto => objeto.nome);
@@ -271,7 +273,7 @@ export default {
         console.log('Erro ao tratar comidas: ', error);
       }
     } catch (error) {
-      console.log('Erro ao buscar informações dos filtros: ', error);
+      console.log('Erro ao buscar informações dos estabelecimentos para os filtros: ', error);
     }
   },
   methods: {
