@@ -1205,7 +1205,7 @@ computed: {
 #form-wrap {
  margin: auto;
  max-width: 2000px;
- min-height: 3000px;
+ min-height: 3400px;
  position: relative;
  background-color: rgba(94, 92, 92, 0.541); 
  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
