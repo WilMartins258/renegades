@@ -15,11 +15,17 @@ const procurarEstabelecimentosSemCoordenadas = async () => {
     }
 };
 
-const salvarCoordenadasDoEstabelecimento = async () => {
+const salvarCoordenadasDoEstabelecimento = async (dadosCoordenadas) => {
     try {
+        const query = `
+        UPDATE estabelecimento 
+            SET latitude = ?, longitude = ?
+            WHERE id = ?;`; 
+        const connection = await db;
+        connection.query(query, dadosCoordenadas);
         
     } catch (error) {
-        
+        throw new Error('Erro ao salvar coordenadas do estabelecimentos: ', error);
     }
 };
 
