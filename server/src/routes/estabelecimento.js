@@ -442,4 +442,18 @@ router.put('/status', async (req, res) => {
     }
 });
 
+router.get('/semLocalizacao', async (req, res) => {
+    try {
+        console.log('/semLocalizacao')
+        
+        res.status(200).send();
+    } catch (error) {
+        res.status(500).send({
+            errorMsg: 'Erro ao buscar estabelecimentos sem localização.',
+            msg: error.message,
+            error: error
+        }); 
+    }
+});
+
 module.exports = router;
