@@ -1,5 +1,5 @@
 const axios = require('axios');
-const variaveisGlobais = require('./../../../variaveis.js');
+const variaveisGlobais = require('../../../variaveis.js');
 
 const calcularDistancia = async (lat1, lon1, lat2, lon2) => {
     const apiUrl = 'http://localhost:3001/distancia';
