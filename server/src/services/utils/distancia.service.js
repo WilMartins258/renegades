@@ -4,9 +4,14 @@ const db = require('./../../models/db.js');
 
 const procurarEstabelecimentosSemCoordenadas = async () => {
     try {
-        
+        const query = `SELECT id FROM estabelecimento WHERE latitude is null AND cep is not null;`; 
+        const connection = await db;
+
+        const [estabelecimentosSemCoordenadas] = await connection.query(query);
+
+        return estabelecimentosSemCoordenadas;
     } catch (error) {
-        
+        throw new Error('Erro ao buscar estabelecimentos sem localização: ', error);
     }
 };
 
