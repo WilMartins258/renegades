@@ -423,8 +423,8 @@
             <tbody>
               <tr v-for="(horario, index) in listahorarios" :key="index">
                 <td>{{ diaSemana[horario.dia] }}</td>
-                <td>{{ horario.abre }}</td>
-                <td>{{ horario.fecha }}</td>
+                <td>{{ aplicarMascaraHorario(horario.abre) }}</td>
+                <td>{{ aplicarMascaraHorario(horario.fecha) }}</td>
                 <td>
                   <template v-if="editingIndexHorario !== index">
                       <button class="respButton" @click="editarhorario(index)">
@@ -881,6 +881,10 @@ methods: {
       if (confirm("Tem certeza que deseja excluir?")) {
         this.listahorarios.splice(index, 1);
       }
+    },
+    aplicarMascaraHorario(horaCompleta) {
+      const partesHora = horaCompleta.split(":");
+      return `${partesHora[0]}:${partesHora[1]}`;
     },
   cancelar() {
     this.$router.push("/AreaDoEstabelecimento");
