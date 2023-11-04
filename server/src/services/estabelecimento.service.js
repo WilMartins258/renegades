@@ -64,6 +64,8 @@ const filtros = async () => {
       e.nome,
       e.fotoPrincipal AS 'formatoFoto',
       e.cep,
+      e.latitude,
+      e.longitude,
       (
         SELECT GROUP_CONCAT(c.nome) 
         FROM categoria_estabelecimento ce 
