@@ -67,6 +67,7 @@ insert into OPCIONAL (id, nome) values (10, 'Permite Animais');
 insert into OPCIONAL (id, nome) values (11, 'Couvert Grátis');
 insert into OPCIONAL (id, nome) values (12, 'Tem taxa de 10%');
 insert into OPCIONAL (id, nome) values (13, 'Possui Área de Fumantes');
+insert into OPCIONAL (id, nome) values (14, 'Refeição no local');
 
 -- ---------------------------- OPCIONAL -- FIM
 
