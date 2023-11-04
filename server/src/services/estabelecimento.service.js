@@ -63,6 +63,7 @@ const filtros = async () => {
       e.id,
       e.nome,
       e.fotoPrincipal AS 'formatoFoto',
+      e.numeroEstabelecimento,
       e.cep,
       e.latitude,
       e.longitude,
