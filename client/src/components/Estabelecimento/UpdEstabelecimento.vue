@@ -195,7 +195,7 @@
             <tbody>
               <tr v-for="(contato, index) in listaContatos" :key="index">
                 <td>{{ contato.tipoContato }}</td>
-                <td>{{ contato.numeroContato }}</td>
+                <td>{{ aplicarMascaraNaTabela(contato.numeroContato, contato.tipoContato) }}</td>
                 <td>{{ contato.isWhatsapp ? 'Sim' : 'Não' }}</td>
                 <td>
                   <template v-if="editingIndex !== index">
@@ -688,6 +688,25 @@ methods: {
 
     this.numeroContato = numeroContato;
   },
+
+  aplicarMascaraNaTabela(numero, tipoContato) {
+    if (!numero) {
+      return ""; // Não aplique a máscara se o número estiver vazio
+    }
+
+    let numeroFormatado;
+
+    if (tipoContato === 'Telefone') {
+      numeroFormatado = numero.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
+    } else if (tipoContato === 'Celular') {
+      numeroFormatado = numero.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+    } else {
+      numeroFormatado = numero; // Se não for Telefone nem Celular, não aplique nenhuma máscara
+    }
+
+    return numeroFormatado;
+  },
+
 
   validarnumeroContato() {
     let minCaracteres = this.tipoContato === 'Celular' ? 11 : 10;
