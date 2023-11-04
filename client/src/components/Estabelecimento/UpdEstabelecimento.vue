@@ -757,7 +757,7 @@ methods: {
     },
     editarRedeSocial(index) {
       this.editingIndexRdSocial = index;
-      this.redeSocial = this.listaRedesSociais[index].idRede;
+      this.redeSocial = this.listaRedesSociais[index].id;
       this.perfil = this.listaRedesSociais[index].perfil;
       this.isEditingRdSocial = true;
     },
@@ -1150,6 +1150,9 @@ computed: {
       } catch (error) {
         console.log('Error ao exibir foto: ', error);
       }
+
+        
+      console.log("redeSociaisEstabelecimento",redeSociaisEstabelecimento)
       this.categoria = categorias;
       this.opcoes = opcionais;
       this.estilos = estilosMusica;
