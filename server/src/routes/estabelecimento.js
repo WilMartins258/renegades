@@ -18,6 +18,7 @@ const avaliacao_Service = require('../services/avaliacao.service.js');
 
 const extensaoImagem_Service = require('../services/utils/extensaoImagens.service.js');
 const buffer_Service = require('../services/utils/buffer.service.js');
+const distancia_Service = require('../services/utils/distancia.service.js');
 
 const categoria_Service = require('../services/categoria.service.js');
 const opcional_Service = require('../services/opcional.service.js');
@@ -57,8 +58,6 @@ router.get('/filtro', async (req, res) => {
             latitude,
             longitude
         } = req.query;
-        console.log('latitude:: ', latitude);
-        console.log('longitude:: ', longitude);
 
         const estabelecimentos = await estabelecimento_Service.filtros();
         const categorias = await categoria_Service.pegarTudo();
@@ -83,6 +82,16 @@ router.get('/filtro', async (req, res) => {
                     estabelecimentos[i].comidas = estabelecimentos[i].comidasString.split(',').map(item => item.trim());
                 } else {
                     estabelecimentos[i].comidas = [null];
+                }
+
+                if (latitude && longitude) {
+                    if (estabelecimentos[i].cep) {
+                        estabelecimentos[i].distancia = await distancia_Service.obterDistanciaDoEstabelecimento(latitude, longitude, estabelecimentos[i].numeroEstabelecimento, estabelecimentos[i].cep);
+                    } else if (estabelecimentos[i].latitude && estabelecimentos[i].longitude) {
+                        estabelecimentos[i].distancia = await distancia_Service.obterDistanciaDoEstabelecimento(latitude, longitude, estabelecimentos[i].latitude, estabelecimentos[i].longitude);
+                    } else {
+                        estabelecimentos[i].distancia = null;
+                    }
                 }
             };
         } catch (error) {
