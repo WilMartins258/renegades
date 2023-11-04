@@ -444,7 +444,12 @@ router.put('/status', async (req, res) => {
 
 router.get('/semLocalizacao', async (req, res) => {
     try {
-        console.log('/semLocalizacao')
+        console.log('/semLocalizacao');
+
+        const estabelecimentos = await distancia_Service.procurarEstabelecimentosSemCoordenadas();
+
+        console.log('/estabelecimentos:: ', estabelecimentos);
+
         
         res.status(200).send();
     } catch (error) {
