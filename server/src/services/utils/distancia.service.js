@@ -24,13 +24,15 @@ const obterCoordenadasViaGoogleApi = async (numeroResidencial, cep) => {
 
 const obterDistanciaDoEstabelecimento = async (lat1, lon1, lat2, lon2) => {
     try {
-        console.log('obterDistanciaDoEstabelecimento');
-        const apiKey = variaveisGlobais.googleApiKey;
+        // console.log(`coordenadas casa:: ${lat1}, ${lon1}`);
+        // console.log(`coordenadas estabelecimento:: ${lat2}, ${lon2}`);
+        // console.log('obterDistanciaDoEstabelecimento');
+        const apiKey = variaveisGlobais.googleApiKey();
         const apiUrl = `https://maps.googleapis.com/maps/api/directions/json?origin=${lat1},${lon1}&destination=${lat2},${lon2}&mode=driving&key=${apiKey}`
 
         const response = await axios.get(apiUrl);
-        console.log('response.data:: ', response.data);
-        return response.data;
+        // console.log('legs:: ', response.data.routes[0].legs[0].distance.value);
+        return response.data.routes[0].legs[0].distance.value;
     } catch (error) {
         throw new Error('Erro ao fazer a requisição para a API do Google Maps Directions: ', error);
     }
