@@ -218,59 +218,20 @@ export default {
     console.log('created:: ');
     // Lógica para verificar localização do usuário
     try {
-      const localizacaoNavegador = await this.buscarLocalizacaoViaNavegador();
+        const localizacaoNavegador = await this.buscarLocalizacaoViaNavegador();
+        if (!localizacaoNavegador) {
+          // Verificar outra forma de buscar pela localização
+          console.log('localizacaoNavegador FALSE, ', localizacaoNavegador);
+        }
 
-      if (localizacaoNavegador) {
-        console.log('localizacaoNavegador TRUE: ', localizacaoNavegador);
-      } else {
-        console.log('localizacaoNavegador FALSE, ', localizacaoNavegador);
-      }
-      
-    } catch (error) {
-      console.log('Erro ao verificar localização do usuário: : ', error);
-    }
-    // try {
-    //   if (sessionStorage.getItem('idUsuario')) {
-    //     const localizacaoUsuarioRequest = await api.get(`/usuario/localizacao/${sessionStorage.getItem('idUsuario')}`);
+        const coordenadas = {
+          latitude: sessionStorage.getItem('latitude'),
+          longitude: sessionStorage.getItem('longitude')
+        }
 
-    //     const {
-    //       latitude,
-    //       longitude
-    //     } = localizacaoUsuarioRequest.data.localizacao;
-
-    //     if (latitude && longitude) {
-    //       sessionStorage.setItem('latitude', latitude);
-    //       sessionStorage.setItem('longitude', longitude);
-    //     } else {
-    //       // Está logado, mas não tem localização salva ainda
-    //       await this.buscarLocalizacaoViaNavegador();
-    //     }
-    //   } else {
-    //     // Não está logado
-    //     await this.buscarLocalizacaoViaNavegador();
-    //   }
-    // } catch (error) {
-    //   console.log('Erro ao verificar localização do usuário: : ', error);
-    // }
-
-    try {
-      // console.log('latitude:: ', sessionStorage.getItem('latitude'));
-      // console.log('longitude:: ', sessionStorage.getItem('longitude'));
-      const coordenadas = {
-        latitude: sessionStorage.getItem('latitude'),
-        longitude: sessionStorage.getItem('longitude')
-      }
-      // console.log('coordenadas:: ', coordenadas);
-
-      const dadosFiltros = await api.get('/estabelecimento/filtro', { params: coordenadas });
-      // const geolocalizacao = await distance_Service.obterCoordenadasDoCEP();
-
-      // console.log('geolocalizacao:: ', geolocalizacao)
+        const dadosFiltros = await api.get('/estabelecimento/filtro', { params: coordenadas });
 
       // const distancia = await distance_Service.calcularDistancia(-23.5635557, -47.45699630000001, -23.5764854, -47.4629018);
-
-      // console.log('distancia:: ', distancia)
-
 
       const {
         estabelecimentos,
@@ -279,15 +240,6 @@ export default {
         comidas
       } = dadosFiltros.data;
 
-      // Aqui vamos receber a latitude e longitude de cada cep de estabelecimento através de uma API (Google por exemplo)
-      // try {
-      //   for (let i=0; i < estabelecimentos.length; i++) {
-          
-      //   };
-      // } catch (error) {
-      //   console.log('Erro ao inserir latitude e longitude dos estabelecimentos: ', error);
-      // }
-
       try {
         for (let i=0; i < estabelecimentos.length; i++) {
           estabelecimentos[i].foto = require(`./../../Estabelecimento/images/${estabelecimentos[i].id}.${estabelecimentos[i].formatoFoto}`);
@@ -295,10 +247,8 @@ export default {
       } catch (error) {
         console.log('Erro ao tratar estabelecimentos para filtro da home: ', error);
       }
-      // console.log('estabelecimentos:: ', estabelecimentos);
       
       this.estabelecimentos = estabelecimentos;
-
 
       try {
         const opcionaisArray = opcionais.map(objeto => objeto.nome);
@@ -474,21 +424,7 @@ export default {
                 const accuracy = position.coords.accuracy;
 
                 sessionStorage.setItem('latitude', latitude);
-                sessionStorage.setItem('longitude', longitude);
-
-                /* Verificar a viabilidade de salvar a localização informada no banco
-                if (sessionStorage.getItem('idUsuario')) {
-                  const localizacaoUsuario = {
-                    latitude,
-                    longitude,
-                    idUsuario: sessionStorage.getItem('idUsuario')
-                  };
-
-                  
-                  // api.post('/usuario/localizacao', localizacaoUsuario);
-                }
-                */
-                
+                sessionStorage.setItem('longitude', longitude);                
                 return true;
               } else {
                 console.log("O usuário negou a permissão de geolocalização.");
