@@ -86,9 +86,9 @@ router.get('/filtro', async (req, res) => {
 
                 if (latitude && longitude) {
                     if (estabelecimentos[i].cep) {
-                        estabelecimentos[i].distancia = await distancia_Service.obterDistanciaDoEstabelecimento(latitude, longitude, estabelecimentos[i].numeroEstabelecimento, estabelecimentos[i].cep);
+                        estabelecimentos[i].distancia = (await distancia_Service.obterDistanciaDoEstabelecimento(latitude, longitude, estabelecimentos[i].numeroEstabelecimento, estabelecimentos[i].cep)/1000);
                     } else if (estabelecimentos[i].latitude && estabelecimentos[i].longitude) {
-                        estabelecimentos[i].distancia = await distancia_Service.obterDistanciaDoEstabelecimento(latitude, longitude, estabelecimentos[i].latitude, estabelecimentos[i].longitude);
+                        estabelecimentos[i].distancia = (await distancia_Service.obterDistanciaDoEstabelecimento(latitude, longitude, estabelecimentos[i].latitude, estabelecimentos[i].longitude)/1000);
                     } else {
                         estabelecimentos[i].distancia = null;
                     }
