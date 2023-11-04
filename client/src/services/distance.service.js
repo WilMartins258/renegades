@@ -1,5 +1,6 @@
 const axios = require('axios');
 const api = require('./backend.service.js')
+const variaveisGlobais = require('./../../variaveis.js');
 
 // Calculo de distância usando a API do Google - Directions
 const calcularDistancia = async (lat1, lon1, lat2, lon2) => {
@@ -34,7 +35,25 @@ async function obterCoordenadasDoCEP() {
   }
 }
 
+const obterDistanciaDoEstabelecimento = async (lat1, lon1, lat2, lon2) => {
+  try {
+      // console.log(`coordenadas casa:: ${lat1}, ${lon1}`);
+      // console.log(`coordenadas estabelecimento:: ${lat2}, ${lon2}`);
+      // console.log('obterDistanciaDoEstabelecimento');
+      const apiKey = variaveisGlobais.googleApiKey();
+      const apiUrl = `https://maps.googleapis.com/maps/api/directions/json?origin=${lat1},${lon1}&destination=${lat2},${lon2}&mode=driving&key=${apiKey}`
+
+      const response = await axios.get(apiUrl);
+      // console.log('legs:: ', response.data.routes[0].legs[0].distance.value);
+      return response.data.routes[0].legs[0].distance.value;
+  } catch (error) {
+      throw new Error('Erro ao fazer a requisição para a API do Google Maps Directions: ', error);
+  }
+};
+
+
 module.exports = {
     calcularDistancia,
-    obterCoordenadasDoCEP
+    obterCoordenadasDoCEP,
+    obterDistanciaDoEstabelecimento
 };
