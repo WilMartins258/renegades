@@ -1071,6 +1071,11 @@ insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
     14 -- idOpcional INT NOT NULL -- faz entrega
 );
 
+insert into comida_estabelecimento (idEstabelecimento, idComida) values(
+    4, -- idEstabelecimento INT NOT NULL,
+    1 -- idComida INT NOT NULL -- faz entrega
+);
+
 insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
 	24,                   -- id
 	4,                -- idEstabelecimento
@@ -1159,5 +1164,166 @@ insert into recomendacao values(
 
 
 -- --------------------------> ID: 04 Kostela do Japones ---- FIM
+
+
+-- --------------------------> ID: 05 Restaurante da Fazenda ---- INÍCIO
+
+insert into estabelecimento values(
+	5, -- id 
+	'Restaurante da Fazenda', -- nome
+	'95638013000105', -- cnpj
+	'png', -- fotoPrincipal   
+	'Restaurante especializado em culinária caipira. Buffet com pratos quentes, saladas, frios, massas e muito mais.', -- descricao
+	true, -- ativo
+	false, -- oculto
+	'Validado', -- statusValidacao
+	null, -- nota
+	0, -- numeroAvaliacoes INT,
+	'', -- numeroEstabelecimento  VARCHAR(9) not null,
+	'', -- logradouro             VARCHAR(200) not null,
+	'', -- bairro                 VARCHAR(200) not null,
+	'Sorocaba', -- cidade                 VARCHAR(200) not null,
+	'SP', -- estado                 VARCHAR(200) not null,
+	'', -- cep               VARCHAR(9) not null,
+	null, -- latitude
+	null, -- logitude
+	'2023-11-05', -- dataCadastro
+	'2023-11-30' -- dataUltimoAcesso
+);
+
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
+    5, -- idEstabelecimento INT NOT NULL,
+    4 -- idCategoria INT NOT NULL -- RESTAURANTE
+);
+
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
+    5, -- idEstabelecimento INT NOT NULL,
+    2 -- idCategoria INT NOT NULL -- PIZZARIA
+);
+
+insert into comida_estabelecimento (idEstabelecimento, idComida) values(
+    5, -- idEstabelecimento INT NOT NULL,
+    1 -- idComida INT NOT NULL -- faz entrega
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    5, -- idEstabelecimento INT NOT NULL,
+    1 -- idOpcional INT NOT NULL -- faz entrega
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    5, -- idEstabelecimento INT NOT NULL,
+    5 -- idOpcional INT NOT NULL -- rodízio
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    5, -- idEstabelecimento INT NOT NULL,
+    6 -- idOpcional INT NOT NULL -- agendamento
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    5, -- idEstabelecimento INT NOT NULL,
+    7 -- idOpcional INT NOT NULL -- estacionamento
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    5, -- idEstabelecimento INT NOT NULL,
+    14 -- idOpcional INT NOT NULL -- local
+);
+
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
+	25,                   -- id
+	5,                -- idEstabelecimento
+    'Gilmar Mendes',           -- nome
+	'15999999999',           -- celular
+    '11122233355',       -- cpf
+    'contato@restaurantefazenda.com', -- email
+    '123456',          -- senha
+	null,                -- fotoPerfil
+    '1989-01-01',        -- dataNascimento
+	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	null, -- numero not null
+	null, -- lodradouro not null,
+	null, -- bairro not null,
+	null, -- cidade not null,
+	null, -- estado not null,
+	null, -- cep not null,
+	null, -- latitude
+	null  -- logitude
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda a sexta
+	5, -- idEstabelecimento INT not null,
+	8, -- idDiaSemana INT not null,
+	110000, -- horarioInicio TIME not null,
+	150000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda a sexta
+	5, -- idEstabelecimento INT not null,
+	8, -- idDiaSemana INT not null,
+	180000, -- horarioInicio TIME not null,
+	230000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Final de semana
+	5, -- idEstabelecimento INT not null,
+	10, -- idDiaSemana INT not null,
+	110000, -- horarioInicio TIME not null,
+	160000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Final de semana
+	5, -- idEstabelecimento INT not null,
+	10, -- idDiaSemana INT not null,
+	180000, -- horarioInicio TIME not null,
+	230000  -- horarioFim TIME not null
+);
+
+insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWhatsapp) values(
+	5,              -- idEstabelecimento INT not null,
+	2,              -- idTipoContato INT not null, -- TELEFONE
+	'1533213672',  -- contato VARCHAR(200) not null
+	false           -- isWhatsapp BOOLEAN not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	5,          -- idEstabelecimento INT not null,
+	1,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.facebook.com/RestauranteDaFazendaSorocaba' -- redeSocial VARCHAR(200) not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	5,          -- idEstabelecimento INT not null,
+	2,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.instagram.com/restaurante_fazenda_sorocaba/?hl=pt' -- redeSocial VARCHAR(200) not null
+);
+
+insert into recomendacao values(
+	13, -- id
+	5, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Comidas caipiras', -- nome VARCHAR(50) not null,
+	'Temos grande variedade de comidas de culinária caipira tradicional.'-- descricao VARCHAR(50) not null
+);
+
+insert into recomendacao values(
+	14, -- id
+	5, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Pizzas', -- nome VARCHAR(50) not null,
+	'Deliciosas pizzas de diversos sabores'-- descricao VARCHAR(50) not null
+);
+
+insert into recomendacao values(
+	15, -- id
+	5, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Sobremesas', -- nome VARCHAR(50) not null,
+	'Nosso rodízio conta com uma infinidade de sobremesas como pudins e doces de caseiros típicos.'-- descricao VARCHAR(50) not null
+);
+
+
+-- --------------------------> ID: 05 Restaurante da Fazenda ---- FIM
 
 -- --> CADASTRO DE ESTABELECIMENTOS ---- FIM
