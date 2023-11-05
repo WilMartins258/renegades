@@ -20,7 +20,7 @@ const pegarPorIdEstabelecimento = async (idEstabelecimento) => {
         SELECT op.id, op.nome 
             FROM opcional_estabelecimento oe
             JOIN opcional op ON oe.idOpcional = op.id
-                WHERE oe.idEstabelecimento = 1;`;
+                WHERE oe.idEstabelecimento = ?;`;
         const connection = await db;
 
         const [opcionalEstabelecimento] = await connection.query(opcionalEstabelecimentoQuery, idEstabelecimento);
