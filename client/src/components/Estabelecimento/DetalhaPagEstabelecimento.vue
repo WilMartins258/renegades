@@ -233,7 +233,7 @@ export default {
 
         // Depois podemos ver uma forma mais bonita de apresentar os telefones do estabelecimento
         try {
-          this.telefone = `${dadosContatos[0]?.contato ? dadosContatos[0]?.contato : ''}/ ${dadosContatos[1]?.contato ? dadosContatos[1]?.contato : ''}`
+          this.telefone = `${dadosContatos[0]?.contato ? dadosContatos[0]?.contato : ''} - ${dadosContatos[1]?.contato ? dadosContatos[1]?.contato : ''}`
         } catch (error) {
           console.log('Erro ao carregar contato: ', error);
         }
