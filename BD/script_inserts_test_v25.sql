@@ -768,4 +768,150 @@ insert into recomendacao values(
 -- --------------------------> ID: 01 PADARIA REAL ---- FIM
 
 
+-- --------------------------> ID: 02 PIZZARIA RAMAL 10 ---- INÍCIO
+
+insert into estabelecimento values(
+	2, -- id 
+	'Pizzia Ramal 10', -- nome
+	'95638013000105', -- cnpj
+	'jpeg', -- fotoPrincipal   
+	'Gastronomia casual de pizzas variadas e chope, em ambiente despojado com salão privativo e mesas ao ar livre.', -- descricao
+	true, -- ativo
+	false, -- oculto
+	'Validado', -- statusValidacao
+	null, -- nota
+	0, -- numeroAvaliacoes INT,
+	'1361', -- numeroEstabelecimento  VARCHAR(9) not null,
+	'R. Aparecida', -- logradouro             VARCHAR(200) not null,
+	'Jardim Santa Rosália', -- bairro                 VARCHAR(200) not null,
+	'Sorocaba', -- cidade                 VARCHAR(200) not null,
+	'SP', -- estado                 VARCHAR(200) not null,
+	'18095000', -- cep               VARCHAR(9) not null,
+	null, -- latitude
+	null, -- logitude
+	'2023-11-05', -- dataCadastro
+	'2023-11-30' -- dataUltimoAcesso
+);
+
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
+    2, -- idEstabelecimento INT NOT NULL,
+    2 -- idCategoria INT NOT NULL -- PIZZARIA
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    2, -- idEstabelecimento INT NOT NULL,
+    1 -- idOpcional INT NOT NULL -- faz entrega
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    2, -- idEstabelecimento INT NOT NULL,
+    5 -- idOpcional INT NOT NULL -- faz entrega
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    2, -- idEstabelecimento INT NOT NULL,
+    14 -- idOpcional INT NOT NULL
+);
+
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
+	22,                   -- id
+	1,                -- idEstabelecimento
+    'Luiz Antonio Souza e Dias',           -- nome
+	'15999999999',           -- celular
+    '11122233355',       -- cpf
+    'contato@ramal10.com', -- email
+    '123456',          -- senha
+	null,                -- fotoPerfil
+    '1989-01-01',        -- dataNascimento
+	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	null, -- numero not null
+	null, -- lodradouro not null,
+	null, -- bairro not null,
+	null, -- cidade not null,
+	null, -- estado not null,
+	null, -- cep not null,
+	null, -- latitude
+	null  -- logitude
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values(
+	2, -- idEstabelecimento INT not null,
+	9, -- idDiaSemana INT not null,                 --- terça a sexta
+	180000, -- horarioInicio TIME not null,
+	233000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values(
+	2, -- idEstabelecimento INT not null,
+	10, -- idDiaSemana INT not null,                 --- final de semana
+	180000, -- horarioInicio TIME not null,
+	233000  -- horarioFim TIME not null
+);
+
+insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWhatsapp) values(
+	2,              -- idEstabelecimento INT not null,
+	2,              -- idTipoContato INT not null, -- TELEFONE
+	'1532177126',  -- contato VARCHAR(200) not null
+	false           -- isWhatsapp BOOLEAN not null
+);
+
+insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWhatsapp) values(
+	2,              -- idEstabelecimento INT not null,
+	2,              -- idTipoContato INT not null, -- TELEFONE
+	'1532339301',  -- contato VARCHAR(200) not null
+	false           -- isWhatsapp BOOLEAN not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	2,          -- idEstabelecimento INT not null,
+	1,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.facebook.com/ramal10pizzaria/?locale=pt_BR' -- redeSocial VARCHAR(200) not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	2,          -- idEstabelecimento INT not null,
+	2,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.instagram.com/ramal10pizzaria/' -- redeSocial VARCHAR(200) not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	2,          -- idEstabelecimento INT not null,
+	4,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://ramal10.com.br' -- redeSocial VARCHAR(200) not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	2,          -- idEstabelecimento INT not null,
+	5,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://ramal10.com.br/pizzas.html' -- redeSocial VARCHAR(200) not null
+);
+
+insert into recomendacao values(
+	4, -- id
+	2, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Pizza de Frango com Catupiry', -- nome VARCHAR(50) not null,
+	'A clássica pizza de frango com catupiry da casa é para todos os gostos.'-- descricao VARCHAR(50) not null
+);
+
+insert into recomendacao values(
+	5, -- id
+	2, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Pizza Portuguesa', -- nome VARCHAR(50) not null,
+	'Experimente essa delícia, a Pizza Portuguesa da Ramal 10 é espetacular.'-- descricao VARCHAR(50) not null
+);
+
+insert into recomendacao values(
+	6, -- id
+	2, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Pizzas doces com sorvete', -- nome VARCHAR(50) not null,
+	'Temos grande variedade de pizza doce e todas podem ser acompanhadas de bolas de sorvete de massa.'-- descricao VARCHAR(50) not null
+);
+
+
+-- --------------------------> ID: 02 PIZZARIA RAMAL 10 ---- FIM
+
+
 -- --> CADASTRO DE ESTABELECIMENTOS ---- FIM
