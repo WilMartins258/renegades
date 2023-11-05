@@ -195,7 +195,7 @@
             <tbody>
               <tr v-for="(contato, index) in listaContatos" :key="index">
                 <td>{{ contato.tipoContato }}</td>
-                <td>{{ contato.numeroContato }}</td>
+                <td>{{ aplicarMascaraNaTabela(contato.numeroContato, contato.tipoContato) }}</td>
                 <td>{{ contato.isWhatsapp ? 'Sim' : 'Não' }}</td>
                 <td>
                   <template v-if="editingIndex !== index">
@@ -423,8 +423,8 @@
             <tbody>
               <tr v-for="(horario, index) in listahorarios" :key="index">
                 <td>{{ diaSemana[horario.dia] }}</td>
-                <td>{{ horario.abre }}</td>
-                <td>{{ horario.fecha }}</td>
+                <td>{{ aplicarMascaraHorario(horario.abre) }}</td>
+                <td>{{ aplicarMascaraHorario(horario.fecha) }}</td>
                 <td>
                   <template v-if="editingIndexHorario !== index">
                       <button class="respButton" @click="editarhorario(index)">
@@ -689,6 +689,25 @@ methods: {
     this.numeroContato = numeroContato;
   },
 
+  aplicarMascaraNaTabela(numero, tipoContato) {
+    if (!numero) {
+      return ""; // Não aplique a máscara se o número estiver vazio
+    }
+
+    let numeroFormatado;
+
+    if (tipoContato === 'Telefone') {
+      numeroFormatado = numero.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
+    } else if (tipoContato === 'Celular') {
+      numeroFormatado = numero.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+    } else {
+      numeroFormatado = numero; // Se não for Telefone nem Celular, não aplique nenhuma máscara
+    }
+
+    return numeroFormatado;
+  },
+
+
   validarnumeroContato() {
     let minCaracteres = this.tipoContato === 'Celular' ? 11 : 10;
     return this.numeroContato.replace(/\D/g, '').length >= minCaracteres;
@@ -738,7 +757,7 @@ methods: {
     },
     editarRedeSocial(index) {
       this.editingIndexRdSocial = index;
-      this.redeSocial = this.listaRedesSociais[index].idRede;
+      this.redeSocial = this.listaRedesSociais[index].id;
       this.perfil = this.listaRedesSociais[index].perfil;
       this.isEditingRdSocial = true;
     },
@@ -862,6 +881,10 @@ methods: {
       if (confirm("Tem certeza que deseja excluir?")) {
         this.listahorarios.splice(index, 1);
       }
+    },
+    aplicarMascaraHorario(horaCompleta) {
+      const partesHora = horaCompleta.split(":");
+      return `${partesHora[0]}:${partesHora[1]}`;
     },
   cancelar() {
     this.$router.push("/AreaDoEstabelecimento");
@@ -1119,11 +1142,21 @@ computed: {
         comidasEstabelecimento,
         contatosEstabelecimento
       } = dadosEstabelecimentoRequest.data;
+      for (let i = 0; i < contatosEstabelecimento.length; i++){
+        if(contatosEstabelecimento[i].isWhatsapp == 1){
+          contatosEstabelecimento[i].isWhatsapp = true;
+      }else{
+        contatosEstabelecimento[i].isWhatsapp = false
+      }
+      }
       try {
         this.fotoEstabelecimento = require(`./images/${sessionStorage.getItem('idEstabelecimento')}.${formatoFoto}`);
       } catch (error) {
         console.log('Error ao exibir foto: ', error);
       }
+
+        
+      console.log("redeSociaisEstabelecimento",redeSociaisEstabelecimento)
       this.categoria = categorias;
       this.opcoes = opcionais;
       this.estilos = estilosMusica;
@@ -1172,7 +1205,7 @@ computed: {
 #form-wrap {
  margin: auto;
  max-width: 2000px;
- min-height: 3000px;
+ min-height: 3400px;
  position: relative;
  background-color: rgba(94, 92, 92, 0.541); 
  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
