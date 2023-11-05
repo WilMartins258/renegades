@@ -404,3 +404,216 @@ insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fo
 	null  -- longitude
 );
 
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
+	11,                   -- id
+	null,                -- idEstabelecimento
+    'Gilberto Queiroz',   -- nome
+	'15999997777',           -- celular
+    '11122244433',       -- cpf
+    'gilberto@gmail.com',   -- email
+    '123456',          -- senha
+	'jpg',                -- fotoPerfil
+    '2000-01-01',        -- dataNascimento
+	0, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	1, -- numero not null
+	'Rua do usuario', -- lodradouro not null,
+	'Bairro do usuario', -- bairro not null,
+	'Sorocaba', -- cidade not null,
+	'SP', -- estado not null,
+	'18030000', -- cep not null,
+	null, -- latitude
+	null  -- longitude
+);
+
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
+	12,                   -- id
+	null,                -- idEstabelecimento
+    'Carlos Roberto Matsunaga',   -- nome
+	'15999997777',           -- celular
+    '11122244433',       -- cpf
+    'carlos@gmail.com',   -- email
+    '123456',          -- senha
+	'jpg',                -- fotoPerfil
+    '2000-01-01',        -- dataNascimento
+	0, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	1, -- numero not null
+	'Rua do usuario', -- lodradouro not null,
+	'Bairro do usuario', -- bairro not null,
+	'Sorocaba', -- cidade not null,
+	'SP', -- estado not null,
+	'18030000', -- cep not null,
+	null, -- latitude
+	null  -- longitude
+);
+
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
+	13,                   -- id
+	null,                -- idEstabelecimento
+    'Henrique Luiz Garcia',   -- nome
+	'15999997777',           -- celular
+    '11122244433',       -- cpf
+    'henrique@gmail.com',   -- email
+    '123456',          -- senha
+	'jpg',                -- fotoPerfil
+    '2000-01-01',        -- dataNascimento
+	0, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	1, -- numero not null
+	'Rua do usuario', -- lodradouro not null,
+	'Bairro do usuario', -- bairro not null,
+	'Sorocaba', -- cidade not null,
+	'SP', -- estado not null,
+	'18030000', -- cep not null,
+	null, -- latitude
+	null  -- longitude
+);
+
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
+	14,                   -- id
+	null,                -- idEstabelecimento
+    'Mateus Miguel da Cunha',   -- nome
+	'15999997777',           -- celular
+    '11122244433',       -- cpf
+    'mateus@gmail.com',   -- email
+    '123456',          -- senha
+	'jpg',                -- fotoPerfil
+    '2000-01-01',        -- dataNascimento
+	0, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	1, -- numero not null
+	'Rua do usuario', -- lodradouro not null,
+	'Bairro do usuario', -- bairro not null,
+	'Sorocaba', -- cidade not null,
+	'SP', -- estado not null,
+	'18030000', -- cep not null,
+	null, -- latitude
+	null  -- longitude
+);
+
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
+	15,                   -- id
+	null,                -- idEstabelecimento
+    'Romilton Carlos Pereira',   -- nome
+	'15999997777',           -- celular
+    '11122244433',       -- cpf
+    'romilton@gmail.com',   -- email
+    '123456',          -- senha
+	'jpg',                -- fotoPerfil
+    '2000-01-01',        -- dataNascimento
+	0, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	1, -- numero not null
+	'Rua do usuario', -- lodradouro not null,
+	'Bairro do usuario', -- bairro not null,
+	'Sorocaba', -- cidade not null,
+	'SP', -- estado not null,
+	'18030000', -- cep not null,
+	null, -- latitude
+	null  -- longitude
+);
+
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
+	16,                   -- id
+	null,                -- idEstabelecimento
+    'Ricardo Gomes Barbosa',   -- nome
+	'15999997777',           -- celular
+    '11122244433',       -- cpf
+    'ricardo@gmail.com',   -- email
+    '123456',          -- senha
+	'jpg',                -- fotoPerfil
+    '2000-01-01',        -- dataNascimento
+	0, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	1, -- numero not null
+	'Rua do usuario', -- lodradouro not null,
+	'Bairro do usuario', -- bairro not null,
+	'Sorocaba', -- cidade not null,
+	'SP', -- estado not null,
+	'18030000', -- cep not null,
+	null, -- latitude
+	null  -- longitude
+);
+
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
+	17,                   -- id
+	null,                -- idEstabelecimento
+    'Gustavo Mario Cardoso',   -- nome
+	'15999997777',           -- celular
+    '11122244433',       -- cpf
+    'gustavo@gmail.com',   -- email
+    '123456',          -- senha
+	'jpg',                -- fotoPerfil
+    '2000-01-01',        -- dataNascimento
+	0, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	1, -- numero not null
+	'Rua do usuario', -- lodradouro not null,
+	'Bairro do usuario', -- bairro not null,
+	'Sorocaba', -- cidade not null,
+	'SP', -- estado not null,
+	'18030000', -- cep not null,
+	null, -- latitude
+	null  -- longitude
+);
+
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
+	18,                   -- id
+	null,                -- idEstabelecimento
+    'Cesar Ribeiro Almeida',   -- nome
+	'15999997777',           -- celular
+    '11122244433',       -- cpf
+    'cesar@gmail.com',   -- email
+    '123456',          -- senha
+	'png',                -- fotoPerfil
+    '2000-01-01',        -- dataNascimento
+	0, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	1, -- numero not null
+	'Rua do usuario', -- lodradouro not null,
+	'Bairro do usuario', -- bairro not null,
+	'Sorocaba', -- cidade not null,
+	'SP', -- estado not null,
+	'18030000', -- cep not null,
+	null, -- latitude
+	null  -- longitude
+);
+
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
+	19,                   -- id
+	null,                -- idEstabelecimento
+    'Julio Alves',   -- nome
+	'15999997777',           -- celular
+    '11122244433',       -- cpf
+    'julio@gmail.com',   -- email
+    '123456',          -- senha
+	'jpg',                -- fotoPerfil
+    '2000-01-01',        -- dataNascimento
+	0, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	1, -- numero not null
+	'Rua do usuario', -- lodradouro not null,
+	'Bairro do usuario', -- bairro not null,
+	'Sorocaba', -- cidade not null,
+	'SP', -- estado not null,
+	'18030000', -- cep not null,
+	null, -- latitude
+	null  -- longitude
+);
+
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
+	20,                   -- id
+	null,                -- idEstabelecimento
+    'Pedro Castro Moraes',   -- nome
+	'15999997777',           -- celular
+    '11122244433',       -- cpf
+    'pedro@gmail.com',   -- email
+    '123456',          -- senha
+	'jpg',                -- fotoPerfil
+    '2000-01-01',        -- dataNascimento
+	0, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	1, -- numero not null
+	'Rua do usuario', -- lodradouro not null,
+	'Bairro do usuario', -- bairro not null,
+	'Sorocaba', -- cidade not null,
+	'SP', -- estado not null,
+	'18030000', -- cep not null,
+	null, -- latitude
+	null  -- longitude
+);
+
+
+
+
