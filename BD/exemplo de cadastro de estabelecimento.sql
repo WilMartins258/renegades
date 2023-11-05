@@ -21,6 +21,28 @@ renegades\client\src\components\Estabelecimento\images\1.png
 Reparem que o formato do arquivo fica no campo chamado de fotoPrincipal e o id é o ID do estabelecimento.
 */
 
+insert into estabelecimento values(
+	, -- id 
+	'', -- nome
+	'95638013000105', -- cnpj
+	'', -- fotoPrincipal   
+	'', -- descricao
+	true, -- ativo
+	false, -- oculto
+	'Validado', -- statusValidacao
+	null, -- nota
+	0, -- numeroAvaliacoes INT,
+	'', -- numeroEstabelecimento  VARCHAR(9) not null,
+	'', -- logradouro             VARCHAR(200) not null,
+	'', -- bairro                 VARCHAR(200) not null,
+	'Sorocaba', -- cidade                 VARCHAR(200) not null,
+	'SP', -- estado                 VARCHAR(200) not null,
+	'', -- cep               VARCHAR(9) not null,
+	null, -- latitude
+	null, -- logitude
+	'2023-11-05', -- dataCadastro
+	'2023-11-30' -- dataUltimoAcesso
+);
 
 insert into estabelecimento values(
 	1, -- id 
@@ -112,6 +134,18 @@ insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWh
 	false           -- isWhatsapp BOOLEAN not null
 );
 
+
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	,          -- idEstabelecimento INT not null,
+	,          -- idTipoRedeSocial  INT not null, -- SITE
+	'' -- redeSocial VARCHAR(200) not null
+);
+
+
+
+
+
 insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
 	1,          -- idEstabelecimento INT not null,
 	1,          -- idTipoRedeSocial  INT not null, -- SITE
@@ -153,6 +187,15 @@ Reparem que o formato do arquivo fica no campo chamado de foto e o id é o ID da 
 OBS: é importantíssimo seguir a ordem dos IDs, exemplo:
 Os ids de recomendação 1, 2 e 3 são do estabelecimento de id 1, temos que ver qual o último id de recomendação cadastrado para cadastrar o próximo.
 */
+
+
+insert into recomendacao values(
+	, -- id
+	, -- idEstabelecimento INT not null,
+	'', -- foto LONGBLOB not null,
+	'', -- nome VARCHAR(50) not null,
+	''-- descricao VARCHAR(50) not null
+);
 
 
 insert into recomendacao values(
