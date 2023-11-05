@@ -743,7 +743,7 @@ insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSoc
 insert into recomendacao values(
 	1, -- id
 	1, -- idEstabelecimento INT not null,
-	'jpg', -- foto LONGBLOB not null,
+	'png', -- foto LONGBLOB not null,
 	'A Coxinha da Real', -- nome VARCHAR(50) not null,
 	'Nossa classica coxinha é com certeza uma das melhores de Sorocaba.'-- descricao VARCHAR(50) not null
 );
