@@ -148,6 +148,10 @@ renegades\client\src\images\recomendacao\1.png
 
 
 Reparem que o formato do arquivo fica no campo chamado de foto e o id é o ID da recomendacao.
+
+
+OBS: é importantíssimo seguir a ordem dos IDs, exemplo:
+Os ids de recomendação 1, 2 e 3 são do estabelecimento de id 1, temos que ver qual o último id de recomendação cadastrado para cadastrar o próximo.
 */
 
 
