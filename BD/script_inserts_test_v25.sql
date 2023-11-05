@@ -91,6 +91,7 @@ insert into categoria (id, nome) values (15, 'Doceria');
 insert into categoria (id, nome) values (16, 'Comida de rua');
 insert into categoria (id, nome) values (17, 'Sucaria');
 insert into categoria (id, nome) values (18, 'Fast Food');
+insert into categoria (id, nome) values (19, 'Salgaderia');
 
 -- ---------------------------- CATEGORIA -- INÍCIO
 
@@ -912,6 +913,113 @@ insert into recomendacao values(
 
 
 -- --------------------------> ID: 02 PIZZARIA RAMAL 10 ---- FIM
+
+-- --------------------------> ID: 03 BAFF'S FATEC ---- INÍCIO
+
+insert into estabelecimento values(
+	3, -- id 
+	"Baff's Fatec", -- nome
+	'95638013000105', -- cnpj
+	'png', -- fotoPrincipal   
+	'Com opções deliciosas e apaixonantes, contamos com um cardápio completo para agradar todos os gostos, desde os que gostam de um café expresso até os que não conseguem resistir a um donuts bem recheado.', -- descricao
+	true, -- ativo
+	false, -- oculto
+	'Validado', -- statusValidacao
+	null, -- nota
+	0, -- numeroAvaliacoes INT,
+	'2015', -- numeroEstabelecimento  VARCHAR(9) not null,
+	'Av. Eng. Carlos Reinaldo Mendes', -- logradouro             VARCHAR(200) not null,
+	'Além Ponte', -- bairro                 VARCHAR(200) not null,
+	'Sorocaba', -- cidade                 VARCHAR(200) not null,
+	'SP', -- estado                 VARCHAR(200) not null,
+	'18013280', -- cep               VARCHAR(9) not null,
+	null, -- latitude
+	null, -- logitude
+	'2023-11-05', -- dataCadastro
+	'2023-11-30' -- dataUltimoAcesso
+);
+
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
+    3, -- idEstabelecimento INT NOT NULL,
+    11 -- idCategoria INT NOT NULL -- CAFETERIA
+);
+
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
+    3, -- idEstabelecimento INT NOT NULL,
+    19 -- idCategoria INT NOT NULL -- CAFETERIA
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    3, -- idEstabelecimento INT NOT NULL,
+    14 -- idOpcional INT NOT NULL -- refeição no local
+);
+
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
+	23,                   -- id
+	3,                -- idEstabelecimento
+    'Renato Siqueira',           -- nome
+	'15999999999',           -- celular
+    '11122233355',       -- cpf
+    'contato@baffs.com', -- email
+    '123456',          -- senha
+	null,                -- fotoPerfil
+    '1989-01-01',        -- dataNascimento
+	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	null, -- numero not null
+	null, -- lodradouro not null,
+	null, -- bairro not null,
+	null, -- cidade not null,
+	null, -- estado not null,
+	null, -- cep not null,
+	null, -- latitude
+	null  -- logitude
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( 
+	3, -- idEstabelecimento INT not null,
+	8, -- idDiaSemana INT not null,
+	070000, -- horarioInicio TIME not null,
+	223000  -- horarioFim TIME not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	3,          -- idEstabelecimento INT not null,
+	4,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://baffs.com.br/' -- redeSocial VARCHAR(200) not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	3,          -- idEstabelecimento INT not null,
+	5,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://baffs.com.br/produtos/' -- redeSocial VARCHAR(200) not null
+);
+
+insert into recomendacao values(
+	7, -- id
+	3, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Coxinhas assadas', -- nome VARCHAR(50) not null,
+	'Experiemente uma de nossas coxinhas e vai se apaionar!'-- descricao VARCHAR(50) not null
+);
+
+insert into recomendacao values(
+	8, -- id
+	3, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	"Baff's Burguer", -- nome VARCHAR(50) not null,
+	'Que tal um hamburguer? Temos também!'-- descricao VARCHAR(50) not null
+);
+
+insert into recomendacao values(
+	9, -- id
+	3, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	"Porção de Pães de Queijo", -- nome VARCHAR(50) not null,
+	'Melhor pão de queijo da Fatec Sorocaba!'-- descricao VARCHAR(50) not null
+);
+
+
+-- --------------------------> ID: 03 BAFF'S FATEC ---- FIM
 
 
 -- --> CADASTRO DE ESTABELECIMENTOS ---- FIM
