@@ -621,7 +621,7 @@ a i:hover {
 .avaliacao-estabelecimento{
     padding: 20px;
     /*background-color: #f0f0f0a9;*/
-    background-color: #fff;
+        background-color: #ffffffe0;
     text-align: center;
     max-width: 700px; 
     margin: 0 auto; 
@@ -657,7 +657,7 @@ fieldset {
   
   .filled-star,
   .nota {
-      color: yellow;
+      color: rgb(194, 194, 4);
   }
   
   .empty-star {
