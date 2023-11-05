@@ -1326,4 +1326,139 @@ insert into recomendacao values(
 
 -- --------------------------> ID: 05 Restaurante da Fazenda ---- FIM
 
+-- --------------------------> ID: 06 Oca Burguer ---- INÍCIO
+
+
+insert into estabelecimento values(
+	6, -- id 
+	'Oca Burguer', -- nome
+	'95638013000105', -- cnpj
+	'jpg', -- fotoPrincipal   
+	'Selecionamos cuidadosamente os melhores ingredientes diariamente e preparamos tudo na hora para os nossos pedidos. Sejam nos burgers, batatas, shakes, saladas ou sucos o resultado é o sabor incomparável que você já conhece!', -- descricao
+	true, -- ativo
+	false, -- oculto
+	'Validado', -- statusValidacao
+	null, -- nota
+	0, -- numeroAvaliacoes INT,
+	'957', -- numeroEstabelecimento  VARCHAR(9) not null,
+	'R. Vinte e Oito de Outubro', -- logradouro             VARCHAR(200) not null,
+	'Jardim do Paço', -- bairro                 VARCHAR(200) not null,
+	'Sorocaba', -- cidade                 VARCHAR(200) not null,
+	'SP', -- estado                 VARCHAR(200) not null,
+	'18087080', -- cep               VARCHAR(9) not null,
+	null, -- latitude
+	null, -- logitude
+	'2023-11-05', -- dataCadastro
+	'2023-11-30' -- dataUltimoAcesso
+);
+
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
+    6, -- idEstabelecimento INT NOT NULL,
+    1 -- idCategoria INT NOT NULL -- PADARIA
+);
+
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
+    6, -- idEstabelecimento INT NOT NULL,
+    3 -- idCategoria INT NOT NULL -- PADARIA
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    6, -- idEstabelecimento INT NOT NULL,
+    1 -- idOpcional INT NOT NULL -- faz entrega
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    6, -- idEstabelecimento INT NOT NULL,
+    14 -- idOpcional INT NOT NULL -- local
+);
+
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
+	26,                   -- id
+	6,                -- idEstabelecimento
+    'Karla Rosnin',           -- nome
+	'15999999999',           -- celular
+    '11122233355',       -- cpf
+    'contato@ocaburguer.com', -- email
+    '123456',          -- senha
+	null,                -- fotoPerfil
+    '1989-01-01',        -- dataNascimento
+	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	null, -- numero not null
+	null, -- lodradouro not null,
+	null, -- bairro not null,
+	null, -- cidade not null,
+	null, -- estado not null,
+	null, -- cep not null,
+	null, -- latitude
+	null  -- logitude
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda a sexta
+	6, -- idEstabelecimento INT not null,
+	8, -- idDiaSemana INT not null,
+	113000, -- horarioInicio TIME not null,
+	233000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Final de semana
+	6, -- idEstabelecimento INT not null,
+	10, -- idDiaSemana INT not null,
+	113000, -- horarioInicio TIME not null,
+	233000  -- horarioFim TIME not null
+);
+
+insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWhatsapp) values(
+	6,              -- idEstabelecimento INT not null,
+	2,              -- idTipoContato INT not null, -- TELEFONE
+	'1530342949',  -- contato VARCHAR(200) not null
+	false           -- isWhatsapp BOOLEAN not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	6,          -- idEstabelecimento INT not null,
+	1,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.facebook.com/ocaburger/?locale=pt_BR' -- redeSocial VARCHAR(200) not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	6,          -- idEstabelecimento INT not null,
+	2,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.instagram.com/ocaburger/?hl=pt' -- redeSocial VARCHAR(200) not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	6,          -- idEstabelecimento INT not null,
+	4,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.ocaburger.com.br/' -- redeSocial VARCHAR(200) not null
+);
+
+insert into recomendacao values(
+	16, -- id
+	6, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Combos com hamburgueres', -- nome VARCHAR(50) not null,
+	'Que tal nossos deliciosos lanches da casa acompanhados de porções de batatas'-- descricao VARCHAR(50) not null
+);
+
+insert into recomendacao values(
+	17, -- id
+	6, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Porções de Batatas', -- nome VARCHAR(50) not null,
+	'Temos porções de batatas para todos os gostos'-- descricao VARCHAR(50) not null
+);
+
+
+insert into recomendacao values(
+	18, -- id
+	6, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Shakes Oca', -- nome VARCHAR(50) not null,
+	'E de sobremesa vai um shake?'-- descricao VARCHAR(50) not null
+);
+
+
+
+-- --------------------------> ID: 06 Oca Burguer ---- FIM
+
 -- --> CADASTRO DE ESTABELECIMENTOS ---- FIM
