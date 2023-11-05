@@ -1021,5 +1021,143 @@ insert into recomendacao values(
 
 -- --------------------------> ID: 03 BAFF'S FATEC ---- FIM
 
+-- --------------------------> ID: 04 Kostela do Japones ---- INÍCIO
+
+insert into estabelecimento values(
+	4, -- id 
+	'Kostela do Japonês', -- nome
+	'95638013000105', -- cnpj
+	'png', -- fotoPrincipal   
+	'Aclamada costela na brasa, além de outros cortes de carne, buffet de saladas e acompanhamentos e amplo salão.', -- descricao
+	true, -- ativo
+	false, -- oculto
+	'Validado', -- statusValidacao
+	null, -- nota
+	0, -- numeroAvaliacoes INT,
+	'2970', -- numeroEstabelecimento  VARCHAR(9) not null,
+	'Av. Eng. Carlos Reinaldo Mendes', -- logradouro             VARCHAR(200) not null,
+	'Além Ponte', -- bairro                 VARCHAR(200) not null,
+	'Sorocaba', -- cidade                 VARCHAR(200) not null,
+	'SP', -- estado                 VARCHAR(200) not null,
+	'18013280', -- cep               VARCHAR(9) not null,
+	null, -- latitude
+	null, -- logitude
+	'2023-11-05', -- dataCadastro
+	'2023-11-30' -- dataUltimoAcesso
+);
+
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
+    4, -- idEstabelecimento INT NOT NULL,
+    10 -- idCategoria INT NOT NULL -- CHURRASCARIA
+);
+
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
+    4, -- idEstabelecimento INT NOT NULL,
+    4 -- idCategoria INT NOT NULL -- RESTAURANTE
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    4, -- idEstabelecimento INT NOT NULL,
+    1 -- idOpcional INT NOT NULL -- faz entrega
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    4, -- idEstabelecimento INT NOT NULL,
+    12 -- idOpcional INT NOT NULL -- taxa 10%
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    4, -- idEstabelecimento INT NOT NULL,
+    14 -- idOpcional INT NOT NULL -- faz entrega
+);
+
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
+	24,                   -- id
+	4,                -- idEstabelecimento
+    'Eduardo Rubio Limeira',           -- nome
+	'15999999999',           -- celular
+    '11122233355',       -- cpf
+    'contato@kosteladojapones.com', -- email
+    '123456',          -- senha
+	null,                -- fotoPerfil
+    '1989-01-01',        -- dataNascimento
+	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	null, -- numero not null
+	null, -- lodradouro not null,
+	null, -- bairro not null,
+	null, -- cidade not null,
+	null, -- estado not null,
+	null, -- cep not null,
+	null, -- latitude
+	null  -- logitude
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda a sexta
+	4, -- idEstabelecimento INT not null,
+	8, -- idDiaSemana INT not null,
+	113000, -- horarioInicio TIME not null,
+	150000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Final de semana
+	4, -- idEstabelecimento INT not null,
+	10, -- idDiaSemana INT not null,
+	113000, -- horarioInicio TIME not null,
+	160000  -- horarioFim TIME not null
+);
+
+insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWhatsapp) values(
+	4,              -- idEstabelecimento INT not null,
+	2,              -- idTipoContato INT not null, -- TELEFONE
+	'1532286902',  -- contato VARCHAR(200) not null
+	false           -- isWhatsapp BOOLEAN not null
+);
+
+insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWhatsapp) values(
+	4,              -- idEstabelecimento INT not null,
+	1,              -- idTipoContato INT not null, -- TELEFONE
+	'15974045227',  -- contato VARCHAR(200) not null
+	true           -- isWhatsapp BOOLEAN not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	4,          -- idEstabelecimento INT not null,
+	1,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.facebook.com/kosteladojapones/' -- redeSocial VARCHAR(200) not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	4,          -- idEstabelecimento INT not null,
+	2,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.instagram.com/kosteladojapones_sorocaba/' -- redeSocial VARCHAR(200) not null
+);
+
+insert into recomendacao values(
+	10, -- id
+	4, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Super Costela na Brasa', -- nome VARCHAR(50) not null,
+	'Nosso carro chefe! A famosa costela do japonês.'-- descricao VARCHAR(50) not null
+);
+
+insert into recomendacao values(
+	11, -- id
+	4, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Contrafilé assado', -- nome VARCHAR(50) not null,
+	'Saboreie essa suculenta carne assada para todos os gostos.'-- descricao VARCHAR(50) not null
+);
+
+insert into recomendacao values(
+	12, -- id
+	4, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Marmitex de Carne Assada', -- nome VARCHAR(50) not null,
+	'Temos também opções variádas de marmitex com carne assada.'-- descricao VARCHAR(50) not null
+);
+
+
+
+-- --------------------------> ID: 04 Kostela do Japones ---- FIM
 
 -- --> CADASTRO DE ESTABELECIMENTOS ---- FIM
