@@ -467,7 +467,8 @@ header {
 /* Estilos da seção de descrição */
 .description {
     padding: 20px;
-    background-color: #f0f0f0a9;
+    /*background-color: #f0f0f0a9;*/
+    background-color: #fff;
     border-radius: 0px 0px 25px 25px;
 }
 
@@ -491,7 +492,8 @@ h3{
     flex: 1;
     padding: 10px;
     border: 1px solid #ccc;
-    background-color: #f0f0f0a9;
+    /*background-color: #f0f0f0a9;*/
+    background-color: #fff;
     margin: 0 10px;
     text-align: center;
     border-radius: 25px;
@@ -516,7 +518,8 @@ h3{
     flex: 1;
     padding: 10px;
     border: 1px solid #ccc;
-    background-color: #f0f0f0a9;
+    /*background-color: #f0f0f0a9;*/
+    background-color: #fff;
     margin: 0 10px;
     border-radius: 25px
 }
@@ -545,7 +548,8 @@ a i:hover {
     flex: 1;
     padding: 10px;
     border: 1px solid #ccc;
-    background-color: #f0f0f0a9;
+    /*background-color: #f0f0f0a9;*/
+    background-color: #fff;
     margin: 0 10px;
     border-radius: 25px
 }
@@ -553,7 +557,8 @@ a i:hover {
 /* Estilos da seção de avaliação do usuário */
 .user-avaliacao {
     padding: 20px;
-    background-color: #f0f0f0a9;
+    /*background-color: #f0f0f0a9;*/
+    background-color: #fff;
     text-align: center;
     max-width: 700px; 
     margin: 0 auto; 
@@ -573,7 +578,8 @@ a i:hover {
 /* Estilos da seção de avaliação do usuário */
 .user-avaliacao {
     padding: 20px;
-    background-color: #f0f0f0a9;
+    /*background-color: #f0f0f0a9;*/
+    background-color: #fff;
     text-align: center;
 }
 
@@ -614,7 +620,8 @@ a i:hover {
 
 .avaliacao-estabelecimento{
     padding: 20px;
-    background-color: #f0f0f0c4;
+    /*background-color: #f0f0f0a9;*/
+    background-color: #fff;
     text-align: center;
     max-width: 700px; 
     margin: 0 auto; 
