@@ -238,13 +238,6 @@ export default {
           console.log('Erro ao carregar contato: ', error);
         }
 
-        // try {
-        //   const test = await openCageGeocodingApi.obterLatLongPorCEP('18117121');
-        //   console.log('test:: ', test);
-        // } catch (error) {
-        //   console.error('Erro ao obter latitude e longitude:', error);
-        // }
-
         try {
           this.imagemEstabelecimento = require(`./images/${this.$route.params.id}.${formatoFoto}`);
         } catch (error) {
