@@ -1615,4 +1615,153 @@ insert into recomendacao values(
 
 -- --------------------------> ID: 07 Bar da Garagem ---- FIM
 
+-- --------------------------> ID: 08 O Rei Dos Defumados ---- INÍCIO
+
+insert into estabelecimento values(
+	8, -- id 
+	'O Rei Dos Defumados', -- nome
+	'95638013000105', -- cnpj
+	'jpg', -- fotoPrincipal   
+	'THE BEST BBQ IN SOROCABA', -- descricao
+	true, -- ativo
+	false, -- oculto
+	'Validado', -- statusValidacao
+	null, -- nota
+	0, -- numeroAvaliacoes INT,
+	'790', -- numeroEstabelecimento  VARCHAR(9) not null,
+	'R. Aparecida', -- logradouro             VARCHAR(200) not null,
+	'Jardim Santa Rosália', -- bairro                 VARCHAR(200) not null,
+	'Sorocaba', -- cidade                 VARCHAR(200) not null,
+	'SP', -- estado                 VARCHAR(200) not null,
+	'18095000', -- cep               VARCHAR(9) not null,
+	null, -- latitude
+	null, -- logitude
+	'2023-11-05', -- dataCadastro
+	'2023-11-30' -- dataUltimoAcesso
+);
+
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
+    8, -- idEstabelecimento INT NOT NULL,
+    4 -- idCategoria INT NOT NULL
+);
+
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
+    8, -- idEstabelecimento INT NOT NULL,
+    10 -- idCategoria INT NOT NULL
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    8, -- idEstabelecimento INT NOT NULL,
+    1 -- idOpcional INT NOT NULL -- faz entrega
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    8, -- idEstabelecimento INT NOT NULL,
+    14 -- idOpcional INT NOT NULL -- faz entrega
+);
+
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
+	28,                   -- id
+	8,                -- idEstabelecimento
+    'Ronnie Manchester',           -- nome
+	'15999999999',           -- celular
+    '11122233355',       -- cpf
+    'contato@reidefumados.com', -- email
+    '123456',          -- senha
+	null,                -- fotoPerfil
+    '1989-01-01',        -- dataNascimento
+	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	null, -- numero not null
+	null, -- lodradouro not null,
+	null, -- bairro not null,
+	null, -- cidade not null,
+	null, -- estado not null,
+	null, -- cep not null,
+	null, -- latitude
+	null  -- logitude
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Terça a sexta
+	8, -- idEstabelecimento INT not null,
+	9, -- idDiaSemana INT not null,
+	113000, -- horarioInicio TIME not null,
+	150000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Final de semana
+	8, -- idEstabelecimento INT not null,
+	10, -- idDiaSemana INT not null,
+	113000, -- horarioInicio TIME not null,
+	150000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Quinta
+	8, -- idEstabelecimento INT not null,
+	5, -- idDiaSemana INT not null,
+	180000, -- horarioInicio TIME not null,
+	223000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Sexta
+	8, -- idEstabelecimento INT not null,
+	6, -- idDiaSemana INT not null,
+	180000, -- horarioInicio TIME not null,
+	223000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Sábado
+	8, -- idEstabelecimento INT not null,
+	7, -- idDiaSemana INT not null,
+	180000, -- horarioInicio TIME not null,
+	223000  -- horarioFim TIME not null
+);
+
+insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWhatsapp) values(
+	8,              -- idEstabelecimento INT not null,
+	1,              -- idTipoContato INT not null, -- TELEFONE
+	'15991500199',  -- contato VARCHAR(200) not null
+	true           -- isWhatsapp BOOLEAN not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	8,          -- idEstabelecimento INT not null,
+	1,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.facebook.com/oreidosdefumados/?locale=pt_BR' -- redeSocial VARCHAR(200) not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	8,          -- idEstabelecimento INT not null,
+	2,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.instagram.com/oreidosdefumados/?hl=pt' -- redeSocial VARCHAR(200) not null
+);
+
+insert into recomendacao values(
+	22, -- id
+	8, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Carnes na brasa', -- nome VARCHAR(50) not null,
+	'Temos todo tipo de carne assada que imaginar'-- descricao VARCHAR(50) not null
+);
+
+insert into recomendacao values(
+	23, -- id
+	8, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Ribs Burguer', -- nome VARCHAR(50) not null,
+	'Pega essa delicia, nosso Ribs Burguer!'-- descricao VARCHAR(50) not null
+);
+
+insert into recomendacao values(
+	24, -- id
+	8, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Combos', -- nome VARCHAR(50) not null,
+	'Quer um pouco de tudo? Temos também!'-- descricao VARCHAR(50) not null
+);
+
+
+-- --------------------------> ID: 08 O Rei Dos Defumados ---- FIM
+
+
+
 -- --> CADASTRO DE ESTABELECIMENTOS ---- FIM
