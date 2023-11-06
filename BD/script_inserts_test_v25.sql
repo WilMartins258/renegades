@@ -1458,7 +1458,161 @@ insert into recomendacao values(
 );
 
 
-
 -- --------------------------> ID: 06 Oca Burguer ---- FIM
+
+-- --------------------------> ID: 07 Bar da Garagem ---- INÍCIO
+
+insert into estabelecimento values(
+	7, -- id 
+	'Bar da Garagem', -- nome
+	'95638013000105', -- cnpj
+	'jpg', -- fotoPrincipal   
+	'Aqui você curte uma deliciosa noite de sexta, com banda de rock, porções, cerveja e chopp artesanal.', -- descricao
+	true, -- ativo
+	false, -- oculto
+	'Validado', -- statusValidacao
+	null, -- nota
+	0, -- numeroAvaliacoes INT,
+	'122', -- numeroEstabelecimento  VARCHAR(9) not null,
+	'R. Direitos Humanos', -- logradouro             VARCHAR(200) not null,
+	'Jardim do Paço', -- bairro                 VARCHAR(200) not null,
+	'Sorocaba', -- cidade                 VARCHAR(200) not null,
+	'SP', -- estado                 VARCHAR(200) not null,
+	'18087082', -- cep               VARCHAR(9) not null,
+	null, -- latitude
+	null, -- logitude
+	'2023-11-05', -- dataCadastro
+	'2023-11-30' -- dataUltimoAcesso
+);
+
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
+    7, -- idEstabelecimento INT NOT NULL,
+    6 -- idCategoria INT NOT NULL -- PADARIA
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    7, -- idEstabelecimento INT NOT NULL,
+    3 -- idOpcional INT NOT NULL
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    7, -- idEstabelecimento INT NOT NULL,
+    4 -- idOpcional INT NOT NULL
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    7, -- idEstabelecimento INT NOT NULL,
+    6 -- idOpcional INT NOT NULL
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    7, -- idEstabelecimento INT NOT NULL,
+    7 -- idOpcional INT NOT NULL
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    7, -- idEstabelecimento INT NOT NULL,
+    13 -- idOpcional INT NOT NULL
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    7, -- idEstabelecimento INT NOT NULL,
+    14 -- idOpcional INT NOT NULL
+);
+
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
+	27,                   -- id
+	1,                -- idEstabelecimento
+    'Elias Rui Manganês',           -- nome
+	'15999999999',           -- celular
+    '11122233355',       -- cpf
+    'contato@bargaragem.com', -- email
+    '123456',          -- senha
+	null,                -- fotoPerfil
+    '1989-01-01',        -- dataNascimento
+	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	null, -- numero not null
+	null, -- lodradouro not null,
+	null, -- bairro not null,
+	null, -- cidade not null,
+	null, -- estado not null,
+	null, -- cep not null,
+	null, -- latitude
+	null  -- logitude
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values(
+	7, -- idEstabelecimento INT not null,
+	6, -- idDiaSemana INT not null,
+	200000, -- horarioInicio TIME not null,
+	030000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values(
+	7, -- idEstabelecimento INT not null,
+	7, -- idDiaSemana INT not null,
+	200000, -- horarioInicio TIME not null,
+	030000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values(
+	7, -- idEstabelecimento INT not null,
+	8, -- idDiaSemana INT not null,
+	110000, -- horarioInicio TIME not null,
+	160000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values(
+	7, -- idEstabelecimento INT not null,
+	10, -- idDiaSemana INT not null,
+	110000, -- horarioInicio TIME not null,
+	160000  -- horarioFim TIME not null
+);
+
+insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWhatsapp) values(
+	7,              -- idEstabelecimento INT not null,
+	1,              -- idTipoContato INT not null, -- TELEFONE
+	'15998219909',  -- contato VARCHAR(200) not null
+	true           -- isWhatsapp BOOLEAN not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	7,          -- idEstabelecimento INT not null,
+	1,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.facebook.com/bardagaragemsorocaba/?locale=pt_BR' -- redeSocial VARCHAR(200) not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	7,          -- idEstabelecimento INT not null,
+	2,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.instagram.com/bardagaragemsorocaba/' -- redeSocial VARCHAR(200) not null
+);
+
+
+insert into recomendacao values(
+	19, -- id
+	7, -- idEstabelecimento INT not null,
+	'png', -- foto LONGBLOB not null,
+	'Prato executivo', -- nome VARCHAR(50) not null,
+	'Bateu aquela fome? Um prato executivo resolve'-- descricao VARCHAR(50) not null
+);
+
+insert into recomendacao values(
+	20, -- id
+	7, -- idEstabelecimento INT not null,
+	'png', -- foto LONGBLOB not null,
+	'Drinks de fruta', -- nome VARCHAR(50) not null,
+	'Temos deliciosos drinks de frutas'-- descricao VARCHAR(50) not null
+);
+
+insert into recomendacao values(
+	21, -- id
+	7, -- idEstabelecimento INT not null,
+	'png', -- foto LONGBLOB not null,
+	'Drinks Especiais', -- nome VARCHAR(50) not null,
+	'Também temos drinks especiais'-- descricao VARCHAR(50) not null
+);
+
+-- --------------------------> ID: 07 Bar da Garagem ---- FIM
 
 -- --> CADASTRO DE ESTABELECIMENTOS ---- FIM
