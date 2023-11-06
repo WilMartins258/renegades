@@ -1891,7 +1891,160 @@ insert into recomendacao values(
 	'Doces e confeitarias', -- nome VARCHAR(50) not null,
 	'Os mais diversos e mais deliciosos doces feitos com muito carinho'-- descricao VARCHAR(50) not null
 );
+
 -- --------------------------> ID: 09 Padaria & Confeitaria Colonial ---- FIM
 
 
+-- --------------------------> ID: 10 Kaishi Sushi Sorocaba ---- INÍCIO
+
+insert into estabelecimento values(
+	10, -- id 
+	'Kaishi Sushi Sorocaba', -- nome
+	'95638013000105', -- cnpj
+	'jpg', -- fotoPrincipal   
+	'Restaurante de culinária japonesa de Sorocaba', -- descricao
+	true, -- ativo
+	false, -- oculto
+	'Validado', -- statusValidacao
+	null, -- nota
+	0, -- numeroAvaliacoes INT,
+	'362', -- numeroEstabelecimento  VARCHAR(9) not null,
+	'Av. São Francisco', -- logradouro             VARCHAR(200) not null,
+	'Jardim Santa Rosália', -- bairro                 VARCHAR(200) not null,
+	'Sorocaba', -- cidade                 VARCHAR(200) not null,
+	'SP', -- estado                 VARCHAR(200) not null,
+	'18095450', -- cep               VARCHAR(9) not null,
+	null, -- latitude
+	null, -- logitude
+	'2023-11-05', -- dataCadastro
+	'2023-11-30' -- dataUltimoAcesso
+);
+
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
+    10, -- idEstabelecimento INT NOT NULL,
+    4 -- idCategoria INT NOT NULL -- PADARIA
+);
+
+insert into comida_estabelecimento (idEstabelecimento, idComida) values(
+    10, -- idEstabelecimento INT NOT NULL,
+    2   -- idComida INT NOT NULL -- faz entrega
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    10, -- idEstabelecimento INT NOT NULL,
+    1 -- idOpcional INT NOT NULL -- faz entrega
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    10, -- idEstabelecimento INT NOT NULL,
+    5 -- idOpcional INT NOT NULL -- rodízio
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    10, -- idEstabelecimento INT NOT NULL,
+    14 -- idOpcional INT NOT NULL -- rodízio
+);
+
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
+	30,                   -- id
+	10,                -- idEstabelecimento
+    'Lucas Kazuo Sakano',           -- nome
+	'15999999999',           -- celular
+    '11122233355',       -- cpf
+    'contato@kaishi.com', -- email
+    '123456',          -- senha
+	null,                -- fotoPerfil
+    '1989-01-01',        -- dataNascimento
+	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	null, -- numero not null
+	null, -- lodradouro not null,
+	null, -- bairro not null,
+	null, -- cidade not null,
+	null, -- estado not null,
+	null, -- cep not null,
+	null, -- latitude
+	null  -- logitude
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Final de Semana
+	10, -- idEstabelecimento INT not null,
+	10, -- idDiaSemana INT not null,
+	120000, -- horarioInicio TIME not null,
+	223000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda-feira
+	10, -- idEstabelecimento INT not null,
+	8, -- idDiaSemana INT not null,
+	113000, -- horarioInicio TIME not null,
+	143000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda-feira
+	10, -- idEstabelecimento INT not null,
+	8, -- idDiaSemana INT not null,
+	183000, -- horarioInicio TIME not null,
+	223000  -- horarioFim TIME not null
+);
+
+insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWhatsapp) values(
+	10,              -- idEstabelecimento INT not null,
+	2,              -- idTipoContato INT not null, -- TELEFONE
+	'1532111218',  -- contato VARCHAR(200) not null
+	false           -- isWhatsapp BOOLEAN not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	10,          -- idEstabelecimento INT not null,
+	1,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.facebook.com/kaishisushisantarosalia/' -- redeSocial VARCHAR(200) not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	10,          -- idEstabelecimento INT not null,
+	2,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.instagram.com/kaishisorocaba/' -- redeSocial VARCHAR(200) not null
+);
+
+insert into recomendacao values(
+	28, -- id
+	10, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Combo Japonês', -- nome VARCHAR(50) not null,
+	'Temos os mais variádos combos de comida japonesa'-- descricao VARCHAR(50) not null
+);
+
+insert into recomendacao values(
+	29, -- id
+	10, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Sushi', -- nome VARCHAR(50) not null,
+	'Os mais clássicos sushis da casa'-- descricao VARCHAR(50) not null
+);
+
+insert into recomendacao values(
+	30, -- id
+	10, -- idEstabelecimento INT not null,
+	'png', -- foto LONGBLOB not null,
+	'Drinks', -- nome VARCHAR(50) not null,
+	'Para acompanhar seu sushi que tal um de nossos drinks?'-- descricao VARCHAR(50) not null
+);
+
+-- --------------------------> ID: 10 Kaishi Sushi Sorocaba ---- FIM
+
 -- --> CADASTRO DE ESTABELECIMENTOS ---- FIM
+
+
+
+
+
+
+
+
+
+
+--------------------------- --> CADASTRO DE AVALIAÇÕES ---- INÍCIO
+
+
+
+--------------------------- --> CADASTRO DE AVALIAÇÕES ---- FIM
