@@ -83,20 +83,18 @@ router.get('/filtro', async (req, res) => {
                 } else {
                     estabelecimentos[i].comidas = [null];
                 }
-
-                if (latitude && longitude) {
-                    if (estabelecimentos[i].cep) {
-                        estabelecimentos[i].distancia = (await distancia_Service.obterDistanciaDoEstabelecimento(latitude, longitude, estabelecimentos[i].numeroEstabelecimento, estabelecimentos[i].cep)/1000);
-                    } else if (estabelecimentos[i].latitude && estabelecimentos[i].longitude) {
-                        estabelecimentos[i].distancia = (await distancia_Service.obterDistanciaDoEstabelecimento(latitude, longitude, estabelecimentos[i].latitude, estabelecimentos[i].longitude)/1000);
-                    } else {
-                        estabelecimentos[i].distancia = null;
-                    }
-                }
             };
         } catch (error) {
             console.log('Erro ao tratar componentes do estabelecimento: ', error);
         }
+
+        // try {
+        //     console.log('distancias!!!');
+        //     const distancias = await distancia_Service.obterDistanciaDeTodosEstabelecimentos(latitude, longitude,estabelecimentos);
+        //     console.log('distancias:: ', distancias);
+        // } catch (error) {
+        //     console.log('Erro ao lidar com a distância dos estabelecimentos: ', error);
+        // }
 
         res.status(200).send({
             estabelecimentos,

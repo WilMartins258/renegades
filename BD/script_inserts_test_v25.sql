@@ -649,7 +649,7 @@ insert into estabelecimento values(
 	'Alto da Boa Vista', -- bairro                 VARCHAR(200) not null,
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
-	'54870500', -- cep               VARCHAR(9) not null,
+	'18013280', -- cep               VARCHAR(9) not null,
 	null, -- latitude
 	null, -- logitude
 	'2023-11-05', -- dataCadastro
@@ -1179,12 +1179,12 @@ insert into estabelecimento values(
 	'Validado', -- statusValidacao
 	null, -- nota
 	0, -- numeroAvaliacoes INT,
-	'', -- numeroEstabelecimento  VARCHAR(9) not null,
-	'', -- logradouro             VARCHAR(200) not null,
-	'', -- bairro                 VARCHAR(200) not null,
+	'171', -- numeroEstabelecimento  VARCHAR(9) not null,
+	'Estrada Heitor Cury', -- logradouro             VARCHAR(200) not null,
+	'SP-270', -- bairro                 VARCHAR(200) not null,
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
-	'', -- cep               VARCHAR(9) not null,
+	'18052775', -- cep               VARCHAR(9) not null,
 	null, -- latitude
 	null, -- logitude
 	'2023-11-05', -- dataCadastro
