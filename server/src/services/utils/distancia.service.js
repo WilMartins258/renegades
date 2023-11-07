@@ -72,10 +72,14 @@ const obterDistanciaDeTodosEstabelecimentos= async (latitudeUsuario, longitudeUs
     try {
         const apiKey = variaveisGlobais.googleApiKey();
 
-        const apiUrl = `https://maps.googleapis.com/maps/api/directions/json?origin=${-23.5369402},${-47.4535156}&destination=${89},${18117121}&mode=driving&key=${apiKey}`;
-        const response = await axios.get(apiUrl);
+        for (let i=0; i< estabelecimentos.length ;i++) {
+            console.log('i= ', i);
+        }
 
-        console.log('response.data.routes[0].legs[0].distance.value:: ', response.data.routes[0].legs[0].distance.value);
+        const apiUrl = `https://maps.googleapis.com/maps/api/directions/json?origin=${-23.5369402},${-47.4535156}&destination=${89},${18117121}&mode=driving&key=${apiKey}`;
+        // const response = await axios.get(apiUrl);
+
+        // console.log('response.data.routes[0].legs[0].distance.value:: ', response.data.routes[0].legs[0].distance.value);
 
         return estabelecimentos;
     } catch (error) {
@@ -91,3 +95,16 @@ module.exports = {
     salvarCoordenadasDoEstabelecimento,
     obterDistanciaDeTodosEstabelecimentos
 } 
+
+
+/*
+        try {
+            console.log('distancias!!!');
+            const distancias = await distancia_Service.obterDistanciaDeTodosEstabelecimentos(latitude, longitude,estabelecimentos);
+            // console.log('distancias:: ', distancias);
+        } catch (error) {
+            console.log('Erro ao lidar com a distância dos estabelecimentos: ', error);
+        }
+
+
+*/
