@@ -54,11 +54,6 @@ router.get('/carousel', async (req, res) => {
 
 router.get('/filtro', async (req, res) => {
     try {
-        const {
-            latitude,
-            longitude
-        } = req.query;
-
         const estabelecimentos = await estabelecimento_Service.filtros();
         const categorias = await categoria_Service.pegarTudo();
         const opcionais = await opcional_Service.pegarTudo();
@@ -87,14 +82,6 @@ router.get('/filtro', async (req, res) => {
         } catch (error) {
             console.log('Erro ao tratar componentes do estabelecimento: ', error);
         }
-
-        // try {
-        //     console.log('distancias!!!');
-        //     const distancias = await distancia_Service.obterDistanciaDeTodosEstabelecimentos(latitude, longitude,estabelecimentos);
-        //     console.log('distancias:: ', distancias);
-        // } catch (error) {
-        //     console.log('Erro ao lidar com a distância dos estabelecimentos: ', error);
-        // }
 
         res.status(200).send({
             estabelecimentos,
