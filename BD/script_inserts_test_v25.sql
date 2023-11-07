@@ -649,7 +649,7 @@ insert into estabelecimento values(
 	'Alto da Boa Vista', -- bairro                 VARCHAR(200) not null,
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
-	'54870500', -- cep               VARCHAR(9) not null,
+	'18013280', -- cep               VARCHAR(9) not null,
 	null, -- latitude
 	null, -- logitude
 	'2023-11-05', -- dataCadastro
