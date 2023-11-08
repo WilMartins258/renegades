@@ -21,7 +21,7 @@
                 <td>
                   <a :href="estabelecimento.link">Acessar</a>
                 </td>
-                <td>
+                <td class="text-center">
                   <button @click="removerFavorito(estabelecimento)"><i class="uil uil-times"></i></button>
                 </td>
               </tr>
@@ -117,6 +117,14 @@ td {
 th {
   background-color: #f2f2f2;
 }
+
+.text-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
 
 button {
   background: #e91e2f;
