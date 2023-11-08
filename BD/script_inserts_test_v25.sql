@@ -1520,6 +1520,11 @@ insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
     14 -- idOpcional INT NOT NULL
 );
 
+insert into musica_estabelecimento (idEstabelecimento, idEstiloMusica) values (
+	7, -- idEstabelecimento INT not null,
+	4 -- idEstiloMusica    INT not null
+) AUTO_INCREMENT = 1;
+
 insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
 	27,                   -- id
 	1,                -- idEstabelecimento
