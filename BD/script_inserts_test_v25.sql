@@ -2421,6 +2421,114 @@ insert into recomendacao values(
 
 -- --------------------------> ID: 12 New York Bar 41 ---- FIM
 
+-- --------------------------> ID: 50 N&N Lanches ---- INÍCIO
+
+insert into estabelecimento values(
+	50, -- id 
+	'N&N Lanches', -- nome
+	'03025090000163', -- cnpj
+	'png', -- fotoPrincipal   
+	'Venham experimentar nossos deliciosos lanches! Esperamos você!', -- descricao
+	true, -- ativo
+	false, -- oculto
+	'Validado', -- statusValidacao
+	null, -- nota
+	0, -- numeroAvaliacoes INT,
+	'21', -- numeroEstabelecimento  VARCHAR(9) not null,
+	'Av. Barretos', -- logradouro             VARCHAR(200) not null,
+	'Vila Nova Sorocaba', -- bairro                 VARCHAR(200) not null,
+	'Sorocaba', -- cidade                 VARCHAR(200) not null,
+	'SP', -- estado                 VARCHAR(200) not null,
+	'18070810', -- cep               VARCHAR(9) not null,
+	null, -- latitude
+	null, -- logitude
+	'2023-11-08', -- dataCadastro
+	'2023-11-30' -- dataUltimoAcesso
+);
+
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
+    50, -- idEstabelecimento INT NOT NULL,
+    1 -- idCategoria INT NOT NULL -- LANCHONETE
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    50, -- idEstabelecimento INT NOT NULL,
+    1 -- idOpcional INT NOT NULL -- faz entrega
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    50, -- idEstabelecimento INT NOT NULL,
+    2 -- idOpcional INT NOT NULL
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    50, -- idEstabelecimento INT NOT NULL,
+    14 -- idOpcional INT NOT NULL
+);
+
+
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
+	70,                   -- id
+	50,                -- idEstabelecimento
+    'Neri Motta',           -- nome
+	'15981222017',           -- celular
+    '00697958000',       -- cpf
+    'nn_lanches@gmail.com', -- email
+    '123456',          -- senha
+	null,                -- fotoPerfil
+    '1978-02-28',        -- dataNascimento
+	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	null, -- numero not null
+	null, -- lodradouro not null,
+	null, -- bairro not null,
+	null, -- cidade not null,
+	null, -- estado not null,
+	null, -- cep not null,
+	null, -- latitude
+	null  -- logitude
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- terça a sexta
+	50, -- idEstabelecimento INT not null,
+	9, -- idDiaSemana INT not null,
+	184500, -- horarioInicio TIME not null,
+	000000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Final da Semana
+	50, -- idEstabelecimento INT not null,
+	10, -- idDiaSemana INT not null,
+	184500, -- horarioInicio TIME not null,
+	010000  -- horarioFim TIME not null
+);
+
+insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWhatsapp) values(
+	50,              -- idEstabelecimento INT not null,
+	2,              -- idTipoContato INT not null, -- CELULAR
+	'15981222017',  -- contato VARCHAR(200) not null
+	false           -- isWhatsapp BOOLEAN not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	50,          -- idEstabelecimento INT not null,
+	1,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://web.facebook.com/NN.Lanches?_rdc=1&_rdr' -- redeSocial VARCHAR(200) not null
+);
+
+
+
+insert into recomendacao values(
+	70, -- id
+	50, -- idEstabelecimento INT not null,
+	'png', -- foto LONGBLOB not null,
+	'X-Tudo', -- nome VARCHAR(50) not null,
+	'Dois pães, maionese, catchup, mostarda, tomate, milho, batata palha, hambúrguer, calabresa, bacon, frango desfiado, ovo, salsicha, presunto
+	e dois queijos (um sendo mussarela e o outro escolher entre requeijão cremoso ou cheddar).'-- descricao VARCHAR(50) not null
+);
+
+
+
+-- --------------------------> ID: 50 N&N Lanches ---- FIM
 
 
 -- --> CADASTRO DE ESTABELECIMENTOS ---- FIM
