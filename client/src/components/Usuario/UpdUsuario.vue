@@ -85,7 +85,7 @@
         <div class="group">
             <button type="button" class="button" id="alterarButton">Alterar</button>
             <button type="button" class="button" id="salvarButton" disabled>Salvar</button>
-            <button type="button" class="button" id="excluirButton">Excluir</button>
+            <button type="button" class="button" id="inativaButton">Inativar</button>
             <button type="button" class="button" id="cancelarButton" disabled>Cancelar</button>
         </div>
     </div>
@@ -111,7 +111,7 @@
   // const ufInput = document.getElementById("uf");
   // const alterarButton = document.getElementById("alterarButton");
   // const salvarButton = document.getElementById("salvarButton");
-  // const excluirButton = document.getElementById("excluirButton");
+  // const inativaButton = document.getElementById("inativaButton");
   // const cancelarButton = document.getElementById("cancelarButton");
 export default{
   name: "UpdUsuario",
@@ -267,7 +267,7 @@ export default{
       const ufInput = document.getElementById("uf");
       const alterarButton = document.getElementById("alterarButton");
       const salvarButton = document.getElementById("salvarButton");
-      const excluirButton = document.getElementById("excluirButton");
+      const inativaButton = document.getElementById("inativaButton");
       const cancelarButton = document.getElementById("cancelarButton");
     
       alterarButton.addEventListener("click", () => {
@@ -286,7 +286,7 @@ export default{
         salvarButton.removeAttribute("disabled");
         cancelarButton.removeAttribute("disabled");
         alterarButton.setAttribute("disabled", true);
-        excluirButton.setAttribute("disabled", true);
+        inativaButton.setAttribute("disabled", true);
       });  
 
       cancelarButton.addEventListener("click", () => {
@@ -305,7 +305,7 @@ export default{
         salvarButton.setAttribute("disabled", true);
         cancelarButton.setAttribute("disabled", true);
         alterarButton.removeAttribute("disabled");
-        excluirButton.removeAttribute("disabled");
+        inativaButton.removeAttribute("disabled");
       });
 
       salvarButton.addEventListener("click", async () => {
@@ -324,7 +324,7 @@ export default{
         salvarButton.setAttribute("disabled", true);
         cancelarButton.setAttribute("disabled", true);
         alterarButton.removeAttribute("disabled");
-        excluirButton.removeAttribute("disabled");
+        inativaButton.removeAttribute("disabled");
 
         try {
           const novosDadosUsuario = {
@@ -514,6 +514,7 @@ export default{
     cursor: pointer;
     transition: 0.5s;
     color: #fff;
+    display: inline-block;
   }
   
   #form-wrap .group .button:hover {
