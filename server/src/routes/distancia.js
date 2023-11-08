@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
           console.log('Erro ao lidar com a distância dos estabelecimentos: ', error);
       }
 
-      res.status(200).send(distancias);
+      res.status(200).send({distancias});
   } catch (error) {
       console.log('Erro distâncias dos estabelecimentos: ', error);
       res.status(500).send({
