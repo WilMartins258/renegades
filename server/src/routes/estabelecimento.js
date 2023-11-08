@@ -88,6 +88,14 @@ router.get('/filtro', async (req, res) => {
             console.log('Erro ao tratar componentes do estabelecimento: ', error);
         }
 
+        // try {
+        //     console.log('distancias!!!');
+        //     const distancias = await distancia_Service.obterDistanciaDeTodosEstabelecimentos(latitude, longitude,estabelecimentos);
+        //     console.log('distancias:: ', distancias);
+        // } catch (error) {
+        //     console.log('Erro ao lidar com a distância dos estabelecimentos: ', error);
+        // }
+
         res.status(200).send({
             estabelecimentos,
             categorias,

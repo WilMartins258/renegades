@@ -649,7 +649,7 @@ insert into estabelecimento values(
 	'Alto da Boa Vista', -- bairro                 VARCHAR(200) not null,
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
-	'54870500', -- cep               VARCHAR(9) not null,
+	'18013280', -- cep               VARCHAR(9) not null,
 	null, -- latitude
 	null, -- logitude
 	'2023-11-05', -- dataCadastro
@@ -2031,6 +2031,208 @@ insert into recomendacao values(
 );
 
 -- --------------------------> ID: 10 Kaishi Sushi Sorocaba ---- FIM
+
+
+-- --------------------------> ID: 11 Empório d'os Alemão ---- INÍCIO
+
+insert into estabelecimento values(
+	11, -- id 
+	"Empório d'os Alemão", -- nome
+	'49836598000142', -- cnpj
+	'jpg', -- fotoPrincipal   
+	'O mais novo Empório, Café, Bar e Restaurante da região! Colecione momentos marcantes com pessoas especiais e sabores requintados.', -- descricao
+	true, -- ativo
+	false, -- oculto
+	'Validado', -- statusValidacao
+	null, -- nota
+	0, -- numeroAvaliacoes INT,
+	'885', -- numeroEstabelecimento  VARCHAR(9) not null,
+	'Av. Carlos Sonetti', -- logradouro             VARCHAR(200) not null,
+	'Jardim Prestes de Barros', -- bairro                 VARCHAR(200) not null,
+	'Sorocaba', -- cidade                 VARCHAR(200) not null,
+	'SP', -- estado                 VARCHAR(200) not null,
+	'18021200', -- cep               VARCHAR(9) not null,
+	null, -- latitude
+	null, -- logitude
+	'2023-11-05', -- dataCadastro
+	'2023-11-30' -- dataUltimoAcesso
+);
+
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
+    11, -- idEstabelecimento INT NOT NULL,
+    4 -- idCategoria INT NOT NULL -- Restaurante
+);
+
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
+    11, -- idEstabelecimento INT NOT NULL,
+    6 -- idCategoria INT NOT NULL -- Barzinho
+);
+
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
+    11, -- idEstabelecimento INT NOT NULL,
+    11 -- idCategoria INT NOT NULL -- Cafeteria
+);
+
+insert into comida_estabelecimento (idEstabelecimento, idComida) values(
+    11, -- idEstabelecimento INT NOT NULL,
+    1   -- idComida INT NOT NULL -- Brasileira
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    11, -- idEstabelecimento INT NOT NULL,
+    4 -- idOpcional INT NOT NULL -- Toca musica ao vivo
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    11, -- idEstabelecimento INT NOT NULL,
+    6 -- idOpcional INT NOT NULL -- Precisa de agendamento
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    11, -- idEstabelecimento INT NOT NULL,
+    8 -- idOpcional INT NOT NULL -- Possui area kids
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    10, -- idEstabelecimento INT NOT NULL,
+    12 -- idOpcional INT NOT NULL -- Tem taxa de 10%
+);
+
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
+	31,                   -- id
+	11,                -- idEstabelecimento
+    'Nelson Santos',           -- nome
+	'15971161518',           -- celular
+    '00415975085',       -- cpf
+    'Nelson@gmail.com', -- email
+    '123456',          -- senha
+	null,                -- fotoPerfil
+    '2000-09-24',        -- dataNascimento
+	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	null, -- numero not null
+	null, -- lodradouro not null,
+	null, -- bairro not null,
+	null, -- cidade not null,
+	null, -- estado not null,
+	null, -- cep not null,
+	null, -- latitude
+	null  -- logitude
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Final de Semana
+	11, -- idEstabelecimento INT not null,
+	2, -- idDiaSemana INT not null,
+	110000, -- horarioInicio TIME not null,
+	150000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda-feira
+	11, -- idEstabelecimento INT not null,
+	3, -- idDiaSemana INT not null,
+	110000, -- horarioInicio TIME not null,
+	140000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda-feira
+	11, -- idEstabelecimento INT not null,
+	3, -- idDiaSemana INT not null,
+	170000, -- horarioInicio TIME not null,
+	230000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda-feira
+	11, -- idEstabelecimento INT not null,
+	4, -- idDiaSemana INT not null,
+	110000, -- horarioInicio TIME not null,
+	140000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda-feira
+	11, -- idEstabelecimento INT not null,
+	4, -- idDiaSemana INT not null,
+	170000, -- horarioInicio TIME not null,
+	000000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda-feira
+	11, -- idEstabelecimento INT not null,
+	5, -- idDiaSemana INT not null,
+	110000, -- horarioInicio TIME not null,
+	140000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda-feira
+	11, -- idEstabelecimento INT not null,
+	6, -- idDiaSemana INT not null,
+	110000, -- horarioInicio TIME not null,
+	000000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda-feira
+	11, -- idEstabelecimento INT not null,
+	7, -- idDiaSemana INT not null,
+	110000, -- horarioInicio TIME not null,
+	000000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda-feira
+	11, -- idEstabelecimento INT not null,
+	1, -- idDiaSemana INT not null,
+	110000, -- horarioInicio TIME not null,
+	160000  -- horarioFim TIME not null
+);
+
+insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWhatsapp) values(
+	11,              -- idEstabelecimento INT not null,
+	1,              -- idTipoContato INT not null, -- TELEFONE
+	'1533429232',  -- contato VARCHAR(200) not null
+	false           -- isWhatsapp BOOLEAN not null
+);
+
+insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWhatsapp) values(
+	11,              -- idEstabelecimento INT not null,
+	2,              -- idTipoContato INT not null, -- TELEFONE
+	'15991208864',  -- contato VARCHAR(200) not null
+	false           -- isWhatsapp BOOLEAN not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	11,          -- idEstabelecimento INT not null,
+	1,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.facebook.com/emporiodosalemao/about_details?locale=pt_BR' -- redeSocial VARCHAR(200) not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	11,          -- idEstabelecimento INT not null,
+	2,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.instagram.com/emporiodosalemao/' -- redeSocial VARCHAR(200) not null
+);
+
+insert into recomendacao values(
+	31, -- id
+	11, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Batata Frita grande com Cheddar e Bacon', -- nome VARCHAR(50) not null,
+	'Batata Frita Grande com Cheddar e Bacon 700g'-- descricao VARCHAR(50) not null
+);
+
+insert into recomendacao values(
+	32, -- id
+	11, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Costelinha de Porco com Fritas', -- nome VARCHAR(50) not null,
+	'400g costelinha de porco com molho barbecue'-- descricao VARCHAR(50) not null
+);
+
+insert into recomendacao values(
+	33, -- id
+	11, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Tabua do Alemão', -- nome VARCHAR(50) not null,
+	'200g de batata frita, 200g de polenta, 200g de mandioca e 12 mini pastéis( Carne, frango, queijo e pizza).'-- descricao VARCHAR(50) not null
+);
+
+-- --------------------------> ID: 11 Empório d'os Alemão ---- FIM
 
 -- --> CADASTRO DE ESTABELECIMENTOS ---- FIM
 
