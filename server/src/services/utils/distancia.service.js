@@ -68,25 +68,14 @@ const obterDistanciaDoEstabelecimento = async (lat1, lon1, lat2, lon2) => {
 };
 
 const obterDistanciaDeTodosEstabelecimentos= async (latitudeUsuario, longitudeUsuario, estabelecimentos) => {
-    console.log('obterDistanciaDeTodosEstabelecimentos')
-    console.log('latitudeUsuario: ', latitudeUsuario);
-    console.log('longitudeUsuario: ', longitudeUsuario);
-
     try {
         const apiKey = variaveisGlobais.googleApiKey();
 
         for (let i=0; i< estabelecimentos.length ; i++) {
-            // console.log('i= ', i);
-            // console.log('nome:: ', estabelecimentos[i]?.nome);
-            // console.log('endereço: ', estabelecimentos[i]?.numeroEstabelecimento, ' - ', estabelecimentos[i]?.cep);
-
-            const apiUrl = `https://maps.googleapis.com/maps/api/directions/json?origin=${89},${18117121}&destination=${estabelecimentos[i]?.numeroEstabelecimento},${estabelecimentos[i]?.cep}&mode=driving&key=${apiKey}`;
+            const apiUrl = `https://maps.googleapis.com/maps/api/directions/json?origin=${latitudeUsuario},${longitudeUsuario}&destination=${estabelecimentos[i]?.numeroEstabelecimento},${estabelecimentos[i]?.cep}&mode=driving&key=${apiKey}`;
             const response = await axios.get(apiUrl);
 
-            // console.log('distancia:: ', response?.data?.routes[0]?.legs[0]?.distance?.value);
-
-            // estabelecimentos[i].distancia = response?.data?.routes[0]?.legs[0]?.distance?.value;
-            estabelecimentos[i].distancia = i;
+            estabelecimentos[i].distancia = (response?.data?.routes[0]?.legs[0]?.distance?.value)/1000;
         }
 
         return estabelecimentos;
