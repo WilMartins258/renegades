@@ -11,14 +11,14 @@ router.get('/', async (req, res) => {
           longitude
       } = req.query;
 
-      console.log('latitude: ', latitude);
-      console.log('longitude: ', longitude);
+      // console.log('latitude: ', latitude);
+      // console.log('longitude: ', longitude);
 
 
       const estabelecimentos = await estabelecimento_Service.filtros();
 
       try {
-          console.log('distancias!!!');
+          // console.log('distancias!!!');
           const distancias = await distancia_Service.obterDistanciaDeTodosEstabelecimentos(latitude, longitude,estabelecimentos);
           // console.log('distancias:: ', distancias);
       } catch (error) {
