@@ -4,28 +4,20 @@ const distancia_Service = require('../services/utils/distancia.service.js');
 
 
 router.get('/', async (req, res) => {
-  console.log('distancias!!!');
   try {
       const {
           latitude,
           longitude
       } = req.query;
-
-      // console.log('latitude: ', latitude);
-      // console.log('longitude: ', longitude);
-
-
       const estabelecimentos = await estabelecimento_Service.filtros();
 
       try {
-          // console.log('distancias!!!');
           const distancias = await distancia_Service.obterDistanciaDeTodosEstabelecimentos(latitude, longitude,estabelecimentos);
-          // console.log('distancias:: ', distancias);
       } catch (error) {
           console.log('Erro ao lidar com a distância dos estabelecimentos: ', error);
       }
 
-      res.status(200).send('nelson');
+      res.status(200).send(distancias);
   } catch (error) {
       console.log('Erro distâncias dos estabelecimentos: ', error);
       res.status(500).send({
