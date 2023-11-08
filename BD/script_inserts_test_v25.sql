@@ -2234,6 +2234,190 @@ insert into recomendacao values(
 
 -- --------------------------> ID: 11 Empório d'os Alemão ---- FIM
 
+
+-- --------------------------> ID: 12 New York Bar 41 ---- INÍCIO
+
+
+insert into estabelecimento values(
+	12, -- id 
+	"New York Bar 41", -- nome
+	'20.093.230/0001-50', -- cnpj
+	'png', -- fotoPrincipal   
+	'Cervejas, drinques e porções em bar com temática de Nova York, ambiente descontraído e bandas ao vivo.', -- descricao
+	true, -- ativo
+	false, -- oculto
+	'Validado', -- statusValidacao
+	null, -- nota
+	0, -- numeroAvaliacoes INT,
+	'390', -- numeroEstabelecimento  VARCHAR(9) not null,
+	'Av. Carlos Sonetti', -- logradouro             VARCHAR(200) not null,
+	'Jardim Prestes de Barros', -- bairro                 VARCHAR(200) not null,
+	'Sorocaba', -- cidade                 VARCHAR(200) not null,
+	'SP', -- estado                 VARCHAR(200) not null,
+	'18021200', -- cep               VARCHAR(9) not null,
+	null, -- latitude
+	null, -- logitude
+	'2023-11-05', -- dataCadastro
+	'2023-11-30' -- dataUltimoAcesso
+);
+
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
+    12, -- idEstabelecimento INT NOT NULL,
+    4 -- idCategoria INT NOT NULL -- Restaurante
+);
+
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
+    12, -- idEstabelecimento INT NOT NULL,
+    6 -- idCategoria INT NOT NULL -- Barzinho
+);
+
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
+    12, -- idEstabelecimento INT NOT NULL,
+    3 -- idCategoria INT NOT NULL -- Lanchonete
+);
+
+insert into comida_estabelecimento (idEstabelecimento, idComida) values(
+    12, -- idEstabelecimento INT NOT NULL,
+    1   -- idComida INT NOT NULL -- Brasileira
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    12, -- idEstabelecimento INT NOT NULL,
+    4 -- idOpcional INT NOT NULL -- Toca musica ao vivo
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    12, -- idEstabelecimento INT NOT NULL,
+    1 -- idOpcional INT NOT NULL -- Faz Entrega
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    12, -- idEstabelecimento INT NOT NULL,
+    8 -- idOpcional INT NOT NULL -- Possui area kids
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    12, -- idEstabelecimento INT NOT NULL,
+    6 -- idOpcional INT NOT NULL -- Precisa de agendamento
+);
+
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
+	32,                   -- id
+	12,                -- idEstabelecimento
+    'João Vitor Braguin Alves',           -- nome
+	'15971161518',           -- celular
+    '00415975085',       -- cpf
+    'Joao_vitor@hotmail.com', -- email
+    '123456',          -- senha
+	null,                -- fotoPerfil
+    '1980-07-26',        -- dataNascimento
+	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	null, -- numero not null
+	null, -- lodradouro not null,
+	null, -- bairro not null,
+	null, -- cidade not null,
+	null, -- estado not null,
+	null, -- cep not null,
+	null, -- latitude
+	null  -- logitude
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda-feira
+	12, -- idEstabelecimento INT not null,
+	3, -- idDiaSemana INT not null,
+	170000, -- horarioInicio TIME not null,
+	000000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda-feira
+	12, -- idEstabelecimento INT not null,
+	4, -- idDiaSemana INT not null,
+	170000, -- horarioInicio TIME not null,
+	000000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda-feira
+	12, -- idEstabelecimento INT not null,
+	5, -- idDiaSemana INT not null,
+	170000, -- horarioInicio TIME not null,
+	000000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda-feira
+	12, -- idEstabelecimento INT not null,
+	6, -- idDiaSemana INT not null,
+	170000, -- horarioInicio TIME not null,
+	010000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda-feira
+	12, -- idEstabelecimento INT not null,
+	7, -- idDiaSemana INT not null,
+	130000, -- horarioInicio TIME not null,
+	010000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda-feira
+	12, -- idEstabelecimento INT not null,
+	1, -- idDiaSemana INT not null,
+	153000, -- horarioInicio TIME not null,
+	230000  -- horarioFim TIME not null
+);
+
+insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWhatsapp) values(
+	12,              -- idEstabelecimento INT not null,
+	1,              -- idTipoContato INT not null, -- TELEFONE
+	'1533588001',  -- contato VARCHAR(200) not null
+	false           -- isWhatsapp BOOLEAN not null
+);
+
+insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWhatsapp) values(
+	12,              -- idEstabelecimento INT not null,
+	2,              -- idTipoContato INT not null, -- TELEFONE
+	'15996842933',  -- contato VARCHAR(200) not null
+	false           -- isWhatsapp BOOLEAN not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	12,          -- idEstabelecimento INT not null,
+	1,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.facebook.com/newyorkbar41?locale=pt_BR' -- redeSocial VARCHAR(200) not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	12,          -- idEstabelecimento INT not null,
+	2,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.instagram.com/newyorkbar41/' -- redeSocial VARCHAR(200) not null
+);
+
+insert into recomendacao values(
+	34, -- id
+	12, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Smash Burguer', -- nome VARCHAR(50) not null,
+	'Comece sua semana com sabor! Nosso smash burger está prontinho para te conquistar. Já fez sua reserva ou pediu o seu pelo delivery?'-- descricao VARCHAR(50) not null
+);
+
+insert into recomendacao values(
+	35, -- id
+	12, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Feijoada', -- nome VARCHAR(50) not null,
+	'Sábado é o dia sagrado da feijoada! Aqui, você pode desfrutar de nossa deliciosa feijuca até saborear até o último pedacinho!'-- descricao VARCHAR(50) not null
+);
+
+insert into recomendacao values(
+	36, -- id
+	12, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Gin Tônica', -- nome VARCHAR(50) not null,
+	'Aqui todo dia é dia de gin tônica em dobro! A partir das 18h, você pode aproveitar esse clássico dos coquetéis em dobro. Venha experimentar!'-- descricao VARCHAR(50) not null
+);
+
+-- --------------------------> ID: 12 New York Bar 41 ---- FIM
+
+
+
 -- --> CADASTRO DE ESTABELECIMENTOS ---- FIM
 
 
