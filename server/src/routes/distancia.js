@@ -11,8 +11,9 @@ router.get('/', async (req, res) => {
       } = req.query;
       const estabelecimentos = await estabelecimento_Service.filtros();
 
+      let distancias = [];
       try {
-          const distancias = await distancia_Service.obterDistanciaDeTodosEstabelecimentos(latitude, longitude,estabelecimentos);
+          distancias = await distancia_Service.obterDistanciaDeTodosEstabelecimentos(latitude, longitude,estabelecimentos);
       } catch (error) {
           console.log('Erro ao lidar com a distância dos estabelecimentos: ', error);
       }
