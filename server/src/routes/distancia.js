@@ -1,26 +1,39 @@
 const router = require('express').Router();
-const axios = require('axios');
+const estabelecimento_Service = require('./../services/estabelecimento.service.js');
+const distancia_Service = require('../services/utils/distancia.service.js');
+
 
 router.get('/', async (req, res) => {
-    try {
-        console.log('distancia rota ');
-          const apiKey = "";
-          // const apiUrl = `https://maps.googleapis.com/maps/api/directions/json?origin=${lat1}, ${lon1}&destination=${lat2}, ${lon2}&mode=driving&key=${apiKey}`;
+  console.log('distancias!!!');
+  try {
+      const {
+          latitude,
+          longitude
+      } = req.query;
 
-        //   const response = await axios.get(apiUrl);
-        //   const data = response.data;
+      console.log('latitude: ', latitude);
+      console.log('longitude: ', longitude);
 
-        //   console.log('data:: ', data)
 
-        res.status(200).send('distância test');  
-    } catch (error) {
-        console.log('Erro ao buscar distância do estabelecimento: ', error);
-        res.status(500).send({
-            errorMsg: 'Ocorreu um erro ao processar a solicitação.',
-            error: error.message,
-            msg: 'Erro na rota de distância'
-        });
-    }
+      const estabelecimentos = await estabelecimento_Service.filtros();
+
+      try {
+          console.log('distancias!!!');
+          const distancias = await distancia_Service.obterDistanciaDeTodosEstabelecimentos(latitude, longitude,estabelecimentos);
+          // console.log('distancias:: ', distancias);
+      } catch (error) {
+          console.log('Erro ao lidar com a distância dos estabelecimentos: ', error);
+      }
+
+      res.status(200).send('nelson');
+  } catch (error) {
+      console.log('Erro distâncias dos estabelecimentos: ', error);
+      res.status(500).send({
+          errorMsg: 'Erro ao buscar distâncias dos estabelecimentos',
+          msg: error.message,
+          error: error
+      }); 
+  }
 });
 
 
