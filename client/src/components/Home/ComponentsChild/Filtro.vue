@@ -215,18 +215,10 @@ export default {
 
   },
   async created() {
-    console.log('created:: ');
-    // Lógica para verificar localização do usuário
     try {
         const localizacaoNavegador = await this.buscarLocalizacaoViaNavegador();
-        if (!localizacaoNavegador) {
-          // Verificar outra forma de buscar pela localização
-          console.log('localizacaoNavegador FALSE, ', localizacaoNavegador);
-        }
 
         const dadosFiltros = await api.get('/estabelecimento/filtro');
-
-      // const distancia = await distance_Service.calcularDistancia(-23.5635557, -47.45699630000001, -23.5764854, -47.4629018);
 
       const {
         estabelecimentos,
@@ -244,7 +236,6 @@ export default {
       }
       
       this.estabelecimentos = estabelecimentos;
-      console.log('this.estabelecimentos:: ', this.estabelecimentos)
 
       try {
         const opcionaisArray = opcionais.map(objeto => objeto.nome);
@@ -272,11 +263,12 @@ export default {
           latitude: sessionStorage.getItem('latitude'),
           longitude: sessionStorage.getItem('longitude')
         }
-        console.log('coordenadas, ', coordenadas);
 
         const distancias = await api.get('/distancia', { params: coordenadas });
 
-        console.log('distancias: ', distancias);
+        for (let i=0; i < distancias?.data?.distancias?.length; i++) {
+          this.estabelecimentos[i].distancia = distancias.data.distancias[i].distancia;
+        }
       } catch (error) {
         console.log('Erro ao buscar distâncias: ', error);
       }
