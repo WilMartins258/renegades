@@ -457,7 +457,7 @@
   <div class="group">
         <button type="button" class="button" id="alterarButton" @click="alterar">Alterar</button>
         <button type="button" class="button" id="salvarButton" @click="salvar" disabled>Salvar</button>
-        <button type="button" class="button" id="excluirButton">Excluir</button>
+        <button type="button" class="button" id="excluirInativar">Inativar</button>
         <button type="button" class="button" id="cancelarButton" @click="cancelar" disabled>Cancelar</button>
       </div>
 </div>
@@ -1039,7 +1039,7 @@ alterar() {
   this.habilitarCampos();
   // Desabilitar o botão "Alterar" e "Excluir"
   document.getElementById("alterarButton").setAttribute("disabled", true);
-  document.getElementById("excluirButton").setAttribute("disabled", true);
+  document.getElementById("excluirInativar").setAttribute("disabled", true);
   // Habilitar os botões "Salvar" e "Cancelar"
   document.getElementById("salvarButton").removeAttribute("disabled");
   document.getElementById("cancelarButton").removeAttribute("disabled");
@@ -1050,7 +1050,7 @@ cancelar() {
   // Habilitar o botão "Alterar"
   document.getElementById("alterarButton").removeAttribute("disabled");
   // Desabilitar os botões "Salvar" , "Cancelar" e "Excluir"
-  document.getElementById("excluirButton").removeAttribute("disabled", true);
+  document.getElementById("excluirInativar").removeAttribute("disabled", true);
   document.getElementById("salvarButton").setAttribute("disabled", true);
   document.getElementById("cancelarButton").setAttribute("disabled", true);
 },
