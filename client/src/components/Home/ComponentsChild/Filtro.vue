@@ -163,8 +163,8 @@ export default {
     filtroDistanciaText: "",
     filtroNomeEstabelecimento: "",
     categoriasSelecionadas: [], // controla o array de categorias selecionados
-    cardsPorPagina: 4, // Quantidade de cards por página
-    cardsExibidos: 2, // controla a quantidade de cards já exibidos
+    cardsPorPagina: 10, // Quantidade de cards por página
+    cardsExibidos: 10, // controla a quantidade de cards já exibidos
     };
   },
   computed: {
@@ -405,7 +405,7 @@ export default {
     }
   },
   exibirMaisCards() {
-      this.cardsExibidos += 4;       // Aumentar a quantidade de cards exibidos em 20
+      this.cardsExibidos += 10;       // Aumentar a quantidade de cards exibidos em 10
     },
     async buscarLocalizacaoViaNavegador() {
       try {
