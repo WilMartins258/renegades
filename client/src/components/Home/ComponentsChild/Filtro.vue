@@ -224,13 +224,7 @@ export default {
           console.log('localizacaoNavegador FALSE, ', localizacaoNavegador);
         }
 
-        const coordenadas = {
-          latitude: sessionStorage.getItem('latitude'),
-          longitude: sessionStorage.getItem('longitude')
-        }
-        console.log('coordenadas, ', coordenadas);
-
-        const dadosFiltros = await api.get('/estabelecimento/filtro', { params: coordenadas });
+        const dadosFiltros = await api.get('/estabelecimento/filtro');
 
       // const distancia = await distance_Service.calcularDistancia(-23.5635557, -47.45699630000001, -23.5764854, -47.4629018);
 
@@ -271,6 +265,20 @@ export default {
         this.comidas = comidasArray;
       } catch (error) {
         console.log('Erro ao tratar comidas: ', error);
+      }
+
+      try {
+        const coordenadas = {
+          latitude: sessionStorage.getItem('latitude'),
+          longitude: sessionStorage.getItem('longitude')
+        }
+        console.log('coordenadas, ', coordenadas);
+
+        const distancias = await api.get('/distancia', { params: coordenadas });
+
+        console.log('distancias: ', distancias);
+      } catch (error) {
+        console.log('Erro ao buscar distâncias: ', error);
       }
     } catch (error) {
       console.log('Erro ao buscar informações dos estabelecimentos para os filtros: ', error);
