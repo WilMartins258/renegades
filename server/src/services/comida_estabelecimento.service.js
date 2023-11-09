@@ -17,7 +17,7 @@ const atualizar = async () => {};
 const pegarPorIdEstabelecimento = async (idEstabelecimento) => {
     try {
         const comidaEstabelecimentoQuery = `
-        SELECT c.id, c.nome
+        SELECT c.id, c.nome, ce.id as 'idComidaEstabelecimento'
             FROM comida_estabelecimento ce
             JOIN comida c ON ce.idComida = c.id
                 WHERE ce.idEstabelecimento = ?;`;
