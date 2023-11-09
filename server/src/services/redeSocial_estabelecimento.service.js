@@ -17,7 +17,7 @@ const atualizar = async () => {};
 const pegarPorIdEstabelecimento = async (idEstabelecimento) => {
     try {
         const redesSociaisEstabelecimentoQuery = `
-        SELECT rs.id, rs.nome, rse.redeSocial
+        SELECT rs.id, rs.nome, rse.redeSocial, rse.id as 'idRedeSocialEstabelecimento'
             FROM redeSocial_estabelecimento rse
             JOIN redeSocial rs ON rse.idRedeSocial = rs.id
                 WHERE rse.idEstabelecimento = ?;`;
