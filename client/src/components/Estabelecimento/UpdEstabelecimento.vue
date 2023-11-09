@@ -1074,7 +1074,8 @@ async salvar() {
       estilosSelecionadas: this.estilosSelecionadas, // OK
       redesSociaisSelecionadas: this.listaRedesSociais, // CORRIGIR EDITAR
       contatosSelecionados: this.listaContatos,
-      horariosSelecionados: this.listahorarios // NÃO CHECA WHATSAPP
+      horariosSelecionados: this.listahorarios, // NÃO CHECA WHATSAPP
+      idEstabelecimento: sessionStorage.getItem('idEstabelecimento')
     };
     console.log('novosDadosEstabelecimento:: ', novosDadosEstabelecimento)
 

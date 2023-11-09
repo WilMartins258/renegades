@@ -407,10 +407,11 @@ router.put('/', async (req, res) => {
             estilosSelecionadas,
             redesSociaisSelecionadas,
             contatosSelecionados,
-            horariosSelecionados
+            horariosSelecionados,
+            idEstabelecimento
         }= req.body.novosDadosEstabelecimento
 
-        console.log('opcoesSelecionadas:: ', opcoesSelecionadas)
+        console.log('idEstabelecimento:: ', idEstabelecimento)
 
         await connection.commit();
         res.status(200).send({
