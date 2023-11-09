@@ -2086,7 +2086,12 @@ insert into comida_estabelecimento (idEstabelecimento, idComida) values(
 
 insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
     11, -- idEstabelecimento INT NOT NULL,
-    4 -- idOpcional INT NOT NULL -- Toca musica ao vivo
+    3 -- idOpcional INT NOT NULL -- musica ao vivo
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    11, -- idEstabelecimento INT NOT NULL,
+    4 -- idOpcional INT NOT NULL -- musica ao vivo
 );
 
 insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
@@ -2100,10 +2105,45 @@ insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
 );
 
 insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
-    10, -- idEstabelecimento INT NOT NULL,
+    11, -- idEstabelecimento INT NOT NULL,
     12 -- idOpcional INT NOT NULL -- Tem taxa de 10%
 );
 
+insert into musica_estabelecimento (idEstabelecimento, idEstiloMusica) values (
+	11, -- idEstabelecimento INT not null,
+	13 -- idEstiloMusica    INT not null
+);
+
+insert into musica_estabelecimento (idEstabelecimento, idEstiloMusica) values (
+	11, -- idEstabelecimento INT not null,
+	1 -- idEstiloMusica    INT not null    
+);
+
+insert into musica_estabelecimento (idEstabelecimento, idEstiloMusica) values (
+	11, -- idEstabelecimento INT not null,
+	2 -- idEstiloMusica    INT not null    
+);
+
+insert into musica_estabelecimento (idEstabelecimento, idEstiloMusica) values (
+	11, -- idEstabelecimento INT not null,
+	4 -- idEstiloMusica    INT not null    
+);
+
+insert into musica_estabelecimento (idEstabelecimento, idEstiloMusica) values (
+	11, -- idEstabelecimento INT not null,
+	23 -- idEstiloMusica    INT not null    
+);
+
+insert into musica_estabelecimento (idEstabelecimento, idEstiloMusica) values (
+	11, -- idEstabelecimento INT not null,
+	20 -- idEstiloMusica    INT not null    
+);
+
+insert into musica_estabelecimento (idEstabelecimento, idEstiloMusica) values (
+	11, -- idEstabelecimento INT not null,
+	5 -- idEstiloMusica    INT not null    
+);
+    
 insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
 	31,                   -- id
 	11,                -- idEstabelecimento
@@ -2214,6 +2254,12 @@ insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSoc
 	'https://www.instagram.com/emporiodosalemao/' -- redeSocial VARCHAR(200) not null
 );
 
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	11,          -- idEstabelecimento INT not null,
+	5,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://menu.kcms.app/8465e36e-1eca-4140-8cb2-7493d5c48834/cardapio/visualizar' -- redeSocial VARCHAR(200) not null
+);
+
 insert into recomendacao values(
 	31, -- id
 	11, -- idEstabelecimento INT not null,
@@ -2289,7 +2335,12 @@ insert into comida_estabelecimento (idEstabelecimento, idComida) values(
 
 insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
     12, -- idEstabelecimento INT NOT NULL,
-    4 -- idOpcional INT NOT NULL -- Toca musica ao vivo
+    3 -- idOpcional INT NOT NULL -- musica ao vivo
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    12, -- idEstabelecimento INT NOT NULL,
+    4 -- idOpcional INT NOT NULL -- musica ao vivo
 );
 
 insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
@@ -2305,6 +2356,21 @@ insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
 insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
     12, -- idEstabelecimento INT NOT NULL,
     6 -- idOpcional INT NOT NULL -- Precisa de agendamento
+);
+
+insert into musica_estabelecimento (idEstabelecimento, idEstiloMusica) values (
+	12, -- idEstabelecimento INT not null,
+	5 -- idEstiloMusica    INT not null
+);
+
+insert into musica_estabelecimento (idEstabelecimento, idEstiloMusica) values (
+	12, -- idEstabelecimento INT not null,
+	4 -- idEstiloMusica    INT not null
+);
+
+insert into musica_estabelecimento (idEstabelecimento, idEstiloMusica) values (
+	12, -- idEstabelecimento INT not null,
+	2 -- idEstiloMusica    INT not null
 );
 
 insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
@@ -2394,6 +2460,12 @@ insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSoc
 	12,          -- idEstabelecimento INT not null,
 	2,          -- idTipoRedeSocial  INT not null, -- SITE
 	'https://www.instagram.com/newyorkbar41/' -- redeSocial VARCHAR(200) not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	12,          -- idEstabelecimento INT not null,
+	5,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://acesse.dev/6yYxJ' -- redeSocial VARCHAR(200) not null
 );
 
 insert into recomendacao values(
