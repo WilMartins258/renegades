@@ -146,7 +146,7 @@ CREATE TABLE redeSocial_estabelecimento (
 	id                  INT PRIMARY KEY AUTO_INCREMENT,
 	idEstabelecimento   INT not null,
 	idRedeSocial        INT not null,
-	redeSocial          VARCHAR(300) not null
+	redeSocial          VARCHAR(500) not null
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE contato_estabelecimento (
