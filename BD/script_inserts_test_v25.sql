@@ -657,6 +657,16 @@ insert into estabelecimento values(
 	'2023-11-30' -- dataUltimoAcesso
 );
 
+INSERT INTO promocao (idEstabelecimento, nome, descricao, codigo, status, dataInicio, dataFim) VALUES (
+	1, -- idEstabelecimento
+	'Coxinha pela metade do preço', -- nome
+	'Ao comprar uma coxinha a segunda sai pela metade do preço ao mostrar o código na hora da compra.', -- descricao
+	'COXINHA-REAL', -- codigo
+	'Ativa', -- ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa'
+	'2023-11-09', -- dataInicio
+	'2023-12-20' -- dataFim
+);
+
 insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
     1, -- idEstabelecimento INT NOT NULL,
     9 -- idCategoria INT NOT NULL -- PADARIA
