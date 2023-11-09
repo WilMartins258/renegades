@@ -2762,6 +2762,260 @@ insert into recomendacao values(
 );
 
 -- --------------------------> ID: 51 Premium burger & bar ---- FIM
+
+-- --------------------------> ID: 52 Cachorrão Noturno JL ---- INÍCIO
+
+insert into estabelecimento values(
+	52, -- id 
+	'Cachorrão Noturno JL', -- nome
+	'95638013000105', -- cnpj
+	'jpg', -- fotoPrincipal   
+	'Trailer de lanches: um ambiente familiar e lanches de qualidade!', -- descricao
+	true, -- ativo
+	false, -- oculto
+	'Validado', -- statusValidacao
+	null, -- nota
+	0, -- numeroAvaliacoes INT,
+	'2730', -- numeroEstabelecimento  VARCHAR(9) not null,
+	'R. Atanázio Soares', -- logradouro             VARCHAR(200) not null,
+	'Jd. Maria Antônia Prado', -- bairro                 VARCHAR(200) not null,
+	'Sorocaba', -- cidade                 VARCHAR(200) not null,
+	'SP', -- estado                 VARCHAR(200) not null,
+	'18078970', -- cep               VARCHAR(9) not null,
+	null, -- latitude
+	null, -- logitude
+	'2023-11-09', -- dataCadastro
+	'2023-11-30' -- dataUltimoAcesso
+);
+
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
+    52, -- idEstabelecimento INT NOT NULL,
+    1 -- idCategoria INT NOT NULL -- LANCHONETE
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    52, -- idEstabelecimento INT NOT NULL,
+    1 -- idOpcional INT NOT NULL -- faz entrega
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    52, -- idEstabelecimento INT NOT NULL,
+    14 -- idOpcional INT NOT NULL -- Refeição no local
+);
+
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
+	72,                   -- id
+	52,                -- idEstabelecimento
+    'Leandro Silva',           -- nome
+	'15981211224',           -- celular
+    '04985846074',       -- cpf
+    'cachorraonoturnojl@gmail.com', -- email
+    '123456',          -- senha
+	null,                -- fotoPerfil
+    '1986-03-01',        -- dataNascimento
+	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	null, -- numero not null
+	null, -- lodradouro not null,
+	null, -- bairro not null,
+	null, -- cidade not null,
+	null, -- estado not null,
+	null, -- cep not null,
+	null, -- latitude
+	null  -- logitude
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda a sexta
+	52, -- idEstabelecimento INT not null,
+	8, -- idDiaSemana INT not null,
+	193000, -- horarioInicio TIME not null,
+	020000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Sábado
+	52, -- idEstabelecimento INT not null,
+	7, -- idDiaSemana INT not null,
+	193000, -- horarioInicio TIME not null,
+	040000  -- horarioFim TIME not null
+);
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Domindo
+	52, -- idEstabelecimento INT not null,
+	1, -- idDiaSemana INT not null,
+	193000, -- horarioInicio TIME not null,
+	020000  -- horarioFim TIME not null
+);
+
+insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWhatsapp) values(
+	52,              -- idEstabelecimento INT not null,
+	2,              -- idTipoContato INT not null, -- Celular
+	'15981211224',  -- contato VARCHAR(200) not null
+	true           -- isWhatsapp BOOLEAN not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	52,          -- idEstabelecimento INT not null,
+	1,          -- idTipoRedeSocial  INT not null, -- SITE
+	' https://web.facebook.com/cachorraonoturnojl/?_rdc=1&_rdr' -- redeSocial VARCHAR(200) not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	52,          -- idEstabelecimento INT not null,
+	2,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.instagram.com/cachorraonoturno_jl/' -- redeSocial VARCHAR(200) not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	52,          -- idEstabelecimento INT not null,
+	4,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://pede.kcms.app/cachorrao-noturno/delivery/produtos' -- redeSocial VARCHAR(200) not null
+);
+
+insert into recomendacao values(
+	73, -- id
+	52, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Cachorrão Especial', -- nome VARCHAR(50) not null,
+	'Salsicha, Tomate, Calabresa, Bacon, Batata Palha, Milho Verde, Ervilha, Catupiry ou Cheddar, Catchup e Mostarda.'-- descricao VARCHAR(50) not null
+);
+
+insert into recomendacao values(
+	74, -- id
+	52, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Bem Bolado', -- nome VARCHAR(50) not null,
+	'Hamburguer, Ovo, Bacon, Calabresa, Salsicha, Batata Palha, Presunto, Alface, Tomate, Catupiry, Cheddar, Maionese, Catchup e Mostarda.'-- descricao VARCHAR(50) not null
+);
+
+insert into recomendacao values(
+	75, -- id
+	52, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'X-Calabresa', -- nome VARCHAR(50) not null,
+	'Calabresa, Tomate, Mussarela, Catchup, Maionese e Mostarda.'-- descricao VARCHAR(50) not null
+);
+-- --------------------------> ID: 52 Cachorrão Noturno JL ---- FIM
+
+-- --------------------------> ID: 53 Mary Restaurante ---- INÍCIO
+
+insert into estabelecimento values(
+	53, -- id 
+	'Mary Restaurante', -- nome
+	'11414524000145', -- cnpj
+	'png', -- fotoPrincipal   
+	'Bem-vindos! Somos mais do que um simples restaurante, somos um destino gastronômico dedicado a proporcionar experiências deliciosas para toda a família!', -- descricao
+	true, -- ativo
+	false, -- oculto
+	'Validado', -- statusValidacao
+	null, -- nota
+	0, -- numeroAvaliacoes INT,
+	'135', -- numeroEstabelecimento  VARCHAR(9) not null,
+	'R. Atílio Silvano', -- logradouro             VARCHAR(200) not null,
+	'Jd. Pacaembu', -- bairro                 VARCHAR(200) not null,
+	'Sorocaba', -- cidade                 VARCHAR(200) not null,
+	'SP', -- estado                 VARCHAR(200) not null,
+	'18074410', -- cep               VARCHAR(9) not null,
+	null, -- latitude
+	null, -- logitude
+	'2023-11-09', -- dataCadastro
+	'2023-11-30' -- dataUltimoAcesso
+);
+
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
+    53, -- idEstabelecimento INT NOT NULL,
+    1 -- idCategoria INT NOT NULL -- LANCHONETE
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    53, -- idEstabelecimento INT NOT NULL,
+    1 -- idOpcional INT NOT NULL -- faz entrega
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    53, -- idEstabelecimento INT NOT NULL,
+    14 -- idOpcional INT NOT NULL -- Refeição no local
+);
+
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
+	73,                   -- id
+	53,                -- idEstabelecimento
+    'Maria Dajuda Oliveira Lima',           -- nome
+	'15998439999',           -- celular
+    '18016510000',       -- cpf
+    'restaurantemaryy@gmail.com', -- email
+    '123456',          -- senha
+	null,                -- fotoPerfil
+    '1980-12-25',        -- dataNascimento
+	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	null, -- numero not null
+	null, -- lodradouro not null,
+	null, -- bairro not null,
+	null, -- cidade not null,
+	null, -- estado not null,
+	null, -- cep not null,
+	null, -- latitude
+	null  -- logitude
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda a sexta
+	53, -- idEstabelecimento INT not null,
+	8, -- idDiaSemana INT not null,
+	110000, -- horarioInicio TIME not null,
+	150000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Sábado
+	53, -- idEstabelecimento INT not null,
+	7, -- idDiaSemana INT not null,
+	110000, -- horarioInicio TIME not null,
+	150000  -- horarioFim TIME not null
+);
+
+
+insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWhatsapp) values(
+	53,              -- idEstabelecimento INT not null,
+	2,              -- idTipoContato INT not null, -- Celular
+	'15998439999',  -- contato VARCHAR(200) not null
+	true           -- isWhatsapp BOOLEAN not null
+);
+
+insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWhatsapp) values(
+	53,              -- idEstabelecimento INT not null,
+	1,              -- idTipoContato INT not null, -- telefone
+	'1530213026',  -- contato VARCHAR(200) not null
+	false           -- isWhatsapp BOOLEAN not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	53,          -- idEstabelecimento INT not null,
+	1,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://web.facebook.com/mary.refeicoes.7/?_rdc=1&_rdr' -- redeSocial VARCHAR(200) not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	53,          -- idEstabelecimento INT not null,
+	2,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.instagram.com/mary.refeicoes/' -- redeSocial VARCHAR(200) not null
+);
+
+
+insert into recomendacao values(
+	76, -- id
+	53, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Feijoada Completa', -- nome VARCHAR(50) not null,
+	'Descubra o verdadeiro sabor do Brasil em nossa feijoada completa.'-- descricao VARCHAR(50) not null
+);
+
+insert into recomendacao values(
+	77, -- id
+	53, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Churrasco de costela', -- nome VARCHAR(50) not null,
+	'Venha experimentar nossa deliciosa costela na brasa. Sabor que encanta a cada mordida.'-- descricao VARCHAR(50) not null
+);
+
+
+-- --------------------------> ID: 53 Mary Restaurante ---- FIM
+
 -- --> CADASTRO DE ESTABELECIMENTOS ---- FIM
 
 
