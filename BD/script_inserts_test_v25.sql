@@ -135,6 +135,7 @@ insert into estilomusica (id, nome) values (22, 'Folk');
 insert into estilomusica (id, nome) values (23, 'Sertanejo');
 insert into estilomusica (id, nome) values (24, 'K-pop');
 insert into estilomusica (id, nome) values (25, 'Gospel');
+insert into estilomusica (id, nome) values (26, 'Anos 90');
 
 -- ---------------------------- ESTILO DE MÚSICA -- FIM
 
@@ -2526,11 +2527,169 @@ insert into recomendacao values(
 	e dois queijos (um sendo mussarela e o outro escolher entre requeijão cremoso ou cheddar).'-- descricao VARCHAR(50) not null
 );
 
-
-
 -- --------------------------> ID: 50 N&N Lanches ---- FIM
 
 
+-- --------------------------> ID: 51 Premium burger & bar ---- INÍCIO
+
+insert into estabelecimento values(
+	51, -- id 
+	'Premium burger & bar', -- nome
+	'42806324000161', -- cnpj
+	'jpg', -- fotoPrincipal   
+	'O lugar perfeito onde os sabores se encontram com a diversão em um ambiente acolhedor e descontraído.', -- descricao
+	true, -- ativo
+	false, -- oculto
+	'Validado', -- statusValidacao
+	null, -- nota
+	0, -- numeroAvaliacoes INT,
+	'2139', -- numeroEstabelecimento  VARCHAR(9) not null,
+	'Av. Itavuvu', -- logradouro             VARCHAR(200) not null,
+	'Jardim Los Angeles', -- bairro                 VARCHAR(200) not null,
+	'Sorocaba', -- cidade                 VARCHAR(200) not null,
+	'SP', -- estado                 VARCHAR(200) not null,
+	'18076005', -- cep               VARCHAR(9) not null,
+	null, -- latitude
+	null, -- logitude
+	'2023-11-08', -- dataCadastro
+	'2023-11-30' -- dataUltimoAcesso
+);
+
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
+    51, -- idEstabelecimento INT NOT NULL,
+    3 -- idCategoria INT NOT NULL -- HAMBURGUERIA
+);
+
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
+    51, -- idEstabelecimento INT NOT NULL,
+    6 -- idCategoria INT NOT NULL -- BARZINHO
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    51, -- idEstabelecimento INT NOT NULL,
+    1 -- idOpcional INT NOT NULL -- faz entrega
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    51, -- idEstabelecimento INT NOT NULL,
+    3 -- idOpcional INT NOT NULL -- Toca musica
+);
+
+insert into musica_estabelecimento (idEstabelecimento, idEstiloMusica) values (
+	51, -- idEstabelecimento INT not null,
+	4 -- idEstiloMusica    INT not null
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    51, -- idEstabelecimento INT NOT NULL,
+    14 -- idOpcional INT NOT NULL
+);
+
+insert into musica_estabelecimento (idEstabelecimento, idEstiloMusica) values (
+	51, -- idEstabelecimento INT not null,
+	26 -- idEstiloMusica    INT not null
+);
+
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
+	71,                   -- id
+	51,                -- idEstabelecimento
+    'Mayanne Lira Moreira Dias',           -- nome
+	'15991915890',           -- celular
+    '90072250062',       -- cpf
+    'premiumburgerebar@outlook.com', -- email
+    '123456',          -- senha
+	null,                -- fotoPerfil
+    '1991-01-31',        -- dataNascimento
+	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	null, -- numero not null
+	null, -- lodradouro not null,
+	null, -- bairro not null,
+	null, -- cidade not null,
+	null, -- estado not null,
+	null, -- cep not null,
+	null, -- latitude
+	null  -- logitude
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Quarta
+	51, -- idEstabelecimento INT not null,
+	4, -- idDiaSemana INT not null,
+	190000, -- horarioInicio TIME not null,
+	235900  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Quinta
+	51, -- idEstabelecimento INT not null,
+	5, -- idDiaSemana INT not null,
+	190000, -- horarioInicio TIME not null,
+	235900  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Sexta
+	51, -- idEstabelecimento INT not null,
+	6, -- idDiaSemana INT not null,
+	190000, -- horarioInicio TIME not null,
+	235900  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Sabado
+	51, -- idEstabelecimento INT not null,
+	7, -- idDiaSemana INT not null,
+	190000, -- horarioInicio TIME not null,
+	235900  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Domingo
+	51, -- idEstabelecimento INT not null,
+	1, -- idDiaSemana INT not null,
+	190000, -- horarioInicio TIME not null,
+	220000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda
+	51, -- idEstabelecimento INT not null,
+	2, -- idDiaSemana INT not null,
+	190000, -- horarioInicio TIME not null,
+	235900  -- horarioFim TIME not null
+);
+
+insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWhatsapp) values(
+	51,              -- idEstabelecimento INT not null,
+	2,              -- idTipoContato INT not null, -- TELEFONE
+	'15991915890',  -- contato VARCHAR(200) not null
+	true           -- isWhatsapp BOOLEAN not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	51,          -- idEstabelecimento INT not null,
+	2,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.instagram.com/premiumburgerebar/' -- redeSocial VARCHAR(200) not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	51,          -- idEstabelecimento INT not null,
+	4,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://premiumburgerebar.menudino.com/' -- redeSocial VARCHAR(200) not null
+);
+
+
+insert into recomendacao values(
+	71, -- id
+	51, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Premium Burguer', -- nome VARCHAR(50) not null,
+	'Pão brioche, hamburguer 150g, queijo cheddar ou prato, bacon, maionese da casa.'-- descricao VARCHAR(50) not null
+);
+
+insert into recomendacao values(
+	72, -- id
+	51, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Mr. Cheese', -- nome VARCHAR(50) not null,
+	'Pão brioche, hamburguer 150g, Queijo cheddar, Mussarela empanada, Bacon fatiado, Alface, Geleia de pimenta e Maionese casa.'-- descricao VARCHAR(50) not null
+);
+
+-- --------------------------> ID: 51 Premium burger & bar ---- FIM
 -- --> CADASTRO DE ESTABELECIMENTOS ---- FIM
 
 
