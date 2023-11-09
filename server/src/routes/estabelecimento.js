@@ -387,20 +387,57 @@ router.post('/', async (req, res) => {
 });
 
 router.put('/', async (req, res) => {
+    let connection;
     try {
-        const reqBody = req.body;
+        connection = await transaction;
         console.log('PUT estabelecimento')
-        console.log('reqBody:: ', reqBody)
+        // console.log('reqBody:: ', req.body)
+        const {
+            nomeEstabelecimento,
+            descricaoEstabelecimento,
+            cnpj,
+            cep,
+            endereco,
+            numero,
+            recomendacao,
+            estabelecimentoPhoto,
+            categoriasSelecionadas,
+            tiposDeComidaSelecionados,
+            opcoesSelecionadas,
+            estilosSelecionadas,
+            redesSociaisSelecionadas,
+            contatosSelecionados,
+            horariosSelecionados
+        }= req.body.novosDadosEstabelecimento
 
+        console.log('opcoesSelecionadas:: ', opcoesSelecionadas)
+
+        await connection.commit();
         res.status(200).send({
             msg: 'Dados do estabelecimento alterados com sucesso!'
         });
     } catch (error) {
         console.log('Erro na rota PUT: ', error);
+        if (connection) {
+            try {
+                await connection.rollback();
+                console.error('POST/estabelecimento: rollback()');
+            } catch (rollbackError) {
+                console.error('Erro ao fazer rollback da transação:', rollbackError);
+            }
+        }
         res.status(500).send({
             errorMsg: 'Ocorreu um erro ao processar a solicitação.',
             error: error.message
         });
+    } finally {
+        if (connection) {
+            try {
+                connection.release();
+            } catch (releaseError) {
+                console.error('Erro ao liberar a conexão:', releaseError);
+            }
+        }
     }
 });
 
