@@ -667,6 +667,30 @@ INSERT INTO promocao (idEstabelecimento, nome, descricao, codigo, status, dataIn
 	'2023-12-20' -- dataFim
 );
 
+insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) values(
+    5, -- idUsuario
+	1, -- idEstabelecimento
+	'Amo essa padaria! Melhor coxinha da cidade com toda certeza <3', -- descricao
+	'2023-11-09', -- data
+	5 -- nota
+);
+
+insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) values(
+    9, -- idUsuario
+	1, -- idEstabelecimento
+	'Muito bom', -- descricao
+	'2023-11-02', -- data
+	4 -- nota
+);
+
+insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) values(
+    18, -- idUsuario
+	1, -- idEstabelecimento
+	'Sempre que tenho a oportunidade vou até essa padaria. Muito boa mesmo.', -- descricao
+	'2023-11-09', -- data
+	5 -- nota
+);
+
 insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
     1, -- idEstabelecimento INT NOT NULL,
     9 -- idCategoria INT NOT NULL -- PADARIA
@@ -2619,7 +2643,7 @@ insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSoc
 insert into recomendacao values(
 	37, -- id
 	13, -- idEstabelecimento INT not null,
-	'JPG', -- foto LONGBLOB not null,
+	'jpg', -- foto LONGBLOB not null,
 	'Time Salgado ou Doce', -- nome VARCHAR(50) not null,
 	'Delicioso pastel de carne cheddar e bacon ou Nutella confete'-- descricao VARCHAR(50) not null
 );
@@ -3583,7 +3607,7 @@ INSERT INTO comida_estabelecimento VALUES (
 );
 
 insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
-	75,                   -- id
+	76,                   -- id
 	56,                -- idEstabelecimento
     'Sandra Mara Correa Frati',           -- nome
 	'15991504318',           -- celular
