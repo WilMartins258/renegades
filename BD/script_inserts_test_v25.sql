@@ -78,7 +78,7 @@ insert into categoria (id, nome) values (2, 'Pizzaria');
 insert into categoria (id, nome) values (3, 'Hamburgueria');
 insert into categoria (id, nome) values (4, 'Restaurante');
 insert into categoria (id, nome) values (5, 'Pastelaria');
-insert into categoria (id, nome) values (6, 'Barzinho');
+insert into categoria (id, nome) values (6, 'Bar');
 insert into categoria (id, nome) values (7, 'Sorveteria');
 insert into categoria (id, nome) values (8, 'Açaiteria');
 insert into categoria (id, nome) values (9, 'Padaria');
