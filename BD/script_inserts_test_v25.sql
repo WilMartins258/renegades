@@ -1214,14 +1214,14 @@ insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) 
 
 insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWhatsapp) values(
 	4,              -- idEstabelecimento INT not null,
-	2,              -- idTipoContato INT not null, -- TELEFONE
+	1,              -- idTipoContato INT not null, -- TELEFONE
 	'1532286902',  -- contato VARCHAR(200) not null
 	false           -- isWhatsapp BOOLEAN not null
 );
 
 insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWhatsapp) values(
 	4,              -- idEstabelecimento INT not null,
-	1,              -- idTipoContato INT not null, -- TELEFONE
+	2,              -- idTipoContato INT not null, -- TELEFONE
 	'15974045227',  -- contato VARCHAR(200) not null
 	true           -- isWhatsapp BOOLEAN not null
 );
@@ -1409,7 +1409,7 @@ insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) 
 
 insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWhatsapp) values(
 	5,              -- idEstabelecimento INT not null,
-	2,              -- idTipoContato INT not null, -- TELEFONE
+	1,              -- idTipoContato INT not null, -- TELEFONE
 	'1533213672',  -- contato VARCHAR(200) not null
 	false           -- isWhatsapp BOOLEAN not null
 );
@@ -1552,7 +1552,7 @@ insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) 
 
 insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWhatsapp) values(
 	6,              -- idEstabelecimento INT not null,
-	2,              -- idTipoContato INT not null, -- TELEFONE
+	1,              -- idTipoContato INT not null, -- TELEFONE
 	'1530342949',  -- contato VARCHAR(200) not null
 	false           -- isWhatsapp BOOLEAN not null
 );
@@ -1745,7 +1745,7 @@ insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) 
 
 insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWhatsapp) values(
 	7,              -- idEstabelecimento INT not null,
-	1,              -- idTipoContato INT not null, -- TELEFONE
+	2,              -- idTipoContato INT not null, -- TELEFONE
 	'15998219909',  -- contato VARCHAR(200) not null
 	true           -- isWhatsapp BOOLEAN not null
 );
@@ -1926,7 +1926,7 @@ insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) 
 
 insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWhatsapp) values(
 	8,              -- idEstabelecimento INT not null,
-	1,              -- idTipoContato INT not null, -- TELEFONE
+	2,              -- idTipoContato INT not null, -- TELEFONE
 	'15991500199',  -- contato VARCHAR(200) not null
 	true           -- isWhatsapp BOOLEAN not null
 );
@@ -2223,7 +2223,7 @@ insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) 
 
 insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWhatsapp) values(
 	10,              -- idEstabelecimento INT not null,
-	2,              -- idTipoContato INT not null, -- TELEFONE
+	1,              -- idTipoContato INT not null, -- TELEFONE
 	'1532111218',  -- contato VARCHAR(200) not null
 	false           -- isWhatsapp BOOLEAN not null
 );
