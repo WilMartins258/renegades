@@ -264,6 +264,10 @@ export default {
           longitude: sessionStorage.getItem('longitude')
         }
 
+        /* Essas são as coordenadas da Fatec
+        -23.4820675, -47.4254607
+        */
+
         const distancias = await api.get('/distancia', { params: coordenadas });
 
         for (let i=0; i < distancias?.data?.distancias?.length; i++) {
