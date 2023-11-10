@@ -2097,6 +2097,16 @@ insert into estabelecimento values(
 	'2023-11-30' -- dataUltimoAcesso
 );
 
+INSERT INTO promocao (idEstabelecimento, nome, descricao, codigo, status, dataInicio, dataFim) VALUES (
+	10, -- idEstabelecimento
+	'Barca de sushi 10% off', -- nome
+	'Apresente o código da promoção no momento da finalização da compra e desconto de 10% na super barca de sushi.', -- descricao
+	'BARCA-KAISHI', -- codigo
+	'Ativa', -- ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa'
+	'2023-11-10', -- dataInicio
+	'2023-12-10' -- dataFim
+);
+
 insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) values(
     11, -- idUsuario
 	10, -- idEstabelecimento
