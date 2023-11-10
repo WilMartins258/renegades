@@ -663,6 +663,16 @@ INSERT INTO promocao (idEstabelecimento, nome, descricao, codigo, status, dataIn
 	'Ao comprar uma coxinha a segunda sai pela metade do preço ao mostrar o código na hora da compra.', -- descricao
 	'COXINHA-REAL', -- codigo
 	'Ativa', -- ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa'
+	'2023-09-09', -- dataInicio
+	'2023-11-02' -- dataFim
+);
+
+INSERT INTO promocao (idEstabelecimento, nome, descricao, codigo, status, dataInicio, dataFim) VALUES (
+	1, -- idEstabelecimento
+	'Coxinha pela metade do preço', -- nome
+	'Ao comprar uma coxinha a segunda sai pela metade do preço ao mostrar o código na hora da compra.', -- descricao
+	'COXINHA-REAL', -- codigo
+	'Ativa', -- ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa'
 	'2023-11-09', -- dataInicio
 	'2023-12-20' -- dataFim
 );
