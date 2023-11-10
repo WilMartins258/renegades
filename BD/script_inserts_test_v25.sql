@@ -1628,6 +1628,16 @@ insert into estabelecimento values(
 	'2023-11-30' -- dataUltimoAcesso
 );
 
+INSERT INTO promocao (idEstabelecimento, nome, descricao, codigo, status, dataInicio, dataFim) VALUES (
+	7, -- idEstabelecimento
+	'Sextou 15% off', -- nome
+	'Somente às sextas-feiras apresente o código da promoção na compra de qualquer drink e receça desconto de 15% no valor do drink.', -- descricao
+	'SEXTOU-NA-GARAGEM', -- codigo
+	'Ativa', -- ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa'
+	'2023-11-05', -- dataInicio
+	'2023-12-08' -- dataFim
+);
+
 insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) values(
     7, -- idUsuario
 	7, -- idEstabelecimento
