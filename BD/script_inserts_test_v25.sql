@@ -1121,6 +1121,22 @@ insert into estabelecimento values(
 	'2023-11-30' -- dataUltimoAcesso
 );
 
+insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) values(
+    5, -- idUsuario
+	4, -- idEstabelecimento
+	"A marmitex de costela é a minha preferida", -- descricao
+	'2023-10-23', -- data
+	5 -- nota
+);
+
+insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) values(
+    13, -- idUsuario
+	4, -- idEstabelecimento
+	"Comi lá algumas vezes, gostei.", -- descricao
+	'2023-10-23', -- data
+	3 -- nota
+);
+
 insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
     4, -- idEstabelecimento INT NOT NULL,
     10 -- idCategoria INT NOT NULL -- CHURRASCARIA
