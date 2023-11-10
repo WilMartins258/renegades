@@ -829,6 +829,30 @@ insert into estabelecimento values(
 	'2023-11-30' -- dataUltimoAcesso
 );
 
+insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) values(
+    7, -- idUsuario
+	2, -- idEstabelecimento
+	'Muito bom!!', -- descricao
+	'2023-11-02', -- data
+	5 -- nota
+);
+
+insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) values(
+    12, -- idUsuario
+	2, -- idEstabelecimento
+	'O rodízio deles é incrível', -- descricao
+	'2023-10-26', -- data
+	5 -- nota
+);
+
+insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) values(
+    8, -- idUsuario
+	2, -- idEstabelecimento
+	'Odiei o atendimento do garçom', -- descricao
+	'2023-10-22', -- data
+	1 -- nota
+);
+
 insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
     2, -- idEstabelecimento INT NOT NULL,
     2 -- idCategoria INT NOT NULL -- PIZZARIA
