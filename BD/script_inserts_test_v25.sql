@@ -885,7 +885,7 @@ insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
 
 insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
 	22,                   -- id
-	1,                -- idEstabelecimento
+	2,                -- idEstabelecimento
     'Luiz Antonio Souza e Dias',           -- nome
 	'15999999999',           -- celular
     '11122233355',       -- cpf
