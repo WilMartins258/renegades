@@ -3591,7 +3591,7 @@ INSERT INTO comida_estabelecimento VALUES (
 );
 
 insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
-	75,                   -- id
+	76,                   -- id
 	56,                -- idEstabelecimento
     'Sandra Mara Correa Frati',           -- nome
 	'15991504318',           -- celular
