@@ -675,6 +675,22 @@ insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) valu
 	5 -- nota
 );
 
+insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) values(
+    9, -- idUsuario
+	1, -- idEstabelecimento
+	'Muito bom', -- descricao
+	'2023-11-02', -- data
+	4 -- nota
+);
+
+insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) values(
+    18, -- idUsuario
+	1, -- idEstabelecimento
+	'Sempre que tenho a oportunidade vou até essa padaria. Muito boa mesmo.', -- descricao
+	'2023-11-09', -- data
+	5 -- nota
+);
+
 insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
     1, -- idEstabelecimento INT NOT NULL,
     9 -- idCategoria INT NOT NULL -- PADARIA
