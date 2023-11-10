@@ -667,6 +667,14 @@ INSERT INTO promocao (idEstabelecimento, nome, descricao, codigo, status, dataIn
 	'2023-12-20' -- dataFim
 );
 
+insert into avaliacao (idUsuario, idEstabelecimento, avaliacao, data, nota) values(
+    5, -- idUsuario
+	1, -- idEstabelecimento
+	'Amo essa padaria! Melhor coxinha da cidade com toda certeza <3', -- avaliacao
+	'2023-11-09', -- data
+	5 -- nota
+);
+
 insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
     1, -- idEstabelecimento INT NOT NULL,
     9 -- idCategoria INT NOT NULL -- PADARIA
