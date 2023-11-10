@@ -3366,6 +3366,184 @@ insert into recomendacao values(
 
 -- --------------------------> ID: 55 Arriba Muchacho ---- FIM
 
+-- --------------------------> ID: 56 Namata ---- INÍCIO
+
+insert into estabelecimento values(
+	56, -- id 
+	'Namata', -- nome
+	'48718094000165', -- cnpj
+	'jpg', -- fotoPrincipal   
+	'Com um ambiente despojado e estilo tropical, garante uma experiência 
+	gastronômica acompanhada de música ao vivo & bons drinks!', -- descricao
+	true, -- ativo
+	false, -- oculto
+	'Validado', -- statusValidacao
+	null, -- nota
+	0, -- numeroAvaliacoes INT,
+	'32', -- numeroEstabelecimento  VARCHAR(9) not null,
+	'R. Pedro de Oliveira Neto', -- logradouro             VARCHAR(200) not null,
+	'Jd. Faculdade', -- bairro                 VARCHAR(200) not null,
+	'Sorocaba', -- cidade                 VARCHAR(200) not null,
+	'SP', -- estado                 VARCHAR(200) not null,
+	'18031005', -- cep               VARCHAR(9) not null,
+	null, -- latitude
+	null, -- logitude
+	'2023-11-09', -- dataCadastro
+	'2023-11-30' -- dataUltimoAcesso
+);
+
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
+    56, -- idEstabelecimento INT NOT NULL,
+    4 -- idCategoria INT NOT NULL -- RESTAURANTE
+);
+
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
+    56, -- idEstabelecimento INT NOT NULL,
+    6 -- idCategoria INT NOT NULL -- BARZINHO
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    56, -- idEstabelecimento INT NOT NULL,
+    3 -- idOpcional INT NOT NULL -- Toca música
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    56, -- idEstabelecimento INT NOT NULL,
+    4 -- idOpcional INT NOT NULL -- música ao vivo
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    56, -- idEstabelecimento INT NOT NULL,
+    14 -- idOpcional INT NOT NULL -- Refeição no local
+);
+
+insert into musica_estabelecimento (idEstabelecimento, idEstiloMusica) values(
+	56, -- idEstabelecimento INT not null,
+	1  -- idEstiloMusica    INT not null
+);
+
+insert into musica_estabelecimento (idEstabelecimento, idEstiloMusica) values(
+	56, -- idEstabelecimento INT not null,
+	23  -- idEstiloMusica    INT not null
+);
+
+INSERT INTO comida_estabelecimento VALUES (
+	null,
+	56, -- idEstabelecimento
+	2  -- idComida -- Brasileira
+);
+INSERT INTO comida_estabelecimento VALUES (
+	null,
+	56, -- idEstabelecimento
+	3  -- idComida -- Italiana
+);
+INSERT INTO comida_estabelecimento VALUES (
+	null,
+	56, -- idEstabelecimento
+	6  -- idComida -- Francesa
+);
+
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
+	75,                   -- id
+	56,                -- idEstabelecimento
+    'Sandra Mara Correa Frati',           -- nome
+	'15991504318',           -- celular
+    '86812123056',       -- cpf
+    'namatasorocaba @gmail.com', -- email
+    '123456',          -- senha
+	null,                -- fotoPerfil
+    '1969-08-15',        -- dataNascimento
+	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	null, -- numero not null
+	null, -- lodradouro not null,
+	null, -- bairro not null,
+	null, -- cidade not null,
+	null, -- estado not null,
+	null, -- cep not null,
+	null, -- latitude
+	null  -- logitude
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Terça
+	56, -- idEstabelecimento INT not null,
+	3, -- idDiaSemana INT not null,
+	160000, -- horarioInicio TIME not null,
+	000000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Quarta
+	56, -- idEstabelecimento INT not null,
+	4, -- idDiaSemana INT not null,
+	160000, -- horarioInicio TIME not null,
+	000000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Quinta
+	56, -- idEstabelecimento INT not null,
+	5, -- idDiaSemana INT not null,
+	160000, -- horarioInicio TIME not null,
+	000000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Sexta
+	56, -- idEstabelecimento INT not null,
+	6, -- idDiaSemana INT not null,
+	160000, -- horarioInicio TIME not null,
+	020000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Sábado
+	56, -- idEstabelecimento INT not null,
+	7, -- idDiaSemana INT not null,
+	120000, -- horarioInicio TIME not null,
+	020000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Domingo
+	56, -- idEstabelecimento INT not null,
+	1, -- idDiaSemana INT not null,
+	120000, -- horarioInicio TIME not null,
+	000000  -- horarioFim TIME not null
+);
+
+insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWhatsapp) values(
+	56,              -- idEstabelecimento INT not null,
+	2,              -- idTipoContato INT not null, -- Celular
+	'15991504318',  -- contato VARCHAR(200) not null
+	true           -- isWhatsapp BOOLEAN not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	56,          -- idEstabelecimento INT not null,
+	1,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://m.facebook.com/profile.php?id=100089919796424&locale2=hi_IN&_rdr' -- redeSocial VARCHAR(200) not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	56,          -- idEstabelecimento INT not null,
+	2,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.instagram.com/namatasorocaba/' -- redeSocial VARCHAR(200) not null
+);
+
+
+
+insert into recomendacao values(
+	84, -- id
+	56, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Polpetone', -- nome VARCHAR(50) not null,
+	'Recheado e Coberto Com Queijo Ao Molho Pomodo + Fettuccine Com Manteiga E Salvia.'-- descricao VARCHAR(50) not null
+);
+
+insert into recomendacao values(
+	85, -- id
+	56, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Cambucu A Belle Meuniere', -- nome VARCHAR(50) not null,
+	'Peixe com molho de camarões, champignon e alcaparras + arroz'-- descricao VARCHAR(50) not null
+);
+
+-- --------------------------> ID: 56 Namata ---- FIM
 -- --> CADASTRO DE ESTABELECIMENTOS ---- FIM
 
 
