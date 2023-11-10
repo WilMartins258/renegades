@@ -1784,6 +1784,16 @@ insert into estabelecimento values(
 	'2023-11-30' -- dataUltimoAcesso
 );
 
+INSERT INTO promocao (idEstabelecimento, nome, descricao, codigo, status, dataInicio, dataFim) VALUES (
+	8, -- idEstabelecimento
+	'Costelinha no Barbecue', -- nome
+	'Ganhe um super desconto na nossa Costelinha no Barbecue ao apresentar o código do cupom.', -- descricao
+	'COSTELINHA-NO-BARBECUE', -- codigo
+	'Ativa', -- ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa'
+	'2023-11-10', -- dataInicio
+	'2023-12-10' -- dataFim
+);
+
 insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) values(
     7, -- idUsuario
 	8, -- idEstabelecimento
@@ -1807,7 +1817,6 @@ insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) valu
 	'2023-11-04', -- data
 	2 -- nota
 );
-
 
 insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
     8, -- idEstabelecimento INT NOT NULL,
