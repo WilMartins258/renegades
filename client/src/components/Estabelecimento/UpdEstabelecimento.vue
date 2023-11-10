@@ -139,12 +139,12 @@
       </div>
     </div>
   </div>
-    <div class="buttons">
+
+  </div>
+  <div class="buttons">
       <button class="custom-button" v-if="recomendacao.length < 3" @click="addrecomendacoes">Adicionar Recomendação</button>
       <button class="custom-button" v-if="recomendacao.length > 1" @click="removerecomendacoes">Cancelar Recomendação</button>
     </div>
-  </div>
-
 
   <!--4-Contato-->
   <h2>Como podemos contatá-lo?</h2><br>
