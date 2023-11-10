@@ -1295,7 +1295,7 @@ insert into estabelecimento values(
 INSERT INTO promocao (idEstabelecimento, nome, descricao, codigo, status, dataInicio, dataFim) VALUES (
 	5, -- idEstabelecimento
 	'Aniversariante não paga', -- nome
-	'Se trouxer mais 8 amigos na semana do seu aniversário o seu sai de graça', -- descricao
+	'Se trouxer mais 8 amigos para o rodízio no mês do seu aniversário o seu sai de graça.', -- descricao
 	'ANIVER-FAZENDA', -- codigo
 	'Ativa', -- ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa'
 	'2023-09-01', -- dataInicio
