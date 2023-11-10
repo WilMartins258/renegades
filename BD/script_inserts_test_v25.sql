@@ -2299,7 +2299,7 @@ insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
 
 insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
     11, -- idEstabelecimento INT NOT NULL,
-    6 -- idCategoria INT NOT NULL -- Barzinho
+    6 -- idCategoria INT NOT NULL -- bar
 );
 
 insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
@@ -2548,7 +2548,7 @@ insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
 
 insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
     12, -- idEstabelecimento INT NOT NULL,
-    6 -- idCategoria INT NOT NULL -- Barzinho
+    6 -- idCategoria INT NOT NULL -- bar
 );
 
 insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
@@ -3001,7 +3001,7 @@ insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
 
 insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
     51, -- idEstabelecimento INT NOT NULL,
-    6 -- idCategoria INT NOT NULL -- BARZINHO
+    6 -- idCategoria INT NOT NULL -- bar
 );
 
 insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
@@ -3584,7 +3584,7 @@ insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
 
 insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
     55, -- idEstabelecimento INT NOT NULL,
-    6 -- idCategoria INT NOT NULL -- BARZINHO
+    6 -- idCategoria INT NOT NULL -- bar
 );
 
 insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
@@ -3756,7 +3756,7 @@ insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
 
 insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
     56, -- idEstabelecimento INT NOT NULL,
-    6 -- idCategoria INT NOT NULL -- BARZINHO
+    6 -- idCategoria INT NOT NULL -- bar
 );
 
 insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
