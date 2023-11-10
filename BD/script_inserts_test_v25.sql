@@ -3600,7 +3600,7 @@ insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
 INSERT INTO comida_estabelecimento VALUES (
 	null,
 	55, -- idEstabelecimento
-	5  -- idComida -- MEXICANA
+	4  -- idComida -- MEXICANA
 );
 
 insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
