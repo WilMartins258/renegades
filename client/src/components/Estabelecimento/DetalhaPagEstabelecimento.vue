@@ -233,7 +233,7 @@ export default {
 
         // Depois podemos ver uma forma mais bonita de apresentar os telefones do estabelecimento
         try {
-          this.telefone = `${dadosContatos[0]?.contato ? dadosContatos[0]?.contato : ''} - ${dadosContatos[1]?.contato ? dadosContatos[1]?.contato : ''}`
+          this.telefone = `${dadosContatos[0]?.contato ? dadosContatos[0]?.contato : ''} ${dadosContatos[1]?.contato ? `/ ${dadosContatos[1]?.contato}` : ''}`
         } catch (error) {
           console.log('Erro ao carregar contato: ', error);
         }
@@ -357,41 +357,6 @@ export default {
             // Abra uma nova guia com o link do WhatsApp
             window.open(`https://wa.me/?text=${encodeURIComponent(mensagem)}`, '_blank');
 
-         /* try {
-            const textoParaCopiar = `http://localhost:8080/PaginaEstabelecimento/${this.$route.params.id}`;
-            const elementoTemporario = document.createElement("textarea");
-            elementoTemporario.value = textoParaCopiar;
-            document.body.appendChild(elementoTemporario);
-            elementoTemporario.select();
-            document.execCommand("copy");
-            document.body.removeChild(elementoTemporario);
-
-            // Criar um elemento de mensagem
-            const mensagem = document.createElement("div");
-            mensagem.textContent = "Texto copiado com sucesso!";
-            mensagem.style.position = "fixed";
-            mensagem.style.background = "#333";
-            mensagem.style.color = "#fff";
-            mensagem.style.padding = "10px";
-            mensagem.style.borderRadius = "5px";
-            mensagem.style.zIndex = "9999";
-
-            // Posicionar a mensagem ao lado do cursor do mouse
-            document.addEventListener("mousemove", (event) => {
-                mensagem.style.top = `${event.clientY}px`;
-                mensagem.style.left = `${event.clientX}px`;
-            });
-
-            // Adicionar a mensagem à DOM
-            document.body.appendChild(mensagem);
-
-            // Remover a mensagem após alguns segundos
-            setTimeout(() => {
-                document.body.removeChild(mensagem);
-            }, 1500); // A mensagem será removida após 1,5 segundo (1500 milissegundos)
-          } catch (error) {
-            console.log('Erro ao tentar compartilhar estabelecimento');
-          }*/
         },
         async toggleFavorito() {
           try {

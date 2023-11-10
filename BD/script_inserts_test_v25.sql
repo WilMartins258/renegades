@@ -657,6 +657,16 @@ insert into estabelecimento values(
 	'2023-11-30' -- dataUltimoAcesso
 );
 
+INSERT INTO promocao (idEstabelecimento, nome, descricao, codigo, status, dataInicio, dataFim) VALUES (
+	1, -- idEstabelecimento
+	'Coxinha pela metade do preço', -- nome
+	'Ao comprar uma coxinha a segunda sai pela metade do preço ao mostrar o código na hora da compra.', -- descricao
+	'COXINHA-REAL', -- codigo
+	'Ativa', -- ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa'
+	'2023-11-09', -- dataInicio
+	'2023-12-20' -- dataFim
+);
+
 insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
     1, -- idEstabelecimento INT NOT NULL,
     9 -- idCategoria INT NOT NULL -- PADARIA
@@ -3154,6 +3164,346 @@ insert into recomendacao values(
 
 
 -- --------------------------> ID: 53 Mary Restaurante ---- FIM
+
+-- --------------------------> ID: 54 Pé de Hamburguer ---- INÍCIO
+
+insert into estabelecimento values(
+	54, -- id 
+	'Pé de Hamburguer', -- nome
+	'19466251000194', -- cnpj
+	'jpg', -- fotoPrincipal   
+	'Hamburgueria convidativa com mesas ao ar livre serve menu encorpado com sandubas monstro e cervejas especiais!', -- descricao
+	true, -- ativo
+	false, -- oculto
+	'Validado', -- statusValidacao
+	null, -- nota
+	0, -- numeroAvaliacoes INT,
+	'228', -- numeroEstabelecimento  VARCHAR(9) not null,
+	'R. Canindé', -- logradouro             VARCHAR(200) not null,
+	'Jd. Paulistano', -- bairro                 VARCHAR(200) not null,
+	'Sorocaba', -- cidade                 VARCHAR(200) not null,
+	'SP', -- estado                 VARCHAR(200) not null,
+	'18040760', -- cep               VARCHAR(9) not null,
+	null, -- latitude
+	null, -- logitude
+	'2023-11-09', -- dataCadastro
+	'2023-11-30' -- dataUltimoAcesso
+);
+
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
+    54, -- idEstabelecimento INT NOT NULL,
+    3 -- idCategoria INT NOT NULL -- HAMBURGUERIA
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    54, -- idEstabelecimento INT NOT NULL,
+    1 -- idOpcional INT NOT NULL -- faz entrega
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    54, -- idEstabelecimento INT NOT NULL,
+    14 -- idOpcional INT NOT NULL -- Refeição no local
+);
+
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
+	74,                   -- id
+	54,                -- idEstabelecimento
+    'Pedro Alexandre Amorim',           -- nome
+	'15999939999',           -- celular
+    '71322885044',       -- cpf
+    'pedehamburguer@gmail.com', -- email
+    '123456',          -- senha
+	null,                -- fotoPerfil
+    '1977-11-26',        -- dataNascimento
+	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	null, -- numero not null
+	null, -- lodradouro not null,
+	null, -- bairro not null,
+	null, -- cidade not null,
+	null, -- estado not null,
+	null, -- cep not null,
+	null, -- latitude
+	null  -- logitude
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda
+	54, -- idEstabelecimento INT not null,
+	2, -- idDiaSemana INT not null,
+	113000, -- horarioInicio TIME not null,
+	150000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Terça
+	54, -- idEstabelecimento INT not null,
+	3, -- idDiaSemana INT not null,
+	113000, -- horarioInicio TIME not null,
+	150000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Quarta
+	54, -- idEstabelecimento INT not null,
+	4, -- idDiaSemana INT not null,
+	113000, -- horarioInicio TIME not null,
+	150000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Quinta 1º
+	54, -- idEstabelecimento INT not null,
+	5, -- idDiaSemana INT not null,
+	113000, -- horarioInicio TIME not null,
+	150000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Quinta 2º
+	54, -- idEstabelecimento INT not null,
+	5, -- idDiaSemana INT not null,
+	180000, -- horarioInicio TIME not null,
+	220000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Sexta 1º
+	54, -- idEstabelecimento INT not null,
+	6, -- idDiaSemana INT not null,
+	113000, -- horarioInicio TIME not null,
+	150000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Sexta 2º
+	54, -- idEstabelecimento INT not null,
+	6, -- idDiaSemana INT not null,
+	180000, -- horarioInicio TIME not null,
+	230000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Sábado
+	54, -- idEstabelecimento INT not null,
+	7, -- idDiaSemana INT not null,
+	180000, -- horarioInicio TIME not null,
+	230000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Domingo
+	54, -- idEstabelecimento INT not null,
+	1, -- idDiaSemana INT not null,
+	180000, -- horarioInicio TIME not null,
+	220000  -- horarioFim TIME not null
+);
+
+insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWhatsapp) values(
+	54,              -- idEstabelecimento INT not null,
+	1,              -- idTipoContato INT not null, -- telefone
+	'1532327808',  -- contato VARCHAR(200) not null
+	false           -- isWhatsapp BOOLEAN not null
+);
+
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	54,          -- idEstabelecimento INT not null,
+	2,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.instagram.com/pedehamburguer_/' -- redeSocial VARCHAR(200) not null
+);
+
+
+
+insert into recomendacao values(
+	78, -- id
+	54, -- idEstabelecimento INT not null,
+	'png', -- foto LONGBLOB not null,
+	'Combo Vegetariano', -- nome VARCHAR(50) not null,
+	'Hamburguer de quinoa, temperado com parmesão, mostarda com mel e mix de cogumeloas shimeji, shitake e champignon, 
+	acompanhado de pure de cenoura, chips de mandioquinha e mix de cogumelos no pão de brioche. 
+	Acompanha batata e refrigerante lata.'-- descricao VARCHAR(50) not null
+);
+
+insert into recomendacao values(
+	79, -- id
+	54, -- idEstabelecimento INT not null,
+	'png', -- foto LONGBLOB not null,
+	'Smash Triplo', -- nome VARCHAR(50) not null,
+	'Pão Smash Feito Na Casa, 3 Carnes De 100gr, American Cheese E Molho Smash da casa.'-- descricao VARCHAR(50) not null
+);
+
+insert into recomendacao values(
+	80, -- id
+	54, -- idEstabelecimento INT not null,
+	'png', -- foto LONGBLOB not null,
+	'Combo Brisket Burguer', -- nome VARCHAR(50) not null,
+	'Blend de brisket angus (peito bovino) de 160gr com queijo muçarela, Catupiry, cebola caramelizada, molho de mostrada e mel no pão de hamburguer. 
+	Acompanha batata e refrigerante lata.'-- descricao VARCHAR(50) not null
+);
+
+-- --------------------------> ID: 54 Pé de Hamburguer ---- FIM
+
+-- --------------------------> ID: 55 Arriba Muchacho ---- INÍCIO
+
+insert into estabelecimento values(
+	55, -- id 
+	'Arriba Muchacho', -- nome
+	'19466251000194', -- cnpj
+	'jpg', -- fotoPrincipal   
+	'Variedade de porções e pratos da cozinha Tex-Mex, além de sobremesas e drinques em espaço alegre e colorido.', -- descricao
+	true, -- ativo
+	false, -- oculto
+	'Validado', -- statusValidacao
+	null, -- nota
+	0, -- numeroAvaliacoes INT,
+	'2.223', -- numeroEstabelecimento  VARCHAR(9) not null,
+	'Av. Elias Maluf', -- logradouro             VARCHAR(200) not null,
+	'Wanel ville', -- bairro                 VARCHAR(200) not null,
+	'Sorocaba', -- cidade                 VARCHAR(200) not null,
+	'SP', -- estado                 VARCHAR(200) not null,
+	'18055215', -- cep               VARCHAR(9) not null,
+	null, -- latitude
+	null, -- logitude
+	'2023-11-09', -- dataCadastro
+	'2023-11-30' -- dataUltimoAcesso
+);
+
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
+    55, -- idEstabelecimento INT NOT NULL,
+    4 -- idCategoria INT NOT NULL -- RESTAURANTE
+);
+
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
+    55, -- idEstabelecimento INT NOT NULL,
+    6 -- idCategoria INT NOT NULL -- BARZINHO
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    55, -- idEstabelecimento INT NOT NULL,
+    1 -- idOpcional INT NOT NULL -- faz entrega
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    55, -- idEstabelecimento INT NOT NULL,
+    14 -- idOpcional INT NOT NULL -- Refeição no local
+);
+
+INSERT INTO comida_estabelecimento VALUES (
+	null,
+	55, -- idEstabelecimento
+	5  -- idComida -- MEXICANA
+);
+
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
+	75,                   -- id
+	55,                -- idEstabelecimento
+    'Hernández González',           -- nome
+	'15991383862',           -- celular
+    '86812754055',       -- cpf
+    'arribamuchacho.adm@gmail.com', -- email
+    '123456',          -- senha
+	null,                -- fotoPerfil
+    '1977-11-26',        -- dataNascimento
+	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	null, -- numero not null
+	null, -- lodradouro not null,
+	null, -- bairro not null,
+	null, -- cidade not null,
+	null, -- estado not null,
+	null, -- cep not null,
+	null, -- latitude
+	null  -- logitude
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda
+	55, -- idEstabelecimento INT not null,
+	2, -- idDiaSemana INT not null,
+	183000, -- horarioInicio TIME not null,
+	230000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Quarta
+	55, -- idEstabelecimento INT not null,
+	4, -- idDiaSemana INT not null,
+	183000, -- horarioInicio TIME not null,
+	230000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Quinta
+	55, -- idEstabelecimento INT not null,
+	5, -- idDiaSemana INT not null,
+	183000, -- horarioInicio TIME not null,
+	230000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Sexta
+	55, -- idEstabelecimento INT not null,
+	6, -- idDiaSemana INT not null,
+	183000, -- horarioInicio TIME not null,
+	230000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Sábado
+	55, -- idEstabelecimento INT not null,
+	7, -- idDiaSemana INT not null,
+	183000, -- horarioInicio TIME not null,
+	230000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Domingo
+	55, -- idEstabelecimento INT not null,
+	1, -- idDiaSemana INT not null,
+	183000, -- horarioInicio TIME not null,
+	230000  -- horarioFim TIME not null
+);
+
+insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWhatsapp) values(
+	55,              -- idEstabelecimento INT not null,
+	1,              -- idTipoContato INT not null, -- Telefone
+	'1533185051',  -- contato VARCHAR(200) not null
+	false           -- isWhatsapp BOOLEAN not null
+);
+
+insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWhatsapp) values(
+	55,              -- idEstabelecimento INT not null,
+	2,              -- idTipoContato INT not null, -- Celular
+	'15991383862',  -- contato VARCHAR(200) not null
+	true           -- isWhatsapp BOOLEAN not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	55,          -- idEstabelecimento INT not null,
+	1,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://web.facebook.com/p/Arriba-Muchacho-Sorocaba-100063693006491/?_rdc=1&_rdr' -- redeSocial VARCHAR(200) not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	55,          -- idEstabelecimento INT not null,
+	2,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.instagram.com/muchacho.arriba/' -- redeSocial VARCHAR(200) not null
+);
+
+
+
+insert into recomendacao values(
+	81, -- id
+	55, -- idEstabelecimento INT not null,
+	'png', -- foto LONGBLOB not null,
+	'Combo Pablo - 2', -- nome VARCHAR(50) not null,
+	'2 tacos , 1 burritos 28 cm , nachos para 2 pessoas + Guacamole. grátis 1 Kuat 2 litros'-- descricao VARCHAR(50) not null
+);
+
+insert into recomendacao values(
+	82, -- id
+	55, -- idEstabelecimento INT not null,
+	'png', -- foto LONGBLOB not null,
+	'Burrito Hot Chilli Grande 28cm', -- nome VARCHAR(50) not null,
+	'PTortilha de 28 cm recheada com Chilli picante ,pico de gallo(vinagrete),suor cream 
+	(molho a base de Cream chese),frijoles (pasta de feijão),
+	queijo,alface,pimenta Carolina reaper, pimenta chipotle ,
+	pimenta jalapenõ decorado com cheddar. Pra quem gosta de pimenta incrível sabor'-- descricao VARCHAR(50) not null
+);
+
+insert into recomendacao values(
+	83, -- id
+	55, -- idEstabelecimento INT not null,
+	'png', -- foto LONGBLOB not null,
+	'Doces ou travessuras', -- nome VARCHAR(50) not null,
+	'Margarita + Tequila Black + licor Maça + Licor Framboesa'-- descricao VARCHAR(50) not null
+);
+
+-- --------------------------> ID: 55 Arriba Muchacho ---- FIM
 
 -- --> CADASTRO DE ESTABELECIMENTOS ---- FIM
 
