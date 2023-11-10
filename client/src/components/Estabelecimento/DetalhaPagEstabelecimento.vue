@@ -14,8 +14,10 @@
       <h2>Descrição do Estabelecimento:</h2>
       <p>{{ descricao }}</p>
     </section>
-
+    <br>
+    <div class="recomendacaoTitulo ">
     <br><h2>Recomendações do Chef:</h2>
+    </div>
     <section class="chef-recomendacoes">
       <div class="recomendacao" v-for="prato in pratosChef" :key="prato.id">
         <div>
@@ -462,6 +464,17 @@ h3{
     margin: 0 10px;
     text-align: center;
     border-radius: 25px;
+}
+
+.recomendacaoTitulo{
+
+  padding: 10px;
+  /*background-color: #f0f0f0a9;*/
+  background-color: #ffffffe0;
+  text-align: center;
+  max-width: 700px; 
+  margin: 0 auto; 
+  border-radius: 25px
 }
 
 .imagem-prato {
