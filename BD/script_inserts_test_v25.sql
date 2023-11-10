@@ -1808,7 +1808,7 @@ INSERT INTO promocao (idEstabelecimento, nome, descricao, codigo, status, dataIn
 	8, -- idEstabelecimento
 	'Costelinha no Barbecue', -- nome
 	'Ganhe um super desconto na nossa Costelinha no Barbecue ao apresentar o código do cupom.', -- descricao
-	'COSTELANOBARBECUE', -- codigo
+	'COSTELA-BARBECUE', -- codigo
 	'Ativa', -- ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa'
 	'2023-11-10', -- dataInicio
 	'2023-12-10' -- dataFim
