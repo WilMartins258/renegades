@@ -2627,7 +2627,7 @@ insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSoc
 insert into recomendacao values(
 	37, -- id
 	13, -- idEstabelecimento INT not null,
-	'JPG', -- foto LONGBLOB not null,
+	'jpg', -- foto LONGBLOB not null,
 	'Time Salgado ou Doce', -- nome VARCHAR(50) not null,
 	'Delicioso pastel de carne cheddar e bacon ou Nutella confete'-- descricao VARCHAR(50) not null
 );
