@@ -1295,7 +1295,7 @@ insert into estabelecimento values(
 INSERT INTO promocao (idEstabelecimento, nome, descricao, codigo, status, dataInicio, dataFim) VALUES (
 	5, -- idEstabelecimento
 	'Aniversariante não paga', -- nome
-	'Se trouxer mais 8 amigos na semana do seu aniversário o seu sai de graça', -- descricao
+	'Se trouxer mais 8 amigos para o rodízio no mês do seu aniversário o seu sai de graça.', -- descricao
 	'ANIVER-FAZENDA', -- codigo
 	'Ativa', -- ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa'
 	'2023-09-01', -- dataInicio
@@ -1626,6 +1626,16 @@ insert into estabelecimento values(
 	null, -- logitude
 	'2023-11-05', -- dataCadastro
 	'2023-11-30' -- dataUltimoAcesso
+);
+
+INSERT INTO promocao (idEstabelecimento, nome, descricao, codigo, status, dataInicio, dataFim) VALUES (
+	7, -- idEstabelecimento
+	'Sextou 15% off', -- nome
+	'Somente às sextas-feiras apresente o código da promoção na compra de qualquer drink e receça desconto de 15% no valor do drink.', -- descricao
+	'SEXTOU-NA-GARAGEM', -- codigo
+	'Ativa', -- ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa'
+	'2023-11-05', -- dataInicio
+	'2023-12-08' -- dataFim
 );
 
 insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) values(
