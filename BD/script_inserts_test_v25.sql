@@ -1286,7 +1286,7 @@ INSERT INTO promocao (idEstabelecimento, nome, descricao, codigo, status, dataIn
 	5, -- idEstabelecimento
 	'Aniversariante não paga', -- nome
 	'Se trouxer mais 8 amigos na semana do seu aniversário o seu sai de graça', -- descricao
-	'ANIVERSÁRIO-NA-FAZENDA', -- codigo
+	'ANIVER-FAZENDA', -- codigo
 	'Ativa', -- ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa'
 	'2023-09-01', -- dataInicio
 	'2023-12-31' -- dataFim
