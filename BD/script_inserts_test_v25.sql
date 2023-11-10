@@ -1608,6 +1608,22 @@ insert into estabelecimento values(
 	'2023-11-30' -- dataUltimoAcesso
 );
 
+insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) values(
+    7, -- idUsuario
+	7, -- idEstabelecimento
+	"Não gostei da segurança do lugar", -- descricao
+	'2023-11-12', -- data
+	3 -- nota
+);
+
+insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) values(
+    18, -- idUsuario
+	7, -- idEstabelecimento
+	"Esse lugar é animal", -- descricao
+	'2023-10-27', -- data
+	5 -- nota
+);
+
 insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
     7, -- idEstabelecimento INT NOT NULL,
     6 -- idCategoria INT NOT NULL -- PADARIA
