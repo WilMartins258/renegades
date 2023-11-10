@@ -3353,7 +3353,7 @@ insert into recomendacao values(
 	'PTortilha de 28 cm recheada com Chilli picante ,pico de gallo(vinagrete),suor cream 
 	(molho a base de Cream chese),frijoles (pasta de feijão),
 	queijo,alface,pimenta Carolina reaper, pimenta chipotle ,
-	pimenta jalapenõ decorado com cheddar'-- descricao VARCHAR(50) not null
+	pimenta jalapenõ decorado com cheddar. Pra quem gosta de pimenta incrível sabor'-- descricao VARCHAR(50) not null
 );
 
 insert into recomendacao values(
