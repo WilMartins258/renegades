@@ -2249,7 +2249,7 @@ insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWh
 	11,              -- idEstabelecimento INT not null,
 	2,              -- idTipoContato INT not null, -- TELEFONE
 	'15991208864',  -- contato VARCHAR(200) not null
-	false           -- isWhatsapp BOOLEAN not null
+	true           -- isWhatsapp BOOLEAN not null
 );
 
 insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
@@ -2457,7 +2457,7 @@ insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWh
 	12,              -- idEstabelecimento INT not null,
 	2,              -- idTipoContato INT not null, -- TELEFONE
 	'15996842933',  -- contato VARCHAR(200) not null
-	false           -- isWhatsapp BOOLEAN not null
+	true           -- isWhatsapp BOOLEAN not null
 );
 
 insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
@@ -2503,6 +2503,145 @@ insert into recomendacao values(
 );
 
 -- --------------------------> ID: 12 New York Bar 41 ---- FIM
+
+
+-- --------------------------> ID: 13 Turaça Pastelaria ---- INÍCIO
+
+insert into estabelecimento values(
+	13, -- id 
+	"Turaça Pastelaria", -- nome
+	'41.575.185/0001-40', -- cnpj
+	'jpg', -- fotoPrincipal   
+	'Turaça Pastelaria, Pasteis doces e Salgados', -- descricao
+	true, -- ativo
+	false, -- oculto
+	'Validado', -- statusValidacao
+	null, -- nota
+	0, -- numeroAvaliacoes INT,
+	'1190', -- numeroEstabelecimento  VARCHAR(9) not null,
+	'R. Pedro José Senger', -- logradouro             VARCHAR(200) not null,
+	'Vila Haro', -- bairro                 VARCHAR(200) not null,
+	'Sorocaba', -- cidade                 VARCHAR(200) not null,
+	'SP', -- estado                 VARCHAR(200) not null,
+	'18015000', -- cep               VARCHAR(9) not null,
+	null, -- latitude
+	null, -- logitude
+	'2023-11-05', -- dataCadastro
+	'2023-11-30' -- dataUltimoAcesso
+);
+
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
+    13, -- idEstabelecimento INT NOT NULL,
+    5 -- idCategoria INT NOT NULL -- Pastelaria
+);
+
+insert into comida_estabelecimento (idEstabelecimento, idComida) values(
+    13, -- idEstabelecimento INT NOT NULL,
+    1   -- idComida INT NOT NULL -- Brasileira
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    13, -- idEstabelecimento INT NOT NULL,
+    1 -- idOpcional INT NOT NULL -- faz entrega
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    13, -- idEstabelecimento INT NOT NULL,
+    8 -- idOpcional INT NOT NULL -- Possui area kids
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    13, -- idEstabelecimento INT NOT NULL,
+    14 -- idOpcional INT NOT NULL -- Refeição no local
+);
+
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
+	33,                   -- id
+	13,                -- idEstabelecimento
+    'RICARDO RUSSINI TURACA',           -- nome
+	'15971161518',           -- celular
+    '00415975085',       -- cpf
+    'turacapastelaria@yahoo.com.br', -- email
+    '123456',          -- senha
+	null,                -- fotoPerfil
+    '1970-02-06',        -- dataNascimento
+	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	null, -- numero not null
+	null, -- lodradouro not null,
+	null, -- bairro not null,
+	null, -- cidade not null,
+	null, -- estado not null,
+	null, -- cep not null,
+	null, -- latitude
+	null  -- logitude
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda-feira
+	13, -- idEstabelecimento INT not null,
+	8, -- idDiaSemana INT not null,
+	163000, -- horarioInicio TIME not null,
+	223000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda-feira
+	13, -- idEstabelecimento INT not null,
+	7, -- idDiaSemana INT not null,
+	163000, -- horarioInicio TIME not null,
+	223000  -- horarioFim TIME not null
+);
+
+insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWhatsapp) values(
+	13,              -- idEstabelecimento INT not null,
+	2,              -- idTipoContato INT not null, -- TELEFONE
+	'15996908523',  -- contato VARCHAR(200) not null
+	true           -- isWhatsapp BOOLEAN not null
+);
+
+insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWhatsapp) values(
+	13,              -- idEstabelecimento INT not null,
+	2,              -- idTipoContato INT not null, -- TELEFONE
+	'15988003914',  -- contato VARCHAR(200) not null
+	true           -- isWhatsapp BOOLEAN not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	13,          -- idEstabelecimento INT not null,
+	1,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.facebook.com/turacapastelaria/?locale=pt_BR' -- redeSocial VARCHAR(200) not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	12,          -- idEstabelecimento INT not null,
+	5,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://acesse.dev/6yYxJ' -- redeSocial VARCHAR(200) not null
+);
+
+insert into recomendacao values(
+	37, -- id
+	13, -- idEstabelecimento INT not null,
+	'JPG', -- foto LONGBLOB not null,
+	'Time Salgado ou Doce', -- nome VARCHAR(50) not null,
+	'Delicioso pastel de carne cheddar e bacon ou Nutella confete'-- descricao VARCHAR(50) not null
+);
+
+insert into recomendacao values(
+	38, -- id
+	13, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Ninho com Paçoca', -- nome VARCHAR(50) not null,
+	'Delicioso pastel com recheio de ninho com paçoca, Sensacional!'-- descricao VARCHAR(50) not null
+);
+
+insert into recomendacao values(
+	39, -- id
+	13, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Especial de Frango', -- nome VARCHAR(50) not null,
+	'Pastel especial de Frango, muito TOP, venham Experimentar!'-- descricao VARCHAR(50) not null
+);
+
+-- --------------------------> ID: 13 Turaça Pastelaria ---- FIM
+
 
 -- --------------------------> ID: 50 N&N Lanches ---- INÍCIO
 
