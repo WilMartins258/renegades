@@ -1784,6 +1784,31 @@ insert into estabelecimento values(
 	'2023-11-30' -- dataUltimoAcesso
 );
 
+insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) values(
+    7, -- idUsuario
+	8, -- idEstabelecimento
+	"Eles tem todas as carnes que você imaginar e eu amo todas elas", -- descricao
+	'2023-11-07', -- data
+	5 -- nota
+);
+
+insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) values(
+    9, -- idUsuario
+	8, -- idEstabelecimento
+	"Fiquei encantada com a grande variedade de carnes", -- descricao
+	'2023-11-04', -- data
+	5 -- nota
+);
+
+insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) values(
+    11, -- idUsuario
+	8, -- idEstabelecimento
+	"Erraram no ponto da minha carne por duas vezes", -- descricao
+	'2023-11-04', -- data
+	2 -- nota
+);
+
+
 insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
     8, -- idEstabelecimento INT NOT NULL,
     4 -- idCategoria INT NOT NULL
