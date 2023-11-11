@@ -42,8 +42,8 @@
 
         
         <br><p>Redes Sociais:</p>
-        <p v-if="facebook.length > 0" class="redes">
-            <a :href="facebook" target="_blank">
+        <p class="redes">
+            <a v-if="facebook.length > 0" :href="facebook" target="_blank">
               <i class="fa-brands fa-facebook" style="color: #4267b2;"></i>
             </a>
       
