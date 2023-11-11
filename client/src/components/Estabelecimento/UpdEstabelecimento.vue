@@ -500,6 +500,7 @@ data() {
       { name: '', description:  '', photo: {imageURL: 'https://abravidro.org.br/wp-content/uploads/2015/04/sem-imagem10.jpg' }, photoBuffer: null, type: null },],
       estabelecimentoPhoto: null,
       estabelecimentoPhotoType: "",
+      fotoEstabelecimentoMudou: false,
       fotoEstabelecimento: "https://abravidro.org.br/wp-content/uploads/2015/04/sem-imagem10.jpg",
       HorariosSelecionados: [],
       tiposDeComidaSelecionados: [],
@@ -1077,7 +1078,7 @@ async salvar() {
       horariosSelecionados: this.listahorarios, // NÃO CHECA WHATSAPP
       idEstabelecimento: sessionStorage.getItem('idEstabelecimento')
     };
-    console.log('novosDadosEstabelecimento:: ', novosDadosEstabelecimento)
+    console.log('this.recomendacao:: ', this.recomendacao)
 
     const atualizacaoDados = await api.put('/estabelecimento', {novosDadosEstabelecimento});
     console.log('atualizacaoDados:: ', atualizacaoDados)
@@ -1143,21 +1144,23 @@ computed: {
         comidasEstabelecimento,
         contatosEstabelecimento
       } = dadosEstabelecimentoRequest.data;
+
       for (let i = 0; i < contatosEstabelecimento.length; i++){
         if(contatosEstabelecimento[i].isWhatsapp == 1){
           contatosEstabelecimento[i].isWhatsapp = true;
-      }else{
-        contatosEstabelecimento[i].isWhatsapp = false
+        } else{
+          contatosEstabelecimento[i].isWhatsapp = false
+        }
       }
-      }
+
       try {
         this.fotoEstabelecimento = require(`./images/${sessionStorage.getItem('idEstabelecimento')}.${formatoFoto}`);
       } catch (error) {
         console.log('Error ao exibir foto: ', error);
       }
+  
+      console.log("redeSociaisEstabelecimento", redeSociaisEstabelecimento)
 
-        
-      console.log("redeSociaisEstabelecimento",redeSociaisEstabelecimento)
       this.categoria = categorias;
       this.opcoes = opcionais;
       this.estilos = estilosMusica;
