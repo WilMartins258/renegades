@@ -38,10 +38,11 @@
       </div>
       <div class="info">
         <h2>Forma de Contato e Redes Sociais:</h2><br>
-        <p> Telefone: <br><i class="fa-solid fa-phone" style="color: #000000;"></i> {{ aplicarMascara(telefone, 'Telefone') }}
+        <p>Telefone:</p>
+        <p v-show="telefone.length > 0 "><i class="fa-solid fa-phone" style="color: #000000;"></i> {{ aplicarMascara(telefone, 'Telefone') }}
           <span v-if="isWhatsTelefone == 1" class="whatsapp-icon"><img src="../../../public/img/WhatsIcon.png" alt=""></span>
         </p>
-        <p><i class="fa-solid fa-mobile-screen-button" style="color: #000000;"></i> {{ aplicarMascara(celular, 'Celular') }}
+        <p v-show="celular.length > 0 "><i class="fa-solid fa-mobile-screen-button" style="color: #000000;"></i> {{ aplicarMascara(celular, 'Celular') }}
           <span v-if="isWhatsCelular == 1" class="whatsapp-icon" ><img src="../../../public/img/WhatsIcon.png" alt=""></span>
         </p>
         
