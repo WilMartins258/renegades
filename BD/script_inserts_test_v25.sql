@@ -2292,6 +2292,50 @@ insert into estabelecimento values(
 	'2023-11-30' -- dataUltimoAcesso
 );
 
+INSERT INTO promocao (idEstabelecimento, nome, descricao, codigo, status, dataInicio, dataFim) VALUES (
+	11, -- idEstabelecimento
+	'Porção de Camarão Empanado com 20% de desconto', -- nome
+	'Apresentar este cupom na hora do pagamento e sua porção terá 20% de desconto.', -- descricao
+	'EMPORIO20', -- codigo
+	'Ativa', -- ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa'
+	'2023-09-09', -- dataInicio
+	'2023-11-02' -- dataFim
+);
+
+INSERT INTO promocao (idEstabelecimento, nome, descricao, codigo, status, dataInicio, dataFim) VALUES (
+	11, -- idEstabelecimento
+	'Porção de Camarão Empanado com 20% de desconto', -- nome
+	'Apresentar este cupom na hora do pagamento e sua porção terá 20% de desconto.', -- descricao
+	'EMPORIO20', -- codigo
+	'Ativa', -- ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa'
+	'2023-09-09', -- dataInicio
+	'2023-12-06' -- dataFim
+);
+
+insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) values(
+    3, -- idUsuario
+	11, -- idEstabelecimento
+	'Amo essa Barzinho! ambiente muito agradável', -- descricao
+	'2023-11-10', -- data
+	5 -- nota
+);
+
+insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) values(
+    8, -- idUsuario
+	11, -- idEstabelecimento
+	'TOP, estão de Parabéns', -- descricao
+	'2023-11-09', -- data
+	5 -- nota
+);
+
+insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) values(
+    17, -- idUsuario
+	11, -- idEstabelecimento
+	'Sempre que tenho a oportunidade vou até esse Barzinho. Espaço Kids é um diferencial.', -- descricao
+	'2023-11-02', -- data
+	5 -- nota
+);
+
 insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
     11, -- idEstabelecimento INT NOT NULL,
     4 -- idCategoria INT NOT NULL -- Restaurante
@@ -2541,6 +2585,50 @@ insert into estabelecimento values(
 	'2023-11-30' -- dataUltimoAcesso
 );
 
+INSERT INTO promocao (idEstabelecimento, nome, descricao, codigo, status, dataInicio, dataFim) VALUES (
+	12, -- idEstabelecimento
+	'Aniversariante com 50% de desconto em itens selecionados no cardápio', -- nome
+	'Apresentar este cupom mais documento para comprovar identidade.', -- descricao
+	'NEWYORK41', -- codigo
+	'Ativa', -- ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa'
+	'2023-09-09', -- dataInicio
+	'2023-11-02' -- dataFim
+);
+
+INSERT INTO promocao (idEstabelecimento, nome, descricao, codigo, status, dataInicio, dataFim) VALUES (
+	12, -- idEstabelecimento
+	'Aniversariante com 50% de desconto em itens selecionados no cardápio', -- nome
+	'Apresentar este cupom mais documento para comprovar identidade.', -- descricao
+	'NEWYORK41', -- codigo
+	'Ativa', -- ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa'
+	'2023-09-09', -- dataInicio
+	'2023-12-12' -- dataFim
+);
+
+insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) values(
+    5, -- idUsuario
+	12, -- idEstabelecimento
+	'Lugar Perfeito! ambiente muito agradável', -- descricao
+	'2023-11-10', -- data
+	5 -- nota
+);
+
+insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) values(
+    8, -- idUsuario
+	12, -- idEstabelecimento
+	'Musicas ao vivo de excelente Qualidade!!!', -- descricao
+	'2023-11-09', -- data
+	5 -- nota
+);
+
+insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) values(
+    15, -- idUsuario
+	12, -- idEstabelecimento
+	'Muito Bom!!!.', -- descricao
+	'2023-11-02', -- data
+	4.3 -- nota
+);
+
 insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
     12, -- idEstabelecimento INT NOT NULL,
     4 -- idCategoria INT NOT NULL -- Restaurante
@@ -2746,6 +2834,51 @@ insert into estabelecimento values(
 	null, -- logitude
 	'2023-11-05', -- dataCadastro
 	'2023-11-30' -- dataUltimoAcesso
+);
+
+INSERT INTO promocao (idEstabelecimento, nome, descricao, codigo, status, dataInicio, dataFim) VALUES (
+	13, -- idEstabelecimento
+	'Desconto de 10% em seu primeiro pedido no estabelecimento', -- nome
+	'Apresentar o print do cupom para pedidos feitos pelo Whatsapp.', -- descricao
+	'TURACA10', -- codigo
+	'Ativa', -- ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa'
+	'2023-10-19', -- dataInicio
+	'2023-11-02' -- dataFim
+);
+
+INSERT INTO promocao (idEstabelecimento, nome, descricao, codigo, status, dataInicio, dataFim) VALUES (
+	13, -- idEstabelecimento
+	'Desconto de 10% em seu primeiro pedido no estabelecimento', -- nome
+	'Apresentar o print do cupom para pedidos feitos pelo Whatsapp.', -- descricao
+	'TURACA10', -- codigo
+	'Ativa', -- ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa'
+	'2023-09-09', -- dataInicio
+	'2023-12-20' -- dataFim
+);
+
+insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) values(
+    6, -- idUsuario
+	13, -- idEstabelecimento
+	'Excelente espaço kids, minha filha adora!!!', -- descricao
+	'2023-11-10', -- data
+	5 -- nota
+);
+
+insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) values(
+    9, -- idUsuario
+	13, -- idEstabelecimento
+	'Pastéis doces e salgados de excelente qualidade', -- descricao
+	'2023-11-09', -- data
+	5 -- nota
+);
+
+insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) values(
+    14, -- idUsuario
+	13, -- idEstabelecimento
+	'Super recomendo.
+	 Ambiente familiar, bem limpinho e pastéis deliciosos.', -- descricao
+	'2023-11-02', -- data
+	5 -- nota
 );
 
 insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
