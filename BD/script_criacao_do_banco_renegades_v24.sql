@@ -187,7 +187,7 @@ CREATE TABLE avaliacao (
 	idEstabelecimento INT not null,
 	descricao         VARCHAR(300) not null,
 	data              DATE not null,
-	nota              INT not null -- Somente de 1 a 5
+	nota              FLOAT not null -- Somente de 1 a 5
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE favorito (

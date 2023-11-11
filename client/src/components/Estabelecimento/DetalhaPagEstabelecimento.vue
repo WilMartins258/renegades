@@ -262,16 +262,15 @@ export default {
         this.opcional = dadosOpcionaisArray.join(', ');
 
         for (let i=0; i < dadosRedesSociais.length; i++) {
-          switch (dadosRedesSociais[i].id) {
-            case 1:
-              this.facebook = dadosRedesSociais[i].redeSocial;
-            case 2:
+          if (dadosRedesSociais[i].id == 1) {
+            this.facebook = dadosRedesSociais[i].redeSocial;
+          } else if (dadosRedesSociais[i].id == 2) {
               this.instagram = dadosRedesSociais[i].redeSocial;
-            case 3:
+          } else if (dadosRedesSociais[i].id == 3) {
               this.twitter = dadosRedesSociais[i].redeSocial;
-            case 4:
+          } else if (dadosRedesSociais[i].id == 4) {
               this.site = dadosRedesSociais[i].redeSocial;
-            case 5:
+          } else if (dadosRedesSociais[i].id == 5) {
               this.cardapio = dadosRedesSociais[i].redeSocial;
           }
         }
