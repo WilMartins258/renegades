@@ -68,6 +68,8 @@ insert into OPCIONAL (id, nome) values (11, 'Couvert Grátis');
 insert into OPCIONAL (id, nome) values (12, 'Tem taxa de 10%');
 insert into OPCIONAL (id, nome) values (13, 'Possui Área de Fumantes');
 insert into OPCIONAL (id, nome) values (14, 'Refeição no local');
+insert into OPCIONAL (id, nome) values (15, 'Retirada no local');
+insert into OPCIONAL (id, nome) values (16, 'Encomenda pelo Whatsapp');
 
 -- ---------------------------- OPCIONAL -- FIM
 
@@ -2961,12 +2963,6 @@ insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSoc
 	'https://www.facebook.com/turacapastelaria/?locale=pt_BR' -- redeSocial VARCHAR(200) not null
 );
 
-insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
-	12,          -- idEstabelecimento INT not null,
-	5,          -- idTipoRedeSocial  INT not null, -- SITE
-	'https://acesse.dev/6yYxJ' -- redeSocial VARCHAR(200) not null
-);
-
 insert into recomendacao values(
 	37, -- id
 	13, -- idEstabelecimento INT not null,
@@ -2992,6 +2988,138 @@ insert into recomendacao values(
 );
 
 -- --------------------------> ID: 13 Turaça Pastelaria ---- FIM
+
+
+-- --------------------------> ID: 14 Doce Mô Doceria ---- INÍCIO
+
+insert into estabelecimento values(
+	14, -- id 
+	"Doceria Doce Mô", -- nome
+	'51.615.056/0001-91', -- cnpj
+	'jpg', -- fotoPrincipal   
+	'Elaboramos, criamos, projetamos e desenvolvemos nossos produtos de forma que nossos clientes sintam esse carinho em cada detalhe.', -- descricao
+	true, -- ativo
+	false, -- oculto
+	'Validado', -- statusValidacao
+	null, -- nota
+	0, -- numeroAvaliacoes INT,
+	'319', -- numeroEstabelecimento  VARCHAR(9) not null,
+	'R. Álvares de Azevedo', -- logradouro             VARCHAR(200) not null,
+	'Vila Hortência,', -- bairro                 VARCHAR(200) not null,
+	'Sorocaba', -- cidade                 VARCHAR(200) not null,
+	'SP', -- estado                 VARCHAR(200) not null,
+	'18020292', -- cep               VARCHAR(9) not null,
+	null, -- latitude
+	null, -- logitude
+	'2023-11-05', -- dataCadastro
+	'2023-11-30' -- dataUltimoAcesso
+);
+
+insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) values(
+    6, -- idUsuario
+	14, -- idEstabelecimento
+	'Simplesmente o melhor doce do mundo feito com muito amor, carinho e dedicação', -- descricao
+	'2023-11-10', -- data
+	5 -- nota
+);
+
+insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) values(
+    8, -- idUsuario
+	14, -- idEstabelecimento
+	'Melhor doceira da vida', -- descricao
+	'2023-11-09', -- data
+	4.5 -- nota
+);
+
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
+    14, -- idEstabelecimento INT NOT NULL,
+    15 -- idCategoria INT NOT NULL -- Doceria
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    14, -- idEstabelecimento INT NOT NULL,
+    15 -- idOpcional INT NOT NULL -- Retirada no local
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    14, -- idEstabelecimento INT NOT NULL,
+    16 -- idOpcional INT NOT NULL -- Encomenda pelo Whatsapp
+);
+
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
+	34,                   -- id
+	14,                -- idEstabelecimento
+    'Monica alves',           -- nome
+	'15971161518',           -- celular
+    '00415975085',       -- cpf
+    'monicaalves@yahoo.com.br', -- email
+    '123456',          -- senha
+	null,                -- fotoPerfil
+    '1979-03-09',        -- dataNascimento
+	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	null, -- numero not null
+	null, -- lodradouro not null,
+	null, -- bairro not null,
+	null, -- cidade not null,
+	null, -- estado not null,
+	null, -- cep not null,
+	null, -- latitude
+	null  -- logitude
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda-feira
+	14, -- idEstabelecimento INT not null,
+	8, -- idDiaSemana INT not null,
+	100000, -- horarioInicio TIME not null,
+	200000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda-feira
+	14, -- idEstabelecimento INT not null,
+	10, -- idDiaSemana INT not null,
+	100000, -- horarioInicio TIME not null,
+	200000  -- horarioFim TIME not null
+);
+
+insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWhatsapp) values(
+	14,              -- idEstabelecimento INT not null,
+	2,              -- idTipoContato INT not null, -- TELEFONE
+	'15998137705',  -- contato VARCHAR(200) not null
+	true           -- isWhatsapp BOOLEAN not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	12,          -- idEstabelecimento INT not null,
+	2,          -- idTipoRedeSocial  INT not null, -- intagram
+	'https://www.instagram.com/docemodoceria/' -- redeSocial VARCHAR(200) not null
+);
+
+insert into recomendacao values(
+	40, -- id
+	14, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Bolo Tema Monstros SA', -- nome VARCHAR(50) not null,
+	'Bolo de 2 meses da pequena Isis'-- descricao VARCHAR(50) not null
+);
+
+insert into recomendacao values(
+	41, -- id
+	14, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Opção de Lembrancinhas', -- nome VARCHAR(50) not null,
+	'Lembrancinha de Natal!'-- descricao VARCHAR(50) not null
+);
+
+insert into recomendacao values(
+	42, -- id
+	14, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Bolo de Ninho com morango', -- nome VARCHAR(50) not null,
+	'3,5kg Ninho c/morangos e trufado meio amargo, massa branca'-- descricao VARCHAR(50) not null
+);
+
+-- --------------------------> ID: 14 Doce Mô Doceria ---- FIM
+
 
 
 -- --------------------------> ID: 50 N&N Lanches ---- INÍCIO
