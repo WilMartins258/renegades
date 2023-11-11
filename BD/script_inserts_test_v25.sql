@@ -3089,7 +3089,7 @@ insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWh
 );
 
 insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
-	12,          -- idEstabelecimento INT not null,
+	14,          -- idEstabelecimento INT not null,
 	2,          -- idTipoRedeSocial  INT not null, -- intagram
 	'https://www.instagram.com/docemodoceria/' -- redeSocial VARCHAR(200) not null
 );
