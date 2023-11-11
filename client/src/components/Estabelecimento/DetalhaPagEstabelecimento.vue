@@ -38,8 +38,12 @@
       </div>
       <div class="info">
         <h2>Forma de Contato e Redes Sociais:</h2><br>
-        <p >Telefone: <br><i class="fa-solid fa-mobile-screen-button" style="color: #000000;"></i> {{ telefone }}</p>
-
+        <p> Telefone: <br><i class="fa-solid fa-phone" style="color: #000000;"></i> {{ aplicarMascara(telefone, 'Telefone') }}
+          <span v-if="isWhatsTelefone == 1" class="whatsapp-icon"><img src="../../../public/img/WhatsIcon.png" alt=""></span>
+        </p>
+        <p><i class="fa-solid fa-mobile-screen-button" style="color: #000000;"></i> {{ aplicarMascara(celular, 'Celular') }}
+          <span v-if="isWhatsCelular == 1" class="whatsapp-icon" ><img src="../../../public/img/WhatsIcon.png" alt=""></span>
+        </p>
         
         <br><p>Redes Sociais:</p>
         <p class="redes">
@@ -162,6 +166,7 @@
 <script>
 import api from './../../services/backend.service.js';
 import dataToDiaMesAno from './../../services/dataToDiaMesAno.service.js';
+
 // import openCageGeocodingApi from './../../services/openCageGeocoding.service.js'; 
 
 const formatarHorario = (horarioHhMmSs) => {
@@ -180,6 +185,7 @@ const formatarHorario = (horarioHhMmSs) => {
 
 export default {
     name: "DetalhaPagEstabelecimento",
+    
     data() {
         return {
             nota: 0, 
@@ -190,6 +196,9 @@ export default {
             descricao: "",
             opcional: "",
             telefone: "",
+            celular: "",
+            isWhatsTelefone: 0,
+            isWhatsCelular: 0,
             facebook: "",
             instagram: "",
             twitter: "",
@@ -235,7 +244,11 @@ export default {
 
         // Depois podemos ver uma forma mais bonita de apresentar os telefones do estabelecimento
         try {
-          this.telefone = `${dadosContatos[0]?.contato ? dadosContatos[0]?.contato : ''} ${dadosContatos[1]?.contato ? `/ ${dadosContatos[1]?.contato}` : ''}`
+          this.telefone = dadosContatos[0].contato 
+          this.celular =  dadosContatos[1].contato
+          this.isWhatsTelefone = dadosContatos[0].isWhatsapp
+          this.isWhatsCelular = dadosContatos[1].isWhatsapp
+          console.log("Contato", dadosContatos)
         } catch (error) {
           console.log('Erro ao carregar contato: ', error);
         }
@@ -371,6 +384,24 @@ export default {
             console.log('ERROR:: ', error);
           }
         },
+        aplicarMascara(numero, tipoContato) {
+          if (!numero) {
+            return ""; // Não aplique a máscara se o número estiver vazio
+          }
+
+          let numeroFormatado;
+
+          if (tipoContato === 'Telefone') {
+            numeroFormatado = numero.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
+          } else if (tipoContato === 'Celular') {
+            numeroFormatado = numero.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+          } else {
+            numeroFormatado = numero; // Se não for Telefone nem Celular, não aplique nenhuma máscara
+          }
+
+          return numeroFormatado;
+        },
+  
     },
     computed:{
       userType() {
