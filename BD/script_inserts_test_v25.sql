@@ -3207,7 +3207,7 @@ insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWh
 	50,              -- idEstabelecimento INT not null,
 	2,              -- idTipoContato INT not null, -- CELULAR
 	'15981222017',  -- contato VARCHAR(200) not null
-	false           -- isWhatsapp BOOLEAN not null
+	true           -- isWhatsapp BOOLEAN not null
 );
 
 insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
