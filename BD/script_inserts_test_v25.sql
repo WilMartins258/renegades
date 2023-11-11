@@ -765,7 +765,7 @@ insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) 
 
 insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWhatsapp) values(
 	1,              -- idEstabelecimento INT not null,
-	2,              -- idTipoContato INT not null, -- TELEFONE
+	1,              -- idTipoContato INT not null, -- TELEFONE
 	'1532349486',  -- contato VARCHAR(200) not null
 	false           -- isWhatsapp BOOLEAN not null
 );
