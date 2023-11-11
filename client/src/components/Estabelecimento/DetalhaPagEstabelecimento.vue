@@ -244,14 +244,20 @@ export default {
 
         // Depois podemos ver uma forma mais bonita de apresentar os telefones do estabelecimento
         try {
-          this.telefone = dadosContatos[0].contato 
-          this.celular =  dadosContatos[1].contato
-          this.isWhatsTelefone = dadosContatos[0].isWhatsapp
-          this.isWhatsCelular = dadosContatos[1].isWhatsapp
-          console.log("Contato", dadosContatos)
-        } catch (error) {
-          console.log('Erro ao carregar contato: ', error);
-        }
+        for (let i = 0; i < dadosContatos.length; i++) {
+          if (dadosContatos[i].idContato == 1) {
+            this.telefone = dadosContatos[i].contato
+            this.isWhatsTelefone = dadosContatos[i].isWhatsapp
+          } else {
+            this.celular = dadosContatos[i].contato
+            this.isWhatsCelular = dadosContatos[i].isWhatsapp
+          }
+          console.log('contato: ', dadosContatos);
+        };
+
+      } catch (error) {
+        console.log('Erro ao carregar contato: ', error);
+      }
 
         try {
           this.imagemEstabelecimento = require(`./images/${this.$route.params.id}.${formatoFoto}`);
