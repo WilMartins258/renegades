@@ -5,7 +5,7 @@
       <p>{{ categoria }}</p><br>
       <img :src="imagemEstabelecimento" alt="Imagem do Estabelecimento" class="imagem-estabelecimento"/>
       <div class="icons">
-        <span  class="star-icon" :class="{ selected: favorito }" @click="toggleFavorito"   >&#9733;</span>
+        <span  v-if="favoritoIsVisible" class="star-icon" :class="{ selected: favorito }" @click="toggleFavorito"   >&#9733;</span>
         <span class="whatsapp-icon" @click="compartilharEstabelecimento"><img src="../../../public/img/WhatsIcon.png" alt=""></span>
       </div>
     </header>
@@ -376,6 +376,10 @@ export default {
       userType() {
       return sessionStorage.getItem("tipoUsuario");
     },
+    favoritoIsVisible() {
+      const userType = sessionStorage.getItem("tipoUsuario");
+      return userType === '0' || userType === '1';
+    }
     }
 }
 
