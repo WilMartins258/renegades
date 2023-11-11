@@ -265,21 +265,14 @@ export default {
           switch (dadosRedesSociais[i].id) {
             case 1:
               this.facebook = dadosRedesSociais[i].redeSocial;
-              break;
             case 2:
               this.instagram = dadosRedesSociais[i].redeSocial;
-              break;
             case 3:
               this.twitter = dadosRedesSociais[i].redeSocial;
-              break;
             case 4:
               this.site = dadosRedesSociais[i].redeSocial;
-              break;
             case 5:
               this.cardapio = dadosRedesSociais[i].redeSocial;
-              break;
-            default:
-              break;
           }
         }
 
