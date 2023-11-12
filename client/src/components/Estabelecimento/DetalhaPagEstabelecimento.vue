@@ -243,7 +243,9 @@ export default {
           dadosRecomendacao,
           dadosAvaliacao,
           nota,
-          dadosContatos
+          dadosContatos,
+          latitude,
+          longitude
         } = dadosEstabelecimento.data;
 
         // Depois podemos ver uma forma mais bonita de apresentar os telefones do estabelecimento
@@ -256,7 +258,6 @@ export default {
             this.celular = dadosContatos[i].contato
             this.isWhatsCelular = dadosContatos[i].isWhatsapp
           }
-          console.log('contato: ', dadosContatos);
         };
 
       } catch (error) {
