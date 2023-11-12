@@ -81,21 +81,28 @@
     </button>
   </div>
 </div>
+
     <!-- Distância Filter -->
-    <div class="filter-container">
+  <div class="filter-container">
   <button @click="toggleFilter('distancia')">Distância</button>
   <div
     v-if="activeFilter === 'distancia'"
-    class="filter-submenu quadro-Opcionais"
-  >
-    <input
-      type="range"
-      v-model="filtroDistancia"
-      min="0"
-      max="10"
-      step="1"
-    />
-    
+    class="filter-submenu quadro-Opcionais">
+    <div class="search-container">
+  <input
+    type="text"
+    v-model="endereco"
+    input
+    placeholder="Digite o CEP"
+  />
+  <button @click="buscarCep"> <i class="uil uil-search search-icon"></i></button><br>
+
+</div>
+    <div class="endereco-validado-container">
+      <p v-if="enderecoValidado.length>0">Sua localização é: {{enderecoValidado}}</p>
+    </div>
+
+    <input type="range" v-model="filtroDistancia" min="0" max="10" step="1"/>
     <p>Distância: {{ filtroDistancia }} km</p>
     <br />
     <button @click="limparFiltroDistancia">Remover Filtro</button>
@@ -165,6 +172,7 @@ export default {
     categoriasSelecionadas: [], // controla o array de categorias selecionados
     cardsPorPagina: 10, // Quantidade de cards por página
     cardsExibidos: 10, // controla a quantidade de cards já exibidos
+    enderecoValidado:""
     };
   },
   computed: {
@@ -465,7 +473,38 @@ export default {
         console.log('Erro ao solicitar localização através do navegador: ', error);
         return false;
       }
+    },
+    buscarCep() {
+    // Valide o formato do CEP
+    const cepRegex = /^[0-9]{8}$/;
+
+    if (cepRegex.test(this.endereco)) {
+      // Faça uma requisição para o ViaCEP
+      const url = `https://viacep.com.br/ws/${this.endereco}/json/`;
+
+      axios
+        .get(url)
+        .then((response) => {
+          // Atualize os dados ou utilize as informações conforme necessário
+          const data = response.data;
+          console.log(data);
+          
+          sessionStorage.setItem('cep', this.endereco);
+          sessionStorage.setItem('endereço', data.logradouro);
+          this.enderecoValidado = `${data.logradouro}`;
+
+        })
+        .catch((error) => {
+          console.error("Erro ao buscar informações de CEP:", error);
+
+          // Exiba uma mensagem de erro para o usuário
+          alert("Erro ao buscar informações de CEP. Por favor, tente novamente.");
+        });
+    } else {
+      console.warn("Formato de CEP inválido");
     }
+  },
+
   },
 };
 </script>
@@ -637,6 +676,13 @@ export default {
 
 .search-container button:hover {
   background-color: #ff9800;
+}
+
+
+.endereco-validado-container {
+  width: 100%;
+  font-weight: bold;
+  font-size: 20px;
 }
 
 

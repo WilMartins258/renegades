@@ -922,14 +922,14 @@ insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) 
 
 insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWhatsapp) values(
 	2,              -- idEstabelecimento INT not null,
-	2,              -- idTipoContato INT not null, -- TELEFONE
+	1,              -- idTipoContato INT not null, -- TELEFONE
 	'1532177126',  -- contato VARCHAR(200) not null
 	false           -- isWhatsapp BOOLEAN not null
 );
 
 insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWhatsapp) values(
 	2,              -- idEstabelecimento INT not null,
-	2,              -- idTipoContato INT not null, -- TELEFONE
+	1,              -- idTipoContato INT not null, -- TELEFONE
 	'1532339301',  -- contato VARCHAR(200) not null
 	false           -- isWhatsapp BOOLEAN not null
 );
@@ -3769,7 +3769,7 @@ insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWh
 	50,              -- idEstabelecimento INT not null,
 	2,              -- idTipoContato INT not null, -- CELULAR
 	'15981222017',  -- contato VARCHAR(200) not null
-	false           -- isWhatsapp BOOLEAN not null
+	true           -- isWhatsapp BOOLEAN not null
 );
 
 insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(

@@ -50,7 +50,7 @@
             <p class="description">{{ cupom.descricao }}</p><br>
             <p class="icon"> <i class="	fas fa-calendar-alt"></i>Promoção Ativa: de {{ cupom.dataInicio }} a {{ cupom.dataFim }}</p><br>
             <p><i class="fas fa-map-marker-alt"></i> {{ cupom.endereco }}</p>
-            <router-link :to="'/paginaestabelecimento/' + cupom.idEstabelecimento">
+            <router-link :to="'/paginaestabelecimento/' + cupom.idEstabelecimento" @click="scrollToTop">
               <button class="page">Acessar a Página</button>
             </router-link>
             <div class="cut-line"></div>
@@ -148,7 +148,18 @@ import dataFormat from './../../services/dataToDiaMesAno.service';
                   return nomeValido && categoriasValidas;
               });
           },
+          scrollToTop() {
+            // Adiciona a classe de transição
+            document.documentElement.classList.add('scroll-up');
 
+            // Rola para o topo
+            window.scrollTo(0, 0);
+
+            // Remove a classe de transição após a rolagem
+            setTimeout(() => {
+              document.documentElement.classList.remove('scroll-up');
+            }, 500); // 500 milissegundos, deve corresponder à duração da transição no CSS
+          },
         },
         computed: {
           cuponsFiltrados() {
@@ -364,6 +375,5 @@ import dataFormat from './../../services/dataToDiaMesAno.service';
             top: -20px;
             right: -15px;
         }
-
 
 </style>

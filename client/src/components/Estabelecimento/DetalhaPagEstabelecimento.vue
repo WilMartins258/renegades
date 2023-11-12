@@ -3,11 +3,14 @@
     <header>
       <h1 class="gradient">{{ nomeDoEstabelecimento }}</h1><br>
       <p>{{ categoria }}</p><br>
-      <img :src="imagemEstabelecimento" alt="Imagem do Estabelecimento" class="imagem-estabelecimento"/>
       <div class="icons">
         <span  v-if="favoritoIsVisible" class="star-icon" :class="{ selected: favorito }" @click="toggleFavorito"   >&#9733;</span>
         <span class="whatsapp-icon" @click="compartilharEstabelecimento"><img src="../../../public/img/WhatsIcon.png" alt=""></span>
       </div>
+      <div class="container-estabelecimento">
+        <img :src="imagemEstabelecimento" alt="Imagem do Estabelecimento" class="image-estabelecimento"/>
+      </div>
+
     </header>
 
     <section class="description">
@@ -40,10 +43,10 @@
         <h2>Forma de Contato e Redes Sociais:</h2><br>
         <p>Telefone:</p>
         <p v-show="telefone.length > 0 "><i class="fa-solid fa-phone" style="color: #000000;"></i> {{ aplicarMascara(telefone, 'Telefone') }}
-          <span v-if="isWhatsTelefone == 1" class="whatsapp-icon"><img src="../../../public/img/WhatsIcon.png" alt=""></span>
+          <span v-if="isWhatsTelefone == 1" class="whatsapp-iconContato"><img src="../../../public/img/WhatsIcon.png" alt=""></span>
         </p>
         <p v-show="celular.length > 0 "><i class="fa-solid fa-mobile-screen-button" style="color: #000000;"></i> {{ aplicarMascara(celular, 'Celular') }}
-          <span v-if="isWhatsCelular == 1" class="whatsapp-icon" ><img src="../../../public/img/WhatsIcon.png" alt=""></span>
+          <span v-if="isWhatsCelular == 1" class="whatsapp-iconContato" ><img src="../../../public/img/WhatsIcon.png" alt=""></span>
         </p>
         
         <br><p>Redes Sociais:</p>
@@ -438,13 +441,25 @@ header {
     border-radius: 25px 25px 0px 0px;
 }
 
-.imagem-estabelecimento {
-  width: 600px;
+.container-estabelecimento {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center; /* Adicione esta linha para centralizar horizontalmente */
+  gap: 20px;
+  margin-top: 50px;
+  width: 700px;
   height: 500px;
-  object-fit: cover; 
-  border-radius: 15px; 
-}
+  margin: 0 auto;
+  }
+    
 
+    .image-estabelecimento {
+      width: 700px;
+      height: 90%; 
+      border-radius: 16px;
+    }
 
 .gradient {
   background-image: linear-gradient(to bottom, #df8600, #db3240, #ff0015);
@@ -622,6 +637,11 @@ a i:hover {
     cursor: pointer;
     width: 26px;
     height: 26px;
+}
+
+.whatsapp-iconContato img{
+  width: 26px;
+  height: 26px;
 }
 
 .star-icon.selected  {
