@@ -484,4 +484,22 @@ router.get('/semLocalizacao', async (req, res) => {
     }
 });
 
+router.get('/checarLatitude', async (req, res) => {
+    try {
+        console.log('/checarLatitude');
+
+        const estabelecimentosSemLatitude = await estabelecimento_Service.verificarLatitudesNulas();
+
+        console.log('/estabelecimentosSemLatitude:: ', estabelecimentosSemLatitude);
+        
+        res.status(200).send();
+    } catch (error) {
+        res.status(500).send({
+            errorMsg: 'Erro ao buscar checar estabelecimentos sem latitude.',
+            msg: error.message,
+            error: error
+        }); 
+    }
+});
+
 module.exports = router;
