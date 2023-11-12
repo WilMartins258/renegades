@@ -2567,7 +2567,7 @@ insert into recomendacao values(
 insert into estabelecimento values(
 	12, -- id 
 	"New York Bar 41", -- nome
-	'20.093.230/0001-50', -- cnpj
+	'20093230000150', -- cnpj
 	'png', -- fotoPrincipal   
 	'Cervejas, drinques e porções em bar com temática de Nova York, ambiente descontraído e bandas ao vivo.', -- descricao
 	true, -- ativo
@@ -2818,7 +2818,7 @@ insert into recomendacao values(
 insert into estabelecimento values(
 	13, -- id 
 	"Turaça Pastelaria", -- nome
-	'41.575.185/0001-40', -- cnpj
+	'41575185000140', -- cnpj
 	'jpg', -- fotoPrincipal   
 	'Turaça Pastelaria, Pasteis doces e Salgados', -- descricao
 	true, -- ativo
@@ -2995,7 +2995,7 @@ insert into recomendacao values(
 insert into estabelecimento values(
 	14, -- id 
 	"Doceria Doce Mô", -- nome
-	'51.615.056/0001-91', -- cnpj
+	'51615056000191', -- cnpj
 	'jpg', -- fotoPrincipal   
 	'Elaboramos, criamos, projetamos e desenvolvemos nossos produtos de forma que nossos clientes sintam esse carinho em cada detalhe.', -- descricao
 	true, -- ativo
@@ -3120,6 +3120,568 @@ insert into recomendacao values(
 
 -- --------------------------> ID: 14 Doce Mô Doceria ---- FIM
 
+
+-- --------------------------> ID: 15 Oggi Sorvetes ---- INÍCIO
+
+insert into estabelecimento values(
+	15, -- id 
+	"Oggi Sorvetes", -- nome
+	'01621399000190', -- cnpj
+	'jpg', -- fotoPrincipal   
+	'Se fala "Oggi" porque Sorvete é bom Hoje ', -- descricao
+	true, -- ativo
+	false, -- oculto
+	'Validado', -- statusValidacao
+	null, -- nota
+	0, -- numeroAvaliacoes INT,
+	'879', -- numeroEstabelecimento  VARCHAR(9) not null,
+	'R. Pedro José Senger', -- logradouro             VARCHAR(200) not null,
+	'Vila Haro', -- bairro                 VARCHAR(200) not null,
+	'Sorocaba', -- cidade                 VARCHAR(200) not null,
+	'SP', -- estado                 VARCHAR(200) not null,
+	'18015000', -- cep               VARCHAR(9) not null,
+	null, -- latitude
+	null, -- logitude
+	'2023-10-05', -- dataCadastro
+	'2023-10-30' -- dataUltimoAcesso
+);
+
+INSERT INTO promocao (idEstabelecimento, nome, descricao, codigo, status, dataInicio, dataFim) VALUES (
+	15, -- idEstabelecimento
+	'10% de desconto em produtos selecionados', -- nome
+	'Apresentar este cupom na hora do pagamento e terá 10% de desconto em produtos selecionados pela loja.', -- descricao
+	'OGGI10', -- codigo
+	'Ativa', -- ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa'
+	'2023-09-09', -- dataInicio
+	'2023-10-30' -- dataFim
+);
+
+INSERT INTO promocao (idEstabelecimento, nome, descricao, codigo, status, dataInicio, dataFim) VALUES (
+	15, -- idEstabelecimento
+	'10% de desconto em produtos selecionados', -- nome
+	'Apresentar este cupom na hora do pagamento e terá 10% de desconto em produtos selecionados pela loja.', -- descricao
+	'OGGI10', -- codigo
+	'Ativa', -- ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa'
+	'2023-10-19', -- dataInicio
+	'2023-12-15' -- dataFim
+);
+
+insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) values(
+    7, -- idUsuario
+	15, -- idEstabelecimento
+	'Excelente Sorveteria com diversas opções.', -- descricao
+	'2023-11-12', -- data
+	5 -- nota
+);
+
+insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) values(
+    11, -- idUsuario
+	15, -- idEstabelecimento
+	'Gostamos muito dos sorvetes da OGGI. as opções diet são excelentes', -- descricao
+	'2023-11-09', -- data
+	4 -- nota
+);
+
+insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) values(
+    18, -- idUsuario
+	15, -- idEstabelecimento
+	'Ótimo atendimento com grande variedades e qualidade aprovada recomendo.', -- descricao
+	'2023-11-02', -- data
+	4 -- nota
+);
+
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
+    15, -- idEstabelecimento INT NOT NULL,
+    7 -- idCategoria INT NOT NULL -- Sorveteria
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    15, -- idEstabelecimento INT NOT NULL,
+    1 -- idOpcional INT NOT NULL -- Faz entrega
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    15, -- idEstabelecimento INT NOT NULL,
+    15 -- idOpcional INT NOT NULL -- Retirada no local
+);
+    
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
+	35,                   -- id
+	15,                -- idEstabelecimento
+    'Rodrigo Mauad',           -- nome
+	'15971161518',           -- celular
+    '12485869802',       -- cpf
+    'Mauad22@hotmail.com', -- email
+    '123456',          -- senha
+	null,                -- fotoPerfil
+    '2000-09-24',        -- dataNascimento
+	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	null, -- numero not null
+	null, -- lodradouro not null,
+	null, -- bairro not null,
+	null, -- cidade not null,
+	null, -- estado not null,
+	null, -- cep not null,
+	null, -- latitude
+	null  -- logitude
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Final de Semana
+	15, -- idEstabelecimento INT not null,
+	8, -- idDiaSemana INT not null,
+	110000, -- horarioInicio TIME not null,
+	190000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda-feira
+	15, -- idEstabelecimento INT not null,
+	7, -- idDiaSemana INT not null,
+	100000, -- horarioInicio TIME not null,
+	190000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda-feira
+	15, -- idEstabelecimento INT not null,
+	1, -- idDiaSemana INT not null,
+	100000, -- horarioInicio TIME not null,
+	170000  -- horarioFim TIME not null
+);
+
+insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWhatsapp) values(
+	15,              -- idEstabelecimento INT not null,
+	1,              -- idTipoContato INT not null, -- TELEFONE
+	'1533186909',  -- contato VARCHAR(200) not null
+	false           -- isWhatsapp BOOLEAN not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	15,          -- idEstabelecimento INT not null,
+	2,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.instagram.com/oggisorvetes_sorocaba/' -- redeSocial VARCHAR(200) not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	15,          -- idEstabelecimento INT not null,
+	4,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://oggisorvetes.com.br/' -- redeSocial VARCHAR(200) not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	15,          -- idEstabelecimento INT not null,
+	5,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.ifood.com.br/delivery/sorocaba-sp/oggi-sorvetes---vila-haro-vila-haro/a33ecf85-7fda-4b81-bf3b-2eb9f010d654?UTM_Medium=share' -- redeSocial VARCHAR(200) not null
+);
+
+insert into recomendacao values(
+	43, -- id
+	15, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Bombom no Palito ou Brigadeiro', -- nome VARCHAR(50) not null,
+	'Clássicos sorvetes de Palito, uma delícia!!!'-- descricao VARCHAR(50) not null
+);
+
+insert into recomendacao values(
+	44, -- id
+	15, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Duetto', -- nome VARCHAR(50) not null,
+	'Variedade de Opções como chocolate com trufa, doce de leite, frutas vermelhas, leite trufado entre outros.'-- descricao VARCHAR(50) not null
+);
+
+insert into recomendacao values(
+	45, -- id
+	15, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Top Sundae', -- nome VARCHAR(50) not null,
+	'Delicioso Sundae de doce de leite, morango ou chocolate'-- descricao VARCHAR(50) not null
+);
+
+-- --------------------------> ID: 15 Oggi Sorvetes ---- FIM
+
+
+
+-- --------------------------> ID: 16 Perequê Açaí ---- INÍCIO
+
+
+insert into estabelecimento values(
+	16, -- id 
+	"Perequê Açaí", -- nome
+	'33546002000130', -- cnpj
+	'jpg', -- fotoPrincipal   
+	'Entregando saúde e equilíbrio', -- descricao
+	true, -- ativo
+	false, -- oculto
+	'Validado', -- statusValidacao
+	null, -- nota
+	0, -- numeroAvaliacoes INT,
+	'1070', -- numeroEstabelecimento  VARCHAR(9) not null,
+	'R. João Valentino Joel', -- logradouro             VARCHAR(200) not null,
+	'Jardim Prestes de Barros', -- bairro                 VARCHAR(200) not null,
+	'Sorocaba', -- cidade                 VARCHAR(200) not null,
+	'SP', -- estado                 VARCHAR(200) not null,
+	'18020286', -- cep               VARCHAR(9) not null,
+	null, -- latitude
+	null, -- logitude
+	'2023-10-05', -- dataCadastro
+	'2023-10-30' -- dataUltimoAcesso
+);
+
+insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) values(
+    6, -- idUsuario
+	16, -- idEstabelecimento
+	'Com certeza é o melhor Açaí de Sorocaba e região. Ótimos preços também.', -- descricao
+	'2023-11-11', -- data
+	5 -- nota
+);
+
+insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) values(
+    9, -- idUsuario
+	16, -- idEstabelecimento
+	'Local tranquilo com um atendimento muito bom. Ótimo para um bate papo saboreando excelentes tipos de mistura de açaí com seus complementos.', -- descricao
+	'2023-11-02', -- data
+	5 -- nota
+);
+
+insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) values(
+    16, -- idUsuario
+	16, -- idEstabelecimento
+	'Excelente açaí, produtos de qualidade, frutas frescas, nutella de verdade, embalagens adequadas, entrega rápida, atendentes educados e atenciosos, ambiente limpo e muito agradável, preço justo. Melhor açaí.', -- descricao
+	'2023-10-22', -- data
+	5 -- nota
+);
+
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
+    16, -- idEstabelecimento INT NOT NULL,
+    8 -- idCategoria INT NOT NULL -- Acaiteria
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    16, -- idEstabelecimento INT NOT NULL,
+    1 -- idOpcional INT NOT NULL -- faz entrega
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    16, -- idEstabelecimento INT NOT NULL,
+    14 -- idOpcional INT NOT NULL -- refeição no local
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    16, -- idEstabelecimento INT NOT NULL,
+    15 -- idOpcional INT NOT NULL -- retirada no local
+);
+
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
+	36,                   -- id
+	16,                -- idEstabelecimento
+    'Kauan Ribeiro Turini', -- nome
+	'15971161518',           -- celular
+    '00415975085',       -- cpf
+    'Kauan_Turini@hotmail.com', -- email
+    '123456',          -- senha
+	null,                -- fotoPerfil
+    '1982-06-15',        -- dataNascimento
+	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	null, -- numero not null
+	null, -- lodradouro not null,
+	null, -- bairro not null,
+	null, -- cidade not null,
+	null, -- estado not null,
+	null, -- cep not null,
+	null, -- latitude
+	null  -- logitude
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda-feira
+	16, -- idEstabelecimento INT not null,
+	8, -- idDiaSemana INT not null,
+	134500, -- horarioInicio TIME not null,
+	211500  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda-feira
+	16, -- idEstabelecimento INT not null,
+	10, -- idDiaSemana INT not null,
+	134500, -- horarioInicio TIME not null,
+	211500  -- horarioFim TIME not null
+);
+
+insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWhatsapp) values(
+	16,              -- idEstabelecimento INT not null,
+	2,              -- idTipoContato INT not null, -- TELEFONE
+	'15991560903',  -- contato VARCHAR(200) not null
+	False           -- isWhatsapp BOOLEAN not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	16,          -- idEstabelecimento INT not null,
+	1,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.facebook.com/perequeacai/?locale=pt_BR' -- redeSocial VARCHAR(200) not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	16,          -- idEstabelecimento INT not null,
+	2,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.instagram.com/perequeacai/' -- redeSocial VARCHAR(200) not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	16,          -- idEstabelecimento INT not null,
+	5,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://shop.beetech.com.br/perequeacai/' -- redeSocial VARCHAR(200) not null
+);
+
+insert into recomendacao values(
+	46, -- id
+	16, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Acaí + Nutella', -- nome VARCHAR(50) not null,
+	'Combinação perfeita de Acaí com Nutella, venham aproveitar!!!'-- descricao VARCHAR(50) not null
+);
+
+insert into recomendacao values(
+	47, -- id
+	16, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Acaí + Salada de Frutas', -- nome VARCHAR(50) not null,
+	'Delicioso Acaí acompanhado com salada de frutas, Entregando saúde e equilíbrio em um só lugar!!'-- descricao VARCHAR(50) not null
+);
+
+-- --------------------------> ID: 16 Perequê Açaí ---- FIM
+
+
+
+
+-- --------------------------> ID: 17 Krep Brazil ---- INÍCIO
+
+
+insert into estabelecimento values(
+	17, -- id 
+	"Krep Brazil", -- nome
+	'26760549000178', -- cnpj
+	'png', -- fotoPrincipal   
+	'Um amor fora do normal! O lugar perfeito para você reunir os amigos! Vem pra KREP!', -- descricao
+	true, -- ativo
+	false, -- oculto
+	'Validado', -- statusValidacao
+	null, -- nota
+	0, -- numeroAvaliacoes INT,
+	'1217', -- numeroEstabelecimento  VARCHAR(9) not null,
+	'Av. Pereira da Silva', -- logradouro             VARCHAR(200) not null,
+	'Jardim Santa Rosália', -- bairro                 VARCHAR(200) not null,
+	'Sorocaba', -- cidade                 VARCHAR(200) not null,
+	'SP', -- estado                 VARCHAR(200) not null,
+	'18095340', -- cep               VARCHAR(9) not null,
+	null, -- latitude
+	null, -- logitude
+	'2023-09-15', -- dataCadastro
+	'2023-11-20' -- dataUltimoAcesso
+);
+
+INSERT INTO promocao (idEstabelecimento, nome, descricao, codigo, status, dataInicio, dataFim) VALUES (
+	17, -- idEstabelecimento
+	'Leve 4 e Pague 3', -- nome
+	'Apresentando este cupom na compra de 3 Kreps a 4ª unidade é por nossa conta', -- descricao
+	'KREPBRAZIL', -- codigo
+	'Ativa', -- ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa'
+	'2023-09-09', -- dataInicio
+	'2023-10-30' -- dataFim
+);
+
+INSERT INTO promocao (idEstabelecimento, nome, descricao, codigo, status, dataInicio, dataFim) VALUES (
+	17, -- idEstabelecimento
+	'Leve 4 e Pague 3', -- nome
+	'Apresentando este cupom na compra de 3 Kreps a 4ª unidade é por nossa conta', -- descricao
+	'KREPBRAZIL', -- codigo
+	'Ativa', -- ENUM('Ativa', 'Inativa', 'Vencida') DEFAULT 'Ativa'
+	'2023-10-19', -- dataInicio
+	'2023-12-15' -- dataFim
+);
+
+insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) values(
+    7, -- idUsuario
+	17, -- idEstabelecimento
+	'Me surpreendeu demais!!! Diversas opções e sabores, tamanho excelente, embalagem impecável e ótimo atendimento!!!', -- descricao
+	'2023-11-12', -- data
+	4 -- nota
+);
+
+insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) values(
+    10, -- idUsuario
+	17, -- idEstabelecimento
+	'Ótima sugestão pra uma refeição rápida e gostosa! Os crepes são os mais gostosos que já experimentei. Crocantes e recheados na medida! Na maioria das vezes o atendimento é rápido.', -- descricao
+	'2023-10-31', -- data
+	5 -- nota
+);
+
+insert into avaliacao (idUsuario, idEstabelecimento, descricao, data, nota) values(
+    19, -- idUsuario
+	17, -- idEstabelecimento
+	'Excelente qualidade e experiência! Sabores variados e deliciosos. A “krosta” é um diferencial - crocante e maravilhosa!', -- descricao
+	'2023-10-22', -- data
+	5 -- nota
+);
+
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
+    17, -- idEstabelecimento INT NOT NULL,
+    14 -- idCategoria INT NOT NULL -- Creperia
+);
+
+insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
+    17, -- idEstabelecimento INT NOT NULL,
+    17 -- idCategoria INT NOT NULL -- Sucaria
+);
+
+insert into comida_estabelecimento (idEstabelecimento, idComida) values(
+    13, -- idEstabelecimento INT NOT NULL,
+    6   -- idComida INT NOT NULL -- Francesa
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    17, -- idEstabelecimento INT NOT NULL,
+    1 -- idOpcional INT NOT NULL -- faz entrega
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    17, -- idEstabelecimento INT NOT NULL,
+    14 -- idOpcional INT NOT NULL -- refeição no local
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    17, -- idEstabelecimento INT NOT NULL,
+    15 -- idOpcional INT NOT NULL -- retirada no local
+);
+
+insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
+    17, -- idEstabelecimento INT NOT NULL,
+    16 -- idOpcional INT NOT NULL -- Encomenda pelo whatsapp
+);
+
+insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
+	37,                   -- id
+	17,                -- idEstabelecimento
+    'Adriano Marins de Oliveira', -- nome
+	'15971161518',           -- celular
+    '00415975085',       -- cpf
+    'Adriano.Martins@hotmail.com', -- email
+    '123456',          -- senha
+	null,                -- fotoPerfil
+    '1988-10-18',        -- dataNascimento
+	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	null, -- numero not null
+	null, -- lodradouro not null,
+	null, -- bairro not null,
+	null, -- cidade not null,
+	null, -- estado not null,
+	null, -- cep not null,
+	null, -- latitude
+	null  -- logitude
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda-feira
+	17, -- idEstabelecimento INT not null,
+	2, -- idDiaSemana INT not null,
+	173000, -- horarioInicio TIME not null,
+	230000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda-feira
+	17, -- idEstabelecimento INT not null,
+	3, -- idDiaSemana INT not null,
+	113000, -- horarioInicio TIME not null,
+	230000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda-feira
+	17, -- idEstabelecimento INT not null,
+	4, -- idDiaSemana INT not null,
+	113000, -- horarioInicio TIME not null,
+	230000  -- horarioFim TIME not null
+);
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda-feira
+	17, -- idEstabelecimento INT not null,
+	5, -- idDiaSemana INT not null,
+	113000, -- horarioInicio TIME not null,
+	230000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda-feira
+	17, -- idEstabelecimento INT not null,
+	6, -- idDiaSemana INT not null,
+	113000, -- horarioInicio TIME not null,
+	233000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda-feira
+	17, -- idEstabelecimento INT not null,
+	7, -- idDiaSemana INT not null,
+	113000, -- horarioInicio TIME not null,
+	233000  -- horarioFim TIME not null
+);
+
+insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda-feira
+	17, -- idEstabelecimento INT not null,
+	1, -- idDiaSemana INT not null,
+	173000, -- horarioInicio TIME not null,
+	230000  -- horarioFim TIME not null
+);
+
+insert into contato_estabelecimento (idEstabelecimento, idContato, contato, isWhatsapp) values(
+	17,              -- idEstabelecimento INT not null,
+	1,              -- idTipoContato INT not null, -- TELEFONE
+	'1534186601',  -- contato VARCHAR(200) not null
+	true           -- isWhatsapp BOOLEAN not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	17,          -- idEstabelecimento INT not null,
+	1,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.facebook.com/krepbrazil/' -- redeSocial VARCHAR(200) not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	17,          -- idEstabelecimento INT not null,
+	2,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.instagram.com/krepbrazil/' -- redeSocial VARCHAR(200) not null
+);
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	17,          -- idEstabelecimento INT not null,
+	4,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.krep.com.br/' -- redeSocial VARCHAR(200) not null
+);
+
+
+insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
+	17,          -- idEstabelecimento INT not null,
+	5,          -- idTipoRedeSocial  INT not null, -- SITE
+	'https://www.krep.com.br/menu' -- redeSocial VARCHAR(200) not null
+);
+
+insert into recomendacao values(
+	48, -- id
+	17, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'KREP de Peito de Peru', -- nome VARCHAR(50) not null,
+	'Nosso crepe de peito de peru com toques de cream cheese e alho-poró é pura magia de sabor! '-- descricao VARCHAR(50) not null
+);
+
+insert into recomendacao values(
+	49, -- id
+	17, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'Você já experimentou nosso krepe sazonal doce?', -- nome VARCHAR(50) not null,
+	'Um delicioso marshmallow maçaricado, muitooo chocolate e morango fresquinho.'-- descricao VARCHAR(50) not null
+);
+
+insert into recomendacao values(
+	50, -- id
+	17, -- idEstabelecimento INT not null,
+	'jpg', -- foto LONGBLOB not null,
+	'BBKREP', -- nome VARCHAR(50) not null,
+	'Massa de cacau e mel, copa lombo desfiada, molho barbecue, onion rings e maionese da casa, tudo junto e misturado'-- descricao VARCHAR(50) not null
+);
+
+-- --------------------------> ID: 17 KREP Brazil ---- FIM
 
 
 -- --------------------------> ID: 50 N&N Lanches ---- INÍCIO
