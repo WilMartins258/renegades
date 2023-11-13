@@ -2,6 +2,28 @@ const router = require('express').Router();
 const estabelecimento_Service = require('./../services/estabelecimento.service.js');
 const distancia_Service = require('../services/utils/distancia.service.js');
 
+router.get('/cep', async (req, res) => {
+    try {
+        const { cep } = req.query;
+        const estabelecimentos = await estabelecimento_Service.filtros();
+  
+        let distancias = [];
+        try {
+            distancias = await distancia_Service.obterDistanciaDeTodosEstabelecimentos(null, cep,estabelecimentos);
+        } catch (error) {
+            console.log('Erro ao lidar com a distância dos estabelecimentos: ', error);
+        }
+  
+        res.status(200).send({distancias});
+    } catch (error) {
+        console.log('Erro distâncias dos estabelecimentos por meio do cep: ', error);
+        res.status(500).send({
+            errorMsg: 'Erro ao buscar distâncias dos estabelecimentos',
+            msg: error.message,
+            error: error
+        }); 
+    }
+});
 
 router.get('/', async (req, res) => {
   try {
