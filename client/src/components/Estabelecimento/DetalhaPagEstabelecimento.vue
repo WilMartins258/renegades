@@ -164,6 +164,7 @@
 <script>
 import api from './../../services/backend.service.js';
 import dataToDiaMesAno from './../../services/dataToDiaMesAno.service.js';
+const variaveisGlobais = require('./../../../variaveis.js');
 
 // import openCageGeocodingApi from './../../services/openCageGeocoding.service.js'; 
 
@@ -243,7 +244,7 @@ export default {
         } = dadosEstabelecimento.data;
 
         // Depois podemos ver uma forma mais bonita de apresentar os telefones do estabelecimento
-        try {
+      try {
         for (let i = 0; i < dadosContatos.length; i++) {
           if (dadosContatos[i].idContato == 1) {
             this.telefone = dadosContatos[i].contato
@@ -419,7 +420,7 @@ export default {
           return numeroFormatado;
         },
         createMap(latitude, longitude) {
-          const apiKey = 'Colocar aqui a Chave Google';
+          const apiKey = variaveisGlobais.googleApiKey();
 
           // Cria o URL dinâmico para o mapa do Google
           const mapUrl = `https://www.google.com/maps/embed/v1/place?key=${apiKey}&maptype=roadmap&q=${latitude},${longitude}`;
