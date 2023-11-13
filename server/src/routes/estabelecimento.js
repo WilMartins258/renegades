@@ -423,9 +423,30 @@ router.put('/', async (req, res) => {
             listahorarios,
             listahorariosOld,
             idEstabelecimento
-        }= req.body.novosDadosEstabelecimento
+        } = req.body.novosDadosEstabelecimento;
 
-        console.log('idEstabelecimento:: ', idEstabelecimento)
+        const compararListas = (original, editado) => {
+            const opcoesRemovidas = original.filter(opcao => !editado.includes(opcao));
+            const opcoesNovas = editado.filter(opcao => !original.includes(opcao));
+        
+            return {
+                opcoesRemovidas,
+                opcoesNovas
+            };
+        };
+
+        // console.log('idEstabelecimento:: ', idEstabelecimento)
+        // console.log('categoriaSelecionadasOld:: ', categoriaSelecionadasOld)
+        // console.log('categoriasSelecionadas:: ', categoriasSelecionadas)
+
+        const categoriasEstabelecimento = categoriasSelecionadas.map(categoria => categoria.id);
+        const categoriasEstabelecimentoOld = categoriaSelecionadasOld.map(categoria => categoria.id);
+
+        const resultadoCategorias = compararListas(categoriasEstabelecimentoOld, categoriasEstabelecimento);
+        
+        // console.log("Opções removidas:", resultadoCategorias.opcoesRemovidas);
+        // console.log("Opções novas:", resultadoCategorias.opcoesNovas);
+        
 
         await connection.commit();
         res.status(200).send({
