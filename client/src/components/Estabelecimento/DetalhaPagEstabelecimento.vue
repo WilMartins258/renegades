@@ -324,22 +324,18 @@ export default {
         } catch (error) {
           console.log('Erro ao verificar se o estabelecimento é favorito do usuário:: ', error);
         }
-        
-      } catch (error) {
-        console.log('ERROR:: ', error);
-      }
 
-      try {
-
-          const latitude = -23.483156515377846; // Substitua pelo caminho banco de dados
-          const longitude = -47.448209149867765; // Substitua pelo caminho banco de dados
-   
-          // Crie um mapa usando as coordenadas obtidas
+        try {
+          // const latitude = -23.483156515377846; // Deixadas para testes
+          // const longitude = -47.448209149867765; // Deixadas para testes
           this.createMap(latitude, longitude);
         } catch (error) {
           console.log('ERROR:: ', error);
         }
-
+        
+      } catch (error) {
+        console.log('ERROR:: ', error);
+      }
     },
     methods: {
           showMoreFields() {
