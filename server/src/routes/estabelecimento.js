@@ -409,12 +409,19 @@ router.put('/', async (req, res) => {
             recomendacao,
             estabelecimentoPhoto,
             categoriasSelecionadas,
+            categoriaSelecionadasOld,
             tiposDeComidaSelecionados,
+            tiposDeComidaSelecionadosOld,
             opcoesSelecionadas,
+            opcoesSelecionadasOld,
             estilosSelecionadas,
-            redesSociaisSelecionadas,
-            contatosSelecionados,
-            horariosSelecionados,
+            estilosSelecionadasOld,
+            listaRedesSociais,
+            listaRedesSociaisOld,
+            listaContatos,
+            listaContatosOld,
+            listahorarios,
+            listahorariosOld,
             idEstabelecimento
         }= req.body.novosDadosEstabelecimento
 
