@@ -1127,8 +1127,8 @@ insert into estabelecimento values(
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18013280', -- cep               VARCHAR(9) not null,
-	null, -- latitude
-	null, -- logitude
+	-23.47780059900939, -- latitude
+	-47.42148872937924, -- logitude
 	'2023-11-05', -- dataCadastro
 	'2023-11-30' -- dataUltimoAcesso
 );
