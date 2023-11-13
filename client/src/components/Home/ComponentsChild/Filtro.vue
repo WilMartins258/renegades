@@ -141,7 +141,9 @@
             />
             <h3>{{ estabelecimento.nome }}</h3>
             <p class="description">{{ estabelecimento.categoria?.join(', ') }}</p>
+            <span class="distance">{{ estabelecimento.distancia }} km</span>
           </div>
+          
         </a>
       </div>
       <!-- Botão "Exibir Mais" -->
@@ -594,7 +596,20 @@ export default {
       color: #fff;
       box-shadow: 4px 4px 4px #e91e2f, 4px 4px 4px ;
       margin-right: 25px;
-    }
+      position: relative; /* Adicione essa linha para posicionar o elemento filho */
+}
+
+.distance {
+  position: absolute;
+  top: 10px; /* Ajuste conforme necessário para a posição desejada */
+  right: 10px; /* Ajuste conforme necessário para a posição desejada */
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 5px;
+  border-radius: 10px;
+}
     
     .card:hover {
       box-shadow: 0 0 5px #aaa;
