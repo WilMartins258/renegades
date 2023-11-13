@@ -307,6 +307,8 @@ data() {
     descricaoEstabelecimento: "",
     cnpj: "",
     cep: "",
+    latitude: "",
+    longitude: "",
     endereco: {
       rua: "",
       bairro: "",
@@ -425,6 +427,10 @@ methods: {
     }
   },
   avancarSection() {
+    if (this.currentSection == 1) {
+      console.log('1111111111111')
+
+    }
     if (this.currentSection < 6) {
       this.currentSection++;
       this.calculaAltura(); // Calcule a altura
