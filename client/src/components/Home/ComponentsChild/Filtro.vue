@@ -142,7 +142,7 @@
             <h3>{{ estabelecimento.nome }}</h3>
             <p class="description">{{ estabelecimento.categoria?.join(', ') }}</p>
             <!--<span class="distance">{{ (estabelecimento.distancia)?.toFixed(2) }} km</span>-->
-            <span v-if="estabelecimento.distancia?.length > 0" class="distance">{{ estabelecimento.distancia }} km</span>
+            <span v-if="showDistance" class="distance">{{ estabelecimento.distancia }} km</span>
           </div>
           
         </a>
@@ -176,7 +176,8 @@ export default {
     categoriasSelecionadas: [], // controla o array de categorias selecionados
     cardsPorPagina: 10, // Quantidade de cards por página
     cardsExibidos: 10, // controla a quantidade de cards já exibidos
-    enderecoValidado:""
+    enderecoValidado:"",
+    showDistance: false
     };
   },
   computed: {
@@ -285,6 +286,7 @@ export default {
         for (let i=0; i < distancias?.data?.distancias?.length; i++) {
           this.estabelecimentos[i].distancia = distancias.data.distancias[i].distancia;
         }
+        this.showDistance = true;
       } catch (error) {
         console.log('Erro ao buscar distâncias: ', error);
       }
