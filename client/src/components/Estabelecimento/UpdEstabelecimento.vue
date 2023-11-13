@@ -1291,6 +1291,9 @@ computed: {
   padding: 15px 20px;
   border-radius: 25px;
   background: rgba(221, 214, 214, 0.911);
+  color: #000;
+  font-weight: bold;
+  font-size: 16px;
 }
 #form-wrap .group .button[disabled] {
 background-color: #7a7a7a6c;
@@ -1534,6 +1537,8 @@ padding: 8px 10px;
 border-radius: 25px;
 background: rgba(211, 201, 201, 0.774);
 width: 100%;
+font-weight: bold;
+font-size: 16px;
 }
 
 /* Ajuste a margem para o select e os campos de entrada */
@@ -1554,6 +1559,8 @@ background-color: rgba(255, 255, 255, 0.418);
 .table-container {
 max-height: 300px; /* Adjust the height as needed */
 overflow: auto;
+font-weight: bold;
+font-size: 16px;
 }
 
 h1 {
@@ -1571,6 +1578,8 @@ input,
 button {
 margin-right: 10px;
 display: inline-block;
+font-weight: bold;
+font-size: 16px;
 }
 
 table {
@@ -1621,6 +1630,7 @@ background: gray;
 input#numeroContato {
 width: 50%; /* Preencher todo o espaço disponível no contêiner */
 box-sizing: border-box; /* Incluir borda e preenchimento no tamanho total */
+
 }
 
 input {
@@ -1629,6 +1639,7 @@ padding: 8px 15px;
 border-radius: 25px;
 background: rgba(211, 201, 201, 0.774);
 color: #000;
+
 }
 
 .error input {
