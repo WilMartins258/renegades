@@ -4,8 +4,8 @@ const inserir = async (dadosEstabelecimento, conn) => {
   try {
     const estabelecimentoQuery = `
         INSERT INTO estabelecimento (nome, cnpj, fotoPrincipal, descricao, 
-        cep, estado, cidade, logradouro, bairro, numeroEstabelecimento, dataCadastro, dataUltimoAcesso) 
-        VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );`;
+        cep, estado, cidade, logradouro, bairro, numeroEstabelecimento, latitude, longitude, dataCadastro, dataUltimoAcesso) 
+        VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );`;
 
     const [insercaoEstabelecimento] = await conn.query(estabelecimentoQuery, dadosEstabelecimento);
 

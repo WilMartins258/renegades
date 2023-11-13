@@ -242,7 +242,9 @@ router.post('/', async (req, res) => {
             rdSocialSelecionadas,
             horariosSelecionados,
             tiposDeComidaSelecionados,
-            contatosSelecionados
+            contatosSelecionados,
+            latitude,
+            longitude
         } = req.body;
 
         const removerCaracteresEspeciais = (str) => {
@@ -267,6 +269,8 @@ router.post('/', async (req, res) => {
             logradouro: endereco.rua,
             bairro: endereco.bairro,
             numero: numero,
+            latitude: latitude,
+            longitude: longitude,
             dataCadastro: dataDeHoje,
             dataUltimoAcesso: dataDeHoje
         }
