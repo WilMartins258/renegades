@@ -106,8 +106,8 @@ CREATE TABLE estabelecimento (
 	cidade                 VARCHAR(200) not null,
 	estado                 VARCHAR(200) not null,
 	cep                    VARCHAR(9) not null,
-	latitude               FLOAT,
-	longitude              FLOAT,
+	latitude               DECIMAL(17, 13), -- FLOAT,
+	longitude              DECIMAL(17, 13), -- FLOAT,
 	dataCadastro           DATE not null,
 	dataUltimoAcesso       DATE not null
 ) AUTO_INCREMENT = 1;
