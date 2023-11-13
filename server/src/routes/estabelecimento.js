@@ -249,14 +249,17 @@ router.post('/', async (req, res) => {
 
         const removerCaracteresEspeciais = (str) => {
             const resultado = str.replace(/[\/\.\-]/g, '');
-            return resultado;
+            return resultado ? resultado : '';
         };
 
         const bufferImagemEstabelecimento = await buffer_Service.transformarBufferEmValido(estabelecimentoPhoto);
         const cnpjTratado = removerCaracteresEspeciais(cnpj);
         const dataDeHoje = new Date().toISOString().substring(0, 10);
 
-        const extensaoImagem = extensaoImagem_Service.encontrarExtensaoImagem(estabelecimentoPhotoType);
+        let extensaoImagem = '';
+        if (estabelecimentoPhotoType) {
+            extensaoImagem = extensaoImagem_Service.encontrarExtensaoImagem(estabelecimentoPhotoType);
+        }
 
         const dadosEstabelecimento = {
             nome: nomeEstabelecimento,
