@@ -147,7 +147,9 @@ const atualizarStatus = async (dadosEstabelecimento) => {
 const verificarLatitudesNulas = async () => {
   try {
       const connection = await db;
-      await connection.execute('CALL VerificarLatitudeNula()');
+      const estabelecimentosSemLatitude = await connection.execute('CALL VerificarLatitudeNula()');
+      console.log('estabelecimentosSemLatitude:: ', estabelecimentosSemLatitude)
+      return 'nelson'
   } catch (error) {
       throw new Error(`Erro ao verificar estabelecimentos com latitude nula: ${error.message}`);
   }
