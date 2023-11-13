@@ -1287,7 +1287,7 @@ insert into estabelecimento values(
 	'SP-270', -- bairro                 VARCHAR(200) not null,
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
-	'18052775', -- cep               VARCHAR(9) not null,
+	'18052481', -- cep               VARCHAR(9) not null,
 	null, -- latitude
 	null, -- logitude
 	'2023-11-05', -- dataCadastro
