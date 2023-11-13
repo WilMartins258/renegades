@@ -286,6 +286,7 @@ import api from "./../../services/backend.service.js";
 import { retornaCodigoBase64 } from "./../../services/conversorDeImagem.service.js";
 import InfoPopupEstab from "./ComponentsChild/InfoPopupEstab.vue";
 import ComponentMessage from './../Message.vue';
+const variaveisGlobais = require('./../../../variaveis.js');
 
 export default {
 components: {
@@ -426,11 +427,20 @@ methods: {
       this.mostrarmensagemError(error.response.data.msg);
     }
   },
-  avancarSection() {
-    if (this.currentSection == 1) {
-      console.log('1111111111111')
+    async avancarSection() {
+      if (this.currentSection == 1) {
+        if (this.cep) {
+          try {
+            const googleGeocodeApi = `https://maps.googleapis.com/maps/api/geocode/json?address=${this.numero ? this.numero : ''},${this.cep}&key=${variaveisGlobais.googleApiKey()}`;
+            const geolocalizacaoRequest = await axios.get(googleGeocodeApi);
 
-    }
+            this.latitude = geolocalizacaoRequest?.data?.results[0]?.geometry?.location?.lat;
+            this.longitude = geolocalizacaoRequest?.data?.results[0]?.geometry?.location?.lng;
+          } catch (error) {
+            console.log('Erro: ', error);
+          }
+        }
+      }
     if (this.currentSection < 6) {
       this.currentSection++;
       this.calculaAltura(); // Calcule a altura
