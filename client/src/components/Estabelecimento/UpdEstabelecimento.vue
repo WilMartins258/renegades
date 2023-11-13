@@ -501,6 +501,7 @@ data() {
       estabelecimentoPhoto: null,
       estabelecimentoPhotoType: "",
       fotoEstabelecimentoMudou: false,
+      fotoRecomendacaoMudou: false,
       fotoEstabelecimento: "https://abravidro.org.br/wp-content/uploads/2015/04/sem-imagem10.jpg",
       HorariosSelecionados: [],
       tiposDeComidaSelecionados: [],
