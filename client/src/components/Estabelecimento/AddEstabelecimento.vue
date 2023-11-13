@@ -406,7 +406,9 @@ methods: {
         estilosSelecionadas: this.estilosSelecionadas,
         rdSocialSelecionadas: this.RdSocialSelecionadas,
         contatosSelecionados: this.ContatosSelecionadas,
-        horariosSelecionados: this.HorariosSelecionados
+        horariosSelecionados: this.HorariosSelecionados,
+        latitude: this.latitude,
+        longitude: this.longitude
       };
 
       console.log('formData:: ', formData);
