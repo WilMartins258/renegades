@@ -213,37 +213,37 @@ export default {
             numToShow: 0, // Número inicial de avaliações para mostrar
         };
     },
-    async created() {
-      try {
-        this.id = this.$route.params.id;
-        
-        const dadosEstabelecimento = await api.get(`/estabelecimento/${this.$route.params.id}`);
-        // Removendo objetos com dados de dentro do retorno do backend
-        const {
-          dadosRedesSociais,
-          dadosHorarios,
-          nome,
-          descricao,
-          dadosCategoriaArray,
-          logradouro,
-          numeroEstabelecimento,
-          bairro,
-          cep,
-          cidade,
-          estado,
-          dadosOpcionaisArray,
-          tocaMusica,
-          dadosMusicaArray,
-          formatoFoto,
-          dadosRecomendacao,
-          dadosAvaliacao,
-          nota,
-          dadosContatos,
-          latitude,
-          longitude
-        } = dadosEstabelecimento.data;
+  async created() {
+    try {
+      this.id = this.$route.params.id;
 
-        // Depois podemos ver uma forma mais bonita de apresentar os telefones do estabelecimento
+      const dadosEstabelecimento = await api.get(`/estabelecimento/${this.$route.params.id}`);
+      // Removendo objetos com dados de dentro do retorno do backend
+      const {
+        dadosRedesSociais,
+        dadosHorarios,
+        nome,
+        descricao,
+        dadosCategoriaArray,
+        logradouro,
+        numeroEstabelecimento,
+        bairro,
+        cep,
+        cidade,
+        estado,
+        dadosOpcionaisArray,
+        tocaMusica,
+        dadosMusicaArray,
+        formatoFoto,
+        dadosRecomendacao,
+        dadosAvaliacao,
+        nota,
+        dadosContatos,
+        latitude,
+        longitude
+      } = dadosEstabelecimento.data;
+
+      // Depois podemos ver uma forma mais bonita de apresentar os telefones do estabelecimento
       try {
         for (let i = 0; i < dadosContatos.length; i++) {
           if (dadosContatos[i].idContato == 1) {
@@ -259,84 +259,84 @@ export default {
         console.log('Erro ao carregar contato: ', error);
       }
 
-        try {
-          this.imagemEstabelecimento = require(`./images/${this.$route.params.id}.${formatoFoto}`);
-        } catch (error) {
-          console.log('Erro ao exibir imagem do estabelecimento');
-        }
-        
-        try {
-          for (let i=0; i < dadosRecomendacao.length; i++) {
-            dadosRecomendacao[i].imagem = require(`./../../images/recomendacao/${dadosRecomendacao[i].id}.${dadosRecomendacao[i].formatoFoto}`);
-          };
-        } catch (error) {
-          console.log('Erro ao exibir recomendações do estabelecimento');
-        }
+      try {
+        this.imagemEstabelecimento = require(`./images/${this.$route.params.id}.${formatoFoto}`);
+      } catch (error) {
+        console.log('Erro ao exibir imagem do estabelecimento');
+      }
 
-        this.pratosChef = dadosRecomendacao;
-        this.nomeDoEstabelecimento = nome;
-        this.descricao = descricao;
-        this.categoria = dadosCategoriaArray.join(' - ');
-        this.endereco = `${logradouro}, ${numeroEstabelecimento} - ${bairro}. CEP: ${cep}. ${cidade} - ${estado}`;
-        this.opcional = dadosOpcionaisArray.join(', ');
-
-        for (let i=0; i < dadosRedesSociais.length; i++) {
-          if (dadosRedesSociais[i].id == 1) {
-            this.facebook = dadosRedesSociais[i].redeSocial;
-          } else if (dadosRedesSociais[i].id == 2) {
-              this.instagram = dadosRedesSociais[i].redeSocial;
-          } else if (dadosRedesSociais[i].id == 3) {
-              this.twitter = dadosRedesSociais[i].redeSocial;
-          } else if (dadosRedesSociais[i].id == 4) {
-              this.site = dadosRedesSociais[i].redeSocial;
-          } else if (dadosRedesSociais[i].id == 5) {
-              this.cardapio = dadosRedesSociais[i].redeSocial;
-          }
-        }
-
-        let todosHorarios = '';
-        for (let i=0; i < dadosHorarios.length; ++i) {
-          todosHorarios +=`<p>${dadosHorarios[i].diaSemana}: ${formatarHorario(dadosHorarios[i].horarioInicio)}h - ${formatarHorario(dadosHorarios[i].horarioFim)}h</p>`;
+      try {
+        for (let i = 0; i < dadosRecomendacao.length; i++) {
+          dadosRecomendacao[i].imagem = require(`./../../images/recomendacao/${dadosRecomendacao[i].id}.${dadosRecomendacao[i].formatoFoto}`);
         };
+      } catch (error) {
+        console.log('Erro ao exibir recomendações do estabelecimento');
+      }
 
-        this.horarios = todosHorarios;
-        this.tocaMusica = tocaMusica;
-        this.musica = dadosMusicaArray.join(', ');
+      this.pratosChef = dadosRecomendacao;
+      this.nomeDoEstabelecimento = nome;
+      this.descricao = descricao;
+      this.categoria = dadosCategoriaArray.join(' - ');
+      this.endereco = `${logradouro}, ${numeroEstabelecimento} - ${bairro}. CEP: ${cep}. ${cidade} - ${estado}`;
+      this.opcional = dadosOpcionaisArray.join(', ');
 
-        for (let i = 0; i < dadosAvaliacao.length; i++) {
-          dadosAvaliacao[i].data = dataToDiaMesAno(dadosAvaliacao[i].data);
+      for (let i = 0; i < dadosRedesSociais.length; i++) {
+        if (dadosRedesSociais[i].id == 1) {
+          this.facebook = dadosRedesSociais[i].redeSocial;
+        } else if (dadosRedesSociais[i].id == 2) {
+          this.instagram = dadosRedesSociais[i].redeSocial;
+        } else if (dadosRedesSociais[i].id == 3) {
+          this.twitter = dadosRedesSociais[i].redeSocial;
+        } else if (dadosRedesSociais[i].id == 4) {
+          this.site = dadosRedesSociais[i].redeSocial;
+        } else if (dadosRedesSociais[i].id == 5) {
+          this.cardapio = dadosRedesSociais[i].redeSocial;
         }
+      }
 
-        this.avaliacao = dadosAvaliacao;
-        this.mediaNt = nota;
-        this.visibleAvaliacao = this.avaliacao.slice(0, this.numToShow); // exibe as 4 primeiras avaliações
+      let todosHorarios = '';
+      for (let i = 0; i < dadosHorarios.length; ++i) {
+        todosHorarios += `<p>${dadosHorarios[i].diaSemana}: ${formatarHorario(dadosHorarios[i].horarioInicio)}h - ${formatarHorario(dadosHorarios[i].horarioFim)}h</p>`;
+      };
 
-        // Verifica se o estabelecimento é favorito do usuário logado
-        try {
-          if (sessionStorage.getItem('idUsuario')) {
-            const verificaFavorito = await api.get(`/favorito/${sessionStorage.getItem('idUsuario')}`);
-            for (let i = 0; i < verificaFavorito.data.length; i++) {
-              if (verificaFavorito.data[i].idEstabelecimento == this.$route.params.id) {
-                this.favorito = true;
-              }
+      this.horarios = todosHorarios;
+      this.tocaMusica = tocaMusica;
+      this.musica = dadosMusicaArray.join(', ');
+
+      for (let i = 0; i < dadosAvaliacao.length; i++) {
+        dadosAvaliacao[i].data = dataToDiaMesAno(dadosAvaliacao[i].data);
+      }
+
+      this.avaliacao = dadosAvaliacao;
+      this.mediaNt = nota;
+      this.visibleAvaliacao = this.avaliacao.slice(0, this.numToShow); // exibe as 4 primeiras avaliações
+
+      // Verifica se o estabelecimento é favorito do usuário logado
+      try {
+        if (sessionStorage.getItem('idUsuario')) {
+          const verificaFavorito = await api.get(`/favorito/${sessionStorage.getItem('idUsuario')}`);
+          for (let i = 0; i < verificaFavorito.data.length; i++) {
+            if (verificaFavorito.data[i].idEstabelecimento == this.$route.params.id) {
+              this.favorito = true;
             }
           }
-        } catch (error) {
-          console.log('Erro ao verificar se o estabelecimento é favorito do usuário:: ', error);
         }
+      } catch (error) {
+        console.log('Erro ao verificar se o estabelecimento é favorito do usuário:: ', error);
+      }
 
-        try {
-          // const latitude = -23.483156515377846; // Deixadas para testes
-          // const longitude = -47.448209149867765; // Deixadas para testes
-          this.createMap(latitude, longitude);
-        } catch (error) {
-          console.log('ERROR:: ', error);
-        }
-        
+      try {
+        // const latitude = -23.483156515377846; // Deixadas para testes
+        // const longitude = -47.448209149867765; // Deixadas para testes
+        this.createMap(latitude, longitude);
       } catch (error) {
         console.log('ERROR:: ', error);
       }
-    },
+
+    } catch (error) {
+      console.log('ERROR:: ', error);
+    }
+  },
     methods: {
           showMoreFields() {
             // exibe mais 4 campos
