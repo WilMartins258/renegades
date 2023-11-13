@@ -501,43 +501,51 @@ data() {
       estabelecimentoPhoto: null,
       estabelecimentoPhotoType: "",
       fotoEstabelecimentoMudou: false,
+      fotoRecomendacaoMudou: false,
       fotoEstabelecimento: "https://abravidro.org.br/wp-content/uploads/2015/04/sem-imagem10.jpg",
       HorariosSelecionados: [],
       tiposDeComidaSelecionados: [],
       editar: false,
       categoriaSelecionadas: [], //DashCategoria
+      categoriaSelecionadasOld: [], //DashCategoria
       categoria: [],//DashCategoria
       opcoesSelecionadas: [],//DashOpcionais
+      opcoesSelecionadasOld: [],//DashOpcionais
       opcoes: [],//DashOpcionais
       estilosSelecionadas: [],//DashEstilosMusicais
+      estilosSelecionadasOld: [],//DashEstilosMusicais
       estilos: [],//DashEstilosMusicais
       tiposDeComidaSelecionados: [],//DashTiposComida
+      tiposDeComidaSelecionadosOld: [],//DashTiposComida
       tiposDeComida: [],//DashTiposComida
       tipoContato: "Telefone", //DashContato
       numeroContato: "",//DashContato
       campoVazio: false,//DashContato
       isEditingContato: false,//DashContato
       listaContatos: [],//DashContato
+      listaContatosOld: [],//DashContato
       editingIndex: -1,//DashContato
       isWhatsapp: false,//DashContato
-      redeSocial: "1",//DashRedeSocial
-      value: this.redeSocial,//DashRedeSocial
-      perfil: "",//DashRedeSocial
-      campoVazioRdSocial: false,//DashRedeSocial
-      isEditingRdSocial: false,//DashRedeSocial
-      listaRedesSociais: [],//DashRedeSocial
-      editingIndexRdSocial: -1,//DashRedeSocial
-      redesSociaisIncluidas: new Set(),//DashRedeSocial
-      redeSocialJaIncluida: false,//DashRedeSocial
-      diaSelecionado: "2",//DashHorarioAttendimento
-      diaSemana: [null, "Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Segunda a Sexta", "terça a Sexta", "Sábado a Domingo"],//DashHorarioAttendimento
-      horariosPorDia: {},//DashHorarioAttendimento
-      horaInicio: "",//DashHorarioAttendimento
-      horaTermino: "",//DashHorarioAttendimento
-      listahorarios: [], //DashHorarioAttendimento
-      editingIndexHorario: -1,//DashHorarioAttendimento
-      isEditingHorario: false,//DashHorarioAttendimento
-      timeFieldsError: false,//DashHorarioAttendimento
+      redeSocial: "1",
+      value: this.redeSocial,
+      perfil: "",
+      campoVazioRdSocial: false,
+      isEditingRdSocial: false,
+      listaRedesSociais: [],
+      listaRedesSociaisOld: [],
+      editingIndexRdSocial: -1,
+      redesSociaisIncluidas: new Set(),
+      redeSocialJaIncluida: false,
+      diaSelecionado: "2",
+      diaSemana: [null, "Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Segunda a Sexta", "terça a Sexta", "Sábado a Domingo"],
+      horariosPorDia: {},
+      horaInicio: "",
+      horaTermino: "",
+      listahorarios: [], 
+      listahorariosOld: [], 
+      editingIndexHorario: -1,
+      isEditingHorario: false,
+      timeFieldsError: false,
   }
 },
 methods: {
@@ -964,6 +972,7 @@ methods: {
           // Exiba a miniatura da imagem
           const imageURL = URL.createObjectURL(file);
           this.recomendacao[index].photo = { imageURL }; // Adicione a miniatura
+          this.fotoRecomendacaoMudou = true;
 
           // Limpe o input de arquivo para permitir a seleção de outra imagem
           inputImagem.value = "";
@@ -997,7 +1006,8 @@ methods: {
 
               this.estabelecimentoPhoto = bufferValido;
               this.estabelecimentoPhotoType = image.type;
-              this.fotoEstabelecimento = await retornaCodigoBase64(image);;
+              this.fotoEstabelecimento = await retornaCodigoBase64(image);
+              this.fotoEstabelecimentoMudou = true;
           } catch (error) {
               console.error('Erro ao converter a imagem para ArrayBuffer:', error);
           }
@@ -1070,12 +1080,19 @@ async salvar() {
       recomendacao: this.recomendacao, // OK EXCETO IMAGENS
       estabelecimentoPhoto: this.estabelecimentoPhoto, // OK
       categoriasSelecionadas: this.categoriaSelecionadas, // OK
+      categoriaSelecionadasOld: this.categoriaSelecionadasOld,
       tiposDeComidaSelecionados: this.tiposDeComidaSelecionados, // OK
+      tiposDeComidaSelecionadosOld: this.tiposDeComidaSelecionadosOld,
       opcoesSelecionadas: this.opcoesSelecionadas, // OK
+      opcoesSelecionadasOld: this.opcoesSelecionadasOld,
       estilosSelecionadas: this.estilosSelecionadas, // OK
-      redesSociaisSelecionadas: this.listaRedesSociais, // CORRIGIR EDITAR
-      contatosSelecionados: this.listaContatos,
-      horariosSelecionados: this.listahorarios, // NÃO CHECA WHATSAPP
+      estilosSelecionadasOld: this.estilosSelecionadasOld,
+      listaRedesSociais: this.listaRedesSociais, // CORRIGIR EDITAR
+      listaRedesSociaisOld: this.listaRedesSociaisOld,
+      listaContatos: this.listaContatos,
+      listaContatosOld: this.listaContatosOld,
+      listahorarios: this.listahorarios, // NÃO CHECA WHATSAPP
+      listahorariosOld: this.listahorariosOld,
       idEstabelecimento: sessionStorage.getItem('idEstabelecimento')
     };
     console.log('this.recomendacao:: ', this.recomendacao)
@@ -1190,12 +1207,25 @@ computed: {
       }
 
       this.opcoesSelecionadas = opcionaisEstabelecimento;
+      this.opcoesSelecionadasOld = opcionaisEstabelecimento;
+
       this.categoriaSelecionadas = categoriasEstabelecimento;
+      this.categoriaSelecionadasOld = categoriasEstabelecimento;
+
       this.tiposDeComidaSelecionados = comidasEstabelecimento;
+      this.tiposDeComidaSelecionadosOld = comidasEstabelecimento;
+
       this.estilosSelecionadas = musicasEstabelecimento;
+      this.estilosSelecionadasOld = musicasEstabelecimento;
+      
       this.listaRedesSociais = redeSociaisEstabelecimento;
+      this.listaRedesSociaisOld = redeSociaisEstabelecimento;
+
       this.listahorarios = horariosEstabelecimento;
+      this.listahorariosOld = horariosEstabelecimento;
+
       this.listaContatos = contatosEstabelecimento;
+      this.listaContatosOld = contatosEstabelecimento;
     } catch (error) {
       console.log('Erro ao buscar dados da página:: ', error);
     }

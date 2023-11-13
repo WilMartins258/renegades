@@ -394,10 +394,10 @@ router.post('/', async (req, res) => {
 });
 
 router.put('/', async (req, res) => {
+    console.log('PUT estabelecimento')
     let connection;
     try {
         connection = await transaction;
-        console.log('PUT estabelecimento')
         // console.log('reqBody:: ', req.body)
         const {
             nomeEstabelecimento,
@@ -409,12 +409,19 @@ router.put('/', async (req, res) => {
             recomendacao,
             estabelecimentoPhoto,
             categoriasSelecionadas,
+            categoriaSelecionadasOld,
             tiposDeComidaSelecionados,
+            tiposDeComidaSelecionadosOld,
             opcoesSelecionadas,
+            opcoesSelecionadasOld,
             estilosSelecionadas,
-            redesSociaisSelecionadas,
-            contatosSelecionados,
-            horariosSelecionados,
+            estilosSelecionadasOld,
+            listaRedesSociais,
+            listaRedesSociaisOld,
+            listaContatos,
+            listaContatosOld,
+            listahorarios,
+            listahorariosOld,
             idEstabelecimento
         }= req.body.novosDadosEstabelecimento
 
@@ -429,7 +436,7 @@ router.put('/', async (req, res) => {
         if (connection) {
             try {
                 await connection.rollback();
-                console.error('POST/estabelecimento: rollback()');
+                console.error('PUT/estabelecimento: rollback()');
             } catch (rollbackError) {
                 console.error('Erro ao fazer rollback da transação:', rollbackError);
             }
