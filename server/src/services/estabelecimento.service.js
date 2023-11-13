@@ -144,17 +144,6 @@ const atualizarStatus = async (dadosEstabelecimento) => {
   }
 };
 
-const verificarLatitudesNulas = async () => {
-  try {
-      const connection = await db;
-      const estabelecimentosSemLatitude = await connection.execute('CALL VerificarLatitudeNula()');
-      console.log('estabelecimentosSemLatitude:: ', estabelecimentosSemLatitude)
-      return 'nelson'
-  } catch (error) {
-      throw new Error(`Erro ao verificar estabelecimentos com latitude nula: ${error.message}`);
-  }
-};
-
 module.exports = {
   inserir,
   atualizar,
@@ -163,6 +152,5 @@ module.exports = {
   filtros,
   pegarParaValidacao,
   pegarNotaEstabelecimentoPorId,
-  atualizarStatus,
-  verificarLatitudesNulas
+  atualizarStatus
 };
