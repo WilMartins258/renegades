@@ -940,6 +940,7 @@ methods: {
     },
 
     async AddFoto(event, index) {
+      console.log('AddFoto')
     try {
       const inputImagem = document.getElementById(`fotoIndic${index + 1}`);
       const image = inputImagem?.files[0];
@@ -998,7 +999,8 @@ methods: {
 
               this.estabelecimentoPhoto = bufferValido;
               this.estabelecimentoPhotoType = image.type;
-              this.fotoEstabelecimento = await retornaCodigoBase64(image);;
+              this.fotoEstabelecimento = await retornaCodigoBase64(image);
+              this.fotoEstabelecimentoMudou = true;
           } catch (error) {
               console.error('Erro ao converter a imagem para ArrayBuffer:', error);
           }
