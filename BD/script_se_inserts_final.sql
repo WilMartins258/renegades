@@ -3810,7 +3810,7 @@ insert into estabelecimento values(
 	'Jardim Los Angeles', -- bairro                 VARCHAR(200) not null,
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
-	'18076005', -- cep               VARCHAR(9) not null,
+	'18076-141', -- cep  -- ANTIGO CEP:: 18076005
 	null, -- latitude
 	null, -- logitude
 	'2023-11-08', -- dataCadastro
@@ -3971,7 +3971,7 @@ insert into estabelecimento values(
 	'Jd. Maria Antônia Prado', -- bairro                 VARCHAR(200) not null,
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
-	'18078970', -- cep               VARCHAR(9) not null,
+	'18076-141', -- cep  ANTIGO CEP::: 18078970
 	null, -- latitude
 	null, -- logitude
 	'2023-11-09', -- dataCadastro
