@@ -25,24 +25,6 @@ const opcional_Service = require('../services/opcional.service.js');
 const comida_Service = require('../services/comida.service.js');
 const estiloMusica_Service = require('../services/estiloMusica.service.js');
 
-router.get('/checarLatitude', async (req, res) => {
-    try {
-        console.log('/checarLatitude');
-
-        const estabelecimentosSemLatitude = await estabelecimento_Service.verificarLatitudesNulas();
-
-        console.log('/estabelecimentosSemLatitude:: ', estabelecimentosSemLatitude);
-        
-        res.status(200).send('deu carto');
-    } catch (error) {
-        res.status(500).send({
-            errorMsg: 'Erro ao buscar checar estabelecimentos sem latitude.',
-            msg: error.message,
-            error: error
-        }); 
-    }
-});
-
 router.get('/validacao', async (req, res) => {
     try {
         const estabelecimentos = await estabelecimento_Service.pegarParaValidacao();
