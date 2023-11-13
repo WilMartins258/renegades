@@ -507,18 +507,23 @@ data() {
       tiposDeComidaSelecionados: [],
       editar: false,
       categoriaSelecionadas: [], //DashCategoria
+      categoriaSelecionadasOld: [], //DashCategoria
       categoria: [],//DashCategoria
       opcoesSelecionadas: [],//DashOpcionais
+      opcoesSelecionadasOld: [],//DashOpcionais
       opcoes: [],//DashOpcionais
       estilosSelecionadas: [],//DashEstilosMusicais
+      estilosSelecionadasOld: [],//DashEstilosMusicais
       estilos: [],//DashEstilosMusicais
       tiposDeComidaSelecionados: [],//DashTiposComida
+      tiposDeComidaSelecionadosOld: [],//DashTiposComida
       tiposDeComida: [],//DashTiposComida
       tipoContato: "Telefone", //DashContato
       numeroContato: "",//DashContato
       campoVazio: false,//DashContato
       isEditingContato: false,//DashContato
       listaContatos: [],//DashContato
+      listaContatosOld: [],//DashContato
       editingIndex: -1,//DashContato
       isWhatsapp: false,//DashContato
       redeSocial: "1",//DashRedeSocial
@@ -527,6 +532,7 @@ data() {
       campoVazioRdSocial: false,//DashRedeSocial
       isEditingRdSocial: false,//DashRedeSocial
       listaRedesSociais: [],//DashRedeSocial
+      listaRedesSociaisOld: [],//DashRedeSocial
       editingIndexRdSocial: -1,//DashRedeSocial
       redesSociaisIncluidas: new Set(),//DashRedeSocial
       redeSocialJaIncluida: false,//DashRedeSocial
@@ -536,6 +542,7 @@ data() {
       horaInicio: "",//DashHorarioAttendimento
       horaTermino: "",//DashHorarioAttendimento
       listahorarios: [], //DashHorarioAttendimento
+      listahorariosOld: [], //DashHorarioAttendimento
       editingIndexHorario: -1,//DashHorarioAttendimento
       isEditingHorario: false,//DashHorarioAttendimento
       timeFieldsError: false,//DashHorarioAttendimento
@@ -1193,12 +1200,25 @@ computed: {
       }
 
       this.opcoesSelecionadas = opcionaisEstabelecimento;
+      this.opcoesSelecionadasOld = opcionaisEstabelecimento;
+
       this.categoriaSelecionadas = categoriasEstabelecimento;
+      this.categoriaSelecionadasOld = categoriasEstabelecimento;
+
       this.tiposDeComidaSelecionados = comidasEstabelecimento;
+      this.tiposDeComidaSelecionadosOld = comidasEstabelecimento;
+
       this.estilosSelecionadas = musicasEstabelecimento;
+      this.estilosSelecionadasOld = musicasEstabelecimento;
+      
       this.listaRedesSociais = redeSociaisEstabelecimento;
+      this.listaRedesSociaisOld = redeSociaisEstabelecimento;
+
       this.listahorarios = horariosEstabelecimento;
+      this.listahorariosOld = horariosEstabelecimento;
+
       this.listaContatos = contatosEstabelecimento;
+      this.listaContatosOld = contatosEstabelecimento;
     } catch (error) {
       console.log('Erro ao buscar dados da página:: ', error);
     }
