@@ -526,26 +526,26 @@ data() {
       listaContatosOld: [],//DashContato
       editingIndex: -1,//DashContato
       isWhatsapp: false,//DashContato
-      redeSocial: "1",//DashRedeSocial
-      value: this.redeSocial,//DashRedeSocial
-      perfil: "",//DashRedeSocial
-      campoVazioRdSocial: false,//DashRedeSocial
-      isEditingRdSocial: false,//DashRedeSocial
-      listaRedesSociais: [],//DashRedeSocial
-      listaRedesSociaisOld: [],//DashRedeSocial
-      editingIndexRdSocial: -1,//DashRedeSocial
-      redesSociaisIncluidas: new Set(),//DashRedeSocial
-      redeSocialJaIncluida: false,//DashRedeSocial
-      diaSelecionado: "2",//DashHorarioAttendimento
-      diaSemana: [null, "Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Segunda a Sexta", "terça a Sexta", "Sábado a Domingo"],//DashHorarioAttendimento
-      horariosPorDia: {},//DashHorarioAttendimento
-      horaInicio: "",//DashHorarioAttendimento
-      horaTermino: "",//DashHorarioAttendimento
-      listahorarios: [], //DashHorarioAttendimento
-      listahorariosOld: [], //DashHorarioAttendimento
-      editingIndexHorario: -1,//DashHorarioAttendimento
-      isEditingHorario: false,//DashHorarioAttendimento
-      timeFieldsError: false,//DashHorarioAttendimento
+      redeSocial: "1",
+      value: this.redeSocial,
+      perfil: "",
+      campoVazioRdSocial: false,
+      isEditingRdSocial: false,
+      listaRedesSociais: [],
+      listaRedesSociaisOld: [],
+      editingIndexRdSocial: -1,
+      redesSociaisIncluidas: new Set(),
+      redeSocialJaIncluida: false,
+      diaSelecionado: "2",
+      diaSemana: [null, "Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Segunda a Sexta", "terça a Sexta", "Sábado a Domingo"],
+      horariosPorDia: {},
+      horaInicio: "",
+      horaTermino: "",
+      listahorarios: [], 
+      listahorariosOld: [], 
+      editingIndexHorario: -1,
+      isEditingHorario: false,
+      timeFieldsError: false,
   }
 },
 methods: {
