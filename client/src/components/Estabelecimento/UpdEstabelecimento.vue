@@ -940,7 +940,6 @@ methods: {
     },
 
     async AddFoto(event, index) {
-      console.log('AddFoto')
     try {
       const inputImagem = document.getElementById(`fotoIndic${index + 1}`);
       const image = inputImagem?.files[0];
@@ -966,6 +965,7 @@ methods: {
           // Exiba a miniatura da imagem
           const imageURL = URL.createObjectURL(file);
           this.recomendacao[index].photo = { imageURL }; // Adicione a miniatura
+          this.fotoRecomendacaoMudou = true;
 
           // Limpe o input de arquivo para permitir a seleção de outra imagem
           inputImagem.value = "";
