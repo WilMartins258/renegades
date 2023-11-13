@@ -96,14 +96,8 @@
 
       <div class="endereco">
         <!-- Replace with actual map integration -->
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.349676015265!2dSUA-LONGITUDE!3dSUA-LATITUDE!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zSsKwMTcnMzcuNSJTIDQwwrAyMSc1LjciRQ!5e0!3m2!1spt-BR!2sbr!4v1618986094141!5m2!1spt-BR!2sbr"
-          width="600"
-          height="450"
-          style="border:0;"
-          allowfullscreen=""
-          loading="lazy"
-        ></iframe>
+        <h2>Localização no Mapa:</h2><br>
+        <div id="map-container"></div>
       </div>
     </section>
 
@@ -333,6 +327,18 @@ export default {
       } catch (error) {
         console.log('ERROR:: ', error);
       }
+
+      try {
+
+          const latitude = -23.483156515377846; // Substitua pelo caminho banco de dados
+          const longitude = -47.448209149867765; // Substitua pelo caminho banco de dados
+   
+          // Crie um mapa usando as coordenadas obtidas
+          this.createMap(latitude, longitude);
+        } catch (error) {
+          console.log('ERROR:: ', error);
+        }
+
     },
     methods: {
           showMoreFields() {
@@ -412,7 +418,26 @@ export default {
 
           return numeroFormatado;
         },
-  
+        createMap(latitude, longitude) {
+          const apiKey = 'Colocar aqui a Chave Google';
+
+          // Cria o URL dinâmico para o mapa do Google
+          const mapUrl = `https://www.google.com/maps/embed/v1/place?key=${apiKey}&maptype=roadmap&q=${latitude},${longitude}`;
+
+          // Cria o elemento iframe dinamicamente
+          const iframe = document.createElement('iframe');
+          iframe.width = '600';
+          iframe.height = '450';
+          iframe.frameBorder = '0';
+          iframe.style.border = '0';
+          iframe.src = mapUrl;
+          iframe.allowFullscreen = '';
+          iframe.loading = 'lazy';
+
+          // Adiciona o iframe ao contêiner do mapa
+          const mapContainer = document.getElementById('map-container');
+          mapContainer.appendChild(iframe);
+        },
     },
     computed:{
       userType() {
