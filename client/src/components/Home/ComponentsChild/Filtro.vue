@@ -142,7 +142,7 @@
             <h3>{{ estabelecimento.nome }}</h3>
             <p class="description">{{ estabelecimento.categoria?.join(', ') }}</p>
             <!--<span class="distance">{{ (estabelecimento.distancia)?.toFixed(2) }} km</span>-->
-            <span class="distance">{{ estabelecimento.distancia }} km</span>
+            <span v-if="estabelecimento.distancia?.length > 0" class="distance">{{ estabelecimento.distancia }} km</span>
           </div>
           
         </a>
