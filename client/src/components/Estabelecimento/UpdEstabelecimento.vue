@@ -1080,12 +1080,19 @@ async salvar() {
       recomendacao: this.recomendacao, // OK EXCETO IMAGENS
       estabelecimentoPhoto: this.estabelecimentoPhoto, // OK
       categoriasSelecionadas: this.categoriaSelecionadas, // OK
+      categoriaSelecionadasOld: this.categoriaSelecionadasOld,
       tiposDeComidaSelecionados: this.tiposDeComidaSelecionados, // OK
+      tiposDeComidaSelecionadosOld: this.tiposDeComidaSelecionadosOld,
       opcoesSelecionadas: this.opcoesSelecionadas, // OK
+      opcoesSelecionadasOld: this.opcoesSelecionadasOld,
       estilosSelecionadas: this.estilosSelecionadas, // OK
-      redesSociaisSelecionadas: this.listaRedesSociais, // CORRIGIR EDITAR
-      contatosSelecionados: this.listaContatos,
-      horariosSelecionados: this.listahorarios, // NÃO CHECA WHATSAPP
+      estilosSelecionadasOld: this.estilosSelecionadasOld,
+      listaRedesSociais: this.listaRedesSociais, // CORRIGIR EDITAR
+      listaRedesSociaisOld: this.listaRedesSociaisOld,
+      listaContatos: this.listaContatos,
+      listaContatosOld: this.listaContatosOld,
+      listahorarios: this.listahorarios, // NÃO CHECA WHATSAPP
+      listahorariosOld: this.listahorariosOld,
       idEstabelecimento: sessionStorage.getItem('idEstabelecimento')
     };
     console.log('this.recomendacao:: ', this.recomendacao)
