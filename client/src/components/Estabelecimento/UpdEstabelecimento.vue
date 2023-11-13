@@ -77,7 +77,7 @@
   <!--3 indicações do Chef-->
 <!------------------------------------------------------------------------------------------------------------->
   
-<h2>Indicação do Chef</h2><br><br>
+<h2>Recomendações: </h2><br><br>
     <div class="recomendacoes-container">
     <div v-for="(recomendacoes, index) in recomendacao" :key="index" class="recomendacao">
       <div class="recomendacao-item">

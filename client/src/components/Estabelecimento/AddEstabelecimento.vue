@@ -145,7 +145,7 @@
   
 
   <section v-show="currentSection === 5">
-    <h2>Indicação do Chef</h2><br><br>
+    <h2>Recomendações:</h2><br><br>
     <div id="indication-container">
     <div v-for="(recomendacoes, index) in recomendacao" :key="index" class="group">
       <label :for="'indicacao' + (index + 1)" class="label">{{ index + 1 }}° Indicação:</label><br />
