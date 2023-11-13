@@ -15,6 +15,14 @@ export default {
   components: {
     CombinedCarousel,
     Filtro,
+  },
+  async created() {
+    try {
+      const carlos = await api.get('/estabelecimento/checarLatitude');
+      console.log('carlos:: ', carlos);
+    } catch (error) {
+      console.log('error:: ', error);
+    }
   }
 };
 
