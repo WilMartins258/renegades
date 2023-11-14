@@ -1206,7 +1206,9 @@ computed: {
       }
 
       this.opcoesSelecionadas = opcionaisEstabelecimento;
-      this.opcoesSelecionadasOld = opcionaisEstabelecimento;
+      if (opcionaisEstabelecimento.length > 0) {
+        this.opcoesSelecionadasOld = opcionaisEstabelecimento;
+      }
 
       this.categoriaSelecionadas = categoriasEstabelecimento;
       this.categoriaSelecionadasOld = categoriasEstabelecimento;
