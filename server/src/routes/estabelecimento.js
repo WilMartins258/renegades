@@ -451,6 +451,14 @@ router.put('/', async (req, res) => {
         } catch (error) {
             console.log(error);
         }
+
+        try {
+            for (let i = 0; i < resultadoCategorias.opcoesRemovidas.length ; i++) {
+                await categoria_estabelecimento_Service.excluir([idEstabelecimento, resultadoCategorias.opcoesRemovidas[i]], connection);
+            }
+        } catch (error) {
+            console.log(error);
+        }
         
         // console.log("Opções removidas:", resultadoCategorias.opcoesRemovidas);
         // console.log("Opções novas:", resultadoCategorias.opcoesNovas);
