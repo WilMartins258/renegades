@@ -1231,7 +1231,9 @@ computed: {
       }
 
       this.listahorarios = horariosEstabelecimento;
-      this.listahorariosOld = horariosEstabelecimento;
+      if (horariosEstabelecimento.length > 0) {
+        this.listahorariosOld = horariosEstabelecimento;
+      }
 
       this.listaContatos = contatosEstabelecimento;
       this.listaContatosOld = contatosEstabelecimento;
