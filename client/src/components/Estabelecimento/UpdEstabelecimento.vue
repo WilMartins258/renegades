@@ -1226,7 +1226,9 @@ computed: {
       }
       
       this.listaRedesSociais = redeSociaisEstabelecimento;
-      this.listaRedesSociaisOld = redeSociaisEstabelecimento;
+      if (redeSociaisEstabelecimento.length > 0) {
+        this.listaRedesSociaisOld = redeSociaisEstabelecimento;
+      }
 
       this.listahorarios = horariosEstabelecimento;
       this.listahorariosOld = horariosEstabelecimento;
