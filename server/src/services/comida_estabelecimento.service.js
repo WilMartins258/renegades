@@ -33,7 +33,7 @@ const pegarPorIdEstabelecimento = async (idEstabelecimento) => {
 
 const excluir = async (dadosExclusao, conn) => {
     try {
-        const estabelecimentoQuery = `DELETE FROM comida_estabelecimento WHERE idEstabelecimento = ? AND idCategoria = ?;`;
+        const estabelecimentoQuery = `DELETE FROM comida_estabelecimento WHERE idEstabelecimento = ? AND idComida = ?;`;
 
         await conn.query(estabelecimentoQuery, dadosExclusao);
     } catch (error) {
