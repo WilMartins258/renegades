@@ -1174,8 +1174,6 @@ computed: {
         console.log('Error ao exibir foto: ', error);
       }
   
-      console.log("recomendacoesEstabelecimento GET", recomendacoesEstabelecimento)
-
       this.categoria = categorias;
       this.opcoes = opcionais;
       this.estilos = estilosMusica;
