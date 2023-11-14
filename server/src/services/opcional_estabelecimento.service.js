@@ -31,8 +31,19 @@ const pegarPorIdEstabelecimento = async (idEstabelecimento) => {
     }
 };
 
+const excluir = async (dadosExclusao, conn) => {
+    try {
+        const estabelecimentoQuery = `DELETE FROM opcional_estabelecimento WHERE idEstabelecimento = ? AND idOpcional = ?;`;
+
+        await conn.query(estabelecimentoQuery, dadosExclusao);
+    } catch (error) {
+        throw new Error(`Erro ao excluir opcional do estabelecimento: ${error.message}`);
+    }
+};
+
 module.exports = {
     inserir,
     atualizar,
-    pegarPorIdEstabelecimento
+    pegarPorIdEstabelecimento,
+    excluir
 };
