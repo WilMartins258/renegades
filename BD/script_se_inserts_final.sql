@@ -653,8 +653,8 @@ insert into estabelecimento values(
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18013280', -- cep               VARCHAR(9) not null,
-	null, -- latitude
-	null, -- logitude
+	-23.481041418206704, -- latitude
+	-47.42064672885167, -- logitude
 	'2023-11-05', -- dataCadastro
 	'2023-11-30' -- dataUltimoAcesso
 );
@@ -835,8 +835,8 @@ insert into estabelecimento values(
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18095000', -- cep               VARCHAR(9) not null,
-	null, -- latitude
-	null, -- logitude
+	-23.4830921795708, -- latitude
+	-47.44827764110211, -- logitude
 	'2023-11-05', -- dataCadastro
 	'2023-11-30' -- dataUltimoAcesso
 );
@@ -1004,8 +1004,8 @@ insert into estabelecimento values(
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18013280', -- cep               VARCHAR(9) not null,
-	null, -- latitude
-	null, -- logitude
+	-23.48079054455376, -- latitude
+	-47.42618138834342,  -- logitude
 	'2023-11-05', -- dataCadastro
 	'2023-11-30' -- dataUltimoAcesso
 );
@@ -1058,8 +1058,8 @@ insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fo
 	null, -- cidade not null,
 	null, -- estado not null,
 	null, -- cep not null,
-	null, -- latitude
-	null  -- logitude
+    null, -- latitude
+	null -- logitude
 );
 
 insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( 
@@ -1288,8 +1288,8 @@ insert into estabelecimento values(
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18052481', -- cep               VARCHAR(9) not null,
-	null, -- latitude
-	null, -- logitude
+	-23.527247062989186, -- latitude
+	-47.51050589861408,  -- logitude
 	'2023-11-05', -- dataCadastro
 	'2023-11-30' -- dataUltimoAcesso
 );
@@ -1378,7 +1378,7 @@ insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fo
 	null, -- estado not null,
 	null, -- cep not null,
 	null, -- latitude
-	null  -- logitude
+	null -- logitude
 );
 
 insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda a sexta
@@ -1475,8 +1475,8 @@ insert into estabelecimento values(
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18087080', -- cep               VARCHAR(9) not null,
-	null, -- latitude
-	null, -- logitude
+	-23.47263944425766, -- latitude
+	-47.422306212687,  -- logitude
 	'2023-11-05', -- dataCadastro
 	'2023-11-30' -- dataUltimoAcesso
 );
@@ -1624,8 +1624,8 @@ insert into estabelecimento values(
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18087082', -- cep               VARCHAR(9) not null,
-	null, -- latitude
-	null, -- logitude
+	-23.471949797583616, -- latitude
+	-47.42208621897011  -- logitude
 	'2023-11-05', -- dataCadastro
 	'2023-11-30' -- dataUltimoAcesso
 );
@@ -1714,7 +1714,7 @@ insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fo
 	null, -- estado not null,
 	null, -- cep not null,
 	null, -- latitude
-	null  -- logitude
+	null -- logitude
 );
 
 insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values(
@@ -1887,8 +1887,8 @@ insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fo
 	null, -- cidade not null,
 	null, -- estado not null,
 	null, -- cep not null,
-	null, -- latitude
-	null  -- logitude
+	-23.487260338578146, -- latitude
+	-47.451560799967204  -- logitude
 );
 
 insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Terça a sexta
@@ -2042,8 +2042,8 @@ insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fo
 	null, -- cidade not null,
 	null, -- estado not null,
 	null, -- cep not null,
-	null, -- latitude
-	null  -- logitude
+	-23.4865340199778, -- latitude
+	-47.43437703558806  -- logitude
 );
 
 insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda a sexta
@@ -2198,8 +2198,8 @@ insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fo
 	null, -- cidade not null,
 	null, -- estado not null,
 	null, -- cep not null,
-	null, -- latitude
-	null  -- logitude
+	-23.488665562652063, -- latitude
+	-47.440733079416084  -- logitude
 );
 
 insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Final de Semana
@@ -2435,8 +2435,8 @@ insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fo
 	null, -- cidade not null,
 	null, -- estado not null,
 	null, -- cep not null,
-	null, -- latitude
-	null  -- logitude
+	-23.5119112609796, -- latitude
+	-47.429035638188566  -- logitude
 );
 
 insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Final de Semana
@@ -2708,8 +2708,8 @@ insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fo
 	null, -- cidade not null,
 	null, -- estado not null,
 	null, -- cep not null,
-	null, -- latitude
-	null  -- logitude
+	-23.508797196208956, -- latitude
+	-47.43266137555726  -- logitude
 );
 
 insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda-feira
@@ -2925,8 +2925,8 @@ insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fo
 	null, -- cidade not null,
 	null, -- estado not null,
 	null, -- cep not null,
-	null, -- latitude
-	null  -- logitude
+	-23.50286556916636, -- latitude
+	-47.43366479973024  -- logitude
 );
 
 insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda-feira
@@ -3009,8 +3009,8 @@ insert into estabelecimento values(
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18020292', -- cep               VARCHAR(9) not null,
-	null, -- latitude
-	null, -- logitude
+	-23.502350803719928, -- latitude
+	-47.44411279912777, -- logitude
 	'2023-11-05', -- dataCadastro
 	'2023-11-30' -- dataUltimoAcesso
 );
@@ -3140,8 +3140,8 @@ insert into estabelecimento values(
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18015000', -- cep               VARCHAR(9) not null,
-	null, -- latitude
-	null, -- logitude
+	-23.501360063908063,-- latitude
+	-47.436459312259835, -- logitude
 	'2023-10-05', -- dataCadastro
 	'2023-10-30' -- dataUltimoAcesso
 );
@@ -3320,8 +3320,8 @@ insert into estabelecimento values(
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18020286', -- cep               VARCHAR(9) not null,
-	null, -- latitude
-	null, -- logitude
+	-23.50591209058101, -- latitude
+	-47.42921479795888, -- logitude
 	'2023-10-05', -- dataCadastro
 	'2023-10-30' -- dataUltimoAcesso
 );
@@ -3471,8 +3471,8 @@ insert into estabelecimento values(
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18095340', -- cep               VARCHAR(9) not null,
-	null, -- latitude
-	null, -- logitude
+	-23.48722490855654,-- latitude
+	-47.44469829617629, -- logitude
 	'2023-09-15', -- dataCadastro
 	'2023-11-20' -- dataUltimoAcesso
 );
@@ -3703,8 +3703,8 @@ insert into estabelecimento values(
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18070810', -- cep               VARCHAR(9) not null,
-	null, -- latitude
-	null, -- logitude
+	-23.470500496863995, -- latitude
+	-47.48575053316026, -- logitude
 	'2023-11-08', -- dataCadastro
 	'2023-11-30' -- dataUltimoAcesso
 );
@@ -3811,8 +3811,8 @@ insert into estabelecimento values(
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18076-141', -- cep  -- ANTIGO CEP:: 18076005
-	null, -- latitude
-	null, -- logitude
+	-23.466038272508232, -- latitude
+	-47.47894553900619, -- logitude
 	'2023-11-08', -- dataCadastro
 	'2023-11-30' -- dataUltimoAcesso
 );
@@ -3972,8 +3972,8 @@ insert into estabelecimento values(
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18076-141', -- cep  ANTIGO CEP::: 18078970
-	null, -- latitude
-	null, -- logitude
+	-23.462781116362088,-- latitude
+	-47.47888126218281,  -- logitude
 	'2023-11-09', -- dataCadastro
 	'2023-11-30' -- dataUltimoAcesso
 );
@@ -4103,8 +4103,8 @@ insert into estabelecimento values(
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18074410', -- cep               VARCHAR(9) not null,
-	null, -- latitude
-	null, -- logitude
+	-23.462475305280346, -- latitude
+	-47.48112992882255, -- logitude
 	'2023-11-09', -- dataCadastro
 	'2023-11-30' -- dataUltimoAcesso
 );
@@ -4225,8 +4225,8 @@ insert into estabelecimento values(
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18040760', -- cep               VARCHAR(9) not null,
-	null, -- latitude
-	null, -- logitude
+	-23.51243657255987, -- latitude
+	-47.466973387591615, -- logitude
 	'2023-11-09', -- dataCadastro
 	'2023-11-30' -- dataUltimoAcesso
 );
@@ -4394,8 +4394,8 @@ insert into estabelecimento values(
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18055215', -- cep               VARCHAR(9) not null,
-	null, -- latitude
-	null, -- logitude
+	-23.49044078052566, -- latitude
+	-47.512595817792025, -- logitude
 	'2023-11-09', -- dataCadastro
 	'2023-11-30' -- dataUltimoAcesso
 );
@@ -4566,8 +4566,8 @@ insert into estabelecimento values(
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18031005', -- cep               VARCHAR(9) not null,
-	null, -- latitude
-	null, -- logitude
+	-23.51590576979716, -- latitude
+	-47.464982520612914, -- logitude
 	'2023-11-09', -- dataCadastro
 	'2023-11-30' -- dataUltimoAcesso
 );
