@@ -1625,7 +1625,7 @@ insert into estabelecimento values(
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18087082', -- cep               VARCHAR(9) not null,
 	-23.471949797583616, -- latitude
-	-47.42208621897011  -- logitude
+	-47.42208621897011,  -- logitude
 	'2023-11-05', -- dataCadastro
 	'2023-11-30' -- dataUltimoAcesso
 );
