@@ -479,7 +479,7 @@ export default {
         return false;
       }
     },
-    buscarCep() {
+    async buscarCep() {
     // Valide o formato do CEP
     const cepRegex = /^[0-9]{8}$/;
 
@@ -505,6 +505,14 @@ export default {
           // Exiba uma mensagem de erro para o usuário
           alert("Erro ao buscar informações de CEP. Por favor, tente novamente.");
         });
+        if (sessionStorage.getItem('cep')) {
+          const distancias = await api.get('/distancia/cep', { params: {cep: sessionStorage.getItem('cep')} });
+          // console.log('distancias:: ', distancias);
+
+          for (let i=0; i < distancias?.data?.distancias?.length; i++) {
+            this.estabelecimentos[i].distancia = distancias.data.distancias[i].distancia;
+          }
+        }
     } else {
       console.warn("Formato de CEP inválido");
     }
