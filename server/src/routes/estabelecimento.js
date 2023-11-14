@@ -435,10 +435,6 @@ router.put('/', async (req, res) => {
             };
         };
 
-        // console.log('idEstabelecimento:: ', idEstabelecimento)
-        // console.log('categoriaSelecionadasOld:: ', categoriaSelecionadasOld)
-        // console.log('categoriasSelecionadas:: ', categoriasSelecionadas)
-
         const categoriasEstabelecimento = categoriasSelecionadas.map(categoria => categoria.id);
         const categoriasEstabelecimentoOld = categoriaSelecionadasOld.map(categoria => categoria.id);
 
@@ -459,6 +455,17 @@ router.put('/', async (req, res) => {
         } catch (error) {
             console.log(error);
         }
+
+        // const comidasEstabelecimento = categoriasSelecionadas.map(comida => comida.id);
+        // const comidasEstabelecimentoOld = categoriaSelecionadasOld.map(comida => comida.id);
+
+        // const resultadoCategorias = compararListas(categoriasEstabelecimentoOld, categoriasEstabelecimento);
+
+        // tiposDeComidaSelecionados,
+        // tiposDeComidaSelecionadosOld,
+
+        console.log("estilosSelecionadas:: ", estilosSelecionadas)
+        console.log("estilosSelecionadasOld:: ", estilosSelecionadasOld)
         
         // console.log("Opções removidas:", resultadoCategorias.opcoesRemovidas);
         // console.log("Opções novas:", resultadoCategorias.opcoesNovas);
