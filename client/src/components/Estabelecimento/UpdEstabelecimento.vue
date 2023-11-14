@@ -1216,7 +1216,9 @@ computed: {
       }
 
       this.tiposDeComidaSelecionados = comidasEstabelecimento;
-      this.tiposDeComidaSelecionadosOld = comidasEstabelecimento;
+      if (comidasEstabelecimento.length > 0) {
+        this.tiposDeComidaSelecionadosOld = comidasEstabelecimento;
+      }
 
       this.estilosSelecionadas = musicasEstabelecimento;
       if (musicasEstabelecimento.length > 0) {
