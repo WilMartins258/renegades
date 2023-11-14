@@ -1211,7 +1211,9 @@ computed: {
       }
 
       this.categoriaSelecionadas = categoriasEstabelecimento;
-      this.categoriaSelecionadasOld = categoriasEstabelecimento;
+      if (categoriasEstabelecimento.length > 0) {
+        this.categoriaSelecionadasOld = categoriasEstabelecimento;
+      }
 
       this.tiposDeComidaSelecionados = comidasEstabelecimento;
       this.tiposDeComidaSelecionadosOld = comidasEstabelecimento;
