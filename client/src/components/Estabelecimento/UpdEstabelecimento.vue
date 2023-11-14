@@ -1094,7 +1094,6 @@ async salvar() {
       listahorariosOld: this.listahorariosOld,
       idEstabelecimento: sessionStorage.getItem('idEstabelecimento')
     };
-    console.log('this.recomendacao:: ', this.recomendacao)
 
     const atualizacaoDados = await api.put('/estabelecimento', {novosDadosEstabelecimento});
     console.log('atualizacaoDados:: ', atualizacaoDados)
