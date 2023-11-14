@@ -423,9 +423,53 @@ router.put('/', async (req, res) => {
             listahorarios,
             listahorariosOld,
             idEstabelecimento
-        }= req.body.novosDadosEstabelecimento
+        } = req.body.novosDadosEstabelecimento;
 
-        console.log('idEstabelecimento:: ', idEstabelecimento)
+        const compararListas = (original, editado) => {
+            const opcoesRemovidas = original.filter(opcao => !editado.includes(opcao));
+            const opcoesNovas = editado.filter(opcao => !original.includes(opcao));
+        
+            return {
+                opcoesRemovidas,
+                opcoesNovas
+            };
+        };
+
+        const categoriasEstabelecimento = categoriasSelecionadas.map(categoria => categoria.id);
+        const categoriasEstabelecimentoOld = categoriaSelecionadasOld.map(categoria => categoria.id);
+
+        const resultadoCategorias = compararListas(categoriasEstabelecimentoOld, categoriasEstabelecimento);
+
+        try {
+            for (let i = 0; i < resultadoCategorias.opcoesNovas.length ; i++) {
+                await categoria_estabelecimento_Service.inserir([idEstabelecimento, resultadoCategorias.opcoesNovas[i]], connection);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+
+        try {
+            for (let i = 0; i < resultadoCategorias.opcoesRemovidas.length ; i++) {
+                await categoria_estabelecimento_Service.excluir([idEstabelecimento, resultadoCategorias.opcoesRemovidas[i]], connection);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+
+        // const comidasEstabelecimento = categoriasSelecionadas.map(comida => comida.id);
+        // const comidasEstabelecimentoOld = categoriaSelecionadasOld.map(comida => comida.id);
+
+        // const resultadoCategorias = compararListas(categoriasEstabelecimentoOld, categoriasEstabelecimento);
+
+        // tiposDeComidaSelecionados,
+        // tiposDeComidaSelecionadosOld,
+
+        console.log("estilosSelecionadas:: ", estilosSelecionadas)
+        console.log("estilosSelecionadasOld:: ", estilosSelecionadasOld)
+        
+        // console.log("Opções removidas:", resultadoCategorias.opcoesRemovidas);
+        // console.log("Opções novas:", resultadoCategorias.opcoesNovas);
+        
 
         await connection.commit();
         res.status(200).send({

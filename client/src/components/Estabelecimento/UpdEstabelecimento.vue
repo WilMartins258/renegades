@@ -515,7 +515,6 @@ data() {
       estilosSelecionadas: [],//DashEstilosMusicais
       estilosSelecionadasOld: [],//DashEstilosMusicais
       estilos: [],//DashEstilosMusicais
-      tiposDeComidaSelecionados: [],//DashTiposComida
       tiposDeComidaSelecionadosOld: [],//DashTiposComida
       tiposDeComida: [],//DashTiposComida
       tipoContato: "Telefone", //DashContato
@@ -1207,25 +1206,39 @@ computed: {
       }
 
       this.opcoesSelecionadas = opcionaisEstabelecimento;
-      this.opcoesSelecionadasOld = opcionaisEstabelecimento;
+      if (opcionaisEstabelecimento.length > 0) {
+        this.opcoesSelecionadasOld = opcionaisEstabelecimento;
+      }
 
       this.categoriaSelecionadas = categoriasEstabelecimento;
-      this.categoriaSelecionadasOld = categoriasEstabelecimento;
+      if (categoriasEstabelecimento.length > 0) {
+        this.categoriaSelecionadasOld = categoriasEstabelecimento;
+      }
 
       this.tiposDeComidaSelecionados = comidasEstabelecimento;
-      this.tiposDeComidaSelecionadosOld = comidasEstabelecimento;
+      if (comidasEstabelecimento.length > 0) {
+        this.tiposDeComidaSelecionadosOld = comidasEstabelecimento;
+      }
 
       this.estilosSelecionadas = musicasEstabelecimento;
-      this.estilosSelecionadasOld = musicasEstabelecimento;
+      if (musicasEstabelecimento.length > 0) {
+        this.estilosSelecionadasOld = musicasEstabelecimento;
+      }
       
       this.listaRedesSociais = redeSociaisEstabelecimento;
-      this.listaRedesSociaisOld = redeSociaisEstabelecimento;
+      if (redeSociaisEstabelecimento.length > 0) {
+        this.listaRedesSociaisOld = redeSociaisEstabelecimento;
+      }
 
       this.listahorarios = horariosEstabelecimento;
-      this.listahorariosOld = horariosEstabelecimento;
+      if (horariosEstabelecimento.length > 0) {
+        this.listahorariosOld = horariosEstabelecimento;
+      }
 
       this.listaContatos = contatosEstabelecimento;
-      this.listaContatosOld = contatosEstabelecimento;
+      if (contatosEstabelecimento.length > 0) {
+        this.listaContatosOld = contatosEstabelecimento;
+      }
     } catch (error) {
       console.log('Erro ao buscar dados da página:: ', error);
     }
