@@ -1810,8 +1810,8 @@ insert into estabelecimento values(
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18095000', -- cep               VARCHAR(9) not null,
-	null, -- latitude
-	null, -- logitude
+	-23.487260338578146, -- latitude
+	-47.451560799967204,  -- logitude
 	'2023-11-05', -- dataCadastro
 	'2023-11-30' -- dataUltimoAcesso
 );
@@ -1887,8 +1887,8 @@ insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fo
 	null, -- cidade not null,
 	null, -- estado not null,
 	null, -- cep not null,
-	-23.487260338578146, -- latitude
-	-47.451560799967204  -- logitude
+	null, -- latitude
+	null -- logitude
 );
 
 insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Terça a sexta
@@ -1991,8 +1991,8 @@ insert into estabelecimento values(
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	' 18013280', -- cep               VARCHAR(9) not null,
-	null, -- latitude
-	null, -- logitude
+	-23.4865340199778, -- latitude
+	-47.43437703558806,  -- logitude
 	'2023-11-05', -- dataCadastro
 	'2023-11-30' -- dataUltimoAcesso
 );
@@ -2042,8 +2042,8 @@ insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fo
 	null, -- cidade not null,
 	null, -- estado not null,
 	null, -- cep not null,
-	-23.4865340199778, -- latitude
-	-47.43437703558806  -- logitude
+	null, -- latitude
+	null -- logitude
 );
 
 insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda a sexta
@@ -2132,8 +2132,8 @@ insert into estabelecimento values(
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18095450', -- cep               VARCHAR(9) not null,
-	null, -- latitude
-	null, -- logitude
+	-23.488665562652063, -- latitude
+	-47.440733079416084,  -- logitude
 	'2023-11-05', -- dataCadastro
 	'2023-11-30' -- dataUltimoAcesso
 );
@@ -2198,8 +2198,8 @@ insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fo
 	null, -- cidade not null,
 	null, -- estado not null,
 	null, -- cep not null,
-	-23.488665562652063, -- latitude
-	-47.440733079416084  -- logitude
+	null, -- latitude
+	null  -- logitude
 );
 
 insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Final de Semana
@@ -2288,8 +2288,8 @@ insert into estabelecimento values(
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18021200', -- cep               VARCHAR(9) not null,
-	null, -- latitude
-	null, -- logitude
+	-23.5119112609796, -- latitude
+	-47.429035638188566,  -- logitude
 	'2023-11-05', -- dataCadastro
 	'2023-11-30' -- dataUltimoAcesso
 );
@@ -2435,8 +2435,8 @@ insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fo
 	null, -- cidade not null,
 	null, -- estado not null,
 	null, -- cep not null,
-	-23.5119112609796, -- latitude
-	-47.429035638188566  -- logitude
+	null, -- latitude
+	null -- logitude
 );
 
 insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Final de Semana
@@ -2581,8 +2581,8 @@ insert into estabelecimento values(
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18021200', -- cep               VARCHAR(9) not null,
-	null, -- latitude
-	null, -- logitude
+	-23.508797196208956, -- latitude
+	-47.43266137555726,  -- logitude
 	'2023-11-05', -- dataCadastro
 	'2023-11-30' -- dataUltimoAcesso
 );
@@ -2708,8 +2708,8 @@ insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fo
 	null, -- cidade not null,
 	null, -- estado not null,
 	null, -- cep not null,
-	-23.508797196208956, -- latitude
-	-47.43266137555726  -- logitude
+	null, -- latitude
+	null -- logitude
 );
 
 insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda-feira
@@ -2832,8 +2832,8 @@ insert into estabelecimento values(
 	'Sorocaba', -- cidade                 VARCHAR(200) not null,
 	'SP', -- estado                 VARCHAR(200) not null,
 	'18015000', -- cep               VARCHAR(9) not null,
-	null, -- latitude
-	null, -- logitude
+	-23.50286556916636, -- latitude
+	-47.43366479973024,  -- logitude
 	'2023-11-05', -- dataCadastro
 	'2023-11-30' -- dataUltimoAcesso
 );
@@ -2925,8 +2925,8 @@ insert into usuario (id, idEstabelecimento, nome, celular, cpf, email, senha, fo
 	null, -- cidade not null,
 	null, -- estado not null,
 	null, -- cep not null,
-	-23.50286556916636, -- latitude
-	-47.43366479973024  -- logitude
+	null, -- latitude
+	null -- logitude
 );
 
 insert into horario (idEstabelecimento, idDiaSemana, horarioInicio, horarioFim) values( -- Segunda-feira
@@ -4530,10 +4530,8 @@ insert into recomendacao values(
 	55, -- idEstabelecimento INT not null,
 	'png', -- foto LONGBLOB not null,
 	'Burrito Hot Chilli Grande 28cm', -- nome VARCHAR(50) not null,
-	'PTortilha de 28 cm recheada com Chilli picante ,pico de gallo(vinagrete),suor cream 
-	(molho a base de Cream chese),frijoles (pasta de feijão),
-	queijo,alface,pimenta Carolina reaper, pimenta chipotle ,
-	pimenta jalapenõ decorado com cheddar. Pra quem gosta de pimenta incrível sabor'-- descricao VARCHAR(50) not null
+	'Tortilha de 28 cm recheada com Chilli picante ,pico de gallo(vinagrete),suor cream ,
+    pimenta jalapenõ decorado com cheddar. Pra quem gosta de pimenta incrível sabor'-- descricao VARCHAR(50) not null
 );
 
 insert into recomendacao values(
