@@ -514,6 +514,7 @@ export default {
           for (let i=0; i < distancias?.data?.distancias?.length; i++) {
             this.estabelecimentos[i].distancia = distancias.data.distancias[i].distancia;
           }
+          this.showDistance = true;
         }
     } else {
       console.warn("Formato de CEP inválido");
