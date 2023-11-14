@@ -1221,11 +1221,14 @@ computed: {
       if (musicasEstabelecimento.length > 0) {
         this.estilosSelecionadasOld = musicasEstabelecimento;
       }
+
+      const indicesRedesSociais = redeSociaisEstabelecimento.map(rede => rede.id);
+      this.listaRedesSociaisOld = indicesRedesSociais;
       
       this.listaRedesSociais = redeSociaisEstabelecimento;
-      if (redeSociaisEstabelecimento.length > 0) {
-        this.listaRedesSociaisOld = redeSociaisEstabelecimento;
-      }
+      // if (redeSociaisEstabelecimento.length > 0) {
+      //   this.listaRedesSociaisOld = redeSociaisEstabelecimento;
+      // }
 
       this.listahorarios = horariosEstabelecimento;
       if (horariosEstabelecimento.length > 0) {

@@ -31,7 +31,15 @@ const pegarPorIdEstabelecimento = async (idEstabelecimento) => {
     }
 };
 
-const excluir = async () => {};
+const excluir = async (dadosExclusao, conn) => {
+    try {
+        const estabelecimentoQuery = `DELETE FROM redeSocial_estabelecimento WHERE idEstabelecimento = ? AND idRedeSocial = ?;`;
+
+        await conn.query(estabelecimentoQuery, dadosExclusao);
+    } catch (error) {
+        throw new Error(`Erro ao excluirrede social do estabelecimento: ${error.message}`);
+    }
+};
 
 module.exports = {
     inserir,
