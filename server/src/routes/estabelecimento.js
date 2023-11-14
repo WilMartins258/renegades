@@ -467,7 +467,13 @@ router.put('/', async (req, res) => {
         console.log("Opções removidas:", resultadoComidas.opcoesRemovidas);
         console.log("Opções novas:", resultadoComidas.opcoesNovas);
 
-
+        try {
+            for (let i = 0; i < resultadoComidas.opcoesNovas.length ; i++) {
+                await comida_estabelecimento_Service.inserir([idEstabelecimento, resultadoComidas.opcoesNovas[i]], connection);
+            }
+        } catch (error) {
+            console.log(error);
+        }
 
 
 
