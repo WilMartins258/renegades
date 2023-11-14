@@ -477,17 +477,10 @@ router.put('/', async (req, res) => {
             console.log(error);
         }
 
-
-        console.log("opcoesSelecionadasOld:: ", opcoesSelecionadasOld)
-        console.log("opcoesSelecionadas:: ", opcoesSelecionadas)
-
         const opcionaisEstabelecimento = opcoesSelecionadas.map(opcao => opcao.id);
         const opcionaisEstabelecimentoOld = opcoesSelecionadasOld.map(opcao => opcao.id);
 
         const resultadoOpcionais = compararListas(opcionaisEstabelecimentoOld, opcionaisEstabelecimento);
-
-        console.log("Opções removidas:", resultadoOpcionais.opcoesRemovidas);
-        console.log("Opções novas:", resultadoOpcionais.opcoesNovas);
 
         try {
             for (let i = 0; i < resultadoOpcionais.opcoesNovas.length ; i++) {
@@ -505,7 +498,21 @@ router.put('/', async (req, res) => {
             console.log(error);
         }
 
-        // console.log("tiposDeComidaSelecionadosOld:: ", tiposDeComidaSelecionadosOld)
+        // console.log("estilosSelecionadasOld:: ", estilosSelecionadasOld)
+        // console.log("estilosSelecionadas:: ", estilosSelecionadas)
+
+        // const musicasEstabelecimento = estilosSelecionadas.map(comida => comida.id);
+        // const musicasEstabelecimentoOld = estilosSelecionadasOld.map(comida => comida.id);
+
+        // const resultadoMusicas = compararListas(musicasEstabelecimentoOld, musicasEstabelecimento);
+
+        // console.log("Opções removidas:", resultadoMusicas.opcoesRemovidas);
+        // console.log("Opções novas:", resultadoMusicas.opcoesNovas);
+
+
+
+
+                // console.log("tiposDeComidaSelecionadosOld:: ", tiposDeComidaSelecionadosOld)
         // console.log("tiposDeComidaSelecionados:: ", tiposDeComidaSelecionados)
 
         // const comidasEstabelecimento = tiposDeComidaSelecionados.map(comida => comida.id);
