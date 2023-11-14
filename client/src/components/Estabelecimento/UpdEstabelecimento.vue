@@ -1236,7 +1236,9 @@ computed: {
       }
 
       this.listaContatos = contatosEstabelecimento;
-      this.listaContatosOld = contatosEstabelecimento;
+      if (contatosEstabelecimento.length > 0) {
+        this.listaContatosOld = contatosEstabelecimento;
+      }
     } catch (error) {
       console.log('Erro ao buscar dados da página:: ', error);
     }
