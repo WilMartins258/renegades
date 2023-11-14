@@ -518,6 +518,18 @@ router.put('/', async (req, res) => {
             console.log(error);
         }
 
+        
+
+        
+        console.log("listaRedesSociaisOld:: ", listaRedesSociaisOld)
+        console.log("listaRedesSociais:: ", listaRedesSociais)
+
+        const redesSociaisEstabelecimento = listaRedesSociais.map(redeSocial => redeSocial.id);
+
+        const resultadoRedesSociais = compararListas(listaRedesSociaisOld, redesSociaisEstabelecimento);
+
+        console.log("Opções removidas:", resultadoRedesSociais.opcoesRemovidas);
+        console.log("Opções novas:", resultadoRedesSociais.opcoesNovas);
 
 
                 // console.log("tiposDeComidaSelecionadosOld:: ", tiposDeComidaSelecionadosOld)
