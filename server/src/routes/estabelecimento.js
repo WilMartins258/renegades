@@ -456,11 +456,28 @@ router.put('/', async (req, res) => {
             console.log(error);
         }
 
-        // console.log("tiposDeComidaSelecionadosOld:: ", tiposDeComidaSelecionadosOld)
+        console.log("tiposDeComidaSelecionadosOld:: ", tiposDeComidaSelecionadosOld)
+        console.log("tiposDeComidaSelecionados:: ", tiposDeComidaSelecionados)
+
+        const comidasEstabelecimento = tiposDeComidaSelecionados.map(comida => comida.id);
+        const comidasEstabelecimentoOld = tiposDeComidaSelecionadosOld.map(comida => comida.id);
+
+        const resultadoComidas = compararListas(comidasEstabelecimentoOld, comidasEstabelecimento);
+
+        console.log("Opções removidas:", resultadoComidas.opcoesRemovidas);
+        console.log("Opções novas:", resultadoComidas.opcoesNovas);
+
+
+
+
+
+
+
+                // console.log("tiposDeComidaSelecionadosOld:: ", tiposDeComidaSelecionadosOld)
         // console.log("tiposDeComidaSelecionados:: ", tiposDeComidaSelecionados)
 
-        // const comidasEstabelecimento = categoriasSelecionadas.map(comida => comida.id);
-        // const comidasEstabelecimentoOld = categoriaSelecionadasOld.map(comida => comida.id);
+        // const comidasEstabelecimento = tiposDeComidaSelecionados.map(comida => comida.id);
+        // const comidasEstabelecimentoOld = tiposDeComidaSelecionadosOld.map(comida => comida.id);
 
         // const resultadoComidas = compararListas(comidasEstabelecimentoOld, comidasEstabelecimento);
 
