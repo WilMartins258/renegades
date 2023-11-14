@@ -456,19 +456,16 @@ router.put('/', async (req, res) => {
             console.log(error);
         }
 
+        // console.log("tiposDeComidaSelecionadosOld:: ", tiposDeComidaSelecionadosOld)
+        // console.log("tiposDeComidaSelecionados:: ", tiposDeComidaSelecionados)
+
         // const comidasEstabelecimento = categoriasSelecionadas.map(comida => comida.id);
         // const comidasEstabelecimentoOld = categoriaSelecionadasOld.map(comida => comida.id);
 
-        // const resultadoCategorias = compararListas(categoriasEstabelecimentoOld, categoriasEstabelecimento);
+        // const resultadoComidas = compararListas(comidasEstabelecimentoOld, comidasEstabelecimento);
 
-        // tiposDeComidaSelecionados,
-        // tiposDeComidaSelecionadosOld,
-
-        console.log("estilosSelecionadas:: ", estilosSelecionadas)
-        console.log("estilosSelecionadasOld:: ", estilosSelecionadasOld)
-        
-        // console.log("Opções removidas:", resultadoCategorias.opcoesRemovidas);
-        // console.log("Opções novas:", resultadoCategorias.opcoesNovas);
+        // console.log("Opções removidas:", resultadoComidas.opcoesRemovidas);
+        // console.log("Opções novas:", resultadoComidas.opcoesNovas);
         
 
         await connection.commit();
