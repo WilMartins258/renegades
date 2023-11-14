@@ -280,12 +280,14 @@ export default {
         -23.4820675, -47.4254607
         */
 
-        const distancias = await api.get('/distancia', { params: coordenadas });
+        if (sessionStorage.getItem('latitude') && sessionStorage.getItem('longitude')) {
+          const distancias = await api.get('/distancia', { params: coordenadas });
 
-        for (let i=0; i < distancias?.data?.distancias?.length; i++) {
-          this.estabelecimentos[i].distancia = distancias.data.distancias[i].distancia;
+          for (let i=0; i < distancias?.data?.distancias?.length; i++) {
+            this.estabelecimentos[i].distancia = distancias.data.distancias[i].distancia;
+          }
+          this.showDistance = true;
         }
-        this.showDistance = true;
       } catch (error) {
         console.log('Erro ao buscar distâncias: ', error);
       }
