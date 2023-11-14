@@ -515,7 +515,6 @@ data() {
       estilosSelecionadas: [],//DashEstilosMusicais
       estilosSelecionadasOld: [],//DashEstilosMusicais
       estilos: [],//DashEstilosMusicais
-      tiposDeComidaSelecionados: [],//DashTiposComida
       tiposDeComidaSelecionadosOld: [],//DashTiposComida
       tiposDeComida: [],//DashTiposComida
       tipoContato: "Telefone", //DashContato
