@@ -443,6 +443,14 @@ router.put('/', async (req, res) => {
         const categoriasEstabelecimentoOld = categoriaSelecionadasOld.map(categoria => categoria.id);
 
         const resultadoCategorias = compararListas(categoriasEstabelecimentoOld, categoriasEstabelecimento);
+
+        try {
+            for (let i = 0; i < resultadoCategorias.opcoesNovas.length ; i++) {
+                await categoria_estabelecimento_Service.inserir([idEstabelecimento, resultadoCategorias.opcoesNovas[i]], connection);
+            }
+        } catch (error) {
+            console.log(error);
+        }
         
         // console.log("Opções removidas:", resultadoCategorias.opcoesRemovidas);
         // console.log("Opções novas:", resultadoCategorias.opcoesNovas);
