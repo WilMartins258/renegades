@@ -31,7 +31,15 @@ const pegarPorIdEstabelecimento = async (idEstabelecimento) => {
     }
 };
 
-const excluir = async () => {};
+const excluir = async (dadosExclusao, conn) => {
+    try {
+        const estabelecimentoQuery = `DELETE FROM musica_estabelecimento WHERE idEstabelecimento = ? AND idEstiloMusica = ?;`;
+
+        await conn.query(estabelecimentoQuery, dadosExclusao);
+    } catch (error) {
+        throw new Error(`Erro ao excluir estilo de música do estabelecimento: ${error.message}`);
+    }
+};
 
 module.exports = {
     inserir,

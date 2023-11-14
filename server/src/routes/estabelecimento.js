@@ -497,18 +497,26 @@ router.put('/', async (req, res) => {
         } catch (error) {
             console.log(error);
         }
+        const musicasEstabelecimento = estilosSelecionadas.map(comida => comida.id);
+        const musicasEstabelecimentoOld = estilosSelecionadasOld.map(comida => comida.id);
 
-        // console.log("estilosSelecionadasOld:: ", estilosSelecionadasOld)
-        // console.log("estilosSelecionadas:: ", estilosSelecionadas)
+        const resultadoMusicas = compararListas(musicasEstabelecimentoOld, musicasEstabelecimento);
 
-        // const musicasEstabelecimento = estilosSelecionadas.map(comida => comida.id);
-        // const musicasEstabelecimentoOld = estilosSelecionadasOld.map(comida => comida.id);
+        try {
+            for (let i = 0; i < resultadoMusicas.opcoesNovas.length ; i++) {
+                await musica_estabelecimento_Service.inserir([idEstabelecimento, resultadoMusicas.opcoesNovas[i]], connection);
+            }
+        } catch (error) {
+            console.log(error);
+        }
 
-        // const resultadoMusicas = compararListas(musicasEstabelecimentoOld, musicasEstabelecimento);
-
-        // console.log("Opções removidas:", resultadoMusicas.opcoesRemovidas);
-        // console.log("Opções novas:", resultadoMusicas.opcoesNovas);
-
+        try {
+            for (let i = 0; i < resultadoMusicas.opcoesRemovidas.length ; i++) {
+                await musica_estabelecimento_Service.excluir([idEstabelecimento, resultadoMusicas.opcoesRemovidas[i]], connection);
+            }
+        } catch (error) {
+            console.log(error);
+        }
 
 
 
