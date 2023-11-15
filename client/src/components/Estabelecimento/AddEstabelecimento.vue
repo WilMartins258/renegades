@@ -123,7 +123,7 @@
     <h2>A categoria do meu estebelecimento é:</h2>
     <br>
     <!-- Chamada para o Component --> 
-    <Categorias :value="categoriasSelecionadas" @inputArray="receberCategoriasSelecionadas" @restauranteSelecionado="receberRestauranteSelecionado" />
+    <Categorias :value="categoriasSelecionadas" @input="receberCategoriasSelecionadas" @restauranteSelecionado="receberRestauranteSelecionado" />
     <br>
     <h2 v-if="isRestaurante">Tipo de Comida do Restaurante:</h2>
     <br>
