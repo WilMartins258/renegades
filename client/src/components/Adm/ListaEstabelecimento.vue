@@ -93,7 +93,10 @@ export default {
             id: index.id
           }
           await api.put('/estabelecimento/status', atualizarEstabelecimento);
-          this.estabelecimentos[(index.id - 1)].status = "Validado";
+          if (this.estabelecimentos && this.estabelecimentos[index.id - 1]) {
+            this.estabelecimentos[index.id - 1].status = "Validado";
+          }
+          location.reload();
 
         } catch (error) {
           this.mostrarmensagemError(error.response.data.msg);

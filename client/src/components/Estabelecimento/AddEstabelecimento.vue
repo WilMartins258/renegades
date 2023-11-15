@@ -123,23 +123,23 @@
     <h2>A categoria do meu estebelecimento é:</h2>
     <br>
     <!-- Chamada para o Component --> 
-    <Categorias :value="categoriasSelecionadas" @input="receberCategoriasSelecionadas" />
+    <Categorias :value="categoriasSelecionadas" @inputArray="receberCategoriasSelecionadas" @restauranteSelecionado="receberRestauranteSelecionado" />
     <br>
-    <h2>Tipo de Comida do Restaurante:</h2>
+    <h2 v-if="isRestaurante">Tipo de Comida do Restaurante:</h2>
     <br>
-    <TiposComida :value="tiposDeComidaSelecionados" @input=" receberTiposDeComidaSelecionados"/>
+    <TiposComida v-if="isRestaurante" :value="tiposDeComidaSelecionados" @input=" receberTiposDeComidaSelecionados"/>
   </section><!-- Fecha seção 3-->
 
   <section v-show="currentSection === 4">
   <h2>Meu Estebelecimento Oferece:</h2>
   <br>
   <!-- Chamada para o Component --> 
-  <Opcionais :value="opcoesSelecionadas" @input="receberOpcoesSelecionadas"/>
+  <Opcionais v-model="opcoesSelecionadas" @input="receberOpcoesSelecionadas" @MusicaSelecionada="receberMusicaSelecionada" />
   <br>
-  <h2>Selecione os Estilos Musicais do Estabelecimento:</h2>
+  <h2 v-if="isMusica">Selecione os Estilos Musicais do Estabelecimento:</h2>
   <br>
   <!-- Chamada para o Component --> 
-  <EstilosMusicas :value="estilosSelecionadas" @input="receberEstiloMusicais"/>
+  <EstilosMusicas v-if="isMusica" :value="estilosSelecionadas" @input="receberEstiloMusicais"/>
   </section><!-- Fecha seção 4-->
 
   
@@ -331,6 +331,8 @@ data() {
       tiposDeComidaSelecionados: [],
       showDescriptionPopup: false,
       currentSectionInfo: null, // Informações da seção atual
+      isRestaurante: false,
+      isMusica: false,
       sectionInfo: [
         { 
           title: "Seção 1: Endereço", 
@@ -644,6 +646,16 @@ methods: {
       if(sessionStorage.getItem('idUsuario')=='1'){
         this.$router.push('/AreaDoEstabelecimento');
       }
+    },
+    receberRestauranteSelecionado(restauranteSelecionado) {
+      // Passa True ou false se o "Restaurante" estiver selecionado
+     // console.log('Restaurante foi selecionado!');
+      this.isRestaurante = restauranteSelecionado;
+  },
+  receberMusicaSelecionada(isMusica) {
+      // Passa True ou false se "música ao vivo" ou "Toca Música" selecionado
+      //console.log("Pelo menos um tipo de música foi selecionado: ", isMusica);
+      this.isMusica = isMusica;
     },
 },
   mounted(){

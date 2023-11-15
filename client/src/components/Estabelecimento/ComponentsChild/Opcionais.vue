@@ -21,6 +21,7 @@ export default {
   name: "Opcionais",
   props: {
     value: Array, // Adicione uma propriedade value para usar v-model
+    tipoSelecao: String,
   },
   emits: ['input'],
   data() {
@@ -54,6 +55,9 @@ export default {
         this.opcoesSelecionadas.push(opcao);
       }
       this.$emit("input", this.opcoesSelecionadas); // Emita o evento input aqui
+
+      const isMusica = this.opcoesSelecionadas.some((item) => item.nome.toLowerCase() === "música ao vivo" || item.nome.toLowerCase() === "toca música");
+      this.$emit("MusicaSelecionada", isMusica);
     },
     opcaoSelecionada(opcao) {
       return this.opcoesSelecionadas.some(item => item.id === opcao.id);
