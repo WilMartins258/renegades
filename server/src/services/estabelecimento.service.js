@@ -149,6 +149,19 @@ const atualizarStatus = async (dadosEstabelecimento) => {
   }
 };
 
+const atualizarFormatoDeImagem = async (dadosEstabelecimento, conn) => {
+  try {
+    const estabelecimentoQuery = `
+      UPDATE estabelecimento
+        SET fotoPrincipal = ?
+          WHERE id = ?;`;
+
+    await conn.query(estabelecimentoQuery, dadosEstabelecimento);
+  } catch (error) {
+    throw new Error(`Erro ao atualizar formato da imagem do estabelecimento: ${error.message}`);
+  }
+};
+
 module.exports = {
   inserir,
   atualizar,
@@ -157,5 +170,6 @@ module.exports = {
   filtros,
   pegarParaValidacao,
   pegarNotaEstabelecimentoPorId,
-  atualizarStatus
+  atualizarStatus,
+  atualizarFormatoDeImagem
 };
