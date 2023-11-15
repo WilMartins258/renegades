@@ -1,3 +1,8 @@
+Erro ao inserir contato do estabelecimento: Cannot add or update a child row: a foreign key constraint fails (`renegades_stage`.`contato_estabelecimento`, CONSTRAINT `contato_estabelecimento_ontato_fk` FOREIGN KEY (`idContato`) REFERENCES `contato` (`id`))
+    at Object.inserir (D:\01-FUTURO\00-ADS FATEC\7ºSemestre\TG\renegades\server\src\services\contato_estabelecimento.service.js:9:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async D:\01-FUTURO\00-ADS FATEC\7ºSemestre\TG\renegades\server\src\routes\estabelecimento.js:607:17
+
 -- DROP DATABASE
 DROP database renegades_stage;
 
@@ -228,7 +233,7 @@ ALTER TABLE categoria_estabelecimento add (constraint categoria_estabelecimento_
 ------ contato_estabelecimento
 ALTER TABLE contato_estabelecimento add (constraint contato_estabelecimento_estabelecimento_fk foreign key (idEstabelecimento) references estabelecimento (id));
 
-ALTER TABLE contato_estabelecimento add (constraint contato_estabelecimento_ontato_fk foreign key (idContato) references contato (id));
+ALTER TABLE contato_estabelecimento add (constraint contato_estabelecimento_contato_fk foreign key (idContato) references contato (id));
 
 
 
