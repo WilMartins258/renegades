@@ -610,19 +610,29 @@ router.put('/', async (req, res) => {
         }
 
 
+        // HORÁRIOS
+        console.log("listahorarios:: ", listahorarios)
+        console.log("listahorariosOld:: ", listahorariosOld)
 
+        const horariosEstabelecimento = listahorarios.map(comida => comida.id);
+        const horariosEstabelecimentoOld = listahorariosOld.map(comida => comida.id);
 
-        // console.log("tiposDeComidaSelecionadosOld:: ", tiposDeComidaSelecionadosOld)
-        // console.log("tiposDeComidaSelecionados:: ", tiposDeComidaSelecionados)
+        const resultaHorarios = compararListas(horariosEstabelecimentoOld, horariosEstabelecimento);
 
-        // const comidasEstabelecimento = tiposDeComidaSelecionados.map(comida => comida.id);
-        // const comidasEstabelecimentoOld = tiposDeComidaSelecionadosOld.map(comida => comida.id);
-
-        // const resultadoComidas = compararListas(comidasEstabelecimentoOld, comidasEstabelecimento);
-
-        // console.log("Opções removidas:", resultadoComidas.opcoesRemovidas);
-        // console.log("Opções novas:", resultadoComidas.opcoesNovas);
+        console.log("Opções removidas:", resultaHorarios.opcoesRemovidas);
+        console.log("Opções novas:", resultaHorarios.opcoesNovas);
         
+        // try {
+        //     await horario_Service.excluirTudoPorIdEstabelecimento(idEstabelecimento, connection);
+        // } catch (error) {
+        //     console.log(error);
+        // }
+
+        try {
+            
+        } catch (error) {
+            console.log(error);
+        }
 
         await connection.commit();
         res.status(200).send({
