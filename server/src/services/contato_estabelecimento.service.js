@@ -28,8 +28,21 @@ const pegarPorIdEstabelecimento = async (idEstabelecimento) => {
     }
 };
 
+const excluirTudoPorIdEstabelecimento = async (idEstabelecimento, conn) => {
+    try {
+        const contatoEstabelecimentoQuery = `
+        DELETE FROM contato_estabelecimento
+            WHERE idEstabelecimento = ?;`;
+
+        await conn.query(contatoEstabelecimentoQuery, dadosContato);
+    } catch (error) {
+        throw new Error(`Erro ao excluir contatos do estabelecimento: ${error.message}`);
+    }
+}
+
 module.exports = {
     inserir,
     atualizar,
-    pegarPorIdEstabelecimento
+    pegarPorIdEstabelecimento,
+    excluirTudoPorIdEstabelecimento
 };
