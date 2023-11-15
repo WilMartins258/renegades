@@ -85,8 +85,8 @@ CREATE TABLE usuario (
 	cidade            VARCHAR(200),
 	estado            VARCHAR(200),
 	cep               VARCHAR(9),
-	latitude          FLOAT,
-	longitude         FLOAT
+	latitude          DECIMAL(32, 26),
+	longitude         DECIMAL(32, 26)
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE estabelecimento (
