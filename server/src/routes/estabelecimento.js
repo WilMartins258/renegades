@@ -540,6 +540,18 @@ router.put('/', async (req, res) => {
             console.log(error);
         }
 
+        try {
+            for (let i = 0; i < resultadoRedesSociais.opcoesNovas.length ; i++) {
+                for (let x = 0; x < listaRedesSociais.length ; x++) {
+                    if ( resultadoRedesSociais.opcoesNovas[i] = listaRedesSociais[x]?.idRede ) {
+                        await redeSocial_estabelecimento_Service.inserir([idEstabelecimento, listaRedesSociais[x]?.idRede, listaRedesSociais[x]?.perfil], connection);
+                    }
+                }
+            }
+        } catch (error) {
+            console.log(error);
+        }
+
         // console.log("tiposDeComidaSelecionadosOld:: ", tiposDeComidaSelecionadosOld)
         // console.log("tiposDeComidaSelecionados:: ", tiposDeComidaSelecionados)
 
