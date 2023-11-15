@@ -1068,7 +1068,7 @@ cancelar() {
 
 async salvar() {
   if (!this.fotoEstabelecimentoMudou){
-    this.fotoEstabelecimento = null;
+    this.estabelecimentoPhoto = null;
   }
   try {
     console.log('PUT estabelecimento');
@@ -1083,7 +1083,7 @@ async salvar() {
       recomendacao: this.recomendacao, // OK EXCETO IMAGENS
       fotoEstabelecimentoMudou: this.fotoEstabelecimentoMudou,
       formatoFoto: this.formatoFoto,
-      fotoEstabelecimento64: this.fotoEstabelecimento,
+      estabelecimentoPhoto: this.estabelecimentoPhoto,
       estabelecimentoPhotoType: this.estabelecimentoPhotoType,
       categoriasSelecionadas: this.categoriaSelecionadas, // OK
       categoriaSelecionadasOld: this.categoriaSelecionadasOld,
