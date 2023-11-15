@@ -34,7 +34,7 @@ const excluirTudoPorIdEstabelecimento = async (idEstabelecimento, conn) => {
         DELETE FROM contato_estabelecimento
             WHERE idEstabelecimento = ?;`;
 
-        await conn.query(contatoEstabelecimentoQuery, dadosContato);
+        await conn.query(contatoEstabelecimentoQuery, idEstabelecimento);
     } catch (error) {
         throw new Error(`Erro ao excluir contatos do estabelecimento: ${error.message}`);
     }
