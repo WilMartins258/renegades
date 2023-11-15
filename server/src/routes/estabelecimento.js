@@ -417,7 +417,7 @@ router.put('/', async (req, res) => {
             estilosSelecionadas,
             estilosSelecionadasOld,
             listaRedesSociais,
-            listaRedesSociaisOld,
+            indicesRedesSociaisOld,
             listaContatos,
             listaContatosOld,
             listahorarios,
@@ -518,10 +518,14 @@ router.put('/', async (req, res) => {
             console.log(error);
         }
 
-        // console.log("listaRedesSociaisOld:: ", listaRedesSociaisOld)
-        // console.log("listaRedesSociais:: ", listaRedesSociais)
+        console.log("listaRedesSociais:: ", listaRedesSociais)
+        console.log("indicesRedesSociaisOld:: ", indicesRedesSociaisOld)
 
-        // const redesSociaisEstabelecimento = listaRedesSociais.map(redeSocial => redeSocial.id);
+        // Quando uma nova rede é adicionada ela manda um idRede e não um id, uma vez que não há id para ser exibido já que nunca passou pelo banco de dados.
+        const redesSociaisEstabelecimento = listaRedesSociais.map(redeSocial => redeSocial.id ? redeSocial.id : parseInt(redeSocial.idRede, 10));
+
+        console.log("redesSociaisEstabelecimento:: ", redesSociaisEstabelecimento)
+
 
         // const resultadoRedesSociais = compararListas(listaRedesSociaisOld, redesSociaisEstabelecimento);
 

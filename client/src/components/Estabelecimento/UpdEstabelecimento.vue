@@ -531,7 +531,7 @@ data() {
       campoVazioRdSocial: false,
       isEditingRdSocial: false,
       listaRedesSociais: [],
-      listaRedesSociaisOld: [],
+      indicesRedesSociaisOld: [],
       editingIndexRdSocial: -1,
       redesSociaisIncluidas: new Set(),
       redeSocialJaIncluida: false,
@@ -1087,7 +1087,7 @@ async salvar() {
       estilosSelecionadas: this.estilosSelecionadas, // OK
       estilosSelecionadasOld: this.estilosSelecionadasOld,
       listaRedesSociais: this.listaRedesSociais, // CORRIGIR EDITAR
-      listaRedesSociaisOld: this.listaRedesSociaisOld,
+      indicesRedesSociaisOld: this.indicesRedesSociaisOld,
       listaContatos: this.listaContatos,
       listaContatosOld: this.listaContatosOld,
       listahorarios: this.listahorarios, // NÃO CHECA WHATSAPP
@@ -1222,13 +1222,10 @@ computed: {
         this.estilosSelecionadasOld = musicasEstabelecimento;
       }
 
-      const indicesRedesSociais = redeSociaisEstabelecimento.map(rede => rede.id);
-      this.listaRedesSociaisOld = indicesRedesSociais;
+      const indicesRedesSociaisOld = redeSociaisEstabelecimento.map(rede => rede.id);
+      this.indicesRedesSociaisOld = indicesRedesSociaisOld;
       
       this.listaRedesSociais = redeSociaisEstabelecimento;
-      // if (redeSociaisEstabelecimento.length > 0) {
-      //   this.listaRedesSociaisOld = redeSociaisEstabelecimento;
-      // }
 
       this.listahorarios = horariosEstabelecimento;
       if (horariosEstabelecimento.length > 0) {
