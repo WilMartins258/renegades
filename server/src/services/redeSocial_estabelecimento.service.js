@@ -12,7 +12,18 @@ const inserir = async (dadosRedeSocial, conn) => {
     }
 };
 
-const atualizar = async () => {};
+const atualizar = async (novosDadosRedeSocial, conn) => {
+    try {
+        const redesSociaisEstabelecimentoQuery = `
+        UPDATE redeSocial_estabelecimento
+            SET redeSocial = ?
+                WHERE id = ?;`;
+
+        await conn.query(redesSociaisEstabelecimentoQuery, novosDadosRedeSocial);
+    } catch (error) {
+        throw new Error(`Erro ao atualizar rede social do estabelecimento: ${error.message}`);
+    }
+};
 
 const pegarPorIdEstabelecimento = async (idEstabelecimento) => {
     try {

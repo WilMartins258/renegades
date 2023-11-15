@@ -435,6 +435,20 @@ router.put('/', async (req, res) => {
             };
         };
 
+        const encontrarElementosRepetidos = (array1, array2) => {
+            const unicosArray1 = [...new Set(array1)];
+            const unicosArray2 = [...new Set(array2)];
+            const repetidos = [];
+          
+            for (const elemento of unicosArray1) {
+              if (unicosArray2.includes(elemento)) {
+                repetidos.push(elemento);
+              }
+            }
+          
+            return repetidos;
+        };
+
         const categoriasEstabelecimento = categoriasSelecionadas.map(categoria => categoria.id);
         const categoriasEstabelecimentoOld = categoriaSelecionadasOld.map(categoria => categoria.id);
 
@@ -551,6 +565,30 @@ router.put('/', async (req, res) => {
         } catch (error) {
             console.log(error);
         }
+
+        const redesSociaisParaAtualizar = encontrarElementosRepetidos(indicesRedesSociaisOld, redesSociaisEstabelecimento);
+
+        console.log("redesSociaisParaAtualizar:: ", redesSociaisParaAtualizar)
+        
+        console.log("\n\n ")
+        try {
+            for (let i = 0; i < redesSociaisParaAtualizar.length ; i++) {
+                for (let x = 0; x < listaRedesSociais.length ; x++) {
+                    if ( redesSociaisParaAtualizar[i] === listaRedesSociais[x]?.id ) {
+                        console.log("Elemento \n ")
+
+                        console.log('redesSociaisParaAtualizar[i]:: ', redesSociaisParaAtualizar[i])
+                        console.log("listaRedesSociais[x]?.id :: ", listaRedesSociais[x]?.id )
+                        console.log("listaRedesSociais[x] :: ", listaRedesSociais[x] )
+                        await redeSocial_estabelecimento_Service.atualizar([listaRedesSociais[x].perfil, listaRedesSociais[x].idRedeSocialEstabelecimento], connection)
+                        console.log("\n\n\n ")
+                    }
+                }
+            }
+        } catch (error) {
+            console.log(error);
+        }
+
 
         // console.log("tiposDeComidaSelecionadosOld:: ", tiposDeComidaSelecionadosOld)
         // console.log("tiposDeComidaSelecionados:: ", tiposDeComidaSelecionados)
