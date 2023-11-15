@@ -518,26 +518,26 @@ router.put('/', async (req, res) => {
             console.log(error);
         }
 
-        console.log("listaRedesSociaisOld:: ", listaRedesSociaisOld)
-        console.log("listaRedesSociais:: ", listaRedesSociais)
+        // console.log("listaRedesSociaisOld:: ", listaRedesSociaisOld)
+        // console.log("listaRedesSociais:: ", listaRedesSociais)
 
-        const redesSociaisEstabelecimento = listaRedesSociais.map(redeSocial => redeSocial.id);
+        // const redesSociaisEstabelecimento = listaRedesSociais.map(redeSocial => redeSocial.id);
 
-        const resultadoRedesSociais = compararListas(listaRedesSociaisOld, redesSociaisEstabelecimento);
+        // const resultadoRedesSociais = compararListas(listaRedesSociaisOld, redesSociaisEstabelecimento);
 
-        console.log("Opções removidas:", resultadoRedesSociais.opcoesRemovidas);
-        console.log("Opções novas:", resultadoRedesSociais.opcoesNovas);
+        // console.log("Opções removidas:", resultadoRedesSociais.opcoesRemovidas);
+        // console.log("Opções novas:", resultadoRedesSociais.opcoesNovas);
 
-        try {
-            for (let i = 0; i < resultadoRedesSociais.opcoesRemovidas.length ; i++) {
-                await redeSocial_estabelecimento_Service.excluir([idEstabelecimento, resultadoRedesSociais.opcoesRemovidas[i]], connection);
-            }
-        } catch (error) {
-            console.log(error);
-        }
+        // try {
+        //     for (let i = 0; i < resultadoRedesSociais.opcoesRemovidas.length ; i++) {
+        //         await redeSocial_estabelecimento_Service.excluir([idEstabelecimento, resultadoRedesSociais.opcoesRemovidas[i]], connection);
+        //     }
+        // } catch (error) {
+        //     console.log(error);
+        // }
 
 
-                // console.log("tiposDeComidaSelecionadosOld:: ", tiposDeComidaSelecionadosOld)
+        // console.log("tiposDeComidaSelecionadosOld:: ", tiposDeComidaSelecionadosOld)
         // console.log("tiposDeComidaSelecionados:: ", tiposDeComidaSelecionados)
 
         // const comidasEstabelecimento = tiposDeComidaSelecionados.map(comida => comida.id);
