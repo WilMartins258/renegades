@@ -85,23 +85,21 @@ const obterDistanciaDeTodosEstabelecimentos= async (latitudeUsuario, longitudeUs
     }
 };
 
+const obterDistanciaDeTodosEstabelecimentosPeloCep = async (latitudeUsuario, longitudeUsuario, estabelecimentos) => {
+    try {
+        const apiKey = variaveisGlobais.googleApiKey();
+        
+    } catch (error) {
+        console.log('Erro obterDistanciaDeTodosEstabelecimentosPeloCep: \n', error)
+        throw new Error('Erro ao obter distâncias: ', error);
+    }
+};
+
 module.exports = {
     obterCoordenadasViaGoogleApi,
     obterDistanciaDoEstabelecimento,
     procurarEstabelecimentosSemCoordenadas,
     salvarCoordenadasDoEstabelecimento,
-    obterDistanciaDeTodosEstabelecimentos
+    obterDistanciaDeTodosEstabelecimentos,
+    obterDistanciaDeTodosEstabelecimentosPeloCep
 } 
-
-
-/*
-        try {
-            console.log('distancias!!!');
-            const distancias = await distancia_Service.obterDistanciaDeTodosEstabelecimentos(latitude, longitude,estabelecimentos);
-            // console.log('distancias:: ', distancias);
-        } catch (error) {
-            console.log('Erro ao lidar com a distância dos estabelecimentos: ', error);
-        }
-
-
-*/
