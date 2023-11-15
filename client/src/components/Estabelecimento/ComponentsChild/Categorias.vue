@@ -59,6 +59,11 @@
         };
           }
           this.$emit("input", this.categoriaSelecionadas); // Emita o evento input aqui
+
+          const restauranteSelecionado = this.categoriaSelecionadas.some(item => item.nome.toLowerCase() === 'restaurante');
+
+            // Emita um evento adicional para indicar se "Restaurante" está selecionado
+            this.$emit("restauranteSelecionado", restauranteSelecionado);
         },
         opcaoSelecionada(opcao) {
           return this.categoriaSelecionadas.some(item => item.id === opcao.id);
