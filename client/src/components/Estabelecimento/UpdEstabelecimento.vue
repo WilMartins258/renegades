@@ -540,7 +540,6 @@ data() {
       horaInicio: "",
       horaTermino: "",
       listahorarios: [], 
-      listahorariosOld: [], 
       editingIndexHorario: -1,
       isEditingHorario: false,
       timeFieldsError: false,
@@ -1091,7 +1090,6 @@ async salvar() {
       indicesRedesSociaisOld: this.indicesRedesSociaisOld,
       listaContatos: this.listaContatos,
       listahorarios: this.listahorarios, // NÃO CHECA WHATSAPP
-      listahorariosOld: this.listahorariosOld,
       idEstabelecimento: sessionStorage.getItem('idEstabelecimento')
     };
 
@@ -1227,15 +1225,8 @@ computed: {
       this.indicesRedesSociaisOld = indicesRedesSociaisOld;
       
       this.listaRedesSociais = redeSociaisEstabelecimento;
-
       this.listahorarios = horariosEstabelecimento;
-      if (horariosEstabelecimento.length > 0) {
-        this.listahorariosOld = horariosEstabelecimento;
-      }
-
       this.listaContatos = contatosEstabelecimento;
-
-
     } catch (error) {
       console.log('Erro ao buscar dados da página:: ', error);
     }
