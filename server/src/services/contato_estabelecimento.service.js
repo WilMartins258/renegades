@@ -10,8 +10,6 @@ const inserir = async (dadosContato, conn) => {
     }
 };
 
-const atualizar = async () => {};
-
 const pegarPorIdEstabelecimento = async (idEstabelecimento) => {
     try {
         const contatoEstabelecimentoQuery = `
@@ -42,7 +40,6 @@ const excluirTudoPorIdEstabelecimento = async (idEstabelecimento, conn) => {
 
 module.exports = {
     inserir,
-    atualizar,
     pegarPorIdEstabelecimento,
     excluirTudoPorIdEstabelecimento
 };

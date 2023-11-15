@@ -522,7 +522,6 @@ data() {
       campoVazio: false,//DashContato
       isEditingContato: false,//DashContato
       listaContatos: [],//DashContato
-      indicesContatosOld: [],
       editingIndex: -1,//DashContato
       isWhatsapp: false,//DashContato
       redeSocial: "1",
@@ -627,6 +626,7 @@ methods: {
       tipoContato: this.tipoContato,
       numeroContato: this.numeroContato,
       isWhatsapp: this.isWhatsapp,
+      idContato: tipoContatoId
     };
     
     // Adicione o tipoContatoId ao novoContato
@@ -665,6 +665,7 @@ methods: {
         tipoContato: this.tipoContato,
         numeroContato: this.numeroContato,
         isWhatsapp: this.isWhatsapp,
+        idContato: this.listaContatos[index].idContato
       };
       this.editingIndex = -1;
       this.isEditingContato = false;
@@ -1089,7 +1090,6 @@ async salvar() {
       listaRedesSociais: this.listaRedesSociais, // CORRIGIR EDITAR
       indicesRedesSociaisOld: this.indicesRedesSociaisOld,
       listaContatos: this.listaContatos,
-      indicesContatosOld: this.indicesContatosOld,
       listahorarios: this.listahorarios, // NÃO CHECA WHATSAPP
       listahorariosOld: this.listahorariosOld,
       idEstabelecimento: sessionStorage.getItem('idEstabelecimento')
@@ -1233,14 +1233,7 @@ computed: {
         this.listahorariosOld = horariosEstabelecimento;
       }
 
-      console.log('contatosEstabelecimento:: ', contatosEstabelecimento)
-
-
       this.listaContatos = contatosEstabelecimento;
-      const indicesContatosOld = contatosEstabelecimento.map(contato => contato.id);
-      this.indicesContatosOld = indicesContatosOld;
-
-      console.log('indicesContatosOld:: ', indicesContatosOld)
 
 
     } catch (error) {
