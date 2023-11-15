@@ -626,6 +626,7 @@ methods: {
       tipoContato: this.tipoContato,
       numeroContato: this.numeroContato,
       isWhatsapp: this.isWhatsapp,
+      idContato: tipoContatoId
     };
     
     // Adicione o tipoContatoId ao novoContato
@@ -664,6 +665,7 @@ methods: {
         tipoContato: this.tipoContato,
         numeroContato: this.numeroContato,
         isWhatsapp: this.isWhatsapp,
+        idContato: this.listaContatos[index].idContato
       };
       this.editingIndex = -1;
       this.isEditingContato = false;
@@ -1230,9 +1232,6 @@ computed: {
       if (horariosEstabelecimento.length > 0) {
         this.listahorariosOld = horariosEstabelecimento;
       }
-
-      console.log('contatosEstabelecimento:: ', contatosEstabelecimento)
-
 
       this.listaContatos = contatosEstabelecimento;
 
