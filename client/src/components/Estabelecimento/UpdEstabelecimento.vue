@@ -1004,7 +1004,7 @@ methods: {
               const bufferValido = new Uint8Array(arrayBuffer);
 
               this.estabelecimentoPhoto = bufferValido;
-              this.estabelecimentoPhotoType = image.type;
+              this.estabelecimentoPhotoType = image?.type;
               this.fotoEstabelecimento = await retornaCodigoBase64(image);
               this.fotoEstabelecimentoMudou = true;
           } catch (error) {
@@ -1066,6 +1066,9 @@ cancelar() {
 },
 
 async salvar() {
+  if (!this.fotoEstabelecimentoMudou){
+    this.fotoEstabelecimento = null;
+  }
   try {
     console.log('PUT estabelecimento');
     this.desabilitarCampos();
@@ -1077,7 +1080,9 @@ async salvar() {
       endereco: this.endereco, // OK
       numero: this.numero, // OK
       recomendacao: this.recomendacao, // OK EXCETO IMAGENS
-      estabelecimentoPhoto: this.estabelecimentoPhoto, // OK
+      fotoEstabelecimentoMudou: this.fotoEstabelecimentoMudou,
+      fotoEstabelecimento64: this.fotoEstabelecimento,
+      estabelecimentoPhotoType: this.estabelecimentoPhotoType,
       categoriasSelecionadas: this.categoriaSelecionadas, // OK
       categoriaSelecionadasOld: this.categoriaSelecionadasOld,
       tiposDeComidaSelecionados: this.tiposDeComidaSelecionados, // OK
