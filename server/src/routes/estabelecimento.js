@@ -407,7 +407,9 @@ router.put('/', async (req, res) => {
             endereco,
             numero,
             recomendacao,
-            estabelecimentoPhoto,
+            fotoEstabelecimentoMudou,
+            fotoEstabelecimento64,
+            estabelecimentoPhotoType,
             categoriasSelecionadas,
             categoriaSelecionadasOld,
             tiposDeComidaSelecionados,
@@ -422,6 +424,38 @@ router.put('/', async (req, res) => {
             listahorarios,
             idEstabelecimento
         } = req.body.novosDadosEstabelecimento;
+
+        const removerCaracteresEspeciais = (str) => {
+            return str.replace(/[^0-9]/g, '');
+        };
+
+        const cnpjFormatado = removerCaracteresEspeciais(cnpj);
+
+        const novosDadosEstabelecimento = {
+            nome: nomeEstabelecimento,
+            descricao: descricaoEstabelecimento,
+            cnpj: cnpjFormatado,
+            cep: cep,
+            estado: endereco.uf,
+            cidade: endereco.cidade,
+            bairro: endereco.bairro,
+            logradouro: endereco.rua,
+            numero: numero,
+            idEstabelecimento: idEstabelecimento
+        }
+        const novosDadosEstabelecimentoArray = Object.values(novosDadosEstabelecimento);
+
+        // ESTABELECIMENTO
+        try {
+            await estabelecimento_Service.atualizar(novosDadosEstabelecimentoArray, connection)
+        } catch (error) {
+            console.log(error);
+        }
+        console.log('endereco:: ', endereco);
+        console.log('numero:: ', numero);
+        console.log('fotoEstabelecimentoMudou:: ', fotoEstabelecimentoMudou);
+        console.log('fotoEstabelecimento64:: ', fotoEstabelecimento64);
+        console.log('estabelecimentoPhotoType:: ', estabelecimentoPhotoType);
 
         const compararListas = (original, editado) => {
             const opcoesRemovidas = original.filter(opcao => !editado.includes(opcao));
@@ -586,10 +620,6 @@ router.put('/', async (req, res) => {
 
 
         // CONTATOS
-        const removerCaracteresEspeciais = (str) => {
-            return str.replace(/[^0-9]/g, '');
-        };
-
         for (let i = 0; i < listaContatos.length; i++) {
             listaContatos[i].numeroContato = removerCaracteresEspeciais(listaContatos[i].numeroContato);
         }   
