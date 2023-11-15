@@ -508,17 +508,12 @@ export default {
           alert("Erro ao buscar informações de CEP. Por favor, tente novamente.");
         });
         if (sessionStorage.getItem('cep')) {
-          console.log('TEM CEP:: ', sessionStorage.getItem('cep'))
           const distancias = await api.get('/distancia/cep', { params: {cep: sessionStorage.getItem('cep')} });
-          // console.log('distancias:: ', distancias);
-
           for (let i=0; i < distancias?.data?.distancias?.length; i++) {
             console.log('nome:: ', distancias.data.distancias[i].nome, ' ', distancias.data.distancias[i].distancia)
             this.estabelecimentos[i].distancia = distancias.data.distancias[i].distancia;
           }
           this.showDistance = true;
-        } else {
-          console.log('NÃO TEM CEP')
         }
     } else {
       console.warn("Formato de CEP inválido");
