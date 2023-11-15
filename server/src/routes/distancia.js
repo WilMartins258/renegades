@@ -6,6 +6,7 @@ router.get('/cep', async (req, res) => {
     try {
         const { cep } = req.query;
         const estabelecimentos = await estabelecimento_Service.filtros();
+        // console.log('cep:: ', cep)
   
         let distancias = [];
         try {
@@ -13,6 +14,8 @@ router.get('/cep', async (req, res) => {
         } catch (error) {
             console.log('Erro ao lidar com a distância dos estabelecimentos: ', error);
         }
+        // console.log('distancias:: ', distancias)
+
   
         res.status(200).send({distancias});
     } catch (error) {
