@@ -85,10 +85,23 @@ const obterDistanciaDeTodosEstabelecimentos= async (latitudeUsuario, longitudeUs
     }
 };
 
-const obterDistanciaDeTodosEstabelecimentosPeloCep = async (latitudeUsuario, longitudeUsuario, estabelecimentos) => {
+const obterDistanciaDeTodosEstabelecimentosPeloCep = async (cep, estabelecimentos) => {
     try {
         const apiKey = variaveisGlobais.googleApiKey();
+
+        for (let i=0; i< estabelecimentos.length ; i++) {
+            const apiUrl = `https://maps.googleapis.com/maps/api/directions/json?origin=${cep}&destination=${estabelecimentos[i]?.numeroEstabelecimento},${estabelecimentos[i]?.cep}&mode=driving&key=${apiKey}`;
+
+            const response = await axios.get(apiUrl);
+
+            if ( response?.data?.routes[0]?.legs[0]?.distance?.value > 0) {
+                estabelecimentos[i].distancia = (response?.data?.routes[0]?.legs[0]?.distance?.value)/1000;
+            } else {
+                estabelecimentos[i].distancia = 1,0;
+            }
+        }
         
+        return estabelecimentos;
     } catch (error) {
         console.log('Erro obterDistanciaDeTodosEstabelecimentosPeloCep: \n', error)
         throw new Error('Erro ao obter distâncias: ', error);
