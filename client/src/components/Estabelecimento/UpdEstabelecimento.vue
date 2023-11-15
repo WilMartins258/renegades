@@ -522,7 +522,6 @@ data() {
       campoVazio: false,//DashContato
       isEditingContato: false,//DashContato
       listaContatos: [],//DashContato
-      indicesContatosOld: [],
       editingIndex: -1,//DashContato
       isWhatsapp: false,//DashContato
       redeSocial: "1",
@@ -1089,7 +1088,6 @@ async salvar() {
       listaRedesSociais: this.listaRedesSociais, // CORRIGIR EDITAR
       indicesRedesSociaisOld: this.indicesRedesSociaisOld,
       listaContatos: this.listaContatos,
-      indicesContatosOld: this.indicesContatosOld,
       listahorarios: this.listahorarios, // NÃO CHECA WHATSAPP
       listahorariosOld: this.listahorariosOld,
       idEstabelecimento: sessionStorage.getItem('idEstabelecimento')
@@ -1237,10 +1235,6 @@ computed: {
 
 
       this.listaContatos = contatosEstabelecimento;
-      const indicesContatosOld = contatosEstabelecimento.map(contato => contato.id);
-      this.indicesContatosOld = indicesContatosOld;
-
-      console.log('indicesContatosOld:: ', indicesContatosOld)
 
 
     } catch (error) {
