@@ -543,6 +543,7 @@ data() {
       editingIndexHorario: -1,
       isEditingHorario: false,
       timeFieldsError: false,
+      formatoFoto: ''
   }
 },
 methods: {
@@ -1081,6 +1082,7 @@ async salvar() {
       numero: this.numero, // OK
       recomendacao: this.recomendacao, // OK EXCETO IMAGENS
       fotoEstabelecimentoMudou: this.fotoEstabelecimentoMudou,
+      formatoFoto: this.formatoFoto,
       fotoEstabelecimento64: this.fotoEstabelecimento,
       estabelecimentoPhotoType: this.estabelecimentoPhotoType,
       categoriasSelecionadas: this.categoriaSelecionadas, // OK
@@ -1177,7 +1179,8 @@ computed: {
       } catch (error) {
         console.log('Error ao exibir foto: ', error);
       }
-  
+      
+      this.formatoFoto = formatoFoto;
       this.categoria = categorias;
       this.opcoes = opcionais;
       this.estilos = estilosMusica;
