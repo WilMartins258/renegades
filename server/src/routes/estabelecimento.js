@@ -407,6 +407,7 @@ router.put('/', async (req, res) => {
             endereco,
             numero,
             recomendacao,
+            recomedacoesOld,
             fotoEstabelecimentoMudou,
             estabelecimentoPhoto,
             estabelecimentoPhotoType,
@@ -473,6 +474,11 @@ router.put('/', async (req, res) => {
                 console.log('Erro ao atualizar imagem do estabelecimento');
             }
         }
+
+        // RECOMENDAÇÕES
+
+        console.log('recomendacao:: ', recomendacao);
+        console.log('recomedacoesOld:: ', recomedacoesOld);
 
 
         const compararListas = (original, editado) => {
