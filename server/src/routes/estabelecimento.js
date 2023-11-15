@@ -449,6 +449,7 @@ router.put('/', async (req, res) => {
             return repetidos;
         };
 
+        // CATEGORIAS
         const categoriasEstabelecimento = categoriasSelecionadas.map(categoria => categoria.id);
         const categoriasEstabelecimentoOld = categoriaSelecionadasOld.map(categoria => categoria.id);
 
@@ -470,6 +471,8 @@ router.put('/', async (req, res) => {
             console.log(error);
         }
 
+
+        // COMIDAS
         const comidasEstabelecimento = tiposDeComidaSelecionados.map(comida => comida.id);
         const comidasEstabelecimentoOld = tiposDeComidaSelecionadosOld.map(comida => comida.id);
 
@@ -491,6 +494,8 @@ router.put('/', async (req, res) => {
             console.log(error);
         }
 
+
+        // OPCIONAIS
         const opcionaisEstabelecimento = opcoesSelecionadas.map(opcao => opcao.id);
         const opcionaisEstabelecimentoOld = opcoesSelecionadasOld.map(opcao => opcao.id);
 
@@ -511,6 +516,9 @@ router.put('/', async (req, res) => {
         } catch (error) {
             console.log(error);
         }
+
+
+        // MUSICAS
         const musicasEstabelecimento = estilosSelecionadas.map(comida => comida.id);
         const musicasEstabelecimentoOld = estilosSelecionadasOld.map(comida => comida.id);
 
@@ -532,11 +540,12 @@ router.put('/', async (req, res) => {
             console.log(error);
         }
 
+
+        // REDES SOCIAIS
         // Quando uma nova rede é adicionada ela manda um idRede e não um id, uma vez que não há id para ser exibido já que nunca passou pelo banco de dados.
         const redesSociaisEstabelecimento = listaRedesSociais.map(redeSocial => redeSocial.id ? redeSocial.id : parseInt(redeSocial.idRede, 10));
 
         const resultadoRedesSociais = compararListas(indicesRedesSociaisOld, redesSociaisEstabelecimento);
-
 
         // Excluindo redes que foram removidas do array
         try {
