@@ -1082,7 +1082,6 @@ async salvar() {
       numero: this.numero, // OK
       recomendacao: this.recomendacao, // OK EXCETO IMAGENS
       fotoEstabelecimentoMudou: this.fotoEstabelecimentoMudou,
-      formatoFoto: this.formatoFoto,
       estabelecimentoPhoto: this.estabelecimentoPhoto,
       estabelecimentoPhotoType: this.estabelecimentoPhotoType,
       categoriasSelecionadas: this.categoriaSelecionadas, // OK

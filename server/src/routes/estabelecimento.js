@@ -408,7 +408,7 @@ router.put('/', async (req, res) => {
             numero,
             recomendacao,
             fotoEstabelecimentoMudou,
-            fotoEstabelecimento64,
+            estabelecimentoPhoto,
             estabelecimentoPhotoType,
             categoriasSelecionadas,
             categoriaSelecionadasOld,
@@ -451,11 +451,29 @@ router.put('/', async (req, res) => {
         } catch (error) {
             console.log(error);
         }
-        console.log('endereco:: ', endereco);
-        console.log('numero:: ', numero);
-        console.log('fotoEstabelecimentoMudou:: ', fotoEstabelecimentoMudou);
-        console.log('fotoEstabelecimento64:: ', fotoEstabelecimento64);
-        console.log('estabelecimentoPhotoType:: ', estabelecimentoPhotoType);
+
+        if (fotoEstabelecimentoMudou) {
+            try {
+                // Salva a nova foto do estabelecimento
+                let extensaoImagem = '';
+                if (estabelecimentoPhotoType) {
+                    extensaoImagem = extensaoImagem_Service.encontrarExtensaoImagem(estabelecimentoPhotoType);
+                }
+
+                const bufferImagemEstabelecimento = await buffer_Service.transformarBufferEmValido(estabelecimentoPhoto);
+
+                fs.writeFile(`./../client/src/components/Estabelecimento/images/${idEstabelecimento}.${extensaoImagem}`, bufferImagemEstabelecimento, (err) => {
+                    if (err) {
+                    console.error('Erro ao salvar imagem do estabelecimento:', err);
+                    }
+                });
+
+                await estabelecimento_Service.atualizarFormatoDeImagem([extensaoImagem, idEstabelecimento], connection)
+            } catch (error) {
+                console.log('Erro ao atualizar imagem do estabelecimento');
+            }
+        }
+
 
         const compararListas = (original, editado) => {
             const opcoesRemovidas = original.filter(opcao => !editado.includes(opcao));
