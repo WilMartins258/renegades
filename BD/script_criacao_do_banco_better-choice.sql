@@ -85,8 +85,8 @@ CREATE TABLE usuario (
 	cidade            VARCHAR(200),
 	estado            VARCHAR(200),
 	cep               VARCHAR(9),
-	latitude          FLOAT,
-	longitude         FLOAT
+	latitude          DECIMAL(32, 26),
+	longitude         DECIMAL(32, 26)
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE estabelecimento (
@@ -106,8 +106,8 @@ CREATE TABLE estabelecimento (
 	cidade                 VARCHAR(200) not null,
 	estado                 VARCHAR(200) not null,
 	cep                    VARCHAR(9) not null,
-	latitude               DECIMAL(17, 13), -- FLOAT,
-	longitude              DECIMAL(17, 13), -- FLOAT,
+	latitude               DECIMAL(32, 26), -- FLOAT,
+	longitude              DECIMAL(32, 26), -- FLOAT,
 	dataCadastro           DATE not null,
 	dataUltimoAcesso       DATE not null
 ) AUTO_INCREMENT = 1;
@@ -228,7 +228,7 @@ ALTER TABLE categoria_estabelecimento add (constraint categoria_estabelecimento_
 ------ contato_estabelecimento
 ALTER TABLE contato_estabelecimento add (constraint contato_estabelecimento_estabelecimento_fk foreign key (idEstabelecimento) references estabelecimento (id));
 
-ALTER TABLE contato_estabelecimento add (constraint contato_estabelecimento_ontato_fk foreign key (idContato) references contato (id));
+ALTER TABLE contato_estabelecimento add (constraint contato_estabelecimento_contato_fk foreign key (idContato) references contato (id));
 
 
 

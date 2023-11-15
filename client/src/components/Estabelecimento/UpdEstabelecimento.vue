@@ -522,7 +522,7 @@ data() {
       campoVazio: false,//DashContato
       isEditingContato: false,//DashContato
       listaContatos: [],//DashContato
-      listaContatosOld: [],//DashContato
+      indicesContatosOld: [],
       editingIndex: -1,//DashContato
       isWhatsapp: false,//DashContato
       redeSocial: "1",
@@ -1089,7 +1089,7 @@ async salvar() {
       listaRedesSociais: this.listaRedesSociais, // CORRIGIR EDITAR
       indicesRedesSociaisOld: this.indicesRedesSociaisOld,
       listaContatos: this.listaContatos,
-      listaContatosOld: this.listaContatosOld,
+      indicesContatosOld: this.indicesContatosOld,
       listahorarios: this.listahorarios, // NÃO CHECA WHATSAPP
       listahorariosOld: this.listahorariosOld,
       idEstabelecimento: sessionStorage.getItem('idEstabelecimento')
@@ -1233,10 +1233,16 @@ computed: {
         this.listahorariosOld = horariosEstabelecimento;
       }
 
+      console.log('contatosEstabelecimento:: ', contatosEstabelecimento)
+
+
       this.listaContatos = contatosEstabelecimento;
-      if (contatosEstabelecimento.length > 0) {
-        this.listaContatosOld = contatosEstabelecimento;
-      }
+      const indicesContatosOld = contatosEstabelecimento.map(contato => contato.id);
+      this.indicesContatosOld = indicesContatosOld;
+
+      console.log('indicesContatosOld:: ', indicesContatosOld)
+
+
     } catch (error) {
       console.log('Erro ao buscar dados da página:: ', error);
     }

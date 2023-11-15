@@ -419,7 +419,7 @@ router.put('/', async (req, res) => {
             listaRedesSociais,
             indicesRedesSociaisOld,
             listaContatos,
-            listaContatosOld,
+            indicesContatosOld,
             listahorarios,
             listahorariosOld,
             idEstabelecimento
@@ -449,6 +449,7 @@ router.put('/', async (req, res) => {
             return repetidos;
         };
 
+        // CATEGORIAS
         const categoriasEstabelecimento = categoriasSelecionadas.map(categoria => categoria.id);
         const categoriasEstabelecimentoOld = categoriaSelecionadasOld.map(categoria => categoria.id);
 
@@ -470,6 +471,8 @@ router.put('/', async (req, res) => {
             console.log(error);
         }
 
+
+        // COMIDAS
         const comidasEstabelecimento = tiposDeComidaSelecionados.map(comida => comida.id);
         const comidasEstabelecimentoOld = tiposDeComidaSelecionadosOld.map(comida => comida.id);
 
@@ -491,6 +494,8 @@ router.put('/', async (req, res) => {
             console.log(error);
         }
 
+
+        // OPCIONAIS
         const opcionaisEstabelecimento = opcoesSelecionadas.map(opcao => opcao.id);
         const opcionaisEstabelecimentoOld = opcoesSelecionadasOld.map(opcao => opcao.id);
 
@@ -511,6 +516,9 @@ router.put('/', async (req, res) => {
         } catch (error) {
             console.log(error);
         }
+
+
+        // MUSICAS
         const musicasEstabelecimento = estilosSelecionadas.map(comida => comida.id);
         const musicasEstabelecimentoOld = estilosSelecionadasOld.map(comida => comida.id);
 
@@ -532,20 +540,14 @@ router.put('/', async (req, res) => {
             console.log(error);
         }
 
-        console.log("listaRedesSociais:: ", listaRedesSociais)
-        console.log("indicesRedesSociaisOld:: ", indicesRedesSociaisOld)
 
+        // REDES SOCIAIS
         // Quando uma nova rede é adicionada ela manda um idRede e não um id, uma vez que não há id para ser exibido já que nunca passou pelo banco de dados.
         const redesSociaisEstabelecimento = listaRedesSociais.map(redeSocial => redeSocial.id ? redeSocial.id : parseInt(redeSocial.idRede, 10));
 
-        console.log("redesSociaisEstabelecimento:: ", redesSociaisEstabelecimento)
-
-
         const resultadoRedesSociais = compararListas(indicesRedesSociaisOld, redesSociaisEstabelecimento);
 
-        console.log("Opções removidas:", resultadoRedesSociais.opcoesRemovidas);
-        console.log("Opções novas:", resultadoRedesSociais.opcoesNovas);
-
+        // Excluindo redes que foram removidas do array
         try {
             for (let i = 0; i < resultadoRedesSociais.opcoesRemovidas.length ; i++) {
                 await redeSocial_estabelecimento_Service.excluir([idEstabelecimento, resultadoRedesSociais.opcoesRemovidas[i]], connection);
@@ -554,6 +556,7 @@ router.put('/', async (req, res) => {
             console.log(error);
         }
 
+        // Adicionando redes que foram adicionadas ao array
         try {
             for (let i = 0; i < resultadoRedesSociais.opcoesNovas.length ; i++) {
                 for (let x = 0; x < listaRedesSociais.length ; x++) {
@@ -568,26 +571,46 @@ router.put('/', async (req, res) => {
 
         const redesSociaisParaAtualizar = encontrarElementosRepetidos(indicesRedesSociaisOld, redesSociaisEstabelecimento);
 
-        console.log("redesSociaisParaAtualizar:: ", redesSociaisParaAtualizar)
-        
-        console.log("\n\n ")
+        // Atualizando redes que já existiam e continuaram existindo dentro do array
         try {
             for (let i = 0; i < redesSociaisParaAtualizar.length ; i++) {
                 for (let x = 0; x < listaRedesSociais.length ; x++) {
                     if ( redesSociaisParaAtualizar[i] === listaRedesSociais[x]?.id ) {
-                        console.log("Elemento \n ")
-
-                        console.log('redesSociaisParaAtualizar[i]:: ', redesSociaisParaAtualizar[i])
-                        console.log("listaRedesSociais[x]?.id :: ", listaRedesSociais[x]?.id )
-                        console.log("listaRedesSociais[x] :: ", listaRedesSociais[x] )
-                        await redeSocial_estabelecimento_Service.atualizar([listaRedesSociais[x].perfil, listaRedesSociais[x].idRedeSocialEstabelecimento], connection)
-                        console.log("\n\n\n ")
+                        await redeSocial_estabelecimento_Service.atualizar([listaRedesSociais[x].perfil, idEstabelecimento, listaRedesSociais[x].id], connection);
+                    } else if ( redesSociaisParaAtualizar[i] == listaRedesSociais[x]?.idRede ) {
+                        await redeSocial_estabelecimento_Service.atualizar([listaRedesSociais[x].perfil, idEstabelecimento, listaRedesSociais[x].idRede], connection);
                     }
                 }
             }
         } catch (error) {
             console.log(error);
         }
+
+
+        const removerCaracteresEspeciais = (str) => {
+            return str.replace(/[^0-9]/g, '');
+        };
+
+        for (let i = 0; i < listaContatos.length; i++) {
+            listaContatos[i].numeroContato = removerCaracteresEspeciais(listaContatos[i].numeroContato);
+        }   
+        console.log("listaContatos:: ", listaContatos)
+
+        try {
+            await contato_estabelecimento_Service.excluirTudoPorIdEstabelecimento(idEstabelecimento, connection);
+        } catch (error) {
+            console.log(error);
+        }
+
+        try {
+            for (let i = 0; i < listaContatos.length; i++) {
+                await contato_estabelecimento_Service.inserir([idEstabelecimento, listaContatos[i].id, listaContatos[i].numeroContato, listaContatos[i].isWhatsapp], connection);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+
+
 
 
         // console.log("tiposDeComidaSelecionadosOld:: ", tiposDeComidaSelecionadosOld)
