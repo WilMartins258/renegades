@@ -15,13 +15,18 @@ const inserir = async (dadosEstabelecimento, conn) => {
   }
 };
 
-const atualizar = async (dadosEstabelecimento, conn) => {
+const atualizar = async (novosDadosEstabelecimento, conn) => {
   try {
-    const estabelecimentoQuery = ``;
+    const estabelecimentoQuery = `
+    UPDATE estabelecimento
+      SET nome = ?, descricao = ?, 
+      cnpj = ?, cep = ?, 
+      estado = ?, cidade = ?, 
+      bairro = ?, logradouro = ?, 
+      numeroEstabelecimento = ?
+      WHERE id = ?;`;
 
-    const [atualizacaoEstabelecimento] = await conn.query(estabelecimentoQuery, dadosEstabelecimento);
-
-    return atualizacaoEstabelecimento;
+    await conn.query(estabelecimentoQuery, novosDadosEstabelecimento);
   } catch (error) {
     throw new Error(`Erro ao atualizar dados do estabelecimento: ${error.message}`);
   }
