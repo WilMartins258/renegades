@@ -17,7 +17,7 @@ const atualizar = async (novosDadosRedeSocial, conn) => {
         const redesSociaisEstabelecimentoQuery = `
         UPDATE redeSocial_estabelecimento
             SET redeSocial = ?
-                WHERE id = ?;`;
+                WHERE idEstabelecimento = ? AND idRedeSocial = ?;`;
 
         await conn.query(redesSociaisEstabelecimentoQuery, novosDadosRedeSocial);
     } catch (error) {
