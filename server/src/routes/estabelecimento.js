@@ -420,7 +420,6 @@ router.put('/', async (req, res) => {
             indicesRedesSociaisOld,
             listaContatos,
             listahorarios,
-            listahorariosOld,
             idEstabelecimento
         } = req.body.novosDadosEstabelecimento;
 
@@ -609,19 +608,9 @@ router.put('/', async (req, res) => {
             console.log(error);
         }
 
-
         // HORÁRIOS
         console.log("listahorarios:: ", listahorarios)
-        console.log("listahorariosOld:: ", listahorariosOld)
 
-        const horariosEstabelecimento = listahorarios.map(comida => comida.id);
-        const horariosEstabelecimentoOld = listahorariosOld.map(comida => comida.id);
-
-        const resultaHorarios = compararListas(horariosEstabelecimentoOld, horariosEstabelecimento);
-
-        console.log("Opções removidas:", resultaHorarios.opcoesRemovidas);
-        console.log("Opções novas:", resultaHorarios.opcoesNovas);
-        
         // try {
         //     await horario_Service.excluirTudoPorIdEstabelecimento(idEstabelecimento, connection);
         // } catch (error) {
@@ -629,7 +618,7 @@ router.put('/', async (req, res) => {
         // }
 
         try {
-            
+
         } catch (error) {
             console.log(error);
         }
