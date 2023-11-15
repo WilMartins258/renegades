@@ -419,7 +419,6 @@ router.put('/', async (req, res) => {
             listaRedesSociais,
             indicesRedesSociaisOld,
             listaContatos,
-            indicesContatosOld,
             listahorarios,
             listahorariosOld,
             idEstabelecimento
@@ -587,6 +586,7 @@ router.put('/', async (req, res) => {
         }
 
 
+        // CONTATOS
         const removerCaracteresEspeciais = (str) => {
             return str.replace(/[^0-9]/g, '');
         };
@@ -594,7 +594,6 @@ router.put('/', async (req, res) => {
         for (let i = 0; i < listaContatos.length; i++) {
             listaContatos[i].numeroContato = removerCaracteresEspeciais(listaContatos[i].numeroContato);
         }   
-        console.log("listaContatos:: ", listaContatos)
 
         try {
             await contato_estabelecimento_Service.excluirTudoPorIdEstabelecimento(idEstabelecimento, connection);
@@ -604,7 +603,7 @@ router.put('/', async (req, res) => {
 
         try {
             for (let i = 0; i < listaContatos.length; i++) {
-                await contato_estabelecimento_Service.inserir([idEstabelecimento, listaContatos[i].id, listaContatos[i].numeroContato, listaContatos[i].isWhatsapp], connection);
+                await contato_estabelecimento_Service.inserir([idEstabelecimento, listaContatos[i].idContato, listaContatos[i].numeroContato, listaContatos[i].isWhatsapp], connection);
             }
         } catch (error) {
             console.log(error);
