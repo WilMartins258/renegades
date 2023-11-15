@@ -609,16 +609,16 @@ router.put('/', async (req, res) => {
         }
 
         // HORÁRIOS
-        console.log("listahorarios:: ", listahorarios)
-
-        // try {
-        //     await horario_Service.excluirTudoPorIdEstabelecimento(idEstabelecimento, connection);
-        // } catch (error) {
-        //     console.log(error);
-        // }
+        try {
+            await horario_Service.excluirTudoPorIdEstabelecimento(idEstabelecimento, connection);
+        } catch (error) {
+            console.log(error);
+        }
 
         try {
-
+            for (let i = 0; i < listahorarios.length; i++) {
+                await horario_Service.inserir([idEstabelecimento, listahorarios[i].dia, listahorarios[i].abre, listahorarios[i].fecha], connection);
+            }
         } catch (error) {
             console.log(error);
         }
