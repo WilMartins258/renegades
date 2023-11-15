@@ -419,7 +419,7 @@ router.put('/', async (req, res) => {
             listaRedesSociais,
             indicesRedesSociaisOld,
             listaContatos,
-            listaContatosOld,
+            indicesContatosOld,
             listahorarios,
             listahorariosOld,
             idEstabelecimento
@@ -585,6 +585,26 @@ router.put('/', async (req, res) => {
         } catch (error) {
             console.log(error);
         }
+
+
+
+        console.log("listaContatos:: ", listaContatos)
+        console.log("listindicesContatosOldaContatosOld:: ", indicesContatosOld)
+
+        const contatosEstabelecimento = listaContatos.map(contato => contato.id);
+
+        const resultadoContatos = compararListas(indicesContatosOld, contatosEstabelecimento);
+
+        console.log("Opções removidas:", resultadoContatos.opcoesRemovidas);
+        console.log("Opções novas:", resultadoContatos.opcoesNovas);
+
+        try {
+            await contato_estabelecimento_Service.excluirTudoPorIdEstabelecimento(idEstabelecimento, connection);
+        } catch (error) {
+            console.log(error);
+        }
+
+
 
 
         // console.log("tiposDeComidaSelecionadosOld:: ", tiposDeComidaSelecionadosOld)
