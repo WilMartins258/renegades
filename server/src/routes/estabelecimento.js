@@ -506,13 +506,37 @@ router.put('/', async (req, res) => {
 
         try {
             for (let i = 0; i < resultadoRecomendacoes.opcoesRemovidas.length ; i++) {
-                await recomendacao_Service.excluir(resultadoRecomendacoes.opcoesRemovidas[i], connection);
+                // await recomendacao_Service.excluir(resultadoRecomendacoes.opcoesRemovidas[i], connection);
+
+
+                let formatoRecomendacao = '';
+                for (let i = 0; i < recomendacoesOld.length ; i++) {
+                    console.log(`\n\nFOR FOR:: `);
+                    console.log(`recomendacoesOld:: `, recomendacoesOld[i]);
+                    console.log(`ID:: `, recomendacoesOld[i].id);
+                    console.log(`resultadoRecomendacoes.opcoesRemovidas[i]:: `, resultadoRecomendacoes.opcoesRemovidas[i]);
+                    if (resultadoRecomendacoes.opcoesRemovidas[i] === recomendacoesOld[i].id) {
+                        console.log(`IF INSANO:: `);
+                        formatoRecomendacao = recomendacoesOld[i].formatoFoto;
+                    }
+                }
+
+                console.error(`formatoRecomendacao: `, formatoRecomendacao);
+                
+
+                const caminhoFotoRecomendacao = `./../client/src/images/recomendacao/${resultadoRecomendacoes.opcoesRemovidas[i]}.${formatoRecomendacao}`; //
+
+                // fs.unlink(caminhoFotoRecomendacao, (err) => {
+                //     if (err) {
+                //     console.error(`Erro ao remover o arquivo: ${err}`);
+                //     } else {
+                //     console.log('Arquivo removido com sucesso!');
+                //     }
+                // });
             }
         } catch (error) {
             console.log(error);
         }
-
-
 
 
 
