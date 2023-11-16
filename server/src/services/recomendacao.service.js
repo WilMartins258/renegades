@@ -30,8 +30,14 @@ const pegarPorIdEstabelecimento = async (idEstabelecimento) => {
     }
 };
 
-const excluir = async (idEstabelecimento) => {
+const excluir = async (idRecomendacao, conn) => {
+    try {
+        const recomendacaoQuery = `DELETE FROM recomendacao WHERE id = ?;`;
 
+        await conn.query(recomendacaoQuery, idRecomendacao);
+    } catch (error) {
+        throw new Error(error);
+    }
 }
 
 module.exports = {
