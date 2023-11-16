@@ -498,7 +498,6 @@ data() {
       numero: "",
       recomendacao: [
       { name: '', description:  '', photo: {imageURL: 'https://abravidro.org.br/wp-content/uploads/2015/04/sem-imagem10.jpg' }, photoBuffer: null, type: null },],
-      recomedacoesOld: [],
       estabelecimentoPhoto: null,
       estabelecimentoPhotoType: "",
       fotoEstabelecimentoMudou: false,
@@ -548,12 +547,6 @@ data() {
   }
 },
 methods: {
-  pegarRecomendacoesOld() {
-    return this.recomedacoesOld;
-  },
-  salvarRecomendacoesOld(recomendacoes) {
-    this.recomedacoesOld = recomendacoes;
-  },
     //DashCategoria------------------------------------------------------
     selecionarCategoria(opcao) { //Dash Categoria
         if (this.opcaopcaoCategSelecionadaoCategSelecionada(opcao)) {
@@ -1088,7 +1081,6 @@ async salvar() {
       endereco: this.endereco, // OK
       numero: this.numero, // OK
       recomendacao: this.recomendacao, // OK EXCETO IMAGENS
-      recomedacoesOld: this.pegarRecomendacoesOld(),
       fotoEstabelecimentoMudou: this.fotoEstabelecimentoMudou,
       estabelecimentoPhoto: this.estabelecimentoPhoto,
       estabelecimentoPhotoType: this.estabelecimentoPhotoType,
