@@ -949,7 +949,6 @@ methods: {
     },
 
     async AddFoto(event, index) {
-      console.log('index:: ', index)
     try {
       const inputImagem = document.getElementById(`fotoIndic${index + 1}`);
       const image = inputImagem?.files[0];
@@ -976,14 +975,20 @@ methods: {
           const imageURL = URL.createObjectURL(file);
           this.recomendacao[index].photo = { imageURL }; // Adicione a miniatura
 
-          switch (index) {
+          console.log('vai entrar no switch')
+          console.log('index:: ', index)
+          switch (index+1) {
             case 1:
+              console.log('1')
               this.fotoRecomendacao01Mudou = true;
               break;
             case 2:
+            console.log('2')
               this.fotoRecomendacao02Mudou = true;
               break;
             case 3:
+            console.log('3')
+
               this.fotoRecomendacao03Mudou = true;
               break;
             default:
