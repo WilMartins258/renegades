@@ -489,6 +489,8 @@ router.put('/', async (req, res) => {
 
         // RECOMENDAÇÕES
 
+        
+
         console.log('recomendacao:: ', recomendacao);
 
         const recomendacoesOld = await recomendacao_Service.pegarPorIdEstabelecimento(idEstabelecimento)
@@ -540,6 +542,16 @@ router.put('/', async (req, res) => {
         } catch (error) {
             console.log(error);
         }
+
+        /*
+        As removidas eu tenho que remover conforme o exemplo acima (removendo tanto os dados quanto a imagem)
+        AS que permaneceram tem que ter seus dados atualizados SEMPRE e caso a imagem atualizou ela deve ser atualizada também
+        AS inseridas devem ser salvas no banco e devem ter o id salvo utilizado para dar o nome do arquivo (também devo checar se as novas tem foto, senão tiverem colocar foto padrão)
+        */
+
+        console.log('fotoRecomendacao01Mudou:: ', fotoRecomendacao01Mudou);
+        console.log('fotoRecomendacao02Mudou:: ', fotoRecomendacao02Mudou);
+        console.log('fotoRecomendacao03Mudou:: ', fotoRecomendacao03Mudou);
 
 
 
