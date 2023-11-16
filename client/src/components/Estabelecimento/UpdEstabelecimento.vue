@@ -1165,8 +1165,6 @@ computed: {
         contatosEstabelecimento
       } = dadosEstabelecimentoRequest.data;
 
-      this.salvarRecomendacoesOld(recomendacoesEstabelecimento);
-
       for (let i = 0; i < contatosEstabelecimento.length; i++){
         if(contatosEstabelecimento[i].isWhatsapp == 1){
           contatosEstabelecimento[i].isWhatsapp = true;
