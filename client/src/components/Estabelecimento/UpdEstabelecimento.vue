@@ -501,7 +501,9 @@ data() {
       estabelecimentoPhoto: null,
       estabelecimentoPhotoType: "",
       fotoEstabelecimentoMudou: false,
-      fotoRecomendacaoMudou: false,
+      fotoRecomendacao01Mudou: false,
+      fotoRecomendacao02Mudou: false,
+      fotoRecomendacao03Mudou: false,
       fotoEstabelecimento: "https://abravidro.org.br/wp-content/uploads/2015/04/sem-imagem10.jpg",
       HorariosSelecionados: [],
       tiposDeComidaSelecionados: [],
@@ -947,6 +949,7 @@ methods: {
     },
 
     async AddFoto(event, index) {
+      console.log('index:: ', index)
     try {
       const inputImagem = document.getElementById(`fotoIndic${index + 1}`);
       const image = inputImagem?.files[0];
@@ -972,7 +975,20 @@ methods: {
           // Exiba a miniatura da imagem
           const imageURL = URL.createObjectURL(file);
           this.recomendacao[index].photo = { imageURL }; // Adicione a miniatura
-          this.fotoRecomendacaoMudou = true;
+
+          switch (index) {
+            case 1:
+              this.fotoRecomendacao01Mudou = true;
+              break;
+            case 2:
+              this.fotoRecomendacao02Mudou = true;
+              break;
+            case 3:
+              this.fotoRecomendacao03Mudou = true;
+              break;
+            default:
+              break;
+          }
 
           // Limpe o input de arquivo para permitir a seleção de outra imagem
           inputImagem.value = "";
@@ -1081,6 +1097,9 @@ async salvar() {
       endereco: this.endereco, // OK
       numero: this.numero, // OK
       recomendacao: this.recomendacao, // OK EXCETO IMAGENS
+      fotoRecomendacao01Mudou: this.fotoRecomendacao01Mudou,
+      fotoRecomendacao02Mudou: this.fotoRecomendacao02Mudou,
+      fotoRecomendacao03Mudou: this.fotoRecomendacao03Mudou,
       fotoEstabelecimentoMudou: this.fotoEstabelecimentoMudou,
       estabelecimentoPhoto: this.estabelecimentoPhoto,
       estabelecimentoPhotoType: this.estabelecimentoPhotoType,
