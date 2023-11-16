@@ -30,8 +30,13 @@ const pegarPorIdEstabelecimento = async (idEstabelecimento) => {
     }
 };
 
+const excluir = async (idEstabelecimento) => {
+
+}
+
 module.exports = {
     inserir,
     atualizar,
-    pegarPorIdEstabelecimento
+    pegarPorIdEstabelecimento,
+    excluir
 };
