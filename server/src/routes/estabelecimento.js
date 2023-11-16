@@ -429,6 +429,16 @@ router.put('/', async (req, res) => {
             return str.replace(/[^0-9]/g, '');
         };
 
+        const compararListas = (original, editado) => {
+            const opcoesRemovidas = original.filter(opcao => !editado.includes(opcao));
+            const opcoesNovas = editado.filter(opcao => !original.includes(opcao));
+        
+            return {
+                opcoesRemovidas,
+                opcoesNovas
+            };
+        };
+
         const cnpjFormatado = removerCaracteresEspeciais(cnpj);
 
         const novosDadosEstabelecimento = {
@@ -478,16 +488,33 @@ router.put('/', async (req, res) => {
 
         console.log('recomendacao:: ', recomendacao);
 
+        const recomendacoesOld = await recomendacao_Service.pegarPorIdEstabelecimento(idEstabelecimento)
 
-        const compararListas = (original, editado) => {
-            const opcoesRemovidas = original.filter(opcao => !editado.includes(opcao));
-            const opcoesNovas = editado.filter(opcao => !original.includes(opcao));
-        
-            return {
-                opcoesRemovidas,
-                opcoesNovas
-            };
-        };
+        console.log('recomendacoesOld:: ', recomendacoesOld);
+
+
+        const recomendacoesEstabelecimento = recomendacao.map(recomendacao => recomendacao.id ? recomendacao.id : 0);
+
+        const recomendacoesEstabelecimentoOld = recomendacoesOld.map(recomendacao => recomendacao.id ? recomendacao.id : 0);
+
+        console.log('recomendacoesEstabelecimento:: ', recomendacoesEstabelecimento);
+        console.log('recomendacoesEstabelecimentoOld:: ', recomendacoesEstabelecimentoOld);
+
+        const resultadoRecomendacoes = compararListas(recomendacoesEstabelecimentoOld, recomendacoesEstabelecimento);
+
+        console.log('resultadoRecomendacoes:: ', resultadoRecomendacoes);
+
+        try {
+            for (let i = 0; i < resultadoRecomendacoes.opcoesRemovidas.length ; i++) {
+                await recomendacao_Service.excluir(resultadoRecomendacoes.opcoesRemovidas[i], connection);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+
+
+
+
 
         const encontrarElementosRepetidos = (array1, array2) => {
             const unicosArray1 = [...new Set(array1)];
