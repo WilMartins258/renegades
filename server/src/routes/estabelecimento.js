@@ -346,16 +346,18 @@ router.post('/', async (req, res) => {
 
         for (let i = 0; i < recomendacao.length; i++) {
             try {
-                const extensaoRecomendacao = extensaoImagem_Service.encontrarExtensaoImagem(recomendacao[i].type);
-                const idRecomendacao = await recomendacao_Service.inserir([idEstabelecimento, recomendacao[i].name, recomendacao[i].description, extensaoRecomendacao], connection);
+                if (recomendacao[i].type && recomendacao[i].photoBuffer) {
+                    const extensaoRecomendacao = extensaoImagem_Service.encontrarExtensaoImagem(recomendacao[i].type);
+                    const idRecomendacao = await recomendacao_Service.inserir([idEstabelecimento, recomendacao[i].name, recomendacao[i].description, extensaoRecomendacao], connection);
 
-                const bufferImagemRecomendacao = await buffer_Service.transformarBufferEmValido(recomendacao[i].photoBuffer);
+                    const bufferImagemRecomendacao = await buffer_Service.transformarBufferEmValido(recomendacao[i].photoBuffer);
 
-                fs.writeFile(`./../client/src/images/recomendacao/${idRecomendacao}.${extensaoRecomendacao}`, bufferImagemRecomendacao, (err) => {
-                    if (err) {
-                        console.error('Erro ao salvar imagem da recomendação:', err);
-                    }
-                });
+                    fs.writeFile(`./../client/src/images/recomendacao/${idRecomendacao}.${extensaoRecomendacao}`, bufferImagemRecomendacao, (err) => {
+                        if (err) {
+                            console.error('Erro ao salvar imagem da recomendação:', err);
+                        }
+                    });
+                }
             } catch (error) {
                 throw new Error(`Erro ao inserir recomendacao do estabelecimento: ${error.message}`);
             }
