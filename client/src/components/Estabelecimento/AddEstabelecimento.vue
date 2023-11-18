@@ -413,8 +413,6 @@ methods: {
         longitude: this.longitude
       };
 
-      console.log('formData:: ', formData);
-      
       const salvarEstabelecimento = await api.post('estabelecimento', formData);
 
       if (salvarEstabelecimento) {
