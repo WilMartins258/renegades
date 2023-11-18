@@ -97,22 +97,6 @@
   import api from './../../services/backend.service';
   import dataToDiaMesAno from './../../services/dataToDiaMesAno.service.js';
 
-  // const nomeInput = document.getElementById("nome");
-  // const dataNascimentoInput = document.getElementById("dataNasc");
-  // const emailInput = document.getElementById("email");
-  // const celularInput = document.getElementById("celular");
-  // const senhaInput = document.getElementById("senha");
-  // const senha2Input = document.getElementById("senha2");
-  // const cepInput = document.getElementById("cep");
-  // const ruaInput = document.getElementById("rua");
-  // const numeroInput = document.getElementById("numero");
-  // const bairroInput = document.getElementById("bairro");
-  // const cidadeInput = document.getElementById("cidade");
-  // const ufInput = document.getElementById("uf");
-  // const alterarButton = document.getElementById("alterarButton");
-  // const salvarButton = document.getElementById("salvarButton");
-  // const inativaButton = document.getElementById("inativaButton");
-  // const cancelarButton = document.getElementById("cancelarButton");
 export default{
   name: "UpdUsuario",
   data(){
