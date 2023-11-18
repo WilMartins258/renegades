@@ -267,7 +267,17 @@ export default {
 
       try {
         for (let i = 0; i < dadosRecomendacao.length; i++) {
-          dadosRecomendacao[i].imagem = require(`./../../images/recomendacao/${dadosRecomendacao[i].id}.${dadosRecomendacao[i].formatoFoto}`);
+          let recomendacaoTemFoto = false;
+          try {
+            require(`./../../images/recomendacao/${dadosRecomendacao[i].id}.${dadosRecomendacao[i].formatoFoto}`)
+            recomendacaoTemFoto = true;
+          } catch (error) {}
+          
+          if (recomendacaoTemFoto) {
+            dadosRecomendacao[i].imagem = require(`./../../images/recomendacao/${dadosRecomendacao[i].id}.${dadosRecomendacao[i].formatoFoto}`);
+          } else {
+            dadosRecomendacao[i].imagem = require(`./../../images/recomendacao/sem-imagem.${dadosRecomendacao[i].formatoFoto}`);
+          }
         };
       } catch (error) {
         console.log('Erro ao exibir recomendações do estabelecimento');
