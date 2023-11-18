@@ -631,15 +631,15 @@ methods: {
   },
   mostrarmensagemPUser() {
 		this.tituloMsg = "Seja Bem Vindo!"
-		this.mensagemPUser = "Seu cadastro foi concluído com êxito. Agora, estamos redirecionando você para a area do Estabelecimento .";
+		this.mensagemPUser = "Seu cadastro foi concluído com êxito! Em breve ele será avaliado e estará disponível no site.";
 		this.mostrarMensagem = true;
-    },
+  },
 
 	mostrarmensagemError(msg) {
 		this.tituloMsg = "Erro"
 		this.mensagemPUser = msg
 		this.mostrarMensagem = true;
-    },
+  },
 	
     fecharMensagem() {
       this.mostrarMensagem = false;
