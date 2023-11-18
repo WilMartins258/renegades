@@ -260,7 +260,17 @@ export default {
       }
 
       try {
-        this.imagemEstabelecimento = require(`./images/${this.$route.params.id}.${formatoFoto}`);
+        let estabelecimentoTemFoto = false;
+        try {
+          require(`./images/${this.$route.params.id}.${formatoFoto}`);
+          estabelecimentoTemFoto = true
+        } catch (error) {}
+        
+        if (estabelecimentoTemFoto) {
+          this.imagemEstabelecimento = require(`./images/${this.$route.params.id}.${formatoFoto}`);
+        } else {
+          this.imagemEstabelecimento = require(`./images/sem-imagem.${formatoFoto}`);
+        }
       } catch (error) {
         console.log('Erro ao exibir imagem do estabelecimento');
       }
