@@ -241,7 +241,17 @@ export default {
 
       try {
         for (let i=0; i < estabelecimentos.length; i++) {
-          estabelecimentos[i].foto = require(`./../../Estabelecimento/images/${estabelecimentos[i].id}.${estabelecimentos[i].formatoFoto}`);
+          let fotoEstabelecimento = false;
+          try {
+            require(`./../../Estabelecimento/images/${estabelecimentos[i].id}.${estabelecimentos[i].formatoFoto}`);
+            fotoEstabelecimento = true;
+          } catch (error) {}
+
+          if (fotoEstabelecimento) {
+            estabelecimentos[i].foto = require(`./../../Estabelecimento/images/${estabelecimentos[i].id}.${estabelecimentos[i].formatoFoto}`);
+          } else {
+            estabelecimentos[i].foto = require(`./../../Estabelecimento/images/sem-imagem.${estabelecimentos[i].formatoFoto}`);
+          }
         };
       } catch (error) {
         console.log('Erro ao tratar estabelecimentos para filtro da home: ', error);
