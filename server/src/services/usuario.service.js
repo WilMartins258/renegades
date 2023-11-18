@@ -131,6 +131,20 @@ const inativar = async (idUsuario) => {
   }
 };
 
+const ativar = async (idUsuario) => {
+  try {
+    const usuarioQuery = `
+    UPDATE usuario
+      SET status = 'Ativo'
+      WHERE id = ?;`;
+    const connection = await db;
+
+    await connection.query(usuarioQuery, idUsuario);
+  } catch (error) {
+    throw new Error(`Erro ao ativar usuário: ${error.message}`);
+  }
+};
+
 module.exports = {
   pegarTudo,
   checarEmail,
@@ -140,5 +154,6 @@ module.exports = {
   pegarPorId,
   buscarLocalizacaoPorId,
   salvarLocalizacaoPorId,
-  inativar
+  inativar,
+  ativar
 };
