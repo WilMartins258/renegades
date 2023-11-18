@@ -60,7 +60,18 @@
         const estabelecimentosCarousel = await api.get('/estabelecimento/carousel');
 
         for (let i = 0; i < estabelecimentosCarousel.data.length; i++) {
-          estabelecimentosCarousel.data[i].imageSrc = require(`./../../Estabelecimento/images/${estabelecimentosCarousel.data[i].id}.${estabelecimentosCarousel.data[i].formatoFoto}`);
+          
+          let fotoEstabelecimento = false;
+          try {
+            require(`./../../Estabelecimento/images/${estabelecimentosCarousel.data[i].id}.${estabelecimentosCarousel.data[i].formatoFoto}`);
+            fotoEstabelecimento = true;
+          } catch (error) {}
+
+          if (fotoEstabelecimento) {
+            estabelecimentosCarousel.data[i].imageSrc = require(`./../../Estabelecimento/images/${estabelecimentosCarousel.data[i].id}.${estabelecimentosCarousel.data[i].formatoFoto}`);
+          } else {
+            estabelecimentosCarousel.data[i].imageSrc = require(`./../../Estabelecimento/images/sem-imagem.${estabelecimentosCarousel.data[i].formatoFoto}`);
+          }
         };
 
         this.slides = estabelecimentosCarousel.data;
