@@ -37,7 +37,7 @@ const pegarTodasPromocoesAtivas = async () => {
         ) AS categoriasString
         FROM promocao p
 			LEFT JOIN estabelecimento e ON e.id = p.idEstabelecimento
-				WHERE p.status = 'Ativa';`;
+				WHERE p.status = 'Ativa' AND e.status = 'Validado';`;
         const connection = await db;
 
         const [promocoesAtivas] = await connection.query(promocaoQuery);
