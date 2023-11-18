@@ -203,4 +203,19 @@ router.post('/localizacao', async (req, res) => {
     }
 });
 
+router.put('/invalidar', async (req, res) => {
+    try {
+        const { idUsuario } = req.body;
+
+        await usuario_Service.inativar(idUsuario);
+        res.status(200).send();
+    } catch (error) {
+        console.log('Erro ao invalidar usuário usuário: ', error);
+        res.status(500).send({
+            msg: 'Erro ao invalidar usuário usuário.',
+            error: error.message
+        });
+    }
+});
+
 module.exports = router;

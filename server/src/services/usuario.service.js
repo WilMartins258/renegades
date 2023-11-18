@@ -117,11 +117,17 @@ const salvarLocalizacaoPorId = async (dadosLocalizacaoUsuario) => {
   }
 };
 
-const excluir = async () => {
+const inativar = async (idUsuario) => {
   try {
-    
+    const usuarioQuery = `
+    UPDATE usuario
+      SET status = 'Inativo'
+      WHERE id = ?;`;
+    const connection = await db;
+
+    await connection.query(usuarioQuery, idUsuario);
   } catch (error) {
-    throw new Error(`Erro ao excluir dados do usuário: ${error.message}`);
+    throw new Error(`Erro ao inativar usuário: ${error.message}`);
   }
 };
 
@@ -134,5 +140,5 @@ module.exports = {
   pegarPorId,
   buscarLocalizacaoPorId,
   salvarLocalizacaoPorId,
-  excluir
+  inativar
 };

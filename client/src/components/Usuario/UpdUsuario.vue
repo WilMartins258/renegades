@@ -253,7 +253,7 @@ export default{
       const salvarButton = document.getElementById("salvarButton");
       const inativaButton = document.getElementById("inativaButton");
       const cancelarButton = document.getElementById("cancelarButton");
-    
+   
       alterarButton.addEventListener("click", () => {
         nomeInput.removeAttribute("disabled");
         dataNascimentoInput.removeAttribute("disabled");
@@ -332,6 +332,16 @@ export default{
           console.error('ERROR:: ', error);
         } finally {
           console.log('Atualização de dados concluída com sucesso!');
+        }
+      });
+
+      inativaButton.addEventListener("click", async () => {
+        try {
+          if (window.confirm("Confirma a inativação do usuário? Essa conta não poderá mais ser acessada.")) {
+              await api.put('/usuario/invalidar', {idUsuario: sessionStorage.getItem('idUsuario')});
+          }
+        } catch (error) {
+          this.mostrarmensagemError(error.response.data.msg);
         }
       });
     },
