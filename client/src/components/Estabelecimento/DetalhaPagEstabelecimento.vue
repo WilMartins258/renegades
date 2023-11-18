@@ -272,7 +272,7 @@ export default {
             require(`./../../images/recomendacao/${dadosRecomendacao[i].id}.${dadosRecomendacao[i].formatoFoto}`)
             recomendacaoTemFoto = true;
           } catch (error) {}
-          
+
           if (recomendacaoTemFoto) {
             dadosRecomendacao[i].imagem = require(`./../../images/recomendacao/${dadosRecomendacao[i].id}.${dadosRecomendacao[i].formatoFoto}`);
           } else {
@@ -280,7 +280,7 @@ export default {
           }
         };
       } catch (error) {
-        console.log('Erro ao exibir recomendações do estabelecimento');
+        console.log('Erro ao exibir recomendações do estabelecimento: ', error);
       }
 
       const cepTratado = cep?.slice(0, 5) + '-' + cep?.slice(5);
