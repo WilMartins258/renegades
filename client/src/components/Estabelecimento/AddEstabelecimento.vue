@@ -630,8 +630,10 @@ methods: {
     }
   },
   mostrarmensagemPUser() {
-		this.tituloMsg = "Seja Bem Vindo!"
-		this.mensagemPUser = "Seu cadastro foi concluído com êxito! Em breve ele será avaliado e estará disponível no site.";
+		// this.tituloMsg = "Seja Bem Vindo!"
+		this.tituloMsg = "Enviando..."
+		// this.mensagemPUser = "Seu cadastro foi concluído com êxito! Em breve ele será avaliado e estará disponível no site.";
+		this.mensagemPUser = "Aguarde enquanto seu estabelecimento está sendo registrado em nosso site.";
 		this.mostrarMensagem = true;
   },
 
@@ -644,7 +646,7 @@ methods: {
     fecharMensagem() {
       this.mostrarMensagem = false;
       if(sessionStorage.getItem('idUsuario')=='1'){
-        this.$router.push('/AreaDoEstabelecimento');
+        // this.$router.push('/AreaDoEstabelecimento');
       }
     },
     receberRestauranteSelecionado(restauranteSelecionado) {
