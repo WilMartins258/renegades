@@ -1,4 +1,5 @@
 <template>
+        <ComponentMessage v-if="mostrarMensagem" :title="tituloMsg" :message="mensagemPUser" @close="fecharMensagem" />
   <div id="form-wrap" class="form">
     <div class="posicaoform-wrap">
 
@@ -475,11 +476,13 @@ import DashHorAtendimento from "./ComponentsChild/DashHorAtendimento.vue"
 import InfoPopup from '../../components/InfoPopup.vue';
 import api from "./../../services/backend.service.js";
 import { retornaCodigoBase64 } from "./../../services/conversorDeImagem.service.js";
+import ComponentMessage from "./../Message.vue";
 
 export default {
 components: {
   DashHorAtendimento,
   InfoPopup,
+  ComponentMessage
 },
 name: "UpdUsuario",
 data() {
@@ -1136,6 +1139,22 @@ async salvar() {
     console.log('Erro ao atualizar dados do estabelecimento: ', error);
   }
 },
+      //Componente de mensagem
+      mostrarmensagemPUser(validar) {
+        if (validar === "Pendente") {
+            this.tituloMsg = "Aviso!";
+             this.mensagemPUser = "Seu estabelecimento está em processo de ativação. Acompanhe sua ativação por esta página.";
+             this.mostrarMensagem = true;
+        } else if (validar === "Não Validado") {
+            this.tituloMsg = "Aviso!";
+            this.mensagemPUser = "Seu estabelecimento foi recusado. Entre em contato com adm@betterchoice.com para mais informações.";
+            this.mostrarMensagem = true;
+        }
+      },
+      fecharMensagem() {
+        this.mostrarMensagem = false;
+        this.$router.push('/AreaDoEstabelecimento');
+      },
 },
   mounted(){
     const cnpjInput = document.getElementById("cnpj");
@@ -1190,7 +1209,6 @@ computed: {
         contatosEstabelecimento
       } = dadosEstabelecimentoRequest.data;
 
-      console.log('status:: ', status)
 
       for (let i = 0; i < contatosEstabelecimento.length; i++){
         if(contatosEstabelecimento[i].isWhatsapp == 1){
@@ -1261,6 +1279,11 @@ computed: {
       this.listaRedesSociais = redeSociaisEstabelecimento;
       this.listahorarios = horariosEstabelecimento;
       this.listaContatos = contatosEstabelecimento;
+
+      
+
+      this.mostrarmensagemPUser(status)
+      
     } catch (error) {
       console.log('Erro ao buscar dados da página:: ', error);
     }
