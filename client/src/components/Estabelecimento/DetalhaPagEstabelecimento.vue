@@ -273,11 +273,13 @@ export default {
         console.log('Erro ao exibir recomendações do estabelecimento');
       }
 
+      const cepTratado = cep?.slice(0, 5) + '-' + cep?.slice(5);
+
       this.pratosChef = dadosRecomendacao;
       this.nomeDoEstabelecimento = nome;
       this.descricao = descricao;
       this.categoria = dadosCategoriaArray.join(' - ');
-      this.endereco = `${logradouro}, ${numeroEstabelecimento} - ${bairro}. CEP: ${cep}. ${cidade} - ${estado}`;
+      this.endereco = `${logradouro}, ${numeroEstabelecimento} - ${bairro}. CEP: ${cepTratado}. ${cidade} - ${estado}`;
       this.opcional = dadosOpcionaisArray.join(', ');
 
       for (let i = 0; i < dadosRedesSociais.length; i++) {
