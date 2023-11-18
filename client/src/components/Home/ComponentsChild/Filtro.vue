@@ -228,9 +228,9 @@ export default {
   },
   async created() {
     try {
-        const localizacaoNavegador = await this.buscarLocalizacaoViaNavegador();
+      await this.buscarLocalizacaoViaNavegador();
 
-        const dadosFiltros = await api.get('/estabelecimento/filtro');
+      const dadosFiltros = await api.get('/estabelecimento/filtro');
 
       const {
         estabelecimentos,
