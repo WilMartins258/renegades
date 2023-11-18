@@ -1175,6 +1175,7 @@ computed: {
         cidade,
         estado,
         cep,
+        status,
         categorias,
         opcionais,
         estilosMusica,
@@ -1188,6 +1189,8 @@ computed: {
         comidasEstabelecimento,
         contatosEstabelecimento
       } = dadosEstabelecimentoRequest.data;
+
+      console.log('status:: ', status)
 
       for (let i = 0; i < contatosEstabelecimento.length; i++){
         if(contatosEstabelecimento[i].isWhatsapp == 1){
