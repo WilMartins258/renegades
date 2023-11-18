@@ -252,11 +252,10 @@ router.post('/', async (req, res) => {
             return resultado ? resultado : '';
         };
 
-        const bufferImagemEstabelecimento = await buffer_Service.transformarBufferEmValido(estabelecimentoPhoto);
         const cnpjTratado = removerCaracteresEspeciais(cnpj);
         const dataDeHoje = new Date().toISOString().substring(0, 10);
 
-        let extensaoImagem = '';
+        let extensaoImagem = 'jpg';
         if (estabelecimentoPhotoType) {
             extensaoImagem = extensaoImagem_Service.encontrarExtensaoImagem(estabelecimentoPhotoType);
         }
@@ -298,11 +297,19 @@ router.post('/', async (req, res) => {
             }
         };
 
-        fs.writeFile(`./../client/src/components/Estabelecimento/images/${idEstabelecimento}.${extensaoImagem}`, bufferImagemEstabelecimento, (err) => {
-            if (err) {
-              console.error('Erro ao salvar imagem do estabelecimento:', err);
+        try {
+            if (estabelecimentoPhoto) {
+                const bufferImagemEstabelecimento = await buffer_Service.transformarBufferEmValido(estabelecimentoPhoto);
+
+                fs.writeFile(`./../client/src/components/Estabelecimento/images/${idEstabelecimento}.${extensaoImagem}`, bufferImagemEstabelecimento, (err) => {
+                    if (err) {
+                    console.log('Erro ao gerar imagem do estabelecimento:', err);
+                    }
+                });
             }
-        });
+        } catch (error) {
+            console.log('Erro ao salvar imagem do estabelecimento: ', error);
+        }
 
         for (let i = 0; i < opcoesSelecionadas.length; i++) {
             try {
