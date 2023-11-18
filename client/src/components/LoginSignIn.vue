@@ -80,7 +80,7 @@ export default {
 				if (loginInfo.email && loginInfo.senha) {
 					const login = await api.post("/login", loginInfo);
 
-					if (login.data.login) {
+					if (login?.data?.login) {
 						sessionStorage.setItem('idUsuario', login.data.id);
 						sessionStorage.setItem('nomeUsuario', login.data.nome);
 						sessionStorage.setItem('tipoUsuario', login.data.tipoUsuario);
