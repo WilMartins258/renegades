@@ -357,6 +357,8 @@ router.post('/', async (req, res) => {
                             console.error('Erro ao salvar imagem da recomendação:', err);
                         }
                     });
+                } else {
+                    await recomendacao_Service.inserir([idEstabelecimento, recomendacao[i].name, recomendacao[i].description, 'jpg'], connection);
                 }
             } catch (error) {
                 throw new Error(`Erro ao inserir recomendacao do estabelecimento: ${error.message}`);
