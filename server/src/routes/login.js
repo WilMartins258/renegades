@@ -19,7 +19,7 @@ router.post('/', async (req, res) => {
                 login: false
             });
         } else {
-            if (loginInfo.senha === resultadoLogin.senha) {
+            if (loginInfo.senha === resultadoLogin.senha && resultadoLogin.status === 'Ativo') {
                 res.status(200).send({
                     login: true,
                     id: resultadoLogin.id,
@@ -29,10 +29,17 @@ router.post('/', async (req, res) => {
                     fotoperfil: resultadoLogin.fotoperfil
                 });
             } else {
-                res.status(401).send({
-                    msg: 'Senha incorreta!',
-                    login: false
-                });
+                if (resultadoLogin.status === 'Ativo') {
+                    res.status(401).send({
+                        msg: 'Senha incorreta!',
+                        login: false
+                    });
+                } else {
+                    res.status(401).send({
+                        msg: 'Este usuário está desativado. Por favor, entre em contato com o administrador através do e-mail: adm@betterchoice.com',
+                        login: false
+                    });
+                }
             }
         }
     } catch (error) {
