@@ -64,7 +64,7 @@
 
         if (confirmacao) {
           try {
-            await api.delete(`/favorito/${favorito.id}`);
+            await api.delete(`/favorito/${sessionStorage.getItem('idUsuario')}/${favorito.idEstabelecimento}`);
 
             // Encontra o índice do favorito no array
             const index = this.estabelecimentos.findIndex((e) => e.id === favorito.id);
