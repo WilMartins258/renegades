@@ -476,7 +476,7 @@ methods: {
     },
 
   cancelar() {
-    this.$router.push("home");
+    this.$router.push("/usuario");
   },
   limpa_formulário_cep() {
     document.getElementById("rua").value = "";
