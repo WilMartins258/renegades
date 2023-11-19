@@ -12,7 +12,18 @@ const inserir = async (dadosRecomendacao, conn) => {
     }
 };
 
-const atualizar = async () => {};
+const atualizar = async (novosDadosRecomendacao, conn) => {
+    try {
+        const recomendacaoQuery = `
+        UPDATE recomendacao
+        SET nome = ?, descricao = ?
+        WHERE id = ?;`;
+
+        await conn.query(recomendacaoQuery, novosDadosRecomendacao);
+    } catch (error) {
+        throw new Error('Erro ao atualizar recomendação: ', error);
+    }
+};
 
 const pegarPorIdEstabelecimento = async (idEstabelecimento) => {
     try {
