@@ -515,7 +515,7 @@ router.put('/', async (req, res) => {
 
         
 
-        // console.log('recomendacao:: ', recomendacao);
+        console.log('recomendacao:: ', recomendacao);
 
         const recomendacoesOld = await recomendacao_Service.pegarPorIdEstabelecimento(idEstabelecimento)
 
@@ -543,7 +543,7 @@ router.put('/', async (req, res) => {
                     }
                 }
 
-                // await recomendacao_Service.excluir(resultadoRecomendacoes.opcoesRemovidas[i], connection);           
+                // await recomendacao_Service.excluir(resultadoRecomendacoes.opcoesRemovidas[i], connection);         
 
                 const caminhoFotoRecomendacao = `./../client/src/images/recomendacao/${resultadoRecomendacoes.opcoesRemovidas[i]}.${formatoRecomendacao}`;
 
@@ -559,9 +559,32 @@ router.put('/', async (req, res) => {
             console.log(error);
         }
 
+
+        const recomendacoesParaAtualizar = encontrarElementosRepetidos(recomendacoesEstabelecimento, recomendacoesEstabelecimentoOld);
+
+        console.log('recomendacoesParaAtualizar:: ', recomendacoesParaAtualizar);
+
+
+
         // Atualizar recomendações que permaneceram
         try {
-            
+            for (let i = 0; i < recomendacoesParaAtualizar.length ; i++) {
+                // console.log('recomendacoesParaAtualizar:: ', recomendacoesParaAtualizar);
+
+                for (let x = 0; x < recomendacao.length ; x++) {
+                    if (recomendacoesParaAtualizar[i] === recomendacao[x].id) {
+                        // console.log('recomendacao[x]:: ', recomendacao[x]);
+                        const novosDadosRecomendacao = {
+                            nome: recomendacao[x].name,
+                            descricao: recomendacao[x].description,
+                            id: recomendacao[x].id
+                        }
+                        const novosDadosRecomendacaoArray = Object.values(novosDadosRecomendacao);
+
+                        await recomendacao_Service.atualizar(novosDadosRecomendacaoArray, connection);     
+                    }
+                }
+            }
         } catch (error) {
             console.log(error);
         }
