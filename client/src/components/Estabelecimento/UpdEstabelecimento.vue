@@ -1218,9 +1218,21 @@ computed: {
       try {
         for (let i=0; i < this.recomendacao.length; i++) {
           this.recomendacao[i].photo = {};
-          this.recomendacao[i].photo.imageURL = require(`./../../images/recomendacao/${this.recomendacao[i].id}.${this.recomendacao[i].formatoFoto}`);
+          
+          let fotoRecomendacaoExiste = false;
+          try {
+            require(`./../../images/recomendacao/${this.recomendacao[i].id}.${this.recomendacao[i].formatoFoto}`);
+            fotoRecomendacaoExiste = true;
+          } catch (error) {}
+          
+          if (fotoRecomendacaoExiste) {
+            this.recomendacao[i].photo.imageURL = require(`./../../images/recomendacao/${this.recomendacao[i].id}.${this.recomendacao[i].formatoFoto}`);
+          } else {
+            this.recomendacao[i].photo.imageURL = require(`./../../images/recomendacao/sem-imagem.jpg`);
+          }
         }
       } catch (error){
+        console.log('error:: ', error)
         for (let i=0; i < this.recomendacao.length; i++) {
           this.recomendacao[i].photo = {};
           this.recomendacao[i].photo.imageURL = 'https://abravidro.org.br/wp-content/uploads/2015/04/sem-imagem10.jpg';
