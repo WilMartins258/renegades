@@ -1074,28 +1074,28 @@ async salvar() {
   try {
     this.desabilitarCampos();
     const novosDadosEstabelecimento = {
-      nomeEstabelecimento: this.nomeEstabelecimento, // OK
-      descricaoEstabelecimento: this.descricaoEstabelecimento, // OK
-      cnpj: this.cnpj, // OK
-      cep: this.cep, // OK
-      endereco: this.endereco, // OK
-      numero: this.numero, // OK
-      recomendacao: this.recomendacao, // OK EXCETO IMAGENS
+      nomeEstabelecimento: this.nomeEstabelecimento,
+      descricaoEstabelecimento: this.descricaoEstabelecimento,
+      cnpj: this.cnpj,
+      cep: this.cep,
+      endereco: this.endereco,
+      numero: this.numero,
+      recomendacao: this.recomendacao,
       fotoEstabelecimentoMudou: this.fotoEstabelecimentoMudou,
       estabelecimentoPhoto: this.estabelecimentoPhoto,
       estabelecimentoPhotoType: this.estabelecimentoPhotoType,
-      categoriasSelecionadas: this.categoriaSelecionadas, // OK
+      categoriasSelecionadas: this.categoriaSelecionadas,
       categoriaSelecionadasOld: this.categoriaSelecionadasOld,
-      tiposDeComidaSelecionados: this.tiposDeComidaSelecionados, // OK
+      tiposDeComidaSelecionados: this.tiposDeComidaSelecionados,
       tiposDeComidaSelecionadosOld: this.tiposDeComidaSelecionadosOld,
-      opcoesSelecionadas: this.opcoesSelecionadas, // OK
+      opcoesSelecionadas: this.opcoesSelecionadas,
       opcoesSelecionadasOld: this.opcoesSelecionadasOld,
-      estilosSelecionadas: this.estilosSelecionadas, // OK
+      estilosSelecionadas: this.estilosSelecionadas,
       estilosSelecionadasOld: this.estilosSelecionadasOld,
-      listaRedesSociais: this.listaRedesSociais, // CORRIGIR EDITAR
+      listaRedesSociais: this.listaRedesSociais,
       indicesRedesSociaisOld: this.indicesRedesSociaisOld,
       listaContatos: this.listaContatos,
-      listahorarios: this.listahorarios, // NÃO CHECA WHATSAPP
+      listahorarios: this.listahorarios,
       idEstabelecimento: sessionStorage.getItem('idEstabelecimento')
     };
 
