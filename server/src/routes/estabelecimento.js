@@ -409,7 +409,6 @@ router.put('/', async (req, res) => {
     let connection;
     try {
         connection = await transaction;
-        // console.log('reqBody:: ', req.body)
         const {
             nomeEstabelecimento,
             descricaoEstabelecimento,
@@ -502,53 +501,45 @@ router.put('/', async (req, res) => {
 
         
 
-        console.log('recomendacao:: ', recomendacao);
+        // console.log('recomendacao:: ', recomendacao);
 
         const recomendacoesOld = await recomendacao_Service.pegarPorIdEstabelecimento(idEstabelecimento)
 
-        console.log('recomendacoesOld:: ', recomendacoesOld);
+        // console.log('recomendacoesOld:: ', recomendacoesOld);
 
 
         const recomendacoesEstabelecimento = recomendacao.map(recomendacao => recomendacao.id ? recomendacao.id : 0);
 
         const recomendacoesEstabelecimentoOld = recomendacoesOld.map(recomendacao => recomendacao.id ? recomendacao.id : 0);
 
-        console.log('recomendacoesEstabelecimento:: ', recomendacoesEstabelecimento);
-        console.log('recomendacoesEstabelecimentoOld:: ', recomendacoesEstabelecimentoOld);
+        // console.log('recomendacoesEstabelecimento:: ', recomendacoesEstabelecimento);
+        // console.log('recomendacoesEstabelecimentoOld:: ', recomendacoesEstabelecimentoOld);
 
         const resultadoRecomendacoes = compararListas(recomendacoesEstabelecimentoOld, recomendacoesEstabelecimento);
 
         console.log('resultadoRecomendacoes:: ', resultadoRecomendacoes);
 
+        // Remover promoções
         try {
             for (let i = 0; i < resultadoRecomendacoes.opcoesRemovidas.length ; i++) {
-                // await recomendacao_Service.excluir(resultadoRecomendacoes.opcoesRemovidas[i], connection);
-
-
                 let formatoRecomendacao = '';
-                for (let i = 0; i < recomendacoesOld.length ; i++) {
-                    console.log(`\n\nFOR FOR:: `);
-                    console.log(`recomendacoesOld:: `, recomendacoesOld[i]);
-                    console.log(`ID:: `, recomendacoesOld[i].id);
-                    console.log(`resultadoRecomendacoes.opcoesRemovidas[i]:: `, resultadoRecomendacoes.opcoesRemovidas[i]);
-                    if (resultadoRecomendacoes.opcoesRemovidas[i] === recomendacoesOld[i].id) {
-                        console.log(`IF INSANO:: `);
-                        formatoRecomendacao = recomendacoesOld[i].formatoFoto;
+                for (let x = 0; x < recomendacoesOld.length ; x++) {
+                    if (resultadoRecomendacoes.opcoesRemovidas[i] === recomendacoesOld[x].id) {
+                        formatoRecomendacao = recomendacoesOld[x].formatoFoto;
                     }
                 }
 
-                console.error(`formatoRecomendacao: `, formatoRecomendacao);
-                
+                await recomendacao_Service.excluir(resultadoRecomendacoes.opcoesRemovidas[i], connection);               
 
-                const caminhoFotoRecomendacao = `./../client/src/images/recomendacao/${resultadoRecomendacoes.opcoesRemovidas[i]}.${formatoRecomendacao}`; //
+                const caminhoFotoRecomendacao = `./../client/src/images/recomendacao/${resultadoRecomendacoes.opcoesRemovidas[i]}.${formatoRecomendacao}`;
 
-                // fs.unlink(caminhoFotoRecomendacao, (err) => {
-                //     if (err) {
-                //     console.error(`Erro ao remover o arquivo: ${err}`);
-                //     } else {
-                //     console.log('Arquivo removido com sucesso!');
-                //     }
-                // });
+                try {
+                    fs.unlink(caminhoFotoRecomendacao, (err) => {
+                        if (err) {
+                            console.error(`Erro ao remover o arquivo: ${err}`);
+                        }
+                    });
+                } catch (error) {}
             }
         } catch (error) {
             console.log(error);
