@@ -452,6 +452,20 @@ router.put('/', async (req, res) => {
             };
         };
 
+        const encontrarElementosRepetidos = (array1, array2) => {
+            const unicosArray1 = [...new Set(array1)];
+            const unicosArray2 = [...new Set(array2)];
+            const repetidos = [];
+          
+            for (const elemento of unicosArray1) {
+              if (unicosArray2.includes(elemento)) {
+                repetidos.push(elemento);
+              }
+            }
+          
+            return repetidos;
+        };
+
         const cnpjFormatado = removerCaracteresEspeciais(cnpj);
 
         const novosDadosEstabelecimento = {
@@ -512,8 +526,8 @@ router.put('/', async (req, res) => {
 
         const recomendacoesEstabelecimentoOld = recomendacoesOld.map(recomendacao => recomendacao.id ? recomendacao.id : 0);
 
-        // console.log('recomendacoesEstabelecimento:: ', recomendacoesEstabelecimento);
-        // console.log('recomendacoesEstabelecimentoOld:: ', recomendacoesEstabelecimentoOld);
+        console.log('recomendacoesEstabelecimento:: ', recomendacoesEstabelecimento);
+        console.log('recomendacoesEstabelecimentoOld:: ', recomendacoesEstabelecimentoOld);
 
         const resultadoRecomendacoes = compararListas(recomendacoesEstabelecimentoOld, recomendacoesEstabelecimento);
 
@@ -529,18 +543,25 @@ router.put('/', async (req, res) => {
                     }
                 }
 
-                await recomendacao_Service.excluir(resultadoRecomendacoes.opcoesRemovidas[i], connection);               
+                // await recomendacao_Service.excluir(resultadoRecomendacoes.opcoesRemovidas[i], connection);           
 
                 const caminhoFotoRecomendacao = `./../client/src/images/recomendacao/${resultadoRecomendacoes.opcoesRemovidas[i]}.${formatoRecomendacao}`;
 
                 try {
-                    fs.unlink(caminhoFotoRecomendacao, (err) => {
-                        if (err) {
-                            console.error(`Erro ao remover o arquivo: ${err}`);
-                        }
-                    });
+                    // fs.unlink(caminhoFotoRecomendacao, (err) => {
+                    //     if (err) {
+                    //         console.error(`Erro ao remover o arquivo: ${err}`);
+                    //     }
+                    // });
                 } catch (error) {}
             }
+        } catch (error) {
+            console.log(error);
+        }
+
+        // Atualizar recomendações que permaneceram
+        try {
+            
         } catch (error) {
             console.log(error);
         }
@@ -554,22 +575,6 @@ router.put('/', async (req, res) => {
         console.log('fotoRecomendacao01Mudou:: ', fotoRecomendacao01Mudou);
         console.log('fotoRecomendacao02Mudou:: ', fotoRecomendacao02Mudou);
         console.log('fotoRecomendacao03Mudou:: ', fotoRecomendacao03Mudou);
-
-
-
-        const encontrarElementosRepetidos = (array1, array2) => {
-            const unicosArray1 = [...new Set(array1)];
-            const unicosArray2 = [...new Set(array2)];
-            const repetidos = [];
-          
-            for (const elemento of unicosArray1) {
-              if (unicosArray2.includes(elemento)) {
-                repetidos.push(elemento);
-              }
-            }
-          
-            return repetidos;
-        };
 
         // CATEGORIAS
         const categoriasEstabelecimento = categoriasSelecionadas.map(categoria => categoria.id);
