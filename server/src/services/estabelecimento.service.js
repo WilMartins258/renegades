@@ -72,6 +72,7 @@ const filtros = async () => {
       e.cep,
       e.latitude,
       e.longitude,
+      e.dataCadastro,
       (
         SELECT GROUP_CONCAT(c.nome) 
         FROM categoria_estabelecimento ce 
@@ -92,7 +93,8 @@ const filtros = async () => {
       ) AS comidasString
     FROM estabelecimento e
     WHERE e.status = 'Validado'
-    AND ativo = true AND oculto = false;`;
+    AND ativo = true AND oculto = false
+    ORDER BY e.dataCadastro DESC;`;
     const connection = await db;
 
     const [estabelecimentosFiltros] = await connection.query(filtrosQuery);
