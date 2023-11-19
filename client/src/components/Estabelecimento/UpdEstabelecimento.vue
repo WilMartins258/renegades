@@ -1072,7 +1072,6 @@ async salvar() {
     this.estabelecimentoPhoto = null;
   }
   try {
-    console.log('PUT estabelecimento');
     this.desabilitarCampos();
     const novosDadosEstabelecimento = {
       nomeEstabelecimento: this.nomeEstabelecimento, // OK
@@ -1224,7 +1223,7 @@ computed: {
             require(`./../../images/recomendacao/${this.recomendacao[i].id}.${this.recomendacao[i].formatoFoto}`);
             fotoRecomendacaoExiste = true;
           } catch (error) {}
-          
+
           if (fotoRecomendacaoExiste) {
             this.recomendacao[i].photo.imageURL = require(`./../../images/recomendacao/${this.recomendacao[i].id}.${this.recomendacao[i].formatoFoto}`);
           } else {
