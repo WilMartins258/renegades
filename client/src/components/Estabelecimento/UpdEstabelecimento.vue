@@ -978,26 +978,6 @@ methods: {
           const imageURL = URL.createObjectURL(file);
           this.recomendacao[index].photo = { imageURL }; // Adicione a miniatura
 
-          console.log('vai entrar no switch')
-          console.log('index:: ', index)
-          switch (index+1) {
-            case 1:
-              console.log('1')
-              this.fotoRecomendacao01Mudou = true;
-              break;
-            case 2:
-            console.log('2')
-              this.fotoRecomendacao02Mudou = true;
-              break;
-            case 3:
-            console.log('3')
-
-              this.fotoRecomendacao03Mudou = true;
-              break;
-            default:
-              break;
-          }
-
           // Limpe o input de arquivo para permitir a seleção de outra imagem
           inputImagem.value = "";
         }
