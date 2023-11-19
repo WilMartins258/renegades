@@ -268,7 +268,7 @@ button:disabled:hover {
 
 input {
   border: none;
-  padding: 8px 60px;
+  padding: 8px 10px;
   border-radius: 25px;
   background: rgba(211, 201, 201, 0.774);
   color: #000;
