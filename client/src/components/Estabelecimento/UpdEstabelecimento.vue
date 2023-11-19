@@ -1068,6 +1068,11 @@ cancelar() {
 },
 
 async salvar() {
+  // Desabilitar os botões "Salvar" , "Alterar" "Cancelar" e "Excluir"
+  document.getElementById("alterarButton").setAttribute("disabled", true);
+  document.getElementById("salvarButton").setAttribute("disabled", true);
+  document.getElementById("cancelarButton").setAttribute("disabled", true);
+
   if (!this.fotoEstabelecimentoMudou){
     this.estabelecimentoPhoto = null;
   }
@@ -1099,17 +1104,13 @@ async salvar() {
       idEstabelecimento: sessionStorage.getItem('idEstabelecimento')
     };
 
-    // Habilitar o botão "Alterar"
-    document.getElementById("alterarButton").removeAttribute("disabled");
-    // Desabilitar os botões "Salvar" , "Cancelar e "Excluir"
-    document.getElementById("salvarButton").setAttribute("disabled", true);
-    document.getElementById("cancelarButton").setAttribute("disabled", true);
-
     await api.put('/estabelecimento', {novosDadosEstabelecimento});
 
+    // document.getElementById("alterarButton").removeAttribute("disabled");
     location.reload();
   } catch (error) {
     console.log('Erro ao atualizar dados do estabelecimento: ', error);
+    location.reload();
   }
 },
       //Componente de mensagem
