@@ -417,9 +417,6 @@ router.put('/', async (req, res) => {
             endereco,
             numero,
             recomendacao,
-            fotoRecomendacao01Mudou,
-            fotoRecomendacao02Mudou,
-            fotoRecomendacao03Mudou,
             fotoEstabelecimentoMudou,
             estabelecimentoPhoto,
             estabelecimentoPhotoType,
@@ -608,10 +605,6 @@ router.put('/', async (req, res) => {
         AS que permaneceram tem que ter seus dados atualizados SEMPRE e caso a imagem atualizou ela deve ser atualizada também
         AS inseridas devem ser salvas no banco e devem ter o id salvo utilizado para dar o nome do arquivo (também devo checar se as novas tem foto, senão tiverem colocar foto padrão)
         */
-
-        console.log('fotoRecomendacao01Mudou:: ', fotoRecomendacao01Mudou);
-        console.log('fotoRecomendacao02Mudou:: ', fotoRecomendacao02Mudou);
-        console.log('fotoRecomendacao03Mudou:: ', fotoRecomendacao03Mudou);
 
         // CATEGORIAS
         const categoriasEstabelecimento = categoriasSelecionadas.map(categoria => categoria.id);
