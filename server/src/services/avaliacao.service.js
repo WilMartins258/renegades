@@ -51,7 +51,8 @@ const pegarPorIdEstabelecimento = async (idEstabelecimento) => {
             FROM  estabelecimento e 
             JOIN avaliacao a on e.id = a.idEstabelecimento
             JOIN usuario u on u.id = a.idUsuario
-                WHERE e.id = ?;`;
+                WHERE e.id = ?
+                order by a.data desc;`;
         const connection = await db;
 
         const [avaliacoesEstabelecimento] = await connection.query(avaliacaoQuery, idEstabelecimento);
