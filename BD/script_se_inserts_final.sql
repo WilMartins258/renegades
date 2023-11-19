@@ -979,7 +979,7 @@ insert into recomendacao values(
 	2, -- idEstabelecimento INT not null,
 	'jpg', -- foto LONGBLOB not null,
 	'Pizzas doces com sorvete', -- nome VARCHAR(50) not null,
-	'Temos grande variedade de pizza doce e todas podem ser acompanhadas de bolas de sorvete de massa.'-- descricao VARCHAR(50) not null
+	'Temos grande variedade de pizzas doces e todas podem ser acompanhadas de bolas de sorvete de massa.'-- descricao VARCHAR(50) not null
 );
 
 
