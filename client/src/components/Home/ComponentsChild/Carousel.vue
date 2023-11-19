@@ -99,7 +99,7 @@
   
   .fundo {
     background: linear-gradient(to right, rgba(233, 30, 47, 0.5), rgba(255, 152, 0, 0.5));
-    
+    border-radius: 25px;
   }
   
   .imageSrc {
@@ -112,5 +112,54 @@
   a {
   text-decoration: none;
 }
+
+/*Responsive*/
+
+@media (max-width: 1160px) {
+    .imageSrc {
+      width: 300px; 
+      height: 200px;
+    }
+  }
+
+  @media (max-width: 950px) {
+    .imageSrc {
+      width: 230px; 
+      height: 130px;
+    }
+
+    h2{
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .imageSrc {
+      width: 180px; 
+      height: 90px;
+    }
+
+    h2{
+      font-size: 12px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .imageSrc {
+      width: 300px; 
+      height: 200px;
+    }
+
+    h2{
+      font-size: 18px;
+    }
+  }
+
+  @media (max-width: 414px) {
+    .imageSrc {
+      width: 300px; 
+      height: 200px;
+    }
+  }
   </style>
   

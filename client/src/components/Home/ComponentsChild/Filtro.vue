@@ -662,9 +662,6 @@ export default {
   text-align: center;
 }
 
-/* ... (o restante do seu código CSS) */
-
-
 .filter-submenu {
   display: flex;
   flex-wrap: wrap;
@@ -737,6 +734,12 @@ export default {
       margin: 5px;
       padding: 5px 8px;
     }
+
+    .card-image {
+      width: 80%;
+      height: 100px; 
+      border-radius: 16px;
+    }
   
     .cards {
       justify-content: center;
@@ -747,9 +750,17 @@ export default {
     .card-container {
       margin-right: 10px;
     }
+
+    .card{
+      width: 200px;
+    }
+    
+    h3, p{
+      font-size: 15px;
+    }
   }
   
-  @media screen and (min-width: 769px) {
+  @media screen and (min-width: 600px) {
     .card-container {
       margin-right: 25px;
     }
@@ -758,10 +769,26 @@ export default {
       gap: 20px;
       margin-top: 20px;
     }
-  
-    @media screen and (max-width: 820px) {
 
+    .card{
+      width: 300px;
+    }
+    
+    h3, p{
+      font-size: px;
+    }
+
+    .card-image {
+      width: 90%;
+      height: 120px; 
+    }
   
+    @media screen and (max-width: 414px) {
+
+    .card{
+      width: 400px;
+    }
+
     .card-container {
       margin-right: 20px;
     }

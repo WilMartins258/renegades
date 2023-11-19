@@ -376,4 +376,39 @@ import dataFormat from './../../services/dataToDiaMesAno.service';
             right: -15px;
         }
 
+        /*Responsive*/
+        @media (max-width: 1160px) {
+  .ticket {
+    width: 80%;
+  }
+}
+
+@media (max-width: 950px) {
+  .ticket {
+    width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .ticket {
+    width: 90%;
+  }
+}
+
+@media (max-width: 600px) {
+  .ticket {
+    width: 100%;
+  }
+}
+
+@media (max-width: 414px) {
+  .ticket {
+    width: 100%;
+  }
+  .page {
+    font-size: 15px;
+    }
+
+}
+
 </style>
