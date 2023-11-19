@@ -834,4 +834,43 @@ button:hover {
   font-size: 22px;
  }
 
+
+/* Responsive*/
+
+@media screen and (max-width: 1160px) {
+  .container-estabelecimento {
+    max-width: 950px; 
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .container-estabelecimento {
+    max-width: 768px; 
+  }
+
+
+  .imagem-prato {
+    width: 200px; 
+    height: 150px; 
+  }
+
+  .map-container {
+    width: 30%; /* Ajustado para 100% de largura */
+    height: 50px; /* Ajuste a altura conforme necessário */
+}
+  
+
+}
+
+@media screen and (max-width: 768px) {
+  .container-estabelecimento {
+    max-width: 600px; /* Ajustado para largura máxima de 600px */
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container-estabelecimento {
+    max-width: 414px; /* Ajustado para largura máxima de 414px */
+  }
+}
 </style>
