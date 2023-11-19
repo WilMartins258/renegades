@@ -243,7 +243,6 @@ export default {
         longitude
       } = dadosEstabelecimento.data;
 
-      // Depois podemos ver uma forma mais bonita de apresentar os telefones do estabelecimento
       try {
         for (let i = 0; i < dadosContatos.length; i++) {
           if (dadosContatos[i].idContato == 1) {
