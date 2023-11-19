@@ -504,9 +504,6 @@ data() {
       estabelecimentoPhoto: null,
       estabelecimentoPhotoType: "",
       fotoEstabelecimentoMudou: false,
-      fotoRecomendacao01Mudou: false,
-      fotoRecomendacao02Mudou: false,
-      fotoRecomendacao03Mudou: false,
       fotoEstabelecimento: "https://abravidro.org.br/wp-content/uploads/2015/04/sem-imagem10.jpg",
       HorariosSelecionados: [],
       tiposDeComidaSelecionados: [],
@@ -1085,9 +1082,6 @@ async salvar() {
       endereco: this.endereco, // OK
       numero: this.numero, // OK
       recomendacao: this.recomendacao, // OK EXCETO IMAGENS
-      fotoRecomendacao01Mudou: this.fotoRecomendacao01Mudou,
-      fotoRecomendacao02Mudou: this.fotoRecomendacao02Mudou,
-      fotoRecomendacao03Mudou: this.fotoRecomendacao03Mudou,
       fotoEstabelecimentoMudou: this.fotoEstabelecimentoMudou,
       estabelecimentoPhoto: this.estabelecimentoPhoto,
       estabelecimentoPhotoType: this.estabelecimentoPhotoType,
