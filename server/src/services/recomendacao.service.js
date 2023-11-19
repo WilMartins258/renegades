@@ -25,6 +25,19 @@ const atualizar = async (novosDadosRecomendacao, conn) => {
     }
 };
 
+const atualizarFormatoDeFoto = async (novosDadosRecomendacao, conn) => {
+    try {
+        const recomendacaoQuery = `
+        UPDATE recomendacao
+        SET foto = ?
+        WHERE id = ?;`;
+
+        await conn.query(recomendacaoQuery, novosDadosRecomendacao);
+    } catch (error) {
+        throw new Error('Erro ao atualizar recomendação: ', error);
+    }
+};
+
 const pegarPorIdEstabelecimento = async (idEstabelecimento) => {
     try {
         const recomendacoesQuery = `
@@ -54,6 +67,7 @@ const excluir = async (idRecomendacao, conn) => {
 module.exports = {
     inserir,
     atualizar,
+    atualizarFormatoDeFoto,
     pegarPorIdEstabelecimento,
     excluir
 };

@@ -581,7 +581,35 @@ router.put('/', async (req, res) => {
                         }
                         const novosDadosRecomendacaoArray = Object.values(novosDadosRecomendacao);
 
-                        await recomendacao_Service.atualizar(novosDadosRecomendacaoArray, connection);     
+                        await recomendacao_Service.atualizar(novosDadosRecomendacaoArray, connection);
+                        
+                        
+                        // 
+                        if (recomendacao[x].photoBuffer) {
+                            console.log('photoBuffer EXISTE ')
+                            console.log('type:: ', recomendacao[x].type);
+
+
+
+                            const extensaoImagem = extensaoImagem_Service.encontrarExtensaoImagem(recomendacao[x].type);
+
+
+                            const caminhoFotoRecomendacao = `./../client/src/images/recomendacao/${recomendacao[x].id}.${extensaoImagem}`;
+
+                            try {
+                                const bufferImagemRecomendacao = await buffer_Service.transformarBufferEmValido(recomendacao[x].photoBuffer);
+
+                                fs.writeFile(caminhoFotoRecomendacao, bufferImagemRecomendacao, (err) => {
+                                    if (err) {
+                                        console.error('Erro ao atualizar imagem da recomendação:', err);
+                                    }
+                                });
+
+                                await recomendacao_Service.atualizarFormatoDeFoto([extensaoImagem, recomendacao[x].id], connection);
+
+                            } catch (error) {}
+
+                        }
                     }
                 }
             }
