@@ -405,7 +405,6 @@ router.post('/', async (req, res) => {
 });
 
 router.put('/', async (req, res) => {
-    console.log('PUT estabelecimento')
     let connection;
     try {
         connection = await transaction;
@@ -509,26 +508,12 @@ router.put('/', async (req, res) => {
         }
 
         // RECOMENDAÇÕES
-
-        
-
-        console.log('recomendacao:: ', recomendacao);
-
-        const recomendacoesOld = await recomendacao_Service.pegarPorIdEstabelecimento(idEstabelecimento)
-
-        // console.log('recomendacoesOld:: ', recomendacoesOld);
-
+        const recomendacoesOld = await recomendacao_Service.pegarPorIdEstabelecimento(idEstabelecimento);
 
         const recomendacoesEstabelecimento = recomendacao.map(recomendacao => recomendacao.id ? recomendacao.id : 0);
-
         const recomendacoesEstabelecimentoOld = recomendacoesOld.map(recomendacao => recomendacao.id ? recomendacao.id : 0);
 
-        console.log('recomendacoesEstabelecimento:: ', recomendacoesEstabelecimento);
-        console.log('recomendacoesEstabelecimentoOld:: ', recomendacoesEstabelecimentoOld);
-
         const resultadoRecomendacoes = compararListas(recomendacoesEstabelecimentoOld, recomendacoesEstabelecimento);
-
-        console.log('resultadoRecomendacoes:: ', resultadoRecomendacoes);
 
         // Remover promoções
         try {
@@ -540,26 +525,23 @@ router.put('/', async (req, res) => {
                     }
                 }
 
-                // await recomendacao_Service.excluir(resultadoRecomendacoes.opcoesRemovidas[i], connection);         
+                await recomendacao_Service.excluir(resultadoRecomendacoes.opcoesRemovidas[i], connection);      
 
                 const caminhoFotoRecomendacao = `./../client/src/images/recomendacao/${resultadoRecomendacoes.opcoesRemovidas[i]}.${formatoRecomendacao}`;
 
                 try {
-                    // fs.unlink(caminhoFotoRecomendacao, (err) => {
-                    //     if (err) {
-                    //         console.error(`Erro ao remover o arquivo: ${err}`);
-                    //     }
-                    // });
+                    fs.unlink(caminhoFotoRecomendacao, (err) => {
+                        if (err) {
+                            console.error(`Erro ao remover o arquivo: ${err}`);
+                        }
+                    });
                 } catch (error) {}
             }
         } catch (error) {
             console.log(error);
         }
 
-
         const recomendacoesParaAtualizar = encontrarElementosRepetidos(recomendacoesEstabelecimento, recomendacoesEstabelecimentoOld);
-
-        console.log('recomendacoesParaAtualizar:: ', recomendacoesParaAtualizar);
 
         // Atualizar recomendações que permaneceram
         try {
@@ -592,6 +574,38 @@ router.put('/', async (req, res) => {
                                 await recomendacao_Service.atualizarFormatoDeFoto([extensaoImagem, recomendacao[x].id], connection);
 
                             } catch (error) {}
+                        }
+                    }
+                }
+            }
+        } catch (error) {
+            console.log(error);
+        }
+
+       // Adicionar promoções novas através da tela de atualização de dados do estabelecimento
+        try {
+            for (let i = 0; i < recomendacao.length ; i++) {
+                if(!recomendacao[i].id) {
+                    const idNovaRecomendacao = await recomendacao_Service.inserir([idEstabelecimento, recomendacao[i].name, recomendacao[i].description, 'jpg'], connection);
+
+                    if(recomendacao[i].photoBuffer) {
+                        const extensaoImagem = extensaoImagem_Service.encontrarExtensaoImagem(recomendacao[i].type);
+
+                        const caminhoFotoRecomendacao = `./../client/src/images/recomendacao/${idNovaRecomendacao}.${extensaoImagem}`;
+
+                        try {
+                            const bufferImagemRecomendacao = await buffer_Service.transformarBufferEmValido(recomendacao[x].photoBuffer);
+
+                            fs.writeFile(caminhoFotoRecomendacao, bufferImagemRecomendacao, (err) => {
+                                if (err) {
+                                    console.error('Erro ao salvar imagem da recomendação:', err);
+                                }
+                            });
+
+                            await recomendacao_Service.atualizarFormatoDeFoto([extensaoImagem, idNovaRecomendacao], connection);
+
+                        } catch (error) {
+                            console.log('nelsu:: ', error)
                         }
                     }
                 }
