@@ -614,12 +614,6 @@ router.put('/', async (req, res) => {
             console.log(error);
         }
 
-        /*
-        As removidas eu tenho que remover conforme o exemplo acima (removendo tanto os dados quanto a imagem)
-        AS que permaneceram tem que ter seus dados atualizados SEMPRE e caso a imagem atualizou ela deve ser atualizada também
-        AS inseridas devem ser salvas no banco e devem ter o id salvo utilizado para dar o nome do arquivo (também devo checar se as novas tem foto, senão tiverem colocar foto padrão)
-        */
-
         // CATEGORIAS
         const categoriasEstabelecimento = categoriasSelecionadas.map(categoria => categoria.id);
         const categoriasEstabelecimentoOld = categoriaSelecionadasOld.map(categoria => categoria.id);
