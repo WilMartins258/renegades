@@ -564,16 +564,11 @@ router.put('/', async (req, res) => {
 
         console.log('recomendacoesParaAtualizar:: ', recomendacoesParaAtualizar);
 
-
-
         // Atualizar recomendações que permaneceram
         try {
             for (let i = 0; i < recomendacoesParaAtualizar.length ; i++) {
-                // console.log('recomendacoesParaAtualizar:: ', recomendacoesParaAtualizar);
-
                 for (let x = 0; x < recomendacao.length ; x++) {
                     if (recomendacoesParaAtualizar[i] === recomendacao[x].id) {
-                        // console.log('recomendacao[x]:: ', recomendacao[x]);
                         const novosDadosRecomendacao = {
                             nome: recomendacao[x].name,
                             descricao: recomendacao[x].description,
@@ -583,16 +578,8 @@ router.put('/', async (req, res) => {
 
                         await recomendacao_Service.atualizar(novosDadosRecomendacaoArray, connection);
                         
-                        
-                        // 
                         if (recomendacao[x].photoBuffer) {
-                            console.log('photoBuffer EXISTE ')
-                            console.log('type:: ', recomendacao[x].type);
-
-
-
                             const extensaoImagem = extensaoImagem_Service.encontrarExtensaoImagem(recomendacao[x].type);
-
 
                             const caminhoFotoRecomendacao = `./../client/src/images/recomendacao/${recomendacao[x].id}.${extensaoImagem}`;
 
@@ -608,7 +595,6 @@ router.put('/', async (req, res) => {
                                 await recomendacao_Service.atualizarFormatoDeFoto([extensaoImagem, recomendacao[x].id], connection);
 
                             } catch (error) {}
-
                         }
                     }
                 }
