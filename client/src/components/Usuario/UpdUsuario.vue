@@ -144,6 +144,12 @@ export default{
           this.endereco.uf = dadosUsuario.estado;
           this.endereco.cidade = dadosUsuario.cidade;
           this.endereco.numero = dadosUsuario.numeroResidencia;
+
+          this.$nextTick(() => {
+            this.aplicarMascaraCelular();
+            this.aplicarMascaraCEP() 
+          });
+
           if (dadosUsuario.fotoPerfil) {
             try {
               this.avatarSrc = require(`./images/${sessionStorage.getItem('idUsuario')}.${dadosUsuario.fotoPerfil}`);
@@ -343,6 +349,19 @@ export default{
         } catch (error) {
           this.mostrarmensagemError(error.response.data.msg);
         }
+      });
+    },
+    aplicarMascaraCelular() {
+      const celularInput = document.getElementById("celular");
+      const celularMask = IMask(celularInput, {
+        mask: "(00) 00000-0000",
+      });
+    },
+
+    aplicarMascaraCEP() {
+      const cepInput = document.getElementById("cep");
+      const cepMask = IMask(cepInput, {
+        mask: "00000-000",
       });
     },
   },
