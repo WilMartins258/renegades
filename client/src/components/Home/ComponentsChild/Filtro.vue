@@ -141,7 +141,7 @@
             />
             <h3>{{ estabelecimento.nome }}</h3>
             <p class="description">{{ estabelecimento.categoria?.join(', ') }}</p>
-            <span v-if="showDistance" class="distance">{{ (estabelecimento.distancia)?.toFixed(1) }} km</span>
+            <span v-if="showDistance" class="distance">{{ (estabelecimento.distancia)?.toFixed(1) }} {{ estabelecimento?.distancia ? 'Km' : '' }}</span>
           </div>
           
         </a>
