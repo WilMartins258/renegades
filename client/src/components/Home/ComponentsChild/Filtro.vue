@@ -520,7 +520,6 @@ export default {
         if (sessionStorage.getItem('cep')) {
           const distancias = await api.get('/distancia/cep', { params: {cep: sessionStorage.getItem('cep')} });
           for (let i=0; i < distancias?.data?.distancias?.length; i++) {
-            console.log('nome:: ', distancias.data.distancias[i].nome, ' ', distancias.data.distancias[i].distancia)
             this.estabelecimentos[i].distancia = distancias.data.distancias[i].distancia;
           }
           this.showDistance = true;
