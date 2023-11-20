@@ -45,6 +45,7 @@
             <div class="group">
               <label for="senha2" class="label">Confirme sua senha:</label><br />
                 <input type="password" v-model="senhaConfirm" id="senha2" class="input" name="senha2" disabled/>
+                <span style="color: red;">{{ senhaError }}</span>
             </div> 
           </div>
 
@@ -304,6 +305,11 @@ export default{
       });
 
       salvarButton.addEventListener("click", async () => {
+        if (!this.validarSenhas()) {
+          // Display error message
+          alert(this.senhaError);
+          return;
+        }
         nomeInput.setAttribute("disabled", true);
         dataNascimentoInput.setAttribute("disabled", true);
         emailInput.setAttribute("disabled", true);
@@ -376,6 +382,15 @@ export default{
       const cepMask = IMask(cepInput, {
         mask: "00000-000",
       });
+    },
+    validarSenhas() {
+      if (this.senha !== this.senhaConfirm) {
+        this.senhaError = "As senhas não coincidem";
+        return false;
+      } else {
+        this.senhaError = "";
+        return true;
+      }
     },
   },
   mounted(){
