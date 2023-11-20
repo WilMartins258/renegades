@@ -72,7 +72,7 @@ const atualizar = async (newUserData) => {
     const atualizarUsuarioQuery = `
       UPDATE usuario
         SET nome = ?, celular = ?, email = ?, 
-        senha = ?, fotoPerfil = ?, dataNascimento = ?,
+        senha = ?, dataNascimento = ?,
         cep = ?, estado = ?, cidade = ?, bairro = ?,
         logradouro = ?, numeroResidencia = ?
         WHERE id = ?;`;

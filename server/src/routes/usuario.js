@@ -67,20 +67,35 @@ router.put('/', async (req, res) => {
             logradouro,
             numero,
             fotoBuffer,
-            fotoType
+            fotoType,
+            fotoUsuarioMudou
         } = req.body;
 
-        const dataNascMySqlFormat = dataToMySql_Service.dataToMySqlFormat(dataNascimento);
+        console.log('fotoBuffer: ', fotoBuffer)
+        console.log('fotoType: ', fotoType)
+        console.log('fotoUsuarioMudou: ', fotoUsuarioMudou)
 
-        const extensaoImagem = extensaoImagem_Service.encontrarExtensaoImagem(fotoType);
-        const bufferFotoUusuario= await buffer_Service.transformarBufferEmValido(fotoBuffer);
+        if (fotoUsuarioMudou) {
+
+            const extensaoImagem = extensaoImagem_Service.encontrarExtensaoImagem(fotoType);
+            const bufferFotoUusuario= await buffer_Service.transformarBufferEmValido(fotoBuffer);
+
+
+            fs.writeFile(`./../client/src/components/Usuario/images/${idUsuario}.${extensaoImagem}`, bufferFotoUusuario, (err) => {
+                if (err) {
+                  console.error('Erro ao salvar imagem do usuário:', err);
+                }
+            });
+            
+        }
+ 
+        const dataNascMySqlFormat = dataToMySql_Service.dataToMySqlFormat(dataNascimento);
         
         const novosDadosUsuario = {
             nome,
             celular,
             email,
             senha,
-            fotoPerfil: extensaoImagem,
             dataNascimento: dataNascMySqlFormat,
             cep,
             estado,
@@ -93,11 +108,7 @@ router.put('/', async (req, res) => {
         const novosDadosUsuarioArray = Object.values(novosDadosUsuario);
         await usuario_Service.atualizar(novosDadosUsuarioArray);
 
-        fs.writeFile(`./../client/src/components/Usuario/images/${idUsuario}.${extensaoImagem}`, bufferFotoUusuario, (err) => {
-            if (err) {
-              console.error('Erro ao salvar imagem do usuário:', err);
-            }
-        });
+        
 
         res.status(200).send({
             msg: 'Dados do usuário alterados com sucesso!',
