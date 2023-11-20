@@ -247,6 +247,11 @@ router.post('/', async (req, res) => {
             longitude
         } = req.body;
 
+        if (!latitude && !latitude) {
+            latitude = 0,
+            longitude = 0
+        }
+
         const removerCaracteresEspeciais = (str) => {
             const resultado = str.replace(/[\/\.\-]/g, '');
             return resultado ? resultado : '';
