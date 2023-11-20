@@ -271,8 +271,8 @@ router.post('/', async (req, res) => {
             logradouro: endereco.rua,
             bairro: endereco.bairro,
             numero: numero,
-            latitude: latitude,
-            longitude: longitude,
+            latitude: latitude ? latitude : 0,
+            longitude: longitude ? longitude : 0,
             dataCadastro: dataDeHoje,
             dataUltimoAcesso: dataDeHoje
         }
