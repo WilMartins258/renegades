@@ -51,7 +51,7 @@
           <div class="column">
             <div class="group">
               <label for="cep" class="label">CEP:</label><br />
-              <input maxlength="8" v-model="endereco.cep" type="text" id="cep" class="input" name="cep" @blur="pesquisarCep" required disabled/><br />
+              <input maxlength="9" v-model="endereco.cep" type="text" id="cep" class="input" name="cep" @blur="pesquisarCep" required disabled/><br />
             </div>
 
             <div class="group">
