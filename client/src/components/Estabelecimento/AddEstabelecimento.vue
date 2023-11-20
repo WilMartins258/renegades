@@ -453,7 +453,7 @@ methods: {
       this.currentSection++;
       this.calculaAltura(); // Calcule a altura
       this.title = "Novo Título da Seção"; // Atualize o título aqui
-      this.openDescriptionPopup(); // Abra o popup ao avançar
+     // this.openDescriptionPopup(); // Abra o popup ao avançar
       
     }
     this.scrollToTop();
@@ -694,14 +694,21 @@ computed: {
   position: relative;
 }
 
-#form-wrap .group .button[disabled] {
+#form-wrap .group .button[disabled]{
   background-color: #7a7a7a6c;
   pointer-events: none;
 }
 
-#form-wrap .group .input[disabled] {
+#form-wrap .group .input[disabled]{
   background: rgba(211, 201, 201, 0.774);
+}
+.buttons [disabled] {
+  background-color: #7a7a7a6c;
+  pointer-events: none;
+}
 
+.buttons [disabled] {
+  background: rgba(211, 201, 201, 0.774);
 }
 
 .posicaoform-wrap {
