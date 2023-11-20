@@ -3526,11 +3526,6 @@ insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
     17 -- idCategoria INT NOT NULL -- Sucaria
 );
 
-insert into comida_estabelecimento (idEstabelecimento, idComida) values(
-    13, -- idEstabelecimento INT NOT NULL,
-    6   -- idComida INT NOT NULL -- Francesa
-);
-
 insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
     17, -- idEstabelecimento INT NOT NULL,
     1 -- idOpcional INT NOT NULL -- faz entrega
