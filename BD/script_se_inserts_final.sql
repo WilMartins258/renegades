@@ -2888,11 +2888,6 @@ insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
     5 -- idCategoria INT NOT NULL -- Pastelaria
 );
 
-insert into comida_estabelecimento (idEstabelecimento, idComida) values(
-    13, -- idEstabelecimento INT NOT NULL,
-    1   -- idComida INT NOT NULL -- Brasileira
-);
-
 insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
     13, -- idEstabelecimento INT NOT NULL,
     1 -- idOpcional INT NOT NULL -- faz entrega
