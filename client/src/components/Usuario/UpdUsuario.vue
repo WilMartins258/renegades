@@ -129,9 +129,13 @@ export default{
         if (sessionStorage.getItem('idUsuario')) {
           const requisicaoUsuario = await api.get(`/usuario/${sessionStorage.getItem('idUsuario')}`);          
           const dadosUsuario = requisicaoUsuario.data;
-          const dataFormatada = dataToDiaMesAno(dadosUsuario.dataNascimento);
 
-          // //Dados Usuário
+          let dataFormatada = '';
+          if (dadosUsuario.dataNascimento) {
+            dataFormatada = dataToDiaMesAno(dadosUsuario.dataNascimento);
+          }
+
+          // Dados Usuário
           this.nome = dadosUsuario.nome;
           this.dataNasc = dataFormatada;
           this.celular = dadosUsuario.celular;
