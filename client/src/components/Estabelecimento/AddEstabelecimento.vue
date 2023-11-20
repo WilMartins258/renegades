@@ -305,6 +305,7 @@ components: {
 name: "AddEstabelecimento",
 data() {
   return {
+    backRetornou: false,
     mostrarMensagem: false,
     currentSection: 1,
     nomeEstabelecimento: "",
@@ -430,6 +431,8 @@ methods: {
       if (salvarEstabelecimento) {
         sessionStorage.setItem('idEstabelecimento', salvarEstabelecimento.data.idEstabelecimento);
         sessionStorage.setItem('tipoUsuario', salvarEstabelecimento.data.tipoUsuario);
+        this.backRetornou = true;
+        console.log("Realmente ok", this.backRetornou)
       }
     } catch (error) {
       this.mostrarmensagemError(error.response.data.msg);
@@ -649,7 +652,8 @@ methods: {
 	
     fecharMensagem() {
       this.mostrarMensagem = false;
-      if(sessionStorage.getItem('tipoUsuario')=='1'){
+      if(this.backRetornou){
+        console.log("Fechar msg", this.backRetornou)
          //this.$router.push('/AreaDoEstabelecimento');
       }
     },
