@@ -351,8 +351,8 @@ data() {
           descricaoEstUser: "O que o seu estabelecimento oferece aos clientes? Selecione suas opções. Clique em 'Próximo'." 
         },
         { 
-          title: "Seção 5: Indicação do Chef", 
-          descricaoEstUser: "Carregue uma foto do seu estabelecimento e informe os horários de atendimento. A imagem é uma ótima maneira de atrair clientes. Clique em 'Próximo'."
+          title: "Seção 5: Recomendações", 
+          descricaoEstUser: "Entre com o nome e descrição para a sua recomendação, e carregue uma foto da sua recomendação(pode criar até 3 recomendações). Clique em 'Próximo'."
         },
         { 
           title: "Seção 6: Foto e Horário de Atendimento", 
@@ -643,8 +643,8 @@ methods: {
 	
     fecharMensagem() {
       this.mostrarMensagem = false;
-      if(sessionStorage.getItem('idUsuario')=='1'){
-        // this.$router.push('/AreaDoEstabelecimento');
+      if(sessionStorage.getItem('tipoUsuario')=='1'){
+         this.$router.push('/AreaDoEstabelecimento');
       }
     },
     receberRestauranteSelecionado(restauranteSelecionado) {
