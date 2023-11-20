@@ -96,6 +96,7 @@
   import IMask from "imask";
   import api from './../../services/backend.service';
   import dataToDiaMesAno from './../../services/dataToDiaMesAno.service.js';
+  import axios from "axios";
 
 export default{
   name: "UpdUsuario",
@@ -186,10 +187,9 @@ export default{
       }
     },
     pesquisarCep() {
-      /*
-      var cep = this.cep.replace(/\D/g, "");
+      const cep = this.endereco.cep?.replace(/\D/g, "");
       if (cep !== "") {
-        var validacep = /^[0-9]{8}$/;
+        const validacep = /^[0-9]{8}$/;
         if (validacep.test(cep)) {
           axios
             .get(`https://viacep.com.br/ws/${cep}/json/`)
@@ -208,7 +208,6 @@ export default{
       } else {
         this.limpa_formulário_cep();
       }
-      */
     },
     async AtualizarImagem(event) {
       try {
