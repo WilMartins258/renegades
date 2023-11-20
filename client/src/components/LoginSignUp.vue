@@ -6,7 +6,7 @@
 				<InfoPopup>	<span class="popup">Digite o seu nome completo no campo</span></InfoPopup>
 			</label>
 			<input id="sign-up-name" type="text" class="input" v-model="Nome" :class="{ 'error': !isNomeValido }">
-			<span v-if="!isEmailValido" class="error-message">{{ emailErro }}</span>
+			<span v-if="!isNomeValido" class="error-message">{{ nomeErro }}</span>
 		</div>
 
 		<div class="group">
