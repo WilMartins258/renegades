@@ -80,7 +80,7 @@ const obterDistanciaDeTodosEstabelecimentos= async (latitudeUsuario, longitudeUs
 
         return estabelecimentos;
     } catch (error) {
-        console.log('Erro insano: \n', error)
+        console.log('Erro de distância: \n', error)
         throw new Error('Erro: ', error);
     }
 };
