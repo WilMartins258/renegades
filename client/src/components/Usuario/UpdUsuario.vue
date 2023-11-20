@@ -345,6 +345,9 @@ export default{
         try {
           if (window.confirm("Confirma a inativação do usuário? Essa conta não poderá mais ser acessada.")) {
               await api.put('/usuario/invalidar', {idUsuario: sessionStorage.getItem('idUsuario')});
+
+              sessionStorage.clear();
+              this.$router.push({ name: 'home', query: {  logged: 'false' }});
           }
         } catch (error) {
           this.mostrarmensagemError(error.response.data.msg);
