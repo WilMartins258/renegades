@@ -104,7 +104,7 @@
     </div>
 
     <input type="range" v-model="filtroDistancia" min="0" max="10" step="1"/>
-    <p>Distância: {{ filtroDistancia }} km</p>
+    <p>Distância: {{ filtroDistancia }} {{ filtroDistancia ? 'km' : '' }}</p>
     <br />
     <button @click="limparFiltroDistancia">Remover Filtro</button>
 <div class="distance-input-container">
@@ -492,6 +492,13 @@ export default {
       }
     },
     async buscarCep() {
+      if (this.endereco) {
+        const distancias = await api.get('/distancia/cep', { params: {cep: this.endereco} });
+        for (let i=0; i < distancias?.data?.distancias?.length; i++) {
+          this.estabelecimentos[i].distancia = distancias.data.distancias[i].distancia;
+        }
+        this.showDistance = true;
+      }
     // Valide o formato do CEP
     const cepRegex = /^[0-9]{8}$/;
 
@@ -517,13 +524,6 @@ export default {
           // Exiba uma mensagem de erro para o usuário
           alert("Erro ao buscar informações de CEP. Por favor, tente novamente.");
         });
-        if (sessionStorage.getItem('cep')) {
-          const distancias = await api.get('/distancia/cep', { params: {cep: sessionStorage.getItem('cep')} });
-          for (let i=0; i < distancias?.data?.distancias?.length; i++) {
-            this.estabelecimentos[i].distancia = distancias.data.distancias[i].distancia;
-          }
-          this.showDistance = true;
-        }
     } else {
       console.warn("Formato de CEP inválido");
     }

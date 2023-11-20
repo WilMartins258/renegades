@@ -72,7 +72,7 @@ const atualizar = async (newUserData) => {
     const atualizarUsuarioQuery = `
       UPDATE usuario
         SET nome = ?, celular = ?, email = ?, 
-        senha = ?, fotoPerfil = ?, dataNascimento = ?,
+        senha = ?, dataNascimento = ?,
         cep = ?, estado = ?, cidade = ?, bairro = ?,
         logradouro = ?, numeroResidencia = ?
         WHERE id = ?;`;
@@ -87,6 +87,20 @@ const atualizar = async (newUserData) => {
     return atualizarUsuario;
   } catch (error) {
     throw new Error(`Erro ao atualizar dados do usuário: ${error.message}`);
+  }
+};
+
+const atualizarFoto = async (newFotoType) => {
+  try {
+    const atualizarFotoUsuarioQuery = `
+      UPDATE usuario
+        SET fotoPerfil = ?
+        WHERE id = ?;`;
+    const connection = await db;
+
+    await connection.query(atualizarFotoUsuarioQuery, newFotoType);
+  } catch (error) {
+    throw new Error(`Erro ao atualizar foto do usuário: ${error.message}`);
   }
 };
 
@@ -151,6 +165,7 @@ module.exports = {
   inserirIdEstabelecimento,
   inserir,
   atualizar,
+  atualizarFoto,
   pegarPorId,
   buscarLocalizacaoPorId,
   salvarLocalizacaoPorId,
