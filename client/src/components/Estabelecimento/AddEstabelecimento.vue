@@ -303,6 +303,7 @@ components: {
 name: "AddEstabelecimento",
 data() {
   return {
+    mostrarMensagem: false,
     currentSection: 1,
     nomeEstabelecimento: "",
     descricaoEstabelecimento: "",
@@ -391,6 +392,7 @@ methods: {
   },
   async salvarDados() {
     try {
+      this.mostrarmensagemPUser();
       const formData = {
         idUsuario: sessionStorage.getItem('idUsuario'),
         nomeEstabelecimento: this.nomeEstabelecimento,
@@ -418,12 +420,6 @@ methods: {
       if (salvarEstabelecimento) {
         sessionStorage.setItem('idEstabelecimento', salvarEstabelecimento.data.idEstabelecimento);
         sessionStorage.setItem('tipoUsuario', salvarEstabelecimento.data.tipoUsuario);
-        
-        this.mostrarmensagemPUser();
-       //  console.log("salvarEstabelecimento:: ", salvarEstabelecimento);
-       //  console.log("idEstabelecimento:: ", sessionStorage.getItem('idEstabelecimento'));
-
-
       }
     } catch (error) {
       this.mostrarmensagemError(error.response.data.msg);
