@@ -1635,9 +1635,10 @@ th,
 td {
 border: 1px solid #ccc;
 padding: 8px;
-text-align: center;
 color: #000;
 }
+
+
 
 th {
 background-color: #f2f2f2;
