@@ -118,7 +118,8 @@ export default{
       senha: "",
       senhaConfirm: "",
       fotoUsuario: "",
-      fotoUsuarioType: ""
+      fotoUsuarioType: "",
+      fotoUsuarioMudou: false
   };
   },
   created() {
@@ -237,6 +238,7 @@ export default{
             const bufferValido = new Uint8Array(arrayBuffer);
             this.fotoUsuario = bufferValido;
             this.fotoUsuarioType = file.type;
+            this.fotoUsuarioMudou = true;
           } catch (error) {
             console.log('Erro ao ler imagem como buffer: ', error);
           }
@@ -320,6 +322,10 @@ export default{
         inativaButton.removeAttribute("disabled");
 
         try {
+          if (!this.fotoUsuarioMudou) {
+            this.fotoUsuario = '';
+            this.fotoUsuarioType = '';
+          }
           const novosDadosUsuario = {
             idUsuario: sessionStorage.getItem('idUsuario'),
             nome: nomeInput.value,
@@ -334,7 +340,8 @@ export default{
             logradouro: ruaInput.value,
             numero: numeroInput.value,
             fotoBuffer: this.fotoUsuario,
-            fotoType: this.fotoUsuarioType
+            fotoType: this.fotoUsuarioType,
+            fotoUsuarioMudou: this.fotoUsuarioMudou
           };
           await api.put('/usuario', novosDadosUsuario);
         } catch (error) {
