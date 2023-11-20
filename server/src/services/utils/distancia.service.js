@@ -94,10 +94,10 @@ const obterDistanciaDeTodosEstabelecimentosPeloCep = async (cep, estabelecimento
 
             const response = await axios.get(apiUrl);
 
-            if ( response?.data?.routes[0]?.legs[0]?.distance?.value > 0) {
-                estabelecimentos[i].distancia = (response?.data?.routes[0]?.legs[0]?.distance?.value)/1000;
-            } else {
+            if ( response?.data?.routes[0]?.legs[0]?.distance?.value == 0 ) {
                 estabelecimentos[i].distancia = 1,0;
+            } else {
+                estabelecimentos[i].distancia = (response?.data?.routes[0]?.legs[0]?.distance?.value)/1000;
             }
         }
         
