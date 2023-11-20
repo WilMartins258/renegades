@@ -2783,7 +2783,7 @@ insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSoc
 insert into redeSocial_estabelecimento (idEstabelecimento, idRedeSocial, redeSocial) values(
 	12,          -- idEstabelecimento INT not null,
 	5,          -- idTipoRedeSocial  INT not null, -- SITE
-	'https://acesse.dev/6yYxJ' -- redeSocial VARCHAR(200) not null
+	'https://cdn.qr-code-generator.com/account10624933/40574461_1.pdf?Expires=1700587364&Signature=TLAUO1V3qGV8u19CEj6KD~CnS1XrFj0gpPOIIIIG6JihkjYa07O2Kq2hfVVA7Q7c6Hahli9tIaXm83XD7mdthVnT1f5v8F~mpJkK6jPvctK3P9ixDD5f0gZjnPV7ku5kBu3DGIrXrWBPOKqSqTZxNWPo7oNEyXsjxqUR2~dlmwYIDZtMySUiR4l2aTVkLsPfC2-fA4~g-79TH9dBRTUk~TuVYwbS5Tf-8ziaodI6gyG1H2t21gjWpqe1c826RnTeN1mEh-tymIf5T2Sb3CAbE4EDCgnHWR1SGofF8TgrdI2hCfEj39lhLX7p2bXEiOzl~EEN2REljkIkcxT0WHxSiA__&Key-Pair-Id=KKMPOJU8AYATR' -- redeSocial VARCHAR(200) not null
 );
 
 insert into recomendacao values(
