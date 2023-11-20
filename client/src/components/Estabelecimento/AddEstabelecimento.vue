@@ -243,6 +243,7 @@
               <input
                 type="button"
                 class="button"
+                id="btnSalvar"
                 value="Salvar"
                 @click="salvarDados"
               />
@@ -250,6 +251,7 @@
                 type="button"
                 class="button"
                 value="Cancelar"
+                id="btnCancelar"
                 @click="cancelar"
               /> <br><br>
             </div>
@@ -258,7 +260,7 @@
   </section><!-- Fecha seção 6-->
   <br>
   <div class="buttons">
-  <img class="custom-Imag" @click="voltarSection" v-if="currentSection !== 1" 
+  <img class="custom-Imag" id="btnVoltar" @click="voltarSection" v-if="currentSection !== 1" 
                                         src="../../../public/img/ArrowVoltar.png" alt="Voltar"/>
   <div class="space-between-arrows"></div>
   <img class="custom-Imag" @click="avancarSection" v-if="currentSection !== 6" 
@@ -392,6 +394,14 @@ methods: {
   },
   async salvarDados() {
     try {
+      const btnSalvar = document.getElementById("btnSalvar");
+      const btnVoltar = document.getElementById("btnVoltar");
+      const btnCancelar = document.getElementById("btnCancelar");
+
+      btnSalvar.setAttribute("disabled", true);
+      btnVoltar.setAttribute("disabled", true);
+      btnCancelar.setAttribute("disabled", true);
+
       this.mostrarmensagemPUser();
       const formData = {
         idUsuario: sessionStorage.getItem('idUsuario'),
@@ -640,7 +650,7 @@ methods: {
     fecharMensagem() {
       this.mostrarMensagem = false;
       if(sessionStorage.getItem('tipoUsuario')=='1'){
-         this.$router.push('/AreaDoEstabelecimento');
+         //this.$router.push('/AreaDoEstabelecimento');
       }
     },
     receberRestauranteSelecionado(restauranteSelecionado) {
@@ -684,7 +694,15 @@ computed: {
   position: relative;
 }
 
+#form-wrap .group .button[disabled] {
+  background-color: #7a7a7a6c;
+  pointer-events: none;
+}
 
+#form-wrap .group .input[disabled] {
+  background: rgba(211, 201, 201, 0.774);
+
+}
 
 .posicaoform-wrap {
     width: 100%;

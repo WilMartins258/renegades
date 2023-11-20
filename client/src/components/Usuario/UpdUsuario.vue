@@ -45,7 +45,6 @@
             <div class="group">
               <label for="senha2" class="label">Confirme sua senha:</label><br />
                 <input type="password" v-model="senhaConfirm" id="senha2" class="input" name="senha2" disabled/>
-                <span style="color: red;">{{ senhaError }}</span>
             </div> 
           </div>
 
