@@ -18,7 +18,7 @@
               alt="Meus Anuncios"
               class="card-image"
             />
-            <div class="description">Gerenciar Categoria</div>
+            <div class="description">Gerenciar Categorias</div>
           </router-link>
   
           <router-link to="/gerenciamusicas" class="card">
