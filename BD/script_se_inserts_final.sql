@@ -4101,7 +4101,7 @@ insert into estabelecimento values(
 
 insert into categoria_estabelecimento (idEstabelecimento, idCategoria) values(
     53, -- idEstabelecimento INT NOT NULL,
-    1 -- idCategoria INT NOT NULL -- LANCHONETE
+    4 -- idCategoria INT NOT NULL -- LANCHONETE
 );
 
 insert into opcional_estabelecimento (idEstabelecimento, idOpcional) values(
