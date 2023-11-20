@@ -104,7 +104,7 @@
     </div>
 
     <input type="range" v-model="filtroDistancia" min="0" max="10" step="1"/>
-    <p>Distância: {{ filtroDistancia }} {{ filtroDistancia ? 'km' : '' }}</p>
+    <p>Distância: {{ filtroDistancia }} Km</p>
     <br />
     <button @click="limparFiltroDistancia">Remover Filtro</button>
 <div class="distance-input-container">
