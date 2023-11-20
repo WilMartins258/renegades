@@ -71,24 +71,6 @@ router.put('/', async (req, res) => {
             fotoUsuarioMudou
         } = req.body;
 
-        console.log('fotoBuffer: ', fotoBuffer)
-        console.log('fotoType: ', fotoType)
-        console.log('fotoUsuarioMudou: ', fotoUsuarioMudou)
-
-        if (fotoUsuarioMudou) {
-
-            const extensaoImagem = extensaoImagem_Service.encontrarExtensaoImagem(fotoType);
-            const bufferFotoUusuario= await buffer_Service.transformarBufferEmValido(fotoBuffer);
-
-
-            fs.writeFile(`./../client/src/components/Usuario/images/${idUsuario}.${extensaoImagem}`, bufferFotoUusuario, (err) => {
-                if (err) {
-                  console.error('Erro ao salvar imagem do usuário:', err);
-                }
-            });
-            
-        }
- 
         const dataNascMySqlFormat = dataToMySql_Service.dataToMySqlFormat(dataNascimento);
         
         const novosDadosUsuario = {
@@ -108,7 +90,18 @@ router.put('/', async (req, res) => {
         const novosDadosUsuarioArray = Object.values(novosDadosUsuario);
         await usuario_Service.atualizar(novosDadosUsuarioArray);
 
-        
+        if (fotoUsuarioMudou) {
+            const extensaoImagem = extensaoImagem_Service.encontrarExtensaoImagem(fotoType);
+            const bufferFotoUusuario= await buffer_Service.transformarBufferEmValido(fotoBuffer);
+
+            fs.writeFile(`./../client/src/components/Usuario/images/${idUsuario}.${extensaoImagem}`, bufferFotoUusuario, (err) => {
+                if (err) {
+                  console.error('Erro ao salvar imagem do usuário:', err);
+                }
+            });
+
+            await usuario_Service.atualizarFoto([extensaoImagem, idUsuario]);
+        }
 
         res.status(200).send({
             msg: 'Dados do usuário alterados com sucesso!',

@@ -90,6 +90,20 @@ const atualizar = async (newUserData) => {
   }
 };
 
+const atualizarFoto = async (newFotoType) => {
+  try {
+    const atualizarFotoUsuarioQuery = `
+      UPDATE usuario
+        SET fotoPerfil = ?
+        WHERE id = ?;`;
+    const connection = await db;
+
+    await connection.query(atualizarFotoUsuarioQuery, newFotoType);
+  } catch (error) {
+    throw new Error(`Erro ao atualizar foto do usuário: ${error.message}`);
+  }
+};
+
 const buscarLocalizacaoPorId = async (idUsuario) => {
   try {
     const localizacaoUsuarioQuery = "SELECT latitude, longitude FROM usuario WHERE id = ?";
@@ -151,6 +165,7 @@ module.exports = {
   inserirIdEstabelecimento,
   inserir,
   atualizar,
+  atualizarFoto,
   pegarPorId,
   buscarLocalizacaoPorId,
   salvarLocalizacaoPorId,
