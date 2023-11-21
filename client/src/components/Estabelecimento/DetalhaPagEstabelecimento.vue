@@ -211,6 +211,7 @@ export default {
             mediaNt: 0, // Média que vem do banco
             visibleAvaliacaoEstab: [], // Array para armazenar as avaliações visíveis
             numToShow: 0, // Número inicial de avaliações para mostrar
+            usuarioAvaliouEstabelecimento: false
         };
     },
   async created() {
@@ -352,6 +353,18 @@ export default {
         this.createMap(latitude, longitude);
       } catch (error) {
         console.log('ERROR:: ', error);
+      }
+
+      try {
+        const avaliacoes = await api.get(`/avaliacao/usuario/${sessionStorage.getItem('idUsuario')}`);
+        
+        for (let i = 0; i < avaliacoes.data.length; i++) {
+          if (avaliacoes.data[i].idEstabelecimento == this.id) {
+            this.usuarioAvaliouEstabelecimento = true;
+          }
+        }
+      } catch (error) {
+        console.log(error);
       }
 
     } catch (error) {
