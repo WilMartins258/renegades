@@ -4723,8 +4723,48 @@ insert into recomendacao values(
 
 
 
---------------------------- --> CADASTRO DE AVALIAÇÕES ---- INÍCIO
+--------------------------- --> CADASTRO USUÁRIOS INATIVOS ---- INÍCIO
 
+insert into usuario (idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, status, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
+	null,                -- idEstabelecimento
+    'Rick Mickael',           -- nome
+	'15999999999',           -- celular
+    '00415975999',       -- cpf
+    'rick@gmail.com.br', -- email
+    '123456',          -- senha
+	null,                -- fotoPerfil
+    '1975-03-06',        -- dataNascimento
+	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	'Inativo', -- status
+	null, -- numero not null
+	null, -- lodradouro not null,
+	null, -- bairro not null,
+	null, -- cidade not null,
+	null, -- estado not null,
+	null, -- cep not null,
+	null, -- latitude
+	null -- logitude
+);
 
+insert into usuario (idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, status, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
+	null,                -- idEstabelecimento
+    'Suiane da Costa Ribeiro Fernandes',           -- nome
+	'15999999999',           -- celular
+    '99988975999',       -- cpf
+    'suiane@gmail.com.br', -- email
+    '123456',          -- senha
+	null,                -- fotoPerfil
+    '2000-05-15',        -- dataNascimento
+	1, -- tipoUsuario ENUM(0, 1, 2) NOT NULL
+	'Inativo', -- status
+	null, -- numero not null
+	null, -- lodradouro not null,
+	null, -- bairro not null,
+	null, -- cidade not null,
+	null, -- estado not null,
+	null, -- cep not null,
+	null, -- latitude
+	null -- logitude
+);
 
---------------------------- --> CADASTRO DE AVALIAÇÕES ---- FIM
+--------------------------- --> CADASTRO USUÁRIOS INATIVOS ---- FIM
