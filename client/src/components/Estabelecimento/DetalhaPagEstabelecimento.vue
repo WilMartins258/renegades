@@ -355,16 +355,18 @@ export default {
         console.log('ERROR:: ', error);
       }
 
-      try {
-        const avaliacoes = await api.get(`/avaliacao/usuario/${sessionStorage.getItem('idUsuario')}`);
-        
-        for (let i = 0; i < avaliacoes.data.length; i++) {
-          if (avaliacoes.data[i].idEstabelecimento == this.id) {
-            this.usuarioAvaliouEstabelecimento = true;
+      if (sessionStorage.getItem('idUsuario')) {
+        try {
+          const avaliacoes = await api.get(`/avaliacao/usuario/${sessionStorage.getItem('idUsuario')}`);
+
+          for (let i = 0; i < avaliacoes.data.length; i++) {
+            if (avaliacoes.data[i].idEstabelecimento == this.id) {
+              this.usuarioAvaliouEstabelecimento = true;
+            }
           }
+        } catch (error) {
+          console.log(error);
         }
-      } catch (error) {
-        console.log(error);
       }
 
     } catch (error) {
