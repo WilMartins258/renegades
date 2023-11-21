@@ -75,7 +75,11 @@ const obterDistanciaDeTodosEstabelecimentos= async (latitudeUsuario, longitudeUs
             const apiUrl = `https://maps.googleapis.com/maps/api/directions/json?origin=${latitudeUsuario},${longitudeUsuario}&destination=${estabelecimentos[i]?.numeroEstabelecimento},${estabelecimentos[i]?.cep}&mode=driving&key=${apiKey}`;
             const response = await axios.get(apiUrl);
 
-            estabelecimentos[i].distancia = (response?.data?.routes[0]?.legs[0]?.distance?.value)/1000;
+            if ( response?.data?.routes[0]?.legs[0]?.distance?.value == 0 ) {
+                estabelecimentos[i].distancia = 1;
+            } else {
+                estabelecimentos[i].distancia = (response?.data?.routes[0]?.legs[0]?.distance?.value)/1000;
+            }
         }
 
         return estabelecimentos;
@@ -95,7 +99,7 @@ const obterDistanciaDeTodosEstabelecimentosPeloCep = async (cep, estabelecimento
             const response = await axios.get(apiUrl);
 
             if ( response?.data?.routes[0]?.legs[0]?.distance?.value == 0 ) {
-                estabelecimentos[i].distancia = 1,0;
+                estabelecimentos[i].distancia = 1;
             } else {
                 estabelecimentos[i].distancia = (response?.data?.routes[0]?.legs[0]?.distance?.value)/1000;
             }
