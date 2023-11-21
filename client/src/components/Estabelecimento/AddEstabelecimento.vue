@@ -305,6 +305,8 @@ components: {
 name: "AddEstabelecimento",
 data() {
   return {
+    titulo: "",
+    msg:"",
     backRetornou: false,
     mostrarMensagem: false,
     currentSection: 1,
@@ -403,6 +405,9 @@ methods: {
       btnVoltar.setAttribute("disabled", true);
       btnCancelar.setAttribute("disabled", true);
 
+      this.titulo = "Enviando...";
+      this.msg ="Aguarde enquanto seu estabelecimento está sendo registrado em nosso site.";
+
       this.mostrarmensagemPUser();
       const formData = {
         idUsuario: sessionStorage.getItem('idUsuario'),
@@ -432,7 +437,11 @@ methods: {
         sessionStorage.setItem('idEstabelecimento', salvarEstabelecimento.data.idEstabelecimento);
         sessionStorage.setItem('tipoUsuario', salvarEstabelecimento.data.tipoUsuario);
         this.backRetornou = true;
-        console.log("Realmente ok", this.backRetornou)
+
+        this.mostrarMensagem = false;
+        this.titulo = "Seja Bem Vindo!";
+		    this.msg = "Seu cadastro foi concluído com êxito! Em breve ele será avaliado e estará disponível no site.";
+        this.mostrarmensagemPUser();
       }
     } catch (error) {
       this.mostrarmensagemError(error.response.data.msg);
@@ -456,7 +465,7 @@ methods: {
       this.currentSection++;
       this.calculaAltura(); // Calcule a altura
       this.title = "Novo Título da Seção"; // Atualize o título aqui
-     // this.openDescriptionPopup(); // Abra o popup ao avançar
+      this.openDescriptionPopup(); // Abra o popup ao avançar
       
     }
     this.scrollToTop();
@@ -637,10 +646,8 @@ methods: {
     }
   },
   mostrarmensagemPUser() {
-		// this.tituloMsg = "Seja Bem Vindo!"
-		this.tituloMsg = "Enviando..."
-		// this.mensagemPUser = "Seu cadastro foi concluído com êxito! Em breve ele será avaliado e estará disponível no site.";
-		this.mensagemPUser = "Aguarde enquanto seu estabelecimento está sendo registrado em nosso site.";
+		this.tituloMsg = this.titulo; 
+		this.mensagemPUser = this.msg; 
 		this.mostrarMensagem = true;
   },
 
@@ -653,18 +660,15 @@ methods: {
     fecharMensagem() {
       this.mostrarMensagem = false;
       if(this.backRetornou){
-        console.log("Fechar msg", this.backRetornou)
-         //this.$router.push('/AreaDoEstabelecimento');
+          this.$router.push('/AreaDoEstabelecimento');
+      }else{
+        this.mostrarmensagemPUser();
       }
     },
     receberRestauranteSelecionado(restauranteSelecionado) {
-      // Passa True ou false se o "Restaurante" estiver selecionado
-     // console.log('Restaurante foi selecionado!');
       this.isRestaurante = restauranteSelecionado;
   },
   receberMusicaSelecionada(isMusica) {
-      // Passa True ou false se "música ao vivo" ou "Toca Música" selecionado
-      //console.log("Pelo menos um tipo de música foi selecionado: ", isMusica);
       this.isMusica = isMusica;
     },
 },

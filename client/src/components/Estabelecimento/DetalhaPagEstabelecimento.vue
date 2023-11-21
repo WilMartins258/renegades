@@ -19,7 +19,7 @@
     </section>
     <br>
     <div class="recomendacaoTitulo ">
-    <br><h2>Recomendações:</h2>
+      <h2>Recomendações:</h2>
     </div>
     <section class="chef-recomendacoes">
       <div class="recomendacao" v-for="prato in pratosChef" :key="prato.id">
