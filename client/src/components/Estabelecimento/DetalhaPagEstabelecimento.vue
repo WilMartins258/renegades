@@ -101,7 +101,7 @@
       </div>
     </section>
 
-    <section class="user-avaliacao" v-show="userType === '0'">
+    <section class="user-avaliacao" v-show="userType === '0' && usuarioAvaliouEstabelecimento == false">
       <h2>Avalie</h2>
       <form>
         <label for="avaliacao">Dê uma Nota:</label>
