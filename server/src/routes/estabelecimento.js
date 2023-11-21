@@ -404,6 +404,16 @@ router.post('/', async (req, res) => {
     }
 });
 
+router.put('/ativacao', async (req, res) => {
+    try {
+        res.status(200).send({
+            msg: 'Estabelecimento ativado ou inativado com sucesso!',
+        });
+    } catch (error) {
+        console.log('Erro ao tentar ativar ou inativar estabelecimento: ', error);
+    }
+});
+
 router.put('/', async (req, res) => {
     let connection;
     try {

@@ -458,7 +458,7 @@
   <div class="group">
         <button type="button" class="button" id="alterarButton" @click="alterar">Alterar</button>
         <button type="button" class="button" id="salvarButton" @click="salvar" disabled>Salvar</button>
-        <button type="button" class="button" id="excluirInativar">Inativar</button>
+        <button type="button" class="button" id="excluirInativar" @click="ativacao" >Inativar</button>
         <button type="button" class="button" id="cancelarButton" @click="cancelar" disabled>Cancelar</button>
       </div>
 </div>
@@ -1065,6 +1065,15 @@ cancelar() {
   document.getElementById("excluirInativar").removeAttribute("disabled", true);
   document.getElementById("salvarButton").setAttribute("disabled", true);
   document.getElementById("cancelarButton").setAttribute("disabled", true);
+},
+
+async ativacao() {
+  try {
+    console.log('ativacao')
+    api.put('/estabelecimento/ativacao', {idEstabelecimento: sessionStorage.getItem('idEstabelecimento')});
+  } catch (error) {
+    console.log(error);
+  }
 },
 
 async salvar() {
