@@ -287,8 +287,12 @@ export default {
         }
 
         /* Essas são as coordenadas da Fatec
-        -23.4820675, -47.4254607
+          -23.4820675, -47.4254607
         */
+        // const coordenadas = {
+        //   latitude: -23.4820675,
+        //   longitude: -47.4254607
+        // }
 
         if (sessionStorage.getItem('latitude') && sessionStorage.getItem('longitude')) {
           const distancias = await api.get('/distancia', { params: coordenadas });
