@@ -129,7 +129,6 @@ export default{
     async metodoInicial() {
       try {
         if (sessionStorage.getItem('ValidUsuario')) {
-          console.log('teste',sessionStorage.getItem('ValidUsuario'));
           const requisicaoUsuario = await api.get(`/usuario/${sessionStorage.getItem('ValidUsuario')}`);          
           const dadosUsuario = requisicaoUsuario.data;
 
