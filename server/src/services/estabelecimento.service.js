@@ -164,6 +164,20 @@ const atualizarFormatoDeImagem = async (dadosEstabelecimento, conn) => {
   }
 };
 
+const ativacao = async (dadosEstabelecimento) => {
+  try {
+    const estabelecimentoQuery = `
+      UPDATE estabelecimento
+        SET ativo = ?
+          WHERE id = ?;`;
+    const connection = await db;
+
+    await connection.query(estabelecimentoQuery, dadosEstabelecimento);
+  } catch (error) {
+    throw new Error(`Erro ao atualizar status do estabelecimento: ${error.message}`);
+  }
+};
+
 module.exports = {
   inserir,
   atualizar,
@@ -173,5 +187,6 @@ module.exports = {
   pegarParaValidacao,
   pegarNotaEstabelecimentoPorId,
   atualizarStatus,
-  atualizarFormatoDeImagem
+  atualizarFormatoDeImagem,
+  ativacao
 };

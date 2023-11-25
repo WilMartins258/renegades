@@ -458,7 +458,7 @@
   <div class="group">
         <button type="button" class="button" id="alterarButton" @click="alterar">Alterar</button>
         <button type="button" class="button" id="salvarButton" @click="salvar" disabled>Salvar</button>
-        <button type="button" class="button" id="excluirInativar" @click="ativacao" >Inativar</button>
+        <button type="button" class="button" id="excluirInativar" @click="ativacao" >{{ this.statusAtivacaoEstabelecimento ? 'Inativar' : 'Ativar'}}</button>
         <button type="button" class="button" id="cancelarButton" @click="cancelar" disabled>Cancelar</button>
       </div>
 </div>
@@ -545,7 +545,9 @@ data() {
       editingIndexHorario: -1,
       isEditingHorario: false,
       timeFieldsError: false,
-      formatoFoto: ''
+      formatoFoto: '',
+      estabelecimentoInativado: false,
+      statusAtivacaoEstabelecimento: true
   }
 },
 methods: {
@@ -1069,10 +1071,17 @@ cancelar() {
 
 async ativacao() {
   try {
-    console.log('ativacao')
-    api.put('/estabelecimento/ativacao', {idEstabelecimento: sessionStorage.getItem('idEstabelecimento')});
+    let novoStatusAtivacaoEstabelecimento;
+    if (this.statusAtivacaoEstabelecimento === 1) {
+      novoStatusAtivacaoEstabelecimento = false;
+    } else {
+      novoStatusAtivacaoEstabelecimento = true;
+    }
+    api.put('/estabelecimento/ativacao', {idEstabelecimento: sessionStorage.getItem('idEstabelecimento'), ativo: novoStatusAtivacaoEstabelecimento});
+    location.reload();
   } catch (error) {
     console.log(error);
+    location.reload();
   }
 },
 
@@ -1178,6 +1187,7 @@ computed: {
         estado,
         cep,
         status,
+        ativo,
         categorias,
         opcionais,
         estilosMusica,
@@ -1192,6 +1202,7 @@ computed: {
         contatosEstabelecimento
       } = dadosEstabelecimentoRequest.data;
 
+      this.statusAtivacaoEstabelecimento = ativo;
 
       for (let i = 0; i < contatosEstabelecimento.length; i++){
         if(contatosEstabelecimento[i].isWhatsapp == 1){
