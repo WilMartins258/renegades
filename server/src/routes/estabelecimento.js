@@ -406,9 +406,15 @@ router.post('/', async (req, res) => {
 
 router.put('/ativacao', async (req, res) => {
     try {
-        res.status(200).send({
-            msg: 'Estabelecimento ativado ou inativado com sucesso!',
-        });
+        console.log('req.body', req.body)
+        const {
+            idEstabelecimento,
+            status
+        } = req.body;
+
+        await estabelecimento_Service.ativacao([status, idEstabelecimento]);
+
+        res.status(200).send();
     } catch (error) {
         console.log('Erro ao tentar ativar ou inativar estabelecimento: ', error);
     }
