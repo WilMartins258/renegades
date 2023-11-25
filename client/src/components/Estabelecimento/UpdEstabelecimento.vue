@@ -1124,8 +1124,8 @@ async salvar() {
 },
       //Componente de mensagem
       mostrarmensagemPUser(validar) {
-        if (validar === "Pendente") {
-            this.tituloMsg = "Aviso!";
+        if (validar === "Pendente" && sessionStorage.getItem('tipoUsuario') !== "2") {
+             this.tituloMsg = "Aviso!";
              this.mensagemPUser = "Seu estabelecimento está em processo de ativação. Acompanhe sua ativação por esta página.";
              this.mostrarMensagem = true;
         } else if (validar === "Não Validado") {

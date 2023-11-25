@@ -127,7 +127,7 @@ export default {
     },
   },
   async created() {
-    this.idEstabelecimento = sessionStorage.getItem('idEstabelecimento');
+
     try {
       const estabelecimentosRequest = await api.get('/estabelecimento/validacao');
 
