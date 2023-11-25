@@ -33,7 +33,7 @@
     <div>
 
   <img
-    :src="avatarUrl"
+    :src="avatarSrc" 
     alt="Avatar"
     class="avatar"
     v-if="logged"
@@ -58,6 +58,7 @@
 </template>
   
 <script>
+import api from '../services/backend.service';
 export default {
   name: "Navbar",
   name: "NavigationBar",
@@ -67,7 +68,11 @@ export default {
       nome: "",
       categoria: "",
       isLoggedIn: false,
+      avatarSrc: "https://adaptabiz.com/wp-content/uploads/2022/01/img_avatar.png",
     };
+  },
+  created() {
+    this.metodoInicial();
   },
   mounted() {
     const nav = document.querySelector(".nav"),
@@ -104,17 +109,29 @@ export default {
     userType() {
       return sessionStorage.getItem("tipoUsuario");
     },
-    avatarUrl() {
-      // Você pode definir URLs de avatar diferentes com base no tipo de usuário, se necessário.
-      // Por exemplo, dependendo do valor de userType, você pode retornar URLs diferentes.
-      // Neste exemplo, usaremos uma URL fixa.
-      return "https://adaptabiz.com/wp-content/uploads/2022/01/img_avatar.png";
-    },
   },
   methods: {
-    pesquisar() {
-      // colocar a Lógica de pesquisa
-    },
+    async metodoInicial() {
+    const userId = sessionStorage.getItem('idUsuario');
+    if (userId) {
+      const requisicaoUsuario = await api.get(`/usuario/${userId}`);
+      const dadosUsuario = requisicaoUsuario.data;
+      console.log("dadosUsuario", dadosUsuario)
+      if (dadosUsuario.fotoPerfil){
+        try {
+          // Use dynamic import to handle image loading errors
+          const imageSrc = await import(`./../components/Usuario/images/${userId}.${dadosUsuario.fotoPerfil}`);
+          this.avatarSrc = imageSrc.default;
+        } catch (error) {
+          console.error('Error loading user image:', error);
+          // Handle image loading error by setting a default or placeholder image
+          this.avatarSrc = 'https://adaptabiz.com/wp-content/uploads/2022/01/img_avatar.png';
+        }
+      }
+    } 
+},
+
+
     logout() {
     // Limpe a sessionStorage
     sessionStorage.clear();
