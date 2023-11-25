@@ -51,6 +51,12 @@ const routes = [
     name: 'alterausuario',
     component: () => import(/* webpackChunkName: "AtulUsuario" */ '../views/ViewUsuarios/AtulUsuario'),
   },
+  
+  {
+    path: '/Valausuario',
+    name: 'Valausuario',
+    component: () => import(/* webpackChunkName: "AtulUsuario" */ '../views/ViewUsuarios/ValAtulUsuario'),
+  },
 
   {
     path: '/AreaDoAdm',

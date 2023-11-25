@@ -42,7 +42,7 @@
                   {{ usuario.ativo ? 'Sim' : 'Não' }}
                 </td>
                 <td>
-                  <a :href="usuario.link">Acessar</a>
+                  <a href="#" @click="acessarUsuario(usuario.id)">Acessar</a>
                 </td>
               </tr>
             </tbody>
@@ -72,6 +72,13 @@
       };
     },
     methods: {
+      acessarUsuario(usuarioId) {
+        sessionStorage.setItem('ValidUsuario', usuarioId);
+        
+        this.$router.push("/Valausuario");
+
+      },
+
       mostrarmensagemError(msg) {
         this.tituloMsg = "Erro"
         this.mensagemPUser = msg

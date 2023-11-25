@@ -123,7 +123,7 @@ export default {
     acessarEstabelecimento(idEstabelecimento) {
       // Faça um set no idEstabelecimento e redirecione para a rota desejada
       sessionStorage.setItem('idEstabelecimento', idEstabelecimento);
-      this.$router.push("/atulestabelecimento");
+      this.$router.push("/ValAtulUsuario");
     },
   },
   async created() {
