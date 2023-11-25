@@ -42,7 +42,7 @@
               <td>{{ estabelecimento.nome }}</td>
               <td>{{ estabelecimento.status }}</td>
               <td>
-                <a :href="estabelecimento.link">Acessar</a>
+                <a href="#" @click="acessarEstabelecimento(estabelecimento.id)">Acessar</a>
               </td>
               <td class="ativDesativ-buttons">
                 <button v-if="estabelecimento.status === 'Pendente'" @click="ativarEstabelecimento(estabelecimento)"><i class="uil uil-check"></i></button>
@@ -72,6 +72,7 @@ export default {
       mostrarMensagem: false,
       tituloMsg: '',
       mensagemPUser: '',
+      idEstabelecimento: sessionStorage.getItem('idEstabelecimento') || null,
     };
   },
   methods: {
@@ -119,8 +120,14 @@ export default {
       // Confirmação do usuário
       }
     },
+    acessarEstabelecimento(idEstabelecimento) {
+      // Faça um set no idEstabelecimento e redirecione para a rota desejada
+      sessionStorage.setItem('idEstabelecimento', idEstabelecimento);
+      this.$router.push("/atulestabelecimento");
+    },
   },
   async created() {
+    this.idEstabelecimento = sessionStorage.getItem('idEstabelecimento');
     try {
       const estabelecimentosRequest = await api.get('/estabelecimento/validacao');
 
