@@ -406,13 +406,12 @@ router.post('/', async (req, res) => {
 
 router.put('/ativacao', async (req, res) => {
     try {
-        console.log('req.body', req.body)
         const {
             idEstabelecimento,
-            status
+            ativo
         } = req.body;
 
-        await estabelecimento_Service.ativacao([status, idEstabelecimento]);
+        await estabelecimento_Service.ativacao([ativo, idEstabelecimento]);
 
         res.status(200).send();
     } catch (error) {

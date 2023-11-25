@@ -168,7 +168,7 @@ const ativacao = async (dadosEstabelecimento) => {
   try {
     const estabelecimentoQuery = `
       UPDATE estabelecimento
-        SET status = ?
+        SET ativo = ?
           WHERE id = ?;`;
     const connection = await db;
 
