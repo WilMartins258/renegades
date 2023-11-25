@@ -4748,7 +4748,7 @@ insert into usuario (idEstabelecimento, nome, celular, cpf, email, senha, fotoPe
 
 insert into usuario (idEstabelecimento, nome, celular, cpf, email, senha, fotoPerfil, dataNascimento, tipoUsuario, status, numeroResidencia, logradouro, bairro, cidade, estado, cep, latitude, longitude) values(
 	null,                -- idEstabelecimento
-    'Suiane da Costa Ribeiro Fernandes',           -- nome
+    'Suiane Ribeiro Costa Fernandes',           -- nome
 	'15999999999',           -- celular
     '99988975999',       -- cpf
     'suiane@gmail.com.br', -- email
