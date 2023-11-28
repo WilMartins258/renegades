@@ -4766,5 +4766,62 @@ insert into usuario (idEstabelecimento, nome, celular, cpf, email, senha, fotoPe
 	null, -- latitude
 	null -- logitude
 );
-
 --------------------------- --> CADASTRO USUÁRIOS INATIVOS ---- FIM
+
+--------------------------- --> CADASTRO ESTABELECIMENTO INATIVOS ---- INÍCIO
+-- --------------------------> ID: 57 Madrugadão lanchonete e restaurante ---- INÍCIO
+
+insert into estabelecimento values(
+	57, -- id 
+	'Madrugadão lanchonete e restaurante', -- nome
+	'48719094000265', -- cnpj
+	'jpg', -- fotoPrincipal   
+	'O Madrugadão é a lanchonete ideal para você que gosta de comer bem a qualquer hora do dia ou da noite!', -- descricao
+	true, -- ativo
+	false, -- oculto
+	'Não Validado', -- statusValidacao
+	null, -- nota
+	0, -- numeroAvaliacoes INT,
+	'32', -- numeroEstabelecimento  VARCHAR(9) not null,
+	'R. Pedro de Oliveira Neto', -- logradouro             VARCHAR(200) not null,
+	'Jd. Faculdade', -- bairro                 VARCHAR(200) not null,
+	'Sorocaba', -- cidade                 VARCHAR(200) not null,
+	'SP', -- estado                 VARCHAR(200) not null,
+	'18031005', -- cep               VARCHAR(9) not null,
+	-23.51590576979716, -- latitude
+	-47.464982520612914, -- logitude
+	'2023-11-09', -- dataCadastro
+	'2023-11-30' -- dataUltimoAcesso
+);
+
+-- --------------------------> ID: 57 Madrugadão lanchonete e restaurante ---- FIM
+
+-- --------------------------> ID: 57 Barbosa Dog Lanches ---- INÍCIO
+
+insert into estabelecimento values(
+	58, -- id 
+	'Barbosa Dog Lanches', -- nome
+	'48719094000265', -- cnpj
+	'jpg', -- fotoPrincipal   
+	'O Madrugadão é a lanchonete ideal para você que gosta de comer bem a qualquer hora do dia ou da noite!', -- descricao
+	true, -- ativo
+	false, -- oculto
+	'Não Validado', -- statusValidacao
+	null, -- nota
+	0, -- numeroAvaliacoes INT,
+	'32', -- numeroEstabelecimento  VARCHAR(9) not null,
+	'R. Pedro de Oliveira Neto', -- logradouro             VARCHAR(200) not null,
+	'Jd. Faculdade', -- bairro                 VARCHAR(200) not null,
+	'Sorocaba', -- cidade                 VARCHAR(200) not null,
+	'SP', -- estado                 VARCHAR(200) not null,
+	'18031005', -- cep               VARCHAR(9) not null,
+	-23.51590576979716, -- latitude
+	-47.464982520612914, -- logitude
+	'2023-11-09', -- dataCadastro
+	'2023-11-30' -- dataUltimoAcesso
+);
+
+-- --------------------------> ID: 57 Barbosa Dog Lanches ---- FIM
+
+--------------------------- --> CADASTRO ESTABELECIMENTO INATIVOS ---- FIM
+
