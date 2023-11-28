@@ -313,11 +313,11 @@ AFTER UPDATE ON avaliacao
 FOR EACH ROW
 BEGIN
     DECLARE estabelecimento_id INT;
-    SET estabelecimento_id = NEW.idEstabelecimento;
-
     DECLARE totalAvaliacoes INT;
     DECLARE somaNotas INT;
     DECLARE media FLOAT;
+
+    SET estabelecimento_id = NEW.idEstabelecimento;
 
     -- Calcula o número total de avaliações para o estabelecimento
     SELECT COUNT(*) INTO totalAvaliacoes FROM avaliacao WHERE idEstabelecimento = estabelecimento_id;
@@ -340,6 +340,7 @@ END;
 
 //
 DELIMITER ;
+
 
 DELIMITER //
 
