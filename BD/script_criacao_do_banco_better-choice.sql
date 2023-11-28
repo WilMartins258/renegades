@@ -308,6 +308,41 @@ DELIMITER ;
 
 DELIMITER //
 
+CREATE TRIGGER atualizarNotaAvaliacao
+AFTER UPDATE ON avaliacao
+FOR EACH ROW
+BEGIN
+    DECLARE estabelecimento_id INT;
+    SET estabelecimento_id = NEW.idEstabelecimento;
+
+    DECLARE totalAvaliacoes INT;
+    DECLARE somaNotas INT;
+    DECLARE media FLOAT;
+
+    -- Calcula o número total de avaliações para o estabelecimento
+    SELECT COUNT(*) INTO totalAvaliacoes FROM avaliacao WHERE idEstabelecimento = estabelecimento_id;
+
+    -- Calcula a soma das notas das avaliações para o estabelecimento
+    SELECT SUM(nota) INTO somaNotas FROM avaliacao WHERE idEstabelecimento = estabelecimento_id;
+
+    -- Calcula a média das notas
+    IF totalAvaliacoes > 0 THEN
+        SET media = somaNotas / totalAvaliacoes;
+    ELSE
+        SET media = 0;
+    END IF;
+
+    -- Atualiza os campos na tabela estabelecimento
+    UPDATE estabelecimento
+    SET numeroAvaliacoes = totalAvaliacoes, nota = media
+    WHERE id = estabelecimento_id;
+END;
+
+//
+DELIMITER ;
+
+DELIMITER //
+
 CREATE PROCEDURE AtualizarStatusPromocoes()
 BEGIN
     UPDATE promocao
