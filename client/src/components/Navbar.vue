@@ -116,7 +116,6 @@ export default {
     if (userId) {
       const requisicaoUsuario = await api.get(`/usuario/${userId}`);
       const dadosUsuario = requisicaoUsuario.data;
-      console.log("dadosUsuario", dadosUsuario)
       if (dadosUsuario.fotoPerfil){
         try {
           // Use dynamic import to handle image loading errors
