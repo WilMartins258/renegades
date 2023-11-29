@@ -122,7 +122,11 @@
   </div>
 </div>
 
-
+<div class="filter-container">
+  <button @click="limparFiltros">
+    Remover todos os Filtros
+  </button>
+</div>
 
   </div>
   <div class="Centraliza">
@@ -426,6 +430,15 @@ export default {
         estabelecimento.nome.toLowerCase().includes(nomeFiltrado)
       );
     }
+  },
+    limparFiltros() {
+    this.categoriasSelecionadas = [];
+    this.filtroOpcionais = [];
+    this.filtroComida = null;
+    this.filtroDistancia = 0; 
+    this.filtroDistanciaText = "";
+    this.filtroNomeEstabelecimento = "";
+    this.activeFilter = null;
   },
 
   aplicarFiltroDistanciaText() {
