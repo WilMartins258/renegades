@@ -636,12 +636,12 @@ methods: {
           formWrap.style.minHeight = '1400px'; // Ajuste de altura para a seção 4
           break;
         case 5:
-          formWrap.style.minHeight = '1600px'; // Ajuste de altura para a seção 5
+          formWrap.style.minHeight = '1700px'; // Ajuste de altura para a seção 5
           break;
 
         // Adicione casos para outras seções, se necessário
         default:
-          formWrap.style.minHeight = '1090px'; // Altura padrão
+          formWrap.style.minHeight = '1120px'; // Altura padrão
       }
     }
   },
